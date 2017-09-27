@@ -1,0 +1,55 @@
+	chyba return 1
+	nezalezi na velikosti pismen
+
+	operator stejnyho typu, vysled = bool
+	jeden int. druhy double => int konvertovan na double
+	 -> pouziti jen na if,do-while
+
+del   / - deleni (integeru)
+nas   * - nasobeni
+scit  +
+odcit -
+
+mensi < - mensi
+vetsi > - vetsi
+menro <= mensi/rovno
+vetro >= vetsi/rovno
+rovno = rovno
+nerov <> nerovno
+
+r-kom  '  - radkovy koment
+b-komZ /' - blok. koment zacatek
+b-komK '/ - blok. koment konec
+
+------------------------------
+rez	      - rezerv. slovo
+And , Boolean , Continue , Elseif , Exit , False , For , Next ,
+Not , Or , Shared , Static , True
+------------------------------
+
+klic      - klic. slovo
+As , Asc , Declare , Dim , Do , Double , Else , End , Chr ,
+Function , If , Input , Integer , Length , Loop , Print , Return ,
+Scope , String , SubStr , Then , While 
+-------------------------------
+
+id        - identifikator
+retLZ  !" - retezcovy literal - zacatek
+retLK  "  - retezcovy literal - konec
+str	   ;  - strednik
+
+int
+double
+ret       - retezec
+
+
+
+
+
+
+
+
+
+
+
+
