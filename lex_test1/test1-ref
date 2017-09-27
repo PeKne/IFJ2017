@@ -1,350 +1,350 @@
-b-komZ
+st_b-komZ
 /'
 1
 1
 
-b-komK
+st_b-komK
 '/
 1
 18
 
-rez
+st_rez
 scope
 3
 1
 
-r-kom
+st_r-kom
 '
 3
 7
 
-klic
+st_klic
 dim
 4
 5
 
-id
+st_id
 a
 4
 9
 
-klic
+st_klic
 as
 4
 11
 
-klic
+st_klic
 integer
 4
 14
 
-klic
+st_klic
 dim
 5
 5
 
-id
+st_id
 vysl
 5
 9
 
-klic
+st_klic
 as
 5
 14
 
-klic
+st_klic
 integer
 5
 17
 
 
-klic
+st_klic
 print
 7
 5
 
-retLZ
+st_retLZ
 !"
 7
 11
 
-ret
+st_ret
 Zadejte cislo
 7
 13
 
-str
+st_str
 ;
 7
 27
 
-klic
+st_klic
 input
 8
 5
 
-id
+st_id
 a
 8
 11
 
-klic
+st_klic
 if
 9
 5
 
-id
+st_id
 a
 9
 8
 
-mensi
+st_mensi
 <
 9
 10
 
-int
+st_int
 0
 9
 12
 
-klic
+st_klic
 then
 9
 14
 
-klic
+st_klic
 print
 10
 9
 
-retLZ
+st_retLZ
 !"
 10
 15
 
-ret
+st_ret
 \nNelze spocitat\n
 10
 17
 
-retLK
+st_retLK
 "
 10
 35
 
-str
+st_str
 ;
 10
 36
 
-klic
+st_klic
 else
 11
 5
 
-id
+st_id
 vysl
 12
 9
 
-rovno
+st_rovno
 =
 12
 14
 
-int
+st_int
 1
 12
 16
 
-klic
+st_klic
 do
 13
 9
 
-klic
+st_klic
 while
 13
 12
 
-id
+st_id
 a
 13
 18
 
-vetsi
+st_vetsi
 >
 13
 20
 
-int
+st_int
 0
 13
 22
 
-id
+st_id
 vysl
 14
 13
 
-rovno
+st_rovno
 =
 14
 18
 
-id
+st_id
 vysl
 14
 20
 
-nas
+st_nas
 *
 14
 25
 
-id
+st_id
 a
 14
 27
 
-id
+st_id
 a
 15
 13
 
-rovno
+st_rovno
 =
 15
 15
 
-id
+st_id
 a
 15
 17
 
-odcit
+st_odcit
 -
 15
 19
 
-int
+st_int
 1
 15
 21
 
-klic
+st_klic
 loop
 16
 9
 
-klic
+st_klic
 print
 17
 9
 
-retLZ
+st_retLZ
 !"
 17
 15
 
-ret
+st_ret
 \nVysledek je:
 17
 17
 
-retLK
+st_retLK
 "
 17
 31
 
-str
+st_str
 ;
 17
 33
 
-id
+st_id
 vysl
 17
 35
 
-str
+st_str
 ;
 17
 40
 
-retLZ
+st_retLZ
 !"
 17
 42
 
-ret
+st_ret
 \n
 17
 44
 
-retLK
+st_retLK
 "
 17
 46
 
-str
+st_str
 ;
 17
 47
 
-klic
+st_klic
 end
 18
 5
 
-klic
+st_klic
 if
 18
 9
 
-klic
+st_klic
 end
 19
 1
 
-klic
+st_klic
 scope
 19
 5
 
-klic
+st_klic
 dim
 21
 1
 
-id
+st_id
 doublevar
 21
 5
 
-klic
+st_klic
 as
 21
 15
 
-klic
+st_klic
 double
 21
 18
 
-id
+st_id
 doublevar
 22
 1
 
-rovno
+st_rovno
 =
 22
 11
 
-klic
-double
+st_double
+1.553E
 22
 13
