@@ -12,7 +12,7 @@ scope 'Telo programu
 		Vysl = 1
 		Do WHile A > 0
 			VYSL = vysl * a
-			a = A - 1
+			a=A- 1
 		LooP
 		Print !"\nVysledek je:" ; vYsl ; !"\n";
 	end IF
