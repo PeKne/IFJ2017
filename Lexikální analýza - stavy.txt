@@ -1,13 +1,14 @@
-st_del   /   - deleni (integeru)
-st_nas   *   - nasobeni
-st_scit  +   - scitani
-st_odcit -   - odcitani
-st_mensi <   - mensi
-st_vetsi >   - vetsi
-st_menro <=  - mensi/rovno
-st_vetro >=  - vetsi/rovno
-st_rovno =   - rovno
-st_nerov <> - nerovno
+st_del   /    - deleni (integeru)
+st_delwhole \ - celociselne deleni
+st_nas   *    - nasobeni
+st_scit  +    - scitani
+st_odcit -    - odcitani
+st_mensi <    - mensi
+st_vetsi >    - vetsi
+st_menro <=   - mensi/rovno
+st_vetro >=   - vetsi/rovno
+st_rovno =    - rovno
+st_nerov <>   - nerovno
 
 Rezervovana slova
 
@@ -56,5 +57,5 @@ st_inthod		- hodnota integer
 st_doublehodnota 	- hodnota double
 st_ret  		- hodnota string
 st_konecsouboru		- konec souboru
-st_levzav		- lev· z·vorka
-st_pravzav		- Prav· z·vorka
+st_levzav		- lev√° z√°vorka
+st_pravzav		- Prav√° z√°vorka
