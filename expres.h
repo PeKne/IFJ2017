@@ -31,7 +31,7 @@ enum {
 
 enum {
 	ex_oper,
-}EX
+}EX;
 
 
 #endif

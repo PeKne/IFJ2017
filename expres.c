@@ -1,18 +1,11 @@
+#include <stdio.h>
+#include <stdlib.h>
+#include <stdbool.h> 
 #include "expres.h"
 
 #define err_malloc -1
 #define err_StackEmpty -2
 #define err_nullPtr -3
-
-typedef struct tselem {
-	int type;
-	struct tselem *nextPtr;
-} TSElem;
-
-typedef struct tstack {
-	TSElem *topPtr;
-	TSElem *activePtr;
-} TStack;
 
 
 /*const int transformSymbols[] = {
@@ -59,6 +52,16 @@ const int preced_table[][ex_dollar + 1] = {
 /* bl */ { GT, GT, GT, GT, GT, GT, GT, GT, GT, GT, GT, XX, GT, XX, XX, XX, XX, GT, },
 /* $  */ { LT, LT, LT, LT, LT, LT, LT, LT, LT, LT, LT, LT, XX, LT, LT, LT, LT, XX, },
 };
+
+typedef struct tselem {
+	int type;
+	struct tselem *nextPtr;
+} TSElem;
+
+typedef struct tstack {
+	TSElem *topPtr;
+	TSElem *activePtr;
+} TStack;
 
 /**************************************************************************************/
 int isTerminal (int symbol) {
