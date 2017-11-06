@@ -61,7 +61,7 @@ void scanner()
             }
         else if(c=='_') //identifikator
         {
-            scannerstring(g);
+            scannerstring(c);
         }
         else if(c=='!') //stringbegin
              {
