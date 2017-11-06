@@ -16,7 +16,7 @@ Lexikální analyzátor
 #include <stdbool.h>
 
 
-char* LAhodnota;
+
 stav LAcurrentstav;
 int LAradek =1;
 int LAcounter =0;
@@ -33,7 +33,7 @@ Token generovattoken() //generovani tokenu pro analyzu
     Token token;
     scanner();
 
-    token.hodnota =LAhodnota;
+    token.hodnota; //potreba nekonecny string
     token.state=LAcurrentstav;
     token.counter=LAcounter;
     token.radek=LAradek;
