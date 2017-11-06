@@ -1,7 +1,7 @@
 /*
 Ifj projekt 2017
 
-Lexik�ln� analyz�tor
+Lexikální analyzátor
 
 
 
@@ -12,83 +12,21 @@ Lexik�ln� analyz�tor
 #include <ctype.h>
 #include <string.h>
 #include <limits.h>
+#include "lexical.h"
+#include <stdbool.h>
 
-typedef enum{
-st_del,
-st_nas,
-st_scit,
-st_odcit,
-st_mensi,
-st_vetsi,
-st_menro,
-st_vetro,
-st_rovno,
-st_nerov,
-st_and,
-st_boolean,
-st_continue,
-st_elseif,
-st_exit,
-st_false,
-st_for,
-st_next,
-st_not,
-st_or,
-st_shared,
-st_static,
-st_true,
-st_as,
-st_asc,
-st_declare,
-st_dim,
-st_do,
-st_double,
-st_else,
-st_end,
-st_chr,
-st_function,
-st_if,
-st_input,
-st_integer,
-st_length,
-st_loop,
-st_print,
-st_return,
-st_scope,
-st_string,
-st_substr,
-st_then,
-st_while,
-st_id,
-
-st_inthod,
-st_doublehodnota,
-st_ret,
-st_konecsouboru,
-st_levzav,
-st_pravzav,
-} stav;
 
 char* LAhodnota;
 stav LAcurrentstav;
 int LAradek =1;
 int LAcounter =0;
-int LAkom=0; //pomocna promena pro pocitani radku
 
 
 
-typedef struct tokens{
-char* hodnota; //hodnota u int, double ...
-stav state; //int, double, string, as, asc,  ...
-int radek;
-int counter;
-} Token;
 
-void scannerstring(char *string);
-void scannernumber(char *string);
-void scannerznak(char *string);
-void scanner ();
-void retezec(char *string);
+
+
+
 
 Token generovattoken() //generovani tokenu pro analyzu
 {
@@ -104,46 +42,256 @@ Token generovattoken() //generovani tokenu pro analyzu
 }
 void scanner()
 {
-    char string[1000];
-    scanf("%s",string);
-    for(int i =0;i<(strlen(string));i++)
+    char c;
+    char g;
+
+    while (1)
+    {
+        c = getc(stdin);
+        if(isspace(c)) //bílí znak
+            {
+            if(c=='\n') LAradek++;
+
+            }
+        else if(c==EOF) //konec souboru
+            {
+            LAcurrentstav = st_konecsouboru;
+            LAcounter++;
+            break;
+            }
+        else if(c=='_') //identifikator
         {
-            string[i]=(tolower(string[i]));
+            scannerstring(g);
         }
-    if(string[0]>='a'&&string[0]<='z') //zacina pismenem
-    {
+        else if(c=='!') //stringbegin
+             {
+                 g = getc(stdin);
+                 if(g=='"')
+                 {
+                     retezec();
+                 }
+                 else
+                 {
+                     //lexical error
+                 }
+             }
+        else if(c=='+') //scitani
+            {
+                g = getc(stdin);
+                if(isspace(g))
+                {
+                    LAcurrentstav =st_scit;
+                    ungetc(g,stdin);
+                    LAcounter++;
+                    break;
+                }
+                else
+                {
+                    //lexikal error
+                }
+            }
 
-        scannerstring(string);
+        else if(c=='-') //odcitani
+            {
+                g = getc(stdin);
+                if(isspace(g))
+                {
+                    LAcurrentstav =st_odcit;
+                    ungetc(g,stdin);
+                    LAcounter++;
+                    break;
+                }
+                else
+                {
+                    //lexikal error
+                }
+            }
 
-    }
-    else if (string[0]>='0'&&string[0]<='9') //zacina cislem
-    {
-        scannernumber(string);
-    }
-    else                                    //zacina znakem
-    {
-        scannerznak(string);
-    }
-    char c=getc(stdin);
-    if(c=='\n'&&(LAkom==0||LAkom==2))
-    {
-        LAradek++;
-    }
-    else if(c==EOF)
-    {
-        LAcurrentstav = st_konecsouboru;
-        LAcounter++;
-    }
-    if(LAkom!=0)
-    {
-        LAkom=0;
-        scanner();
-    }
+        else if(c=='*') //nasobeni
+            {
+                g = getc(stdin);
+                if(isspace(g))
+                {
+                    LAcurrentstav =st_nas;
+                    ungetc(g,stdin);
+                    LAcounter++;
+                    break;
+                }
+                else
+                {
+                    //lexikal error
+                }
+            }
 
+        else if(c=='/') //deleni AND komentar
+        {
+            g = getc(stdin);
+            if(g=='\'')
+            {
+                blokkoment();
+            }
+            else if (isspace(g))
+            {
+                LAcurrentstav = st_del;
+                ungetc(g,stdin);
+                LAcounter++;
+                break;
+            }
+        }
+        else if(c=='\\') //celociselne deleni
+            {
+                g = getc(stdin);
+                if(isspace(g))
+                {
+                    LAcurrentstav =st_delwhole;
+                    ungetc(g,stdin);
+                    LAcounter++;
+                    break;
+                }
+                else
+                {
+                    //lexikal error
+                }
+            }
+
+        else if(c=='<') //mensi and mensirovno
+            {
+                g = getc(stdin);
+                if(g=='>')
+                {
+                    g= getc(stdin);
+                    if(!(isspace(g)))
+                    {
+                        //lexical error
+                    }
+                    ungetc(g,stdin);
+                    LAcurrentstav = st_nerov;
+                    LAcounter++;
+                    break;
+                }
+                else if (g=='=')
+                {
+                    g= getc(stdin);
+                    if(!(isspace(g)))
+                    {
+                        //lexical error
+                    }
+                    ungetc(g,stdin);
+                    LAcurrentstav = st_menro;
+                    LAcounter++;
+                    break;
+
+                }
+                else if (isspace(g))
+                {
+                    ungetc(g,stdin);
+                    LAcurrentstav = st_mensi;
+                    LAcounter++;
+                    break;
+                }
+                else
+                {
+                    //lexical error
+                }
+            }
+
+        else if(c=='>') //vetsi and vetsirovno
+        {
+                g = getc(stdin);
+                if (g=='=')
+                {
+                    g= getc(stdin);
+                    if(!(isspace(g)))
+                    {
+                        //lexical error
+                    }
+                    ungetc(g,stdin);
+                    LAcurrentstav = st_vetro;
+                    LAcounter++;
+                    break;
+
+                }
+                else if (isspace(g))
+                {
+                    ungetc(g,stdin);
+                    LAcurrentstav = st_vetsi;
+                    LAcounter++;
+                    break;
+                }
+                else
+                {
+                    //lexical error
+                }
+        }
+        else if(c=='=') //rovno
+            {
+                g = getc(stdin);
+                if(isspace(g))
+                {
+                    LAcurrentstav =st_rovno;
+                    ungetc(g,stdin);
+                    LAcounter++;
+                    break;
+                }
+                else
+                {
+                    //lexikal error
+                }
+
+            }
+            //rovno
+        else if((c>='a'&&c<='z')||(c>='A'||c<='Z')) //identifikator OR klicove slovo
+            {
+                scannerstring(c);
+                break;
+            }
+        else if(c>='0'&&c<='9')//cislo
+        {
+            scannernumber(c);
+            break;
+        }
+        else if(c=='\'') //radkovy komentar
+            {
+                while((c=getc(stdin))!='\n')
+                {
+
+                }
+            LAradek++;
+            }
+        else if(c==')') //prava zavorka
+            {
+                    LAcurrentstav =st_pravzav;
+                    LAcounter++;
+                    break;
+            }
+
+        else if(c=='(') //leva zavorka
+            {
+                    LAcurrentstav =st_levzav;
+                    LAcounter++;
+                    break;
+            }
+    }
 
 }
-void scannerstring(char *string) //skanuje vsechny moznosti ktere zacinaji charem COMPLETE
+void scannerstring(char c) //scanner pro klicova slova a identifikatory
 {
+    char g;
+    //zapis charu c do nekonecneho pole
+
+    while(!(isspace(g = getc(stdin))))
+    {
+        g = tolower(g);
+        if(!(isalpha(g)|| isdigit(g)))
+        {
+            //lexical error
+        }
+        //zapis do nekonecneho pole
+    }
+    ungetc(g,stdin); //navraceni bíleho znaku  do stdin
+
+    /* ------ kontrola nekonecnyho stringu se klicovyma slovama - potreba nekonecny string
+
     if(strcmp(string,"as")==0)
     {
         LAcurrentstav = st_as;
@@ -321,240 +469,95 @@ void scannerstring(char *string) //skanuje vsechny moznosti ktere zacinaji chare
     }
     else
     {
-        for(int i =0;i<strlen(string);i++)
-        {
-            if(!((string[i]>='a'&&string[i]<='z')||(string[i]>='0'&&string[i]<='9')))
-            {
-                //error neznamy char v ID
-            }
-        }
-        LAcurrentstav =st_id;
-        LAhodnota = string;
+        LAcurrentstav = st_id
         LAcounter++;
-
+        nekonecny string = hodnota
     }
-}
-void scannernumber(char *string) //skanuje vsechny moznosti ktere zacinaji cislem COMPLETE
-{
-    int prepinacdes =0;
-    int prepchyb =0;
-    for(int i =0;i<strlen(string);i++)
-    {
-        if((string[i]<'0'||string[i]>'9')&&prepinacdes==0)
-        {
-            if(string[i]=='e'||string[i]=='E'||string[i]=='.')
-            {
-                if((string[i+1]>='0'&&string[i+1]<='9')||(string[i+1]=='+'||string[i+1]=='-'))
-                {
-                    prepinacdes = 1;
-
-                }
-                else
-                {
-                    //error za exponentem nejsou cisla
-                }
-            }
-            else
-            {
-                //error neidentifikovatelny znak v cislu
-            }
-        }
-        else if(string[i]<'0'||string[i]>'9')
-            {
-               //error neidentifikovatelnz znak v cislu
-            }
-    }
-    if(prepchyb==0&&prepinacdes==0)
-    {
-        LAcurrentstav=st_inthod;
-        LAhodnota =string;
-        LAcounter++;
-    }
-    else if(prepchyb==0&&prepinacdes==1)
-    {
-        LAcurrentstav=st_doublehodnota;
-        LAhodnota =string;
-        LAcounter++;
-    }
-}
-void scannerznak(char *string) //skanuje vsechny stringy ktere zacinaji specialni znakem
-{
-    if(string[0]=='(')
-    {
-        LAcurrentstav ==st_levzav;
-        LAcounter++;
-    }
-    if(string[0]==')')
-    {
-        LAcurrentstav=st_pravzav;
-        LAcounter++;
-    }
-    if(string[0]=='_')
-    {
-        for(int i =1;i<strlen(string);i++)
-        {
-            if(!((string[i]>='a'&&string[i]<='z')||(string[i]>='0'||string[i]<='9')))
-            {
-                //error neznamy char v ID
-            }
-        }
-        LAcurrentstav = st_id;
-        LAhodnota = string;
-        LAcounter++;
-
-    }
-    if(string[0]=='!'&&string[1]=='"')
-    {
-        retezec(string);
-    }
-    if(string=="+")
-    {
-        LAcurrentstav = st_scit;
-        LAcounter++;
-    }
-        if(string=="-")
-    {
-        LAcurrentstav = st_odcit;
-        LAcounter++;
-    }
-        if(string=="*")
-    {
-        LAcurrentstav = st_nas;
-        LAcounter++;
-    }
-        if(string=="/")
-    {
-        LAcurrentstav = st_del;
-        LAcounter++;
-    }
-        if(string=="<")
-    {
-        LAcurrentstav = st_mensi;
-        LAcounter++;
-    }
-        if(string==">")
-    {
-        LAcurrentstav = st_vetsi;
-        LAcounter++;
-    }
-        if(string=="<=")
-    {
-        LAcurrentstav = st_menro;
-        LAcounter++;
-    }
-        if(string==">=")
-    {
-        LAcurrentstav = st_vetro;
-        LAcounter++;
-    }
-        if(string=="=")
-    {
-        LAcurrentstav = st_rovno;
-        LAcounter++;
-    }
-        if(string=="<>")
-    {
-        LAcurrentstav = st_nerov;
-        LAcounter++;
-    }
-        if(string[0]=='\'')
-        {
-            while(getc(stdin)!='\n')
-            {
-
-            }
-            LAradek++;
-            LAkom=1;
-        }
-        else if(string[0]=='\\'&&string[1]=='\'')
-        {
-            char c;
-            while(1)
-            {
-                c =getc(stdin);
-                if(c =='\n')
-                {
-                    LAradek++;
-                }
-                else if (c==EOF)
-                {
-                    LAcurrentstav = st_konecsouboru;
-                    LAcounter++;
-                }
-                else if (c=='\'')
-                {
-                    c=getc(stdin);
-                    if(c=='\\')
-                    {
-                        LAkom=2;
-                        break;
-                    }
-                }
-
-            }
-        }
+    */
 
 }
-void retezec (char *string) //doplnuje celou hodnotu stringu do retezce
+void scannernumber(int  c)
 {
-    int delka = strlen(string);
-    for(int i =0;i<(strlen(string));i++) //kontrola  puvodniho stringu
+    //doplnit inzerce charakteru c do nekonečného pole.
+    char g;
+    bool prepE = true;
+    bool prepDot = true;
+    while(!(isspace(g = getc(stdin)))) // cyklus dokud nenarzíme na bílí znak - ukončení tokenu
     {
-        if(string[i]!='\\'&&string[i+1]=='"')  //kontrola lomitka pred uvozovkama
+        if(isdigit(g))
         {
-            if(string[i+2]=='\0')  //uvozovka je posledni znak stringu
-                {
-                    LAhodnota =string;
-                    LAcounter++;
-                    LAcurrentstav = st_ret;
-
-                }
-            else //ukonceni stringu nasleduje char
+            //zapis do nekonečného pole
+        }
+        else if (tolower(g)=='e'&&prepE)
+        {
+            prepE=false;
+            //zapis do nekonečného pole a kontrola
+            if(!(isdigit(g=getc(stdin))))
             {
-                //error neplatny string
+                //error
             }
-        }
-        if(string[i]=='\\') //char v strignu je lomitko
-        {
+            else ;//zapis do nekonečného pole
 
         }
-        else //char v stringu neni lomitko
+        else if(g=='.'&&prepDot&&prepE)
         {
+            prepDot=false;
+            //zapis do nekonečného pole
+            if(!(isdigit(g=getc(stdin))))
+            {
+                //error
+            }
+            else  ;//zapis do nekonečného pole
 
+        }
+        else
+        {
+            //error
         }
     }
+    ungetc(g,stdin);
+    if(!prepE||!prepDot)
+    {
+        LAcurrentstav = st_doublehodnota;
+        LAcounter++;
+    }
+    else
+    {
+        LAcurrentstav = st_inthod;
+        LAcounter++;
+    }
+}
+void retezec () //doplnuje celou hodnotu stringu do retezce
+{
+    char c;
+    char g;
+    char i;
     while(1)
     {
-        char c = getc(stdin);
-        if(c!='\\') //dalsi char neni lomitko
+        c = getc(stdin);
+        if(c=='"')//prazdny string
         {
-            char g =getc(stdin);
+            LAcounter++;
+            LAcurrentstav=st_ret;
+            //hodnota = prazdna hodnota
+        }
+        if(c!='\\'&&c!=EOF&&c!='\n'&&(isalpha(c)||isdigit(c))) //dalsi char neni escape sekevnec ale je to char nebo cislo
+        {
+            //zapsani hodnoty c do nekonecneho stringu
+            g =getc(stdin);
             if (g=='"') //ukonceni stringu
             {
-                string[delka]=c;
-                string[delka+1]='\0';
-                LAhodnota =string;
+                //hodnot = nekonecny string
                 LAcounter++;
                 LAcurrentstav=st_ret;
                 break;
             }
-            else   //neukonecni stringu
-            {
-                if(c==EOF||g==EOF||c=='\n'||g=='\n')
-                {
-                    //error
-                    break;
-                }
-                string[delka]=c;
-                string[delka+1]=g;
-                string[delka+2]='\0';
-                delka=delka+2;
-            }
+            ungetc(g,stdin);
         }
-        else //dalsi char je lomitko
+        else if(c!=EOF&&c!='\n') //dalsi char je escape sekvence
         {
             c=getc(stdin);
-            switch(c)
+            /*switch(c)    inzrce  do nekonecneho pole
             {
             case '/':
                 {
@@ -570,39 +573,77 @@ void retezec (char *string) //doplnuje celou hodnotu stringu do retezce
                 }
             case 'n':
                 {
-                    string[delka]=c;
+                    string[delka]='\n';
                     string[delka+1]='\0';
                     delka++;
                 }
             case 't':
                 {
-                    string[delka]=c;
+                    string[delka]='\t';
                     string[delka+1]='\0';
                     delka++;
                 }
             }
-            if(c>='0'||c<='9')
+            */
+            if(c>='0'&&c<='2')
             {
-                char g =getc(stdin);
-                char f =getc(stdin);
-                if(isdigit(g)&&isdigit(f))
+                g = getc(stdin);
+                if(g>='0'&&g<='5')
                 {
-                    int complete = c*100+g*10+f;
-                    string[delka]=complete;
-                    string[delka+1]='\0';
-                    delka++;
+                    i = getc(stdin);
+                    if(i>='1'&&i<='5')
+                    {
+                        int character = (c-'0')*100+(g-'0')*10+(i-'0');
+                        //nekonecne pole = \character
+                    }
+                    else
+                    {
+                        //lexical error
+                    }
 
                 }
                 else
                 {
-                    //error
-                    break;
+                    //lexical error
                 }
             }
+            else
+            {
+                //lexical error
+            }
         }
+        else
+        {
+            //lexical error
+        }
+
     }
 }
+void blokkoment()
+{
+    char c;
+    while (1)
+    {
+        c = getc(stdin);
+        if(c=='\n')
+        {
+            LAradek++;
+        }
+        if(c=='\'')
+        {
+            c = getc(stdin);
+            if(c=='/')
+            {
+                break;
+            }
+        }
+        if(c==EOF)
+        {
+            //lexical error
+        }
 
+    }
+}
 
 
 
