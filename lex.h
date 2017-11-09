@@ -41,7 +41,6 @@ typedef struct t_token {
 void init_token();
 void unget_char(int c);
 int generate_token();
-//int main();
 
 
 #endif
