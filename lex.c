@@ -3,34 +3,9 @@
 #include <stdbool.h>
 #include <ctype.h>
 
-T_token token; // globalni token
+#include "lex.h"
 
-typedef enum{
-    st_del,        /* /  */
-    st_del_cele,   /* \  */
-    st_nas,        /* *  */
-    st_scit,       /* +  */
-    st_odcit,      /* -  */
-    st_mensi,      /* <  */
-    st_vetsi,      /* >  */
-    st_menrov,     /* <= */
-    st_vetrov,     /* >= */
-    st_rovno,      /* =  */
-    st_nerov,      /* <> */
-    st_stred,      /* ;  */
-    st_carka,      /* ,  */
-    st_tecka       /* .  */
-    st_levzav,     /* (  */
-    st_pravzav,    /* )  */
-    st_id,         /* identifikator  */
-    st_retLZ,      /* retezcovy literal zacatek: !" */
-    st_retez,      /* retezec */
-    st_retLK,      /* retezcovy literal konec: " */
-    st_int_value,
-    st_double_value,
-    st_eol,
-    st_error,
-} T_state;
+Ttoken token; // globalni token
 
 typedef enum {
     st_as,
@@ -55,7 +30,7 @@ typedef enum {
     st_substr,
     st_then,
     st_while,
-} T_rez;
+} Trez;
 
 typedef enum {
     st_and,
@@ -71,78 +46,80 @@ typedef enum {
     st_shared,
     st_static,
     st_true,
-}T_key;
+}Tkey;
 
-typedef struct t_token {
-    char* t_value_ptr; //hodnota u int, double ...
-    T_state t_state;    //int, double, string, as, asc,  ...
-} T_token;
-
-int init_token()
+void init_token()
 {
-    token.t_state = ST_BEGIN;
+    token.t_state = st_begin;
     token.t_value_ptr = NULL;
 }
 
-void unget_char(int char) {
+void unget_char(int c) {
     if (!isspace(c))
-        ungetc(char, stdin);
+        ungetc(c, stdin);
 }
-void generate_token() //
+int generate_token() //
 {
     init_token();
-    T_state state = ST_BEGIN;
-    bool get_next_token = true; // pokracovat v lex. anal.
+    Tstate state = st_begin;
+    bool get_next_char = true; // pokracovat v lex. anal.
+    char c;
 
-    while ((get_next_token) && (c = getc(stdin)))
+    while ((get_next_char) && (c = getc(stdin)))
     {
         switch(state)
         {
-            case ST_BEGIN:
+            case st_begin:
             {
                 if (isspace(c)) {
-                    state = ST_BEGIN;
+                    state = st_begin;
                     break;
                 }
 
-                else if ((isalpha(c)) || c == '_') state = ST_ID; // ident zacina _ nebo pismenem
-                else if (c == '/')                 state = ST_DEL;
-                else if (c == '\\')                state = ST_DEL;
-                else if (c == '*')                 state = ST_NAS;
-                else if (c == '+')                 state = ST_SCIT;
-                else if (c == '-')                 state = ST_ODCIT;
-                else if (c == '<')                 state = ST_MENSI;
-                else if (c == '>')                 state = ST_VETSI;
-                else if (c == '=')                 state = ST_ROVNO;
-                else if (c == ';')                 state = ST_STRED;
-                else if (c == ',')                 state = ST_CARKA;
-                else if (c == '(')                 state = ST_LEV_ZAV;
-                else if (c == ')')                 state = ST_PRAV_ZAV;
-                else if (c == '!')                 state = ST_VYKRIC;
-                else if (c == EOF)                 state = ST_EOF;     
+                else if ((isalpha(c)) || c == '_') state = st_id; // ident zacina _ nebo pismenem
+                else if (c == '/')                 state = st_del;
+                else if (c == '\\')                state = st_del_cele;
+                else if (c == '*')                 state = st_nas;
+                else if (c == '+')                 state = st_scit;
+                else if (c == '-')                 state = st_odcit;
+                else if (c == '<')                 state = st_mensi;
+                else if (c == '>')                 state = st_vetsi;
+                else if (c == '=')                 state = st_rovno;
+                else if (c == ';')                 state = st_stred;
+                else if (c == ',')                 state = st_carka;
+                else if (c == '(')                 state = st_levzav;
+                else if (c == ')')                 state = st_pravzav;
+                else if (c == '!')                 state = st_vykric;
+                else if (c == EOF)                 state = st_eof;     
                 
                 else {
-                    state = ST_ERROR;
+                    state = st_error;
                     break;
                 }
                 //-- add_char_to_string();
                 break;
             }
-
+            default: {
+                get_next_char = false;
+                break;
+            }
+            
             // neprazdna posloupnost cislic, pismen, podtrzitka. 
-            case ST_ID:
+            case st_id:
             {
                 if (isdigit(c) || isalpha(c) || c == '_') {
-                    state = ST_ID;
-                    //-- add_char_to_string();
+                    state = st_id;
+                    //str_add_char();
                 } else { 
                     // nacetl identifikator, ted se muze stav zmenit na rezev./klic. slovo
-                    state = S_EXIT;
+                    state = st_exit;
                     //-- token.t_state = get_special_id_case();
                     unget_char(c);
                 }
             }
-
         }
+        break;
     }
+
+    return state;
 }
