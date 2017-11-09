@@ -9,5 +9,5 @@ all: main.o expres.o
 	$(CC) main.o expres.o -lm -o proj
 
 clean:
-	rm  *.o
+	rm  *.o proj
 
