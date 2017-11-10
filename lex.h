@@ -35,7 +35,7 @@ typedef enum {
     st_double_value, /*23*/                // TODO
     st_rez,          /*24 rezerv. slovo */ // TODO
     st_klic,         /*25 klic. slovo   */ // TODO
-    st_error,        /*36*/
+    st_error,        /*26*/
 
 // POMOCNE STAVY
     st_vykric,       /*27 !  */
