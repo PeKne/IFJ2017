@@ -2,10 +2,8 @@
 #include <stdlib.h>
 #include <stdbool.h>
 #include <ctype.h>
-
 #include "lex.h"
-
-Ttoken token; // globalni token
+#include "strings.h"
 
 typedef enum {
     st_as,
@@ -48,22 +46,31 @@ typedef enum {
     st_true,
 }Tkey;
 
-void init_token()
-{
-    token.t_state = st_begin;
-    token.t_value_ptr = NULL;
-}
-
 void unget_char(int c) {
     if (!isspace(c))
         ungetc(c, stdin);
 }
+
+Tstate rez_key_id()
+{
+    /*for (int i = 0; i < Trez; i++)
+    {
+    
+    }*/
+    return st_id;
+}
+
 int generate_token() //
 {
-    init_token();
-    Tstate state = st_begin;
     bool get_next_char = true; // pokracovat v lex. anal.
     char c;
+    int err = 0;
+    
+    Tstate state = st_begin;
+    if ((token.t_state == st_retLZ) || (token.t_state == st_retez))
+        state = st_retez;
+
+    //str_clear(&(token.t_str));
 
     while ((get_next_char) && (c = getc(stdin)))
     {
@@ -77,6 +84,7 @@ int generate_token() //
                 }
 
                 else if ((isalpha(c)) || c == '_') state = st_id; // ident zacina _ nebo pismenem
+                else if (isdigit(c))               state = st_int_value;
                 else if (c == '/')                 state = st_del;
                 else if (c == '\\')                state = st_del_cele;
                 else if (c == '*')                 state = st_nas;
@@ -93,14 +101,12 @@ int generate_token() //
                 else if (c == EOF)                 state = st_eof;     
                 
                 else {
+                    //printf ("st_begin error\n");
                     state = st_error;
+                    err = ERR_UNKNOWN_CHAR;
                     break;
                 }
-                //-- add_char_to_string();
-                break;
-            }
-            default: {
-                get_next_char = false;
+                //str_add_char(&(token.t_str), c);
                 break;
             }
             
@@ -109,17 +115,132 @@ int generate_token() //
             {
                 if (isdigit(c) || isalpha(c) || c == '_') {
                     state = st_id;
-                    //str_add_char();
+                    //str_add_char(&(token.t_str), c);
+                
+                // cokoliv jine +REZERV. SLOVA**********************************************
                 } else { 
-                    // nacetl identifikator, ted se muze stav zmenit na rezev./klic. slovo
-                    state = st_exit;
-                    //-- token.t_state = get_special_id_case();
+                    // nacetl identifikator, ted se muze stav zmenit na rezev./klic. slovo nebo hotovo
+                    
+                    token.t_state = rez_key_id();
                     unget_char(c);
+                    state = st_finish;
                 }
+                break;
+            }
+
+            case st_mensi:
+            {
+                
+                if(c == '=')
+                    state = st_menrov;
+                else if (c == '>')
+                    state = st_nerov;
+                else {
+                    token.t_state = state;
+                    //str_add_char(&(token.t_str), c);
+                    unget_char(c);
+                    state = st_finish;                    
+                }
+                break;
+            }
+
+            case st_vetsi:
+            {
+                if(c == '=')
+                    state = st_vetrov;
+                else {
+                    token.t_state = state;
+                    //str_add_char(&(token.t_str), c);
+                    unget_char(c);
+                    state = st_finish;                    
+                }
+                break;
+            }
+
+            case st_vykric:
+            {
+                if (c == '"')
+                    state = st_retLZ;
+                else {
+                    //printf("st_error\n");
+                    err = ERR_UNKNOWN_CHAR;
+                    state = st_error;
+                }
+                break;
+            }
+
+            case st_retLZ:
+            {
+                token.t_state = state;
+                //str_add_char(&(token.t_str), c);
+                unget_char(c);
+                get_next_char = false;
+                state = st_retez;
+                break;
+            }
+
+            case st_retez:
+            {
+                if (c != '"') {
+                    if (c == EOF){
+                        state = st_finish;
+                    }
+                    else {
+                        token.t_state = st_retez;
+                        get_next_char = false;
+                        //str_add_char(&(token.t_str), c);
+                    }                    
+                } else
+                    state = st_retLK;
+                break;
+            }
+
+
+            // koncove stavy na jeden znak
+            case st_scit:
+            case st_del:
+            case st_nas:
+            case st_odcit:
+            case st_stred:
+            case st_carka:
+            case st_tecka:
+            case st_levzav:
+            case st_pravzav:
+            case st_eof:
+            case st_rovno:
+            case st_menrov:
+            case st_vetrov:
+            case st_nerov:
+            case st_retLK:
+            {
+                token.t_state = state;
+                //str_add_char(&(token.t_str), c);
+                unget_char(c);
+                state = st_finish;
+                break;
+            }
+
+            case st_finish:
+            {
+                unget_char(c);
+                get_next_char = false;
+                break;
+            }
+
+            case st_error:
+            {
+                
+                token.t_state = state;
+                get_next_char = false;
+                break;
+            }
+
+            default: 
+            {
+                err = ERR_MISSING_STATE; // nesmi nikdy nastat
+                break;
             }
         }
-        break;
     }
-
-    return state;
+    return err;
 }
