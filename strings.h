@@ -1,7 +1,10 @@
 #ifndef STRINGS_H
 #define STRINGS_H
 
-typedef struct {
+#define ERR_ALLOC -1
+#define STR_SIZE 15
+
+typedef struct tstring{
     int length; // aktualni delka 
     int size;   // alokovano
     char *data;
@@ -10,7 +13,7 @@ typedef struct {
 // vytvori string (naalokuje 15 bytu, pote pridava)      
 int str_create(Tstring *str);  
 
-// vytvori string a alokuje mu velikost size
+// vytvori string a alokuje mu velikost size (spec jako specific)
 int str_create_spec(Tstring *str, int size); 
 
 // uvolni string z pameti. Pote neni potreba nic dalsiho delat.

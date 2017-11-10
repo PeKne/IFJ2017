@@ -1,10 +1,6 @@
 #include <string.h>
 #include <stdlib.h>
-#include <string.h>
 #include "strings.h"
-
-#define ERR_ALLOC -1
-#define STR_SIZE 15
 
 int str_create(Tstring *str)
 {
