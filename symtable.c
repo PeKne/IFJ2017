@@ -1,4 +1,4 @@
-#include "symbtable.h"
+#include "symtable.h"
 
 unsigned int hash_function(const char *str)
 {
@@ -12,11 +12,11 @@ unsigned int hash_function(const char *str)
     return h;
 }
 
-htab *htab_init(unsigned size)
+htab_t *htab_init(unsigned size)
 {
 	htab_t *table;
 
-	table = (hrab_t *) malloc(sizeof(htab_t) + size * sizeof(hrab_listitem));
+	table = (htab_t *) malloc(sizeof(htab_t) + size * sizeof(htab_listitem));
 	if(table == NULL) { 
 		return NULL;
 	}
@@ -41,7 +41,7 @@ htab_t *htab_copy(htab_t *table)
 htab_listitem *htab_find(htab_t *table, const char *key)
 {
 	unsigned index = hash_function(key) % table->size;
-	htab_listitem *item = t->list[index];
+	htab_listitem *item = table->list[index];
 
 	if(item != NULL) {
 		while(item != NULL) {
@@ -63,7 +63,7 @@ htab_listitem *htab_find(htab_t *table, const char *key)
 htab_listitem *htab_lookup_add(htab_t *table, const char *key)
 {
 	unsigned index = hash_function(key) % table->size;
-	htab_listitem *item = t->list[index];
+	htab_listitem *item = table->list[index];
 
 	while(item != NULL) {
 		if(strcmp(key, item->key) == 0) {
@@ -94,7 +94,7 @@ htab_listitem *htab_lookup_add(htab_t *table, const char *key)
 	strcpy(new_item->key, key);
 
 	if(item == NULL) {
-		t->list[index] = new_item;
+		table->list[index] = new_item;
 	} else {
 		item->next = new_item;
 	}
@@ -107,12 +107,13 @@ void htab_foreach(htab_t *table, void (*function)(const char *key, item_type typ
 	htab_listitem *item = NULL;
 
 	for(unsigned i = 0; i < table->size; i++) {
-		item = table->list[index];
+		item = table->list[i];
 
 		while(item != NULL) {
 			function(item->key, item->type, item);
 			item = item->next;
 		}
+	}
 }
 
 void htab_remove(htab_t *table, const char *key)
@@ -128,7 +129,7 @@ void htab_remove(htab_t *table, const char *key)
 			} else if(previous_item == NULL && item->next != NULL) {
 				table->list[index] = item->next;
 			} else if(previous_item != NULL && item->next == NULL) {
-				previous_item == NULL;
+				previous_item = NULL;
 			} else {
 				table->list[index] = NULL;
 			}
