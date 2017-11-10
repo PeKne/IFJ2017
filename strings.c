@@ -35,7 +35,7 @@ void str_destroy(Tstring *str)
 void str_clear(Tstring *str)
 {
     str->length = 0;
-    str->data = '\0';
+    str->data[0] = '\0';
 }
 
 
