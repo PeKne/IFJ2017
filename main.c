@@ -11,7 +11,7 @@ int main()
         return err;
     str_add_char(&(token.t_str), 'a');
     printf("str:%s, delka:%d vel.:%d\n", token.t_str.data, token.t_str.length, token.t_str.size);
-    str_clear(&str);
+    str_clear(&(token.t_str));
     printf("po clear str:%s, delka:%d vel.:%d\n", token.t_str.data, token.t_str.length, token.t_str.size);
     str_destroy(&(token.t_str));
 
