@@ -138,6 +138,9 @@ void set_local_symbol_table(htab_t *table, function_data *data)
 void add_argument_function(function_data *data, Ttoken *token)
 {
 	data->arguments_count++;
+=======
+void function_to_symbol_table(htab_listitem *item, char *function_name) {
+	item->type = type_function;
 
 	if(data->arguments_count == 1) {
 		data->arguments = malloc(sizeof(function_arguments));
