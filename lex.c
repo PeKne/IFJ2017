@@ -85,8 +85,9 @@ int generate_token() //
 
                 else if ((isalpha(c)) || c == '_') state = st_id; // ident zacina _ nebo pismenem
                 else if (isdigit(c))               state = st_int_value;
-                else if (c == '/')                 state = st_del;
+                else if (c == '/')                 state = st_blok_kom_0;
                 else if (c == '\\')                state = st_del_cele;
+                else if (c == '\'')                state = st_radek_kom;
                 else if (c == '*')                 state = st_nas;
                 else if (c == '+')                 state = st_scit;
                 else if (c == '-')                 state = st_odcit;
@@ -101,7 +102,7 @@ int generate_token() //
                 else if (c == EOF)                 state = st_eof;     
                 
                 else {
-                    //printf ("st_begin error\n");
+                    printf ("st_begin error\n");
                     state = st_error;
                     err = ERR_UNKNOWN_CHAR;
                     break;
@@ -195,11 +196,71 @@ int generate_token() //
                 break;
             }
 
+            case st_radek_kom:
+            {
+                if ((c != '\n') && (c != EOF)){
+                    state = st_radek_kom;
+                }
+                else
+                    state = st_begin;                  
+                break;
+            }
+
+            // blok. koment
+            // pokud se za / vyskytuje ', jedna se o zacatek blok. komentu
+            case st_blok_kom_0:
+            {
+                if (c == '\''){
+                    //printf("0 do 1: %d, %c\n", state, c);
+                    state = st_blok_kom_1;
+                }
+                else
+                    state = st_del;
+                break;
+
+            }
+            // pokud je znak EOF, vrati error, pokud narazi na ', vejde do stavu 2
+            // pokud nenajde ani jedno, vrati se zpet do stavu 1.
+            case st_blok_kom_1:
+            {
+                if (c == '\'') {
+                    //printf("1 do 2: %d, %c\n", state, c);
+                    state = st_blok_kom_2;
+                } else {
+                     if (c == EOF) {
+                        err = ERR_BLOCK_COM_NOT_COMPLETED;
+                        state = st_error;
+                    } else {
+                        //printf("1 do 1: %d, %c\n", state, c);
+                        state = st_blok_kom_1;
+                    }
+                }
+                break;
+            }
+
+            // pokud ihned najde /, ukonci komentar
+            // pokud ne, vrati se zpet do stavu 1
+            case st_blok_kom_2:
+            {
+                if (c == '/') {
+                    //printf("2 na begin: %d, %c\n", state, c);
+                    state = st_begin;
+                }
+                else {
+                    //printf("2 na 1: %d, %c\n", state, c);
+                    unget_char(c);
+                    state = st_blok_kom_1;
+                }
+                break;
+            }
+
+
 
             // koncove stavy na jeden znak
             case st_scit:
-            case st_del:
             case st_nas:
+            case st_del:
+            case st_del_cele:
             case st_odcit:
             case st_stred:
             case st_carka:
@@ -229,7 +290,6 @@ int generate_token() //
 
             case st_error:
             {
-                
                 token.t_state = state;
                 get_next_char = false;
                 break;
@@ -237,7 +297,8 @@ int generate_token() //
 
             default: 
             {
-                err = ERR_MISSING_STATE; // nesmi nikdy nastat
+                err = ERR_MISSING_STATE;
+                get_next_char = false;
                 break;
             }
         }

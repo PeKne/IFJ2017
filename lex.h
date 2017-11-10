@@ -5,38 +5,46 @@
 
 #define ERR_UNKNOWN_CHAR -1
 #define ERR_MISSING_STATE -2
+#define ERR_BLOCK_COM_NOT_COMPLETED -3
 
 typedef enum {
-    st_begin,        /*0*/ //hotovo
-    st_error,        /*1*/ //hotovo
-    
-    st_finish,       /*2*/ //hotovo
-    st_eof,          /*3*/ //hotovo
-    st_del,          /*4 /  */ //hotovo
-    st_del_cele,     /*5 \  */
-    st_nas,          /*6 *  */ //hotovo
-    st_scit,         /*7 +  */ //hotovo
-    st_odcit,        /*8 -  */ //hotovo
-    st_mensi,        /*9 <  */ //hotovo
-    st_vetsi,        /*10 >  */ //hotovo
-    st_menrov,       /*11 <= */ //hotovo
-    st_vetrov,       /*12 >= */ //hotovo
-    st_rovno,        /*13 =  */ //hotovo
-    st_nerov,        /*14 <> */ //hotovo
-    st_stred,        /*15 ;  */ //hotovo
-    st_carka,        /*16 ,  */ //hotovo
-    st_tecka,        /*17 .  */ //hotovo
-    st_levzav,       /*18 (  */ //hotovo
-    st_pravzav,      /*19 )  */ //hotovo
-    st_vykric,       /*20 !  */ //hotovo
-    st_id,           /*21 identifikator  */ //hotovo
-    st_retLZ,        /*22 retezcovy literal zacatek: !" */ //hotovo
-    st_retez,        /*23 retezec */ //hotovo
-    st_retLK,        /*24 retezcovy literal konec: " */ //hotovo
-    st_int_value,    /*25*/
-    st_double_value, /*26*/
-    st_rez,          /*27 rezerv. slovo */
-    st_klic,         /*28 klic. slovo   */
+
+// SMERODATNE STAVY
+    st_eof,          /*1*/
+    st_id,           /*2 identifikator  */
+    st_del,          /*3 /   */
+    st_del_cele,     /*4 \   */
+    st_nas,          /*5 *   */
+    st_scit,         /*6 +   */
+    st_odcit,        /*7 -   */
+    st_mensi,        /*8 <   */
+    st_vetsi,        /*9 >   */
+    st_menrov,       /*10 <= */
+    st_vetrov,       /*11 >= */
+    st_rovno,        /*12 =  */
+    st_nerov,        /*13 <> */
+    st_stred,        /*14 ;  */
+    st_carka,        /*15 ,  */
+    st_tecka,        /*16 .  */
+    st_levzav,       /*17 (  */
+    st_pravzav,      /*18 )  */
+    st_retLZ,        /*19 retezcovy literal zacatek: !" */
+    st_retez,        /*20 retezec */
+    st_retLK,        /*21 retezcovy literal konec: " */
+    st_int_value,    /*22*/                // TODO
+    st_double_value, /*23*/                // TODO
+    st_rez,          /*24 rezerv. slovo */ // TODO
+    st_klic,         /*25 klic. slovo   */ // TODO
+
+// POMOCNE STAVY
+    st_vykric,       /*26 !  */
+    st_radek_kom,    /*27 '  */
+    st_blok_kom_0,   /*28 /' */
+    st_blok_kom_1,   /*29 /'koment */
+    st_blok_kom_2,   /*30 '/ */ 
+    st_begin,        /*31*/
+    st_finish,       /*32*/
+    st_error,        /*33*/
 } Tstate;
 
 
@@ -47,8 +55,6 @@ typedef struct t_token {
 
 Ttoken token;   // globalni token
 
-void init_token();
-void unget_char(int c);
 int generate_token();
 
 #endif
