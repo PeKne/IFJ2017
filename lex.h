@@ -35,16 +35,16 @@ typedef enum {
     st_double_value, /*23*/                // TODO
     st_rez,          /*24 rezerv. slovo */ // TODO
     st_klic,         /*25 klic. slovo   */ // TODO
+    st_error,        /*36*/
 
 // POMOCNE STAVY
-    st_vykric,       /*26 !  */
-    st_radek_kom,    /*27 '  */
-    st_blok_kom_0,   /*28 /' */
-    st_blok_kom_1,   /*29 /'koment */
-    st_blok_kom_2,   /*30 '/ */ 
-    st_begin,        /*31*/
-    st_finish,       /*32*/
-    st_error,        /*33*/
+    st_vykric,       /*27 !  */
+    st_radek_kom,    /*28 '  */
+    st_blok_kom_0,   /*29 /' */
+    st_blok_kom_1,   /*30 /'koment */
+    st_blok_kom_2,   /*31 '/ */ 
+    st_begin,        /*32*/
+    st_finish,       /*33*/
 } Tstate;
 
 
