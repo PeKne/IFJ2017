@@ -1,11 +1,15 @@
 #include <string.h>
 #include <stdlib.h>
+#include <stdio.h>
 #include "strings.h"
 
 int str_create(Tstring *str)
 {
-    if ((str->data = (char *) malloc(sizeof(char) * STR_SIZE)) == NULL)
+    str->data = ((char *) malloc(sizeof(char) * STR_SIZE));
+    if (str->data == NULL) {
+        fprintf(stderr,"Allocating space for str_create failed!\n");
         return ERR_ALLOC;
+    }
 
     str->length = 0;
     str->size = STR_SIZE;
@@ -17,8 +21,12 @@ int str_create_spec(Tstring *str, int size)
 {
     size++; // je potreba misto pro \0 
     str->length = 0;
-    if ((str->data = (char *) malloc(sizeof(char) * size)) == NULL)
+    str->data = ((char *) malloc(sizeof(char) * size));
+    if (str->data == NULL) {
+        fprintf(stderr,"Allocating space for str_create_spec failed!\n");
         return ERR_ALLOC;
+    }
+
     str->size = size;
     str->data[0] = '\0';
     return 0;
@@ -42,8 +50,12 @@ void str_clear(Tstring *str)
 int str_add_char(Tstring *str, char c)
 {
     if ( str->length+1 >= str->size) {
-        if ((str->data = (char *) realloc(str, sizeof(char) * (str->length + STR_SIZE))) == NULL)
+        str->data = ((char *) realloc(str, sizeof(char) * (str->length + STR_SIZE)));
+        if (str->data == NULL) {
+            free(str->data);
+            fprintf(stderr,"Allocating space for str_add_char failed!\n");
             return ERR_ALLOC;
+        }
         str->size += STR_SIZE; 
     }
         str->data[str->length] = c;
@@ -66,8 +78,13 @@ int str_append_str(Tstring *target, Tstring *to_append)
 int str_create_init(Tstring *str, const char *data)
 {
     int length = strlen(data);
-    if ((str->data = (char *) malloc(sizeof(char) * length+1)) == NULL)
+    str->data = ((char *) malloc(sizeof(char) * length+1));
+    if (str->data == NULL) {
+        fprintf(stderr,"Allocating space for str_create_init failed!\n");
         return ERR_ALLOC;
+    }
+
+
     strcpy(str->data, data);
     str->length = length;
     str->size = length + 1; // \0 pridan implicitne za data
