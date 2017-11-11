@@ -1,0 +1,47 @@
+
+---------+deklarace nebo definice funkci+----------------------------------------
+<start state>   -->     <function>  <scope> //hlavni struktura programu
+
+<scope>         -->     'Scope'  <st-list>  'End'  'Scope'                              // hlavni telo programu
+<function>      -->     <function-head>  <st-list>  <function-tail>  <function>         //definice funkce
+<function>      -->     <function-dec> <function>
+<function>      -->     $
+
+
+<function-dec>  -->     'Declare' 'Function' <function-id> '(' <par> ')' 'As' <type>           //deklarace funkce
+<function-head> -->     'Function' <function-id> '(' <par> ')' 'As' <type> 'EOL'            //prvni radek definice funkce
+<function-tail> -->     'End' 'Function'            //posledni radek definice funkce
+<par>           -->     <id> 'As' <type> <par>      //parametr(y) funkce
+<par>           -->     , <par>
+<par>           -->     $
+---------+datove typy+----------------------------------------
+<type>          -->     'Integer'
+<type>          -->     'Double'
+<type>          -->     'String'
+
+---------+vnitrek tela funkce+----------------------------------------
+<st-list>       -->     <stat> <st-list>
+<st-list>       -->     $
+
+<stat>          -->     'Dim' <id> 'As' <type> <eval>       // deklarace/definice promenne
+<eval>          -->     '=' <expr> 
+<eval>          -->     $
+
+<stat>          -->     <id> '=' <assign>         //prikaz prirazeni
+<assign>        -->     <expr>                  //prikaz prirazeni
+<assign>        -->     <function-id> '(' <call-par> ')' //prikaz volani funkce
+<call-par>      -->     <id> <call-par>
+<call-par>      -->     ',' <id>
+<call-par>      -->     $
+
+<stat>          -->     'Input' <id>            //prikaz nacteni hodnoty
+
+<stat>          -->     'Print' <expr> ; <pr-expr>      //prikaz vypisu hodnot
+<pr-expr>       -->     <expr> ; <pr-expr>
+<pr-expr>       -->     $
+
+<stat>          -->     'If' <expr> 'Then' 'EOL' <st-list> 'Else' 'EOL' <st-list> 'End' 'If' //podmineny prikaz
+
+<stat>          -->     'Do' 'While' <expr> 'EOL' <st-list> 'Loop' // prikaz cyklu
+
+<stat>          -->     'Return' <expr> // prikaz navratu z funkce
