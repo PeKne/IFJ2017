@@ -209,6 +209,7 @@ int generate_token()
                 if (c == '\''){
                     state = st_blok_kom_1;
                 } else {
+                    unget_char(c);
                     state = st_del;
                 }
                 break;
@@ -241,6 +242,7 @@ int generate_token()
                         state = st_error;
                     } else {
                     unget_char(c);
+                    str_add_char(&(token.t_str), c);
                     state = st_blok_kom_1;
                 }
                 break;
@@ -335,7 +337,7 @@ int generate_token()
                 break;
             }
 
-            // koncove stavy na jeden znak
+            // koncove stavy
             case st_scit:
             case st_nas:
             case st_del:
