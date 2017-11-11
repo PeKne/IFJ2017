@@ -43,7 +43,7 @@ Tstate rez_key_id()
     return st_id;
 }
 
-int generate_token() //
+int generate_token()
 {
     bool get_next_char = true; // pokracovat v lex. anal.
     char c;
@@ -102,7 +102,7 @@ int generate_token() //
                     state = st_id;
                     str_add_char(&(token.t_str), c);
                 
-                // cokoliv jine +REZERV. SLOVA**********************************************
+                // cokoliv jine + rez + klic. slova
                 } else { 
                     // nacetl identifikator, ted se muze stav zmenit na rezev./klic. slovo nebo hotovo
                     token.t_state = rez_key_id();
