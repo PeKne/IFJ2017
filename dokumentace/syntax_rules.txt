@@ -1,0 +1,49 @@
+
+---------+deklarace nebo definice funkci+----------------------------------------
+1. <start state>   -->     <function>  <scope> //hlavni struktura programu
+
+2. <scope>         -->     'Scope'  <st-list>  'End'  'Scope'                              // hlavni telo programu
+3. <function>      -->     <function-head>  <st-list>  <function-tail>  <function>         //definice funkce
+4. <function>      -->     <function-dec> <function>
+5. <function>      -->     ε
+
+
+6. <function-dec>  -->     'Declare' 'Function' <function-id> '(' <par> ')' 'As' <type>           //deklarace funkce
+7. <function-head> -->     'Function' <function-id> '(' <par> ')' 'As' <type> 'EOL'            //prvni radek definice funkce
+8. <function-tail> -->     'End' 'Function'            //posledni radek definice funkce
+9.  <par>           -->     <id> 'As' <type> <next-par>      //parametr(y) funkce
+10. <par>          -->     ε
+11. <next-par>     -->     ',' <par>
+12. <next-par>     -->     ε
+---------+datove typy+----------------------------------------
+13. <type>          -->     'Integer'
+14. <type>          -->     'Double'
+15. <type>          -->     'String'
+
+---------+vnitrek tela funkce+----------------------------------------
+16. <st-list>       -->     <stat> <st-list>
+17. <st-list>       -->     ε
+
+18. <stat>          -->     'Dim' <id> 'As' <type> <eval>       // deklarace/definice promenne
+19. <eval>          -->     '=' <expr> 
+20. <eval>          -->     ε
+
+21. <stat>          -->     <id> '=' <assign>         //prikaz prirazeni
+22. <assign>        -->     <expr>                  //prikaz prirazeni
+23. <assign>        -->     <function-id> '(' <call-par> ')' //prikaz volani funkce
+24. <call-par>      -->     <id> <call-next-par>
+25. <call-par>      -->     ε
+26. <call-next-par> -->     ',' <call-par>
+27. <call-next-par> -->     ε
+
+28. <stat>          -->     'Input' <id>            //prikaz nacteni hodnoty
+
+29. <stat>          -->     'Print' <expr> ; <pr-expr>      //prikaz vypisu hodnot
+30. <pr-expr>       -->     <expr> ; <pr-expr>
+31. <pr-expr>       -->     ε
+
+32. <stat>          -->     'If' <expr> 'Then' 'EOL' <st-list> 'Else' 'EOL' <st-list> 'End' 'If' //podmineny prikaz
+
+33. <stat>          -->     'Do' 'While' <expr> 'EOL' <st-list> 'Loop' // prikaz cyklu
+
+34. <stat>          -->     'Return' <expr> // prikaz navratu z funkce
