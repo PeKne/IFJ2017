@@ -6,17 +6,14 @@
 #include "lex.h"
 #include "strings.h"
 
-#define res_count 22
-#define key_count 13
+#define key_count 35
 
-const char *res_words[res_count] = {
+const char *key_words[] = {
     "as\0", "asc\0","declare\0","dim\0","do\0","double\0",
     "else\0","end\0","chr\0","function\0", "if\0", "input\0",
     "integer\0", "length\0", "loop\0", "print\0", "return\0", 
-    "scope\0", "string\0", "substr\0", "then\0", "while\0"
-};
+    "scope\0", "string\0", "substr\0", "then\0", "while\0",
 
-const char *key_words[key_count] = {
     "and\0", "boolean\0", "continue\0", "elseif\0", "exit\0",
     "false\0", "for\0", "next\0", "not\0", "or\0", "shared\0",
     "static\0", "true\0",
@@ -27,18 +24,12 @@ void unget_char(int c) {
         ungetc(c, stdin);
 }
 
-Tstate rez_key_id()
+Tstate key_or_id()
 {
-    for (int i = 0; i < res_count; i++)
+    for (int i = 0; i < key_count; i++)
     {
-        if ((strcmp(token.t_str.data, res_words[i])) == 0)
-            return st_rez;
-    }
-
-    for (int i = 0; i < key_count; ++i)
-    {
-         if ((strcmp(token.t_str.data, key_words[i])) == 0)
-            return st_klic;
+        if ((strcmp(token.t_str.data, key_words[i])) == 0)
+            return i;
     }
     return st_id;
 }
@@ -105,7 +96,7 @@ int generate_token()
                 // cokoliv jine + rez + klic. slova
                 } else { 
                     // nacetl identifikator, ted se muze stav zmenit na rezev./klic. slovo nebo hotovo
-                    token.t_state = rez_key_id();
+                    token.t_state = key_or_id();
                     unget_char(c);
                     state = st_final;
                 }
