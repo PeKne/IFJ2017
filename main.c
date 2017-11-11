@@ -22,7 +22,7 @@ int main(void)
 
 	printf("name: %s ... init: %d\n", data->name, data->inicialized);
 
-	str_destroy(&(token.t_str));
+	str_clear(&(token.t_str));
 
 	printf("TEST 2 - nastavenie datoveho typu premennej ... v pripade SUCCESS nezahlasi nic, pri chybnom datovom type na strderr\n");
 	token.t_state = st_integer;
@@ -37,36 +37,36 @@ int main(void)
 	token.t_state = st_del;
 	set_type_variable(data, &token);
 
+
+
+
 	printf("TEST 3 - nastavenie hodnoty premennej\n");
 	//1
 	token.t_state = st_integer;
 	set_type_variable(data, &token);
 
-	str_create(&(token.t_str));
 	str_add_char(&(token.t_str), '1');
 
 	set_value_variable(data, &token);
 
 	printf("Value: %d ... init: %d\n", data->value.value_integer, data->inicialized);
 	data->inicialized = 0;
-	str_destroy(&(token.t_str));
+	str_clear(&(token.t_str));
 	//2
 	token.t_state = st_double;
 	set_type_variable(data, &token);
 
-	str_create(&(token.t_str));
 	str_add_char(&(token.t_str), '2');
 
 	set_value_variable(data, &token);
 
 	printf("Value: %f .. init: %d\n", data->value.value_double, data->inicialized);
 	data->inicialized = 0;
-	str_destroy(&(token.t_str));
+	str_clear(&(token.t_str));
 	//3
 	token.t_state = st_string;
 	set_type_variable(data, &token);
 
-	str_create(&(token.t_str));
 	str_add_char(&(token.t_str), 'a');
 
 	set_value_variable(data, &token);
@@ -79,11 +79,12 @@ int main(void)
 
 	printf("%s\n", data->value.value_string);
 
-	str_destroy(&(token.t_str));
+	str_clear(&(token.t_str));
+
+	free_data_variable(data);
 
 	printf("TEST 4 - tvorba struktury pre data funkcie\n");
 
-	str_create(&(token.t_str));
 	str_add_char(&(token.t_str), 'f');
 
 	function_data *data_f;
@@ -93,7 +94,9 @@ int main(void)
 		return -1;
 	}
 
-	printf("Name: %s ... defined: %d ... argCount: %d\n", data_f->name, data_f->defined, data_f->arguments_count);
+	printf("Name: %s ... defined: %d ... argCount: %d\n", data_f->name, data_f->declared, data_f->arguments_count);
+
+
 
 	printf("TEST 5 - nastavenie navratoveho typu funkcie\n");
 	token.t_state = st_integer;
@@ -111,24 +114,28 @@ int main(void)
 	token.t_state = st_del;
 	set_return_type_function(data_f, &token);
 
-	str_destroy(&(token.t_str));
+	str_clear(&(token.t_str));
+
+
 
 	printf("TEST 6 - praca s argumentami funkcie\n");
 
+	str_destroy(&(token.t_str));
 	str_create_init(&(token.t_str), "arg1");
 
 	add_argument_function(data_f, &token);
-	printf("Argument c: %d = %s\n", data_f->arguments_count, data_f->arguments[data_f->arguments_count - 1].argument_name->data);
-/*
-	str_destroy(&(token.t_str));
+	printf("Argument c: %d = %s\n", data_f->arguments_count, data_f->arguments[data_f->arguments_count - 1].argument_name.data);
 
+	str_clear(&(token.t_str));
+
+	str_destroy(&(token.t_str));
 	str_create_init(&(token.t_str), "arg2");
 
-	add_argument_function(data_ff, &token);
-	printf("Argument c: %d = %s\n", data_f->arguments_count, data_f->arguments[data_f->arguments_count - 1].argument_name->data);
+	add_argument_function(data_f, &token);
+	printf("Argument c: %d = %s\n", data_f->arguments_count, data_f->arguments[data_f->arguments_count - 1].argument_name.data);
 
+	free_data_function(data_f);
 	str_destroy(&(token.t_str));
 
 	return 0;
-	*/
 }

@@ -30,14 +30,6 @@ htab_t *htab_init(unsigned size)
 	return table;
 }
 
-htab_t *htab_copy(htab_t *table)
-{
-	htab_t *new_table = htab_init(table->size);
-	//TODO kópia všetkých položiek
-
-	return new_table;
-}
-
 htab_listitem *htab_find(htab_t *table, const char *key)
 {
 	unsigned index = hash_function(key) % table->size;
@@ -135,7 +127,11 @@ void htab_remove(htab_t *table, const char *key)
 			}
 
 			free(item->key);
-			//TODO uvolnit strukturu data
+			if(item_type == type_variable) {
+				free_data_variable(item->pointer.variable);
+			} else if(item_type == type_function) {
+				free_data_function(item->pointer.function);
+			}
 			free(item);
 
 		} else {

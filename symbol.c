@@ -9,7 +9,7 @@ variable_data *create_data_variable(Ttoken *token)
 		return NULL;
 	}
 
-	data->name = malloc(sizeof(char) * token->t_str.length);
+	data->name = malloc(sizeof(char *) * token->t_str.length);
 	if(data->name == NULL) {
 		fprintf(stderr, "Error allocating memory for variable_data->name.\n");
 		free(data);
@@ -67,7 +67,7 @@ void set_value_variable(variable_data *data, Ttoken *token)
 			break;
 	}
 }
-/*
+
 void variable_data_to_table(htab_t *table, variable_data *data)
 {
 	htab_listitem *item = htab_lookup_add(table, data->name);
@@ -75,7 +75,13 @@ void variable_data_to_table(htab_t *table, variable_data *data)
 	item->type = type_variable;
 	item->pointer.variable = data;
 }
-*/
+
+void free_data_variable(variable_data *data)
+{
+	free(data->name);
+	free(data);
+}
+
 function_data *create_data_function(Ttoken *token)
 {
 	function_data *data = malloc(sizeof(struct variable_data));
@@ -85,7 +91,7 @@ function_data *create_data_function(Ttoken *token)
 		return NULL;
 	}
 
-	data->name = malloc(sizeof(char) * token->t_str.length);
+	data->name = malloc(sizeof(char *) * token->t_str.length);
 	if(data->name == NULL) {
 		fprintf(stderr, "Error allocating memory for function_data->name.\n");
 		free(data);
@@ -94,17 +100,17 @@ function_data *create_data_function(Ttoken *token)
 	}
 
 	strcpy(data->name, token->t_str.data);
-	data->defined = 0;
+	data->declared = 0;
 	data->arguments_count = 0;
 	data->arguments = NULL;
-	//data->local_symbol_table = NULL;
+	data->local_symbol_table = NULL;
 
 	return data;
 }
 
-void set_defined_function(function_data *data)
+void set_declared_function(function_data *data)
 {
-	data->defined = 1;
+	data->declared = 1;
 }
 
 void set_return_type_function(function_data *data, Ttoken *token)
@@ -127,35 +133,30 @@ void set_return_type_function(function_data *data, Ttoken *token)
 			break;
 	}
 }
-/*
+
 void set_local_symbol_table(htab_t *table, function_data *data)
 {
 	data->local_symbol_table = table;
 }
-*/
 
-//Nespravna alokacia pamate, opravit
+
+//Nespravna alokacia pamate, opravit EDIT: opravene
 void add_argument_function(function_data *data, Ttoken *token)
 {
 	data->arguments_count++;
-=======
-void function_to_symbol_table(htab_listitem *item, char *function_name) {
-	item->type = type_function;
 
 	if(data->arguments_count == 1) {
 		data->arguments = malloc(sizeof(function_arguments));
 	} else {
 		data->arguments = realloc(data->arguments, sizeof(function_arguments) * data->arguments_count);
-	}
+	} 
 
 	if(data->arguments == NULL) {
 		fprintf(stderr, "Error allocating memory for argument data.\n");
 	}
 
-	Tstring string;
-	str_create_init(&string, token->t_str.data);
-
-	strcpy(data->arguments[data->arguments_count - 1].argument_name->data, string.data);
+	str_create(&(data->arguments[data->arguments_count - 1].argument_name));
+	str_append_str(&(data->arguments[data->arguments_count - 1].argument_name), &(token->t_str));
 } 
 
 void set_argument_type_function(function_data *data, Ttoken *token)
@@ -178,7 +179,7 @@ void set_argument_type_function(function_data *data, Ttoken *token)
 			break;
 	}
 }
-/*
+
 void function_data_to_table(htab_t *table, function_data *data)
 {
 	htab_listitem *item;
@@ -187,4 +188,15 @@ void function_data_to_table(htab_t *table, function_data *data)
 	item->type = type_function;
 	item->pointer.function = data;
 }
-*/
+
+void free_data_function(function_data *data)
+{
+	free(data->name);
+
+	for(unsigned i = 0; i < data->arguments_count; i++) {
+		str_destroy(&(data->arguments[i].argument_name));
+	}
+
+	free(data->arguments);
+	free(data);
+}
