@@ -3,7 +3,9 @@
 
 #include "strings.h"
 
-#define ERR_LEX -1
+#define ERR_LEX 1
+
+int err; //globální proměnná pro chybu
 
 typedef enum {
 

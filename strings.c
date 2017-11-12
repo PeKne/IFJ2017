@@ -75,6 +75,9 @@ int str_push_char(Tstring *str, char c)
 
 int str_pop_char(Tstring *str)
 {   
+    if (str->length <= 0)
+        return 0;
+    
     if (str->size > ALLOC_CHUNK) {
         int new_size = (((str->length / ALLOC_CHUNK) + 1) * ALLOC_CHUNK);
         str->data = ((char *) realloc(str->data, sizeof(char) * new_size));

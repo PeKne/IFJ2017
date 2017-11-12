@@ -38,7 +38,6 @@ int generate_token()
 {
     bool get_next_char = true; // pokracovat v lex. anal.
     char c;
-    int err = 0;
     
     Tstate state = st_begin;
 
@@ -85,8 +84,8 @@ int generate_token()
                     break;
                 }
                 // vlozi prvni znak do stringu
-               if ( isprint(c) && (state != st_eof) && (state != st_blok_kom_0) && (state != st_vykric) && 
-                   (state != st_radek_kom))
+               if ((state != st_eof) && (state != st_vykric) && 
+                  (state != st_radek_kom))
                {
                 str_push_char(&(token.t_str), c);
                }
@@ -202,6 +201,7 @@ int generate_token()
             case st_blok_kom_0:
             {
                 if (c == '\''){
+                    str_pop_char(&(token.t_str));
                     state = st_blok_kom_1;
                 } else {
                     unget_char(c);
