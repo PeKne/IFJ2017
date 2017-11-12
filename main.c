@@ -16,7 +16,7 @@ int main()
         if (token.t_state == st_eof)
             return err;
         printf("token: %d, error: %d\n", token.t_state, err);
-        printf("str:%s delka:%d vel.:%d\n\n", token.t_str.data, token.t_str.length, token.t_str.size);
+        printf("str:'%s' delka:%d vel.:%d\n\n", token.t_str.data, token.t_str.length, token.t_str.size);
     }
     str_destroy(&(token.t_str));
 

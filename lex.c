@@ -42,16 +42,20 @@ int generate_token()
     
     Tstate state = st_begin;
 
-    str_clear(&(token.t_str)); // jedno volání, jeden token
+    if ((err = str_clear(&(token.t_str)))) // jedno volání, jeden token
+        return err;
+
 
     while ((get_next_char) && (c = getc(stdin)))
     {   
-        c = tolower(c);
-        
+         if (state != st_retez)
+            c = tolower(c);
+
         switch(state)
         {
             case st_begin:
-            {
+            {   
+                
                 if (isspace(c)) {
                     state = st_begin;
                     break;
@@ -80,10 +84,13 @@ int generate_token()
                     fprintf(stderr, "Error, uknown token!\n");
                     break;
                 }
-                // vlozi prvni znak do stringu, pokud neni eof
-               if (state != st_eof) 
-                    str_add_char(&(token.t_str), c);
-                break;
+                // vlozi prvni znak do stringu
+               if ( isprint(c) && (state != st_eof) && (state != st_blok_kom_0) && (state != st_vykric) && 
+                   (state != st_radek_kom))
+               {
+                str_push_char(&(token.t_str), c);
+               }
+               break;
             }
             
             // neprazdna posloupnost cislic, pismen, podtrzitka. 
@@ -91,7 +98,7 @@ int generate_token()
             {
                 if (isdigit(c) || isalpha(c) || c == '_') {
                     state = st_id;
-                    str_add_char(&(token.t_str), c);
+                    str_push_char(&(token.t_str), c);
                 
                 // cokoliv jine + rez + klic. slova
                 } else { 
@@ -107,11 +114,11 @@ int generate_token()
             {
 
                 if(c == '='){
-                    str_add_char(&(token.t_str), c);
+                    str_push_char(&(token.t_str), c);
                     state = st_menrov;
                 }
                 else if (c == '>'){
-                    str_add_char(&(token.t_str), c);
+                    str_push_char(&(token.t_str), c);
                     state = st_nerov;
                 } else {
                     token.t_state = state;
@@ -124,7 +131,7 @@ int generate_token()
             case st_vetsi:
             {
                 if(c == '='){
-                    str_add_char(&(token.t_str), c);
+                    str_push_char(&(token.t_str), c);
                     state = st_vetrov;
                 } else {
                     token.t_state = state;
@@ -139,7 +146,6 @@ int generate_token()
             case st_vykric:
             {
                 if (c == '"'){
-                    str_add_char(&(token.t_str), c);
                     state = st_retez;
                 } else {
                     fprintf(stderr, "Error, right after '!' must be '\"'!\n");
@@ -154,16 +160,15 @@ int generate_token()
                     token.t_state = st_retez;
 
                 if (c == '\\') {
-                    str_add_char(&(token.t_str), c);
+                    str_push_char(&(token.t_str), c);
                     state = st_esc;
                 } else if (c == '"') {
-                    str_add_char(&(token.t_str), c);
                     state = st_final;
                 } else if (c == EOF) {
                     fprintf(stderr, "Error, after string must be \"\n");
                     state = st_error;
                 } else {
-                    str_add_char(&(token.t_str), c);
+                    str_push_char(&(token.t_str), c);
                     state = st_retez;
                 }
                 break;
@@ -174,7 +179,7 @@ int generate_token()
                 if (c == EOF) {
                     state = st_error;
                 } else {
-                    str_add_char(&(token.t_str), c);
+                    str_push_char(&(token.t_str), c);
                     state = st_retez;
                 }
                 break;
@@ -186,8 +191,7 @@ int generate_token()
             {
                 if ((c != '\n') && (c != EOF)) {
                     state = st_radek_kom;
-                }
-                else {
+                } else {
                     state = st_begin;                  
                 }
                 break;
@@ -229,11 +233,10 @@ int generate_token()
                 if (c == '/') {
                     state = st_begin;
                 } else if (c == EOF) {
-                        fprintf(stderr, "Error, block comment not completed!\n");
-                        state = st_error;
-                    } else {
+                    fprintf(stderr, "Error, block comment not completed!\n");
+                    state = st_error;
+                } else {
                     unget_char(c);
-                    str_add_char(&(token.t_str), c);
                     state = st_blok_kom_1;
                 }
                 break;
@@ -244,14 +247,14 @@ int generate_token()
             case st_int_val:
             {
                 if (isdigit(c)){
-                    str_add_char(&(token.t_str), c);
+                    str_push_char(&(token.t_str), c);
                     state = st_int_val;
                 } else if (c == '.') {
-                    str_add_char(&(token.t_str), c);
+                    str_push_char(&(token.t_str), c);
                     state = st_double_val_dot;
-                } else if ((c == 'e') || (c == 'E')) {
-                    str_add_char(&(token.t_str), c);
-                    state = st_exp_e;
+                } else if (c == 'e') {
+                    str_push_char(&(token.t_str), c);
+                    state = st_exp_int_e;
                 } else { // nacten jiny znak, tento je ukoncen
                     token.t_state = state;
                     unget_char(c);
@@ -263,7 +266,7 @@ int generate_token()
             case st_double_val_dot:
             {
                 if (isdigit(c)) {
-                    str_add_char(&(token.t_str), c);
+                    str_push_char(&(token.t_str), c);
                     state = st_double_val;
                 } else {
                     fprintf(stderr, "In double value, after '.' must be a number!\n");
@@ -275,11 +278,11 @@ int generate_token()
             case st_double_val:
             {
                 if (isdigit(c)) {
-                    str_add_char(&(token.t_str), c);
+                    str_push_char(&(token.t_str), c);
                     state = st_double_val;
-                } else if ((c == 'e') || (c == 'E')) {
-                    str_add_char(&(token.t_str), c);
-                    state = st_exp_e;
+                } else if (c == 'e') {
+                    str_push_char(&(token.t_str), c);
+                    state = st_exp_doub_e;
                 } else { // nacten jiny znak
                     token.t_state = state;
                     unget_char(c);
@@ -288,14 +291,15 @@ int generate_token()
                 break;
             }
 
-            case st_exp_e:
+            /***** int s exponentem *****/
+            case st_exp_int_e:
             {
                 if ((c == '+') || (c == '-')) {
-                    str_add_char(&(token.t_str), c);
-                    state = st_exp_s;
+                    str_push_char(&(token.t_str), c);
+                    state = st_exp_int_s;
                 } else if (isdigit(c)) {
-                    str_add_char(&(token.t_str), c);
-                    state = st_exp;
+                    str_push_char(&(token.t_str), c);
+                    state = st_exp_int;
                 } else {
                     fprintf(stderr, "In exponential value, after E must follow a number or sign!\n");
                     state = st_error;
@@ -303,11 +307,11 @@ int generate_token()
                 break;
             }
 
-            case st_exp_s:
+            case st_exp_int_s:
             {
                 if (isdigit(c)) {
-                    str_add_char(&(token.t_str), c);
-                    state = st_exp;
+                    str_push_char(&(token.t_str), c);
+                    state = st_exp_int;
                 } else {
                     fprintf(stderr, "In exponential value, after sign must follow a number!\n");
                     state = st_error;
@@ -315,11 +319,11 @@ int generate_token()
                 break;
             }
 
-            case st_exp:
+            case st_exp_int:
             {
                 if (isdigit(c)) {
-                    str_add_char(&(token.t_str), c);
-                    state = st_exp;
+                    str_push_char(&(token.t_str), c);
+                    state = st_exp_int;
                 } else { // nacten jiny znak
                     token.t_state = state;
                     unget_char(c);
@@ -327,6 +331,50 @@ int generate_token()
                 }
                 break;
             }
+            /***** int s exponentem *****/
+
+
+            /***** double s exponentem *****/
+            case st_exp_doub_e:
+            {
+                if ((c == '+') || (c == '-')) {
+                    str_push_char(&(token.t_str), c);
+                    state = st_exp_doub_s;
+                } else if (isdigit(c)) {
+                    str_push_char(&(token.t_str), c);
+                    state = st_exp_doub;
+                } else {
+                    fprintf(stderr, "In exponential value, after E must follow a number or sign!\n");
+                    state = st_error;
+                }
+                break;
+            }
+
+            case st_exp_doub_s:
+            {
+                if (isdigit(c)) {
+                    str_push_char(&(token.t_str), c);
+                    state = st_exp_doub;
+                } else {
+                    fprintf(stderr, "In exponential value, after sign must follow a number!\n");
+                    state = st_error;
+                }
+                break;
+            }
+
+            case st_exp_doub:
+            {
+                if (isdigit(c)) {
+                    str_push_char(&(token.t_str), c);
+                    state = st_exp_doub;
+                } else { // nacten jiny znak
+                    token.t_state = state;
+                    unget_char(c);
+                    state = st_final;
+                }
+                break;
+            }
+            /***** double s exponentem *****/
 
             // koncove stavy
             case st_scit:

@@ -73,21 +73,24 @@ typedef enum {
 /*54*/ st_retez,          /* retezec */
 /*55*/ st_int_val,        /* hodnota int bez exp*/
 /*56*/ st_double_val,     /* hodnota double bez exp*/
-/*57*/ st_exp,            /* int nebo double s exp*/
+/*57*/ st_exp_int,        /* int s exp*/
+/*58*/ st_exp_doub,       /* double s exp*/
 
 // POMOCNE STAVY
-/*58*/ st_begin,
-/*59*/ st_final,
-/*60*/ st_vykric,         /* !  */
-/*61*/ st_radek_kom,      /* '  */
-/*62*/ st_blok_kom_0,     /* /' */
-/*63*/ st_blok_kom_1,     /* /'koment */
-/*64*/ st_blok_kom_2,     /* '/ */ 
-/*65*/ st_retLZ,          /* retezcovy literal zacatek: !" */
-/*66*/ st_esc,            /* escape znak \ */
-/*67*/ st_double_val_dot,
-/*68*/ st_exp_e,
-/*69*/ st_exp_s,
+/*59*/ st_begin,
+/*60*/ st_final,
+/*61*/ st_vykric,         /* !  */
+/*62*/ st_radek_kom,      /* '  */
+/*63*/ st_blok_kom_0,     /* /' */
+/*64*/ st_blok_kom_1,     /* /'koment */
+/*65*/ st_blok_kom_2,     /* '/ */ 
+/*66*/ st_retLZ,          /* retezcovy literal zacatek: !" */
+/*67*/ st_esc,            /* escape znak \ */
+/*68*/ st_double_val_dot,
+/*69*/ st_exp_int_e,
+/*70*/ st_exp_int_s,
+/*71*/ st_exp_doub_e,
+/*72*/ st_exp_doub_s,
 } Tstate;
 
 
