@@ -2,7 +2,7 @@
 #define STRINGS_H
 
 #define ERR_ALLOC -1
-#define STR_SIZE 15
+#define ALLOC_CHUNK 10
 
 typedef struct tstring{
     int length; // aktualni delka 
@@ -20,10 +20,13 @@ int str_create_spec(Tstring *str, int size);
 void str_destroy(Tstring *str);
 
 // nastavi hodnoty na pocatecni, misto je stale alokovano stejne
-void str_clear(Tstring *str);
+int str_clear(Tstring *str);
 
 // appenduje char do retezce
-int str_add_char(Tstring *str, char c);
+int str_push_char(Tstring *str, char c);
+
+// odstrani posledni znak z retezce
+int str_pop_char(Tstring *str);
 
 // appenduje retezec do retezce
 int str_append_str(Tstring *target, Tstring *to_append);

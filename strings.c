@@ -5,14 +5,14 @@
 
 int str_create(Tstring *str)
 {
-    str->data = ((char *) malloc(sizeof(char) * STR_SIZE));
+    str->data = ((char *) malloc(sizeof(char) * ALLOC_CHUNK));
     if (str->data == NULL) {
         fprintf(stderr,"Allocating space for str_create failed!\n");
         return ERR_ALLOC;
     }
 
     str->length = 0;
-    str->size = STR_SIZE;
+    str->size = ALLOC_CHUNK;
     str->data[0] = '\0';
     return 0;
 }
@@ -40,27 +40,57 @@ void str_destroy(Tstring *str)
     str->data = NULL;
 }
 
-void str_clear(Tstring *str)
+int str_clear(Tstring *str)
 {
+    str->data = ((char *) realloc(str->data, sizeof(char) * (ALLOC_CHUNK)));
+    if (str->data == NULL) {
+        free(str->data);
+        fprintf(stderr,"Reallocating space for str_clear failed!\n");
+        return ERR_ALLOC;
+    }
+
     str->length = 0;
+    str->size = ALLOC_CHUNK;
     str->data[0] = '\0';
+    return 0;
 }
 
 
-int str_add_char(Tstring *str, char c)
+int str_push_char(Tstring *str, char c)
 {
     if ( str->length+1 >= str->size) {
-        str->data = ((char *) realloc(str, sizeof(char) * (str->length + STR_SIZE)));
+        str->data = ((char *) realloc(str->data, sizeof(char) * (str->length + ALLOC_CHUNK)));
         if (str->data == NULL) {
             free(str->data);
-            fprintf(stderr,"Allocating space for str_add_char failed!\n");
+            fprintf(stderr,"Reallocating space for str_push_char failed!\n");
             return ERR_ALLOC;
         }
-        str->size += STR_SIZE; 
+        str->size += ALLOC_CHUNK; 
     }
-        str->data[str->length] = c;
-        str->data[++(str->length)] = '\0';
+
+    str->data[str->length] = c;
+    str->data[++(str->length)] = '\0';
+    return 0;
+}
+
+int str_pop_char(Tstring *str)
+{   
+    if (str->length <= 0)
         return 0;
+    
+    if (str->size > ALLOC_CHUNK) {
+        int new_size = (((str->length / ALLOC_CHUNK) + 1) * ALLOC_CHUNK);
+        str->data = ((char *) realloc(str->data, sizeof(char) * new_size));
+            if (str->data == NULL) {
+                free(str->data);
+                fprintf(stderr,"Reallocating space for str_pop_char failed!\n");
+                return ERR_ALLOC;
+            }
+        str->size = new_size;
+    }
+    str->length--;
+    str->data[str->length] = '\0'; // nahrazeni posledniho znaku '\0'
+    return 0;
 }
 
 int str_append_str(Tstring *target, Tstring *to_append)
@@ -68,10 +98,9 @@ int str_append_str(Tstring *target, Tstring *to_append)
     int err = 0;
     for (int i = 0; i < to_append->length; ++i)
     {
-        if ((err = str_add_char(target, to_append->data[i])) != 0)
+        if ((err = str_push_char(target, to_append->data[i])) != 0)
             return err;
     }
-    
     return 0;
 }
 
