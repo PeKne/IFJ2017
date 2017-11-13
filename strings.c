@@ -2,13 +2,22 @@
 #include <stdlib.h>
 #include <stdio.h>
 #include "strings.h"
+#include "errors.h"
 
+<<<<<<< HEAD
+=======
+
+>>>>>>> master
 int str_create(Tstring *str)
 {
     str->data = ((char *) malloc(sizeof(char) * ALLOC_CHUNK));
     if (str->data == NULL) {
         fprintf(stderr,"Allocating space for str_create failed!\n");
+<<<<<<< HEAD
         return ERR_ALLOC;
+=======
+        return ERR_INTERN;
+>>>>>>> master
     }
 
     str->length = 0;
@@ -24,7 +33,11 @@ int str_create_spec(Tstring *str, int size)
     str->data = ((char *) malloc(sizeof(char) * size));
     if (str->data == NULL) {
         fprintf(stderr,"Allocating space for str_create_spec failed!\n");
+<<<<<<< HEAD
         return ERR_ALLOC;
+=======
+        return ERR_INTERN;
+>>>>>>> master
     }
 
     str->size = size;
@@ -46,7 +59,11 @@ int str_clear(Tstring *str)
     if (str->data == NULL) {
         free(str->data);
         fprintf(stderr,"Reallocating space for str_clear failed!\n");
+<<<<<<< HEAD
         return ERR_ALLOC;
+=======
+        return ERR_INTERN;
+>>>>>>> master
     }
 
     str->length = 0;
@@ -63,7 +80,11 @@ int str_push_char(Tstring *str, char c)
         if (str->data == NULL) {
             free(str->data);
             fprintf(stderr,"Reallocating space for str_push_char failed!\n");
+<<<<<<< HEAD
             return ERR_ALLOC;
+=======
+            return ERR_INTERN;
+>>>>>>> master
         }
         str->size += ALLOC_CHUNK; 
     }
@@ -84,7 +105,11 @@ int str_pop_char(Tstring *str)
             if (str->data == NULL) {
                 free(str->data);
                 fprintf(stderr,"Reallocating space for str_pop_char failed!\n");
+<<<<<<< HEAD
                 return ERR_ALLOC;
+=======
+                return ERR_INTERN;
+>>>>>>> master
             }
         str->size = new_size;
     }
@@ -110,7 +135,11 @@ int str_create_init(Tstring *str, const char *data)
     str->data = ((char *) malloc(sizeof(char) * length+1));
     if (str->data == NULL) {
         fprintf(stderr,"Allocating space for str_create_init failed!\n");
+<<<<<<< HEAD
         return ERR_ALLOC;
+=======
+        return ERR_INTERN;
+>>>>>>> master
     }
 
 
