@@ -5,6 +5,7 @@
 #include <string.h>
 #include "lex.h"
 #include "strings.h"
+#include "errors.h"
 
 #define key_count 35
 
@@ -38,11 +39,12 @@ int generate_token()
 {
     bool get_next_char = true; // pokracovat v lex. anal.
     char c;
+    int error = 0;
     
     Tstate state = st_begin;
 
-    if ((err = str_clear(&(token.t_str)))) // jedno volání, jeden token
-        return err;
+    if ((error = str_clear(&(token.t_str)))) // jedno volání, jeden token
+        return error;
 
 
     while ((get_next_char) && (c = getc(stdin)))
@@ -406,7 +408,7 @@ int generate_token()
 
             case st_error:
             {
-                err = ERR_LEX;
+                error = ERR_LEX;
                 token.t_state = state;
                 get_next_char = false;
                 break;
@@ -414,12 +416,12 @@ int generate_token()
 
             default: 
             {
-                err = ERR_LEX; // default nesmi nikdy nastat
+                error = ERR_LEX; // default nesmi nikdy nastat
                 fprintf(stderr, "Error, uknown token! Ask developer to fix it.\n");
                 get_next_char = false;
                 break;
             }
         }
     }
-    return err;
+    return error;
 }

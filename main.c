@@ -5,12 +5,10 @@
 
 int main()
 {    
-    err = 0;
     int error = 0;
     if ((error = str_create(&(token.t_str))) != 0)
         return error;
     
-
     while (1)
     {
         error = generate_token();

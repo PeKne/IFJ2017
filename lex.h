@@ -3,25 +3,22 @@
 
 #include "strings.h"
 
-#define ERR_LEX 1
-
-int err; //globální proměnná pro chybu
 
 typedef enum {
 
 /******NEMENIT ANI NEPRIDAVAT******/
 /******ZDE ZALEZI NA PORADI********/
 // KLICOVA SLOVA
-/*0*/ st_as,
-/*1*/ st_asc,
-/*2*/ st_declare,
-/*3*/ st_dim,
-/*4*/ st_do,
-/*5*/ st_double,
-/*6*/ st_else,
-/*7*/ st_end,
-/*8*/ st_chr,
-/*9*/ st_function,
+/*0*/  st_as,
+/*1*/  st_asc,
+/*2*/  st_declare,
+/*3*/  st_dim,
+/*4*/  st_do,
+/*5*/  st_double,
+/*6*/  st_else,
+/*7*/  st_end,
+/*8*/  st_chr,
+/*9*/  st_function,
 /*10*/ st_if,
 /*11*/ st_input,
 /*12*/ st_integer,
