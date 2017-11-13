@@ -1,7 +1,6 @@
 #ifndef STRINGS_H
 #define STRINGS_H
 
-#define ERR_ALLOC -1
 #define ALLOC_CHUNK 10
 
 typedef struct tstring{
