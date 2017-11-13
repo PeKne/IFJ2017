@@ -146,6 +146,7 @@ int generate_token()
             {
                 if (c == '"'){
                     state = st_retez;
+                    token.t_state = st_retez;
                 } else {
                     fprintf(stderr, "Error, right after '!' must be '\"'!\n");
                     state = st_error;
@@ -155,9 +156,6 @@ int generate_token()
 
             case st_retez:
             {
-                if (c != EOF)
-                    token.t_state = st_retez;
-
                 if (c == '\\') {
                     str_push_char(&(token.t_str), c);
                     state = st_esc;
@@ -387,11 +385,11 @@ int generate_token()
             case st_tecka:
             case st_levzav:
             case st_pravzav:
-            case st_eof:
             case st_rovno:
             case st_menrov:
             case st_vetrov:
             case st_nerov:
+            case st_eof:
             {
                 token.t_state = state;
                 unget_char(c);
@@ -401,7 +399,7 @@ int generate_token()
 
             case st_final:
             {
-                unget_char(c); // na konci souboru vraci porad dokola EOF znak
+                unget_char(c);
                 get_next_char = false;
                 break;
             }

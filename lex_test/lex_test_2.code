@@ -1,5 +1,0 @@
-scope
-	Dim ahoj As String
-	ahoj = !"pete
-";
-End Scope
