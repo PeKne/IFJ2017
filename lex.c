@@ -60,9 +60,10 @@ int generate_token()
                 if (c == '\n') {
                     state = st_eol;  
                     unget_char(c);
+                    break;
                 }
 
-                else if (isspace(c) && (c != '\n')) {
+                else if (isspace(c)) {
                     state = st_begin;
                     break;
                 }
@@ -91,7 +92,7 @@ int generate_token()
                     break;
                 }
                 // vlozi prvni znak do stringu
-               if ((state != st_eof) && (state != st_eol) && (state != st_vykric) && 
+               if ((state != st_eof) && (state != st_vykric) && 
                   (state != st_radek_kom))
                {
                 str_push_char(&(token.t_str), c);
