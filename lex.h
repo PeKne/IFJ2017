@@ -3,7 +3,6 @@
 
 #include "strings.h"
 
-
 typedef enum {
 
 /******NEMENIT ANI NEPRIDAVAT******/
@@ -48,50 +47,49 @@ typedef enum {
 /*34*/ st_true,
 /******NEMENIT ANI NEPRIDAVAT******/
 
-
-// SMERODATNE STAVY
-/*35*/ st_eof,
-/*36*/ st_error,
-/*37*/ st_id,             /*identifikator  */
-/*38*/ st_del,            /* /   */
-/*39*/ st_del_cele,       /* \   */
-/*40*/ st_nas,            /* *   */
-/*41*/ st_scit,           /* +   */
-/*42*/ st_odcit,          /* -   */
-/*43*/ st_mensi,          /* <   */
-/*44*/ st_vetsi,          /* >   */
-/*45*/ st_menrov,         /* <= */
-/*46*/ st_vetrov,         /* >= */
-/*47*/ st_rovno,          /* =  */
-/*48*/ st_nerov,          /* <> */
-/*49*/ st_stred,          /* ;  */
-/*50*/ st_carka,          /* ,  */
-/*51*/ st_tecka,          /* .  */
-/*52*/ st_levzav,         /* (  */
-/*53*/ st_pravzav,        /* )  */
-/*54*/ st_retez,          /* retezec */
-/*55*/ st_int_val,        /* hodnota int bez exp*/
-/*56*/ st_double_val,     /* hodnota double bez exp*/
-/*57*/ st_exp_int,        /* int s exp*/
-/*58*/ st_exp_doub,       /* double s exp*/
+// DALSI SMERODATNE STAVY
+/*35*/ st_id,             /*identifikator  */
+/*36*/ st_del,            /* /   */
+/*37*/ st_del_cele,       /* \   */
+/*38*/ st_nas,            /* *   */
+/*39*/ st_scit,           /* +   */
+/*40*/ st_odcit,          /* -   */
+/*41*/ st_mensi,          /* <   */
+/*42*/ st_vetsi,          /* >   */
+/*43*/ st_menrov,         /* <= */
+/*44*/ st_vetrov,         /* >= */
+/*45*/ st_rovno,          /* =  */
+/*46*/ st_nerov,          /* <> */
+/*47*/ st_stred,          /* ;  */
+/*48*/ st_carka,          /* ,  */
+/*49*/ st_tecka,          /* .  */
+/*50*/ st_levzav,         /* (  */
+/*51*/ st_pravzav,        /* )  */
+/*52*/ st_retez,          /* retezec */
+/*53*/ st_int_val,        /* hodnota int bez exp*/
+/*54*/ st_double_val,     /* hodnota double bez exp*/
+/*55*/ st_exp_int,        /* int s exp*/
+/*56*/ st_exp_doub,       /* double s exp*/
+/*57*/ st_eol,
+/*58*/ st_eof,
+/*59*/ st_error,
 
 // POMOCNE STAVY
-/*59*/ st_begin,
-/*60*/ st_final,
-/*61*/ st_vykric,         /* !  */
-/*62*/ st_radek_kom,      /* '  */
-/*63*/ st_blok_kom_0,     /* /' */
-/*64*/ st_blok_kom_1,     /* /'koment */
-/*65*/ st_blok_kom_2,     /* '/ */ 
-/*66*/ st_retLZ,          /* retezcovy literal zacatek: !" */
-/*67*/ st_esc,            /* escape znak \ */
-/*68*/ st_double_val_dot,
-/*69*/ st_exp_int_e,
-/*70*/ st_exp_int_s,
-/*71*/ st_exp_doub_e,
-/*72*/ st_exp_doub_s,
+/*60*/ st_begin,
+/*61*/ st_final,
+/*62*/ st_vykric,         /* !  */
+/*63*/ st_radek_kom,      /* '  */
+/*64*/ st_blok_kom_0,     /* /' */
+/*65*/ st_blok_kom_1,     /* /'koment */
+/*66*/ st_blok_kom_2,     /* '/ */ 
+/*67*/ st_retLZ,          /* retezcovy literal zacatek: !" */
+/*68*/ st_esc,            /* escape znak \ */
+/*69*/ st_double_val_dot,
+/*70*/ st_exp_int_e,
+/*71*/ st_exp_int_s,
+/*72*/ st_exp_doub_e,
+/*73*/ st_exp_doub_s,
 } Tstate;
-
 
 typedef struct t_token {
     Tstring t_str;         // jeden token ze vstupu (např."integer")
