@@ -21,7 +21,7 @@ const char *key_words[] = {
 };
 
 void unget_char(int c) {
-    if (!isspace(c))
+    if (!isspace(c) || (c == '\n'))
         ungetc(c, stdin);
 }
 
@@ -49,7 +49,7 @@ int generate_token()
 
     while ((get_next_char) && (c = getc(stdin)))
     {   
-         if (state != st_retez)
+        if (state != st_retez)
             c = tolower(c);
 
         switch(state)
@@ -57,7 +57,12 @@ int generate_token()
             case st_begin:
             {   
                 
-                if (isspace(c)) {
+                if (c == '\n') {
+                    state = st_eol;  
+                    unget_char(c);
+                }
+
+                else if (isspace(c) && (c != '\n')) {
                     state = st_begin;
                     break;
                 }
@@ -78,7 +83,7 @@ int generate_token()
                 else if (c == '(')                 state = st_levzav;
                 else if (c == ')')                 state = st_pravzav;
                 else if (c == '!')                 state = st_vykric;
-                else if (c == EOF)                 state = st_eof;     
+                else if (c == EOF)                 state = st_eof;
                 
                 else {
                     state = st_error;
@@ -86,7 +91,7 @@ int generate_token()
                     break;
                 }
                 // vlozi prvni znak do stringu
-               if ((state != st_eof) && (state != st_vykric) && 
+               if ((state != st_eof) && (state != st_eol) && (state != st_vykric) && 
                   (state != st_radek_kom))
                {
                 str_push_char(&(token.t_str), c);
@@ -143,7 +148,7 @@ int generate_token()
             }
 
 
-            /***** retezec *****/
+            /***** retezec ********************************************************/
             case st_vykric:
             {
                 if (c == '"'){
@@ -183,7 +188,7 @@ int generate_token()
                 }
                 break;
             }
-            /***** retezec *****/
+            /***** konec retezce **************************************************/
 
 
             case st_radek_kom:
@@ -191,12 +196,14 @@ int generate_token()
                 if ((c != '\n') && (c != EOF)) {
                     state = st_radek_kom;
                 } else {
+                    /*if (c == '\n')
+                        unget_char(c);*/
                     state = st_begin;                  
                 }
                 break;
             }
 
-            /***** blok koment *****/
+            /***** blok koment ****************************************************/
             // pokud se za / vyskytuje ', jedna se o zacatek blok. komentu
             case st_blok_kom_0:
             {
@@ -241,7 +248,7 @@ int generate_token()
                 }
                 break;
             }
-            /***** blok koment *****/
+            /***** konec blok komentu ********************************************/
 
 
             case st_int_val:
@@ -291,7 +298,8 @@ int generate_token()
                 break;
             }
 
-            /***** int s exponentem *****/
+
+            /***** int s exponentem **********************************************/
             case st_exp_int_e:
             {
                 if ((c == '+') || (c == '-')) {
@@ -331,10 +339,10 @@ int generate_token()
                 }
                 break;
             }
-            /***** int s exponentem *****/
+            /***** konec int s exponentem ****************************************/
 
 
-            /***** double s exponentem *****/
+            /***** double s exponentem *******************************************/
             case st_exp_doub_e:
             {
                 if ((c == '+') || (c == '-')) {
@@ -374,7 +382,7 @@ int generate_token()
                 }
                 break;
             }
-            /***** double s exponentem *****/
+            /***** konec double s exponentem **************************************/
 
             // koncove stavy
             case st_scit:
@@ -395,6 +403,13 @@ int generate_token()
             {
                 token.t_state = state;
                 unget_char(c);
+                state = st_final;
+                break;
+            }
+
+            case st_eol:
+            {
+                token.t_state = state;
                 state = st_final;
                 break;
             }
