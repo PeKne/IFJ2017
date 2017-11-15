@@ -21,8 +21,9 @@ const char *key_words[] = {
 };
 
 void unget_char(int c) {
-    if (!isspace(c) || (c == '\n'))
+    if (!isspace(c) || (c == '\n')) {
         ungetc(c, stdin);
+    }
 }
 
 Tstate key_or_id()
@@ -46,6 +47,9 @@ int generate_token()
     if ((error = str_clear(&(token.t_str)))) // jedno volání, jeden token
         return error;
 
+    if (token.t_state == st_eol) { // pokud minuly token byl EOL, zvyš počet řádků
+        token.t_line++;
+    }
 
     while ((get_next_char) && (c = getc(stdin)))
     {   
@@ -197,8 +201,8 @@ int generate_token()
                 if ((c != '\n') && (c != EOF)) {
                     state = st_radek_kom;
                 } else {
-                    /*if (c == '\n')
-                        unget_char(c);*/
+                    if (c == '\n')
+                        unget_char(c);
                     state = st_begin;                  
                 }
                 break;
