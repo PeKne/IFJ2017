@@ -18,6 +18,7 @@ htab_t *htab_init(unsigned size)
 
 	table = (htab_t *) malloc(sizeof(htab_t) + size * sizeof(htab_listitem));
 	if(table == NULL) { 
+		fprintf(stderr, "Error allocating memory for hash table.\n");
 		return NULL;
 	}
 	
@@ -73,16 +74,20 @@ htab_listitem *htab_lookup_add(htab_t *table, const char *key)
 
 	new_item = malloc(sizeof(htab_listitem));
 	if(new_item == NULL) {
+		fprintf(stderr, "Error allocating memory for htab_listitem.\n");
+
 		return NULL;
 	}
 
 	new_item->key = malloc(sizeof(char *) * (strlen(key) + 1));
 	if(new_item->key == NULL) {
+		fprintf(stderr, "Error allocating memory for htab_listitem->key.\n");
 		free(new_item);
+
 		return NULL;
 	}
 
-	item->next = NULL;
+	new_item->next = NULL;
 	strcpy(new_item->key, key);
 
 	if(item == NULL) {
@@ -127,13 +132,14 @@ void htab_remove(htab_t *table, const char *key)
 			}
 
 			free(item->key);
-			if(item_type == type_variable) {
+			if(item->type == type_variable) {
 				free_data_variable(item->pointer.variable);
-			} else if(item_type == type_function) {
+			} else if(item->type == type_function) {
 				free_data_function(item->pointer.function);
 			}
 			free(item);
 
+			break;
 		} else {
 			previous_item = item;
 			item = item->next;
