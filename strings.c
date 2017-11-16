@@ -4,20 +4,13 @@
 #include "strings.h"
 #include "errors.h"
 
-<<<<<<< HEAD
-=======
 
->>>>>>> master
 int str_create(Tstring *str)
 {
     str->data = ((char *) malloc(sizeof(char) * ALLOC_CHUNK));
     if (str->data == NULL) {
         fprintf(stderr,"Allocating space for str_create failed!\n");
-<<<<<<< HEAD
-        return ERR_ALLOC;
-=======
         return ERR_INTERN;
->>>>>>> master
     }
 
     str->length = 0;
@@ -33,11 +26,7 @@ int str_create_spec(Tstring *str, int size)
     str->data = ((char *) malloc(sizeof(char) * size));
     if (str->data == NULL) {
         fprintf(stderr,"Allocating space for str_create_spec failed!\n");
-<<<<<<< HEAD
-        return ERR_ALLOC;
-=======
         return ERR_INTERN;
->>>>>>> master
     }
 
     str->size = size;
@@ -59,11 +48,7 @@ int str_clear(Tstring *str)
     if (str->data == NULL) {
         free(str->data);
         fprintf(stderr,"Reallocating space for str_clear failed!\n");
-<<<<<<< HEAD
-        return ERR_ALLOC;
-=======
         return ERR_INTERN;
->>>>>>> master
     }
 
     str->length = 0;
@@ -80,11 +65,7 @@ int str_push_char(Tstring *str, char c)
         if (str->data == NULL) {
             free(str->data);
             fprintf(stderr,"Reallocating space for str_push_char failed!\n");
-<<<<<<< HEAD
-            return ERR_ALLOC;
-=======
             return ERR_INTERN;
->>>>>>> master
         }
         str->size += ALLOC_CHUNK; 
     }
@@ -99,17 +80,13 @@ int str_pop_char(Tstring *str)
     if (str->length <= 0)
         return 0;
     
-    if (str->size > ALLOC_CHUNK) {
+    if (str->size > ALLOC_CHUNK) { // ALLOC_CHUNK bude vždy nejmenší alokovaná velikost
         int new_size = (((str->length / ALLOC_CHUNK) + 1) * ALLOC_CHUNK);
         str->data = ((char *) realloc(str->data, sizeof(char) * new_size));
             if (str->data == NULL) {
                 free(str->data);
                 fprintf(stderr,"Reallocating space for str_pop_char failed!\n");
-<<<<<<< HEAD
-                return ERR_ALLOC;
-=======
                 return ERR_INTERN;
->>>>>>> master
             }
         str->size = new_size;
     }
@@ -135,11 +112,7 @@ int str_create_init(Tstring *str, const char *data)
     str->data = ((char *) malloc(sizeof(char) * length+1));
     if (str->data == NULL) {
         fprintf(stderr,"Allocating space for str_create_init failed!\n");
-<<<<<<< HEAD
-        return ERR_ALLOC;
-=======
         return ERR_INTERN;
->>>>>>> master
     }
 
 
@@ -147,4 +120,35 @@ int str_create_init(Tstring *str, const char *data)
     str->length = length;
     str->size = length + 1; // \0 pridan implicitne za data
     return 0;
+}
+
+int str_delete_index(Tstring *str, int index)
+{
+    if (index > str->length) {
+        fprintf(stderr, "Trying to change nonexisting index in an array for str_delete_index!\n");
+        return ERR_INTERN;
+    }
+
+    int err = 0;
+    int to_move = str->length - index;
+
+    for (int i = 0; i < to_move; i++)
+    {
+        str->data[i+index] = str->data[i+index+1];
+    }
+    
+    // v pripade potreby odalokuje pamet tak, aby nebylo volne vice nez ALLOC_CHUNK
+    if (str->size > ALLOC_CHUNK) { // ALLOC_CHUNK bude vždy nejmenší alokovaná velikost
+        int new_size = (((str->length / ALLOC_CHUNK) + 1) * ALLOC_CHUNK);
+        str->data = ((char *) realloc(str->data, sizeof(char) * new_size));
+            if (str->data == NULL) {
+                free(str->data);
+                fprintf(stderr,"Reallocating space for str_delete_index failed!\n");
+                return ERR_INTERN;
+            }
+        str->size = new_size;
+    }
+    str->length--;
+
+    return err;
 }
