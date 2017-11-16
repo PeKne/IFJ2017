@@ -36,6 +36,46 @@ Tstate key_or_id()
     return st_id;
 }
 
+void delete_leading_zeroes_int()
+{
+    while ((token.t_str.data[0] == '0') && (token.t_str.length != 1)) {
+        str_delete_index(&(token.t_str), 0);
+    }
+}
+
+void delete_leading_zeroes_doub() {
+    while ((token.t_str.data[0] == '0') && (token.t_str.data[1] != '.')) {
+        str_delete_index(&(token.t_str), 0);
+    }
+}
+
+void delete_leading_zeroes_exp_int() {
+    while ((token.t_str.data[0] == '0') && (token.t_str.data[1] != 'e')) {
+        str_delete_index(&(token.t_str), 0);
+    }
+}
+
+void delete_leading_zeroes_exp_doub() {
+    while ((token.t_str.data[0] == '0') && (token.t_str.data[1] != '.')) {
+        str_delete_index(&(token.t_str), 0);
+    }
+}
+
+void delete_zeroes_after_e() {
+    // najde index znaku 'e'
+    int i = 0;
+    for (i = 0; i < token.t_str.length-1; i++)
+    {
+        if (token.t_str.data[i] == 'e') {
+            break;
+        }
+    }
+    // vymaze pocatecni nuly od znaku 'e' (na indexu i)
+    while ((token.t_str.data[i+1] == '0') && (token.t_str.length > i+2)) { // +2 i za 'e'
+        str_delete_index(&(token.t_str), (i+1)); // i+1 existuje, jinak je to lex chyba
+    }
+}
+
 int generate_token()
 {
     bool get_next_char = true; // pokracovat v lex. anal.
@@ -423,6 +463,25 @@ int generate_token()
             {
                 unget_char(c);
                 get_next_char = false;
+                
+                if (token.t_state == st_int_val) {
+                    delete_leading_zeroes_int();
+                } 
+
+                if (token.t_state == st_double_val) {
+                    delete_leading_zeroes_doub();
+                }
+
+                if (token.t_state == st_exp_int) {
+                    delete_leading_zeroes_exp_int();
+                    delete_zeroes_after_e();
+                }
+
+                if (token.t_state == st_exp_doub) {
+                    delete_leading_zeroes_doub();
+                    delete_zeroes_after_e();
+                }
+
                 break;
             }
 
