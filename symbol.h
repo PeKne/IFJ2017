@@ -3,6 +3,7 @@
 
 #include "symtable.h"
 #include "lex.h"
+#include "error.h"
 
 /* NIEKTORE FUNKCIE SU ZAKOMENTOVANIE Z DOVODU NEDORIESENEHO INCLUDOVANIA
    EDIT: INCLUDOVANIE DORIESENE */
@@ -38,18 +39,32 @@ typedef struct function_data {
 	char *name;
 } function_data;
 
+// Tvorba dát: variable *data = create_data_variable(token) - vracia NULL, ak zlyhá malloc
 variable_data *create_data_variable(Ttoken *token);
 void set_type_variable(variable_data *data, Ttoken *token);
 void set_value_variable(variable_data *data, Ttoken *token);
+
+// Vyhlada položku v tabuľke, v prípade, že ju nenajde, vytvorí ju a vráti ukazateľ, nastaví typ položky a priradí data
 void variable_data_to_table(htab_t *table, variable_data *data);
+
+// Volane priamo len v prípade, že ešte nebola volana funkcia variable_data_to_table a je potreba uvoľniť pamäť
 void free_data_variable(variable_data *data);
+
+
+
 function_data *create_data_function(Ttoken *token);
 void set_declared_function(function_data *data);
 void set_return_type_function(function_data *data, Ttoken *token);
 void set_local_symbol_table(htab_t *table, function_data *data);
-void add_argument_function(function_data *data, Ttoken *token);
+
+// Ret ERR_INTERN v pripade ze zlyhá malloc/realloc, inak 0
+int add_argument_function(function_data *data, Ttoken *token);
 void set_argument_type_function(function_data *data, Ttoken *token);
+
+// Vyhlada položku v tabuľke, v prípade, že ju nenajde, vytvorí ju a vráti ukazateľ, nastaví typ položky a priradí data
 void function_data_to_table(htab_t *table, function_data *data);
+
+// Volane priamo len v pripade, že ešte nebola volana funcia function_data_to_table a je potreba uvoľniť pamäť
 void free_data_function(function_data *data);
 
 #endif

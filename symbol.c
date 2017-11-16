@@ -2,7 +2,8 @@
 
 variable_data *create_data_variable(Ttoken *token)
 {
-	variable_data *data = malloc(sizeof(struct variable_data));
+	variable_data *data;
+	data = malloc(sizeof(struct variable_data));
 	if(data == NULL) {
 		fprintf(stderr, "Error allocating memory for variable_data.\n");
 
@@ -48,14 +49,24 @@ void set_value_variable(variable_data *data, Ttoken *token)
 {
 	switch(data->type) {
 		case variable_integer:
-			data->value.value_integer = atoi(token->t_str.data);
-			data->inicialized = 1;
-			break;
+			if(token->t_state == st_int_val) {
+				data->value.value_integer = strtol(token->t_str.data, NULL, 10);
+				data->inicialized = 1;
+				break;
+			} else {
+				printf("Not correct value.\n");
+				break;
+			}
 
 		case variable_double:
-			data->value.value_double = atof(token->t_str.data);
-			data->inicialized = 1;
-			break;
+			if(token->t_state == st_double_val || token->t_state == st_exp_doub || token->t_state == st_exp_int) {
+				data->value.value_double = strtod(token->t_str.data, NULL);
+				data->inicialized = 1;
+				break;
+			} else {
+				printf("Not corret value\n");
+				break;
+			}
 
 		case variable_string:
 			strcpy(data->value.value_string, token->t_str.data);
@@ -70,7 +81,8 @@ void set_value_variable(variable_data *data, Ttoken *token)
 
 void variable_data_to_table(htab_t *table, variable_data *data)
 {
-	htab_listitem *item = htab_lookup_add(table, data->name);
+	htab_listitem *item;
+	item = htab_lookup_add(table, data->name);
 
 	item->type = type_variable;
 	item->pointer.variable = data;
@@ -84,7 +96,8 @@ void free_data_variable(variable_data *data)
 
 function_data *create_data_function(Ttoken *token)
 {
-	function_data *data = malloc(sizeof(struct variable_data));
+	function_data *data;
+	data = malloc(sizeof(struct variable_data));
 	if(data == NULL) {
 		fprintf(stderr, "Error allocating memory for function_data.\n");
 
@@ -141,7 +154,7 @@ void set_local_symbol_table(htab_t *table, function_data *data)
 
 
 //Nespravna alokacia pamate, opravit EDIT: opravene
-void add_argument_function(function_data *data, Ttoken *token)
+int add_argument_function(function_data *data, Ttoken *token)
 {
 	data->arguments_count++;
 
@@ -153,10 +166,14 @@ void add_argument_function(function_data *data, Ttoken *token)
 
 	if(data->arguments == NULL) {
 		fprintf(stderr, "Error allocating memory for argument data.\n");
+
+		return ERR_INTERN;
 	}
 
 	str_create(&(data->arguments[data->arguments_count - 1].argument_name));
 	str_append_str(&(data->arguments[data->arguments_count - 1].argument_name), &(token->t_str));
+
+	return 0;
 } 
 
 void set_argument_type_function(function_data *data, Ttoken *token)
@@ -182,8 +199,7 @@ void set_argument_type_function(function_data *data, Ttoken *token)
 
 void function_data_to_table(htab_t *table, function_data *data)
 {
-	htab_listitem *item;
-	item = htab_lookup_add(table, data->name);
+	htab_listitem *item = htab_lookup_add(table, data->name);
 
 	item->type = type_function;
 	item->pointer.function = data;
@@ -197,6 +213,10 @@ void free_data_function(function_data *data)
 		str_destroy(&(data->arguments[i].argument_name));
 	}
 
+	if(data->local_symbol_table != NULL) {
+		htab_free(data->local_symbol_table);
+	}
+	
 	free(data->arguments);
 	free(data);
 }

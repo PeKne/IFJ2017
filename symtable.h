@@ -1,3 +1,6 @@
+#include "symbol.h"
+#include "error.h"
+
 #ifndef SYMTABLE_H
 #define SYMTABLE_H
 
@@ -28,13 +31,20 @@ typedef struct htab_t {
 	struct htab_listitem *list[];
 } htab_t;
 
-unsigned hash_function(const char *str);
+/* Najpodstatnejsie funkcie:
+ * 	Tvorba tabuľky: htab_t *table = htab_init(size) - vracia NULL ak zlyhá malloc
+ *	htab_free(table) uvolni postupne vsetky polozky tabulky a samotnu tabulku
+ */
 htab_t *htab_init(unsigned size);
+void htab_free(htab_t *table);
+
+
+// Priamo v syntaktickej/semantickej nepotrebne, sú volané z funkcii TS
+unsigned hash_function(const char *str);
 htab_listitem *htab_lookup_add(htab_t *table, const char *key);
 htab_listitem *htab_find(htab_t *table, const char *key);
 void htab_foreach(htab_t *table, void (*function)(const char *key, item_type type, htab_listitem *item));
 void htab_remove(htab_t *table, const char *key);
 void htab_clear(htab_t *table);
-void htab_free(htab_t *table);
 
 #endif
