@@ -66,7 +66,7 @@ bool rule_function_dec(){ // stav <function-dec>
     	if(token.t_state == st_function){
     		generate_token();
 
-    		if(token.t_state == st_id){ //TODO: Je identifikator promenne to same jako identifikator funkce?
+    		if(token.t_state == st_id){
     			generate_token();
 
     			if(token.t_state == st_levzav){
