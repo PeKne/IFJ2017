@@ -1,21 +1,17 @@
-#include <stdio.h>
-#include <stdlib.h>
-#include <stdbool.h> 
-
 #include "parser.h"
-#include "lex.h"
 
 /**************************FUNKCE-REKURZIVNIHO-SESTUPU*********************************/
 /**************************************************************************************/
 
-//void skip_blank_lines(){ TODO: funkce pro skip EOL
-//	while(token.t_state == EOL){
-//		generate_token();
-//	}
-//}
+void skip_blank_lines(){ 
+	while(token.t_state == st_eol){
+		generate_token();
+	}
+}
 
 bool rule_start_state(){ // stav <start t_state>
-	bool return_value = false;
+    generate_token();
+    bool return_value = false;
     if(token.t_state == st_scope || token.t_state == st_declare || token.t_state == st_function){ // simulace pravidla 1.
         return_value = (rule_function() && rule_scope());
     }
@@ -23,12 +19,14 @@ bool rule_start_state(){ // stav <start t_state>
 }
 
 bool rule_scope(){ // pravidlo <scope>
+    skip_blank_lines();
 	bool return_value = false;
     if(token.t_state == st_scope){ // simulace pravidla 2.
         generate_token();
         
         if(rule_st_list()){
         	
+            skip_blank_lines();
         	if(token.t_state == st_end){
         		generate_token();
         		
@@ -44,6 +42,7 @@ bool rule_scope(){ // pravidlo <scope>
 }
 
 bool rule_function(){ // stav <function>
+    skip_blank_lines();
 	bool return_value = false;
     if(token.t_state == st_function){ // simulace pravidla 3.
         return_value = (rule_function_head() && rule_st_list() && rule_function_tail() && rule_function());
@@ -52,7 +51,7 @@ bool rule_function(){ // stav <function>
     	return_value = (rule_function_dec() && rule_function());
     }
     else if(token.t_state == st_scope){ //simulace pravidla 5.
-    	return_value == true;
+    	return_value = true;
     }
     
     return return_value;
@@ -118,7 +117,7 @@ bool rule_function_head(){ // stav <function-head>
 
         					if(rule_type()){
 
-        						if(token.t_state == ){ //TODO: jak resime EOL?
+        						if(token.t_state == st_eol){ 
         							generate_token();
         							return_value = true;
         						}
@@ -134,8 +133,9 @@ bool rule_function_head(){ // stav <function-head>
 }
 
 bool rule_function_tail(){ // stav <function-tail>
+    skip_blank_lines();
 	bool return_value = false;
-    if(token.t_state == st_end ){ // simulace pravidla 8.
+    if(token.t_state == st_end){ // simulace pravidla 8.
         generate_token();
 
         if(token.t_state == st_function){
@@ -197,6 +197,7 @@ bool rule_type(){ // stav <type>
 }
 
 bool rule_st_list(){ // stav <st-list>
+    skip_blank_lines();
 	bool return_value = false;
     if(token.t_state == st_id || token.t_state == st_dim || token.t_state == st_input ||
        token.t_state == st_print || token.t_state == st_if || token.t_state == st_do || 
@@ -254,7 +255,7 @@ bool rule_stat(){ // stav <stat>
     else if(token.t_state == st_print){ // simulace pravidla 29.
     	generate_token();
 
-    	if( /* FUNKCE PRO VYRAZY*/ ){ // TODO: EXPRESSION!!!! 
+    	if( true/* FUNKCE PRO VYRAZY*/ ){ // TODO: EXPRESSION!!!! 
     			// TODO: musim tady generovat token?
     		if(token.t_state == st_stred){ 
     			generate_token();
@@ -269,12 +270,12 @@ bool rule_stat(){ // stav <stat>
     else if(token.t_state == st_if){ // simulace pravidla 32.
     	generate_token();
 
-    	if( /* FUNKCE PRO VYRAZY*/ ){ // TODO: EXPRESSION!!!! 
+    	if( true/* FUNKCE PRO VYRAZY*/ ){ // TODO: EXPRESSION!!!! 
     			// TODO: musim tady generovat token?
     		if(token.t_state == st_then){
     			generate_token();
 
-    			if(token.t_state == EOL){//TODO: EOL
+    			if(token.t_state == st_eol){
     				generate_token();
 
     				if(rule_st_list()){
@@ -282,7 +283,7 @@ bool rule_stat(){ // stav <stat>
     					if(token.t_state == st_else){
     						generate_token();
 
-    						if(token.t_state == EOL){ //TODO: EOL
+    						if(token.t_state == st_eol){ 
     							generate_token();
 
     							if(rule_st_list()){
@@ -310,10 +311,10 @@ bool rule_stat(){ // stav <stat>
     	if(token.t_state == st_while){
     		generate_token();
 
-    		if( /* FUNKCE PRO VYRAZY*/ ){ // TODO: EXPRESSION!!!! 
+    		if( true/* FUNKCE PRO VYRAZY*/ ){ // TODO: EXPRESSION!!!! 
     			// TODO: musim tady generovat token?
     			
-    			if(token.t_state == EOL){ // TODO: EOL
+    			if(token.t_state == st_eol){ 
     				generate_token();
 
     				if(rule_st_list()){
@@ -332,7 +333,7 @@ bool rule_stat(){ // stav <stat>
     else if(token.t_state == st_return){ // simulace pravidla 34.
     	generate_token();
 
-    	if( /* FUNKCE PRO VYRAZY*/ ){ // TODO: EXPRESSION!!!! 
+    	if( true/* FUNKCE PRO VYRAZY*/ ){ // TODO: EXPRESSION!!!! 
     			// TODO: musim tady generovat token?
     		return_value = true;
     	}
@@ -342,11 +343,12 @@ bool rule_stat(){ // stav <stat>
 }// konec funkce rule_stat()
 
 bool rule_eval(){ // stav <eval>
+    skip_blank_lines();
 	bool return_value = false;
     if(token.t_state == st_rovno ){ // simulace pravidla 19.
         generate_token();
 
-        if( /* FUNKCE PRO VYRAZY*/ ){ // TODO: EXPRESSION!!!! 
+        if( true/* FUNKCE PRO VYRAZY*/ ){ // TODO: EXPRESSION!!!! 
     			// TODO: musim tady generovat token?
         	return_value = true;
     	}
@@ -363,7 +365,7 @@ bool rule_eval(){ // stav <eval>
 
 bool rule_assign(){ // stav <assign>
 	bool return_value = false;
-    if( /* FUNKCE PRO VYRAZY*/ ){ // TODO: EXPRESSION!!!! //simulace pravidla 22.
+    if( true/* FUNKCE PRO VYRAZY*/ ){ // TODO: EXPRESSION!!!! //simulace pravidla 22.
     			// TODO: musim tady generovat token?
         	return_value = true;
     	}
@@ -424,8 +426,9 @@ bool rule_call_next_par(){ // stav <call-next-par>
 }
 
 bool rule_pr_expr(){ // stav <pr-expr>
+    skip_blank_lines();
 	bool return_value = false;
-    if( /* FUNKCE PRO VYRAZY*/ ){ // TODO: EXPRESSION!!!! //simulace pravidla 30.
+    if( true/* FUNKCE PRO VYRAZY*/ ){ // TODO: EXPRESSION!!!! //simulace pravidla 30.
     			// TODO: musim tady generovat token?
 
         if(token.t_state == st_stred){
