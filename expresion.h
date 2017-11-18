@@ -1,6 +1,9 @@
 #ifndef EXPRESION
 #define EXPRESION
 
+#include <stdio.h>
+#include <stdlib.h>
+#include <stdbool.h>
 
 #define err_malloc -1
 #define err_StackEmpty -2
@@ -8,14 +11,14 @@
 
 //Funkce precedencni analyzy
 //#-------------------------------------------#//
-bool operator_precedent_analysis();
+bool precedent_analysis();
 
 //Definice datovych typu pr zasobnik
 //#-------------------------------------------#//
 
-typedef struct {
-	Ttoken Stoken;
+typedef struct tselem {
 	int type;
+	struct tselem *prevPtr;
 	struct tselem *nextPtr;
 } TSElem;
 
@@ -24,7 +27,6 @@ typedef struct {
 	TSElem *activePtr;
 } TStack;
 
-typedef char TStack;
 
 //funkce definujici zasobnik
 //#-------------------------------------------#//
@@ -33,6 +35,7 @@ int isTerminal (int symbol);
 void SInit (TStack *s);
 bool SEmpty (TStack *s);
 int SPush (TStack *s, int tokenType);
+int SPostActiveInsert (TStack *s, int tokenType);
 int SPop (TStack *s);
 int STop (TStack *s);
 int SActive(TStack *s);
@@ -42,7 +45,8 @@ void SClean (TStack *s);
 //#-------------------------------------------#//
 
 bool precedent_analysis();
-int set_operator(TSElem Elem);
+int set_operator();
+bool expresion_reduction(TStack *stack);
 
 typedef enum {
 	LT, // <
@@ -70,6 +74,8 @@ enum {
 	ex_str,
 	ex_bool,
 	ex_dollar, // zacatek zpracovani vyrazu
+	ex_rule_begin, //prednostni symbol
+	ex_reduction,
 } EXSymbols;
 
 enum {
