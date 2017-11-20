@@ -48,7 +48,7 @@ void set_type_variable(variable_data *data, Ttoken *token)
 void set_value_variable(variable_data *data, Ttoken *token)
 {
 	switch(data->type) {
-		case variable_integer:
+		case variable_integer:	
 			if(token->t_state == st_int_val) {
 				data->value.value_integer = strtol(token->t_str.data, NULL, 10);
 				data->inicialized = 1;
@@ -113,7 +113,7 @@ function_data *create_data_function(Ttoken *token)
 	}
 
 	strcpy(data->name, token->t_str.data);
-	data->declared = 0;
+	data->defined = 0;
 	data->arguments_count = 0;
 	data->arguments = NULL;
 	data->local_symbol_table = NULL;
@@ -121,9 +121,9 @@ function_data *create_data_function(Ttoken *token)
 	return data;
 }
 
-void set_declared_function(function_data *data)
+void set_defined_function(function_data *data)
 {
-	data->declared = 1;
+	data->defined = 1;
 }
 
 void set_return_type_function(function_data *data, Ttoken *token)
@@ -219,4 +219,158 @@ void free_data_function(function_data *data)
 	
 	free(data->arguments);
 	free(data);
+}
+
+
+function_data *create_global_data(void)
+{
+	function_data *data = malloc(sizeof(struct function_data));
+	if(data == NULL) {
+		fprintf(stderr, "Error allocating memory for global_data\n");
+
+		return NULL;
+	}
+
+	data->name = NULL;
+	data->defined = 0;
+	data->arguments_count = 0;
+	data->arguments = NULL;
+	data->local_symbol_table = NULL;
+
+	return data;
+}
+
+
+int retrieve_function_data(char *function_name)
+{
+	htab_listitem *item = htab_find(global_table, function_name);
+	if(item == NULL) {
+		fprintf(stderr, "Function not found\n");
+
+		return 0;
+	}
+
+	global_data->defined = item->pointer.function_data->defined;
+	global_data->arguments_count = item->pointer.function_data->arguments_count;
+	global_data->arguments = item->pointer.function_data->arguments;
+	global_data->local_symbol_table = item->pointer.function_data->local_symbol_table;
+
+	free(item);
+	return 1;
+}
+
+int variable_exist(char *variable_name)
+{
+	if(global_data == NULL) {
+		fprintf(stderr, "global_data not set\n");
+
+		return 0;
+	}
+
+	htab_listitem *item = htab_find(global_data->local_symbol_table, variable_name);
+	if(item == NULL) {
+		fprintf(stderr, "Variable not found\n");
+
+		return 0;
+	}
+
+	free(item);
+	return 1;
+}
+
+int check_variable_type(char *variable_name, tstate state)
+{
+	htab_listitem *item = htab_find(global_data->local_symbol_tablem variable_name);
+	if(item == NULL) {
+		fprintf(stderr, "Variable not found\n");
+
+		return 0;
+	}
+
+	if( (item->type_variable == variable_integer && state == st_integer) ||
+		(item->type_variable == variable_double && state == st_double) ||
+		(item->type_variable == variable_string && state == st_string)) {
+		return 1;
+	} else {
+		return 0;
+	}
+}
+
+int check_function_return_type(tstate state)
+{
+	if(global_data == NULL) {
+		fprintf(stderr, "global_data not set\n");
+
+		return 0;
+	}
+
+ 	if( (global_data->return_type == 'i' && state == st_integer) ||
+		(global_data->return_type == 'd' && state == st_double) ||
+		(global_data->return_type == 's' && state == st_string)) {
+		return 1;
+	} else {
+		return 0;
+	}
+}
+
+int check_argument_count(unsigned count)
+{
+	if(global_data == NULL) {
+		fprintf(stderr, "global_data not set\n");
+
+		return 0;
+	}
+
+	if(global_data->arguments_count == count) {
+		return 1;
+	} else {
+		return 0;
+	}
+}
+
+int check_argument_type(tstate state, unsigned index)
+{
+	if(global_data == NULL) {
+		fprintf(stderr, "global_data not set\n");
+
+		return 0;
+	}
+
+	if( (global_data->arguments[i - 1].type == variable_integer && state == st_integer) ||
+		(global_data->arguments[i - 1].type == variable_double && state == st_double) ||
+		(global_data->arguments[i - 1].type == variable_string && state == st_string)) {
+		return 1;
+	} else {
+		return 0;
+	}
+}
+
+int check_argument_name(char *name, unsigned index)
+{
+	if(global_data == NULL) {
+		fprintf(stderr, "global_data not set\n");
+
+		return 0;
+	}
+
+	if(srcmp(global_data->arguments[i - 1].argument_name->data, name) == 0) {
+		return 1;
+	} else {
+		return 0;
+	}
+}
+
+int check_defined_function(void) 
+{
+	if(global_data == NULL) {
+		fprintf(stderr, "global_data not set\n");
+
+		return 0;
+	}
+
+	if(global_data->defined == 1) {
+		return 1;
+	} else {
+		return 0;
+	}
 }

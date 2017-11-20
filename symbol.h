@@ -31,7 +31,7 @@ typedef struct variable_data {
 } variable_data;
 
 typedef struct function_data {
-	int declared;
+	int defined; //predpokláme, že funkcia bola deklarovaná ak existuje položka v globálnej tabuľke
 	unsigned arguments_count;
 	char return_type;
 	function_arguments *arguments;
@@ -53,7 +53,7 @@ void free_data_variable(variable_data *data);
 
 
 function_data *create_data_function(Ttoken *token);
-void set_declared_function(function_data *data);
+void set_defined_function(function_data *data);
 void set_return_type_function(function_data *data, Ttoken *token);
 void set_local_symbol_table(htab_t *table, function_data *data);
 
@@ -66,5 +66,16 @@ void function_data_to_table(htab_t *table, function_data *data);
 
 // Volane priamo len v pripade, že ešte nebola volana funcia function_data_to_table a je potreba uvoľniť pamäť
 void free_data_function(function_data *data);
+
+
+function_data *create_global_data(void);
+int retrieve_function_data(char *function_name);
+int variable_exist(char *variable_name);
+int check_variable_type(char *variable_name, tstate state);
+int check_function_return_type(tstate state);
+int check_argument_count(unsigned count);
+int check_argument_type(tstate state, unsigned index);
+int check_argument_name(char *name, unsigned index);
+int check_defined_function(void);
 
 #endif
