@@ -19,7 +19,7 @@ bool precedent_analysis();
 //Definice datovych typu pr zasobnik
 //#-------------------------------------------#//
 
-typedef struct tselem {//
+typedef struct tselem {
 	int type;
 	const char * string;
 	struct tselem *prevPtr;
@@ -33,7 +33,7 @@ typedef struct {
 
 
 //funkce definujici zasobnik
-//#-------------------------------------------#//
+//#-------------------------------------------#////
 
 int isTerminal (int symbol);
 void SInit (TStack *s);
