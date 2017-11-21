@@ -155,7 +155,6 @@ int isTerminal (int symbol) {
     return (symbol <= ex_dollar);
 }
 
-//funkce vraci druh terminalu podle vstupniho tokenu
 int set_operator(){
     switch (token.t_state){
         case st_nas:
@@ -222,8 +221,7 @@ int set_operator(){
     }
 }
 
-//overuje zda jsou symboly ve spravnem poctu a poradi. Tedy jestli mohou byt redukovany nejakym pravidlem
-bool expresion_reduction(TStack *s){ //TODO: Dodelat zbyla pravidla
+bool expresion_reduction(TStack *s){
 
     printf("REDUKCNI STACK: ");
     DBG_SPrint(s);
@@ -291,6 +289,7 @@ bool precedent_analysis() {
     do{
     	stacked_operator = SActive(&stack);
 
+    	printf("iterace %d.\n", ++i);
         if(stacked_operator < 0){
             printf("//na zasobniku neni zadny terminal\n");
             //ERROR prazdny zasobnik

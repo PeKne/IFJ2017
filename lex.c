@@ -439,6 +439,5 @@ int generate_token()
             }
         }
     }
-    printf("token: '%d', str: '%s'\n", token.t_state, token.t_str.data);
     return error;
 }
