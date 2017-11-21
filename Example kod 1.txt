@@ -1,0 +1,49 @@
+scope
+	dim a as integer
+	dim vysl as integer
+	print !"zadejte cislo pro vypocet faktorialu";
+	input a
+	if a < 0 then
+		print !"\nfaktorial nele spocitat\n";
+	else
+		vysl = 1
+		do while A > 0
+			vysl = vysl * a
+			a = a - 1
+		loop
+		print !"\nvysledek je:" ; vysl ; !"\n";
+	end if
+end scope
+
+------------------------------------------------------------------------------
+CREATEFRAME (vytvoøení TF)
+DEFVAR a
+DEFVAR vysl
+DEFVAR pomocbool
+PUSHFRAME (pushnutí TF na LF)
+WRITE !"zadejte cislo pro vypocet faktorialu";
+READ lf@a string
+LT lf@pomocbool lf@a 0 (true pokud je a < 0)
+JUMPIFNEQ if1 lf@pomocbool true ( skoèí na if1 pokud a>0)
+write !"\nfaktorial nelze spocitat\n";
+JUMP endif
+
+LABEL if1
+MOVE lf@vysl 1
+
+LABEL loop
+GT lf@pomocbool a 0 (true pro a>0)
+JUMPIFEQ loopend lf@pomocbool false (ukonèí loop když a<=0)
+MUL lf@vysl lf@vysl lf@a
+sub lf@a lf@a 1
+JUMP loop
+
+LABEL loopend
+WRITE !"\nvysledek je:"
+WRITE lf@vysl
+WRITE !"\n"
+
+LABEL endif
+POPFRAME
+
+ 
