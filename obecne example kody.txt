@@ -1,0 +1,45 @@
+definice promenych
+dim a as integer   --   defvar a (globalni ramec  gf@a)		
+
+			CREATEFRAME
+dim b as integer   --   defvar b (lokalni  ramec  lf@b)
+			PUSHFRAME
+
+			CREATEFRAME
+dim c as integer   --	defvar c (docasny ramec   tf@c)
+----------------------------------------------------
+prace se I/O
+print !"hello world";  a ; --   write !"hello world"
+				write @a
+
+input a            --   read @a integer   (typ se urèí v kodu(as integer/string/bool))
+-----------------------------------------------------------
+jednoduche vyrazy 
+
+a=b*c              --   MUL @a @b @c   			
+a=b+c		   --	ADD @a @b @c
+a=b-c		   --   SUB @a @b @c
+a=b/c		   --   DIV @a @b @c
+a=b+c		   --   CONCAT @a @b @c	(stringy)
+-------------------------------------------------------------
+funkce IF ELSE
+
+if a < 0 THEN				-- DEFVAR pomocbool
+	print !"a";			   LT @pomocbool @a 0  (pomocbool se nastavi na true kdyz a < 0)
+ELSE					   JUMPIFNEQ else @pomocbool true  (skoci na else pouze tehdy kdyz a>=0)
+	print !"b";			   WRITE !"a"
+					   JUMP endif  (vyhnuti se else vetvi)
+					   LABEL else
+					   Write !"b"
+					   LABEL endif
+----------------------------------------------------------------------------------------------
+funkce DO WHILE - LOOP
+
+Do While (a < 5)			-- DEFVAR pomocbool
+	a = a - 1			   LABEL loop
+LOOP					   LT @pomocbool @a 5 (pomocbool true pro a<5)
+					   JUMPIFEQ loopend @pomocbool false ( skoci na loopend kdyz a >=5)
+					   SUB @a @a 1
+					   JUMP loop
+					   LABEL loopend
+-----------------------------------------------------------------------------------------------
