@@ -5,9 +5,12 @@
 #include <stdlib.h>
 #include <stdbool.h>
 
+#include "lex.h"
+#include "string.h"
+
 #define err_malloc -1
 #define err_StackEmpty -2
-#define err_nullPtr -3 
+#define err_nullPtr -3
 
 //Funkce precedencni analyzy
 //#-------------------------------------------#//
@@ -18,6 +21,7 @@ bool precedent_analysis();
 
 typedef struct tselem {
 	int type;
+	Tstring string;
 	struct tselem *prevPtr;
 	struct tselem *nextPtr;
 } TSElem;
@@ -34,10 +38,11 @@ typedef struct {
 int isTerminal (int symbol);
 void SInit (TStack *s);
 bool SEmpty (TStack *s);
-int SPush (TStack *s, int tokenType);
+int SPush (TStack *s, int tokenType ,char* string);
 int SPostActiveInsert (TStack *s, int tokenType);
 int SPop (TStack *s);
-int STop (TStack *s);
+int STopType (TStack *s);
+char* STopString (TStack *s);
 int SActive(TStack *s);
 void SClean (TStack *s);
 
@@ -46,7 +51,7 @@ void SClean (TStack *s);
 
 bool precedent_analysis();
 int set_operator();
-bool expresion_reduction(TStack *stack);
+char* expresion_reduction(TStack *stack);
 
 typedef enum {
 	LT, // <
@@ -63,7 +68,7 @@ enum {
 	ex_minus,
 	ex_equal, 	 /* =  */
 	ex_notEq, 	 /* <> */
-	ex_less,	 
+	ex_less,
 	ex_lessEq,
 	ex_great,
 	ex_greatEq,

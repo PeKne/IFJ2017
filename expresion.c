@@ -1,5 +1,4 @@
 #include "expresion.h"
-#include "lex.h"
 
  /**********************************ZASOBNIKOVE-OPERACE*********************************/
 /**************************************************************************************/
@@ -15,11 +14,13 @@ bool SEmpty (TStack *s)
     return (s->topPtr == NULL);
 }
 
-int SPush (TStack *s, int tokenType)
+int SPush (TStack *s, int tokenType, char* string)
 {
     TSElem *newElemPtr;
     if ( (newElemPtr = ((TSElem *) malloc(sizeof(TSElem)))) == NULL )
         return err_malloc;
+
+    str_create_init(newElemPtr->string, string);
 
     newElemPtr->type = tokenType;
     newElemPtr->nextPtr = NULL;
@@ -48,12 +49,13 @@ int SPostActiveInsert (TStack *s, int tokenType)
 	if ( (newElemPtr = ((TSElem *) malloc(sizeof(TSElem)))) == NULL )
         return err_malloc;
 
-    
+
     newElemPtr->type = tokenType;
+    str_create_init(&(newElemPtr->string), "");
     newElemPtr->nextPtr = s->activePtr->nextPtr;
     newElemPtr->prevPtr = s->activePtr;
     s->activePtr->nextPtr = newElemPtr;
-    
+
     if(newElemPtr->nextPtr != NULL){
         newElemPtr->nextPtr->prevPtr = newElemPtr;
     }
@@ -70,12 +72,15 @@ int SPop (TStack *s)
     if (!SEmpty(s)) {
         TSElem *elemPtr = s->topPtr;
         TSElem *activeElemPtr = s->topPtr;
-        
+
+
         s->topPtr = elemPtr->prevPtr; // prenese top na dalsi prvek
+
+        str_destroy(&(elemPtr->string));
         free(elemPtr);
         //s->topPtr->nextPtr = NULL; TODO: jak tohle vyresit? mozna se jit vyspat...
 
-        while ((activeElemPtr->prevPtr != NULL) && 
+        while ((activeElemPtr->prevPtr != NULL) &&
                 !isTerminal(activeElemPtr->type))
         {
             activeElemPtr = activeElemPtr->prevPtr;
@@ -86,11 +91,19 @@ int SPop (TStack *s)
 }
 
 // vrati hodnotu na vrcholu zasobniku
-int STop (TStack *s)
+int STopType (TStack *s)
 {
     if (!SEmpty(s))
         return (s->topPtr->type);
     return err_StackEmpty;
+}
+
+char* STopString (TStack *s)
+{
+  if (!SEmpty(s)) {
+    printf("%s\n", s->topPtr->string);
+      return (s->topPtr->string);
+    }
 }
 
 int SActive(TStack *s)
@@ -106,7 +119,7 @@ void SClean (TStack *s)
     // slo by pouzit SPop, ale zbytecne by se predelavalo i activePtr
     while (!SEmpty(s)) {
         // zkopiruje top do elemPtr, aby se po zruseni top prvku neztratil ukazatel na dalsi prvek
-        elemPtr = s->topPtr; 
+        elemPtr = s->topPtr;
         s->topPtr = elemPtr->prevPtr; // top se prenese na dalsi (zrusi stary top)
         free(elemPtr);
     }
@@ -159,52 +172,52 @@ int set_operator(){
     switch (token.t_state){
         case st_nas:
             return ex_mul;
-        
+
         case st_del:
             return ex_div;
 
         case st_del_cele:
             return ex_wholeDiv;
-        
+
         case st_scit:
             return ex_plus;
-        
+
         case st_odcit:
             return ex_minus;
-        
+
         case st_rovno:
             return ex_equal;
-        
+
         case st_nerov:
             return ex_notEq;
-        
+
         case st_mensi:
             return ex_less;
-        
+
         case st_menrov:
             return ex_lessEq;
-        
+
         case st_vetsi:
             return ex_great;
-        
+
         case st_vetrov:
             return ex_greatEq;
-        
+
         case st_levzav:
             return ex_leftBrac;
-        
+
         case st_pravzav:
             return ex_rightBrac;
-        
+
         case st_id:
             return ex_ident;
 
         case st_int_val:
         case st_double_val:
         case st_exp_int:
-        case st_exp_doub: 
+        case st_exp_doub:
             return ex_num;
-        
+
         case st_retez:
             return ex_str;
 
@@ -217,70 +230,76 @@ int set_operator(){
 
         default:
             return -1;//TODO: ERROR
-       
+
     }
 }
 
-bool expresion_reduction(TStack *s){
+char* expresion_reduction(TStack *s){
 
     printf("REDUKCNI STACK: ");
     DBG_SPrint(s);
-    int symbol = STop(s);
+    int symbol = STopType(s);
+    char* return_string;
 
-    if(symbol == ex_ident){ // E ---> i
+
+    if(symbol == ex_ident){ // R ---> i
+        return_string = STopString(s);
+        printf("redukovany string: %s\n", return_string );
         SPop(s);
             if(SEmpty(s)){
-                return true;
+                return return_string;
             }
     }
 
-    else if(symbol == ex_leftBrac){ // E ---> (E)
+    else if(symbol == ex_leftBrac){ // R ---> (R)
         SPop(s);
-        symbol = STop(s);
+        symbol = STopType(s);
         if(symbol == ex_reduction){
+            return_string = STopString(s);
             SPop(s);
-            symbol = STop(s);
-            
+            symbol = STopType(s);
+
             if(symbol == ex_rightBrac){
                 if(SEmpty(s)){
-                return true;
+                return return_string;
                 }
             }
         }
     }
 
-    else if(symbol == ex_reduction){ // E ---> E "operator" E
+    else if(symbol == ex_reduction){ // R ---> R "operator" R
+        return_string = "";
         SPop(s);
-        symbol = STop(s);
+        symbol = STopType(s);
         if(symbol == ex_mul   || symbol == ex_plus     || symbol == ex_minus  ||
            symbol == ex_div   || symbol == ex_wholeDiv || symbol == ex_equal  ||
            symbol == ex_notEq || symbol == ex_less     || symbol == ex_lessEq ||
            symbol == ex_great || symbol == ex_greatEq){
             SPop(s);
-            symbol = STop(s);
-            
+            symbol = STopType(s);
+
             if(symbol == ex_reduction){
                 SPop(s);
                 if(SEmpty(s)){
-                return true;
+                return return_string;
                 }
             }
         }
     }
 
     return false;
-    
+
 }
 
 bool precedent_analysis() {
-	int i = 0; //DEBUG
+	  int i = 0; //DEBUG
     TStack stack;
     SInit(&stack);
 
     int error;
     int stacked_operator, input_operator;
 
-    error = SPush(&stack, ex_dollar); //do prazdneho zasobniku vlozime znak dolaru
+    error = SPush(&stack, ex_dollar, ""); //do prazdneho zasobniku vlozime znak dolaru
     if(error < 0){
     	//ERROR
     	printf("chyba mallocu\n");
@@ -304,7 +323,7 @@ bool precedent_analysis() {
         switch (prec_table[stacked_operator][input_operator]){
             case EQ:
             	printf("case EQ\n\n");
-                SPush(&stack, input_operator);
+                SPush(&stack, input_operator, token.t_str.data);
                 generate_token();
                 input_operator = set_operator();
                 if(input_operator < 0){
@@ -319,7 +338,7 @@ bool precedent_analysis() {
                 if (error < 0){
                 	printf("neexistuje aktivni prvek\n");
                 }
-                SPush(&stack, input_operator);
+                SPush(&stack, input_operator , token.t_str.data);
                 DBG_SPrint(&stack);
                 printf("\n");
                 generate_token();
@@ -335,24 +354,24 @@ bool precedent_analysis() {
                 TStack reduction_stack;
                 SInit(&reduction_stack);
 
-                while(STop(&stack) != ex_rule_begin){
-
-                    SPush(&reduction_stack, STop(&stack)); // do pomoc. zasobniku pushneme symbol z vrcholu hl. zasobniku
+                while(STopType(&stack) != ex_rule_begin){
+                    SPush(&reduction_stack, STopType(&stack), STopString(&stack)); // do pomoc. zasobniku pushneme symbol z vrcholu hl. zasobniku
                     SPop(&stack);
 
                 }
-
-                if(!expresion_reduction(&reduction_stack)){
+                char* reduced_string = expresion_reduction(&reduction_stack);
+                if(reduced_string == NULL){
                     //ERROR neexistujici pravidlo
                     printf("selhala redukce\n");
                     return false;
                 }
+                printf("%s\n", reduced_string );
 
                 SClean(&reduction_stack);
 
                 SPop(&stack);
                 stacked_operator = SActive(&stack);
-                SPush(&stack, ex_reduction);
+                SPush(&stack, ex_reduction, reduced_string); //TODO: co ches?
                 DBG_SPrint(&stack);
                 printf("\n");
                 break;
@@ -373,4 +392,3 @@ bool precedent_analysis() {
 
     return true;
 }
- 
