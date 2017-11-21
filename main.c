@@ -1,48 +1,41 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include <stdbool.h>
-#include "lex.h"
 #include "strings.h"
-#include "expresion.h"
+#include "stack.h"
 
-int main() {
-    int error = 0;
-    if ((error = str_create(&(token.t_str))) != 0)
-        return error;
+int main() 
+{
 
-    bool parser;
-    generate_token();
-    parser = precedent_analysis();
-    if (parser == false){
-    	str_destroy(&(token.t_str));
-    	printf("ERROR!\n");
-    	return -1;
+    TStack s;
+    TStack p;
+
+    SInit(&s);
+    SInit(&p);
+
+    SPush(&s, ex_mul, "*");
+    //printf("znak: %d\n", STopType(&s));
+
+    const char * str;
+    str = STopString(&s);
+    printf("str:%s\n",str);
+
+
+    SPush(&p, STopType(&s), STopString(&s));
+
+    const char * str2;
+    str2 = STopString(&p);
+    printf("str:%s\n",str);
+
+    SPop(&p);
+    str2 = STopString(&p);
+    if (str2 == NULL){
+        printf("prazdnej\n");
     }
-    else{
-      printf("PRAISE THE IFJ!!!!\n");
-    }
 
-    // while (1)
-    // {
-    //     error = generate_token();
-    //     if (error) {
-    //         break;
-    //     } else if (token.t_state == st_eof) {
-    //         printf("EOF\n");
-    //         break;
-    //     }
+    //gen(STopString(&s));
 
-    //     printf("token: '%d', str: '%s'\n", token.t_state, token.t_str.data);
-    //         //printf("str:%s delka:%d vel.:%d\n\n", token.t_str.data, token.t_str.length, token.t_str.size);
+    SPop(&s);
 
-    // }
-
-    if (parser = false){
-    	str_destroy(&(token.t_str));
-    	printf("ERROR!\n");
-    	return -1;
-    }
-    str_destroy(&(token.t_str));
-
-    return error;
+    return 0;
 }
