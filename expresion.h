@@ -21,7 +21,7 @@ bool precedent_analysis();
 
 typedef struct tselem {
 	int type;
-	Tstring string;
+	const char * string;
 	struct tselem *prevPtr;
 	struct tselem *nextPtr;
 } TSElem;
@@ -38,11 +38,11 @@ typedef struct {
 int isTerminal (int symbol);
 void SInit (TStack *s);
 bool SEmpty (TStack *s);
-int SPush (TStack *s, int tokenType ,char* string);
+int SPush (TStack *s, int tokenType ,const char* string);
 int SPostActiveInsert (TStack *s, int tokenType);
 int SPop (TStack *s);
 int STopType (TStack *s);
-char* STopString (TStack *s);
+const char* STopString (TStack *s);
 int SActive(TStack *s);
 void SClean (TStack *s);
 
@@ -51,7 +51,7 @@ void SClean (TStack *s);
 
 bool precedent_analysis();
 int set_operator();
-char* expresion_reduction(TStack *stack);
+const char* expresion_reduction(TStack *stack);
 
 typedef enum {
 	LT, // <
@@ -82,10 +82,5 @@ enum {
 	ex_rule_begin, //prednostni symbol
 	ex_reduction,
 } EXSymbols;
-
-enum {
-	ex_oper,
-}EX;
-
 
 #endif
