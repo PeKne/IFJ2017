@@ -33,7 +33,7 @@ typedef struct {
 
 
 //funkce definujici zasobnik
-//#-------------------------------------------#////
+//#-------------------------------------------#//
 
 int isTerminal (int symbol);
 void SInit (TStack *s);
@@ -79,8 +79,8 @@ enum {
 	ex_str,
 	ex_bool,
 	ex_dollar, // zacatek zpracovani vyrazu
-	ex_rule_begin, //prednostni symbol
 	ex_reduction,
+	ex_rule_begin, //prednostni symbol
 } EXSymbols;
 
 #endif
