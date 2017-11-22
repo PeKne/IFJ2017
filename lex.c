@@ -81,7 +81,7 @@ int generate_token()
     bool get_next_char = true; // pokracovat v lex. anal.
     char c;
     int error = 0;
-    
+
     Tstate state = st_begin;
 
     if ((error = str_clear(&(token.t_str)))) // jedno volání, jeden token
@@ -131,8 +131,9 @@ int generate_token()
                 else if (c == EOF)                 state = st_eof;
                 
                 else {
+                    unget_char(c);
                     state = st_error;
-                    fprintf(stderr, "Error, uknown token!\n");
+                    fprintf(stderr, "LEX: Line: %d: Error, uknown token!\n", token.t_line);
                     break;
                 }
                 // vlozi prvni znak do stringu
@@ -200,7 +201,8 @@ int generate_token()
                     state = st_retez;
                     token.t_state = st_retez;
                 } else {
-                    fprintf(stderr, "Error, right after '!' must be '\"'!\n");
+                    fprintf(stderr, "LEX: Line: %d: Error, right after '!' must be '\"'!\n", token.t_line);
+                    unget_char(c);
                     state = st_error;
                 }
                 break;
@@ -214,7 +216,8 @@ int generate_token()
                 } else if (c == '"') {
                     state = st_final;
                 } else if (c == EOF) {
-                    fprintf(stderr, "Error, after string must be \"\n");
+                    fprintf(stderr, "LEX: Line: %d: Error, after string must be \"\n", token.t_line);
+                    unget_char(c);
                     state = st_error;
                 } else {
                     str_push_char(&(token.t_str), c);
@@ -226,6 +229,7 @@ int generate_token()
             case st_esc:
             {
                 if (c == EOF) {
+                    unget_char(c);
                     state = st_error;
                 } else {
                     str_push_char(&(token.t_str), c);
@@ -270,7 +274,8 @@ int generate_token()
                     state = st_blok_kom_2;
                 } else {
                     if (c == EOF) {
-                        fprintf(stderr, "Error, block comment not completed!\n");
+                        fprintf(stderr, "LEX: Line: %d: Error, block comment not completed!\n", token.t_line);
+                        unget_char(c);
                         state = st_error;
                     } else {
                         state = st_blok_kom_1;
@@ -285,7 +290,8 @@ int generate_token()
                 if (c == '/') {
                     state = st_begin;
                 } else if (c == EOF) {
-                    fprintf(stderr, "Error, block comment not completed!\n");
+                    fprintf(stderr, "LEX: Line: %d: Error, block comment not completed!\n", token.t_line);
+                    unget_char(c);
                     state = st_error;
                 } else {
                     unget_char(c);
@@ -307,10 +313,14 @@ int generate_token()
                 } else if (c == 'e') {
                     str_push_char(&(token.t_str), c);
                     state = st_exp_int_e;
-                } else { // nacten jiny znak, tento je ukoncen
+                } else if ((c == ' ') || (c == '\n') || (c == EOF)) { // uspesne nacteni
                     token.t_state = state;
                     unget_char(c);
                     state = st_final;
+                } else {
+                    fprintf(stderr, "LEX: Line: %d: Int value didnt end properly!\n", token.t_line);
+                    unget_char(c);
+                    state = st_error;
                 }
                 break;
             }
@@ -321,7 +331,8 @@ int generate_token()
                     str_push_char(&(token.t_str), c);
                     state = st_double_val;
                 } else {
-                    fprintf(stderr, "In double value, after '.' must be a number!\n");
+                    fprintf(stderr, "LEX: Line: %d: In double value, after '.' must be a number!\n", token.t_line);
+                    unget_char(c);
                     state = st_error;                    
                 }
                 break;
@@ -335,10 +346,14 @@ int generate_token()
                 } else if (c == 'e') {
                     str_push_char(&(token.t_str), c);
                     state = st_exp_doub_e;
-                } else { // nacten jiny znak
+                } else if ((c == ' ') || (c == '\n') || (c == EOF)) {
                     token.t_state = state;
                     unget_char(c);
                     state = st_final;
+                } else {
+                    fprintf(stderr, "LEX: Line: %d: Double value didnt end properly!\n", token.t_line);
+                    unget_char(c);
+                    state = st_error;
                 }
                 break;
             }
@@ -354,7 +369,8 @@ int generate_token()
                     str_push_char(&(token.t_str), c);
                     state = st_exp_int;
                 } else {
-                    fprintf(stderr, "In exponential value, after E must follow a number or sign!\n");
+                    fprintf(stderr, "LEX: Line: %d: In exponential value, after E must follow a number or sign!\n", token.t_line);
+                    unget_char(c);
                     state = st_error;
                 }
                 break;
@@ -366,7 +382,8 @@ int generate_token()
                     str_push_char(&(token.t_str), c);
                     state = st_exp_int;
                 } else {
-                    fprintf(stderr, "In exponential value, after sign must follow a number!\n");
+                    fprintf(stderr, "LEX: Line: %d: In exponential value, after sign must follow a number!\n", token.t_line);
+                    unget_char(c);
                     state = st_error;
                 }
                 break;
@@ -377,10 +394,14 @@ int generate_token()
                 if (isdigit(c)) {
                     str_push_char(&(token.t_str), c);
                     state = st_exp_int;
-                } else { // nacten jiny znak
+                } else if ((c == ' ') || (c == '\n') || (c == EOF)) { // spravne ukonceni tokenu
                     token.t_state = state;
                     unget_char(c);
                     state = st_final;
+                } else {
+                    fprintf(stderr, "LEX: Line: %d: Exponential int value error\n", token.t_line);
+                    unget_char(c);
+                    state = st_error;               
                 }
                 break;
             }
@@ -397,7 +418,8 @@ int generate_token()
                     str_push_char(&(token.t_str), c);
                     state = st_exp_doub;
                 } else {
-                    fprintf(stderr, "In exponential value, after E must follow a number or sign!\n");
+                    fprintf(stderr, "LEX: Line: %d: In exponential value, after E must follow a number or sign!\n", token.t_line);
+                    unget_char(c);
                     state = st_error;
                 }
                 break;
@@ -409,7 +431,8 @@ int generate_token()
                     str_push_char(&(token.t_str), c);
                     state = st_exp_doub;
                 } else {
-                    fprintf(stderr, "In exponential value, after sign must follow a number!\n");
+                    fprintf(stderr, "LEX: Line: %d: In exponential value, after sign must follow a number!\n", token.t_line);
+                    unget_char(c);
                     state = st_error;
                 }
                 break;
@@ -420,10 +443,14 @@ int generate_token()
                 if (isdigit(c)) {
                     str_push_char(&(token.t_str), c);
                     state = st_exp_doub;
-                } else { // nacten jiny znak
+                } else if ((c == ' ') || (c == '\n') || (c == EOF)) { // spravne ukonceni
                     token.t_state = state;
                     unget_char(c);
                     state = st_final;
+                } else {
+                    fprintf(stderr, "LEX: Line: %d: Exponential double value error!\n", token.t_line);
+                    unget_char(c);
+                    state = st_error;
                 }
                 break;
             }
@@ -480,7 +507,7 @@ int generate_token()
             }
 
             case st_error:
-            {
+            {   
                 error = ERR_LEX;
                 token.t_state = state;
                 get_next_char = false;
@@ -490,7 +517,7 @@ int generate_token()
             default: 
             {
                 error = ERR_LEX; // default nesmi nikdy nastat
-                fprintf(stderr, "Error, uknown token! Ask developer to fix it.\n");
+                fprintf(stderr, "LEX: Line: %d:  error, uknown token! Ask developer to fix it.\n", token.t_line);
                 get_next_char = false;
                 break;
             }
