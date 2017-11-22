@@ -1,5 +1,5 @@
 #include "symbol.h"
-#include "error.h"
+//#include "error.h"
 
 #ifndef SYMTABLE_H
 #define SYMTABLE_H
@@ -30,6 +30,7 @@ typedef struct htab_t {
 	unsigned size;
 	struct htab_listitem *list[];
 } htab_t;
+
 
 /* Najpodstatnejsie funkcie:
  * 	Tvorba tabuľky: htab_t *table = htab_init(size) - vracia NULL ak zlyhá malloc
