@@ -3,7 +3,7 @@
 
 #include "symtable.h"
 #include "lex.h"
-#include "error.h"
+//#include "error.h"
 
 /* NIEKTORE FUNKCIE SU ZAKOMENTOVANIE Z DOVODU NEDORIESENEHO INCLUDOVANIA
    EDIT: INCLUDOVANIE DORIESENE */
@@ -39,6 +39,10 @@ typedef struct function_data {
 	char *name;
 } function_data;
 
+//#include "global.h"
+extern htab_t *global_table;
+extern function_data *global_data;
+
 // Tvorba dát: variable *data = create_data_variable(token) - vracia NULL, ak zlyhá malloc
 variable_data *create_data_variable(Ttoken *token);
 void set_type_variable(variable_data *data, Ttoken *token);
@@ -68,13 +72,23 @@ void function_data_to_table(htab_t *table, function_data *data);
 void free_data_function(function_data *data);
 
 
+//Init globálnych dát, vracia NULL, ak zlyhá malloc
 function_data *create_global_data(void);
+//Pri vstupe do tela funkcie použiť na nahratie dát danej funkcie do globálnych dát, 1 v prípade úspechu, inak 0
 int retrieve_function_data(char *function_name);
+
+//Použiť v expresion
+//Kontrola či premenná existuje v lokálnej tabuľke globálnych dát, 1 ak existuje, 0 ak neexistuje alebo tabuľka v glob. datách == NULL
 int variable_exist(char *variable_name);
-int check_variable_type(char *variable_name, tstate state);
-int check_function_return_type(tstate state);
+
+int check_variable_type(char *variable_name, Tstate state);
+int check_variable_inicialized(char *variable_name);
+
+
+//Použiť v rekurzívnom zostupe
+int check_function_return_type(Tstate state);
 int check_argument_count(unsigned count);
-int check_argument_type(tstate state, unsigned index);
+int check_argument_type(Tstate state, unsigned index);
 int check_argument_name(char *name, unsigned index);
 int check_defined_function(void);
 

@@ -167,7 +167,7 @@ int add_argument_function(function_data *data, Ttoken *token)
 	if(data->arguments == NULL) {
 		fprintf(stderr, "Error allocating memory for argument data.\n");
 
-		return ERR_INTERN;
+		return 1;
 	}
 
 	str_create(&(data->arguments[data->arguments_count - 1].argument_name));
@@ -224,7 +224,8 @@ void free_data_function(function_data *data)
 
 function_data *create_global_data(void)
 {
-	function_data *data = malloc(sizeof(struct function_data));
+	function_data *data;
+	data = malloc(sizeof(struct function_data));
 	if(data == NULL) {
 		fprintf(stderr, "Error allocating memory for global_data\n");
 
@@ -250,10 +251,10 @@ int retrieve_function_data(char *function_name)
 		return 0;
 	}
 
-	global_data->defined = item->pointer.function_data->defined;
-	global_data->arguments_count = item->pointer.function_data->arguments_count;
-	global_data->arguments = item->pointer.function_data->arguments;
-	global_data->local_symbol_table = item->pointer.function_data->local_symbol_table;
+	global_data->defined = item->pointer.function->defined;
+	global_data->arguments_count = item->pointer.function->arguments_count;
+	global_data->arguments = item->pointer.function->arguments;
+	global_data->local_symbol_table = item->pointer.function->local_symbol_table;
 
 	free(item);
 	return 1;
@@ -261,7 +262,7 @@ int retrieve_function_data(char *function_name)
 
 int variable_exist(char *variable_name)
 {
-	if(global_data == NULL) {
+	if(global_data->local_symbol_table == NULL) {
 		fprintf(stderr, "global_data not set\n");
 
 		return 0;
@@ -278,27 +279,43 @@ int variable_exist(char *variable_name)
 	return 1;
 }
 
-int check_variable_type(char *variable_name, tstate state)
+int check_variable_type(char *variable_name, Tstate state)
 {
-	htab_listitem *item = htab_find(global_data->local_symbol_tablem variable_name);
+	htab_listitem *item = htab_find(global_data->local_symbol_table, variable_name);
 	if(item == NULL) {
 		fprintf(stderr, "Variable not found\n");
 
 		return 0;
 	}
 
-	if( (item->type_variable == variable_integer && state == st_integer) ||
-		(item->type_variable == variable_double && state == st_double) ||
-		(item->type_variable == variable_string && state == st_string)) {
+	if( (item->pointer.variable->type == variable_integer && state == st_integer) ||
+		(item->pointer.variable->type == variable_double && state == st_double) ||
+		(item->pointer.variable->type == variable_string && state == st_string)) {
 		return 1;
-	} else {
-		return 0;
-	}
+	} 
+
+	return 0;
 }
 
-int check_function_return_type(tstate state)
+int check_variable_inicialized(char *variable_name)
 {
-	if(global_data == NULL) {
+	htab_listitem *item = htab_find(global_data->local_symbol_table, variable_name);
+	if(item == NULL) {
+		fprintf(stderr, "Variable not found\n");
+
+		return 0;
+	}
+
+	if(item->pointer.variable->inicialized == 1) {
+		return 1;
+	} 
+	
+	return 0;
+}
+
+int check_function_return_type(Tstate state)
+{
+	if(global_data->local_symbol_table == NULL) {
 		fprintf(stderr, "global_data not set\n");
 
 		return 0;
@@ -308,9 +325,9 @@ int check_function_return_type(tstate state)
 		(global_data->return_type == 'd' && state == st_double) ||
 		(global_data->return_type == 's' && state == st_string)) {
 		return 1;
-	} else {
-		return 0;
-	}
+	} 
+
+	return 0;
 }
 
 int check_argument_count(unsigned count)
@@ -323,41 +340,41 @@ int check_argument_count(unsigned count)
 
 	if(global_data->arguments_count == count) {
 		return 1;
-	} else {
-		return 0;
 	}
+
+	return 0;
 }
 
-int check_argument_type(tstate state, unsigned index)
+int check_argument_type(Tstate state, unsigned index)
 {
-	if(global_data == NULL) {
+	if(global_data->arguments == NULL) {
 		fprintf(stderr, "global_data not set\n");
 
 		return 0;
 	}
 
-	if( (global_data->arguments[i - 1].type == variable_integer && state == st_integer) ||
-		(global_data->arguments[i - 1].type == variable_double && state == st_double) ||
-		(global_data->arguments[i - 1].type == variable_string && state == st_string)) {
+	if( (global_data->arguments[index - 1].type == variable_integer && state == st_integer) ||
+		(global_data->arguments[index - 1].type == variable_double && state == st_double) ||
+		(global_data->arguments[index - 1].type == variable_string && state == st_string)) {
 		return 1;
-	} else {
-		return 0;
 	}
+
+	return 0;
 }
 
 int check_argument_name(char *name, unsigned index)
 {
-	if(global_data == NULL) {
+	if(global_data->arguments == NULL) {
 		fprintf(stderr, "global_data not set\n");
 
 		return 0;
 	}
 
-	if(srcmp(global_data->arguments[i - 1].argument_name->data, name) == 0) {
+	if(strcmp(global_data->arguments[index - 1].argument_name.data, name) == 0) {
 		return 1;
-	} else {
-		return 0;
 	}
+
+	return 0;
 }
 
 int check_defined_function(void) 
@@ -370,7 +387,7 @@ int check_defined_function(void)
 
 	if(global_data->defined == 1) {
 		return 1;
-	} else {
-		return 0;
 	}
+
+	return 0;
 }
