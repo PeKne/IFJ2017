@@ -80,7 +80,7 @@ int str_pop_char(Tstring *str)
     if (str->length <= 0)
         return 0;
     
-    if (str->size > ALLOC_CHUNK) {
+    if (str->size > ALLOC_CHUNK) { // ALLOC_CHUNK bude vždy nejmenší alokovaná velikost
         int new_size = (((str->length / ALLOC_CHUNK) + 1) * ALLOC_CHUNK);
         str->data = ((char *) realloc(str->data, sizeof(char) * new_size));
             if (str->data == NULL) {
@@ -120,4 +120,35 @@ int str_create_init(Tstring *str, const char *data)
     str->length = length;
     str->size = length + 1; // \0 pridan implicitne za data
     return 0;
+}
+
+int str_delete_index(Tstring *str, int index)
+{
+    if (index > str->length) {
+        fprintf(stderr, "Trying to change nonexisting index in an array for str_delete_index!\n");
+        return ERR_INTERN;
+    }
+
+    int err = 0;
+    int to_move = str->length - index;
+
+    for (int i = 0; i < to_move; i++)
+    {
+        str->data[i+index] = str->data[i+index+1];
+    }
+    
+    // v pripade potreby odalokuje pamet tak, aby nebylo volne vice nez ALLOC_CHUNK
+    if (str->size > ALLOC_CHUNK) { // ALLOC_CHUNK bude vždy nejmenší alokovaná velikost
+        int new_size = (((str->length / ALLOC_CHUNK) + 1) * ALLOC_CHUNK);
+        str->data = ((char *) realloc(str->data, sizeof(char) * new_size));
+            if (str->data == NULL) {
+                free(str->data);
+                fprintf(stderr,"Reallocating space for str_delete_index failed!\n");
+                return ERR_INTERN;
+            }
+        str->size = new_size;
+    }
+    str->length--;
+
+    return err;
 }

@@ -94,6 +94,7 @@ typedef enum {
 typedef struct t_token {
     Tstring t_str;         // jeden token ze vstupu (např."integer")
     Tstate t_state;        // int, double, string, as, asc,  ...
+    int t_line;            // radek tokenu
 } Ttoken;
 
 Ttoken token;   // globalni token
