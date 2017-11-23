@@ -274,7 +274,9 @@ const char* expresion_reduction(TStack *s) {
     const char* return_string;
     int symbol = STopType(s);
 
-    if(symbol == ex_ident){ // R ---> i
+    if(symbol == ex_ident || symbol == ex_num ||
+       symbol == ex_bool  || symbol == ex_bool){ // R ---> i
+         // do return stringu se uklada string identifikatoru, cisla, true/false nebo retezce
         return_string = STopString(s);
         SPop(s);
             if(SEmpty(s)){
@@ -408,6 +410,7 @@ bool precedent_analysis() {
                 if(reduced_string == NULL){
                     //ERROR neexistujici pravidlo
                     printf("ERROR\n");
+                    SClean(&stack);
                     return false;
                 }
 
