@@ -1,0 +1,77 @@
+declare function factorial (n as integer) as integer
+function factorial (n as integer) as integer
+	dim temp_result as integer
+	dim decremented_n as integer
+	dim result as integer
+	if n < 2 then
+		result = 1
+	else
+		decremented_n = n - 1
+		temp_result = factorial(decremented_n)
+		result = n*temp_result
+	end if
+	return result
+end function
+
+scope
+	dim a as integer
+	dim vysl as integer
+	print !"zadejte cislo pro vypocet faktorialu";
+	input a
+	if a < 0 then
+		print !"\nfaktorial nelze spocitat\n";
+	else
+		vysl = factorial(a)	
+		print !"\nvysledek je:" ; vysl ; !"\n";
+	end if
+end scope
+
+----------------------------------------------------------------------
+CREATEFRAME
+DEFVAR a
+DEFVAR vysl
+DEFVAR pomocbool
+WRITE !"zadejte cislo pro vypocet faktorialu";
+READ TF@a int
+LT TF@pomocbool TF@a 0 (true pokud a < 0)
+JUMPIFEQ else TF@pomocbool false
+WRITE !"\nfaktorial nelze spocitat\n";
+JUMP endif
+
+LABEL else
+PUSHFRAME
+CALL factorial
+POPFRAME
+WRITE !"\nvysledek je:"
+WRITE TF@vysl
+WRITE !"\n"
+
+LABEL endif
+
+
+
+LABEL factorial
+CREATEFRAME
+DEFVAR temp_result
+DEFVAR n
+DEFVAR pomocbool  (dve promene se stejnym nazvem ale v jinem ramci - mozno resit )
+DEFVAR result  
+DEFVAR decremented_n
+MOV TF@n LF@decremented_n
+MOV TF@n LF@a
+LT TF@pomocbool n 2 (true pro n < 2)
+JUMPIFEQ else2 lf@pomocbool false
+mov TF@result 1
+JUMP endif
+
+LABEL else2
+SUB TF@decremented_n TF@n 1
+PUSHFRAME
+CALL factorial
+POPFRAME
+MUL TF@result TF@n TF@temp_result
+
+LABEL endif
+MOV LF@decremented_n TF@result
+MOV LF@vysl TF@result
+RETURN
