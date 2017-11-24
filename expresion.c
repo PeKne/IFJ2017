@@ -267,7 +267,7 @@ int set_operator(){
     }
 }
 
-const char* expresion_reduction(TStack *s, int assign) {
+const char* expresion_reduction(TStack *s) {
 
     printf("\nREDUKCNI STACK: \n");
     DBG_SPrint(s);
@@ -279,6 +279,10 @@ const char* expresion_reduction(TStack *s, int assign) {
        symbol == ex_bool  || symbol == ex_str){ // R ---> i
          // do return stringu se uklada string identifikatoru, cisla, true/false nebo retezce
         return_string = STopString(s);
+        if (symbol == ex_str) {
+            //printf("MOV TF@pomString TF@%s\n", );
+        }
+        printf("WRITE %s\n",return_string);
         SPop(s);
             if(SEmpty(s)){
                 return return_string;
@@ -290,6 +294,7 @@ const char* expresion_reduction(TStack *s, int assign) {
         symbol = STopType(s);
         if(symbol == ex_reduction){
             return_string = STopString(s);
+
             SPop(s);
             symbol = STopType(s);
 
@@ -316,11 +321,12 @@ const char* expresion_reduction(TStack *s, int assign) {
             
             symbol = STopType(s);
             if(symbol == ex_reduction){
-              const char* operand_2 = STopString(s);
+                const char* operand_2 = STopString(s);
+
                 SPop(s);
                 if(SEmpty(s)){
                     // TODO jak zjistim jestli je '=' prirazeni nebo porovnavani
-                    expr_gen(assign, operator, operand_1, operand_2, return_string);
+                    expr_gen(operator, operand_1, operand_2, return_string);
                     return return_string;
                 }
             }
@@ -331,7 +337,7 @@ const char* expresion_reduction(TStack *s, int assign) {
 
 }
 
-bool precedent_analysis(int assign) {
+bool precedent_analysis() {
     const char* top;//DEBUG
     TStack stack;
     SInit(&stack);
@@ -408,7 +414,7 @@ bool precedent_analysis(int assign) {
                     SPop(&stack);
 
                 }
-                const char* reduced_string = expresion_reduction(&reduction_stack, assign);
+                const char* reduced_string = expresion_reduction(&reduction_stack);
                 SClean(&reduction_stack);
                 if(reduced_string == NULL){
                     //ERROR neexistujici pravidlo

@@ -3,7 +3,7 @@
 #include "code_gen_expres.h"
 #include "expresion.h"
 
-void expr_gen(int assign, int operator, const char* operand_1, const char* operand_2, const char* destination) {
+void expr_gen(int operator, const char* operand_1, const char* operand_2, const char* destination) {
 
     switch(operator)
     {
@@ -34,12 +34,8 @@ void expr_gen(int assign, int operator, const char* operand_1, const char* opera
         case ex_equal:
         {
             // expr_gen(=,a, ,dest)
-            if (operand_1 != NULL && operand_2 == NULL && destination != NULL) {
-                if (assign) {
-                    printf("MOVE %s %s\n", destination, operand_1);
-                }
             // expr_gen(=,a,b,dest)
-            } else if (operand_1 != NULL && operand_2 != NULL && destination != NULL)
+            if (operand_1 != NULL && operand_2 != NULL && destination != NULL)
                 printf("EQ %s %s %s\n", destination, operand_1, operand_2);
             break;
         }

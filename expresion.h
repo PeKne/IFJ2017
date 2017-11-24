@@ -49,9 +49,9 @@ void SClean (TStack *s);
 //vycty stavu precedencni analyzi
 //#-------------------------------------------#//
 
-bool precedent_analysis(int assign);
+bool precedent_analysis();
 int set_operator();
-const char* expresion_reduction(TStack *stack, int assign);
+const char* expresion_reduction(TStack *stack);
 
 typedef enum {
 	LT, // <

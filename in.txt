@@ -1,0 +1,5 @@
+scope 'Hlavni telo programu
+if a < 0 then
+a = 1
+end if
+END SCOPE

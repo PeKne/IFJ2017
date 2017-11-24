@@ -12,12 +12,12 @@ int main() {
     token.t_line = 1;
     bool parser;
     parser = rule_start_state();
-    printf("%d\n",parser);
+
     if (parser == false){
     	str_destroy(&(token.t_str));
     	printf("ERROR!\n");
     	return -1;
-    }
+    } else printf("PARSER PROBEHL USPESNE\n");
 
     // while (1)
     // {
