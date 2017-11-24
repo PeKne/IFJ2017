@@ -4,8 +4,18 @@
 #include "lex.h"
 #include "strings.h"
 #include "parser.h"
+#include "symbol.h"
+#include "symtable.h"
 
-int main() {    
+htab_t *global_table;
+function_data *global_data;
+int p = 0;
+int ar_count = 0;
+
+int main() {
+    global_table = htab_init(HTAB_SIZE);
+    global_data = create_global_data();
+
     int error = 0;
     if ((error = str_create(&(token.t_str))) != 0)
         return error;
@@ -17,7 +27,7 @@ int main() {
     	str_destroy(&(token.t_str));
     	printf("ERROR!\n");
     	return -1;
-    } else printf("PARSER PROBEHL USPESNE\n");
+    } else printf("\n\n\nPARSER PROBEHL USPESNE\n");
 
     // while (1)
     // {
@@ -40,6 +50,9 @@ int main() {
     	return -1;
     }
     str_destroy(&(token.t_str));
+    
+    htab_free(global_table);
+    free_data_function(global_data);
 
     return error;
 }

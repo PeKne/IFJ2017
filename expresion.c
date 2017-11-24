@@ -149,20 +149,20 @@ const char* oper_strings[] = {"*", "/", "\\", "+", "-", "=", "<>", "<", "<=", ">
 void DBG_SPrint(TStack *s){
 	TSElem *elemPtr;
 	elemPtr = s->topPtr;
-	printf("|TOP--->|%s", oper_strings[elemPtr->type]);
+	//printf("|TOP--->|%s", oper_strings[elemPtr->type]);
 	while(elemPtr->prevPtr != NULL){
 		elemPtr = elemPtr->prevPtr;
-		printf("|%s", oper_strings[elemPtr->type]);
+		//printf("|%s", oper_strings[elemPtr->type]);
 	}
-    printf("|  SYMBOL\n");
+    //printf("|  SYMBOL\n");
 
     elemPtr = s->topPtr;
-  	printf("|TOP--->|%s", elemPtr->string);
+  	//printf("|TOP--->|%s", elemPtr->string);
   	while(elemPtr->prevPtr != NULL){
   		elemPtr = elemPtr->prevPtr;
-  		printf("|%s", elemPtr->string);
+  		//printf("|%s", elemPtr->string);
   	}
-      printf("|  STRING\n");
+      //printf("|  STRING\n");
 }
 
 
@@ -256,7 +256,7 @@ int set_operator(){
         case st_print:
         case st_if:
         case st_do:
-        case st_then:
+        case st_then: 
         case st_return:
         case st_end:
 
@@ -268,9 +268,9 @@ int set_operator(){
     }
 }
 
-const char* expresion_reduction(TStack *s) {
+const char* expresion_reduction(TStack *s, int print_command, int reduce_counter) {
 
-    printf("\nREDUKCNI STACK: \n");
+    //printf("\nREDUKCNI STACK: \n");
     DBG_SPrint(s);
 
     const char* return_string;
@@ -280,10 +280,15 @@ const char* expresion_reduction(TStack *s) {
        symbol == ex_bool  || symbol == ex_str){ // R ---> i
          // do return stringu se uklada string identifikatoru, cisla, true/false nebo retezce
         return_string = STopString(s);
-        if (symbol == ex_str) {
-            //printf("MOV TF@pomString TF@%s\n", );
+        
+        if (print_command) {
+            if (symbol == ex_str) {
+                printf("WRITE string@%s\n",return_string);
+            } else printf("WRITE TF@%s\n",return_string); 
         }
-        printf("WRITE %s\n",return_string);
+        else if (reduce_counter == 0)
+            printf("MOV TF@$pom TF@$%s\n", return_string);
+
         SPop(s);
             if(SEmpty(s)){
                 return return_string;
@@ -310,7 +315,7 @@ const char* expresion_reduction(TStack *s) {
 
     else if(symbol == ex_reduction){ // R ---> R "operator" R
         const char* operand_1 = STopString(s);
-        return_string = "pom";
+        return_string = "$pom";
         SPop(s);
         symbol = STopType(s);
         int operator = symbol;
@@ -319,7 +324,7 @@ const char* expresion_reduction(TStack *s) {
            symbol == ex_notEq || symbol == ex_less     || symbol == ex_lessEq ||
            symbol == ex_great || symbol == ex_greatEq){
             SPop(s);
-
+            
             symbol = STopType(s);
             if(symbol == ex_reduction){
                 const char* operand_2 = STopString(s);
@@ -327,7 +332,7 @@ const char* expresion_reduction(TStack *s) {
                 SPop(s);
                 if(SEmpty(s)){
                     // TODO jak zjistim jestli je '=' prirazeni nebo porovnavani
-                    expr_gen(operator, operand_1, operand_2, return_string);
+                    expr_gen(operator, operand_1, operand_2, return_string, print_command);
                     return return_string;
                 }
             }
@@ -338,10 +343,11 @@ const char* expresion_reduction(TStack *s) {
 
 }
 
-bool precedent_analysis() {
+bool precedent_analysis(int print_command) {
     const char* top;//DEBUG
     TStack stack;
     SInit(&stack);
+    int reduce_counter = 0;
 
     int error;
     int stacked_operator, input_operator;
@@ -349,29 +355,29 @@ bool precedent_analysis() {
     error = SPush(&stack, ex_dollar, " "); //do prazdneho zasobniku vlozime znak dolaru
     if(error < 0){
     	//ERROR
-    	printf("chyba mallocu\n");
+    	//printf("chyba mallocu\n");
     }
     STopString(&stack);
-    printf("Inicializovany stack\n\n" );
+    //printf("Inicializovany stack\n\n" );
     DBG_SPrint(&stack);
-    printf("\n");
+    //printf("\n");
     do{
     	stacked_operator = SActive(&stack);
 
         if(stacked_operator < 0){
-            printf("//na zasobniku neni zadny terminal\n");
+            //printf("//na zasobniku neni zadny terminal\n");
             //ERROR prazdny zasobnik
         }
         input_operator = set_operator();
         if(input_operator < 0){
-        	printf("//ERROR nevyhovujici symbol\n");
+        	//printf("//ERROR nevyhovujici symbol\n");
             //ERROR nevyhovujici symbol
         }
 
         switch (prec_table[stacked_operator][input_operator]){
             case EQ:
             {
-            	  printf("case EQ\n\n");
+            	//printf("case EQ\n\n");
                 SPush(&stack, input_operator, token.t_str.data);
                 generate_token();
                 break;
@@ -379,10 +385,10 @@ bool precedent_analysis() {
 
             case LT:
             {
-            	printf("case LT\n");
+            	//printf("case LT\n");
                 error = SPostActiveInsert(&stack, ex_rule_begin);
                 if (error < 0){
-                	printf("neexistuje aktivni prvek\n");
+                	//printf("neexistuje aktivni prvek\n");
                 }
 
 
@@ -391,12 +397,12 @@ bool precedent_analysis() {
                 STopString(&stack);
                 DBG_SPrint(&stack);
 
-                printf("\n");
+                //printf("\n");
                 generate_token();
                 STopString(&stack);
                 input_operator = set_operator();
                 if(input_operator < 0){
-        			printf("ERROR nevyhovujici symbol\n");
+        			//printf("ERROR nevyhovujici symbol\n");
         		    //ERROR nevyhovujici symbol
        			}
 
@@ -406,7 +412,7 @@ bool precedent_analysis() {
             case GT:
             case XX:
             {
-            	printf("case GT\n");
+            	//printf("case GT\n");
                 TStack reduction_stack;
                 SInit(&reduction_stack);
 
@@ -415,11 +421,12 @@ bool precedent_analysis() {
                     SPop(&stack);
 
                 }
-                const char* reduced_string = expresion_reduction(&reduction_stack);
+                const char* reduced_string = expresion_reduction(&reduction_stack, print_command, reduce_counter);
+                reduce_counter++;
                 SClean(&reduction_stack);
                 if(reduced_string == NULL){
                     //ERROR neexistujici pravidlo
-                    printf("ERROR\n");
+                    //printf("ERROR\n");
                     SClean(&stack);
                     return false;
                 }
@@ -429,7 +436,7 @@ bool precedent_analysis() {
                 stacked_operator = SActive(&stack);
                 SPush(&stack, ex_reduction, reduced_string); //TODO: co ches?
                 DBG_SPrint(&stack);
-                printf("\n");
+                //printf("\n");
                 break;
             }
 
@@ -438,7 +445,7 @@ bool precedent_analysis() {
 
 
     }while ((SActive(&stack) != ex_dollar ) || (input_operator != ex_dollar));
-    printf("vyraz prosel\n");
+    //printf("opoustim case\n");
     SClean(&stack);
 
     return true;

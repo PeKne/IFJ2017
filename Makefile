@@ -3,7 +3,7 @@
 # -Wall -Wextra -Werror -pedantic
 CC=gcc
 CFLAGS= -std=gnu99 
-OBJ=main.o lex.o strings.o errors.o parser.o expresion.o code_gen_expres.c
+OBJ=main.o lex.o strings.o errors.o parser.o expresion.o code_gen_expres.c symbol.o symtable.o
 
 all: $(OBJ)
 	$(CC) $(CFLAGS) $(OBJ) -lm -o proj

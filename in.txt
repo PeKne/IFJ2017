@@ -1,5 +1,9 @@
+Declare Function factorial () As Integer
+Function factorial () As Integer
+a = f
+End Function
+
 scope 'Hlavni telo programu
-if a < 0 then
-a = 1
-end if
+factorial()
+
 END SCOPE
