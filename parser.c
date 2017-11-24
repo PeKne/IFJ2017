@@ -275,7 +275,7 @@ bool rule_stat(){ // stav <stat>
     	generate_token();
 
         //printf("WRITE %s\n",token.t_str.data);///
-        
+
     	if( precedent_analysis() ){
     		if(token.t_state == st_stred){
     			generate_token();
@@ -319,6 +319,13 @@ bool rule_stat(){ // stav <stat>
     							}
     						}
     					}
+							else if(token.t_state == st_end){
+								generate_token();
+								if(token.t_state == st_if){
+									generate_token();
+									return_value = true;
+								}
+							}
     				}
     			}
     		}

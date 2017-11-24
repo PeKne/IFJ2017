@@ -256,6 +256,7 @@ int set_operator(){
         case st_print:
         case st_if:
         case st_do:
+        case st_then:
         case st_return:
         case st_end:
 
@@ -318,7 +319,7 @@ const char* expresion_reduction(TStack *s) {
            symbol == ex_notEq || symbol == ex_less     || symbol == ex_lessEq ||
            symbol == ex_great || symbol == ex_greatEq){
             SPop(s);
-            
+
             symbol = STopType(s);
             if(symbol == ex_reduction){
                 const char* operand_2 = STopString(s);
@@ -437,7 +438,7 @@ bool precedent_analysis() {
 
 
     }while ((SActive(&stack) != ex_dollar ) || (input_operator != ex_dollar));
-    printf("opoustim case\n");
+    printf("vyraz prosel\n");
     SClean(&stack);
 
     return true;
