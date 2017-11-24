@@ -273,10 +273,11 @@ const char* expresion_reduction(TStack *s) {
 
     const char* return_string;
     int symbol = STopType(s);
-
+    printf("%d\n", symbol );
     if(symbol == ex_ident || symbol == ex_num ||
-       symbol == ex_bool  || symbol == ex_bool){ // R ---> i
+       symbol == ex_bool  || symbol == ex_str){ // R ---> i
          // do return stringu se uklada string identifikatoru, cisla, true/false nebo retezce
+        printf("jsem v redukci stringu\n" );
         return_string = STopString(s);
         SPop(s);
             if(SEmpty(s)){
