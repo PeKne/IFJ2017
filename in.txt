@@ -1,4 +1,5 @@
 scope 'Hlavni telo programu
 dim a as integer
 a = 1
+
 END SCOPE

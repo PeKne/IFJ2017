@@ -132,14 +132,15 @@ void htab_remove(htab_t *table, const char *key)
 			}
 
 			free(item->key);
-			if(item->type == type_variable) {
+			if(item->type == type_variable && item->pointer.variable != NULL) {
 				free_data_variable(item->pointer.variable);
-			} else if(item->type == type_function) {
+			} else if(item->type == type_function && item->pointer.function != NULL) {
 				free_data_function(item->pointer.function);
 			}
+			item->next = NULL;
 			free(item);
 
-			break;
+			return;
 		} else {
 			previous_item = item;
 			item = item->next;

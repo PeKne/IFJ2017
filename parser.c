@@ -366,9 +366,11 @@ bool rule_stat(){ // stav <stat>
         generate_token();
 
         if(token.t_state == st_id){
-            if(variable_exist(token.t_str.data) == 1) {
-                return ERR_SEM_PROG; //Premenna uz bola vramci danej funkcie deklarovana
+            htab_listitem *item = htab_find((p == 1 ? global_data->local_symbol_table : global_table), token.t_str.data);
+            if(item != NULL) {
+                return ERR_SEM_PROG; //Premmenna nebola vramci danej funkcie deklarovana
             }
+            free(item);
             variable_data *data = create_data_variable(&token);
             if(data == NULL) {
                 return ERR_INTERN;
@@ -380,7 +382,7 @@ bool rule_stat(){ // stav <stat>
         		generate_token();
 
         		if(rule_type(data) && rule_eval()){
-                    variable_data_to_table((p == 1 ? global_data->local_symbol_table : global_table), data);               
+                    variable_data_to_table(global_table, data);               
                     printf("DEFVAR %s\n", ident.data);///
                     str_destroy(&ident);///
         			return_value = true;
@@ -390,7 +392,8 @@ bool rule_stat(){ // stav <stat>
     }
 
     else if(token.t_state == st_id){ // simulace pravidla 21.
-        if(variable_exist(token.t_str.data) != 1) {
+        if(variable_exist(token.t_str.data) == 0) {
+            printf("Not defined variable\n");
             return ERR_SEM_PROG; //Premmenna nebola vramci danej funkcie deklarovana
         }
         Tstring id;
@@ -411,7 +414,8 @@ bool rule_stat(){ // stav <stat>
     	generate_token();
 
     	if(token.t_state == st_id){
-            if(variable_exist(token.t_str.data) != 1) {
+            if(variable_exist(token.t_str.data) == 0) {
+                printf("Not defined variable\n");
                 return ERR_SEM_PROG; //Premmenna nebola vramci danej funkcie deklarovana
             }
             printf("TYPE TF@pomString TF@%s\n",token.t_str.data);///

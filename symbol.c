@@ -207,17 +207,21 @@ void function_data_to_table(htab_t *table, function_data *data)
 
 void free_data_function(function_data *data)
 {
-	free(data->name);
+	if(data->name != NULL) {
+		free(data->name);
+	}
 
-	for(unsigned i = 0; i < data->arguments_count; i++) {
-		str_destroy(&(data->arguments[i].argument_name));
+	if(data->arguments != NULL) {
+		for(unsigned i = 0; i < data->arguments_count; i++) {
+			str_destroy(&(data->arguments[i].argument_name));
+		}
+		free(data->arguments);
 	}
 
 	if(data->local_symbol_table != NULL) {
 		htab_free(data->local_symbol_table);
 	}
 	
-	free(data->arguments);
 	free(data);
 }
 
@@ -252,6 +256,7 @@ int retrieve_function_data(char *function_name)
 	}
 
 	global_data->defined = item->pointer.function->defined;
+	global_data->return_type = item->pointer.function->return_type;
 	global_data->arguments_count = item->pointer.function->arguments_count;
 	global_data->arguments = item->pointer.function->arguments;
 	global_data->local_symbol_table = item->pointer.function->local_symbol_table;
@@ -275,7 +280,6 @@ int variable_exist(char *variable_name)
 		return 0;
 	}
 
-	free(item);
 	return 1;
 }
 
@@ -315,7 +319,7 @@ int check_variable_inicialized(char *variable_name)
 
 int check_function_return_type(Tstate state)
 {
-	if(global_data->local_symbol_table == NULL) {
+	if(global_data == NULL) {
 		fprintf(stderr, "global_data not set\n");
 
 		return 0;
