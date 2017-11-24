@@ -106,6 +106,7 @@ bool rule_function_dec(){ // stav <function-dec>
     							generate_token();
 
     							if(rule_ret_type(data_f)){
+                                    function_data_to_table(global_table, data_f);
     								return_value = true;
     							}
     						}
