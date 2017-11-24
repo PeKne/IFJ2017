@@ -1,12 +1,13 @@
+# V hlavickovych souborech MUSI být guardy!
+# Dejte tam vsechny deklarace patrici do rozhrani.
+# -Wall -Wextra -Werror -pedantic
 CC=gcc
-CFLAGS=-std=gnu99 -Wall -Wextra -Werror -pedantic
+CFLAGS= -std=gnu99 
+OBJ=main.o lex.o strings.o errors.o parser.o expresion.o code_gen_expres.c symbol.o symtable.o
 
-# V hlavickovych souborech MUSI byt vsechny deklarace funkci a guardy!
-# Dejte tam i dalsi deklarace patrici do rozhrani.
-# Sem doplnte na oba radky "nazev souboru.o". soubor.o nahradte vasim a pridavejte dalsi. 
-# Kazdy pouze jednou, bez pripony.
-all: main.o lex.o strings.o symbol.o symtable.o
-	$(CC) main.o lex.o strings.o symbol.o symtable.o -lm -o proj
+all: $(OBJ)
+	$(CC) $(CFLAGS) $(OBJ) -lm -o proj
 
 clean:
 	rm  *.o proj
+

@@ -42,6 +42,7 @@ typedef struct function_data {
 //#include "global.h"
 extern htab_t *global_table;
 extern function_data *global_data;
+extern int p;
 
 // Tvorba dát: variable *data = create_data_variable(token) - vracia NULL, ak zlyhá malloc
 variable_data *create_data_variable(Ttoken *token);
