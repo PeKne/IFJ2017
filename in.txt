@@ -1,10 +1,4 @@
-Declare Function factorial () As Integer
-Function factorial () As Integer
-dim a as integer
-a = 1
-End Function
-
 scope 'Hlavni telo programu
 dim a as integer
-a = factorial()
+a = 1
 END SCOPE
