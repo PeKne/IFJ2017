@@ -307,7 +307,6 @@ bool rule_ret_type(function_data *data_f){ // stav <ret-type>
 bool rule_check_ret_type(){ // stav <check-ret-type>
     bool return_value = false;
     if(token.t_state == st_integer || token.t_state == st_double || token.t_state == st_string){ // simulace pravidla 13., 14., 15.
-        printf("%c\n", global_data->return_type);
         if(check_function_return_type(token.t_state) == 0) {
             return ERR_SEM_TYPE;
         }
