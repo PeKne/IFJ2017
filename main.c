@@ -1,141 +1,58 @@
 #include <stdio.h>
 #include <stdlib.h>
+#include <stdbool.h>
+#include "lex.h"
 #include "strings.h"
 #include "symbol.h"
 #include "symtable.h"
-#include "lex.h"
+#include "parser.h"
 
+htab_t *global_table;
+function_data *global_data;
+int p = 0;
+int ar_count = 0;
 
-//TEST
-int main(void)
-{
-	printf("TEST 1 - tvorba struktury pre data premennej\n");
-	str_create(&(token.t_str));
-	str_add_char(&(token.t_str), 'a');
+int main() {   
+    global_table = htab_init(HTAB_SIZE);
+    global_data = create_global_data();
 
-	variable_data *data;
-	data = create_data_variable(&token);
-	if(data == NULL) {
-		fprintf(stderr, "Error allocating memory\n");
-		return -1;
-	}
+    int error = 0;
+    if ((error = str_create(&(token.t_str))) != 0)
+        return error;
+    token.t_line = 1;
+    bool parser;
+    parser = rule_start_state();
+    printf("%d\n",parser);
+    if (parser == false){
+    	str_destroy(&(token.t_str));
+    	printf("ERROR!\n");
+    	return -1;
+    }
 
-	printf("name: %s ... init: %d\n", data->name, data->inicialized);
+    // while (1)
+    // {
+    //     error = generate_token();
+    //     if (error) {
+    //         break;
+    //     } else if (token.t_state == st_eof) {
+    //         printf("EOF\n");
+    //         break;
+    //     }
 
-	str_clear(&(token.t_str));
+    //     printf("token: '%d', str: '%s'\n", token.t_state, token.t_str.data);
+    //         //printf("str:%s delka:%d vel.:%d\n\n", token.t_str.data, token.t_str.length, token.t_str.size);
 
-	printf("TEST 2 - nastavenie datoveho typu premennej ... v pripade SUCCESS nezahlasi nic, pri chybnom datovom type na strderr\n");
-	token.t_state = st_integer;
-	set_type_variable(data, &token);
+    // }
 
-	token.t_state = st_double;
-	set_type_variable(data, &token);
+    /*if (parser = false){
+    	str_destroy(&(token.t_str));
+    	printf("ERROR!\n");
+    	return -1;
+    }*/
+    str_destroy(&(token.t_str));
 
-	token.t_state = st_string;
-	set_type_variable(data, &token);
+    htab_free(global_table);
+    free_data_function(global_data);
 
-	token.t_state = st_del;
-	set_type_variable(data, &token);
-
-
-
-
-	printf("TEST 3 - nastavenie hodnoty premennej\n");
-	//1
-	token.t_state = st_integer;
-	set_type_variable(data, &token);
-
-	str_add_char(&(token.t_str), '1');
-
-	set_value_variable(data, &token);
-
-	printf("Value: %d ... init: %d\n", data->value.value_integer, data->inicialized);
-	data->inicialized = 0;
-	str_clear(&(token.t_str));
-	//2
-	token.t_state = st_double;
-	set_type_variable(data, &token);
-
-	str_add_char(&(token.t_str), '2');
-
-	set_value_variable(data, &token);
-
-	printf("Value: %f .. init: %d\n", data->value.value_double, data->inicialized);
-	data->inicialized = 0;
-	str_clear(&(token.t_str));
-	//3
-	token.t_state = st_string;
-	set_type_variable(data, &token);
-
-	str_add_char(&(token.t_str), 'a');
-
-	set_value_variable(data, &token);
-
-	printf("%s\n", data->value.value_string);
-
-	str_add_char(&(token.t_str), 'b');
-
-	set_value_variable(data, &token);
-
-	printf("%s\n", data->value.value_string);
-
-	str_clear(&(token.t_str));
-
-	free_data_variable(data);
-
-	printf("TEST 4 - tvorba struktury pre data funkcie\n");
-
-	str_add_char(&(token.t_str), 'f');
-
-	function_data *data_f;
-	data_f = create_data_function(&token);
-	if(data_f == NULL) {
-		fprintf(stderr, "Error allocating memory\n");
-		return -1;
-	}
-
-	printf("Name: %s ... defined: %d ... argCount: %d\n", data_f->name, data_f->declared, data_f->arguments_count);
-
-
-
-	printf("TEST 5 - nastavenie navratoveho typu funkcie\n");
-	token.t_state = st_integer;
-	set_return_type_function(data_f, &token);
-	printf("Ret: %c\n", data_f->return_type);
-
-	token.t_state = st_double;
-	set_return_type_function(data_f, &token);
-	printf("Ret: %c\n", data_f->return_type);
-
-	token.t_state = st_string;
-	set_return_type_function(data_f, &token);
-	printf("Ret: %c\n", data_f->return_type);
-
-	token.t_state = st_del;
-	set_return_type_function(data_f, &token);
-
-	str_clear(&(token.t_str));
-
-
-
-	printf("TEST 6 - praca s argumentami funkcie\n");
-
-	str_destroy(&(token.t_str));
-	str_create_init(&(token.t_str), "arg1");
-
-	add_argument_function(data_f, &token);
-	printf("Argument c: %d = %s\n", data_f->arguments_count, data_f->arguments[data_f->arguments_count - 1].argument_name.data);
-
-	str_clear(&(token.t_str));
-
-	str_destroy(&(token.t_str));
-	str_create_init(&(token.t_str), "arg2");
-
-	add_argument_function(data_f, &token);
-	printf("Argument c: %d = %s\n", data_f->arguments_count, data_f->arguments[data_f->arguments_count - 1].argument_name.data);
-
-	free_data_function(data_f);
-	str_destroy(&(token.t_str));
-
-	return 0;
+    return error;
 }
