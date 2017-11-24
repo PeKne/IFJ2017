@@ -251,8 +251,12 @@ bool rule_check_par(){ // stav <check-par>
         if(token.t_state == st_as){
             generate_token();
 
-            if(rule_check_arg_type() && rule_check_next_par()){
-                return_value = true;
+            if(rule_check_arg_type()) {
+                generate_token();
+    
+                if(rule_check_next_par()){
+                    return_value = true;
+                }
             }
         }
     }
@@ -260,7 +264,6 @@ bool rule_check_par(){ // stav <check-par>
     else if(token.t_state == st_pravzav){ //simulace pravidla 10.
         return_value = true;
     }
-    
     return return_value;    
 }
 
@@ -276,7 +279,6 @@ bool rule_check_next_par(){ // stav <check-next-par>
         return_value = true;
     }
 
-    
     return return_value;    
 }
 
@@ -305,7 +307,8 @@ bool rule_ret_type(function_data *data_f){ // stav <ret-type>
 bool rule_check_ret_type(){ // stav <check-ret-type>
     bool return_value = false;
     if(token.t_state == st_integer || token.t_state == st_double || token.t_state == st_string){ // simulace pravidla 13., 14., 15.
-        if(check_function_return_type(token.t_state) != 1) {
+        printf("%c\n", global_data->return_type);
+        if(check_function_return_type(token.t_state) == 0) {
             return ERR_SEM_TYPE;
         }
         generate_token();
@@ -382,7 +385,7 @@ bool rule_stat(){ // stav <stat>
         		generate_token();
 
         		if(rule_type(data) && rule_eval()){
-                    variable_data_to_table(global_table, data);               
+                    variable_data_to_table((p == 1 ? global_data->local_symbol_table : global_table), data);               
                     printf("DEFVAR %s\n", ident.data);///
                     str_destroy(&ident);///
         			return_value = true;
@@ -392,7 +395,7 @@ bool rule_stat(){ // stav <stat>
     }
 
     else if(token.t_state == st_id){ // simulace pravidla 21.
-        if(variable_exist(token.t_str.data) == 0) {
+        if(variable_exist(token.t_str.data) ==  0) {
             printf("Not defined variable\n");
             return ERR_SEM_PROG; //Premmenna nebola vramci danej funkcie deklarovana
         }
@@ -555,7 +558,7 @@ bool rule_assign(Tstring id){ // stav <assign>
     	}
 
     else if(token.t_state == st_id){ // simulace pravidla 23.
-        htab_listitem *item = htab_find(global_table, token.t_str.data);
+        htab_listitem *item = htab_find((p == 1 ? global_data->local_symbol_table : global_table), token.t_str.data);
         if(item == NULL) {
             return ERR_SEM_PROG;
         }
