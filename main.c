@@ -25,7 +25,7 @@ int main() {
 
     if (parser == false){
     	str_destroy(&(token.t_str));
-    	printf("ERROR!\n");
+    	printf("ERROR on line %d\n", token.t_line);
     	return -1;
     } else printf("\n\n\nPARSER PROBEHL USPESNE\n");
 
@@ -43,12 +43,6 @@ int main() {
     //         //printf("str:%s delka:%d vel.:%d\n\n", token.t_str.data, token.t_str.length, token.t_str.size);
 
     // }
-
-    if (parser = false){
-    	str_destroy(&(token.t_str));
-    	printf("ERROR!\n");
-    	return -1;
-    }
     str_destroy(&(token.t_str));
     
     htab_free(global_table);

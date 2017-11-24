@@ -1,9 +1,10 @@
 Declare Function factorial () As Integer
 Function factorial () As Integer
-a = f
+dim a as integer
+a = 1
 End Function
 
 scope 'Hlavni telo programu
-factorial()
-
+dim a as integer
+a = factorial()
 END SCOPE
