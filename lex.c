@@ -95,7 +95,8 @@ int generate_token()
     int error = 0;
     
     Tstring esc_str;
-    str_create(&esc_str);
+    error = str_create(&esc_str);
+    if (error) return error;
 
     Tstate state = st_begin;
 
