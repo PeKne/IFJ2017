@@ -287,7 +287,7 @@ const char* expresion_reduction(TStack *s, int print_command, int reduce_counter
             } else printf("WRITE TF@%s\n",return_string); 
         }
         else if (reduce_counter == 0)
-            printf("MOV TF@$pom TF@$%s\n", return_string);
+            printf("MOV TF@pom TF@%s\n", return_string);
 
         SPop(s);
             if(SEmpty(s)){
@@ -315,7 +315,7 @@ const char* expresion_reduction(TStack *s, int print_command, int reduce_counter
 
     else if(symbol == ex_reduction){ // R ---> R "operator" R
         const char* operand_1 = STopString(s);
-        return_string = "$pom";
+        return_string = "pom";
         SPop(s);
         symbol = STopType(s);
         int operator = symbol;

@@ -29,10 +29,10 @@ bool rule_scope(){ // pravidlo <scope>
 	bool return_value = false;
     if(token.t_state == st_scope){ // simulace pravidla 2.
         printf("LABEL $$main\n");
-        printf("DEFVAR GF@$pomBool\n");///
-        printf("DEFVAR GF@$pomString\n");///
-        printf("DEFVAR GF@$pomInt\n");///
-        printf("DEFVAR GF@$pomFloat\n\n");///
+        printf("DEFVAR GF@pomBool\n");///
+        printf("DEFVAR GF@pomString\n");///
+        printf("DEFVAR GF@pomInt\n");///
+        printf("DEFVAR GF@pomFloat\n\n");///
         printf("CREATEFRAME\n");///
         generate_token();
 
@@ -448,7 +448,7 @@ bool rule_stat(){ // stav <stat>
     	generate_token();
 
     	if(precedent_analysis(print_command)){
-            printf("JUMPIFNEQ else1 TF@$pomBool true\n");///
+            printf("JUMPIFNEQ else1 TF@pomBool true\n");///
     		if(token.t_state == st_then){
     			generate_token();
 
@@ -552,7 +552,7 @@ bool rule_assign(Tstring id){ // stav <assign>
 	bool return_value = false;
     int print_command = 0;
     if(precedent_analysis(print_command)){  //simulace pravidla 22.
-            printf("MOV TF@$%s TF@$pom\n", id.data);
+            printf("MOV TF@%s TF@pom\n", id.data);
         	return_value = true;
     	}
 
