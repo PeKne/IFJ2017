@@ -81,6 +81,9 @@ int generate_token()
     bool get_next_char = true; // pokracovat v lex. anal.
     char c;
     int error = 0;
+    
+    Tstring esc_str;
+    str_create(&esc_str);
 
     Tstate state = st_begin;
 
@@ -95,6 +98,8 @@ int generate_token()
     {   
         if (state != st_retez)
             c = tolower(c);
+
+        int ascii = (int) c;
 
         switch(state)
         {
@@ -210,8 +215,16 @@ int generate_token()
 
             case st_retez:
             {
-                if (c == '\\') {
-                    str_push_char(&(token.t_str), c);
+                if (ascii >= 0 && ascii <= 32) {
+                    char esc[5];
+                    sprintf(esc, "\\%03d",ascii);
+                    for (int i = 0; esc[i] != '\0'; i++)
+                    {
+                        str_push_char(&(token.t_str), esc[i]);
+                    }
+                    
+                    state = st_retez;
+                } else if (c == '\\') {
                     state = st_esc;
                 } else if (c == '"') {
                     state = st_final;
@@ -227,13 +240,51 @@ int generate_token()
             }
 
             case st_esc:
-            {
-                if (c == EOF) {
+            {  
+                if ((c == '"') || (c == 'n') || (c == '\\')) {
+                    const char * esc;
+
+                    if      (c == '"')  esc = "\\034";
+                    else if (c == 'n')  esc = "\\010";
+                    else if (c == 't')  esc = "\\009";
+                    else if (c == '\\') esc = "\\092";
+
+                     for (int i = 0; esc[i] != '\0'; i++)
+                    {
+                        str_push_char(&(token.t_str), esc[i]);
+                    }
+                    state = st_retez;
+
+                } else if (isdigit(c)) {
+                    unget_char(c);
+                    state = st_esc_num;                    
+                } else {
+                    fprintf(stderr, "Wrong escape sequence in string\n");
                     unget_char(c);
                     state = st_error;
-                } else {
-                    str_push_char(&(token.t_str), c);
+                    break;
+                }
+                break;
+            }
+
+            // escape sekvence typu /034
+            case st_esc_num:
+            {
+                if ((esc_str.length < 2) && isdigit(c)) {
+                    str_push_char(&(esc_str), c);
+                    state = st_esc_num;    
+                } else if (isdigit(c)) {
+                    str_push_char(&(esc_str), c);
+                    int int_char;
+                    int_char = (int) strtol(esc_str.data, NULL, 10);
+                    str_push_char(&(token.t_str), (char)int_char);
+                    str_clear(&(esc_str));
                     state = st_retez;
+                } else {
+                    fprintf(stderr, "Wrong escape sequence in string\n");
+                    unget_char(c);
+                    state = st_error;
+                    break;
                 }
                 break;
             }
@@ -502,7 +553,7 @@ int generate_token()
                     delete_leading_zeroes_doub();
                     delete_zeroes_after_e();
                 }
-
+                str_destroy(&esc_str);
                 break;
             }
 
