@@ -247,7 +247,7 @@ int generate_token()
                     if      (c == '"')  esc = "\\034";
                     else if (c == 'n')  esc = "\\010";
                     else if (c == 't')  esc = "\\009";
-                    else if (c == '\\') esc = "\\092";
+                    else if (c == '\\') esc = "\\";
 
                      for (int i = 0; esc[i] != '\0'; i++)
                     {
