@@ -36,29 +36,38 @@ Tstate key_or_id()
     return st_id;
 }
 
-void delete_leading_zeroes_int()
-{
+int delete_leading_zeroes_int()
+{   
+    int err = 0;
     while ((token.t_str.data[0] == '0') && (token.t_str.length != 1)) {
-        str_delete_index(&(token.t_str), 0);
+        err = str_delete_index(&(token.t_str), 0);
+        if (err) return err;
     }
+    return 0;
 }
 
-void delete_leading_zeroes_doub()
+int delete_leading_zeroes_doub()
 {
+    int err = 0;
     while ((token.t_str.data[0] == '0') && (token.t_str.data[1] != '.')) {
-        str_delete_index(&(token.t_str), 0);
+        err = str_delete_index(&(token.t_str), 0);
+        if (err) return err;
     }
+    return 0;
 }
 
-void delete_leading_zeroes_exp_int()
+int delete_leading_zeroes_exp_int()
 {
+    int err = 0;
     while ((token.t_str.data[0] == '0') && (token.t_str.data[1] != 'e')) {
-        str_delete_index(&(token.t_str), 0);
+        err = str_delete_index(&(token.t_str), 0);
+        if (err) return err;
     }
+    return 0;
 }
 
 
-void delete_zeroes_after_e() {
+int delete_zeroes_after_e() {
     // najde index znaku 'e'
     int i = 0;
     for (i = 0; i < token.t_str.length-1; i++)
@@ -71,9 +80,12 @@ void delete_zeroes_after_e() {
     if ((token.t_str.data[i+1] == '+') || (token.t_str.data[i+1] == '-'))
         i++;
 
+    int err = 0;
     while ((token.t_str.data[i+1] == '0') && (token.t_str.length > i+2)) { // +2 i za 'e'
-        str_delete_index(&(token.t_str), (i+1)); // i+1 existuje, jinak je to lex chyba
+        err = str_delete_index(&(token.t_str), (i+1)); // i+1 existuje, jinak je to lex chyba
+        if (err) return err;
     }
+    return 0;
 }
 
 int generate_token()
@@ -145,8 +157,9 @@ int generate_token()
                if ((state != st_eof) && (state != st_vykric) && 
                   (state != st_radek_kom))
                {
-                str_push_char(&(token.t_str), c);
-               }
+                error = str_push_char(&(token.t_str), c);
+                    if (error) { str_destroy(&esc_str); return error; }
+                }
                break;
             }
             
@@ -155,7 +168,8 @@ int generate_token()
             {
                 if (isdigit(c) || isalpha(c) || c == '_') {
                     state = st_id;
-                    str_push_char(&(token.t_str), c);
+                    error = str_push_char(&(token.t_str), c);
+                    if (error) { str_destroy(&esc_str); return error; }
                 
                 // cokoliv jine + rez + klic. slova
                 } else { 
@@ -171,11 +185,13 @@ int generate_token()
             {
 
                 if(c == '='){
-                    str_push_char(&(token.t_str), c);
+                    error = str_push_char(&(token.t_str), c);
+                    if (error) { str_destroy(&esc_str); return error; }
                     state = st_menrov;
                 }
                 else if (c == '>'){
-                    str_push_char(&(token.t_str), c);
+                    error = str_push_char(&(token.t_str), c);
+                    if (error) { str_destroy(&esc_str); return error; }
                     state = st_nerov;
                 } else {
                     token.t_state = state;
@@ -188,7 +204,8 @@ int generate_token()
             case st_vetsi:
             {
                 if(c == '='){
-                    str_push_char(&(token.t_str), c);
+                    error = str_push_char(&(token.t_str), c);
+                    if (error) { str_destroy(&esc_str); return error; }
                     state = st_vetrov;
                 } else {
                     token.t_state = state;
@@ -220,7 +237,8 @@ int generate_token()
                     sprintf(esc, "\\%03d",ascii);
                     for (int i = 0; esc[i] != '\0'; i++)
                     {
-                        str_push_char(&(token.t_str), esc[i]);
+                        error = str_push_char(&(token.t_str), esc[i]);
+                        if (error) { str_destroy(&esc_str); return error; }
                     }
                     
                     state = st_retez;
@@ -233,7 +251,8 @@ int generate_token()
                     unget_char(c);
                     state = st_error;
                 } else {
-                    str_push_char(&(token.t_str), c);
+                    error = str_push_char(&(token.t_str), c);
+                    if (error) { str_destroy(&esc_str); return error; }
                     state = st_retez;
                 }
                 break;
@@ -247,11 +266,12 @@ int generate_token()
                     if      (c == '"')  esc = "\\034";
                     else if (c == 'n')  esc = "\\010";
                     else if (c == 't')  esc = "\\009";
-                    else if (c == '\\') esc = "\\";
+                    else if (c == '\\') esc = "\\"; // nebo \\092 ?
 
                      for (int i = 0; esc[i] != '\0'; i++)
                     {
-                        str_push_char(&(token.t_str), esc[i]);
+                        error = str_push_char(&(token.t_str), esc[i]);
+                        if (error) { str_destroy(&esc_str); return error; }
                     }
                     state = st_retez;
 
@@ -274,10 +294,14 @@ int generate_token()
                     str_push_char(&(esc_str), c);
                     state = st_esc_num;    
                 } else if (isdigit(c)) {
-                    str_push_char(&(esc_str), c);
+                    error = str_push_char(&(esc_str), c);
+                    if (error) { str_destroy(&esc_str); return error; }
+
                     int int_char;
                     int_char = (int) strtol(esc_str.data, NULL, 10);
-                    str_push_char(&(token.t_str), (char)int_char);
+                    error = str_push_char(&(token.t_str), (char)int_char);
+                    if (error) { str_destroy(&esc_str); return error; }
+                    
                     str_clear(&(esc_str));
                     state = st_retez;
                 } else {
@@ -308,7 +332,8 @@ int generate_token()
             case st_blok_kom_0:
             {
                 if (c == '\''){
-                    str_pop_char(&(token.t_str));
+                    error = str_pop_char(&(token.t_str));
+                    if (error) { str_destroy(&esc_str); return error; }
                     state = st_blok_kom_1;
                 } else {
                     unget_char(c);
@@ -356,13 +381,16 @@ int generate_token()
             case st_int_val:
             {
                 if (isdigit(c)){
-                    str_push_char(&(token.t_str), c);
+                    error = str_push_char(&(token.t_str), c);
+                    if (error) { str_destroy(&esc_str); return error; }
                     state = st_int_val;
                 } else if (c == '.') {
-                    str_push_char(&(token.t_str), c);
+                    error = str_push_char(&(token.t_str), c);
+                    if (error) { str_destroy(&esc_str); return error; }
                     state = st_double_val_dot;
                 } else if (c == 'e') {
-                    str_push_char(&(token.t_str), c);
+                    error = str_push_char(&(token.t_str), c);
+                    if (error) { str_destroy(&esc_str); return error; }
                     state = st_exp_int_e;
                 } else if ((c == ' ') || (c == '\n') || (c == EOF)) { // uspesne nacteni
                     token.t_state = state;
@@ -379,7 +407,8 @@ int generate_token()
             case st_double_val_dot:
             {
                 if (isdigit(c)) {
-                    str_push_char(&(token.t_str), c);
+                    error = str_push_char(&(token.t_str), c);
+                    if (error) { str_destroy(&esc_str); return error; }
                     state = st_double_val;
                 } else {
                     fprintf(stderr, "LEX: Line: %d: In double value, after '.' must be a number!\n", token.t_line);
@@ -392,10 +421,12 @@ int generate_token()
             case st_double_val:
             {
                 if (isdigit(c)) {
-                    str_push_char(&(token.t_str), c);
+                    error = str_push_char(&(token.t_str), c);
+                    if (error) { str_destroy(&esc_str); return error; }
                     state = st_double_val;
                 } else if (c == 'e') {
-                    str_push_char(&(token.t_str), c);
+                    error = str_push_char(&(token.t_str), c);
+                    if (error) { str_destroy(&esc_str); return error; }
                     state = st_exp_doub_e;
                 } else if ((c == ' ') || (c == '\n') || (c == EOF)) {
                     token.t_state = state;
@@ -414,10 +445,12 @@ int generate_token()
             case st_exp_int_e:
             {
                 if ((c == '+') || (c == '-')) {
-                    str_push_char(&(token.t_str), c);
+                    error = str_push_char(&(token.t_str), c);
+                    if (error) { str_destroy(&esc_str); return error; }
                     state = st_exp_int_s;
                 } else if (isdigit(c)) {
-                    str_push_char(&(token.t_str), c);
+                    error = str_push_char(&(token.t_str), c);
+                    if (error) { str_destroy(&esc_str); return error; }
                     state = st_exp_int;
                 } else {
                     fprintf(stderr, "LEX: Line: %d: In exponential value, after E must follow a number or sign!\n", token.t_line);
@@ -430,7 +463,8 @@ int generate_token()
             case st_exp_int_s:
             {
                 if (isdigit(c)) {
-                    str_push_char(&(token.t_str), c);
+                    error = str_push_char(&(token.t_str), c);
+                    if (error) { str_destroy(&esc_str); return error; }
                     state = st_exp_int;
                 } else {
                     fprintf(stderr, "LEX: Line: %d: In exponential value, after sign must follow a number!\n", token.t_line);
@@ -443,7 +477,8 @@ int generate_token()
             case st_exp_int:
             {
                 if (isdigit(c)) {
-                    str_push_char(&(token.t_str), c);
+                    error = str_push_char(&(token.t_str), c);
+                    if (error) { str_destroy(&esc_str); return error; }
                     state = st_exp_int;
                 } else if ((c == ' ') || (c == '\n') || (c == EOF)) { // spravne ukonceni tokenu
                     token.t_state = state;
@@ -463,10 +498,12 @@ int generate_token()
             case st_exp_doub_e:
             {
                 if ((c == '+') || (c == '-')) {
-                    str_push_char(&(token.t_str), c);
+                    error = str_push_char(&(token.t_str), c);
+                    if (error) { str_destroy(&esc_str); return error; }
                     state = st_exp_doub_s;
                 } else if (isdigit(c)) {
-                    str_push_char(&(token.t_str), c);
+                    error = str_push_char(&(token.t_str), c);
+                    if (error) { str_destroy(&esc_str); return error; }
                     state = st_exp_doub;
                 } else {
                     fprintf(stderr, "LEX: Line: %d: In exponential value, after E must follow a number or sign!\n", token.t_line);
@@ -479,7 +516,8 @@ int generate_token()
             case st_exp_doub_s:
             {
                 if (isdigit(c)) {
-                    str_push_char(&(token.t_str), c);
+                    error = str_push_char(&(token.t_str), c);
+                    if (error) { str_destroy(&esc_str); return error; }
                     state = st_exp_doub;
                 } else {
                     fprintf(stderr, "LEX: Line: %d: In exponential value, after sign must follow a number!\n", token.t_line);
@@ -492,7 +530,8 @@ int generate_token()
             case st_exp_doub:
             {
                 if (isdigit(c)) {
-                    str_push_char(&(token.t_str), c);
+                    error = str_push_char(&(token.t_str), c);
+                    if (error) { str_destroy(&esc_str); return error; }
                     state = st_exp_doub;
                 } else if ((c == ' ') || (c == '\n') || (c == EOF)) { // spravne ukonceni
                     token.t_state = state;
@@ -543,15 +582,21 @@ int generate_token()
                 get_next_char = false;
                 
                 if (token.t_state == st_int_val) {
-                    delete_leading_zeroes_int();
+                    error = delete_leading_zeroes_int();
+                    if (error) { str_destroy(&esc_str); return error; }
                 } else if (token.t_state == st_double_val) {
-                    delete_leading_zeroes_doub();
+                    error = delete_leading_zeroes_doub();
+                    if (error) { str_destroy(&esc_str); return error; }
                 } else if (token.t_state == st_exp_int) {
-                    delete_leading_zeroes_exp_int();
-                    delete_zeroes_after_e();
+                    error = delete_leading_zeroes_exp_int();
+                    if (error) { str_destroy(&esc_str); return error; }
+                    error = delete_zeroes_after_e();
+                    if (error) { str_destroy(&esc_str); return error; }
                 } else if (token.t_state == st_exp_doub) {
-                    delete_leading_zeroes_doub();
-                    delete_zeroes_after_e();
+                    error = delete_leading_zeroes_doub();
+                    if (error) { str_destroy(&esc_str); return error; }
+                    error = delete_zeroes_after_e();
+                    if (error) { str_destroy(&esc_str); return error; }
                 }
                 str_destroy(&esc_str);
                 break;
