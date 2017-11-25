@@ -60,14 +60,14 @@ int str_clear(Tstring *str)
 
 int str_push_char(Tstring *str, char c)
 {
-    if ( str->length+1 >= str->size) {
+    if ( str->length+2 >= str->size) {
         str->data = ((char *) realloc(str->data, sizeof(char) * (str->length + ALLOC_CHUNK)));
         if (str->data == NULL) {
             free(str->data);
             fprintf(stderr,"Reallocating space for str_push_char failed!\n");
             return ERR_INTERN;
         }
-        str->size += ALLOC_CHUNK; 
+        str->size = str->length + ALLOC_CHUNK; 
     }
 
     str->data[str->length] = c;
