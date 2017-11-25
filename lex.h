@@ -84,11 +84,13 @@ typedef enum {
 /*66*/ st_blok_kom_2,     /* '/ */ 
 /*67*/ st_retLZ,          /* retezcovy literal zacatek: !" */
 /*68*/ st_esc,            /* escape znak \ */
-/*69*/ st_double_val_dot,
-/*70*/ st_exp_int_e,
-/*71*/ st_exp_int_s,
-/*72*/ st_exp_doub_e,
-/*73*/ st_exp_doub_s,
+/*69*/ st_esc_num
+/*70*/ st_double_val_dot,
+/*71*/ st_exp_int_e,
+/*72*/ st_exp_int_s,
+/*73*/ st_exp_doub_e,
+/*74*/ st_exp_doub_s,
+
 } Tstate;
 
 typedef struct t_token {
