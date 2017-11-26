@@ -106,7 +106,7 @@ int str_append_str(Tstring *target, Tstring *to_append)
     return 0;
 }
 
-int str_create_init(Tstring *str, const char *data)
+int str_create_init(Tstring *str, char *data)
 {
     int length = strlen(data);
     str->data = ((char *) malloc(sizeof(char) * length+1));
@@ -115,10 +115,28 @@ int str_create_init(Tstring *str, const char *data)
         return ERR_INTERN;
     }
 
-
     strcpy(str->data, data);
     str->length = length;
     str->size = length + 1; // \0 pridan implicitne za data
+    return 0;
+}
+
+int str_rewrite_data(Tstring *str, char *data)
+{
+    int length = strlen(data);
+    
+    if (length > str->length) {
+        str->data = ((char *) realloc(str->data, sizeof(char) * length+1));
+        if (str->data == NULL) {
+            fprintf(stderr,"Allocating space for str_rewrite_data failed!\n");
+            return ERR_INTERN;
+        } 
+        str->size = length + 1; // \0 pridan implicitne za data
+     }
+    str->length = length;
+     
+    strcpy(str->data, data);
+
     return 0;
 }
 
