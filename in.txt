@@ -2,6 +2,6 @@ scope 'Hlavni telo programu
 dim e as integer
 dim d as integer
 dim x as integer
-d = e
 
+d = e + x - d
 END SCOPE

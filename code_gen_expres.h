@@ -1,6 +1,6 @@
 #ifndef GEN_EXPR_H
 #define GEN_EXPR_H
 
-void expr_gen(int operator, const char* operand_1, const char* operand_2, const char* destination, int print_command);
+void expr_gen(int operator, char* operand_1, char* operand_2, char* destination, int print_command);
 
 #endif

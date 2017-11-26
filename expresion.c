@@ -30,9 +30,9 @@ int SPush (TStack *s, int tokenType, char* string)
 
     newElemPtr->type = tokenType;
     
-    printf("str push:%s\n", string);
+    ////printf("str push:%s\n", string);
     str_create_init(&(newElemPtr->string), string);
-    printf("push: %s\n",newElemPtr->string.data);
+    ////printf("push: %s\n",newElemPtr->string.data);
     newElemPtr->nextPtr = NULL;
 
     if (SEmpty(s))
@@ -60,7 +60,6 @@ int SPostActiveInsert (TStack *s, int tokenType)
         return err_malloc;
 
     str_create_init(&(newElemPtr->string), " ");
-    printf("postInsert: %s\n",newElemPtr->string.data);
 
     newElemPtr->type = tokenType;
     newElemPtr->nextPtr = s->activePtr->nextPtr;
@@ -93,7 +92,6 @@ int SPop (TStack *s)
         }
         s->activePtr = activeElemPtr;
         
-        printf("pop: %s\n",elemPtr->string.data);
         str_destroy(&(elemPtr->string));
         free(elemPtr);
     }
@@ -143,26 +141,26 @@ const char* oper_strings[] = {"*", "/", "\\", "+", "-", "=", "<>", "<", "<=", ">
 void DBG_SPrint(TStack *s){
 
     if (SEmpty(s)) {
-        printf("stack is Empty\n");
+        //printf("stack is Empty\n");
         return;
     }
 
 	TSElem *elemPtr;
 	elemPtr = s->topPtr;
-	printf("|TOP--->|%s", oper_strings[elemPtr->type]);
+	//printf("|TOP--->|%s", oper_strings[elemPtr->type]);
 	while(elemPtr->prevPtr != NULL){
 		elemPtr = elemPtr->prevPtr;
-		printf("|%s", oper_strings[elemPtr->type]);
+		//printf("|%s", oper_strings[elemPtr->type]);
 	}
-    printf("|  SYMBOL\n");
+    //printf("|  SYMBOL\n");
 
     elemPtr = s->topPtr;
-  	printf("|TOP--->|%s", elemPtr->string.data);
+  	//printf("|TOP--->|%s", elemPtr->string.data);
   	while(elemPtr->prevPtr != NULL){
   		elemPtr = elemPtr->prevPtr;
-  		printf("|%s", elemPtr->string.data);
+  		//printf("|%s", elemPtr->string.data);
   	}
-      printf("|  STRING\n");
+      //printf("|  STRING\n");
 }
 
 
@@ -270,7 +268,7 @@ int set_operator(){
 
 int expresion_reduction(TStack *s, int print_command, int reduce_counter, Tstring *ret_string) {
 
-    printf("\nREDUKCNI STACK: \n");
+    //printf("\nREDUKCNI STACK: \n");
     DBG_SPrint(s);
 
     int symbol = STopType(s);
@@ -278,26 +276,19 @@ int expresion_reduction(TStack *s, int print_command, int reduce_counter, Tstrin
     if(symbol == ex_ident || symbol == ex_num ||
        symbol == ex_bool  || symbol == ex_str){ // R ---> i
          // do return stringu se uklada string identifikatoru, cisla, true/false nebo retezce
-        
-        char * topS = STopString(s);
-        printf("top %s\n",topS );
 
         str_rewrite_data(ret_string, STopString(s));
-        printf("return_string expr '%s'\n", ret_string->data);
         
-        /*if (print_command) {
+        if (print_command) {
             if (symbol == ex_str) {
-                printf("WRITE string@%s\n",return_string);
-            } else printf("WRITE TF@%s\n",return_string); 
+                printf("WRITE string@%s\n",ret_string->data);
+            } else printf("WRITE TF@%s\n",ret_string->data); 
         }
         else if (reduce_counter == 0)
-            printf("MOV TF@pom TF@%s\n", return_string);*/
+            printf("MOV TF@pom TF@%s\n", ret_string->data);
 
         SPop(s);
-            if(SEmpty(s)){
-                printf("return_string expr po POP '%s'\n", ret_string->data);
-                return 0;
-            }
+        if(SEmpty(s)) return 0;
     }
 
     else if(symbol == ex_leftBrac){ // R ---> (R)
@@ -310,20 +301,23 @@ int expresion_reduction(TStack *s, int print_command, int reduce_counter, Tstrin
             symbol = STopType(s);
 
             if(symbol == ex_rightBrac){
-              SPop(s);
-                if(SEmpty(s)){
-                return 0;
-                }
+                SPop(s);
+                if(SEmpty(s)) return 0;
             }
         }
     }
 
     else if(symbol == ex_reduction){ // R ---> R "operator" R
-        char* operand_1 = STopString(s);
+        Tstring operand_1;
+        Tstring operand_2;
+
+        str_create_init(&(operand_1),STopString(s));
+
         str_rewrite_data(ret_string, "pom");
         SPop(s);
         symbol = STopType(s);
         int operator = symbol;
+
         if(symbol == ex_mul   || symbol == ex_plus     || symbol == ex_minus  ||
            symbol == ex_div   || symbol == ex_wholeDiv || symbol == ex_equal  ||
            symbol == ex_notEq || symbol == ex_less     || symbol == ex_lessEq ||
@@ -332,14 +326,18 @@ int expresion_reduction(TStack *s, int print_command, int reduce_counter, Tstrin
             
             symbol = STopType(s);
             if(symbol == ex_reduction){
-                char* operand_2 = STopString(s);
+                str_create_init(&(operand_2),STopString(s));
 
                 SPop(s);
                 if(SEmpty(s)){
-                    // TODO jak zjistim jestli je '=' prirazeni nebo porovnavani
-                    expr_gen(operator, operand_1, operand_2, ret_string->data, print_command);
+                    expr_gen(operator, operand_1.data, operand_2.data, ret_string->data, print_command);
+
+                    str_destroy(&(operand_1));
+                    str_destroy(&(operand_2));
                     return 0;
                 }
+                str_destroy(&(operand_1));
+                str_destroy(&(operand_2));
             }
         }
     }
@@ -367,9 +365,9 @@ bool precedent_analysis(int print_command) {
     	fprintf(stderr,"chyba mallocu\n");
     }
     STopString(&stack);
-    printf("Inicializovany stack\n\n" );
+    //printf("Inicializovany stack\n\n" );
     DBG_SPrint(&stack);
-    printf("\n");
+    //printf("\n");
     do{
     	stacked_operator = SActive(&stack);
 
@@ -384,7 +382,7 @@ bool precedent_analysis(int print_command) {
         switch (prec_table[stacked_operator][input_operator]){
             case EQ:
             {
-            	printf("case EQ\n\n");
+            	//printf("case EQ\n\n");
                 SPush(&stack, input_operator, token.t_str.data);
                 generate_token();
                 break;
@@ -392,7 +390,7 @@ bool precedent_analysis(int print_command) {
 
             case LT:
             {
-            	printf("case LT\n");
+            	//printf("case LT\n");
                 error = SPostActiveInsert(&stack, ex_rule_begin);
                 if (error < 0){
                 	fprintf(stderr, "neexistuje aktivni prvek\n");
@@ -401,12 +399,8 @@ bool precedent_analysis(int print_command) {
 
                 SPush(&stack, input_operator , token.t_str.data);
 
-                //STopString(&stack);
                 DBG_SPrint(&stack);
-
-                //printf("\n");
                 generate_token();
-                //STopString(&stack);
                 input_operator = set_operator();
                 if(input_operator < 0){
         			fprintf(stderr,"ERROR nevyhovujici symbol\n");
@@ -418,7 +412,7 @@ bool precedent_analysis(int print_command) {
             case GT:
             case XX:
             {
-            	printf("case GT\n");
+            	//printf("case GT\n");
                 TStack reduction_stack;
                 SInit(&reduction_stack);
 
@@ -436,7 +430,6 @@ bool precedent_analysis(int print_command) {
                     return false;
                 }
 
-                printf("reduced_string %s\n", ret_string.data);
                 reduce_counter++;
 
                 SPop(&stack);
@@ -445,7 +438,7 @@ bool precedent_analysis(int print_command) {
                 SPush(&stack, ex_reduction, ret_string.data); //TODO: co ches?
 
                 DBG_SPrint(&stack);
-                printf("\n");
+                //printf("\n");
                 break;
             }
 
@@ -455,7 +448,7 @@ bool precedent_analysis(int print_command) {
 
     }while ((SActive(&stack) != ex_dollar ) || (input_operator != ex_dollar));
     
-    printf("opoustim case\n");
+    //printf("opoustim case\n");
     str_destroy(&ret_string);
     SClean(&stack);
 
