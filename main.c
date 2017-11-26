@@ -23,17 +23,38 @@ void DBG_SPrint(TStack *s){
     }
       printf("|  STRING\n");
 }
- 
+
+int expresion_reduction(TStack *s, Tstring *ret_string) 
+{
+    str_rewrite_data(ret_string, STopString(s));
+
+    SPop(s);
+    return 0;
+}
+
+int precedence_analysis() 
+{
+    TStack stack;
+    SInit(&stack);
+
+    SPush(&stack, 1, "jedna");
+    SPush(&stack, 2, "dva");
+
+    Tstring ret_string;
+    str_create(&ret_string);
+
+    expresion_reduction(&stack, &ret_string);
+    printf("reduced_string: %s\n", ret_string.data);
+
+    str_destroy(&ret_string);
+    SClean(&stack);
+
+}
 
 int main() 
-{
-    TStack s;
-    SInit(&s);
+{ // parser
 
-    SPush(&s, 1, "a");
-    const char * top = STopString(&s);
-    SPop(&s);
-    printf("tady '%s'\n", top);
+    precedence_analysis();
 
     return 0;
 }
