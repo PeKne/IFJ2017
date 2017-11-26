@@ -3,7 +3,7 @@
 # -Wall -Wextra -Werror -pedantic
 CC=gcc
 CFLAGS=-std=gnu99 
-OBJ=main.o stack.o errors.o 
+OBJ=main.o stack.o errors.o strings.o
 
 all: $(OBJ)
 	$(CC) $(CFLAGS) $(OBJ) -lm -o proj

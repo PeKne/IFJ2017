@@ -4,6 +4,7 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include <stdbool.h>
+#include "strings.h"
 
 #define err_malloc -1
 #define err_StackEmpty -2
@@ -58,7 +59,7 @@ enum {
 
 typedef struct tselem {
 	int type;
-	const char * string;
+	Tstring string;
 	struct tselem *prevPtr;
 	struct tselem *nextPtr;
 } TSElem;
@@ -75,11 +76,11 @@ typedef struct {
 int isTerminal (int symbol);
 void SInit (TStack *s);
 bool SEmpty (TStack *s);
-int SPush (TStack *s, int tokenType ,const char* string);
+int SPush (TStack *s, int tokenType , char* string);
 int SPostActiveInsert (TStack *s, int tokenType);
 int SPop (TStack *s);
 int STopType (TStack *s);
-const char* STopString (TStack *s);
+char* STopString (TStack *s);
 int SActive(TStack *s);
 void SClean (TStack *s);
 
