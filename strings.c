@@ -106,7 +106,7 @@ int str_append_str(Tstring *target, Tstring *to_append)
     return 0;
 }
 
-int str_create_init(Tstring *str, const char *data)
+int str_create_init(Tstring *str, char *data)
 {
     int length = strlen(data);
     str->data = ((char *) malloc(sizeof(char) * length+1));
