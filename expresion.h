@@ -51,7 +51,7 @@ void SClean (TStack *s);
 
 bool precedent_analysis(int print_command);
 int set_operator();
-char* expresion_reduction(TStack *stack, int print_command, int reduce_counter);
+int expresion_reduction(TStack *s, int print_command, int reduce_counter, Tstring *ret_string);
 
 typedef enum {
 	LT, // <

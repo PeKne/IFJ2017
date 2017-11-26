@@ -9,7 +9,7 @@ typedef struct tstring{
     char *data;
 } Tstring;
 
-// vytvori string (naalokuje 15 bytu, pote pridava)      
+// vytvori string (naalokuje ALLOC_CHUNK bytu, pote pridava)      
 int str_create(Tstring *str);  
 
 // vytvori string a alokuje mu velikost size (spec jako specific)
@@ -37,5 +37,6 @@ int str_create_init(Tstring *str, char *data);
 // v pripade, ze index je vyssi nez delka pole neudela nic
 int str_delete_index(Tstring *str, int index);
 
-
+// prepise data ve stringu na 'data'.
+int str_rewrite_data(Tstring *str, char *data);
 #endif

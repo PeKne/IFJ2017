@@ -30,15 +30,6 @@ int SPush (TStack *s, int tokenType, char* string)
 
     newElemPtr->type = tokenType;
     
-    /*int length = strlen(string);
-    char* new_string = (char*) malloc((++length)*sizeof(char));
-    if (new_string == NULL){
-      return err_malloc;
-    }*/
-    
-
-    /*strcpy(new_string, string);
-    newElemPtr->string = new_string;*/
     printf("str push:%s\n", string);
     str_create_init(&(newElemPtr->string), string);
     printf("push: %s\n",newElemPtr->string.data);
@@ -68,15 +59,6 @@ int SPostActiveInsert (TStack *s, int tokenType)
     if ( (newElemPtr = ((TSElem *) malloc(sizeof(TSElem)))) == NULL )
         return err_malloc;
 
-    /*char* new_string = (char*) malloc(2*sizeof(char));
-    if (new_string == NULL){
-      free(newElemPtr);
-      return err_malloc;
-    }
-
-    strcpy(new_string, " ");
-    newElemPtr->string = new_string;*/
-
     str_create_init(&(newElemPtr->string), " ");
     printf("postInsert: %s\n",newElemPtr->string.data);
 
@@ -104,7 +86,6 @@ int SPop (TStack *s)
 
         s->topPtr = elemPtr->prevPtr; // prenese top na dalsi prvek
 
-      //  free((char*)elemPtr->string);
         while ((activeElemPtr->prevPtr != NULL) &&
                 !isTerminal(activeElemPtr->type))
         {
@@ -287,23 +268,22 @@ int set_operator(){
     }
 }
 
-char* expresion_reduction(TStack *s, int print_command, int reduce_counter) {
+int expresion_reduction(TStack *s, int print_command, int reduce_counter, Tstring *ret_string) {
 
     printf("\nREDUKCNI STACK: \n");
     DBG_SPrint(s);
-    Tstring ret_string;
 
-    char* return_string;
     int symbol = STopType(s);
 
     if(symbol == ex_ident || symbol == ex_num ||
        symbol == ex_bool  || symbol == ex_str){ // R ---> i
          // do return stringu se uklada string identifikatoru, cisla, true/false nebo retezce
+        
         char * topS = STopString(s);
         printf("top %s\n",topS );
-        //strcpy(return_string, STopString(s)); TOTO BYCH CHTEL *******************************************
-        return_string = STopString(s); // TOTO JE SPATNE***************************************************
-        printf("return_string expr '%s'\n", return_string);
+
+        str_rewrite_data(ret_string, STopString(s));
+        printf("return_string expr '%s'\n", ret_string->data);
         
         /*if (print_command) {
             if (symbol == ex_str) {
@@ -315,8 +295,8 @@ char* expresion_reduction(TStack *s, int print_command, int reduce_counter) {
 
         SPop(s);
             if(SEmpty(s)){
-                printf("return_string expr '%s'\n", return_string);
-                return return_string;
+                printf("return_string expr po POP '%s'\n", ret_string->data);
+                return 0;
             }
     }
 
@@ -324,7 +304,7 @@ char* expresion_reduction(TStack *s, int print_command, int reduce_counter) {
         SPop(s);
         symbol = STopType(s);
         if(symbol == ex_reduction){
-            return_string = STopString(s);
+            str_rewrite_data(ret_string, STopString(s));
 
             SPop(s);
             symbol = STopType(s);
@@ -332,7 +312,7 @@ char* expresion_reduction(TStack *s, int print_command, int reduce_counter) {
             if(symbol == ex_rightBrac){
               SPop(s);
                 if(SEmpty(s)){
-                return return_string;
+                return 0;
                 }
             }
         }
@@ -340,7 +320,7 @@ char* expresion_reduction(TStack *s, int print_command, int reduce_counter) {
 
     else if(symbol == ex_reduction){ // R ---> R "operator" R
         char* operand_1 = STopString(s);
-        return_string = "pom";
+        str_rewrite_data(ret_string, "pom");
         SPop(s);
         symbol = STopType(s);
         int operator = symbol;
@@ -357,14 +337,14 @@ char* expresion_reduction(TStack *s, int print_command, int reduce_counter) {
                 SPop(s);
                 if(SEmpty(s)){
                     // TODO jak zjistim jestli je '=' prirazeni nebo porovnavani
-                    expr_gen(operator, operand_1, operand_2, return_string, print_command);
-                    return return_string;
+                    expr_gen(operator, operand_1, operand_2, ret_string->data, print_command);
+                    return 0;
                 }
             }
         }
     }
 
-    return NULL;
+    return 1;
 
 }
 
@@ -372,6 +352,10 @@ bool precedent_analysis(int print_command) {
     char* top;//DEBUG
     TStack stack;
     SInit(&stack);
+
+    Tstring ret_string;
+    str_create(&ret_string);
+
     int reduce_counter = 0;
 
     int error;
@@ -417,12 +401,12 @@ bool precedent_analysis(int print_command) {
 
                 SPush(&stack, input_operator , token.t_str.data);
 
-                STopString(&stack);
+                //STopString(&stack);
                 DBG_SPrint(&stack);
 
                 //printf("\n");
                 generate_token();
-                STopString(&stack);
+                //STopString(&stack);
                 input_operator = set_operator();
                 if(input_operator < 0){
         			fprintf(stderr,"ERROR nevyhovujici symbol\n");
@@ -443,21 +427,22 @@ bool precedent_analysis(int print_command) {
                     SPop(&stack);
 
                 }
-                char* reduced_string = expresion_reduction(&reduction_stack, print_command, reduce_counter);
-                printf("reduced_string %s\n", reduced_string);
-                reduce_counter++;
+                error = expresion_reduction(&reduction_stack, print_command, reduce_counter, &ret_string);
                 SClean(&reduction_stack);
-                if(reduced_string == NULL){
+                
+                if(error){
                     fprintf(stderr, "ERROR neexistujici pravidlo\n");
                     SClean(&stack);
                     return false;
                 }
 
+                printf("reduced_string %s\n", ret_string.data);
+                reduce_counter++;
 
                 SPop(&stack);
                 stacked_operator = SActive(&stack);
                 
-                SPush(&stack, ex_reduction, reduced_string); //TODO: co ches?
+                SPush(&stack, ex_reduction, ret_string.data); //TODO: co ches?
 
                 DBG_SPrint(&stack);
                 printf("\n");
@@ -469,7 +454,9 @@ bool precedent_analysis(int print_command) {
 
 
     }while ((SActive(&stack) != ex_dollar ) || (input_operator != ex_dollar));
+    
     printf("opoustim case\n");
+    str_destroy(&ret_string);
     SClean(&stack);
 
     return true;
