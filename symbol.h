@@ -83,6 +83,7 @@ int retrieve_function_data(char *function_name);
 int variable_exist(char *variable_name);
 
 int check_variable_type(char *variable_name, Tstate state);
+Tstate return_variable_type(char *variable_name);
 int check_variable_inicialized(char *variable_name);
 
 

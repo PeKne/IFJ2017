@@ -557,7 +557,7 @@ bool rule_assign(Tstring id){ // stav <assign>
     	}
 
     else if(token.t_state == st_id){ // simulace pravidla 23.
-        htab_listitem *item = htab_find((p == 1 ? global_data->local_symbol_table : global_table), token.t_str.data);
+        htab_listitem *item = htab_find(global_table, token.t_str.data);
         if(item == NULL) {
             return ERR_SEM_PROG;
         }
