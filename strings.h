@@ -31,7 +31,7 @@ int str_pop_char(Tstring *str);
 int str_append_str(Tstring *target, Tstring *to_append);
 
 // alokuje a inicializuje string tak, aby hned obsahoval data
-int str_create_init(Tstring *str, const char *data);
+int str_create_init(Tstring *str, char *data);
 
 // smaze znak na pozici 'index' a posune retezec tak, aby zaplnil volne misto
 // v pripade, ze index je vyssi nez delka pole neudela nic
