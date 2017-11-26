@@ -1,5 +1,7 @@
 scope 'Hlavni telo programu
-dim a as integer
-a = 1
+dim e as integer
+dim d as integer
+dim x as integer
 
+d = e + x - d
 END SCOPE

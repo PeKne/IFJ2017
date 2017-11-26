@@ -21,7 +21,7 @@ bool precedent_analysis();
 
 typedef struct tselem {
 	int type;
-	const char * string;
+	Tstring string;
 	struct tselem *prevPtr;
 	struct tselem *nextPtr;
 } TSElem;
@@ -38,11 +38,11 @@ typedef struct {
 int isTerminal (int symbol);
 void SInit (TStack *s);
 bool SEmpty (TStack *s);
-int SPush (TStack *s, int tokenType ,const char* string);
+int SPush (TStack *s, int tokenType , char* string);
 int SPostActiveInsert (TStack *s, int tokenType);
 int SPop (TStack *s);
 int STopType (TStack *s);
-const char* STopString (TStack *s);
+char* STopString (TStack *s);
 int SActive(TStack *s);
 void SClean (TStack *s);
 
@@ -51,7 +51,7 @@ void SClean (TStack *s);
 
 bool precedent_analysis(int print_command);
 int set_operator();
-const char* expresion_reduction(TStack *stack, int print_command, int reduce_counter);
+int expresion_reduction(TStack *s, int print_command, int reduce_counter, Tstring *ret_string);
 
 typedef enum {
 	LT, // <

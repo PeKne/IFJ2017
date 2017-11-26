@@ -242,7 +242,7 @@ int generate_token()
             case st_esc:
             {  
                 if ((c == '"') || (c == 'n') || (c == '\\')) {
-                    const char * esc;
+                    char * esc;
 
                     if      (c == '"')  esc = "\\034";
                     else if (c == 'n')  esc = "\\010";
