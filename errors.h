@@ -25,6 +25,6 @@
                                 __LINE__, __func__, __VA_ARGS__); } while (0)
 
 /* Pouzití: Nad #include "errors.h" #define DUBUG
-   Výpisy:  debug_print("%s\n", "Popis chyby");
+   Výpisy:  debug_print("%s\n", "Popis chyby");*/
 
 #endif
