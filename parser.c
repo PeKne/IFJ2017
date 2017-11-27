@@ -393,7 +393,10 @@ int rule_stat(){ // stav <stat>
                         if((return_value = rule_type(data)) == 0)
                     if((return_value = rule_eval()) == 0){
                     variable_data_to_table((p == 1 ? global_data->local_symbol_table : global_table), data);
-                    printf("DEFVAR %s\n", ident.data);///
+
+                    char* context = (p == 0 ? "TF@" : "LF@");
+                    printf("DEFVAR %s%s\n", context, ident.data);///
+
                     str_destroy(&ident);///
                         return_value = 0;
                 }
@@ -428,8 +431,9 @@ int rule_stat(){ // stav <stat>
                 printf("Not defined variable\n");
                 return ERR_SEM_PROG; //Premmenna nebola vramci danej funkcie deklarovana
             }
-            printf("TYPE TF@pomString TF@%s\n",token.t_str.data);///
-            printf("READ TF@%s, TF@pomString\n",token.t_str.data);///
+            char* context = (p == 0 ? "TF@" : "LF@");
+            printf("TYPE GF@&pomString %s%s\n",token.t_str.data);///
+            printf("READ %s%s, GF@&pomString\n",token.t_str.data);///
             if(generate_token() != 0) return ERR_LEX;
             return_value = 0;
         }
@@ -456,7 +460,7 @@ int rule_stat(){ // stav <stat>
         if(generate_token() != 0) return ERR_LEX;
 
         if((return_value = precedent_analysis(print_command)) == 0){
-            printf("JUMPIFNEQ else1 TF@pomint true\n");///
+            printf("JUMPIFNEQ else1 TF@&pomInteger true\n");///
             if(token.t_state == st_then){
                 if(generate_token() != 0) return ERR_LEX;
 

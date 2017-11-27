@@ -7,11 +7,7 @@ extern int p;
 
 void expr_gen(int operator, char* operand_1, char* operand_2, char* destination, int print_command) {
 
-    char* context;
-    if (p == 0)
-        context = "TF@";
-    else
-        context = "LF@";
+    char* context = (p == 0 ? "TF@" : "LF@");
     
     switch(operator) {
         
