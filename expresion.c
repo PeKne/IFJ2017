@@ -1,9 +1,11 @@
 #define DEBUG
 
-#include "expresion.h"
-#include "code_gen_expres.h"
 #include <stdio.h>
 #include <stdlib.h>
+#include "expresion.h"
+#include "code_gen_expres.h"
+
+#include "symbol.h"
 
  /**********************************ZASOBNIKOVE-OPERACE*********************************/
 /**************************************************************************************/
@@ -269,7 +271,8 @@ int set_operator(){
 }
 
 int expresion_reduction(TStack *s, int print_command, int reduce_counter, Tstring *ret_string) {
-
+    Tstate var_type;
+    char * pom_int = "pomInt";
     //printf("\nREDUKCNI STACK: \n");
     DBG_SPrint(s);
 
@@ -283,11 +286,18 @@ int expresion_reduction(TStack *s, int print_command, int reduce_counter, Tstrin
         
         if (print_command) {
             if (symbol == ex_str) {
-                printf("WRITE string@%s\n",ret_string->data);
-            } else printf("WRITE TF@%s\n",ret_string->data); 
+                 printf("WRITE string@%s\n",ret_string->data);                
+            } else { 
+                printf("WRITE TF@%s\n",ret_string->data);
+            }
         }
-        else if (reduce_counter == 0)
-            printf("MOV TF@pom TF@%s\n", ret_string->data);
+        else if (reduce_counter == 0) {
+            var_type = return_variable_type(ret_string->data);
+            printf("var:%s, typ:%d\n",ret_string->data, var_type );
+            if (var_type == st_integer) 
+                printf("MOV TF@%s TF@%s\n", pom_int, ret_string->data);
+        }
+        printf("var:%s\n",ret_string->data);
 
         SPop(s);
         if(SEmpty(s)) return 0;
