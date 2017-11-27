@@ -310,7 +310,19 @@ Tstate return_variable_type(char *variable_name)
 		return 0;
 	}
 
-	return item->pointer.variable->type;
+	switch(item->pointer.variable->type) {
+		case variable_integer:
+			return st_integer;
+
+		case variable_double:
+			return st_double;
+
+		case variable_string:
+			return st_string;
+
+		default:
+			return 0;
+	}
 }
 
 int check_variable_inicialized(char *variable_name)
