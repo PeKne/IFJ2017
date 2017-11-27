@@ -1,3 +1,5 @@
+#define DEBUG
+
 #include "expresion.h"
 #include "code_gen_expres.h"
 #include <stdio.h>
