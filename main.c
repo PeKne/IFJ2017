@@ -20,31 +20,39 @@ int main() {
     if ((error = str_create(&(token.t_str))) != 0)
         return error;
     token.t_line = 1;
-    bool parser;
+    int parser;
     parser = rule_start_state();
 
-    if (parser == false){
-    	str_destroy(&(token.t_str));
+    if (parser != 0){
+    	error = parser;
+      switch (error) {
+        case 1:
+          printf("ERROR - 1 - chyba v programu v rámci lexikální analýzy (chybná struktura aktuálního lexému).\n");
+          break;
+        case 2:
+          printf("ERROR - 2 - chyba v programu v rámci syntaktické analýzy (chybná syntaxe programu).\n");
+          break;
+        case 3:
+          printf("ERROR - 3 - sémantická chyba v programu – nedefinovaná funkce/proměnná, pokus o redefinici funkce/proměnné, atd.\n");
+          break;
+        case 4:
+          printf("ERROR -  4 - sémantická chyba typové kompatibility v aritmetických, řetězcových a relačních výrazech, příp. špatný počet či typ parametrů u volání funkce.\n");
+          break;
+        case 6:
+          printf("ERROR -  6 - ostatní sémantické chyby.\n");
+          break;
+        case 99:
+          printf("ERROR -  99 - interní chyba překladače tj. neovlivněná vstupním programem (např. chyba alokace paměti, atd.).\n");
+          break;
+      }
     	printf("ERROR on line %d\n", token.t_line);
-    	return -1;
-    } else printf("\n\n\nPARSER PROBEHL USPESNE\n");
 
-    // while (1)
-    // {
-    //     error = generate_token();
-    //     if (error) {
-    //         break;
-    //     } else if (token.t_state == st_eof) {
-    //         printf("EOF\n");
-    //         break;
-    //     }
+    }
+    else
+      printf("\n\n\nPARSER PROBEHL USPESNE\n");
 
-    //     printf("token: '%d', str: '%s'\n", token.t_state, token.t_str.data);
-    //         //printf("str:%s delka:%d vel.:%d\n\n", token.t_str.data, token.t_str.length, token.t_str.size);
-
-    // }
     str_destroy(&(token.t_str));
-    
+
     htab_free(global_table);
     free_data_function(global_data);
 
