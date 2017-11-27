@@ -44,13 +44,13 @@ void expr_gen(int operator, char* operand_1, char* operand_2, char* destination,
 
         case ex_equal:
         {
-            printf("EQ %s%sBool %s%s %s%s\n", context, destination, context, operand_1, context, operand_2);
+            printf("EQ %s%sInteger %s%s %s%s\n", context, destination, context, operand_1, context, operand_2);
             break;
         }
 
         case ex_less:
         {
-            printf("LT %s%sBool %s%s %s%s\n", context, destination, context, operand_1, context, operand_2);
+            printf("LT %s%sInteger %s%s %s%s\n", context, destination, context, operand_1, context, operand_2);
             break;
         }
 

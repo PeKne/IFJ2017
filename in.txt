@@ -3,6 +3,6 @@ dim e as integer
 dim d as integer
 dim x as integer
 
-e = d
+e = d + x + e
 
 END SCOPE

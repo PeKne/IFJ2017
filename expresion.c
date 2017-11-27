@@ -272,7 +272,16 @@ int set_operator(){
 
 int expresion_reduction(TStack *s, int print_command, int reduce_counter, Tstring *ret_string) {
     Tstate var_type;
-    char * pom_int = "pomInt";
+    char * pom_integer= "&pomInt";
+    char * pom_double = "&pomDouble";
+    char * pom_string = "&pomString";
+
+    char* context;
+    if (p == 0)
+        context = "TF@";
+    else
+        context = "LF@";
+
     //printf("\nREDUKCNI STACK: \n");
     DBG_SPrint(s);
 
@@ -288,16 +297,22 @@ int expresion_reduction(TStack *s, int print_command, int reduce_counter, Tstrin
             if (symbol == ex_str) {
                  printf("WRITE string@%s\n",ret_string->data);                
             } else { 
-                printf("WRITE TF@%s\n",ret_string->data);
+                printf("WRITE %s%s\n",context, ret_string->data);
             }
         }
         else if (reduce_counter == 0) {
             var_type = return_variable_type(ret_string->data);
-            printf("var:%s, typ:%d\n",ret_string->data, var_type );
+            if (var_type == 0) {
+                fprintf(stderr, "expresion reduction, variable not declared\n");
+                return 0; //chyba
+            }
             if (var_type == st_integer) 
-                printf("MOV TF@%s TF@%s\n", pom_int, ret_string->data);
+                printf("MOV %s%s %s%s\n", context, pom_integer, context, ret_string->data);
+            else if (var_type == st_double)
+                printf("MOV %s%s %s%s\n", context, pom_double, context, ret_string->data);
+            else if (var_type == st_string)
+                printf("MOV %s%s %s%s\n", context, pom_string, context, ret_string->data);
         }
-        printf("var:%s\n",ret_string->data);
 
         SPop(s);
         if(SEmpty(s)) return 0;
@@ -325,7 +340,8 @@ int expresion_reduction(TStack *s, int print_command, int reduce_counter, Tstrin
 
         str_create_init(&(operand_1),STopString(s));
 
-        str_rewrite_data(ret_string, "pom");
+        str_rewrite_data(ret_string, pom_integer);
+
         SPop(s);
         symbol = STopType(s);
         int operator = symbol;
