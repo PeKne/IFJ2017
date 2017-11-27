@@ -33,7 +33,7 @@ int SPush (TStack *s, int tokenType, char* string)
         return err_malloc;
 
     newElemPtr->type = tokenType;
-    
+
     ////printf("str push:%s\n", string);
     str_create_init(&(newElemPtr->string), string);
     ////printf("push: %s\n",newElemPtr->string.data);
@@ -95,7 +95,7 @@ int SPop (TStack *s)
             activeElemPtr = activeElemPtr->prevPtr;
         }
         s->activePtr = activeElemPtr;
-        
+
         str_destroy(&(elemPtr->string));
         free(elemPtr);
     }
@@ -258,7 +258,7 @@ int set_operator(){
         case st_print:
         case st_if:
         case st_do:
-        case st_then: 
+        case st_then:
         case st_return:
         case st_end:
 
@@ -292,11 +292,11 @@ int expresion_reduction(TStack *s, int print_command, int reduce_counter, Tstrin
          // do return stringu se uklada string identifikatoru, cisla, true/false nebo retezce
 
         str_rewrite_data(ret_string, STopString(s));
-        
+
         if (print_command) {
             if (symbol == ex_str) {
-                 printf("WRITE string@%s\n",ret_string->data);                
-            } else { 
+                 printf("WRITE string@%s\n",ret_string->data);
+            } else {
                 printf("WRITE %s%s\n",context, ret_string->data);
             }
         }
@@ -306,7 +306,7 @@ int expresion_reduction(TStack *s, int print_command, int reduce_counter, Tstrin
                 fprintf(stderr, "expresion reduction, variable not declared\n");
                 return 0; //chyba
             }
-            if (var_type == st_integer) 
+            if (var_type == st_integer)
                 printf("MOV %s%s %s%s\n", context, pom_integer, context, ret_string->data);
             else if (var_type == st_double)
                 printf("MOV %s%s %s%s\n", context, pom_double, context, ret_string->data);
@@ -351,7 +351,7 @@ int expresion_reduction(TStack *s, int print_command, int reduce_counter, Tstrin
            symbol == ex_notEq || symbol == ex_less     || symbol == ex_lessEq ||
            symbol == ex_great || symbol == ex_greatEq){
             SPop(s);
-            
+
             symbol = STopType(s);
             if(symbol == ex_reduction){
                 str_create_init(&(operand_2),STopString(s));
@@ -406,7 +406,7 @@ bool precedent_analysis(int print_command) {
         if(input_operator < 0){
         	fprintf(stderr, "ERROR nevyhovujici symbol\n");
         }
-
+        printf("pred swtichem\n" );
         switch (prec_table[stacked_operator][input_operator]){
             case EQ:
             {
@@ -451,7 +451,7 @@ bool precedent_analysis(int print_command) {
                 }
                 error = expresion_reduction(&reduction_stack, print_command, reduce_counter, &ret_string);
                 SClean(&reduction_stack);
-                
+
                 if(error){
                     fprintf(stderr, "ERROR neexistujici pravidlo\n");
                     SClean(&stack);
@@ -462,7 +462,7 @@ bool precedent_analysis(int print_command) {
 
                 SPop(&stack);
                 stacked_operator = SActive(&stack);
-                
+
                 SPush(&stack, ex_reduction, ret_string.data); //TODO: co ches?
 
                 DBG_SPrint(&stack);
@@ -475,10 +475,10 @@ bool precedent_analysis(int print_command) {
 
 
     }while ((SActive(&stack) != ex_dollar ) || (input_operator != ex_dollar));
-    
+
     //printf("opoustim case\n");
     str_destroy(&ret_string);
     SClean(&stack);
 
-    return true;
+    return false;
 }
