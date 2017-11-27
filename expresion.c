@@ -300,7 +300,7 @@ int expresion_reduction(TStack *s, int print_command, int reduce_counter, Tstrin
                 printf("WRITE %s%s\n",context, ret_string->data);
             }
         }
-        else if (reduce_counter == 0) {
+        else if (reduce_counter == 0 && symbol == ex_ident) {
             var_type = return_variable_type(ret_string->data);
             if (var_type == 0) {
                 fprintf(stderr, "expresion reduction, variable not declared\n");

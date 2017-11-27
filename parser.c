@@ -41,8 +41,7 @@ int rule_scope(){ // pravidlo <scope>
         if(generate_token() != 0) return ERR_LEX;
 
         if((return_value = rule_st_list()) == 0){
-
-                    if(skip_blank_lines() != 0) return ERR_LEX;
+            if(skip_blank_lines() != 0) return ERR_LEX;
             if(token.t_state == st_end){
                 if(generate_token() != 0) return ERR_LEX;
 
@@ -69,7 +68,7 @@ int rule_function(){ // stav <function>
     }
     else if(token.t_state == st_declare){ //simulace pravidla 4.
             if((return_value = rule_function_dec()) == 0)
-            if((return_value = rule_function()) == 0)
+                if((return_value = rule_function()) == 0)
                     return_value = 0;
     }
     else if(token.t_state == st_scope){ //simulace pravidla 5.
@@ -123,10 +122,8 @@ int rule_function_dec(){ // stav <function-dec>
                         }
                     }
                 }
-
             }
         }
-
     }
 
     return return_value;
@@ -220,8 +217,8 @@ int rule_par(function_data *data_f){ // stav <par>
             if((return_value = rule_arg_type(data_f)) == 0)
                 if((return_value = rule_type(data)) == 0)
                     if((return_value = rule_next_par(data_f)) == 0){
-                variable_data_to_table(data_f->local_symbol_table, data);
-                return_value = 0;
+                        variable_data_to_table(data_f->local_symbol_table, data);
+                        return_value = 0;
             }
         }
     }
