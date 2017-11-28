@@ -13,6 +13,7 @@
 #define err_StackEmpty -2
 #define err_nullPtr -3
 
+
 //Definice datovych typu pr zasobnik
 //#-------------------------------------------#//
 

@@ -263,7 +263,6 @@ int set_operator(){
         case st_then:
         case st_return:
         case st_end:
-
         	return ex_dollar;
 
         default:
@@ -349,7 +348,6 @@ int expresion_reduction(TStack *s, int print_command, int reduce_counter, Tstrin
         Tstring operand_2;
 
         str_create_init(&(operand_1),STopString(s));
-
         str_rewrite_data(ret_string, pom_integer);
 
         SPop(s);
@@ -370,7 +368,6 @@ int expresion_reduction(TStack *s, int print_command, int reduce_counter, Tstrin
                 SPop(s);
                 if(!SEmpty(s)){
                     expr_gen(operator, operand_1.data, operand_2.data, ret_string->data, print_command);
-
                     str_destroy(&(operand_1));
                     str_destroy(&(operand_2));
                     return -1;

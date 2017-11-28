@@ -69,7 +69,7 @@ void set_value_variable(variable_data *data, Ttoken *token)
 			}
 
 		case variable_string:
-			strcpy(data->value.value_string, token->t_str.data);
+			str_append_str(&data->value.value_string, &token->t_str);
 			data->inicialized = 1;
 			break;
 
@@ -95,6 +95,9 @@ void variable_data_to_table(htab_t *table, variable_data *data)
 
 void free_data_variable(variable_data *data)
 {
+	if(data->type == variable_string && data->inicialized == 1) {
+		str_destroy(&data->value.value_string);
+	}
 	free(data->name);
 	free(data);
 }
