@@ -25,7 +25,7 @@ typedef struct variable_data {
 	union {
 		int value_integer;
 		double value_double;
-		char value_string[256];
+		Tstring value_string;
 	} value;
 	char *name;
 } variable_data;
