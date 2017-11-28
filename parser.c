@@ -193,6 +193,11 @@ int rule_function_tail(){ // stav <function-tail>
         }
     }
 
+    set_defined_function(global_data);
+    if(push_function_data(global_data->name) != 1) {
+        printf("ERROR pushing data\n");
+        return ERR_SEM_OTHER;
+    }
     p = 0;
     ar_count = 0;
     return return_value;
@@ -379,7 +384,7 @@ int rule_stat(){ // stav <stat>
             if(item != NULL) {
                 return ERR_SEM_PROG; //Premmenna nebola vramci danej funkcie deklarovana
             }
-            free(item);
+            //free(item);
             variable_data *data = create_data_variable(&token);
             if(data == NULL) {
                 return ERR_INTERN;
@@ -562,7 +567,7 @@ int rule_assign(Tstring id){ // stav <assign>
 
 
     if(token.t_state == st_id){ // simulace pravidla 23.
-        htab_listitem *item = htab_find(global_table, token.t_str.data);
+        htab_listitem *item = htab_find((p == 1 ? global_data->local_symbol_table : global_table), token.t_str.data);
         if(item == NULL) { // tady konci vetsina vstupu TODO: OPRAVIT!
             printf("NULL\n" );
             return ERR_SEM_PROG;
@@ -574,7 +579,7 @@ int rule_assign(Tstring id){ // stav <assign>
           return return_value;
         }
         if(item->pointer.function->defined == 0) {//identifikator nedefinovane funkce
-            free(item);
+            printf("HERE IT GOES\n");
             return ERR_SEM_OTHER;
         }
 

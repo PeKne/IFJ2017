@@ -54,7 +54,7 @@ int main() {
     str_destroy(&(token.t_str));
 
     htab_free(global_table);
-    free_data_function(global_data);
+    free(global_data);
 
     return error;
 }

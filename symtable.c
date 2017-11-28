@@ -31,29 +31,27 @@ htab_t *htab_init(unsigned size)
 	return table;
 }
 
-htab_listitem *htab_find(htab_t *table, const char *key)
+htab_listitem *htab_find(htab_t *table, char *key)
 {
 	unsigned index = hash_function(key) % table->size;
 	htab_listitem *item = table->list[index];
 
-	if(item != NULL) {
-		while(item != NULL) {
-			if(strcmp(key, item->key) == 0) {
-				return item;
-			}
+	while(item != NULL) {
+		if(strcmp(key, item->key) == 0) {
+			return item;
+		}
 
-			if(item->next != NULL) {
-				item = item->next;
-			} else {
-				break;
-			}
+		if(item->next != NULL) {
+			item = item->next;
+		} else {
+			break;
 		}
 	}
 
 	return NULL;
 }
 
-htab_listitem *htab_lookup_add(htab_t *table, const char *key)
+htab_listitem *htab_lookup_add(htab_t *table, char *key)
 {
 	unsigned index = hash_function(key) % table->size;
 	htab_listitem *item = table->list[index];
