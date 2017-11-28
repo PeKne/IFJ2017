@@ -5,7 +5,7 @@
 
 extern int p;
 
-void expr_gen(int operator, char* operand_1, char* operand_2, char* destination, int print_command) {
+void expr_gen(int operator, char* operand_1, char* operand_2, char* destination, int instruction) {
 
     char* context = (p == 0 ? "TF@" : "LF@");
     
