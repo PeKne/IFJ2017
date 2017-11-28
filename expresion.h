@@ -59,27 +59,30 @@ typedef enum {
 }PrecTabValues;
 
 enum {
-/*1*/	ex_mul,
-/*2*/	ex_div,      /* / */
-/*3*/	ex_wholeDiv, /* \ */
-/*4*/	ex_plus,
-/*5*/	ex_minus,
-/*6*/	ex_equal, 	 /* =  */
-/*7*/	ex_notEq, 	 /* <> */
-/*8*/	ex_less,
-/*9*/	ex_lessEq,
-/*10*/	ex_great,
-/*11*/	ex_greatEq,
-/*12*/	ex_leftBrac, /* ( */
-/*13*/	ex_rightBrac,
-/*14*/	ex_ident,	 /* i */
-/*15*/	ex_integer,
-/*16*/	ex_double,
-/*17*/	ex_str,
-/*18*/	ex_bool,
-/*19*/	ex_dollar, // zacatek zpracovani vyrazu
-/*20*/	ex_reduction,
-/*21*/	ex_rule_begin, //prednostni symbol
+	ex_mul,
+	ex_div,      /* / */
+	ex_wholeDiv, /* \ */
+	ex_plus,
+	ex_minus,
+	ex_equal, 	 /* =  */
+	ex_notEq, 	 /* <> */
+	ex_less,
+	ex_lessEq,
+	ex_great,
+	ex_greatEq,
+	ex_leftBrac, /* ( */
+	ex_rightBrac,
+	ex_ident,	 /* i */
+	ex_integer,
+	ex_double,
+	ex_str,
+	ex_bool,
+	ex_dollar, // zacatek zpracovani vyrazu
+	ex_red_int,
+	ex_red_double,
+	ex_red_str,
+	ex_red_bool,
+	ex_rule_begin, //prednostni symbol
 } EXSymbols;
 
 #endif

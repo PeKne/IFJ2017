@@ -139,30 +139,60 @@ void SClean (TStack *s)
     }
 }
 
+const char* oper_strings[] = {"*", "/", "\\", "+", "-", "=", "<>", "<", "<=", ">", ">=", "(", ")", "i", "int", "double", "str", "bool", "$", "Ri","Rd","Rs","Rb", "]",};
+
+void DBG_SPrint(TStack *s){
+
+    if (SEmpty(s)) {
+      //  printf("stack is Empty\n");
+        return;
+    }
+
+    TSElem *elemPtr;
+    elemPtr = s->topPtr;
+    //printf("|TOP--->|%s", oper_strings[elemPtr->type]);
+    while(elemPtr->prevPtr != NULL){
+        elemPtr = elemPtr->prevPtr;
+        //printf("|%s", oper_strings[elemPtr->type]);
+    }
+    //printf("|  SYMBOL\n");
+
+    elemPtr = s->topPtr;
+    //printf("|TOP--->|%s", elemPtr->string.data);
+    while(elemPtr->prevPtr != NULL){
+        elemPtr = elemPtr->prevPtr;
+        //printf("|%s", elemPtr->string.data);
+    }
+  //  printf("|  STRING\n");
+}
+
 /***************************FUNKCE-PRECEDENCNI-ANALYZY*********************************/
 /**************************************************************************************/
-PrecTabValues prec_table[ex_dollar+2][ex_dollar+2] = {
-/*         *   /   \   +   -   =   <>  <   <=  >   >=  (   )   i   int db  sr  bl  $   R */
-/* *  */ { GT, GT, GT, GT, GT, GT, GT, GT, GT, GT, GT, LT, GT, LT, LT, LT, LT, LT, GT, LT },
-/* /  */ { GT, GT, GT, GT, GT, GT, GT, GT, GT, GT, GT, LT, GT, LT, LT, LT, LT, LT, GT, LT },
-/* \  */ { GT, GT, GT, GT, GT, GT, GT, GT, GT, GT, GT, LT, GT, LT, LT, LT, LT, LT, GT, LT },
-/* +  */ { LT, LT, LT, GT, GT, GT, GT, GT, GT, GT, GT, LT, GT, LT, LT, LT, LT, LT, GT, LT },
-/* -  */ { LT, LT, LT, GT, GT, GT, GT, GT, GT, GT, GT, LT, GT, LT, LT, LT, LT, LT, GT, LT },
-/* =  */ { LT, LT, LT, LT, LT, GT, GT, GT, GT, GT, GT, LT, GT, LT, LT, LT, LT, LT, GT, LT },
-/* <> */ { LT, LT, LT, LT, LT, GT, GT, GT, GT, GT, GT, LT, GT, LT, LT, LT, LT, LT, GT, LT },
-/* <  */ { LT, LT, LT, LT, LT, GT, GT, GT, GT, GT, GT, LT, GT, LT, LT, LT, LT, LT, GT, LT },
-/* <= */ { LT, LT, LT, LT, LT, GT, GT, GT, GT, GT, GT, LT, GT, LT, LT, LT, LT, LT, GT, LT },
-/* >  */ { LT, LT, LT, LT, LT, GT, GT, GT, GT, GT, GT, LT, GT, LT, LT, LT, LT, LT, GT, LT },
-/* >= */ { LT, LT, LT, LT, LT, GT, GT, GT, GT, GT, GT, LT, GT, LT, LT, LT, LT, LT, GT, LT },
-/* (  */ { LT, LT, LT, LT, LT, LT, LT, LT, LT, LT, LT, LT, EQ, LT, LT, LT, LT, LT, XX, LT },
-/* )  */ { GT, GT, GT, GT, GT, GT, GT, GT, GT, GT, GT, XX, GT, XX, XX, XX, XX, XX, XX, XX },
-/* i  */ { GT, GT, GT, GT, GT, GT, GT, GT, GT, GT, GT, XX, GT, XX, LT, LT, LT, LT, GT, XX },
-/* int*/ { GT, GT, GT, GT, GT, GT, GT, GT, GT, GT, GT, XX, GT, XX, XX, XX, XX, XX, GT, XX },
-/* db */ { GT, GT, GT, GT, GT, GT, GT, GT, GT, GT, GT, XX, GT, XX, XX, XX, XX, XX, GT, XX },
-/* sr */ { GT, GT, GT, GT, GT, GT, GT, GT, GT, GT, GT, XX, GT, XX, XX, XX, XX, XX, GT, XX },
-/* bl */ { GT, GT, GT, GT, GT, GT, GT, GT, GT, GT, GT, XX, GT, XX, XX, XX, XX, XX, GT, XX },
-/* $  */ { LT, LT, LT, LT, LT, LT, LT, LT, LT, LT, LT, LT, XX, LT, LT, LT, LT, LT, XX, LT },
-/* R  */ { GT, GT, GT, GT, GT, GT, GT, GT, GT, GT, GT, XX, GT, XX, LT, LT, LT, LT, GT, XX }
+PrecTabValues prec_table[ex_red_bool+1][ex_red_bool+1] = {
+/*         *   /   \   +   -   =   <>  <   <=  >   >=  (   )   i   int db  sr  bl  $   Ri  Rd  Rs  Rb*/
+/* *  */ { GT, GT, GT, GT, GT, GT, GT, GT, GT, GT, GT, LT, GT, LT, LT, LT, LT, LT, GT, LT, LT, LT, LT },
+/* /  */ { GT, GT, GT, GT, GT, GT, GT, GT, GT, GT, GT, LT, GT, LT, LT, LT, LT, LT, GT, LT, LT, LT, LT },
+/* \  */ { GT, GT, GT, GT, GT, GT, GT, GT, GT, GT, GT, LT, GT, LT, LT, LT, LT, LT, GT, LT, LT, LT, LT },
+/* +  */ { LT, LT, LT, GT, GT, GT, GT, GT, GT, GT, GT, LT, GT, LT, LT, LT, LT, LT, GT, LT, LT, LT, LT },
+/* -  */ { LT, LT, LT, GT, GT, GT, GT, GT, GT, GT, GT, LT, GT, LT, LT, LT, LT, LT, GT, LT, LT, LT, LT },
+/* =  */ { LT, LT, LT, LT, LT, GT, GT, GT, GT, GT, GT, LT, GT, LT, LT, LT, LT, LT, GT, LT, LT, LT, LT },
+/* <> */ { LT, LT, LT, LT, LT, GT, GT, GT, GT, GT, GT, LT, GT, LT, LT, LT, LT, LT, GT, LT, LT, LT, LT },
+/* <  */ { LT, LT, LT, LT, LT, GT, GT, GT, GT, GT, GT, LT, GT, LT, LT, LT, LT, LT, GT, LT, LT, LT, LT },
+/* <= */ { LT, LT, LT, LT, LT, GT, GT, GT, GT, GT, GT, LT, GT, LT, LT, LT, LT, LT, GT, LT, LT, LT, LT },
+/* >  */ { LT, LT, LT, LT, LT, GT, GT, GT, GT, GT, GT, LT, GT, LT, LT, LT, LT, LT, GT, LT, LT, LT, LT },
+/* >= */ { LT, LT, LT, LT, LT, GT, GT, GT, GT, GT, GT, LT, GT, LT, LT, LT, LT, LT, GT, LT, LT, LT, LT },
+/* (  */ { LT, LT, LT, LT, LT, LT, LT, LT, LT, LT, LT, LT, EQ, LT, LT, LT, LT, LT, XX, LT, LT, LT, LT },
+/* )  */ { GT, GT, GT, GT, GT, GT, GT, GT, GT, GT, GT, XX, GT, XX, XX, XX, XX, XX, XX, XX, XX, XX, XX },
+/* i  */ { GT, GT, GT, GT, GT, GT, GT, GT, GT, GT, GT, XX, GT, XX, LT, LT, LT, LT, GT, XX, XX, XX, XX },
+/* int*/ { GT, GT, GT, GT, GT, GT, GT, GT, GT, GT, GT, XX, GT, XX, XX, XX, XX, XX, GT, XX, XX, XX, XX },
+/* db */ { GT, GT, GT, GT, GT, GT, GT, GT, GT, GT, GT, XX, GT, XX, XX, XX, XX, XX, GT, XX, XX, XX, XX },
+/* sr */ { GT, GT, GT, GT, GT, GT, GT, GT, GT, GT, GT, XX, GT, XX, XX, XX, XX, XX, GT, XX, XX, XX, XX },
+/* bl */ { GT, GT, GT, GT, GT, GT, GT, GT, GT, GT, GT, XX, GT, XX, XX, XX, XX, XX, GT, XX, XX, XX, XX },
+/* $  */ { LT, LT, LT, LT, LT, LT, LT, LT, LT, LT, LT, LT, XX, LT, LT, LT, LT, LT, XX, LT, LT, LT, LT },
+/* Ri */ { GT, GT, GT, GT, GT, GT, GT, GT, GT, GT, GT, XX, GT, XX, LT, LT, LT, LT, GT, XX, XX, XX, XX },
+/* Rd */ { GT, GT, GT, GT, GT, GT, GT, GT, GT, GT, GT, XX, GT, XX, LT, LT, LT, LT, GT, XX, XX, XX, XX },
+/* Rs */ { GT, GT, GT, GT, GT, GT, GT, GT, GT, GT, GT, XX, GT, XX, LT, LT, LT, LT, GT, XX, XX, XX, XX },
+/* Rb */ { GT, GT, GT, GT, GT, GT, GT, GT, GT, GT, GT, XX, GT, XX, LT, LT, LT, LT, GT, XX, XX, XX, XX }
 };
 
 int set_operator(){
@@ -242,6 +272,7 @@ int set_operator(){
 }
 
 int expresion_reduction(TStack *s, int instruction, int reduce_counter, Tstring *ret_string) {
+    int reduction_type;
     Tstate var_type;
     char * pom_integer= "&pomInt";
     char * pom_double = "&pomDouble";
@@ -255,7 +286,6 @@ int expresion_reduction(TStack *s, int instruction, int reduce_counter, Tstring 
     if(symbol == ex_ident || symbol == ex_integer || symbol == ex_double ||
        symbol == ex_bool  || symbol == ex_str){ // R ---> i
          // do return stringu se uklada string identifikatoru, cisla, true/false nebo retezce
-
         str_rewrite_data(ret_string, STopString(s));
 
         if (instruction == ins_print) {
@@ -265,54 +295,53 @@ int expresion_reduction(TStack *s, int instruction, int reduce_counter, Tstring 
                 printf("WRITE %s%s\n",context, ret_string->data);
             }
         }
-
-        if (reduce_counter == 0)  // jen prirazeni napr. a = b
-        {
-            if (symbol == ex_ident) {
-                var_type = return_variable_type(ret_string->data);
-                if (var_type == 0) {
-                    fprintf(stderr, "expresion reduction, variable not declared\n");
-                    return 0; //chyba
-                }
-
-                if (var_type == st_integer)
-                    printf("MOV %s%s %s%s\n", context, pom_integer, context, ret_string->data);
-                else if (var_type == st_double)
-                    printf("MOV %s%s %s%s\n", context, pom_double, context, ret_string->data);
-                else if (var_type == st_string)
-                    printf("MOV %s%s %s%s\n", context, pom_string, context, ret_string->data);
-            }  
-
-            else if (symbol == ex_integer) {
-                printf("MOV %s%s int@%s\n", context, pom_integer, ret_string->data);
-            } else if (reduce_counter == 0 && symbol == ex_double) {
-                printf("MOV %s%s float@%s\n", context, pom_integer, ret_string->data);
+        else if (reduce_counter == 0 && symbol == ex_ident) {
+            var_type = return_variable_type(ret_string->data);
+            if (var_type == 0) {
+                fprintf(stderr, "expresion reduction, variable not declared\n");
+                return -1; //chyba
             }
+            if (var_type == st_integer)
+                printf("MOV %s%s %s%s\n", context, pom_integer, context, ret_string->data);
+            else if (var_type == st_double)
+                printf("MOV %s%s %s%s\n", context, pom_double, context, ret_string->data);
+            else if (var_type == st_string)
+                printf("MOV %s%s %s%s\n", context, pom_string, context, ret_string->data);
         }
-
-        printf("typ: %d\n", symbol);
-
+        else if (reduce_counter == 0 && symbol == ex_integer) {
+            printf("int\n");
+        } else if (reduce_counter == 0 && symbol == ex_double) {
+            printf("double\n");
+        }
         SPop(s);
-        if(SEmpty(s)) return 0;
+        if(!SEmpty(s)) return -1;
+
+        reduction_type = ex_red_int; // TODO: PETR MAREK sem si dopln jakej typ redukce vytvoris a bude pridan na halvni zasobnik.
     }
 
     else if(symbol == ex_leftBrac){ // R ---> (R)
         SPop(s);
+        int entry_reduction;
         symbol = STopType(s);
-        if(symbol == ex_reduction){
+        if(symbol == ex_red_int || symbol == ex_red_double||
+           symbol == ex_red_str || symbol == ex_red_bool){
             str_rewrite_data(ret_string, STopString(s));
-
+            entry_reduction = symbol;
             SPop(s);
             symbol = STopType(s);
 
             if(symbol == ex_rightBrac){
                 SPop(s);
-                if(SEmpty(s)) return 0;
+                if(SEmpty(s)) return -1;
             }
+
         }
+
+        reduction_type = entry_reduction;
     }
 
-    else if(symbol == ex_reduction){ // R ---> R "operator" R
+    else if(symbol == ex_red_int || symbol == ex_red_double||
+            symbol == ex_red_str || symbol == ex_red_bool){ // R ---> R "operator" R
         Tstring operand_1;
         Tstring operand_2;
 
@@ -327,31 +356,29 @@ int expresion_reduction(TStack *s, int instruction, int reduce_counter, Tstring 
            symbol == ex_div   || symbol == ex_wholeDiv || symbol == ex_equal  ||
            symbol == ex_notEq || symbol == ex_less     || symbol == ex_lessEq ||
            symbol == ex_great || symbol == ex_greatEq){
-            SPop(s);
 
+            SPop(s);
             symbol = STopType(s);
-            if(symbol == ex_reduction){
+            if(symbol == ex_red_int || symbol == ex_red_double||
+               symbol == ex_red_str || symbol == ex_red_bool){
                 str_create_init(&(operand_2),STopString(s));
 
                 SPop(s);
-                if(SEmpty(s)){
-                    var_type = return_variable_type(operand_1.data);
-                if (var_type == 0) {
-                    fprintf(stderr, "expresion reduction, variable not declared\n");
-                    return 0; //chyba
-                }
-                    expr_gen(operator, operand_1.data, operand_2.data, ret_string->data, instruction);
+                if(!SEmpty(s)){                    
                     str_destroy(&(operand_1));
                     str_destroy(&(operand_2));
-                    return 0;
+                    return -1;
                 }
+                expr_gen(operator, operand_1.data, operand_2.data, ret_string->data, instruction);
                 str_destroy(&(operand_1));
                 str_destroy(&(operand_2));
             }
         }
+
+        reduction_type = ex_red_int; // TODO: PETR MAREK sem si dopln jakej typ redukce vytvoris a bude pridan na halvni zasobnik.
     }
 
-    return 1;
+    return reduction_type;
 
 }
 
@@ -359,6 +386,7 @@ int expresion_reduction(TStack *s, int instruction, int reduce_counter, Tstring 
 int precedent_analysis(int instruction) {
     TStack stack;
     SInit(&stack);
+
 
     Tstring ret_string;
     str_create(&ret_string); //TODO: Petr Marek overit malloc
@@ -373,8 +401,8 @@ int precedent_analysis(int instruction) {
       SClean(&stack);
       return ERR_INTERN;
     }
-
     do{
+      DBG_SPrint(&stack);
     	stacked_operator = SActive(&stack); // nastavime aktivni prvek zasobniku
         if(stacked_operator < 0){// zasobnik je prazdny, ERROR
           str_destroy(&ret_string);
@@ -383,7 +411,7 @@ int precedent_analysis(int instruction) {
         }
 
         input_operator = set_operator(); //nastavime symbol vstupniho tokenu
-        if(input_operator < 0 || input_operator > ex_reduction){// nevyhovujici symbol na vstupu
+        if(input_operator < 0 || input_operator > ex_dollar){// nevyhovujici symbol na vstupu
           str_destroy(&ret_string);
           SClean(&stack);
           return ERR_SYN;
@@ -391,6 +419,7 @@ int precedent_analysis(int instruction) {
         switch (prec_table[stacked_operator][input_operator]){//porovnani operatoru v zasobniku a na vstupu
             case EQ:
             {
+                //printf("case EQ\n" );
                 error = SPush(&stack, input_operator, token.t_str.data); //vlozime vstupni symbol na zasobnik
                 if(error < 0){// nepodareny malloc prvnu zasobniku, ERROR
                   str_destroy(&ret_string);
@@ -409,6 +438,7 @@ int precedent_analysis(int instruction) {
 
             case LT:
             {
+                //printf("case LT\n" );
                 error = SPostActiveInsert(&stack, ex_rule_begin); // za aktivni prvek vlozime redukcni zavorku
                 if (error < 0){//nepovedlo se vlozit za aktivni prvek, ERROR
                   str_destroy(&ret_string);
@@ -430,7 +460,7 @@ int precedent_analysis(int instruction) {
                 }
 
                 input_operator = set_operator(); //nastavime symbol vstupniho tokenu
-                if(input_operator < 0 || input_operator > ex_reduction){// nevyhovujici symbol na vstupu
+                if(input_operator < 0 || input_operator > ex_dollar){// nevyhovujici symbol na vstupu
                   str_destroy(&ret_string);
                   SClean(&stack);
                   return ERR_SYN;
@@ -441,6 +471,7 @@ int precedent_analysis(int instruction) {
             case GT:
             case XX:
             {
+                //printf("case GT\n" );
                 TStack reduction_stack; // vytvorime pomocny redukcni zasobnik
                 SInit(&reduction_stack);
 
@@ -457,11 +488,12 @@ int precedent_analysis(int instruction) {
                     SPop(&stack); // popneme vrchol hlavniho zasobniku
                 }
 
-                error = expresion_reduction(&reduction_stack, instruction, reduce_counter, &ret_string); // redukujeme vyraz na pomocnem zasobniku
+                int reduced_symbol;
+                reduced_symbol = expresion_reduction(&reduction_stack, instruction, reduce_counter, &ret_string); // redukujeme vyraz na pomocnem zasobniku
 
                 SClean(&reduction_stack); // rusime pomocny zasobnik
 
-                if(error != 0){ // redukce se nezdarila
+                if(reduced_symbol < 0){ // redukce se nezdarila
                   str_destroy(&ret_string);
                   SClean(&stack);
                   return ERR_SYN;
@@ -478,7 +510,7 @@ int precedent_analysis(int instruction) {
                   return ERR_INTERN;
                 }
 
-                error = SPush(&stack, ex_reduction, ret_string.data); // vkladame redukovane pravidlo na zasobnik
+                error = SPush(&stack, reduced_symbol, ret_string.data); // vkladame redukvane pravidlo na zasobnik
                 if(error < 0){// nepodareny malloc prvnu zasobniku, ERROR
                   str_destroy(&ret_string);
                   SClean(&stack);

@@ -98,7 +98,7 @@ int str_pop_char(Tstring *str)
 int str_append_str(Tstring *target, Tstring *to_append)
 {
     int err = 0;
-    for (int i = 0; i < to_append->length; ++i)
+    for (int i = 0; i < to_append->length; i++)
     {
         if ((err = str_push_char(target, to_append->data[i])) != 0)
             return err;
