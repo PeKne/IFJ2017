@@ -81,7 +81,7 @@ int SPostActiveInsert (TStack *s, int tokenType)
     return 0;
 }
 
-int SPop (TStack *s)
+void SPop (TStack *s)
 {
     if (!SEmpty(s)) {
         TSElem *elemPtr = s->topPtr;
@@ -99,7 +99,6 @@ int SPop (TStack *s)
         str_destroy(&(elemPtr->string));
         free(elemPtr);
     }
-    return 0;
 }
 
 // vrati hodnotu na vrcholu zasobniku
@@ -139,34 +138,6 @@ void SClean (TStack *s)
         free(elemPtr);
     }
 }
-
-const char* oper_strings[] = {"*", "/", "\\", "+", "-", "=", "<>", "<", "<=", ">", ">=", "(", ")", "i", "num", "str", "bool", "$", "R", "]",};
-
-void DBG_SPrint(TStack *s){
-
-    if (SEmpty(s)) {
-        //printf("stack is Empty\n");
-        return;
-    }
-
-	TSElem *elemPtr;
-	elemPtr = s->topPtr;
-	//printf("|TOP--->|%s", oper_strings[elemPtr->type]);
-	while(elemPtr->prevPtr != NULL){
-		elemPtr = elemPtr->prevPtr;
-		//printf("|%s", oper_strings[elemPtr->type]);
-	}
-    //printf("|  SYMBOL\n");
-
-    elemPtr = s->topPtr;
-  	//printf("|TOP--->|%s", elemPtr->string.data);
-  	while(elemPtr->prevPtr != NULL){
-  		elemPtr = elemPtr->prevPtr;
-  		//printf("|%s", elemPtr->string.data);
-  	}
-      //printf("|  STRING\n");
-}
-
 
 /***************************FUNKCE-PRECEDENCNI-ANALYZY*********************************/
 /**************************************************************************************/
@@ -282,8 +253,7 @@ int expresion_reduction(TStack *s, int print_command, int reduce_counter, Tstrin
     else
         context = "LF@";
 
-    //printf("\nREDUKCNI STACK: \n");
-    DBG_SPrint(s);
+
 
     int symbol = STopType(s);
 
@@ -374,99 +344,136 @@ int expresion_reduction(TStack *s, int print_command, int reduce_counter, Tstrin
 
 }
 
-bool precedent_analysis(int print_command) {
-    char* top;//DEBUG
+//hlavni funkce precedencni analyzy
+int precedent_analysis(int print_command) {
     TStack stack;
     SInit(&stack);
 
     Tstring ret_string;
-    str_create(&ret_string);
+    str_create(&ret_string); //TODO: Petr Marek overit malloc
 
     int reduce_counter = 0;
-
-    int error;
-    int stacked_operator, input_operator;
+    int error;  // pomocna promenna pro vraceni chyb
+    int stacked_operator, input_operator; // promenne pro zasobnikovy a vstupni symbol
 
     error = SPush(&stack, ex_dollar, " "); //do prazdneho zasobniku vlozime znak dolaru
-    if(error < 0){
-    	//ERROR
-    	fprintf(stderr,"chyba mallocu\n");
+    if(error < 0){// nepodareny malloc prvnu zasobniku, ERROR
+      str_destroy(&ret_string);
+      SClean(&stack);
+      return ERR_INTERN;
     }
-    STopString(&stack);
-    //printf("Inicializovany stack\n\n" );
-    DBG_SPrint(&stack);
-    //printf("\n");
-    do{
-    	stacked_operator = SActive(&stack);
 
-        if(stacked_operator < 0){
-            fprintf(stderr,"na zasobniku neni zadny terminal\n");
+    do{
+    	stacked_operator = SActive(&stack); // nastavime aktivni prvek zasobniku
+        if(stacked_operator < 0){// zasobnik je prazdny, ERROR
+          str_destroy(&ret_string);
+          SClean(&stack);
+          return ERR_INTERN;
         }
-        input_operator = set_operator();
-        if(input_operator < 0){
-        	fprintf(stderr, "ERROR nevyhovujici symbol\n");
+
+        input_operator = set_operator(); //nastavime symbol vstupniho tokenu
+        if(input_operator < 0 || input_operator > 17){// nevyhovujici symbol na vstupu
+          str_destroy(&ret_string);
+          SClean(&stack);
+          return ERR_SYN;
         }
-        printf("pred swtichem\n" );
-        switch (prec_table[stacked_operator][input_operator]){
+        switch (prec_table[stacked_operator][input_operator]){//porovnani operatoru v zasobniku a na vstupu
             case EQ:
             {
-            	//printf("case EQ\n\n");
-                SPush(&stack, input_operator, token.t_str.data);
-                generate_token();
+                error = SPush(&stack, input_operator, token.t_str.data); //vlozime vstupni symbol na zasobnik
+                if(error < 0){// nepodareny malloc prvnu zasobniku, ERROR
+                  str_destroy(&ret_string);
+                  SClean(&stack);
+                  return ERR_INTERN;
+                }
+
+                error = generate_token(); // generujeme dalsi token
+                if(error != 0){// nepovedla se operace generate_token, ERROR
+                  str_destroy(&ret_string);
+                  SClean(&stack);
+                  return error;
+                }
                 break;
             }
 
             case LT:
             {
-            	//printf("case LT\n");
-                error = SPostActiveInsert(&stack, ex_rule_begin);
-                if (error < 0){
-                	fprintf(stderr, "neexistuje aktivni prvek\n");
+                error = SPostActiveInsert(&stack, ex_rule_begin); // za aktivni prvek vlozime redukcni zavorku
+                if (error < 0){//nepovedlo se vlozit za aktivni prvek, ERROR
+                  str_destroy(&ret_string);
+                  SClean(&stack);
+                  return ERR_INTERN;
+                }
+                error = SPush(&stack, input_operator , token.t_str.data); //vlozime vstupni symbol na zasobnik
+                if(error < 0){// nepodareny malloc prvnu zasobniku, ERROR
+                  str_destroy(&ret_string);
+                  SClean(&stack);
+                  return ERR_INTERN;
                 }
 
+                error = generate_token(); // generujeme dalsi token
+                if(error != 0){// nepovedla se operace generate_token, ERROR
+                  str_destroy(&ret_string);
+                  SClean(&stack);
+                  return error;
+                }
 
-                SPush(&stack, input_operator , token.t_str.data);
-
-                DBG_SPrint(&stack);
-                generate_token();
-                input_operator = set_operator();
-                if(input_operator < 0){
-        			fprintf(stderr,"ERROR nevyhovujici symbol\n");
-       			}
-
+                input_operator = set_operator(); //nastavime symbol vstupniho tokenu
+                if(input_operator < 0 || input_operator > 17){// nevyhovujici symbol na vstupu
+                  str_destroy(&ret_string);
+                  SClean(&stack);
+                  return ERR_SYN;
+                }
                 break;
             }
 
             case GT:
             case XX:
             {
-            	//printf("case GT\n");
-                TStack reduction_stack;
+                TStack reduction_stack; // vytvorime pomocny redukcni zasobnik
                 SInit(&reduction_stack);
 
-                while(STopType(&stack) != ex_rule_begin){
-                    SPush(&reduction_stack, STopType(&stack), STopString(&stack)); // do pomoc. zasobniku pushneme symbol z vrcholu hl. zasobniku
-                    SPop(&stack);
+                while(STopType(&stack) != ex_rule_begin){ //  dokud na hlavnim zasobniku nenarazime na ex_dollar
 
-                }
-                error = expresion_reduction(&reduction_stack, print_command, reduce_counter, &ret_string);
-                SClean(&reduction_stack);
+                    error = SPush(&reduction_stack, STopType(&stack), STopString(&stack)); // do pomoc. zasobniku pushneme symbol z vrcholu hl. zasobniku
 
-                if(error){
-                    fprintf(stderr, "ERROR neexistujici pravidlo\n");
-                    SClean(&stack);
-                    return false;
+                    if(error < 0){// nepodareny malloc prvnu zasobniku, ERROR
+                      str_destroy(&ret_string);
+                      SClean(&stack);
+                      return ERR_INTERN;
+                    }
+
+                    SPop(&stack); // popneme vrchol hlavniho zasobniku
                 }
+
+                error = expresion_reduction(&reduction_stack, print_command, reduce_counter, &ret_string); // redukujeme vyraz na pomocnem zasobniku
+
+                SClean(&reduction_stack); // rusime pomocny zasobnik
+
+                if(error != 0){ // redukce se nezdarila
+                  str_destroy(&ret_string);
+                  SClean(&stack);
+                  return ERR_SYN;
+                }
+
 
                 reduce_counter++;
 
-                SPop(&stack);
-                stacked_operator = SActive(&stack);
+                SPop(&stack); // ze zasobniku popujeme redukcni zavorku
+                stacked_operator = SActive(&stack); // nastavujeme aktivni prvek zasobniku
+                if(stacked_operator < 0){// zasobnik je prazdny, ERROR
+                  str_destroy(&ret_string);
+                  SClean(&stack);
+                  return ERR_INTERN;
+                }
 
-                SPush(&stack, ex_reduction, ret_string.data); //TODO: co ches?
+                error = SPush(&stack, ex_reduction, ret_string.data); // vkladame redukvane pravidlo na zasobnik
+                if(error < 0){// nepodareny malloc prvnu zasobniku, ERROR
+                  str_destroy(&ret_string);
+                  SClean(&stack);
+                  return ERR_INTERN;
+                }
 
-                DBG_SPrint(&stack);
-                //printf("\n");
                 break;
             }
 
@@ -474,11 +481,10 @@ bool precedent_analysis(int print_command) {
         }
 
 
-    }while ((SActive(&stack) != ex_dollar ) || (input_operator != ex_dollar));
+    }while ((SActive(&stack) != ex_dollar ) || (input_operator != ex_dollar)); //dokud nezpracujeme cely vyraz
 
-    //printf("opoustim case\n");
-    str_destroy(&ret_string);
-    SClean(&stack);
+    str_destroy(&ret_string); //uvolneni pameti
+    SClean(&stack); //uvolneni pameti
 
-    return false;
+    return 0;
 }
