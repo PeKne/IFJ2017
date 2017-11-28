@@ -35,7 +35,7 @@ int rule_scope(){ // pravidlo <scope>
     if(token.t_state == st_scope){ // simulace pravidla 2.
         printf("LABEL $$main\n");
         printf("DEFVAR GF@&pomInteger\n");///
-        printf("DEFVAR GF@&pomDouble\n");///
+        printf("DEFVAR GF@&pomFloat\n");///
         printf("DEFVAR GF@&pomString\n");///
 
         printf("CREATEFRAME\n");///

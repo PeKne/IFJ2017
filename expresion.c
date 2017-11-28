@@ -233,7 +233,6 @@ int set_operator(){
         case st_then:
         case st_return:
         case st_end:
-
         	return ex_dollar;
 
         default:
@@ -266,24 +265,32 @@ int expresion_reduction(TStack *s, int print_command, int reduce_counter, Tstrin
                 printf("WRITE %s%s\n",context, ret_string->data);
             }
         }
-        else if (reduce_counter == 0 && symbol == ex_ident) {
-            var_type = return_variable_type(ret_string->data);
-            if (var_type == 0) {
-                fprintf(stderr, "expresion reduction, variable not declared\n");
-                return 0; //chyba
+
+        if (reduce_counter == 0)  // jen prirazeni napr. a = b
+        {
+            if (symbol == ex_ident) {
+                var_type = return_variable_type(ret_string->data);
+                if (var_type == 0) {
+                    fprintf(stderr, "expresion reduction, variable not declared\n");
+                    return 0; //chyba
+                }
+
+                if (var_type == st_integer)
+                    printf("MOV %s%s %s%s\n", context, pom_integer, context, ret_string->data);
+                else if (var_type == st_double)
+                    printf("MOV %s%s %s%s\n", context, pom_double, context, ret_string->data);
+                else if (var_type == st_string)
+                    printf("MOV %s%s %s%s\n", context, pom_string, context, ret_string->data);
+            }  
+
+            else if (symbol == ex_integer) {
+                printf("MOV %s%s int@%s\n", context, pom_integer, ret_string->data);
+            } else if (reduce_counter == 0 && symbol == ex_double) {
+                printf("MOV %s%s float@%s\n", context, pom_integer, ret_string->data);
             }
-            if (var_type == st_integer)
-                printf("MOV %s%s %s%s\n", context, pom_integer, context, ret_string->data);
-            else if (var_type == st_double)
-                printf("MOV %s%s %s%s\n", context, pom_double, context, ret_string->data);
-            else if (var_type == st_string)
-                printf("MOV %s%s %s%s\n", context, pom_string, context, ret_string->data);
-        }  
-        else if (reduce_counter == 0 && symbol == ex_integer) {
-            printf("int\n");
-        } else if (reduce_counter == 0 && symbol == ex_double) {
-            printf("double\n");
         }
+
+        printf("typ: %d\n", symbol);
 
         SPop(s);
         if(SEmpty(s)) return 0;
@@ -310,7 +317,6 @@ int expresion_reduction(TStack *s, int print_command, int reduce_counter, Tstrin
         Tstring operand_2;
 
         str_create_init(&(operand_1),STopString(s));
-
         str_rewrite_data(ret_string, pom_integer);
 
         SPop(s);
@@ -329,8 +335,12 @@ int expresion_reduction(TStack *s, int print_command, int reduce_counter, Tstrin
 
                 SPop(s);
                 if(SEmpty(s)){
+                    var_type = return_variable_type(operand_1.data);
+                if (var_type == 0) {
+                    fprintf(stderr, "expresion reduction, variable not declared\n");
+                    return 0; //chyba
+                }
                     expr_gen(operator, operand_1.data, operand_2.data, ret_string->data, print_command);
-
                     str_destroy(&(operand_1));
                     str_destroy(&(operand_2));
                     return 0;
@@ -468,7 +478,7 @@ int precedent_analysis(int print_command) {
                   return ERR_INTERN;
                 }
 
-                error = SPush(&stack, ex_reduction, ret_string.data); // vkladame redukvane pravidlo na zasobnik
+                error = SPush(&stack, ex_reduction, ret_string.data); // vkladame redukovane pravidlo na zasobnik
                 if(error < 0){// nepodareny malloc prvnu zasobniku, ERROR
                   str_destroy(&ret_string);
                   SClean(&stack);
