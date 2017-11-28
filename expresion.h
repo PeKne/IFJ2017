@@ -77,7 +77,10 @@ enum {
 	ex_str,
 	ex_bool,
 	ex_dollar, // zacatek zpracovani vyrazu
-	ex_reduction,
+	ex_red_int,
+	ex_red_double,
+	ex_red_str,
+	ex_red_bool,
 	ex_rule_begin, //prednostni symbol
 } EXSymbols;
 
