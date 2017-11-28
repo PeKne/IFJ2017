@@ -138,7 +138,7 @@ int rule_function_head(){ // stav <function-head>
     if(token.t_state ==  st_function){ // simulace pravidla 7.
         if(return_value = generate_token()) return return_value;
 
-        if(token.t_state == st_id){  
+        if(token.t_state == st_id){
 
           if(retrieve_function_data(token.t_str.data) != 1) {
               return ERR_SEM_PROG;
@@ -367,7 +367,6 @@ int rule_st_list(){ // stav <st-list>
     if(token.t_state == st_id || token.t_state == st_dim || token.t_state == st_input ||
        token.t_state == st_print || token.t_state == st_if || token.t_state == st_do ||
        token.t_state == st_return  ){ // simulace pravidla 16.
-
                 if((return_value = rule_stat()) == 0)
                     if((return_value = rule_st_list()) == 0)
                         return_value = 0;
@@ -490,7 +489,7 @@ int rule_stat(){ // stav <stat>
                             if(token.t_state == st_eol){
                                 if(return_value = generate_token()) return return_value;
 
-                                if(rule_st_list()){
+                                if(rule_st_list() == 0){
 
                                     if(token.t_state == st_end){
                                         if(return_value = generate_token()) return return_value;
