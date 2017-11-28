@@ -259,7 +259,8 @@ function_data *create_global_data(void)
 
 int retrieve_function_data(char *function_name)
 {
-	htab_listitem *item = htab_find(global_table, function_name);
+	htab_listitem *item;
+	item = htab_find(global_table, function_name);
 	if(item == NULL) {
 		fprintf(stderr, "Function not found\n");
 

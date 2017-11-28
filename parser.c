@@ -137,12 +137,20 @@ int rule_function_head(){ // stav <function-head>
     if(token.t_state ==  st_function){ // simulace pravidla 7.
         if(generate_token() != 0) return ERR_LEX;
 
-        if(token.t_state == st_id){
+        if(token.t_state == st_id){  
+
           if(retrieve_function_data(token.t_str.data) != 1) {
               return ERR_SEM_PROG;
           }
           if(check_defined_function() == 1) {
               free_data_function(global_data);
+              return ERR_SEM_PROG;
+          }
+          set_defined_function(global_data);
+          if(push_function_data(global_data->name) != 1) {
+            return ERR_SEM_OTHER;
+          }
+           if(retrieve_function_data(token.t_str.data) != 1) {
               return ERR_SEM_PROG;
           }
           str_create_init(&ident, token.t_str.data);///
@@ -193,7 +201,6 @@ int rule_function_tail(){ // stav <function-tail>
         }
     }
 
-    set_defined_function(global_data);
     if(push_function_data(global_data->name) != 1) {
         printf("ERROR pushing data\n");
         return ERR_SEM_OTHER;
@@ -380,11 +387,12 @@ int rule_stat(){ // stav <stat>
         if(generate_token() != 0) return ERR_LEX;
 
         if(token.t_state == st_id){
-            htab_listitem *item = htab_find((p == 1 ? global_data->local_symbol_table : global_table), token.t_str.data);
+            htab_listitem *item;
+            item = htab_find((p == 1 ? global_data->local_symbol_table : global_table), token.t_str.data);
             if(item != NULL) {
                 return ERR_SEM_PROG; //Premmenna nebola vramci danej funkcie deklarovana
             }
-            //free(item);
+            free(item);
             variable_data *data = create_data_variable(&token);
             if(data == NULL) {
                 return ERR_INTERN;
@@ -567,10 +575,14 @@ int rule_assign(Tstring id){ // stav <assign>
 
 
     if(token.t_state == st_id){ // simulace pravidla 23.
-        htab_listitem *item = htab_find((p == 1 ? global_data->local_symbol_table : global_table), token.t_str.data);
+        htab_listitem *item;
+        item = htab_find((p == 1 ? global_data->local_symbol_table : global_table), token.t_str.data);
         if(item == NULL) { // tady konci vetsina vstupu TODO: OPRAVIT!
-            printf("NULL\n" );
-            return ERR_SEM_PROG;
+            item = htab_find(global_table, token.t_str.data);
+            if(item == NULL || item->type != type_function) {
+                printf("NULL\n");
+                return ERR_SEM_PROG;
+            }
         }
         if(item->type != type_function){// identifikator neni funkce
           if((return_value = precedent_analysis(print_command)) == 0){
@@ -579,7 +591,7 @@ int rule_assign(Tstring id){ // stav <assign>
           return return_value;
         }
         if(item->pointer.function->defined == 0) {//identifikator nedefinovane funkce
-            printf("HERE IT GOES\n");
+            //free(item);
             return ERR_SEM_OTHER;
         }
 

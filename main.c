@@ -55,6 +55,7 @@ int main() {
 
     htab_free(global_table);
     free(global_data);
+    //free_data_function(global_data);
 
     return error;
 }
