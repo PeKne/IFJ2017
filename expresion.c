@@ -142,28 +142,28 @@ void SClean (TStack *s)
 /***************************FUNKCE-PRECEDENCNI-ANALYZY*********************************/
 /**************************************************************************************/
 PrecTabValues prec_table[ex_dollar+2][ex_dollar+2] = {
-/*         *   /   \   +   -   =   <>  <   <=  >   >=  (   )   i   nm  sr  bl  $   R */
-/* *  */ { GT, GT, GT, GT, GT, GT, GT, GT, GT, GT, GT, LT, GT, LT, LT, LT, LT, GT, LT },
-/* /  */ { GT, GT, GT, GT, GT, GT, GT, GT, GT, GT, GT, LT, GT, LT, LT, LT, LT, GT, LT },
-/* \  */ { GT, GT, GT, GT, GT, GT, GT, GT, GT, GT, GT, LT, GT, LT, LT, LT, LT, GT, LT },
-/* +  */ { LT, LT, LT, GT, GT, GT, GT, GT, GT, GT, GT, LT, GT, LT, LT, LT, LT, GT, LT },
-/* -  */ { LT, LT, LT, GT, GT, GT, GT, GT, GT, GT, GT, LT, GT, LT, LT, LT, LT, GT, LT },
-/* =  */ { LT, LT, LT, LT, LT, GT, GT, GT, GT, GT, GT, LT, GT, LT, LT, LT, LT, GT, LT },
-/* <> */ { LT, LT, LT, LT, LT, GT, GT, GT, GT, GT, GT, LT, GT, LT, LT, LT, LT, GT, LT },
-/* <  */ { LT, LT, LT, LT, LT, GT, GT, GT, GT, GT, GT, LT, GT, LT, LT, LT, LT, GT, LT },
-/* <= */ { LT, LT, LT, LT, LT, GT, GT, GT, GT, GT, GT, LT, GT, LT, LT, LT, LT, GT, LT },
-/* >  */ { LT, LT, LT, LT, LT, GT, GT, GT, GT, GT, GT, LT, GT, LT, LT, LT, LT, GT, LT },
-/* >= */ { LT, LT, LT, LT, LT, GT, GT, GT, GT, GT, GT, LT, GT, LT, LT, LT, LT, GT, LT },
-/* (  */ { LT, LT, LT, LT, LT, LT, LT, LT, LT, LT, LT, LT, EQ, LT, LT, LT, LT, XX, LT },
-/* )  */ { GT, GT, GT, GT, GT, GT, GT, GT, GT, GT, GT, XX, GT, XX, XX, XX, XX, XX, XX },
-/* i  */ { GT, GT, GT, GT, GT, GT, GT, GT, GT, GT, GT, XX, GT, XX, LT, LT, LT, GT, XX },
-/* nm */ { GT, GT, GT, GT, GT, GT, GT, GT, GT, GT, GT, XX, GT, XX, XX, XX, XX, GT, XX },
-/* sr */ { GT, GT, GT, GT, GT, GT, GT, GT, GT, GT, GT, XX, GT, XX, XX, XX, XX, GT, XX },
-/* bl */ { GT, GT, GT, GT, GT, GT, GT, GT, GT, GT, GT, XX, GT, XX, XX, XX, XX, GT, XX },
-/* $  */ { LT, LT, LT, LT, LT, LT, LT, LT, LT, LT, LT, LT, XX, LT, LT, LT, LT, XX, LT },
-/* R  */ { GT, GT, GT, GT, GT, GT, GT, GT, GT, GT, GT, XX, GT, XX, LT, LT, LT, GT, XX }
+/*         *   /   \   +   -   =   <>  <   <=  >   >=  (   )   i   int db  sr  bl  $   R */
+/* *  */ { GT, GT, GT, GT, GT, GT, GT, GT, GT, GT, GT, LT, GT, LT, LT, LT, LT, LT, GT, LT },
+/* /  */ { GT, GT, GT, GT, GT, GT, GT, GT, GT, GT, GT, LT, GT, LT, LT, LT, LT, LT, GT, LT },
+/* \  */ { GT, GT, GT, GT, GT, GT, GT, GT, GT, GT, GT, LT, GT, LT, LT, LT, LT, LT, GT, LT },
+/* +  */ { LT, LT, LT, GT, GT, GT, GT, GT, GT, GT, GT, LT, GT, LT, LT, LT, LT, LT, GT, LT },
+/* -  */ { LT, LT, LT, GT, GT, GT, GT, GT, GT, GT, GT, LT, GT, LT, LT, LT, LT, LT, GT, LT },
+/* =  */ { LT, LT, LT, LT, LT, GT, GT, GT, GT, GT, GT, LT, GT, LT, LT, LT, LT, LT, GT, LT },
+/* <> */ { LT, LT, LT, LT, LT, GT, GT, GT, GT, GT, GT, LT, GT, LT, LT, LT, LT, LT, GT, LT },
+/* <  */ { LT, LT, LT, LT, LT, GT, GT, GT, GT, GT, GT, LT, GT, LT, LT, LT, LT, LT, GT, LT },
+/* <= */ { LT, LT, LT, LT, LT, GT, GT, GT, GT, GT, GT, LT, GT, LT, LT, LT, LT, LT, GT, LT },
+/* >  */ { LT, LT, LT, LT, LT, GT, GT, GT, GT, GT, GT, LT, GT, LT, LT, LT, LT, LT, GT, LT },
+/* >= */ { LT, LT, LT, LT, LT, GT, GT, GT, GT, GT, GT, LT, GT, LT, LT, LT, LT, LT, GT, LT },
+/* (  */ { LT, LT, LT, LT, LT, LT, LT, LT, LT, LT, LT, LT, EQ, LT, LT, LT, LT, LT, XX, LT },
+/* )  */ { GT, GT, GT, GT, GT, GT, GT, GT, GT, GT, GT, XX, GT, XX, XX, XX, XX, XX, XX, XX },
+/* i  */ { GT, GT, GT, GT, GT, GT, GT, GT, GT, GT, GT, XX, GT, XX, LT, LT, LT, LT, GT, XX },
+/* int*/ { GT, GT, GT, GT, GT, GT, GT, GT, GT, GT, GT, XX, GT, XX, XX, XX, XX, XX, GT, XX },
+/* db */ { GT, GT, GT, GT, GT, GT, GT, GT, GT, GT, GT, XX, GT, XX, XX, XX, XX, XX, GT, XX },
+/* sr */ { GT, GT, GT, GT, GT, GT, GT, GT, GT, GT, GT, XX, GT, XX, XX, XX, XX, XX, GT, XX },
+/* bl */ { GT, GT, GT, GT, GT, GT, GT, GT, GT, GT, GT, XX, GT, XX, XX, XX, XX, XX, GT, XX },
+/* $  */ { LT, LT, LT, LT, LT, LT, LT, LT, LT, LT, LT, LT, XX, LT, LT, LT, LT, LT, XX, LT },
+/* R  */ { GT, GT, GT, GT, GT, GT, GT, GT, GT, GT, GT, XX, GT, XX, LT, LT, LT, LT, GT, XX }
 };
-
 
 int set_operator(){
     switch (token.t_state){
@@ -210,10 +210,11 @@ int set_operator(){
             return ex_ident;
 
         case st_int_val:
+            return ex_integer;
         case st_double_val:
         case st_exp_int:
         case st_exp_doub:
-            return ex_num;
+            return ex_double;
 
         case st_retez:
             return ex_str;
@@ -247,17 +248,12 @@ int expresion_reduction(TStack *s, int print_command, int reduce_counter, Tstrin
     char * pom_double = "&pomDouble";
     char * pom_string = "&pomString";
 
-    char* context;
-    if (p == 0)
-        context = "TF@";
-    else
-        context = "LF@";
-
+    char* context = (p == 0 ? "TF@" : "LF@");
 
 
     int symbol = STopType(s);
 
-    if(symbol == ex_ident || symbol == ex_num ||
+    if(symbol == ex_ident || symbol == ex_integer || symbol == ex_double ||
        symbol == ex_bool  || symbol == ex_str){ // R ---> i
          // do return stringu se uklada string identifikatoru, cisla, true/false nebo retezce
 
@@ -282,6 +278,11 @@ int expresion_reduction(TStack *s, int print_command, int reduce_counter, Tstrin
                 printf("MOV %s%s %s%s\n", context, pom_double, context, ret_string->data);
             else if (var_type == st_string)
                 printf("MOV %s%s %s%s\n", context, pom_string, context, ret_string->data);
+        }  
+        else if (reduce_counter == 0 && symbol == ex_integer) {
+            printf("int\n");
+        } else if (reduce_counter == 0 && symbol == ex_double) {
+            printf("double\n");
         }
 
         SPop(s);
@@ -372,7 +373,7 @@ int precedent_analysis(int print_command) {
         }
 
         input_operator = set_operator(); //nastavime symbol vstupniho tokenu
-        if(input_operator < 0 || input_operator > 17){// nevyhovujici symbol na vstupu
+        if(input_operator < 0 || input_operator > ex_reduction){// nevyhovujici symbol na vstupu
           str_destroy(&ret_string);
           SClean(&stack);
           return ERR_SYN;
@@ -419,7 +420,7 @@ int precedent_analysis(int print_command) {
                 }
 
                 input_operator = set_operator(); //nastavime symbol vstupniho tokenu
-                if(input_operator < 0 || input_operator > 17){// nevyhovujici symbol na vstupu
+                if(input_operator < 0 || input_operator > ex_reduction){// nevyhovujici symbol na vstupu
                   str_destroy(&ret_string);
                   SClean(&stack);
                   return ERR_SYN;

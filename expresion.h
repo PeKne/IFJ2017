@@ -72,7 +72,8 @@ enum {
 	ex_leftBrac, /* ( */
 	ex_rightBrac,
 	ex_ident,	 /* i */
-	ex_num,
+	ex_integer,
+	ex_double,
 	ex_str,
 	ex_bool,
 	ex_dollar, // zacatek zpracovani vyrazu
