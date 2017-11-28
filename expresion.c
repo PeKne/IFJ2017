@@ -241,7 +241,7 @@ int set_operator(){
     }
 }
 
-int expresion_reduction(TStack *s, int print_command, int reduce_counter, Tstring *ret_string) {
+int expresion_reduction(TStack *s, int instruction, int reduce_counter, Tstring *ret_string) {
     Tstate var_type;
     char * pom_integer= "&pomInt";
     char * pom_double = "&pomDouble";
@@ -258,7 +258,7 @@ int expresion_reduction(TStack *s, int print_command, int reduce_counter, Tstrin
 
         str_rewrite_data(ret_string, STopString(s));
 
-        if (print_command) {
+        if (instruction == ins_print) {
             if (symbol == ex_str) {
                  printf("WRITE string@%s\n",ret_string->data);
             } else {
@@ -340,7 +340,7 @@ int expresion_reduction(TStack *s, int print_command, int reduce_counter, Tstrin
                     fprintf(stderr, "expresion reduction, variable not declared\n");
                     return 0; //chyba
                 }
-                    expr_gen(operator, operand_1.data, operand_2.data, ret_string->data, print_command);
+                    expr_gen(operator, operand_1.data, operand_2.data, ret_string->data, instruction);
                     str_destroy(&(operand_1));
                     str_destroy(&(operand_2));
                     return 0;
@@ -356,7 +356,7 @@ int expresion_reduction(TStack *s, int print_command, int reduce_counter, Tstrin
 }
 
 //hlavni funkce precedencni analyzy
-int precedent_analysis(int print_command) {
+int precedent_analysis(int instruction) {
     TStack stack;
     SInit(&stack);
 
@@ -457,7 +457,7 @@ int precedent_analysis(int print_command) {
                     SPop(&stack); // popneme vrchol hlavniho zasobniku
                 }
 
-                error = expresion_reduction(&reduction_stack, print_command, reduce_counter, &ret_string); // redukujeme vyraz na pomocnem zasobniku
+                error = expresion_reduction(&reduction_stack, instruction, reduce_counter, &ret_string); // redukujeme vyraz na pomocnem zasobniku
 
                 SClean(&reduction_stack); // rusime pomocny zasobnik
 

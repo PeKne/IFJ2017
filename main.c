@@ -13,13 +13,14 @@ int p = 0;
 int ar_count = 0;
 
 int main() {
-    global_table = htab_init(HTAB_SIZE);
-    global_data = create_global_data();
-
     int error = 0;
     if ((error = str_create(&(token.t_str))) != 0)
         return error;
     token.t_line = 1;
+
+    global_table = htab_init(HTAB_SIZE);
+    global_data = create_global_data();
+
     int parser;
     parser = rule_start_state();
 
