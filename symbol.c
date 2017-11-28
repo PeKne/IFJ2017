@@ -81,11 +81,16 @@ void set_value_variable(variable_data *data, Ttoken *token)
 
 void variable_data_to_table(htab_t *table, variable_data *data)
 {
-	htab_listitem *item;
-	item = htab_lookup_add(table, data->name);
+	htab_listitem *item = htab_lookup_add(table, data->name);
+	if(item == NULL) {
+		printf("ERROR adding data to table\n");
+		return;
+	}
 
 	item->type = type_variable;
 	item->pointer.variable = data;
+
+	//printf("v_(%s)\n", item->key);
 }
 
 void free_data_variable(variable_data *data)
@@ -200,9 +205,15 @@ void set_argument_type_function(function_data *data, Ttoken *token)
 void function_data_to_table(htab_t *table, function_data *data)
 {
 	htab_listitem *item = htab_lookup_add(table, data->name);
+	if(item == NULL) {
+		printf("ERROR putting func data to table\n");
+		return;
+	}
 
 	item->type = type_function;
 	item->pointer.function = data;
+
+	//printf("f_(%s)\n", item->key);
 }
 
 void free_data_function(function_data *data)
@@ -255,13 +266,31 @@ int retrieve_function_data(char *function_name)
 		return 0;
 	}
 
+	global_data->name = item->pointer.function->name;
 	global_data->defined = item->pointer.function->defined;
 	global_data->return_type = item->pointer.function->return_type;
 	global_data->arguments_count = item->pointer.function->arguments_count;
 	global_data->arguments = item->pointer.function->arguments;
 	global_data->local_symbol_table = item->pointer.function->local_symbol_table;
 
-	free(item);
+	return 1;
+}
+
+int push_function_data(char *function_name)
+{
+	htab_listitem *item = htab_lookup_add(global_table, function_name);
+	if(item == NULL) {
+		fprintf(stderr, "Error allocating data\n");
+		return 0;
+	}
+
+	item->pointer.function->name = global_data->name;
+	item->pointer.function->defined = global_data->defined;
+	item->pointer.function->return_type = global_data->return_type;
+	item->pointer.function->arguments_count = global_data->arguments_count;
+	item->pointer.function->arguments = global_data->arguments;
+	item->pointer.function->local_symbol_table = global_data->local_symbol_table;
+
 	return 1;
 }
 

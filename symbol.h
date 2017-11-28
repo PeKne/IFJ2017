@@ -77,6 +77,7 @@ void free_data_function(function_data *data);
 function_data *create_global_data(void);
 //Pri vstupe do tela funkcie použiť na nahratie dát danej funkcie do globálnych dát, 1 v prípade úspechu, inak 0
 int retrieve_function_data(char *function_name);
+int push_function_data(char *function_name);
 
 //Použiť v expresion
 //Kontrola či premenná existuje v lokálnej tabuľke globálnych dát, 1 ak existuje, 0 ak neexistuje alebo tabuľka v glob. datách == NULL
