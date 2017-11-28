@@ -445,8 +445,8 @@ int rule_stat(){ // stav <stat>
                 return ERR_SEM_PROG; //Premmenna nebola vramci danej funkcie deklarovana
             }
             char* context = (p == 0 ? "TF@" : "LF@");
-            printf("TYPE GF@&pomString %s%s\n",token.t_str.data);///
-            printf("READ %s%s, GF@&pomString\n",token.t_str.data);///
+            printf("TYPE GF@&pom %s%s\n",context, token.t_str.data);///
+            printf("READ %s%s, GF@&pom\n",context, token.t_str.data);///
             if(generate_token() != 0) return ERR_LEX;
             return_value = 0;
         }

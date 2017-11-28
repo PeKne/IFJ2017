@@ -210,10 +210,11 @@ int set_operator(){
             return ex_ident;
 
         case st_int_val:
+            return ex_integer;
         case st_double_val:
         case st_exp_int:
         case st_exp_doub:
-            return ex_num;
+            return ex_double;
 
         case st_retez:
             return ex_str;
@@ -257,7 +258,7 @@ int expresion_reduction(TStack *s, int print_command, int reduce_counter, Tstrin
 
     int symbol = STopType(s);
 
-    if(symbol == ex_ident || symbol == ex_num ||
+    if(symbol == ex_ident || symbol == ex_integer || symbol == ex_double ||
        symbol == ex_bool  || symbol == ex_str){ // R ---> i
          // do return stringu se uklada string identifikatoru, cisla, true/false nebo retezce
 
@@ -282,6 +283,9 @@ int expresion_reduction(TStack *s, int print_command, int reduce_counter, Tstrin
                 printf("MOV %s%s %s%s\n", context, pom_double, context, ret_string->data);
             else if (var_type == st_string)
                 printf("MOV %s%s %s%s\n", context, pom_string, context, ret_string->data);
+        }  
+        else if (reduce_counter == 0 && symbol == ex_integer) {
+            printf("int\n");
         }
 
         SPop(s);
