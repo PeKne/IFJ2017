@@ -232,7 +232,7 @@ int generate_token()
 
             case st_retez:
             {
-                if (ascii >= 0 && ascii <= 32) {
+                if ((ascii >= 0 && ascii <= 32) || ascii == 35) {
                     char esc[5];
                     sprintf(esc, "\\%03d",ascii);
                     for (int i = 0; esc[i] != '\0'; i++)
@@ -266,7 +266,7 @@ int generate_token()
                     if      (c == '"')  esc = "\\034";
                     else if (c == 'n')  esc = "\\010";
                     else if (c == 't')  esc = "\\009";
-                    else if (c == '\\') esc = "\\"; // nebo \\092 ?
+                    else if (c == '\\') esc = "\\092";
 
                      for (int i = 0; esc[i] != '\0'; i++)
                     {
@@ -604,6 +604,7 @@ int generate_token()
 
             case st_error:
             {   
+                str_destroy(&esc_str);
                 error = ERR_LEX;
                 token.t_state = state;
                 get_next_char = false;

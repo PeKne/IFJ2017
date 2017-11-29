@@ -271,11 +271,11 @@ int set_operator(){
     }
 }
 
-int expresion_reduction(TStack *s, int instruction, int reduce_counter, Tstring *ret_string) {
+int expresion_reduction(TStack *s, int instruction, int reduce_counter, Tstring *ret_string, int convert) {
     int reduction_type;
     Tstate var_type;
-    char * pom_integer= "&pomInt";
-    char * pom_double = "&pomDouble";
+    char * pom_integer= "&pomInteger";
+    char * pom_double = "&pomFloat";
     char * pom_string = "&pomString";
 
     char* context = (p == 0 ? "TF@" : "LF@");
@@ -288,6 +288,7 @@ int expresion_reduction(TStack *s, int instruction, int reduce_counter, Tstring 
          // do return stringu se uklada string identifikatoru, cisla, true/false nebo retezce
         str_rewrite_data(ret_string, STopString(s));
 
+        // GENEROVANI
         if (instruction == ins_print) {
             if (symbol == ex_str) {
                  printf("WRITE string@%s\n",ret_string->data);
@@ -295,28 +296,41 @@ int expresion_reduction(TStack *s, int instruction, int reduce_counter, Tstring 
                 printf("WRITE %s%s\n",context, ret_string->data);
             }
         }
-        else if (reduce_counter == 0 && symbol == ex_ident) {
+        else if(symbol == ex_ident) {
             var_type = return_variable_type(ret_string->data);
             if (var_type == 0) {
                 fprintf(stderr, "expresion reduction, variable not declared\n");
                 return -1; //chyba
             }
-            if (var_type == st_integer)
-                printf("MOV %s%s %s%s\n", context, pom_integer, context, ret_string->data);
-            else if (var_type == st_double)
-                printf("MOV %s%s %s%s\n", context, pom_double, context, ret_string->data);
-            else if (var_type == st_string)
-                printf("MOV %s%s %s%s\n", context, pom_string, context, ret_string->data);
+            else if (var_type == st_integer) {
+                if (reduce_counter == 0) printf("MOV %s%s %s%s\n", context, pom_integer, context, ret_string->data);
+                reduction_type = ex_red_int;
+            }
+            else if (var_type == st_double) {
+                if (reduce_counter == 0) printf("MOV %s%s %s%s\n", context, pom_double, context, ret_string->data);
+                reduction_type = ex_red_double;
+            }
+            else if (var_type == st_string){
+                if (reduce_counter == 0) printf("MOV %s%s %s%s\n", context, pom_string, context, ret_string->data);
+                reduction_type = ex_red_str;
+            }
         }
-        else if (reduce_counter == 0 && symbol == ex_integer) {
-            printf("int\n");
-        } else if (reduce_counter == 0 && symbol == ex_double) {
-            printf("double\n");
+        else if (symbol == ex_integer) {
+            if (reduce_counter == 0) printf("MOV %s%s int@%s\n", context, pom_integer, ret_string->data);
+            reduction_type = ex_red_int;
         }
+        else if (symbol == ex_double) {
+             if (reduce_counter == 0) printf("MOV %s%s float@%s\n", context, pom_double, ret_string->data);
+            reduction_type = ex_red_double;
+        }
+        else if (symbol == ex_str) {
+            reduction_type = ex_red_str;
+            if (reduce_counter == 0) printf("MOV %s%s string@%s\n", context, pom_string, ret_string->data);
+        }
+        // GENEROVANI
+
         SPop(s);
         if(!SEmpty(s)) return -1;
-
-        reduction_type = ex_red_int; // TODO: PETR MAREK sem si dopln jakej typ redukce vytvoris a bude pridan na halvni zasobnik.
     }
 
     else if(symbol == ex_leftBrac){ // R ---> (R)
@@ -345,8 +359,8 @@ int expresion_reduction(TStack *s, int instruction, int reduce_counter, Tstring 
         Tstring operand_1;
         Tstring operand_2;
 
+        int typeR1 = symbol;
         str_create_init(&(operand_1),STopString(s));
-        str_rewrite_data(ret_string, pom_integer);
 
         SPop(s);
         symbol = STopType(s);
@@ -356,11 +370,14 @@ int expresion_reduction(TStack *s, int instruction, int reduce_counter, Tstring 
            symbol == ex_div   || symbol == ex_wholeDiv || symbol == ex_equal  ||
            symbol == ex_notEq || symbol == ex_less     || symbol == ex_lessEq ||
            symbol == ex_great || symbol == ex_greatEq){
+            
 
             SPop(s);
             symbol = STopType(s);
             if(symbol == ex_red_int || symbol == ex_red_double||
                symbol == ex_red_str || symbol == ex_red_bool){
+
+                int typeR2 = symbol;
                 str_create_init(&(operand_2),STopString(s));
 
                 SPop(s);
@@ -369,13 +386,41 @@ int expresion_reduction(TStack *s, int instruction, int reduce_counter, Tstring 
                     str_destroy(&(operand_2));
                     return -1;
                 }
+
+                // GENEROVANI
+                if ((typeR1 == ex_red_int) && (typeR2 == ex_red_int)) {                    
+                    str_rewrite_data(ret_string, pom_integer);
+                    reduction_type = ex_red_int;
+                }
+                else if (((typeR1 == ex_red_double) && (typeR2 == ex_red_double))  ||
+                        ((typeR1 == ex_red_int) && (typeR2 == ex_red_double))      ||
+                        ((typeR1 == ex_red_double) && (typeR2 == ex_red_int)))
+                {
+                    str_rewrite_data(ret_string, pom_double);
+                    reduction_type = ex_red_double;
+                } 
+                else if ((typeR1 == ex_red_str) && (typeR2 == ex_red_str)) {
+                    str_rewrite_data(ret_string, pom_string);
+                    reduction_type = ex_red_str;
+                }
+                else  {
+                    fprintf(stderr, "Wrong types of operands in expresion\n"); // chyba 4
+                    str_destroy(&(operand_1));
+                    str_destroy(&(operand_2)); 
+                    return -1;
+                }
+                if (convert == ex_red_double) {
+                    str_rewrite_data(ret_string, pom_double);
+                    reduction_type = ex_red_double;
+                }
+
                 expr_gen(operator, operand_1.data, operand_2.data, ret_string->data, instruction);
+                // GENEROVANI
+
                 str_destroy(&(operand_1));
-                str_destroy(&(operand_2));
+                str_destroy(&(operand_2));                
             }
         }
-
-        reduction_type = ex_red_int; // TODO: PETR MAREK sem si dopln jakej typ redukce vytvoris a bude pridan na halvni zasobnik.
     }
 
     return reduction_type;
@@ -394,6 +439,7 @@ int precedent_analysis(int instruction) {
     int reduce_counter = 0;
     int error;  // pomocna promenna pro vraceni chyb
     int stacked_operator, input_operator; // promenne pro zasobnikovy a vstupni symbol
+    int convert = 0; // pro konverzi vyrazu na jiny typ
 
     error = SPush(&stack, ex_dollar, " "); //do prazdneho zasobniku vlozime znak dolaru
     if(error < 0){// nepodareny malloc prvnu zasobniku, ERROR
@@ -489,7 +535,9 @@ int precedent_analysis(int instruction) {
                 }
 
                 int reduced_symbol;
-                reduced_symbol = expresion_reduction(&reduction_stack, instruction, reduce_counter, &ret_string); // redukujeme vyraz na pomocnem zasobniku
+                reduced_symbol = expresion_reduction(&reduction_stack, instruction, reduce_counter, &ret_string, convert); // redukujeme vyraz na pomocnem zasobniku
+                if ((reduced_symbol == ex_red_double) || convert == ex_red_double)                   
+                    convert = ex_red_double;
 
                 SClean(&reduction_stack); // rusime pomocny zasobnik
 

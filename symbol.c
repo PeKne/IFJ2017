@@ -321,7 +321,6 @@ int check_variable_type(char *variable_name, Tstate state)
 	htab_listitem *item = htab_find((p == 1 ? global_data->local_symbol_table : global_table), variable_name);
 	if(item == NULL) {
 		fprintf(stderr, "Variable not found\n");
-
 		return 0;
 	}
 
@@ -337,9 +336,7 @@ int check_variable_type(char *variable_name, Tstate state)
 Tstate return_variable_type(char *variable_name)
 {
 	htab_listitem *item = htab_find((p == 1 ? global_data->local_symbol_table : global_table), variable_name);
-	if(item == NULL) {
-		fprintf(stderr, "Variable not found\n");
-
+	if(item == NULL) { // errory vypisuju ja - Petr Marek
 		return 0;
 	}
 

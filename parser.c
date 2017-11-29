@@ -38,6 +38,7 @@ int rule_scope(){ // pravidlo <scope>
         printf("DEFVAR GF@&pomInteger\n");///
         printf("DEFVAR GF@&pomFloat\n");///
         printf("DEFVAR GF@&pomString\n");///
+        printf("DEFVAR GF@&pomBool\n");///
 
         printf("CREATEFRAME\n");///
         if(return_value = generate_token()) return return_value;
@@ -417,31 +418,37 @@ int rule_stat(){ // stav <stat>
 
                         char* context = (p == 0 ? "TF@" : "LF@");
                         printf("DEFVAR %s%s\n", context, ident.data);///
-                        str_destroy(&ident);///
                         return_value = 0;
                     }
                 }
             }
+            str_destroy(&ident);///
         }
     }
 
     else if(token.t_state == st_id){ // simulace pravidla 21.
-        if(variable_exist(token.t_str.data) ==  0) {
+        if(variable_exist(token.t_str.data) ==  0){
             printf("Not defined variable\n");
             return ERR_SEM_PROG; //Premmenna nebola vramci danej funkcie deklarovana
         }
         str_create_init(&ident, token.t_str.data);
-        if(return_value = generate_token()) return return_value;
+        if(return_value = generate_token()){
+            str_destroy(&ident);///
+            return return_value;
+        }
 
         if(token.t_state == st_rovno){
-            if(return_value = generate_token()) return return_value;
-
-            if((return_value = rule_assign(ident)) == 0){
+            if(return_value = generate_token()){
                 str_destroy(&ident);///
-                return_value = 0;
+                return return_value;
             }
+            if((return_value = rule_assign(ident)) == 0){
+                return_value = 0;
+            } 
         }
+        str_destroy(&ident);///
     }
+    
 
     else if(token.t_state == st_input){ // simulace pravidla 28.
         if(return_value = generate_token()) return return_value;
@@ -452,6 +459,7 @@ int rule_stat(){ // stav <stat>
                 return ERR_SEM_PROG; //Premmenna nebola vramci danej funkcie deklarovana
             }
             char* context = (p == 0 ? "TF@" : "LF@");
+
             printf("TYPE GF@&pom %s%s\n",context, token.t_str.data);///
             printf("READ %s%s, GF@&pom\n",context, token.t_str.data);///
             if(return_value = generate_token()) return return_value;
@@ -608,7 +616,6 @@ int rule_assign(Tstring id){ // stav <assign>
         }
 
         if(return_value = generate_token()) return return_value;
-
         if(token.t_state == st_levzav){
             if(return_value = generate_token()) return return_value;
 
@@ -623,12 +630,12 @@ int rule_assign(Tstring id){ // stav <assign>
             }
 
         }
-    }// konec pravidla 23.
 
-    else if((return_value = precedent_analysis(instruction)) == 0){  //simulace pravidla 22.
-             printf("MOV TF@%s TF@pom\n", id.data);
-             return_value = 0;
-         }
+    }// konec pravidla 23.
+    else if((return_value = precedent_analysis(instruction)) == 0){  //simulace pravidla 22.        
+        printf("MOV TF@%s TF@pom\n", id.data);
+        return_value = 0;
+    }
 
     return return_value;
 }// konec funkce rule_assign()
