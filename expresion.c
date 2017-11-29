@@ -303,7 +303,7 @@ int expresion_reduction(TStack *s, int instruction, int reduce_counter, Tstring 
                 return -1; //chyba
             }
             else if (var_type == st_integer) {
-                if (reduce_counter == 0) printf("MOVs %s %s%s\n", pom_integer, context, ret_string->data);
+                if (reduce_counter == 0) printf("MOV %s %s%s\n", pom_integer, context, ret_string->data);
                 reduction_type = ex_red_int;
             }
             else if (var_type == st_double) {

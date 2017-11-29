@@ -620,7 +620,7 @@ int rule_assign(Tstring id){ // stav <assign>
         if(item->type != type_function){// identifikator neni funkce
           if((return_value = precedent_analysis(instruction, &destination)) == 0){
             if      (destination == ex_red_int)    printf("MOV %s%s GF@&pomInteger\n",context, id.data);      
-            else if (destination == ex_red_double) printf("MOV %s%s GF@&pomDouble\n",context, id.data);
+            else if (destination == ex_red_double) printf("MOV %s%s GF@&pomFloat\n",context, id.data);
             else if (destination == ex_red_str)    printf("MOV %s%s GF@&pomString\n",context, id.data);
           }
           return return_value;
@@ -649,7 +649,7 @@ int rule_assign(Tstring id){ // stav <assign>
     }// konec pravidla 23.
     else if((return_value = precedent_analysis(instruction, &destination)) == 0){  //simulace pravidla 22.   
         if      (destination == ex_red_int)    printf("MOV %s%s GF@&pomInteger\n",context, id.data);      
-        else if (destination == ex_red_double) printf("MOV %s%s GF@&pomDouble\n",context, id.data);
+        else if (destination == ex_red_double) printf("MOV %s%s GF@&pomFloat\n",context, id.data);
         else if (destination == ex_red_str)    printf("MOV %s%s GF@&pomString\n",context, id.data);
         return_value = 0;
     }

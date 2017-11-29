@@ -4,5 +4,5 @@ dim d as integer
 dim x as integer
 dim f as double
 
-e = !"asd"
+e = 1 + 1.5
 END SCOPE

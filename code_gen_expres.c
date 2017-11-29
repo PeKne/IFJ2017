@@ -90,46 +90,46 @@ void expr_gen(int operator, char* operand_1, char* operand_2, char* destination,
         
         case ex_mul:
         {
-            printf("MUL %s%s %s%s %s%s\n", context, destination, context_1.data, operand_1, context_2.data, operand_2);
+            printf("MUL %s %s%s %s%s\n", destination, context_1.data, operand_1, context_2.data, operand_2);
             break;
         }
 
         case ex_div:
         {
-            printf("DIV %s%s %s%s %s%s\n", context, destination, context_1.data, operand_1, context_2.data, operand_2);
+            printf("DIV %s %s%s %s%s\n", destination, context_1.data, operand_1, context_2.data, operand_2);
             break;
         }
 
         case ex_plus:
         {   
             if (operand_1_type == st_string)
-                printf("CONCAT %s%s %s%s %s%s\n", context, destination, context_1.data, operand_1, context_2.data, operand_2);
+                printf("CONCAT %s %s%s %s%s\n", destination, context_1.data, operand_1, context_2.data, operand_2);
             else 
-                printf("ADD %s%s %s%s %s%s\n", context, destination, context_1.data, operand_1, context_2.data, operand_2);
+                printf("ADD %s %s%s %s%s\n", destination, context_1.data, operand_1, context_2.data, operand_2);
             break;
         }
 
         case ex_minus:
         {
-            printf("SUB %s%s %s%s %s%s\n", context, destination, context_1.data, operand_1, context_2.data, operand_2);
+            printf("SUB %s %s%s %s%s\n", destination, context_1.data, operand_1, context_2.data, operand_2);
             break;
         }
 
         case ex_equal:
         {
-            printf("EQ %s&pomBool %s%s %s%s\n", context, context_1.data, operand_1, context_2.data, operand_2);
+            printf("EQ GF@&pomBool %s%s %s%s\n", context_1.data, operand_1, context_2.data, operand_2);
             break;
         }
 
         case ex_less:
         {
-            printf("LT %s&pomBool %s%s %s%s\n", context, context_1.data, operand_1, context_2.data, operand_2);
+            printf("LT GF@&pomBool %s%s %s%s\n", context_1.data, operand_1, context_2.data, operand_2);
             break;
         }
 
         case ex_great:
         {
-            printf("GT %s&pomBool %s%s %s%s\n", context, context_1.data, operand_1, context_2.data, operand_2);
+            printf("GT GF@&pomBool %s%s %s%s\n", context_1.data, operand_1, context_2.data, operand_2);
             break;
         }
 
