@@ -9,7 +9,7 @@
 
 extern int p;
 
-int isDouble(char * operand) {
+int isDouble(char *operand) {
     int operand_type = st_integer;
     int length = strlen(operand);
     for (int i = 0; i < length; i++)
@@ -21,19 +21,17 @@ int isDouble(char * operand) {
     return operand_type;
 }
 
-int check_operand (char * operand) {
+int check_operand (char *operand) {
     int operand_type;
     if (!isdigit(operand[0])) {
-        if (strcmp(operand,"&pomInteger") == 0)
-            operand_type = st_id;
-        else if (strcmp(operand,"&pomFloat") == 0)
-            operand_type = st_id;        
-        else if (strcmp(operand,"&pomString") == 0)
-            operand_type = st_id;
+        if ((strcmp(operand,"GF@&pomInteger") == 0) || (strcmp(operand,"GF@&pomFloat") == 0)  ||  
+           (strcmp(operand,"GF@&pomFloat") == 0)    || (strcmp(operand,"GF@&pomDouble") == 0)  ||
+           (strcmp(operand,"GF@&pomBool") == 0)     || (strcmp(operand,"GF@&pomType") == 0))
+            operand_type = 0; // neprida se zadny kontext - str_create vytvori prazdny retezec
+
         else if ((return_variable_type(operand)) == 0) {
-            operand_type = st_string;
-        }
-        else {
+            operand_type = st_string;         
+        } else {
             operand_type = st_id;
         }
         
@@ -43,19 +41,16 @@ int check_operand (char * operand) {
     return operand_type;
 }
 
-void expr_gen(int operator, char* operand_1, char* operand_2, char* destination, int instruction) {
+void expr_gen(int operator, char *operand_1, char *operand_2, char *destination, int instruction) {
 
     int operand_1_type = check_operand(operand_1);
     int operand_2_type = check_operand(operand_2);
 
-   /*printf("operand1_type %d\n",operand_1_type);
-   printf("operand2_type %d\n",operand_2_type);*/
+    Tstring context_1;
+    Tstring context_2;
 
-   Tstring context_1;
-   Tstring context_2;
-
-   str_create(&context_1);
-   str_create(&context_2);
+    str_create(&context_1);
+    str_create(&context_2);
 
     if (operand_1_type == st_id) {
         if (p == 0) str_rewrite_data(&context_1, "TF@");
@@ -81,15 +76,12 @@ void expr_gen(int operator, char* operand_1, char* operand_2, char* destination,
 
    char* context = (p == 0 ? "TF@" : "LF@");
 
-
-   /*printf("context_1 %s\n",context_1.data);
-   printf("context_2 %s\n",context_2.data);*/
-
     
     switch(operator) {
         
         case ex_mul:
         {
+            if (operand_1)
             printf("MUL %s %s%s %s%s\n", destination, context_1.data, operand_1, context_2.data, operand_2);
             break;
         }
