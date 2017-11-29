@@ -117,19 +117,19 @@ void expr_gen(int operator, char* operand_1, char* operand_2, char* destination,
 
         case ex_equal:
         {
-            printf("EQ %s%sInteger %s%s %s%s\n", context, destination, context_1.data, operand_1, context_2.data, operand_2);
+            printf("EQ %s&pomBool %s%s %s%s\n", context, context_1.data, operand_1, context_2.data, operand_2);
             break;
         }
 
         case ex_less:
         {
-            printf("LT %s%sInteger %s%s %s%s\n", context, destination, context_1.data, operand_1, context_2.data, operand_2);
+            printf("LT %s&pomBool %s%s %s%s\n", context, context_1.data, operand_1, context_2.data, operand_2);
             break;
         }
 
         case ex_great:
         {
-            printf("GT %s%sBool %s%s %s%s\n", context, destination, context_1.data, operand_1, context_2.data, operand_2);
+            printf("GT %s&pomBool %s%s %s%s\n", context, context_1.data, operand_1, context_2.data, operand_2);
             break;
         }
 
