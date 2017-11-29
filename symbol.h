@@ -1,12 +1,10 @@
 #ifndef SYMBOL_H
 #define SYMBOL_H
 
+#define DEBUG
+#include "errors.h"
 #include "symtable.h"
 #include "lex.h"
-//#include "error.h"
-
-/* NIEKTORE FUNKCIE SU ZAKOMENTOVANIE Z DOVODU NEDORIESENEHO INCLUDOVANIA
-   EDIT: INCLUDOVANIE DORIESENE */
 
 typedef enum {
 	variable_integer,

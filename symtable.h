@@ -1,8 +1,10 @@
 #include "symbol.h"
-//#include "error.h"
 
 #ifndef SYMTABLE_H
 #define SYMTABLE_H
+
+#define DEBUG
+#include "errors.h"
 
 #include <stdio.h>
 #include <stdlib.h>
