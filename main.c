@@ -11,6 +11,8 @@ htab_t *global_table;
 function_data *global_data;
 int p = 0;
 int ar_count = 0;
+int if_counter = 1;
+int while_counter = 1;
 
 int main() {
     int error = 0;

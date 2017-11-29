@@ -1,4 +1,5 @@
 #include "symtable.h"
+#include "error.h"
 
 unsigned int hash_function(const char *str)
 {
@@ -18,7 +19,7 @@ htab_t *htab_init(unsigned size)
 
 	table = (htab_t *) malloc(sizeof(htab_t) + size * sizeof(htab_listitem));
 	if(table == NULL) { 
-		fprintf(stderr, "Error allocating memory for hash table.\n");
+		debug_print("%s\n", "Error allocating memory for hash table.");
 		return NULL;
 	}
 	
@@ -72,14 +73,14 @@ htab_listitem *htab_lookup_add(htab_t *table, char *key)
 
 	new_item = malloc(sizeof(htab_listitem));
 	if(new_item == NULL) {
-		fprintf(stderr, "Error allocating memory for htab_listitem.\n");
+		debug_print("%s\n", "Error allocating memory for htab_listitem.");
 
 		return NULL;
 	}
 
 	new_item->key = malloc(sizeof(char *) * (strlen(key) + 1));
 	if(new_item->key == NULL) {
-		fprintf(stderr, "Error allocating memory for htab_listitem->key.\n");
+		debug_print("%s\n", "Error allocating memory for htab_listitem->key.");
 		free(new_item);
 
 		return NULL;
