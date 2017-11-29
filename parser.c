@@ -386,6 +386,8 @@ int rule_stat(){ // stav <stat>
     int return_value = ERR_SYN;
     Tstring ident;///
     int instruction;
+    int destination = -1;
+
     if(token.t_state == st_dim ){ // simulace pravidla 18.
         if(return_value = generate_token()) return return_value;
 
@@ -473,7 +475,7 @@ int rule_stat(){ // stav <stat>
 
         //printf("WRITE %s\n",token.t_str.data);///
 
-        if((return_value = precedent_analysis(instruction)) == 0){
+        if((return_value = precedent_analysis(instruction, &destination)) == 0){
             if(token.t_state == st_stred){
                 if(return_value = generate_token()) return return_value;
 
@@ -488,7 +490,7 @@ int rule_stat(){ // stav <stat>
         instruction = st_if;
         if(return_value = generate_token()) return return_value;
 
-        if((return_value = precedent_analysis(instruction)) == 0){
+        if((return_value = precedent_analysis(instruction, &destination)) == 0){
             printf("JUMPIFNEQ else1 TF@&pomBool true\n");///
             if(token.t_state == st_then){
                 if(return_value = generate_token()) return return_value;
@@ -537,7 +539,7 @@ int rule_stat(){ // stav <stat>
         if(token.t_state == st_while){
             if(return_value = generate_token()) return return_value;
 
-            if((return_value = precedent_analysis(instruction)) == 0){
+            if((return_value = precedent_analysis(instruction, &destination)) == 0){
 
                 if(token.t_state == st_eol){
                     if(return_value = generate_token()) return return_value;
@@ -558,7 +560,7 @@ int rule_stat(){ // stav <stat>
     else if(token.t_state == st_return){ // simulace pravidla 34.
         if(return_value = generate_token()) return return_value;
 
-        if((return_value = precedent_analysis(instruction)) == 0){
+        if((return_value = precedent_analysis(instruction, &destination)) == 0){
 
             return_value = 0;
         }
@@ -571,11 +573,12 @@ int rule_eval(){ // stav <eval>
     if(skip_blank_lines() != 0) return ERR_LEX;
     int return_value = ERR_SYN;
     int instruction = -1;
+    int destination = -1;
+
     if(token.t_state == st_rovno ){ // simulace pravidla 19.
         if(return_value = generate_token()) return return_value;
 
-        if((return_value = precedent_analysis(instruction)) == 0){
-
+        if((return_value = precedent_analysis(instruction, &destination)) == 0){
             return_value = 0;
         }
     }
@@ -592,6 +595,7 @@ int rule_eval(){ // stav <eval>
 int rule_assign(Tstring id){ // stav <assign>
     int return_value = ERR_SYN;
     int instruction = -1;
+    int destination = -1;
 
 
     if(token.t_state == st_id){ // simulace pravidla 23.
@@ -605,8 +609,10 @@ int rule_assign(Tstring id){ // stav <assign>
             }
         }
         if(item->type != type_function){// identifikator neni funkce
-          if((return_value = precedent_analysis(instruction)) == 0){
-            printf("MOV TF@%s TF@pom\n", id.data);
+          if((return_value = precedent_analysis(instruction, &destination)) == 0){
+            if      (destination == ex_red_int)    printf("MOV TF@%s TF@&pomInteger\n", id.data);      
+            else if (destination == ex_red_double) printf("MOV TF@%s TF@&pomDouble\n", id.data);
+            else if (destination == ex_red_str)    printf("MOV TF@%s TF@&pomString\n", id.data);
           }
           return return_value;
         }
@@ -632,8 +638,10 @@ int rule_assign(Tstring id){ // stav <assign>
         }
 
     }// konec pravidla 23.
-    else if((return_value = precedent_analysis(instruction)) == 0){  //simulace pravidla 22.        
-        printf("MOV TF@%s TF@pom\n", id.data);
+    else if((return_value = precedent_analysis(instruction, &destination)) == 0){  //simulace pravidla 22.   
+        if      (destination == ex_red_int)    printf("MOV TF@%s TF@&pomInteger\n", id.data);      
+        else if (destination == ex_red_double) printf("MOV TF@%s TF@&pomDouble\n", id.data);
+        else if (destination == ex_red_str)    printf("MOV TF@%s TF@&pomString\n", id.data);
         return_value = 0;
     }
 
@@ -676,6 +684,7 @@ int rule_call_next_par(){ // stav <call-next-par>
 int rule_pr_expr(){ // stav <pr-expr>
     int return_value = ERR_SYN;
     int instruction = -1;
+    int destination = -1;
 
     if(token.t_state == st_dim || token.t_state == st_input ||
        token.t_state == st_print || token.t_state == st_if || token.t_state == st_do ||
@@ -684,7 +693,7 @@ int rule_pr_expr(){ // stav <pr-expr>
         return_value = 0;
     }
 
-        else if((return_value = precedent_analysis(instruction)) == 0){  //simulace pravidla 30.
+        else if((return_value = precedent_analysis(instruction, &destination)) == 0){  //simulace pravidla 30.
 
         if(token.t_state == st_stred){
             if(return_value = generate_token()) return return_value;

@@ -47,7 +47,7 @@ void SClean (TStack *s);
 //vycty stavu precedencni analyzi
 //#-------------------------------------------#//
 
-int precedent_analysis(int print_command);
+int precedent_analysis(int print_command, int* destination);
 int set_operator();
 int expresion_reduction(TStack *s, int print_command, int reduce_counter, Tstring *ret_string, int convert);
 

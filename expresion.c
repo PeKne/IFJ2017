@@ -392,19 +392,25 @@ int expresion_reduction(TStack *s, int instruction, int reduce_counter, Tstring 
                     str_rewrite_data(ret_string, pom_integer);
                     reduction_type = ex_red_int;
                 }
-                else if (((typeR1 == ex_red_double) && (typeR2 == ex_red_double))  ||
-                        ((typeR1 == ex_red_int) && (typeR2 == ex_red_double))      ||
-                        ((typeR1 == ex_red_double) && (typeR2 == ex_red_int)))
+                else if (((typeR1 == ex_red_double)  && (typeR2 == ex_red_double))  ||
+                         ((typeR1 == ex_red_int)     && (typeR2 == ex_red_double))  ||
+                         ((typeR1 == ex_red_double)  && (typeR2 == ex_red_int)))
                 {
                     str_rewrite_data(ret_string, pom_double);
                     reduction_type = ex_red_double;
                 } 
                 else if ((typeR1 == ex_red_str) && (typeR2 == ex_red_str)) {
+                    if (operator != ex_plus) {
+                        fprintf(stderr, "Between strings can be only plus sign.\n"); // chyba 4
+                        str_destroy(&(operand_1));
+                        str_destroy(&(operand_2)); 
+                        return -1;
+                    }
                     str_rewrite_data(ret_string, pom_string);
                     reduction_type = ex_red_str;
                 }
                 else  {
-                    fprintf(stderr, "Wrong types of operands in expresion\n"); // chyba 4
+                    fprintf(stderr, "Wrong types of operands in expresion.\n"); // chyba 4
                     str_destroy(&(operand_1));
                     str_destroy(&(operand_2)); 
                     return -1;
@@ -428,7 +434,7 @@ int expresion_reduction(TStack *s, int instruction, int reduce_counter, Tstring 
 }
 
 //hlavni funkce precedencni analyzy
-int precedent_analysis(int instruction) {
+int precedent_analysis(int instruction, int* destination) {
     TStack stack;
     SInit(&stack);
 
@@ -440,6 +446,7 @@ int precedent_analysis(int instruction) {
     int error;  // pomocna promenna pro vraceni chyb
     int stacked_operator, input_operator; // promenne pro zasobnikovy a vstupni symbol
     int convert = 0; // pro konverzi vyrazu na jiny typ
+    int reduced_symbol;
 
     error = SPush(&stack, ex_dollar, " "); //do prazdneho zasobniku vlozime znak dolaru
     if(error < 0){// nepodareny malloc prvnu zasobniku, ERROR
@@ -533,8 +540,7 @@ int precedent_analysis(int instruction) {
 
                     SPop(&stack); // popneme vrchol hlavniho zasobniku
                 }
-
-                int reduced_symbol;
+                
                 reduced_symbol = expresion_reduction(&reduction_stack, instruction, reduce_counter, &ret_string, convert); // redukujeme vyraz na pomocnem zasobniku
                 if ((reduced_symbol == ex_red_double) || convert == ex_red_double)                   
                     convert = ex_red_double;
@@ -546,7 +552,6 @@ int precedent_analysis(int instruction) {
                   SClean(&stack);
                   return ERR_SYN;
                 }
-
 
                 reduce_counter++;
 
@@ -574,6 +579,7 @@ int precedent_analysis(int instruction) {
 
     }while ((SActive(&stack) != ex_dollar ) || (input_operator != ex_dollar)); //dokud nezpracujeme cely vyraz
 
+    *destination = reduced_symbol;
     str_destroy(&ret_string); //uvolneni pameti
     SClean(&stack); //uvolneni pameti
 
