@@ -39,6 +39,7 @@ int rule_scope(){ // pravidlo <scope>
         printf("DEFVAR GF@&pomFloat\n");///
         printf("DEFVAR GF@&pomString\n");///
         printf("DEFVAR GF@&pomBool\n");///
+        printf("DEFVAR GF@&pomType\n\n");///
 
         printf("CREATEFRAME\n");///
         if(return_value = generate_token()) return return_value;
@@ -173,7 +174,7 @@ int rule_function_head(){ // stav <function-head>
                             if((return_value = rule_check_ret_type()) == 0){
 
                                 if(token.t_state == st_eol){
-                                    printf("LABEL $$%s\n", ident.data);///
+                                    printf("LABEL $%s\n", ident.data);///
                                     printf("PUSHFRAME\n");
                                     str_destroy(&ident);///
                                     if(return_value = generate_token()) return return_value;
@@ -462,8 +463,8 @@ int rule_stat(){ // stav <stat>
             }
             char* context = (p == 0 ? "TF@" : "LF@");
 
-            printf("TYPE GF@&pom %s%s\n",context, token.t_str.data);///
-            printf("READ %s%s, GF@&pom\n",context, token.t_str.data);///
+            printf("TYPE GF@&pomType %s%s\n",context, token.t_str.data);///
+            printf("READ %s%s, GF@&pomType\n",context, token.t_str.data);///
             if(return_value = generate_token()) return return_value;
             return_value = 0;
         }
@@ -491,7 +492,7 @@ int rule_stat(){ // stav <stat>
         if(return_value = generate_token()) return return_value;
 
         if((return_value = precedent_analysis(instruction, &destination)) == 0){
-            printf("JUMPIFNEQ else1 TF@&pomBool true\n");///
+            printf("JUMPIFNEQ else1 GF@&pomBool true\n");///
             if(token.t_state == st_then){
                 if(return_value = generate_token()) return return_value;
 
@@ -596,7 +597,7 @@ int rule_assign(Tstring id){ // stav <assign>
     int return_value = ERR_SYN;
     int instruction = -1;
     int destination = -1;
-
+    char* context = (p == 0 ? "TF@" : "LF@");
 
     if(token.t_state == st_id){ // simulace pravidla 23.
         htab_listitem *item;
@@ -610,9 +611,9 @@ int rule_assign(Tstring id){ // stav <assign>
         }
         if(item->type != type_function){// identifikator neni funkce
           if((return_value = precedent_analysis(instruction, &destination)) == 0){
-            if      (destination == ex_red_int)    printf("MOV TF@%s TF@&pomInteger\n", id.data);      
-            else if (destination == ex_red_double) printf("MOV TF@%s TF@&pomDouble\n", id.data);
-            else if (destination == ex_red_str)    printf("MOV TF@%s TF@&pomString\n", id.data);
+            if      (destination == ex_red_int)    printf("MOV %s%s GF@&pomInteger\n",context, id.data);      
+            else if (destination == ex_red_double) printf("MOV %s%s GF@&pomDouble\n",context, id.data);
+            else if (destination == ex_red_str)    printf("MOV %s%s GF@&pomString\n",context, id.data);
           }
           return return_value;
         }
@@ -629,7 +630,7 @@ int rule_assign(Tstring id){ // stav <assign>
 
                 if(token.t_state == st_pravzav){
                     if(return_value = generate_token()) return return_value;
-
+                    printf("funkce\n");
                     return_value = 0;
                 }
 
@@ -639,9 +640,9 @@ int rule_assign(Tstring id){ // stav <assign>
 
     }// konec pravidla 23.
     else if((return_value = precedent_analysis(instruction, &destination)) == 0){  //simulace pravidla 22.   
-        if      (destination == ex_red_int)    printf("MOV TF@%s TF@&pomInteger\n", id.data);      
-        else if (destination == ex_red_double) printf("MOV TF@%s TF@&pomDouble\n", id.data);
-        else if (destination == ex_red_str)    printf("MOV TF@%s TF@&pomString\n", id.data);
+        if      (destination == ex_red_int)    printf("MOV %s%s GF@&pomInteger\n",context, id.data);      
+        else if (destination == ex_red_double) printf("MOV %s%s GF@&pomDouble\n",context, id.data);
+        else if (destination == ex_red_str)    printf("MOV %s%s GF@&pomString\n",context, id.data);
         return_value = 0;
     }
 

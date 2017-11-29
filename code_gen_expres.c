@@ -57,7 +57,7 @@ void expr_gen(int operator, char* operand_1, char* operand_2, char* destination,
    str_create(&context_1);
    str_create(&context_2);
 
-   if (operand_1_type == st_id) {
+    if (operand_1_type == st_id) {
         if (p == 0) str_rewrite_data(&context_1, "TF@");
         else  str_rewrite_data(&context_1, "LF@");
     } else if (operand_1_type == st_integer){
@@ -68,7 +68,7 @@ void expr_gen(int operator, char* operand_1, char* operand_2, char* destination,
         str_rewrite_data(&context_1, "string@");
     }
 
-   if (operand_2_type == st_id) {
+    if (operand_2_type == st_id) {
         if (p == 0) str_rewrite_data(&context_2, "TF@");
         else  str_rewrite_data(&context_2, "LF@");
     } else if (operand_2_type == st_integer){
@@ -102,10 +102,10 @@ void expr_gen(int operator, char* operand_1, char* operand_2, char* destination,
 
         case ex_plus:
         {   
-            // cisla
+            if (operand_1_type == st_string)
+                printf("CONCAT %s%s %s%s %s%s\n", context, destination, context_1.data, operand_1, context_2.data, operand_2);
+            else 
                 printf("ADD %s%s %s%s %s%s\n", context, destination, context_1.data, operand_1, context_2.data, operand_2);
-            // else stringy
-            // printf("CONCAT %s %s %s\n", destination, operand_1, operand_2);
             break;
         }
 

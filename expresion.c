@@ -274,9 +274,9 @@ int set_operator(){
 int expresion_reduction(TStack *s, int instruction, int reduce_counter, Tstring *ret_string, int convert) {
     int reduction_type;
     Tstate var_type;
-    char * pom_integer= "&pomInteger";
-    char * pom_double = "&pomFloat";
-    char * pom_string = "&pomString";
+    char * pom_integer= "GF@&pomInteger";
+    char * pom_double = "GF@&pomFloat";
+    char * pom_string = "GF@&pomString";
 
     char* context = (p == 0 ? "TF@" : "LF@");
 
@@ -303,29 +303,29 @@ int expresion_reduction(TStack *s, int instruction, int reduce_counter, Tstring 
                 return -1; //chyba
             }
             else if (var_type == st_integer) {
-                if (reduce_counter == 0) printf("MOV %s%s %s%s\n", context, pom_integer, context, ret_string->data);
+                if (reduce_counter == 0) printf("MOVs %s %s%s\n", pom_integer, context, ret_string->data);
                 reduction_type = ex_red_int;
             }
             else if (var_type == st_double) {
-                if (reduce_counter == 0) printf("MOV %s%s %s%s\n", context, pom_double, context, ret_string->data);
+                if (reduce_counter == 0) printf("MOV %s %s%s\n", pom_double, context, ret_string->data);
                 reduction_type = ex_red_double;
             }
             else if (var_type == st_string){
-                if (reduce_counter == 0) printf("MOV %s%s %s%s\n", context, pom_string, context, ret_string->data);
+                if (reduce_counter == 0) printf("MOV %s %s%s\n", pom_string, context, ret_string->data);
                 reduction_type = ex_red_str;
             }
         }
         else if (symbol == ex_integer) {
-            if (reduce_counter == 0) printf("MOV %s%s int@%s\n", context, pom_integer, ret_string->data);
+            if (reduce_counter == 0) printf("MOV %s int@%s\n", pom_integer, ret_string->data);
             reduction_type = ex_red_int;
         }
         else if (symbol == ex_double) {
-             if (reduce_counter == 0) printf("MOV %s%s float@%s\n", context, pom_double, ret_string->data);
+             if (reduce_counter == 0) printf("MOV %s float@%s\n", pom_double, ret_string->data);
             reduction_type = ex_red_double;
         }
         else if (symbol == ex_str) {
             reduction_type = ex_red_str;
-            if (reduce_counter == 0) printf("MOV %s%s string@%s\n", context, pom_string, ret_string->data);
+            if (reduce_counter == 0) printf("MOV %s string@%s\n", pom_string, ret_string->data);
         }
         // GENEROVANI
 

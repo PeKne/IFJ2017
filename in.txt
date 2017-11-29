@@ -4,5 +4,5 @@ dim d as integer
 dim x as integer
 dim f as double
 
-e = !"asd" + !"sd"
+e = !"asd"
 END SCOPE
