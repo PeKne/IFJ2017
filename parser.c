@@ -494,7 +494,7 @@ int rule_stat(){ // stav <stat>
         if(return_value = generate_token()) return return_value;
 
         if((return_value = precedent_analysis(instruction, &destination)) == 0){
-            printf("JUMPIFNEQ else_%d TF@&pomInteger true\n", if_counter);///
+            printf("JUMPIFNEQ $$else_%d TF@&pomInteger true\n", if_counter);///
             if(token.t_state == st_then){
                 if(return_value = generate_token()) return return_value;
 
@@ -502,7 +502,7 @@ int rule_stat(){ // stav <stat>
                     if(return_value = generate_token()) return return_value;
 
                     if((return_value = rule_st_list()) == 0){
-                        printf("JUMP endif_%d\n", if_counter);
+                        printf("JUMP $$endif_%d\n", if_counter);
                         printf("LABEL $$else_%d\n", if_counter);
                         if(token.t_state == st_else){
                             if(return_value = generate_token()) return return_value;
@@ -548,11 +548,11 @@ int rule_stat(){ // stav <stat>
             if((return_value = precedent_analysis(instruction, &destination)) == 0){
 
                 if(token.t_state == st_eol){
-                    printf("JUMPIFENQ loop_end_%d TF@&pomBool true\n", while_counter);
+                    printf("JUMPIFENQ $$loop_end_%d TF@&pomBool true\n", while_counter);
                     if(return_value = generate_token()) return return_value;
 
                     if((return_value = rule_st_list()) == 0){
-                        printf("JUMP loop_%d\n", while_counter);
+                        printf("JUMP $$loop_%d\n", while_counter);
                         if(token.t_state == st_loop){
                             printf("LABEL $$loop_end_%d\n", while_counter);
                             while_counter++;
