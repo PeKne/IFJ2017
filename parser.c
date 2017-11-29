@@ -24,7 +24,7 @@ int rule_start_state(){ // stav <start t_state>
     if(return_value = generate_token()) return return_value;    
     if(token.t_state == st_scope || token.t_state == st_declare || token.t_state == st_function){ // simulace pravidla 1.
         printf(".IFJcode17\n");///
-        printf("JUMP $$main\n\n");
+        printf("JUMP $$scope\n\n");
 
         if ((return_value = rule_function()) == 0)
                     return_value = rule_scope();
@@ -36,7 +36,7 @@ int rule_scope(){ // pravidlo <scope>
     if(skip_blank_lines() != 0) return ERR_LEX;
     int return_value = ERR_SYN;
     if(token.t_state == st_scope){ // simulace pravidla 2.
-        printf("LABEL $$main\n");
+        printf("LABEL $$scope\n");
         printf("DEFVAR GF@&pomInteger\n");///
         printf("DEFVAR GF@&pomFloat\n");///
         printf("DEFVAR GF@&pomString\n");///
