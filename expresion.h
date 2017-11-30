@@ -47,9 +47,9 @@ void SClean (TStack *s);
 //vycty stavu precedencni analyzi
 //#-------------------------------------------#//
 
-int precedent_analysis(int print_command, int* destination);
+int precedent_analysis(Tstate instruct, Tstate dest_type);
 int set_operator();
-int expresion_reduction(TStack *s, int print_command, int reduce_counter, Tstring *ret_string, int convert);
+int expresion_reduction(TStack *s, Tstate instruct, int reduce_counter, Tstring *ret_string, Tstate dest_type);
 
 typedef enum {
 	LT, // <
@@ -59,30 +59,27 @@ typedef enum {
 }PrecTabValues;
 
 enum {
-/*0 */	ex_mul,
-/*1 */	ex_div,      /* / */
-/*2 */	ex_wholeDiv, /* \ */
-/*3 */	ex_plus,
-/*4 */	ex_minus,
-/*5 */	ex_equal, 	 /* =  */
-/*6 */	ex_notEq, 	 /* <> */
-/*7 */	ex_less,
-/*8 */	ex_lessEq,
-/*9 */	ex_great,
-/*10*/	ex_greatEq,
-/*11*/	ex_leftBrac, /* ( */
-/*12*/	ex_rightBrac,
-/*13*/	ex_ident,	 /* i */
-/*14*/	ex_integer,
-/*15*/	ex_double,
-/*16*/	ex_str,
-/*17*/	ex_bool,
-/*18*/	ex_dollar, // zacatek zpracovani vyrazu
-/*19*/	ex_red_int,
-/*20*/	ex_red_double,
-/*21*/	ex_red_str,
-/*22*/	ex_red_bool,
-/*23*/	ex_rule_begin, //prednostni symbol
+/*1*/	ex_mul,
+/*2*/	ex_div,      /* / */
+/*3*/	ex_wholeDiv, /* \ */
+/*4*/	ex_plus,
+/*5*/	ex_minus,
+/*6*/	ex_equal, 	 /* =  */
+/*7*/	ex_notEq, 	 /* <> */
+/*8*/	ex_less,
+/*9*/	ex_lessEq,
+/*10*/	ex_great,
+/*11*/	ex_greatEq,
+/*12*/	ex_leftBrac, /* ( */
+/*13*/	ex_rightBrac,
+/*14*/	ex_ident,	 /* i */
+/*15*/	ex_integer,
+/*16*/	ex_double,
+/*17*/	ex_str,
+/*18*/	ex_bool,
+/*19*/	ex_dollar, // zacatek zpracovani vyrazu
+/*20*/	ex_reduction,
+/*21*/	ex_rule_begin, //prednostni symbol
 } EXSymbols;
 
 #endif

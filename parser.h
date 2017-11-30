@@ -32,7 +32,7 @@ int rule_check_arg_type(); //
 int rule_st_list();
 int rule_stat();
 int rule_eval();
-int rule_assign();
+int rule_assign(Tstring id);
 int rule_call_par();
 int rule_call_next_par();
 int rule_pr_expr();

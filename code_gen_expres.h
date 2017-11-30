@@ -1,18 +1,9 @@
 #ifndef GEN_EXPR_H
 #define GEN_EXPR_H
 
-void expr_gen(int operator, char* operand_1, char* operand_2, char* destination, int instruction);
+#include "lex.h"
 
-typedef enum {
-/*0*/ ins_print,
-/*1*/ ins_if,
-/*2*/ 
-/*3*/
-/*4*/
-/*5*/
-/*6*/
-/*7*/
+int expr_gen(int operator, char *operand_1, char *operand_2, char *destination, int instruction, Tstate dest_type);
 
-}instruction;
 
 #endif
