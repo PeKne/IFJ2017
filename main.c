@@ -15,6 +15,7 @@ int p = 0;
 int ar_count = 0;
 int if_counter = 1;
 int while_counter = 1;
+Tstring gen_str;
 
 int main() {
     int error = 0;
@@ -29,6 +30,8 @@ int main() {
 
     global_table = htab_init(HTAB_SIZE);
     global_data = create_global_data();
+
+    //str_create(&gen_str);
 
     int parser;
     parser = rule_start_state();
@@ -59,8 +62,8 @@ int main() {
 
     }
     else {
-      printf("%s\n",gen_str.data);
-      printf("\n\n\nPARSER PROBEHL USPESNE\n");
+      printf("%s",gen_str.data);
+      //printf("\n\n\nPARSER PROBEHL USPESNE\n");
     }
 
     str_destroy(&(token.t_str));
@@ -68,7 +71,6 @@ int main() {
 
     htab_free(global_table);
     free(global_data);
-    //free_data_function(global_data);
 
     return error;
 }
