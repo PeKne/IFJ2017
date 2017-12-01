@@ -8,7 +8,22 @@
 #include <ctype.h>
 
 extern int p;
-
+/*
+int gen_print(char *arg) {
+    int error = 0;
+    char *str;
+    asprintf(&str, arg);
+    printf("str: %s\n",str);
+    int len = strlen(str);
+    for (int i = 0; i < len; i++)
+    {
+        error = str_push_char(&gen_str, str[i]);
+        if (error) { str_destroy(&gen_str); return error; }
+    }
+    free(str);
+    return 0;
+}
+*/
 int isDouble(char *operand) {
     int operand_type = st_integer;
     int length = strlen(operand);
@@ -47,12 +62,12 @@ int set_context(Tstring *context, int operand_type, Tstate dest_type, Tstring *o
         if (p == 0) str_rewrite_data(context, "TF@");
         else        str_rewrite_data(context, "LF@");
     } else if (operand_type == st_integer){
-        if (dest_type == st_double) {
+        if (dest_type == st_double || dest_type == 0) {
             str_rewrite_data(context, "float@");
             str_push_char(operand,'.');
             str_push_char(operand,'0');
         }
-        else if (dest_type == st_integer) {
+        else if (dest_type == st_integer || dest_type == 0) {
             str_rewrite_data(context, "int@");
         }
         else {
@@ -61,10 +76,10 @@ int set_context(Tstring *context, int operand_type, Tstate dest_type, Tstring *o
         }
 
     } else if (operand_type == st_double) {
-        if (dest_type == st_double) {
+        if (dest_type == st_double || dest_type == 0) {
             str_rewrite_data(context, "float@");
         }
-        else if (dest_type == st_integer) {
+        else if (dest_type == st_integer || dest_type == 0) {
             Tstring res;
             str_create(&res);
             str_rewrite_data(context, "int@");
@@ -78,7 +93,7 @@ int set_context(Tstring *context, int operand_type, Tstate dest_type, Tstring *o
             return 1;
         }
     } else if (operand_type == st_string) {
-        if (dest_type == st_string)
+        if (dest_type == st_string || dest_type == 0)
             str_rewrite_data(context, "string@");
         else {
             fprintf(stderr, "Wrong types of operands!\n");

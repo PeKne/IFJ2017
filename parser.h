@@ -12,6 +12,8 @@
 
 #define HTAB_SIZE 23
 
+Tstring gen_str;
+
 //Funkce rekurzivniho sestupu
 int skip_blank_lines();
 int rule_start_state();
@@ -31,7 +33,7 @@ int rule_arg_type(function_data *data_f); //
 int rule_check_arg_type(); //
 int rule_st_list();
 int rule_stat();
-int rule_eval();
+int rule_eval(Tstring id);
 int rule_assign(Tstring id);
 int rule_call_par();
 int rule_call_next_par();

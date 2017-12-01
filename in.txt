@@ -1,8 +1,8 @@
 scope 'Hlavni telo programu
-dim e as integer
+dim e as integer = 0
 dim d as integer
 dim x as integer
+dim r as double
 dim f as string
 
-x = 1 + 2.2
 END SCOPE

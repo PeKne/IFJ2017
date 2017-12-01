@@ -2,6 +2,7 @@
 #include "expresion.h"
 #include "code_gen_expres.h"
 #include "lex.h"
+#include "errors.h"
 
 extern function_data *global_data;
 extern int p;
@@ -37,6 +38,18 @@ int rule_scope(){ // pravidlo <scope>
     if(skip_blank_lines() != 0) return ERR_LEX;
     int return_value = ERR_SYN;
     if(token.t_state == st_scope){ // simulace pravidla 2.
+        
+        char *str;
+        asprintf(&str, "LABEL $$scope %d\n", 1);
+        printf("str: %s\n",str);
+        int len = strlen(str);
+        for (int i = 0; i < len; i++)
+        {
+            return_value = str_push_char(&gen_str, str[i]);
+            if (return_value) { str_destroy(&gen_str); return return_value; }
+        }
+        free(str);
+
         printf("LABEL $$scope\n");
         printf("DEFVAR GF@&pomInteger\n");///
         printf("DEFVAR GF@&pomFloat\n");///
@@ -419,11 +432,10 @@ int rule_stat(){ // stav <stat>
                 }
 
                 if((return_value = rule_type(data)) == 0){
-                    if((return_value = rule_eval()) == 0){
-                        variable_data_to_table((p == 1 ? global_data->local_symbol_table : global_table), data);
-
-                        char* context = (p == 0 ? "TF@" : "LF@");
-                        printf("DEFVAR %s%s\n", context, ident.data);///
+                    char* context = (p == 0 ? "TF@" : "LF@");
+                    printf("DEFVAR %s%s\n", context, ident.data);///
+                    variable_data_to_table((p == 1 ? global_data->local_symbol_table : global_table), data); 
+                    if((return_value = rule_eval(ident)) == 0){                                                    
                         return_value = 0;
                     }
                 }
@@ -495,7 +507,7 @@ int rule_stat(){ // stav <stat>
         if(return_value = generate_token()) return return_value;
 
         if((return_value = precedent_analysis(instruct, dest_type)) == 0){
-            printf("JUMPIFNEQ $$else_%d GF@&pomInteger true\n", if_counter);///
+            printf("JUMPIFNEQ $$else_%d GF@&pomInteger bool@true\n", if_counter);///
             if(token.t_state == st_then){
                 if(return_value = generate_token()) return return_value;
 
@@ -549,7 +561,7 @@ int rule_stat(){ // stav <stat>
             if((return_value = precedent_analysis(instruct, dest_type)) == 0){
 
                 if(token.t_state == st_eol){
-                    printf("JUMPIFENQ $$loop_end_%d GF@&pomBool true\n", while_counter);
+                    printf("JUMPIFENQ $$loop_end_%d GF@&pomBool bool@true\n", while_counter);
                     if(return_value = generate_token()) return return_value;
 
                     if((return_value = rule_st_list()) == 0){
@@ -579,16 +591,24 @@ int rule_stat(){ // stav <stat>
     return return_value;
 }// konec funkce rule_stat()
 
-int rule_eval(){ // stav <eval>
+int rule_eval(Tstring id){ // stav <eval>
     if(skip_blank_lines() != 0) return ERR_LEX;
     int return_value = ERR_SYN;
     Tstate instruct = 0;
     Tstate dest_type = 0;
+    dest_type = return_variable_type(id.data);
+    char* context = (p == 0 ? "TF@" : "LF@");
 
     if(token.t_state == st_rovno ){ // simulace pravidla 19.
         if(return_value = generate_token()) return return_value;
-
+        
         if((return_value = precedent_analysis(instruct, dest_type)) == 0){
+            if      (dest_type == st_integer) printf("MOVE %s%s GF@&pomInteger\n",context, id.data);      
+            else if (dest_type == st_double)  printf("MOVE %s%s GF@&pomFloat\n",context, id.data);
+            else if (dest_type == st_string)  printf("MOVE %s%s GF@&pomString\n",context, id.data);
+
+            
+            //debug_print("%s\n", "as");
             return_value = 0;
         }
     }
@@ -642,7 +662,7 @@ int rule_assign(Tstring id){ // stav <assign>
 
                 if(token.t_state == st_pravzav){
                     if(return_value = generate_token()) return return_value;
-                    printf("funkce\n");
+                    //debug_print("%s\n","funkce");
                     return_value = 0;
                 }
             }
@@ -693,7 +713,8 @@ int rule_call_next_par(){ // stav <call-next-par>
 
 int rule_pr_expr(){ // stav <pr-expr>
     int return_value = ERR_SYN;
-    Tstate instruct = 0;
+    Tstate instruct = st_print;
+    //debug_print("%s: ins:%d data: %s\n", "print", instruct, token.t_str.data);
     Tstate dest_type = 0;
 
     if(token.t_state == st_dim || token.t_state == st_input ||

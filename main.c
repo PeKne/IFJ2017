@@ -6,6 +6,8 @@
 #include "parser.h"
 #include "symbol.h"
 #include "symtable.h"
+#include "errors.h"
+#include "code_gen_expres.h"
 
 htab_t *global_table;
 function_data *global_data;
@@ -16,8 +18,13 @@ int while_counter = 1;
 
 int main() {
     int error = 0;
-    if ((error = str_create(&(token.t_str))) != 0)
+    if ((error = str_create(&(token.t_str))) != 0) {
         return error;
+    }
+    if ((error = str_create(&(gen_str))) != 0) {
+        str_destroy(&(token.t_str));
+        return error;
+    }
     token.t_line = 1;
 
     global_table = htab_init(HTAB_SIZE);
@@ -30,31 +37,34 @@ int main() {
     	error = parser;
       switch (error) {
         case 1:
-          printf("ERROR - 1 - chyba v programu v rámci lexikální analýzy (chybná struktura aktuálního lexému).\n");
+          fprintf(stderr, "ERROR - 1 - chyba v programu v rámci lexikální analýzy (chybná struktura aktuálního lexému).\n");
           break;
         case 2:
-          printf("ERROR - 2 - chyba v programu v rámci syntaktické analýzy (chybná syntaxe programu).\n");
+          fprintf(stderr, "ERROR - 2 - chyba v programu v rámci syntaktické analýzy (chybná syntaxe programu).\n");
           break;
         case 3:
-          printf("ERROR - 3 - sémantická chyba v programu – nedefinovaná funkce/proměnná, pokus o redefinici funkce/proměnné, atd.\n");
+          fprintf(stderr, "ERROR - 3 - sémantická chyba v programu – nedefinovaná funkce/proměnná, pokus o redefinici funkce/proměnné, atd.\n");
           break;
         case 4:
-          printf("ERROR -  4 - sémantická chyba typové kompatibility v aritmetických, řetězcových a relačních výrazech, příp. špatný počet či typ parametrů u volání funkce.\n");
+          fprintf(stderr, "ERROR -  4 - sémantická chyba typové kompatibility v aritmetických, řetězcových a relačních výrazech, příp. špatný počet či typ parametrů u volání funkce.\n");
           break;
         case 6:
-          printf("ERROR -  6 - ostatní sémantické chyby.\n");
+          fprintf(stderr, "ERROR -  6 - ostatní sémantické chyby.\n");
           break;
         case 99:
-          printf("ERROR -  99 - interní chyba překladače tj. neovlivněná vstupním programem (např. chyba alokace paměti, atd.).\n");
+          fprintf(stderr, "ERROR -  99 - interní chyba překladače tj. neovlivněná vstupním programem (např. chyba alokace paměti, atd.).\n");
           break;
       }
     	printf("ERROR on line %d\n", token.t_line);
 
     }
-    else
+    else {
+      printf("%s\n",gen_str.data);
       printf("\n\n\nPARSER PROBEHL USPESNE\n");
+    }
 
     str_destroy(&(token.t_str));
+    str_destroy(&(gen_str));
 
     htab_free(global_table);
     free(global_data);

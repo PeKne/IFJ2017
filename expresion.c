@@ -295,30 +295,30 @@ int expresion_reduction(TStack *s, Tstate instruct, int reduce_counter, Tstring 
             }
         }
 
-        if (reduce_counter == 0)  
+        else if (reduce_counter == 0)  
         {
             // jen prirazeni napr. a = b
             if (symbol == ex_ident) {
                 if (dest_type == st_integer)
-                    printf("MOV %s %s%s\n", pom_integer, context, ret_string->data);
+                    printf("MOVE %s %s%s\n", pom_integer, context, ret_string->data);
                 else if (dest_type == st_double)
-                    printf("MOV %s %s%s\n", pom_double, context, ret_string->data);
+                    printf("MOVE %s %s%s\n", pom_double, context, ret_string->data);
                 else if (dest_type == st_string)
-                    printf("MOV %s %s%s\n", pom_string, context, ret_string->data);
+                    printf("MOVE %s %s%s\n", pom_string, context, ret_string->data);
             }  
             // a = 1.5
             else if (symbol == ex_integer) {
                 if (dest_type == st_integer)
-                    printf("MOV %s int@%s\n", pom_integer, ret_string->data);
+                    printf("MOVE %s int@%s\n", pom_integer, ret_string->data);
                 else if (dest_type == st_double) {
                     str_push_char(ret_string,'.');
                     str_push_char(ret_string,'0');
-                    printf("MOV %s konvert_int@%s\n", pom_double, ret_string->data);
+                    printf("MOVE %s konvert_int@%s\n", pom_double, ret_string->data);
                 }
 
             } else if (symbol == ex_double) {
                 if (dest_type == st_double)
-                    printf("MOV %s float@%s\n", pom_double, ret_string->data);
+                    printf("MOVE %s float@%s\n", pom_double, ret_string->data);
                 else if (dest_type == st_integer) {
                     // konverze double na integer
                     Tstring res;
@@ -328,11 +328,11 @@ int expresion_reduction(TStack *s, Tstate instruct, int reduce_counter, Tstring 
                     sprintf(res.data, "%d", val);
                     str_rewrite_data(ret_string, res.data);
                     str_destroy(&res);        
-                    printf("MOV %s int@%s\n", pom_integer, ret_string->data);
+                    printf("MOVE %s int@%s\n", pom_integer, ret_string->data);
                 }
             } else if (symbol == ex_str) {
                 if (dest_type == st_string) {
-                    printf("MOV %s string@%s\n", pom_string, ret_string->data);
+                    printf("MOVE %s string@%s\n", pom_string, ret_string->data);
                 } else {
                     fprintf(stderr, "Wrong types of operands!\n");
                     return 1;
@@ -413,6 +413,15 @@ int expresion_reduction(TStack *s, Tstate instruct, int reduce_counter, Tstring 
                                 return 1;
                             }
                         }
+                    }else if (dest_type == 0) {
+                            error = expr_gen(operator, operand_1.data, operand_2.data, pom_string, instruct, dest_type);
+                            if (error) {
+                                debug_print("%s\n", "st_string error");
+                                fprintf(stderr, "Expresion without assign error;\n");
+                                str_destroy(&(operand_1));
+                                str_destroy(&(operand_2));
+                                return 1;
+                            }
                     } else {
                         fprintf(stderr, "Wrong destination type operation!\n");
                         str_destroy(&(operand_1));

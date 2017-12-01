@@ -1,6 +1,3 @@
 scope
 dim a as integer
-if a < 0 then
-print!"ahoj"
-end if
 end scope
