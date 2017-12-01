@@ -353,6 +353,8 @@ int expresion_reduction(TStack *s, Tstate instruct, int reduce_counter, Tstring 
             }            
         }
 
+        free(str);
+
         SPop(s);
         if(SEmpty(s)) return 0;
     }
