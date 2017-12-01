@@ -186,6 +186,7 @@ int rule_function_head(){ // stav <function-head>
                                     str_destroy(&ident);///
                                     if(return_value = generate_token()) return return_value;
                                     return_value = 0;
+                                    free(str);
                                 }
                             }
                         }
@@ -427,7 +428,8 @@ int rule_stat(){ // stav <stat>
                     asprintf(&str, "DEFVAR %s%s\n", context, ident.data);///
                     add_inst_to_string(str);
                     variable_data_to_table((p == 1 ? global_data->local_symbol_table : global_table), data); 
-                    if((return_value = rule_eval(ident)) == 0){                                                    
+                    if((return_value = rule_eval(ident)) == 0){
+                        free(str);
                         return_value = 0;
                     }
                 }
@@ -475,6 +477,7 @@ int rule_stat(){ // stav <stat>
             asprintf(&str, "READ %s%s GF@&pomType\n",context, token.t_str.data);///
             add_inst_to_string(str);
             if(return_value = generate_token()) return return_value;
+            free(str);
             return_value = 0;
         }
     }
@@ -530,6 +533,7 @@ int rule_stat(){ // stav <stat>
                                             add_inst_to_string(str);
                                             if_counter++;
                                             if(return_value = generate_token()) return return_value;
+                                            free(str);
                                             return_value = 0;
                                         }
                                     }
@@ -572,6 +576,7 @@ int rule_stat(){ // stav <stat>
                             add_inst_to_string(str);
                             while_counter++;
                             if(return_value = generate_token()) return return_value;
+                            free(str);
                             return_value = 0;
                         }
                     }
@@ -618,6 +623,7 @@ int rule_eval(Tstring id){ // stav <eval>
 
             
             //debug_print("%s\n", "as");
+            free(str);
             return_value = 0;
         }
     }
@@ -666,6 +672,7 @@ int rule_assign(Tstring id){ // stav <assign>
                 add_inst_to_string(str);      
             }
           }
+          free(str);
           str_destroy(&(fce));
           return return_value;
         }
@@ -712,9 +719,9 @@ int rule_assign(Tstring id){ // stav <assign>
             asprintf(&str, "MOVE %s%s GF@&pomString\n",context, id.data);
             add_inst_to_string(str);      
         }
+        free(str);
         return_value = 0;
     }
-
     str_destroy(&(fce));
     return return_value;
 }// konec funkce rule_assign()
