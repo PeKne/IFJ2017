@@ -40,8 +40,7 @@ int rule_scope(){ // pravidlo <scope>
     if(token.t_state == st_scope){ // simulace pravidla 2.
         
         char *str;
-        asprintf(&str, "LABEL $$scope %d\n", 1);
-        printf("str: %s\n",str);
+        asprintf(&str, "LABEL $$scope %d\n");
         int len = strlen(str);
         for (int i = 0; i < len; i++)
         {
@@ -191,7 +190,8 @@ int rule_function_head(){ // stav <function-head>
 
                                 if(token.t_state == st_eol){
                                     printf("LABEL $%s\n", ident.data);///
-                                    printf("PUSHFRAME\n");
+                                    printf("PUSHFRAME\n");///
+                                    printf("DEFVAR LF@&retval\n");///
                                     str_destroy(&ident);///
                                     if(return_value = generate_token()) return return_value;
                                     return_value = 0;
@@ -211,8 +211,8 @@ int rule_function_tail(){ // stav <function-tail>
     if(skip_blank_lines() != 0) return ERR_LEX;
     int return_value = ERR_SYN;
     if(token.t_state == st_end){ // simulace pravidla 8.
-        printf("POPFRAME\n");
-        printf("RETURN\n\n");
+        printf("POPFRAME\n");///
+        printf("RETURN\n\n");///
         if(return_value = generate_token()) return return_value;
 
         if(token.t_state == st_function){
@@ -222,7 +222,7 @@ int rule_function_tail(){ // stav <function-tail>
     }
 
     if(push_function_data(global_data->name) != 1) {
-        printf("ERROR pushing data\n");
+        fprintf(stderr, "ERROR pushing data\n");
         return ERR_SEM_OTHER;
     }
     p = 0;
@@ -446,7 +446,7 @@ int rule_stat(){ // stav <stat>
 
     else if(token.t_state == st_id){ // simulace pravidla 21.
         if(variable_exist(token.t_str.data) ==  0){
-            printf("Not defined variable\n");
+            fprintf(stderr,"Not defined variable\n");
             return ERR_SEM_PROG; //Premmenna nebola vramci danej funkcie deklarovana
         }
         str_create_init(&ident, token.t_str.data);
@@ -473,13 +473,13 @@ int rule_stat(){ // stav <stat>
 
         if(token.t_state == st_id){
             if(variable_exist(token.t_str.data) == 0) {
-                printf("Not defined variable\n");
+                fprintf(stderr, "Not defined variable\n");
                 return ERR_SEM_PROG; //Premmenna nebola vramci danej funkcie deklarovana
             }
             char* context = (p == 0 ? "TF@" : "LF@");
 
             printf("TYPE GF@&pomType %s%s\n",context, token.t_str.data);///
-            printf("READ %s%s, GF@&pomType\n",context, token.t_str.data);///
+            printf("READ %s%s GF@&pomType\n",context, token.t_str.data);///
             if(return_value = generate_token()) return return_value;
             return_value = 0;
         }
@@ -628,6 +628,7 @@ int rule_assign(Tstring id){ // stav <assign>
     Tstate dest_type = 0;
     char* context = (p == 0 ? "TF@" : "LF@");
     dest_type = return_variable_type(id.data);
+    Tstring fce;
 
     if(token.t_state == st_id){ // simulace pravidla 23.
         
@@ -636,10 +637,12 @@ int rule_assign(Tstring id){ // stav <assign>
         if(item == NULL) { // tady konci vetsina vstupu TODO: OPRAVIT!
             item = htab_find(global_table, token.t_str.data);
             if(item == NULL || item->type != type_function) {
-                printf("NULL\n");
+                fprintf(stderr, "NULL hashtable error\n");
                 return ERR_SEM_PROG;
             }
         }
+        str_create_init(&(fce),token.t_str.data);
+        Tstate dest_fce_type = return_variable_type(token.t_str.data);
 
         if(item->type != type_function){// identifikator neni funkce                    
           if((return_value = precedent_analysis(instruct, dest_type)) == 0){
@@ -647,6 +650,7 @@ int rule_assign(Tstring id){ // stav <assign>
             else if (dest_type == st_double)  printf("MOVE %s%s GF@&pomFloat\n",context, id.data);
             else if (dest_type == st_string)  printf("MOVE %s%s GF@&pomString\n",context, id.data);
           }
+          str_destroy(&(fce));
           return return_value;
         }
         if(item->pointer.function->defined == 0) {//identifikator nedefinovane funkce
@@ -654,15 +658,26 @@ int rule_assign(Tstring id){ // stav <assign>
             return ERR_SEM_OTHER;
         }
 
-        if(return_value = generate_token()) return return_value;
+        if(return_value = generate_token())  {
+            str_destroy(&(fce));
+            return return_value;
+        }
         if(token.t_state == st_levzav){
-            if(return_value = generate_token()) return return_value;
+            if(return_value = generate_token())  {
+                str_destroy(&(fce));
+                return return_value;
+            }
 
             if((return_value = rule_call_par()) == 0){
 
                 if(token.t_state == st_pravzav){
-                    if(return_value = generate_token()) return return_value;
+                    if(return_value = generate_token())  {
+                        str_destroy(&(fce));
+                        return return_value;
+                    }
                     //debug_print("%s\n","funkce");
+                    printf("CALL $%s\n",fce.data);
+                    printf("MOVE %s%s %s&retval\n",context, id.data, context);
                     return_value = 0;
                 }
             }
@@ -675,6 +690,7 @@ int rule_assign(Tstring id){ // stav <assign>
         return_value = 0;
     }
 
+    str_destroy(&(fce));
     return return_value;
 }// konec funkce rule_assign()
 
