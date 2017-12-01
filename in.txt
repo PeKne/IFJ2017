@@ -5,4 +5,5 @@ dim x as integer
 dim r as double
 dim f as string
 
+f = e + d
 END SCOPE
