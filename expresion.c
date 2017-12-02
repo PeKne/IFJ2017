@@ -405,16 +405,10 @@ int expresion_reduction(TStack *s, Tstate instruct, int reduce_counter, Tstring 
                     return ERR_SEM_PROG;
                 }
 
-                if (operand_2.data)
-                if (strcmp(operand_1.data,"GF@&pomInteger") == 0) {
-
-                }
-
-                /*(strcmp(operand,"GF@&pomFloat")  == 0) 
-                (strcmp(operand,"GF@&pomBool")    == 0))*/
-
                 SPop(s);
                 if(SEmpty(s)){
+
+                    // GENEROVANI
                     if (dest_type == st_integer) {
                         if (op2_type == st_string) {
                             fprintf(stderr, "Cant assign string to integer.\n");
@@ -440,15 +434,22 @@ int expresion_reduction(TStack *s, Tstate instruct, int reduce_counter, Tstring 
                             } else {
                                 fprintf(stderr, "Wrong string operation!\n");
                                 error = ERR_SEM_TYPE;
-                            }
-                            
+                            }                            
                         }
 
-                    } else if (dest_type == 0) { // bez prirazeni. Napr f (a < 0)
-                            error = expr_gen(operator, operand_1.data, operand_2.data, pom_string, instruct, dest_type);
+                    } else if (dest_type == 0) { // bez prirazeni. Napr if (a < 0)
+                        if ((instruct == st_if  || instruct == st_loop) && (operator == ex_equal || operator == ex_notEq || 
+                            operator == ex_less || operator == ex_lessEq || 
+                            operator == ex_great || operator == ex_greatEq ))
+                        {
+                          error = expr_gen(operator, operand_1.data, operand_2.data, pom_string, instruct, dest_type);
                             if (error) {
-                                fprintf(stderr, "Expresion (that wont be assigned) error\n");
-                            }
+                                fprintf(stderr, "Expresion in if or loop error.\n");
+                            }  
+                        } else {
+                            fprintf(stderr, "In if and loop statement can only be relational operators.\n");
+                            error = ERR_SEM_OTHER;
+                        }                                                 
                     } 
 
                     if (error) {
@@ -457,6 +458,7 @@ int expresion_reduction(TStack *s, Tstate instruct, int reduce_counter, Tstring 
                         str_destroy(&(operand_2));
                         return error;
                     }
+                    // GENEROVANI
 
                     str_destroy(&(operand_1));
                     str_destroy(&(operand_2));
@@ -468,7 +470,7 @@ int expresion_reduction(TStack *s, Tstate instruct, int reduce_counter, Tstring 
         str_destroy(&(operand_1));        
     }
 
-    return 1;
+    return 1; // SPATNA NAVRATOVA HODNOTA
 
 }
 

@@ -430,19 +430,22 @@ int rule_stat(){ // stav <stat>
                 }
 
                 if((return_value = rule_type(data)) == 0){
-                    char* context = (p == 0 ? "TF@" : "LF@");
+                            
+
+                    variable_data_to_table((p == 1 ? global_data->local_symbol_table : global_table), data); 
+                    if((return_value = rule_eval(ident)) == 0){                        
+                        return_value = 0;
+                    }
+
+                    char* context = (p == 0 ? "TF@" : "LF@"); 
                     Tstate var_type = return_variable_type(ident.data);      
-                    //printf("var_type: %d\n",var_type);              
+                    //printf("var_type: %d\n",var_type);     
+
                     printf("DEFVAR %s%s\n", context, ident.data);///
                     if      (var_type == st_integer) printf("MOVE %s%s int@0\n", context, ident.data);
                     else if (var_type == st_double)  printf("MOVE %s%s float@0\n", context, ident.data);
                     else if (var_type == st_string)  printf("MOVE %s%s string@\n", context, ident.data);
 
-                    variable_data_to_table((p == 1 ? global_data->local_symbol_table : global_table), data); 
-                    if((return_value = rule_eval(ident)) == 0){
-                        
-                        return_value = 0;
-                    }
                 }
             }
             str_destroy(&ident);///
@@ -753,17 +756,16 @@ int rule_call_next_par(){ // stav <call-next-par>
 int rule_pr_expr(){ // stav <pr-expr>
     int return_value = ERR_SYN;
     Tstate instruct = st_print;
-    //debug_print("%s: ins:%d data: %s\n", "print", instruct, token.t_str.data);
+    //printf("%s: ins:%d data: %s\n", "print", instruct, token.t_str.data);
     Tstate dest_type = 0;
 
     if(token.t_state == st_dim || token.t_state == st_input ||
        token.t_state == st_print || token.t_state == st_if || token.t_state == st_do ||
        token.t_state == st_return || token.t_state == st_end || token.t_state == st_eol ){  // simulace pravidla 31.
             if(skip_blank_lines() != 0) return ERR_LEX;
-        return_value = 0;
-    }
+            return_value = 0;
 
-        else if((return_value = precedent_analysis(instruct, dest_type)) == 0){  //simulace pravidla 30.
+    } else if((return_value = precedent_analysis(instruct, dest_type)) == 0){  //simulace pravidla 30.
 
         if(token.t_state == st_stred){
             if(return_value = generate_token()) return return_value;

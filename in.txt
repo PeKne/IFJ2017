@@ -5,6 +5,8 @@ dim x as integer
 dim r as double
 dim f as string
 
+if e * f then
 x = e + r
+end if
 print f;
 END SCOPE
