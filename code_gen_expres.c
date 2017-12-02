@@ -8,7 +8,6 @@
 #include <ctype.h>
 
 extern int p;
-extern char *str;
 
 int isDouble(char *operand) {
     int operand_type = st_integer;

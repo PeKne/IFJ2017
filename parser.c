@@ -161,7 +161,7 @@ int rule_function_head(){ // stav <function-head>
           }
           set_defined_function(global_data);
           if(push_function_data(global_data->name) != 1) {
-            return SEM_INTERN;
+            return ERR_INTERN;
           }
            if(retrieve_function_data(token.t_str.data) != 1) {
               return ERR_SEM_PROG;
@@ -175,7 +175,7 @@ int rule_function_head(){ // stav <function-head>
                 if((return_value = rule_check_par()) == 0){
 
                     if(token.t_state == st_pravzav){
-                        if(check_argument_count != 1) {
+                        if(check_argument_count(ar_count) != 1) {
                             debug_print("%s\n", "Argument count does not match with declaration");
                             return ERR_SEM_TYPE;
                         }
@@ -236,7 +236,7 @@ int rule_par(function_data *data_f){ // stav <par>
     if(token.t_state == st_id){ // simulace pravidla 9.
         htab_listitem *item;
         if((item = htab_find((p == 1 ? global_data->local_symbol_table : global_table), token.t_str.data)) != NULL) {
-            debug_print("%s\n", "Function has another parameter with same name")
+            debug_print("%s\n", "Function has another parameter with same name");
         }
         free(item);
 
