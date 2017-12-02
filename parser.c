@@ -26,8 +26,8 @@ int rule_start_state(){ // stav <start t_state>
     int return_value = ERR_SYN;
     if(return_value = generate_token()) return return_value;    
     if(token.t_state == st_scope || token.t_state == st_declare || token.t_state == st_function){ // simulace pravidla 1.
-        add_inst_to_string(".IFJcode17\n");///
-        add_inst_to_string("JUMP $$scope\n\n");
+        printf(".IFJcode17\n");///
+        printf("JUMP $$scope\n\n");
 
         if ((return_value = rule_function()) == 0)
                     return_value = rule_scope();
@@ -39,14 +39,13 @@ int rule_scope(){ // pravidlo <scope>
     if(skip_blank_lines() != 0) return ERR_LEX;
     int return_value = ERR_SYN;
     if(token.t_state == st_scope){ // simulace pravidla 2.
-        add_inst_to_string("LABEL $$scope\n");
-        add_inst_to_string("DEFVAR GF@&pomInteger\n");///
-        add_inst_to_string("DEFVAR GF@&pomString\n");///
-        add_inst_to_string("DEFVAR GF@&pomFloat\n");///
-        add_inst_to_string("DEFVAR GF@&pomBool\n");///
-        add_inst_to_string("DEFVAR GF@&pomType\n\n");///
-
-        add_inst_to_string("CREATEFRAME\n");///
+        printf("LABEL $$scope\n");
+        printf("DEFVAR GF@&pomInteger\n");///
+        printf("DEFVAR GF@&pomString\n");///
+        printf("DEFVAR GF@&pomFloat\n");///
+        printf("DEFVAR GF@&pomBool\n");///
+        printf("DEFVAR GF@&pomType\n\n");///
+        printf("CREATEFRAME\n");///
         if(return_value = generate_token()) return return_value;
 
         if((return_value = rule_st_list()) == 0){
@@ -179,14 +178,13 @@ int rule_function_head(){ // stav <function-head>
                             if((return_value = rule_check_ret_type()) == 0){
 
                                 if(token.t_state == st_eol){
-                                    asprintf(&str, "LABEL $%s\n", ident.data);///
-                                    add_inst_to_string(str);
-                                    add_inst_to_string("PUSHFRAME\n");
-                                    add_inst_to_string("DEFVAR LF@&retval\n");///
+                                    printf("LABEL $%s\n", ident.data);///                                    
+                                    printf("PUSHFRAME\n");
+                                    printf("DEFVAR LF@&retval\n");///
                                     str_destroy(&ident);///
                                     if(return_value = generate_token()) return return_value;
                                     return_value = 0;
-                                    free(str);
+                                    
                                 }
                             }
                         }
@@ -203,8 +201,8 @@ int rule_function_tail(){ // stav <function-tail>
     if(skip_blank_lines() != 0) return ERR_LEX;
     int return_value = ERR_SYN;
     if(token.t_state == st_end){ // simulace pravidla 8.
-        add_inst_to_string("POPFRAME\n");
-        add_inst_to_string("RETURN\n\n");
+        printf("POPFRAME\n");
+        printf("RETURN\n\n");
         if(return_value = generate_token()) return return_value;
 
         if(token.t_state == st_function){
@@ -425,11 +423,11 @@ int rule_stat(){ // stav <stat>
 
                 if((return_value = rule_type(data)) == 0){
                     char* context = (p == 0 ? "TF@" : "LF@");
-                    asprintf(&str, "DEFVAR %s%s\n", context, ident.data);///
-                    add_inst_to_string(str);
+                    printf("DEFVAR %s%s\n", context, ident.data);///
+                    
                     variable_data_to_table((p == 1 ? global_data->local_symbol_table : global_table), data); 
                     if((return_value = rule_eval(ident)) == 0){
-                        free(str);
+                        
                         return_value = 0;
                     }
                 }
@@ -472,12 +470,11 @@ int rule_stat(){ // stav <stat>
             }
             char* context = (p == 0 ? "TF@" : "LF@");
 
-            asprintf(&str, "TYPE GF@&pomType %s%s\n",context, token.t_str.data);///
-            add_inst_to_string(str);
-            asprintf(&str, "READ %s%s GF@&pomType\n",context, token.t_str.data);///
-            add_inst_to_string(str);
+            printf("TYPE GF@&pomType %s%s\n",context, token.t_str.data);///            
+            printf("READ %s%s GF@&pomType\n",context, token.t_str.data);///
+            
             if(return_value = generate_token()) return return_value;
-            free(str);
+            
             return_value = 0;
         }
     }
@@ -504,8 +501,8 @@ int rule_stat(){ // stav <stat>
         if(return_value = generate_token()) return return_value;
 
         if((return_value = precedent_analysis(instruct, dest_type)) == 0){
-            asprintf(&str, "JUMPIFNEQ $$else_%d GF@&pomBool bool@true\n", if_counter);///
-            add_inst_to_string(str);
+            printf("JUMPIFNEQ $$else_%d GF@&pomBool bool@true\n", if_counter);///
+            
             if(token.t_state == st_then){
                 if(return_value = generate_token()) return return_value;
 
@@ -513,10 +510,10 @@ int rule_stat(){ // stav <stat>
                     if(return_value = generate_token()) return return_value;
 
                     if((return_value = rule_st_list()) == 0){
-                        asprintf(&str, "JUMP $$endif_%d\n", if_counter);
-                        add_inst_to_string(str);
-                        asprintf(&str, "LABEL $$else_%d\n", if_counter);
-                        add_inst_to_string(str);
+                        printf("JUMP $$endif_%d\n", if_counter);
+                        
+                        printf("LABEL $$else_%d\n", if_counter);
+                        
                         if(token.t_state == st_else){
                             if(return_value = generate_token()) return return_value;
 
@@ -529,11 +526,10 @@ int rule_stat(){ // stav <stat>
                                         if(return_value = generate_token()) return return_value;
 
                                         if(token.t_state == st_if){
-                                            asprintf(&str, "LABEL $$endif_%d\n", if_counter);
-                                            add_inst_to_string(str);
+                                            printf("LABEL $$endif_%d\n", if_counter);                                            
                                             if_counter++;
                                             if(return_value = generate_token()) return return_value;
-                                            free(str);
+                                            
                                             return_value = 0;
                                         }
                                     }
@@ -557,26 +553,26 @@ int rule_stat(){ // stav <stat>
         if(return_value = generate_token()) return return_value;
 
         if(token.t_state == st_while){
-            asprintf(&str, "LABEL $$loop_%d\n", while_counter);
-            add_inst_to_string(str);
+            printf("LABEL $$loop_%d\n", while_counter);
+            
             if(return_value = generate_token()) return return_value;
 
             if((return_value = precedent_analysis(instruct, dest_type)) == 0){
 
                 if(token.t_state == st_eol){
-                    asprintf(&str, "JUMPIFENQ $$loop_end_%d GF@&pomBool bool@true\n", while_counter);
-                    add_inst_to_string(str);
+                    printf("JUMPIFENQ $$loop_end_%d GF@&pomBool bool@true\n", while_counter);
+                    
                     if(return_value = generate_token()) return return_value;
 
                     if((return_value = rule_st_list()) == 0){
-                        asprintf(&str, "JUMP $$loop_%d\n", while_counter);
-                        add_inst_to_string(str);
+                        printf("JUMP $$loop_%d\n", while_counter);
+                        
                         if(token.t_state == st_loop){
-                            asprintf(&str, "LABEL $$loop_end_%d\n", while_counter);
-                            add_inst_to_string(str);
+                            printf("LABEL $$loop_end_%d\n", while_counter);
+                            
                             while_counter++;
                             if(return_value = generate_token()) return return_value;
-                            free(str);
+                            
                             return_value = 0;
                         }
                     }
@@ -611,19 +607,19 @@ int rule_eval(Tstring id){ // stav <eval>
         
         if((return_value = precedent_analysis(instruct, dest_type)) == 0){
             if      (dest_type == st_integer) {
-                asprintf(&str, "MOVE %s%s GF@&pomInteger\n",context, id.data); 
-                add_inst_to_string(str);
+                printf("MOVE %s%s GF@&pomInteger\n",context, id.data); 
+                
             } else if (dest_type == st_double) {
-                asprintf(&str, "MOVE %s%s GF@&pomFloat\n",context, id.data);
-                add_inst_to_string(str);
+                printf("MOVE %s%s GF@&pomFloat\n",context, id.data);
+                
             } else if (dest_type == st_string) {
-                asprintf(&str, "MOVE %s%s GF@&pomString\n",context, id.data);
-                add_inst_to_string(str);
+                printf("MOVE %s%s GF@&pomString\n",context, id.data);
+                
             }
 
             
             //debug_print("%s\n", "as");
-            free(str);
+            
             return_value = 0;
         }
     }
@@ -662,17 +658,17 @@ int rule_assign(Tstring id){ // stav <assign>
         if(item->type != type_function){// identifikator neni funkce                    
           if((return_value = precedent_analysis(instruct, dest_type)) == 0){
             if (dest_type == st_integer) {
-                asprintf(&str, "MOVE %s%s GF@&pomInteger\n",context, id.data);
-                add_inst_to_string(str);      
+                printf("MOVE %s%s GF@&pomInteger\n",context, id.data);
+                      
             } else if (dest_type == st_double) {
-                asprintf(&str, "MOVE %s%s GF@&pomFloat\n",context, id.data);
-                add_inst_to_string(str);      
+                printf("MOVE %s%s GF@&pomFloat\n",context, id.data);
+                      
             } else if (dest_type == st_string) {
-                asprintf(&str, "MOVE %s%s GF@&pomString\n",context, id.data);
-                add_inst_to_string(str);      
+                printf("MOVE %s%s GF@&pomString\n",context, id.data);
+                      
             }
           }
-          free(str);
+          
           str_destroy(&(fce));
           return return_value;
         }
@@ -699,10 +695,10 @@ int rule_assign(Tstring id){ // stav <assign>
                         return return_value;
                     }
                     //debug_print("%s\n","funkce");
-                    asprintf(&str, "CALL $%s\n",fce.data);
-                    add_inst_to_string(str); 
-                    asprintf(&str, "MOVE %s%s %s&retval\n",context, id.data, context);
-                    add_inst_to_string(str); 
+                    printf("CALL $%s\n",fce.data);
+                     
+                    printf("MOVE %s%s %s&retval\n",context, id.data, context);
+                     
                     return_value = 0;
                 }
             }
@@ -710,16 +706,16 @@ int rule_assign(Tstring id){ // stav <assign>
     }// konec pravidla 23.
     else if((return_value = precedent_analysis(instruct, dest_type)) == 0){  //simulace pravidla 22.   
         if      (dest_type == st_integer) {
-            asprintf(&str, "MOVE %s%s GF@&pomInteger\n",context, id.data);
-            add_inst_to_string(str);          
+            printf("MOVE %s%s GF@&pomInteger\n",context, id.data);
+                      
         } else if (dest_type == st_double) {
-            asprintf(&str, "MOVE %s%s GF@&pomFloat\n",context, id.data);
-            add_inst_to_string(str);      
+            printf("MOVE %s%s GF@&pomFloat\n",context, id.data);
+                  
         } else if (dest_type == st_string) {
-            asprintf(&str, "MOVE %s%s GF@&pomString\n",context, id.data);
-            add_inst_to_string(str);      
+            printf("MOVE %s%s GF@&pomString\n",context, id.data);
+                  
         }
-        free(str);
+        
         return_value = 0;
     }
     str_destroy(&(fce));

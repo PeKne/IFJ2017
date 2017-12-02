@@ -9,22 +9,7 @@
 
 extern int p;
 extern char *str;
-/*
-int gen_print(char *arg) {
-    int error = 0;
-    char *str;
-    asprintf(&str, arg);
-    printf("str: %s\n",str);
-    int len = strlen(str);
-    for (int i = 0; i < len; i++)
-    {
-        error = str_push_char(&gen_str, str[i]);
-        if (error) { str_destroy(&gen_str); return error; }
-    }
-    free(str);
-    return 0;
-}
-*/
+
 int isDouble(char *operand) {
     int operand_type = st_integer;
     int length = strlen(operand);
@@ -149,55 +134,47 @@ int expr_gen(int operator, char *operand_1, char *operand_2, char *destination, 
         
         case ex_mul:
         {
-            asprintf(&str, "MUL %s %s%s %s%s\n", destination, context_1.data, convert_op_1.data, context_2.data, convert_op_2.data);
-            add_inst_to_string(str);
+            printf("MUL %s %s%s %s%s\n", destination, context_1.data, convert_op_1.data, context_2.data, convert_op_2.data);            
             break;
         }
 
         case ex_div:
         {
-            asprintf(&str, "DIV %s %s%s %s%s\n", destination, context_1.data, convert_op_1.data, context_2.data, convert_op_2.data);
-            add_inst_to_string(str);
+            printf("DIV %s %s%s %s%s\n", destination, context_1.data, convert_op_1.data, context_2.data, convert_op_2.data);            
             break;
         }
 
         case ex_plus:
         {   
             if (operand_1_type == st_string) {
-                asprintf(&str, "CONCAT GF@&pomString GF@&pomString %s%s\n", context_2.data, convert_op_2.data);
-                add_inst_to_string(str);
+                printf("CONCAT GF@&pomString GF@&pomString %s%s\n", context_2.data, convert_op_2.data);                
             } else {
-                asprintf(&str, "ADD %s %s%s %s%s\n", destination, context_1.data, convert_op_1.data, context_2.data, convert_op_2.data);
-                add_inst_to_string(str);
+                printf("ADD %s %s%s %s%s\n", destination, context_1.data, convert_op_1.data, context_2.data, convert_op_2.data);              
             }
             break;
         }
 
         case ex_minus:
         {
-            asprintf(&str, "SUB %s %s%s %s%s\n", destination, context_1.data, convert_op_1.data, context_2.data, convert_op_2.data);
-            add_inst_to_string(str);
+            printf("SUB %s %s%s %s%s\n", destination, context_1.data, convert_op_1.data, context_2.data, convert_op_2.data);            
             break;
         }
 
         case ex_equal:
         {
-            asprintf(&str, "EQ GF@&pomBool %s%s %s%s\n", context_1.data, convert_op_1.data, context_2.data, convert_op_2.data);
-            add_inst_to_string(str);
+            printf("EQ GF@&pomBool %s%s %s%s\n", context_1.data, convert_op_1.data, context_2.data, convert_op_2.data);            
             break;
         }
 
         case ex_less:
         {
-            asprintf(&str, "LT GF@&pomBool %s%s %s%s\n", context_1.data, convert_op_1.data, context_2.data, convert_op_2.data);
-            add_inst_to_string(str);
+            printf("LT GF@&pomBool %s%s %s%s\n", context_1.data, convert_op_1.data, context_2.data, convert_op_2.data);            
             break;
         }
 
         case ex_great:
         {
-            asprintf(&str, "GT GF@&pomBool %s%s %s%s\n", context_1.data, convert_op_1.data, context_2.data, convert_op_2.data);
-            add_inst_to_string(str);
+            printf("GT GF@&pomBool %s%s %s%s\n", context_1.data, convert_op_1.data, context_2.data, convert_op_2.data);            
             break;
         }
 
