@@ -26,8 +26,7 @@ int check_operand (char *operand) {
     int operand_type;
     if (!isdigit(operand[0])) {
         if ((strcmp(operand,"GF@&pomInteger") == 0) || (strcmp(operand,"GF@&pomFloat")  == 0)  ||  
-            (strcmp(operand,"GF@&pomFloat")   == 0) || (strcmp(operand,"GF@&pomDouble") == 0)  ||
-            (strcmp(operand,"GF@&pomBool")    == 0) || (strcmp(operand,"GF@&pomType")   == 0))
+            (strcmp(operand,"GF@&pomBool")    == 0))
             operand_type = 0; // neprida se zadny kontext - str_create vytvori prazdny retezec
 
         else if ((return_variable_type(operand)) == 0) {
@@ -50,15 +49,15 @@ int set_context(Tstring *context, int operand_type, Tstate dest_type, Tstring *o
     } else if (operand_type == st_integer){
         if (dest_type == st_double || dest_type == 0) {
             str_rewrite_data(context, "float@");
-            str_push_char(operand,'.');
-            str_push_char(operand,'0');
+            /*str_push_char(operand,'.');
+            str_push_char(operand,'0');*/
         }
         else if (dest_type == st_integer || dest_type == 0) {
             str_rewrite_data(context, "int@");
         }
         else {
             fprintf(stderr, "Wrong types of operands!\n");
-            return 1;
+            return ERR_SEM_TYPE;
         }
 
     } else if (operand_type == st_double) {
@@ -76,14 +75,14 @@ int set_context(Tstring *context, int operand_type, Tstate dest_type, Tstring *o
         }
         else {
             fprintf(stderr, "Wrong types of operands!\n");
-            return 1;
+            return ERR_SEM_TYPE;
         }
     } else if (operand_type == st_string) {
         if (dest_type == st_string || dest_type == 0)
             str_rewrite_data(context, "string@");
         else {
             fprintf(stderr, "Wrong types of operands!\n");
-            return 1;
+            return ERR_SEM_TYPE;
         }
     } else if (operand_type == 0) {
         str_rewrite_data(context, "");
@@ -117,7 +116,7 @@ int expr_gen(int operator, char *operand_1, char *operand_2, char *destination, 
         str_destroy(&context_2);
         str_destroy(&convert_op_1);
         str_destroy(&convert_op_2);
-        return 1;
+        return error;
     }
     error = set_context(&context_2, operand_2_type, dest_type, &convert_op_2);    
     if (error) {
@@ -125,7 +124,7 @@ int expr_gen(int operator, char *operand_1, char *operand_2, char *destination, 
         str_destroy(&context_2);
         str_destroy(&convert_op_1);
         str_destroy(&convert_op_2);
-        return 1;
+        return error;
     }
 
     char* context = (p == 0 ? "TF@" : "LF@");

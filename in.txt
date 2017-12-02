@@ -1,9 +1,10 @@
-scope 'Hlavni telo programu
-dim e as integer = 0
+scope
+dim e as integer
 dim d as integer
 dim x as integer
 dim r as double
 dim f as string
 
-f = e + d
+x = e + r
+print f;
 END SCOPE
