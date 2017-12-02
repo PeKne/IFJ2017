@@ -560,7 +560,7 @@ int rule_stat(){ // stav <stat>
             if((return_value = precedent_analysis(instruct, dest_type)) == 0){
 
                 if(token.t_state == st_eol){
-                    printf("JUMPIFENQ $$loop_end_%d GF@&pomBool bool@true\n", while_counter);
+                    printf("JUMPIFNEQ $$loop_end_%d GF@&pomBool bool@true\n", while_counter);
                     
                     if(return_value = generate_token()) return return_value;
 

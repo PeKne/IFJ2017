@@ -35,12 +35,10 @@ int SPush (TStack *s, int tokenType, char* string)
     if ( (newElemPtr = ((TSElem *) malloc(sizeof(TSElem)))) == NULL )
         return err_malloc;
 
-    newElemPtr->type = tokenType;
-
-    ////printf("str push:%s\n", string);
-    str_create_init(&(newElemPtr->string), string);
-    ////printf("push: %s\n",newElemPtr->string.data);
+    newElemPtr->type = tokenType;    
     newElemPtr->nextPtr = NULL;
+    
+    str_create_init(&(newElemPtr->string), string);
 
     if (SEmpty(s))
         newElemPtr->prevPtr = NULL;
@@ -291,11 +289,11 @@ int expresion_reduction(TStack *s, Tstate instruct, int reduce_counter, Tstring 
 
         if (instruct == st_print) {
             if (symbol == ex_str) {
-                asprintf(&str, "WRITE string@%s\n",ret_string->data);
-                add_inst_to_string(str);
+                printf("WRITE string@%s\n",ret_string->data);
+                
             } else {
-                asprintf(&str, "WRITE %s%s\n",context, ret_string->data);
-                add_inst_to_string(str);
+                printf("WRITE %s%s\n",context, ret_string->data);
+                
             }
         }
 
@@ -304,32 +302,28 @@ int expresion_reduction(TStack *s, Tstate instruct, int reduce_counter, Tstring 
             // jen prirazeni napr. a = b
             if (symbol == ex_ident) {
                 if (dest_type == st_integer) {
-                    asprintf(&str, "MOVE %s %s%s\n", pom_integer, context, ret_string->data);
-                    add_inst_to_string(str);
+                    printf("MOVE %s %s%s\n", pom_integer, context, ret_string->data);                    
                 } else if (dest_type == st_double) {
-                    asprintf(&str, "MOVE %s %s%s\n", pom_double, context, ret_string->data);
-                    add_inst_to_string(str);
+                    printf("MOVE %s %s%s\n", pom_double, context, ret_string->data);                    
                 } else if (dest_type == st_string) {
-                    asprintf(&str, "MOVE %s %s%s\n", pom_string, context, ret_string->data);
-                    add_inst_to_string(str);
+                    printf("MOVE %s %s%s\n", pom_string, context, ret_string->data);                    
                 }
             }  
             // a = 1.5
             else if (symbol == ex_integer) {
                 if (dest_type == st_integer) {
-                    asprintf(&str, "MOVE %s int@%s\n", pom_integer, ret_string->data);
-                    add_inst_to_string(str);
+                    printf("MOVE %s int@%s\n", pom_integer, ret_string->data);                    
                 } else if (dest_type == st_double) {
                     str_push_char(ret_string,'.');
                     str_push_char(ret_string,'0');
-                    asprintf(&str, "MOVE %s konvert_int@%s\n", pom_double, ret_string->data);
-                    add_inst_to_string(str);
+                    printf("MOVE %s konvert_int@%s\n", pom_double, ret_string->data);
+                    
                 }
 
             } else if (symbol == ex_double) {
                 if (dest_type == st_double) {
-                    asprintf(&str, "MOVE %s float@%s\n", pom_double, ret_string->data);
-                    add_inst_to_string(str);
+                    printf("MOVE %s float@%s\n", pom_double, ret_string->data);
+                    
                 } else if (dest_type == st_integer) {
                     // konverze double na integer
                     Tstring res;
@@ -339,13 +333,13 @@ int expresion_reduction(TStack *s, Tstate instruct, int reduce_counter, Tstring 
                     sprintf(res.data, "%d", val);
                     str_rewrite_data(ret_string, res.data);
                     str_destroy(&res);        
-                    asprintf(&str, "MOVE %s int@%s\n", pom_integer, ret_string->data);
-                    add_inst_to_string(str);
+                    printf("MOVE %s int@%s\n", pom_integer, ret_string->data);
+                    
                 }
             } else if (symbol == ex_str) {
                 if (dest_type == st_string) {
-                    asprintf(&str, "MOVE %s string@%s\n", pom_string, ret_string->data);
-                    add_inst_to_string(str);
+                    printf("MOVE %s string@%s\n", pom_string, ret_string->data);
+                    
                 } else {
                     fprintf(stderr, "Wrong types of operands!\n");
                     return 1;

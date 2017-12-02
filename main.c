@@ -62,6 +62,7 @@ int main() {
       //printf("\n\n\nPARSER PROBEHL USPESNE\n");
     }
 
+    str_destroy(&(token.t_str));
     htab_free(global_table);
     free(global_data);
 
