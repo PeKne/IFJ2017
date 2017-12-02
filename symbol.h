@@ -93,4 +93,6 @@ int check_argument_type(Tstate state, unsigned index);
 int check_argument_name(char *name, unsigned index);
 int check_defined_function(void);
 
+int buildin_to_table(void);
+
 #endif

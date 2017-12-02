@@ -9,7 +9,6 @@ extern int p;
 extern int ar_count;
 extern int if_counter;
 extern int while_counter;
-char *str;
 
 /**************************FUNKCE-REKURZIVNIHO-SESTUPU*********************************/
 /**************************************************************************************/
@@ -162,7 +161,7 @@ int rule_function_head(){ // stav <function-head>
           }
           set_defined_function(global_data);
           if(push_function_data(global_data->name) != 1) {
-            return ERR_SEM_OTHER;
+            return SEM_INTERN;
           }
            if(retrieve_function_data(token.t_str.data) != 1) {
               return ERR_SEM_PROG;
@@ -176,6 +175,10 @@ int rule_function_head(){ // stav <function-head>
                 if((return_value = rule_check_par()) == 0){
 
                     if(token.t_state == st_pravzav){
+                        if(check_argument_count != 1) {
+                            debug_print("%s\n", "Argument count does not match with declaration");
+                            return ERR_SEM_TYPE;
+                        }
                         if(return_value = generate_token()) return return_value;
 
                         if(token.t_state == st_as){
@@ -220,7 +223,7 @@ int rule_function_tail(){ // stav <function-tail>
     }
 
     if(push_function_data(global_data->name) != 1) {
-        fprintf(stderr, "ERROR pushing data\n");
+         debug_print("%s\n", "ERROR pushing data\n");
         return ERR_SEM_OTHER;
     }
     p = 0;
@@ -231,13 +234,19 @@ int rule_function_tail(){ // stav <function-tail>
 int rule_par(function_data *data_f){ // stav <par>
     int return_value = ERR_SYN;
     if(token.t_state == st_id){ // simulace pravidla 9.
+        htab_listitem *item;
+        if((item = htab_find((p == 1 ? global_data->local_symbol_table : global_table), token.t_str.data)) != NULL) {
+            debug_print("%s\n", "Function has another parameter with same name")
+        }
+        free(item);
+
         variable_data *data = create_data_variable(&token);
         if(data == NULL) {
             return ERR_INTERN;
         }
         if(add_argument_function(data_f, &token) != 0) {
             free_data_variable(data);
-            return ERR_SEM_PROG;
+            return ERR_INTERN;
         }
         if(return_value = generate_token()) return return_value;
 
@@ -481,7 +490,7 @@ int rule_stat(){ // stav <stat>
 
         if(token.t_state == st_id){
             if(variable_exist(token.t_str.data) == 0) {
-                fprintf(stderr, "Not defined variable\n");
+                debug_print("%s\n", "Not defined variable\n");
                 return ERR_SEM_PROG; //Premmenna nebola vramci danej funkcie deklarovana
             }
             char* context = (p == 0 ? "TF@" : "LF@");
@@ -652,7 +661,7 @@ int rule_assign(Tstring id){ // stav <assign>
         if(item == NULL) { // tady konci vetsina vstupu TODO: OPRAVIT!
             item = htab_find(global_table, token.t_str.data);
             if(item == NULL || item->type != type_function) {
-                fprintf(stderr, "NULL hashtable error\n");
+                debug_print("%s\n", "NULL hashtable error\n");
                 return ERR_SEM_PROG;
             }
         }
@@ -675,7 +684,7 @@ int rule_assign(Tstring id){ // stav <assign>
         }
         if(item->pointer.function->defined == 0) {//identifikator nedefinovane funkce
             //free(item);
-            return ERR_SEM_OTHER;
+            return ERR_SEM_PROG;
         }
 
         if(return_value = generate_token())  {

@@ -449,3 +449,108 @@ int check_defined_function(void)
 
 	return 0;
 }
+
+int buildin_to_table(void)
+{
+	Ttoken tmp_token;
+	int err = 0;
+	//LENGTH BUILDIN FUNCTION
+	str_create_init(&(tmp_token.t_str), "Length");
+	function_data *data_len = create_data_function(&tmp_token);
+	set_defined_function(data_len);
+	str_destroy(&(tmp_token.t_str));
+	str_create_init(&(tmp_token.t_str), "s");
+	//variable_data *data_len_s = create_data_variable(&tmp_token);
+	if((err = add_argument_function(data_len, &tmp_token)) != 0) {
+		return 1;
+	}
+	tmp_token.t_state = st_string;
+	set_argument_type_function(data_len, &tmp_token);
+	//set_type_variable(data_len_s, &tmp_token);
+	/*htab_t *local_table_len = htab_init(HTAB_SIZE);
+	variable_data_to_table(local_table_len, data_len_s);
+	set_local_symbol_table(local_table_len, data_len);*/ //Je toto potreba ak sa kod generuje automaticky?
+	tmp_token.t_state = st_integer;
+	set_return_type_function(data_len, &tmp_token);
+	//
+	function_data_to_table(global_table, data_len);
+	str_destroy(&(tmp_token.t_str));
+
+	//SUBSTR BUILDIN FUNCTION
+	str_create_init(&(tmp_token.t_str), "SubStr");
+	function_data *data_substr = create_data_function(&tmp_token);
+	set_defined_function(data_substr);
+	str_destroy(&(tmp_token.t_str));
+	str_create_init(&(tmp_token.t_str), "s");
+	if((err = add_argument_function(data_substr, &tmp_token)) != 0) {
+		return 1;
+	}
+	tmp_token.t_state = st_string;
+	set_argument_type_function(data_substr, &tmp_token);
+	str_destroy(&(tmp_token.t_str));
+	str_create_init(&(tmp_token.t_str), "i");
+	if((err = add_argument_function(data_substr, &tmp_token)) != 0) {
+		return 1;
+	}
+	tmp_token.t_state = st_integer;
+	set_argument_type_function(data_substr, &tmp_token);
+	str_destroy(&(tmp_token.t_str));
+	str_create_init(&(tmp_token.t_str), "n");
+	if((err = add_argument_function(data_substr, &tmp_token)) != 0) {
+		return 1;
+	}
+	tmp_token.t_state = st_integer;
+	set_argument_type_function(data_substr, &tmp_token);
+
+	tmp_token.t_state = st_string;
+	set_return_type_function(data_substr, &tmp_token);
+	//
+	function_data_to_table(global_table, data_substr);
+	str_destroy(&(tmp_token.t_str));
+
+	//ASC BUILDIN FUNCTION
+	str_create_init(&(tmp_token.t_str), "Asc");
+	function_data *data_asc = create_data_function(&tmp_token);
+	set_defined_function(data_asc);
+	str_destroy(&(tmp_token.t_str));
+	str_create_init(&(tmp_token.t_str), "s");
+	if((err = add_argument_function(data_asc, &tmp_token)) != 0) {
+		return 1;
+	}
+	tmp_token.t_state = st_string;
+	set_argument_type_function(data_asc, &tmp_token);
+	str_destroy(&(tmp_token.t_str));
+	str_create_init(&(tmp_token.t_str), "i");
+	if((err = add_argument_function(data_asc, &tmp_token)) != 0) {
+		return 1;
+	}
+	tmp_token.t_state = st_integer;
+	set_argument_type_function(data_asc, &tmp_token);
+	//
+	tmp_token.t_state = st_integer;
+	set_return_type_function(data_asc, &tmp_token);
+	//
+	function_data_to_table(global_table, data_asc);
+	str_destroy(&(tmp_token.t_str));
+
+	//CHR BUILDIN FUNCTION
+	str_create_init(&(tmp_token.t_str), "Chr");
+	function_data *data_chr = create_data_function(&tmp_token);
+	set_defined_function(data_chr);
+	str_destroy(&(tmp_token.t_str));
+	str_create_init(&(tmp_token.t_str), "i");
+	//variable_data *data_len_s = create_data_variable(&tmp_token);
+	if((err = add_argument_function(data_chr, &tmp_token)) != 0) {
+		return 1;
+	}
+	tmp_token.t_state = st_integer;
+	set_argument_type_function(data_chr, &tmp_token);
+	//
+	tmp_token.t_state = st_integer;
+	set_return_type_function(data_chr, &tmp_token);
+	//
+	function_data_to_table(global_table, data_chr);
+	str_destroy(&(tmp_token.t_str));
+
+	return 0;
+}
