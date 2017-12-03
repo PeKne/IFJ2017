@@ -191,7 +191,6 @@ int rule_function_head(){ // stav <function-head>
                                     printf("LABEL $%s\n", ident.data);///                                    
                                     printf("PUSHFRAME\n");
                                     printf("DEFVAR LF@&retval\n");///
-                                    //printf("MOVE LF@&retval typ@\n");
                                     str_destroy(&ident);///
                                     if(return_value = generate_token()) return return_value;
                                     return_value = 0;
