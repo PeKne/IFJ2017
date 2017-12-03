@@ -1,4 +1,5 @@
 #include "symtable.h"
+#include "garbage.h"
 #include "error.h"
 
 unsigned int hash_function(const char *str)
@@ -17,9 +18,9 @@ htab_t *htab_init(unsigned size)
 {
 	htab_t *table;
 
-	table = (htab_t *) malloc(sizeof(htab_t) + size * sizeof(htab_listitem));
+	table = (htab_t *) g_malloc(sizeof(htab_t) + size * sizeof(htab_listitem));
 	if(table == NULL) { 
-		debug_print("%s\n", "Error allocating memory for hash table.");
+		fprintf(stderr, "Error allocating memory for hash table.");
 		return NULL;
 	}
 	
@@ -71,17 +72,17 @@ htab_listitem *htab_lookup_add(htab_t *table, char *key)
 
 	htab_listitem *new_item = NULL;
 
-	new_item = malloc(sizeof(htab_listitem));
+	new_item = g_malloc(sizeof(htab_listitem));
 	if(new_item == NULL) {
-		debug_print("%s\n", "Error allocating memory for htab_listitem.");
+		fprintf(stderr, "Error allocating memory for htab_listitem.");
 
 		return NULL;
 	}
 
-	new_item->key = malloc(sizeof(char *) * (strlen(key) + 1));
+	new_item->key = g_malloc(sizeof(char *) * (strlen(key) + 1));
 	if(new_item->key == NULL) {
-		debug_print("%s\n", "Error allocating memory for htab_listitem->key.");
-		free(new_item);
+		fprintf(stderr, "Error allocating memory for htab_listitem->key.");
+		g_free(new_item);
 
 		return NULL;
 	}
@@ -130,14 +131,14 @@ void htab_remove(htab_t *table, const char *key)
 				table->list[index] = NULL;
 			}
 
-			free(item->key);
+			/*g_free(item->key);
 			if(item->type == type_variable && item->pointer.variable != NULL) {
 				free_data_variable(item->pointer.variable);
 			} else if(item->type == type_function && item->pointer.function != NULL) {
 				free_data_function(item->pointer.function);
 			}
-			item->next = NULL;
-			free(item);
+			item->next = NULL;*/
+			g_free(item);
 
 			return;
 		} else {
@@ -162,7 +163,7 @@ void htab_free(htab_t *table)
 {
 	if(table != NULL) {
 		htab_clear(table);
-		free(table);
+		g_free(table);
 	}
 
 	table = NULL;

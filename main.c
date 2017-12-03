@@ -8,9 +8,8 @@
 #include "symtable.h"
 #include "errors.h"
 #include "code_gen_expres.h"
+#include "garbage.h"
 
-htab_t *global_table;
-function_data *global_data;
 int p = 0;
 int ar_count = 0;
 int if_counter = 1;
@@ -25,10 +24,9 @@ int main() {
 
     token.t_line = 1;
 
-    global_table = htab_init(HTAB_SIZE);
-    global_data = create_global_data();
-
     //str_create(&gen_str);
+
+    global_init();
 
     int parser;
     parser = rule_start_state();
@@ -64,8 +62,8 @@ int main() {
     }
 
     str_destroy(&(token.t_str));
-    htab_free(global_table);
-    free(global_data);
+
+    global_free();
 
     return error;
 }

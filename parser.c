@@ -3,8 +3,8 @@
 #include "code_gen_expres.h"
 #include "lex.h"
 #include "errors.h"
+#include "garbage.h"
 
-extern function_data *global_data;
 extern int p;
 extern int ar_count;
 extern int if_counter;
@@ -111,24 +111,26 @@ int rule_function_dec(){ // stav <function-dec>
             if(lex_return = generate_token()) return lex_return;
 
             if(token.t_state == st_id){
+                htab_listitem *item;
+                item = htab_find(global.global_table, token.t_str.data);
+                if(item != NULL) {
+                    return ERR_SEM_PROG;
+                }
+                item = htab_lookup_add(global.global_table, token.t_str.data);
+                function_init(item, token.t_str.data);
+
                 htab_t *local_table = htab_init(HTAB_SIZE);
                 if(local_table == NULL) {
                     return ERR_INTERN;
                 }
 
-                function_data *data_f = create_data_function(&token);
-                if(data_f == NULL) {
-                    free(local_table);
-                    return ERR_INTERN;
-                }
-
-                set_local_symbol_table(local_table, data_f);
+                item->pointer.function->local_symbol_table = local_table;
                 if(lex_return = generate_token()) return lex_return;
 
                 if(token.t_state == st_levzav){
                     if(lex_return = generate_token()) return lex_return;
 
-                    if((return_value = rule_par(data_f)) == 0){
+                    if((return_value = rule_par(item->pointer.function)) == 0){
 
                         if(token.t_state == st_pravzav){
                             if(lex_return = generate_token()) return lex_return;
@@ -136,8 +138,7 @@ int rule_function_dec(){ // stav <function-dec>
                             if(token.t_state == st_as){
                                 if(lex_return = generate_token()) return lex_return;
 
-                                if((return_value = rule_ret_type(data_f)) == 0){
-                                    function_data_to_table(global_table, data_f);
+                                if((return_value = rule_ret_type(item->pointer.function)) == 0){
                                     return_value = 0;
                                 }
                             }
@@ -161,22 +162,25 @@ int rule_function_head(){ // stav <function-head>
         if(lex_return = generate_token()) return lex_return;
 
         if(token.t_state == st_id){
+            if(global.current_func_name == NULL) {
+                global.current_func_name = g_malloc(sizeof(char *) * token.t_str.length);
+            } else {
+                global.current_func_name = g_realloc(global.current_func_name, sizeof(char *) * token.t_str.length);
+            }
+            strcpy(global.current_func_name, token.t_str.data);
+        //
+            htab_listitem *item;
+            item = htab_find(global.global_table, token.t_str.data);
+            if(item == NULL || (item != NULL && item->pointer.function->defined == 1)) {
+                return ERR_SEM_PROG;
+            }
+            
+            item->pointer.function->defined = 1;
 
-          if(retrieve_function_data(token.t_str.data) != 1) {
-              return ERR_SEM_PROG;
-          }
-          if(check_defined_function() == 1) {
-              free_data_function(global_data);
-              return ERR_SEM_PROG;
-          }
-          set_defined_function(global_data);
-          if(push_function_data(global_data->name) != 1) {
-            return ERR_INTERN;
-          }
-           if(retrieve_function_data(token.t_str.data) != 1) {
-              return ERR_SEM_PROG;
-          }
-          str_create_init(&ident, token.t_str.data);///
+            global.local_sym = item->pointer.function->local_symbol_table;
+            global.current_arguments = item->pointer.function->arguments;
+
+            str_create_init(&ident, token.t_str.data);///
             if(lex_return = generate_token()) return lex_return;
 
             if(token.t_state == st_levzav){
@@ -236,11 +240,6 @@ int rule_function_tail(){ // stav <function-tail>
             return_value = 0;
         }
     }
-
-    if(push_function_data(global_data->name) != 1) {
-         debug_print("%s\n", "ERROR pushing data\n");
-        return ERR_SEM_OTHER;
-    }
     p = 0;
     ar_count = 0;
     return return_value;
@@ -252,17 +251,14 @@ int rule_par(function_data *data_f){ // stav <par>
     int lex_return;
     if(token.t_state == st_id){ // simulace pravidla 9.
         htab_listitem *item;
-        if((item = htab_find((p == 1 ? global_data->local_symbol_table : global_table), token.t_str.data)) != NULL) {
-            debug_print("%s\n", "Function has another parameter with same name");
+        if((item = htab_find(data_f->local_symbol_table, token.t_str.data)) != NULL) {
+            printf("Function has another parameter with same name");
+            return ERR_SEM_TYPE;
         }
-        free(item);
+        item = htab_lookup_add(data_f->local_symbol_table, token.t_str.data);
+        variable_init(item, token.t_str.data);
 
-        variable_data *data = create_data_variable(&token);
-        if(data == NULL) {
-            return ERR_INTERN;
-        }
         if(add_argument_function(data_f, &token) != 0) {
-            free_data_variable(data);
             return ERR_INTERN;
         }
         if(lex_return = generate_token()) return lex_return;
@@ -271,9 +267,8 @@ int rule_par(function_data *data_f){ // stav <par>
             if(lex_return = generate_token()) return lex_return;
 
             if((return_value = rule_arg_type(data_f)) == 0)
-                if((return_value = rule_type(data)) == 0)
+                if((return_value = rule_type(item->pointer.variable)) == 0)
                     if((return_value = rule_next_par(data_f)) == 0){
-                        variable_data_to_table(data_f->local_symbol_table, data);
                         return_value = 0;
             }
         }
@@ -314,6 +309,7 @@ int rule_check_par(){ // stav <check-par>
     if(token.t_state == st_id){ // simulace pravidla 9.
         ar_count++;
         if(check_argument_name(token.t_str.data, ar_count) != 1) {
+            printf("Nezhoduje sa meno argumentu %d\n", ar_count);
             return ERR_SEM_TYPE; //Meno premmenej nie je spravne
         }
         if(lex_return = generate_token()) return lex_return;
@@ -449,16 +445,14 @@ int rule_stat(){ // stav <stat>
 
         if(token.t_state == st_id){
             htab_listitem *item;
-            item = htab_find((p == 1 ? global_data->local_symbol_table : global_table), token.t_str.data);
+            item = htab_find((p == 1 ? global.local_sym : global.global_table), token.t_str.data);
             if(item != NULL) {
-                fprintf(stderr, "NULL rule_stat\n");
+                printf("Variable already defined\n");
                 return ERR_SEM_PROG; //Premmenna nebola vramci danej funkcie deklarovana
             }
-            free(item);
-            variable_data *data = create_data_variable(&token);
-            if(data == NULL) {
-                return ERR_INTERN;
-            }
+
+            item = htab_lookup_add((p == 1 ? global.local_sym : global.global_table), token.t_str.data);
+            variable_init(item, token.t_str.data);
             str_create_init(&ident, token.t_str.data);///
             if(return_value = generate_token()){
                 str_destroy(&ident);///
@@ -471,8 +465,7 @@ int rule_stat(){ // stav <stat>
                     return return_value;
                 }
 
-                if((return_value = rule_type(data)) == 0){
-                    variable_data_to_table((p == 1 ? global_data->local_symbol_table : global_table), data);
+                if((return_value = rule_type(item->pointer.variable)) == 0){
                     char* context = (p == 0 ? "TF@" : "LF@");
                     Tstate var_type = return_variable_type(ident.data);
                     //printf("var_type: %d\n",var_type);
@@ -696,9 +689,9 @@ int rule_assign(Tstring id){ // stav <assign>
     if(token.t_state == st_id){ // simulace pravidla 23.
 
         htab_listitem *item;
-        item = htab_find((p == 1 ? global_data->local_symbol_table : global_table), token.t_str.data);
+        item = htab_find((p == 1 ? global.local_sym : global.global_table), token.t_str.data);
         if(item == NULL) { // tady konci vetsina vstupu TODO: OPRAVIT!
-            item = htab_find(global_table, token.t_str.data);
+            item = htab_find(global.global_table, token.t_str.data);
             if(item == NULL || item->type != type_function) {
                 debug_print("%s\n", "NULL hashtable error\n");
                 return ERR_SEM_PROG;
