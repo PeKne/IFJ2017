@@ -430,7 +430,6 @@ int rule_st_list(){ // stav <st-list>
     return return_value;
 }
 
-// TODO v else uvolnovat Tstring ident******
 int rule_stat(){ // stav <stat>
     int return_value = ERR_SYN;
     int lex_return;
@@ -439,6 +438,7 @@ int rule_stat(){ // stav <stat>
     Tstate dest_type = 0;
 
     if(token.t_state == st_dim ){ // simulace pravidla 18.
+
         if(lex_return = generate_token()) return lex_return;
 
         if(token.t_state == st_id){
@@ -465,14 +465,8 @@ int rule_stat(){ // stav <stat>
                     return return_value;
                 }
 
-                if((return_value = rule_type(data)) == 0){
-
-
+                if((return_value = rule_type(data)) == 0){                    
                     variable_data_to_table((p == 1 ? global_data->local_symbol_table : global_table), data);
-                    if((return_value = rule_eval(ident)) == 0){
-                        return_value = 0;
-                    }
-
                     char* context = (p == 0 ? "TF@" : "LF@");
                     Tstate var_type = return_variable_type(ident.data);
                     //printf("var_type: %d\n",var_type);
@@ -481,6 +475,10 @@ int rule_stat(){ // stav <stat>
                     if      (var_type == st_integer) printf("MOVE %s%s int@0\n", context, ident.data);
                     else if (var_type == st_double)  printf("MOVE %s%s float@0\n", context, ident.data);
                     else if (var_type == st_string)  printf("MOVE %s%s string@\n", context, ident.data);
+
+                    if((return_value = rule_eval(ident)) == 0){
+                        return_value = 0;
+                    }                    
                 }
             }
             str_destroy(&ident);///
@@ -499,6 +497,7 @@ int rule_stat(){ // stav <stat>
         }
 
         if(token.t_state == st_rovno){
+
             if(return_value = generate_token()){
                 str_destroy(&ident);///
                 return return_value;
@@ -522,8 +521,8 @@ int rule_stat(){ // stav <stat>
             char* context = (p == 0 ? "TF@" : "LF@");
             Tstate type = return_variable_type(token.t_str.data);
             if      (type == st_integer) printf("READ %s%s int\n",context, token.t_str.data);///
-            else if (type == st_double)  printf("READ  %s%s float\n",context, token.t_str.data);///
-            else if (type == st_string)  printf("READ  %s%s string\n",context, token.t_str.data);///
+            else if (type == st_double)  printf("READ %s%s float\n",context, token.t_str.data);///
+            else if (type == st_string)  printf("READ %s%s string\n",context, token.t_str.data);///
 
             if(lex_return = generate_token()) return lex_return;
 
@@ -533,13 +532,9 @@ int rule_stat(){ // stav <stat>
 
     else if(token.t_state == st_print){ // simulace pravidla 29.
         instruct = st_print;
-        printf("print\n" );
         if(lex_return = generate_token()) return lex_return;
-        printf("print2\n" );
-        //printf("WRITE %s\n",token.t_str.data);///
 
         if((lex_return = precedent_analysis(instruct, dest_type)) == 0){
-          printf("%d\n", return_value );
             if(token.t_state == st_stred){
                 if(lex_return = generate_token()) return lex_return;
 

@@ -14,31 +14,31 @@ DEFVAR GF@&pomCntr
 MOVE GF@&pomCntr int@0
 CREATEFRAME
 
-MOVE GF@&pomString string@foo
-MOVE TF@a GF@&pomString
 DEFVAR TF@a
 MOVE TF@a string@
-MOVE GF@&pomInteger int@4500
-MOVE TF@b GF@&pomInteger
+MOVE GF@&pomString string@foo
+MOVE TF@a GF@&pomString
 DEFVAR TF@b
 MOVE TF@b int@0
-MOVE GF@&pomInteger int@45
-MOVE TF@b0_ GF@&pomInteger
+MOVE GF@&pomInteger int@4500
+MOVE TF@b GF@&pomInteger
 DEFVAR TF@b0_
 MOVE TF@b0_ int@0
-MOVE GF@&pomFloat float@78.4
-MOVE TF@c GF@&pomFloat
+MOVE GF@&pomInteger int@45
+MOVE TF@b0_ GF@&pomInteger
 DEFVAR TF@c
 MOVE TF@c float@0
-MOVE GF@&pomFloat float@78e4
-MOVE TF@d GF@&pomFloat
+MOVE GF@&pomFloat float@78.4
+MOVE TF@c GF@&pomFloat
 DEFVAR TF@d
 MOVE TF@d float@0
-MOVE GF@&pomFloat float@8e-4
-MOVE TF@e GF@&pomFloat
+MOVE GF@&pomFloat float@78e4
+MOVE TF@d GF@&pomFloat
 DEFVAR TF@e
 MOVE TF@e float@0
-MOVE GF@&pomFloat float@87e4
-MOVE TF@f GF@&pomFloat
+MOVE GF@&pomFloat float@8e-4
+MOVE TF@e GF@&pomFloat
 DEFVAR TF@f
 MOVE TF@f float@0
+MOVE GF@&pomFloat float@87e4
+MOVE TF@f GF@&pomFloat
