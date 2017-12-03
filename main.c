@@ -15,6 +15,7 @@ int p = 0;
 int ar_count = 0;
 int if_counter = 1;
 int while_counter = 1;
+int whole_div_cntr = 0;
 
 int main() {
     int error = 0;

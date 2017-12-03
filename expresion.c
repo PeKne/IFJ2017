@@ -400,8 +400,8 @@ int expresion_reduction(TStack *s, Tstate instruct, int reduce_counter, Tstring 
                 SPop(s);
                 if(SEmpty(s)){
                     Tstate op2_type = return_variable_type(operand_2.data);                    
-                    printf("%s typ: %d\n",operand_2.data, op2_type);
-                    printf("instr: %d\n", instruct);
+                    /*printf("%s typ: %d\n",operand_2.data, op2_type);
+                    printf("instr: %d\n", instruct);*/
                     
                     /*if (op2_type == 0 && instruct != st_if && instruct != st_loop) { // neinicializovana promenna == primo zapsany string !"ss", nelze vyhodit chybu
                         fprintf(stderr, "PROMENNA\n");
@@ -430,12 +430,12 @@ int expresion_reduction(TStack *s, Tstate instruct, int reduce_counter, Tstring 
                         if (operator == ex_plus) {
                             if (op2_type == st_string || op2_type == 0) { // NEPOZNAM NEINICIALIZOVANOU PROMENNOU OD !"STRINGU"
                                 error = expr_gen(operator, operand_1.data, operand_2.data, pom_string, instruct, dest_type);
-                                printf("error %d\n",error);
+                                //printf("error %d\n",error);
                                 if (error) {
                                     fprintf(stderr, "Wrong string operation!\n");
                                 }
                             } else {
-                                printf("chyba\n");
+                                //printf("chyba\n");
                                 fprintf(stderr, "Wrong string operation!\n");
                                 error = ERR_SEM_TYPE;
                             }                            

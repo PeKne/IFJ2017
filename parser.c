@@ -23,6 +23,8 @@ void init_gen() {
         printf("MOVE GF@&pomFloat float@0\n");
         printf("DEFVAR GF@&pomBool\n");///
         printf("MOVE GF@&pomBool bool@false\n");///
+        printf("DEFVAR GF@&pomCntr\n");///
+        printf("MOVE GF@&pomCntr int@0\n");///
         printf("CREATEFRAME\n\n");///
 }
 
@@ -199,7 +201,6 @@ int rule_function_head(){ // stav <function-head>
                                     printf("LABEL $%s\n", ident.data);///
                                     printf("PUSHFRAME\n");
                                     printf("DEFVAR LF@&retval\n");///
-                                    //printf("MOVE LF@&retval typ@\n");
                                     str_destroy(&ident);///
                                     if(lex_return = generate_token()) return lex_return;
                                     return_value = 0;
@@ -223,6 +224,9 @@ int rule_function_tail(){ // stav <function-tail>
     if(token.t_state == st_end){ // simulace pravidla 8.
         // TADY ZJISTIT TYP NAVRATOVE HODNOTY FUNKCE
         Tstate type = return_function_type();
+        if (type == st_integer) printf("MOVE LF@&retval GF@&pomInteger\n");
+        if (type == st_string)  printf("MOVE LF@&retval GF@&pomString\n");
+        if (type == st_double)  printf("MOVE LF@&retval GF@&pomFloat\n");
         printf("POPFRAME\n");
         printf("RETURN\n\n");
         if(lex_return = generate_token()) return lex_return;

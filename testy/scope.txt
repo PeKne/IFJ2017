@@ -1,0 +1,3 @@
+'vraci 0. Nevim, jestli spravně.
+dim a as integer
+a = 1
