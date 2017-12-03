@@ -8,7 +8,6 @@
 #include <ctype.h>
 
 extern int p;
-extern char *str;
 
 int isDouble(char *operand) {
     int operand_type = st_integer;
@@ -180,7 +179,6 @@ int expr_gen(int operator, char *operand_1, char *operand_2, char *destination, 
             fprintf(stderr, "Chyba v code_gen_expres %s%s %s%s %s%s\n", context, destination, context_1.data, convert_op_1.data, context_2.data, convert_op_2.data);
 
     }
-    free(str);
     str_destroy(&convert_op_1);
     str_destroy(&convert_op_2);
     str_destroy(&context_1);
