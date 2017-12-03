@@ -8,6 +8,7 @@
 #include <ctype.h>
 
 extern int p;
+extern int whole_div_cntr;
 
 int isDouble(char *operand) {
     int operand_type = st_integer;
@@ -46,14 +47,16 @@ int set_context(Tstring *context, int operand_type, Tstate dest_type, Tstring *o
         if (p == 0) str_rewrite_data(context, "TF@");
         else        str_rewrite_data(context, "LF@");
     } else if (operand_type == st_integer){
-        if (dest_type == st_double || dest_type == 0) {
+        //TODO PRI IF A WHILE SPATNY TYP DRUHE PROMENNE - NEMA BYT VZDY TEN PRVNI
+        if (dest_type == st_integer || dest_type == 0) {
+            str_rewrite_data(context, "int@");
+        }
+        else if (dest_type == st_double || dest_type == 0) {
             str_rewrite_data(context, "float@");
             /*str_push_char(operand,'.');
             str_push_char(operand,'0');*/
         }
-        else if (dest_type == st_integer || dest_type == 0) {
-            str_rewrite_data(context, "int@");
-        }
+
         else {
             fprintf(stderr, "Wrong types of operands!\n");
             return ERR_SEM_TYPE;
@@ -172,6 +175,19 @@ int expr_gen(int operator, char *operand_1, char *operand_2, char *destination, 
         case ex_great:
         {
             printf("GT GF@&pomBool %s%s %s%s\n", context_1.data, convert_op_1.data, context_2.data, convert_op_2.data);            
+            break;
+        }
+
+        case ex_wholeDiv:        
+        {   
+            printf("\nMOVE GF@&pomCntr int@0\n");
+            printf("LABEL $$WholeDiv_Begin%d\n", whole_div_cntr);
+            printf("ADD GF@&pomCntr GF@&pomCntr int@1\n");
+            printf("SUB GF@&pomInteger GF@&pomInteger %s%s\n", context_2.data, convert_op_2.data); 
+            printf("LT GF@&pomBool GF@&pomInteger int@0\n");
+            printf("JUMPIFNEQ $$WholeDiv_Begin%d GF@&pomBool bool@true\n", whole_div_cntr++);/// counter
+            printf("SUB GF@&pomCntr GF@&pomCntr int@1\n");
+            printf("MOVE GF@&pomInteger GF@&pomCntr\n");
             break;
         }
 

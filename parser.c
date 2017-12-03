@@ -23,6 +23,8 @@ void init_gen() {
         printf("MOVE GF@&pomFloat float@0\n");
         printf("DEFVAR GF@&pomBool\n");///
         printf("MOVE GF@&pomBool bool@false\n");///
+        printf("DEFVAR GF@&pomCntr\n");///
+        printf("MOVE GF@&pomCntr int@0\n");///
         printf("CREATEFRAME\n\n");///
 }
 
@@ -213,6 +215,9 @@ int rule_function_tail(){ // stav <function-tail>
     if(token.t_state == st_end){ // simulace pravidla 8.
         // TADY ZJISTIT TYP NAVRATOVE HODNOTY FUNKCE
         Tstate type = return_function_type();
+        if (type == st_integer) printf("MOVE LF@&retval GF@&pomInteger\n");
+        if (type == st_string)  printf("MOVE LF@&retval GF@&pomString\n");
+        if (type == st_double)  printf("MOVE LF@&retval GF@&pomFloat\n");
         printf("POPFRAME\n");
         printf("RETURN\n\n");
         if(return_value = generate_token()) return return_value;
@@ -629,6 +634,7 @@ int rule_eval(Tstring id){ // stav <eval>
         if(return_value = generate_token()) return return_value;
         
         if((return_value = precedent_analysis(instruct, dest_type)) == 0){
+            //printf("\n");
             if (dest_type == st_integer) {
                 printf("MOVE %s%s GF@&pomInteger\n",context, id.data);                
             } else if (dest_type == st_double) {
