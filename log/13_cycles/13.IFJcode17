@@ -1,0 +1,46 @@
+# 2017-12-03 20:43:47.491856
+# SECTION: 13_cycles
+# TEST: 13
+# INFO: For next with iterator
+# REQUIRED EXTENSIONS: CYCLES
+# ACTIVATED EXTENSIONS: 
+# STATE: FAIL
+# 
+# COMPILER STDERR:
+# 
+# INTERPRETER STDERR:
+# 
+# EXPECTED INTERPRETER STDOUT:
+
+#  0 2 4 6
+
+
+# CURRENT INTERPRETER STDOUT:
+
+
+
+# INTERPRETER STDIN: 
+# 
+#
+# EXPECTED COMPILER EXIT CODE: 0
+# CURRENT COMPILER EXIT CODE: None
+# EXPECTED INTERPRETER EXIT CODE: 0
+# CURRENT INTERPRETER EXIT CODE: None
+# PRICE: ---
+# GROOT: ---
+# 
+#   1: 'For next with iterator
+#   2: 
+#   3: scope
+#   4: 	dim max as integer = 6
+#   5: 	dim s as integer = 2
+#   6: 
+#   7: 	for i as integer = 0 to max step s
+#   8: 		print i;
+#   9: 	next i
+#  10: end scope
+
+########################################
+
+# ---
+

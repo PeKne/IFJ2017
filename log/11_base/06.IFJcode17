@@ -1,0 +1,46 @@
+# 2017-12-03 20:43:47.483834
+# SECTION: 11_base
+# TEST: 06
+# INFO: Function binary * hexa with function
+# REQUIRED EXTENSIONS: FUNEXP, BASE
+# ACTIVATED EXTENSIONS: 
+# STATE: FAIL
+# 
+# COMPILER STDERR:
+# 
+# INTERPRETER STDERR:
+# 
+# EXPECTED INTERPRETER STDOUT:
+
+#  80970
+
+
+# CURRENT INTERPRETER STDOUT:
+
+
+
+# INTERPRETER STDIN: 
+# 
+#
+# EXPECTED COMPILER EXIT CODE: 0
+# CURRENT COMPILER EXIT CODE: None
+# EXPECTED INTERPRETER EXIT CODE: 0
+# CURRENT INTERPRETER EXIT CODE: None
+# PRICE: ---
+# GROOT: ---
+# 
+#   1: 'Function binary * hexa with function
+#   2: function foo() as integer
+#   3: 	return &h1fa1
+#   4: end function
+#   5: 
+#   6: scope
+#   7: 	dim a as integer
+#   8: 	a = &b1010 * foo()
+#   9: 	print a;
+#  10: end scope
+
+########################################
+
+# ---
+

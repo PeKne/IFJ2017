@@ -1,0 +1,140 @@
+# 2017-12-03 20:43:45.322716
+# SECTION: 01_basic
+# TEST: 20
+# INFO: too many fuck off whitespaces and comments
+# REQUIRED EXTENSIONS: 
+# ACTIVATED EXTENSIONS: 
+# STATE: FAIL
+# 
+# COMPILER STDERR:
+# 
+# INTERPRETER STDERR:
+# 1.1-5: syntax error, unexpected ID, expecting HEADER
+# 
+# EXPECTED INTERPRETER STDOUT:
+
+#  11
+
+
+# CURRENT INTERPRETER STDOUT:
+
+
+
+# INTERPRETER STDIN: 
+# 
+#
+# EXPECTED COMPILER EXIT CODE: 0
+# CURRENT COMPILER EXIT CODE: 0
+# EXPECTED INTERPRETER EXIT CODE: 0
+# CURRENT INTERPRETER EXIT CODE: 51
+# PRICE: ---
+# GROOT: ---
+# 
+#   1: ' too many fuck off whitespaces and comments
+#   2: 
+#   3: 		  SCOPE ' I like comments
+#   4: ' aj plej pokemon gou every day ' aj play pokemon gou (and now)
+#   5: 
+#   6: 
+#   7: 
+#   8: 		      dim 		a as            integer ' '''''''''
+#   9: 
+#  10: ''''''''''
+#  11: /' Zajisteni zakladni kompatibility IFJ17->FreeBASIC '/ 'where wre the fuck anymals !!! '
+#  12: 
+#  13: 		  a =              /' today, comment for yout '/                                      4 + /' today, comment for yout '/ 7
+#  14: 'today, tomorow toyotaaa ''' 
+#  15: /' today, comment for yout '/ 'GUHGHK656GG__FZFT
+#  16: 
+#  17: 
+#  18: /''/
+#  19: 		  print a; /' afd '/ ''
+#  20: 
+#  21:   	END  SCOPE ' one line comment
+#  22: /' '/ '
+
+########################################
+
+token: 57 ...                                                                   #     1/84
+token: 57 ...                                                                   #     2/84
+token: 17 ... scope                                                             #     3/84
+.IFJcode17                                                                      #     4/84
+JUMP $$scope                                                                    #     5/84
+LABEL $$scope                                                                   #     7/84
+DEFVAR GF@&pomInteger                                                           #     8/84
+MOVE GF@&pomInteger int@0                                                       #     9/84
+DEFVAR GF@&pomString                                                            #    10/84
+MOVE GF@&pomString string@                                                      #    11/84
+DEFVAR GF@&pomFloat                                                             #    12/84
+MOVE GF@&pomFloat float@0                                                       #    13/84
+DEFVAR GF@&pomBool                                                              #    14/84
+MOVE GF@&pomBool bool@false                                                     #    15/84
+DEFVAR GF@&pomCntr                                                              #    16/84
+MOVE GF@&pomCntr int@0                                                          #    17/84
+CREATEFRAME                                                                     #    18/84
+token: 57 ...                                                                   #    20/84
+token: 57 ...                                                                   #    21/84
+token: 57 ...                                                                   #    22/84
+token: 57 ...                                                                   #    23/84
+token: 57 ...                                                                   #    24/84
+token: 3 ... dim                                                                #    25/84
+token: 35 ... a                                                                 #    26/84
+token: 0 ... as                                                                 #    27/84
+token: 12 ... integer                                                           #    28/84
+token: 57 ...                                                                   #    29/84
+DEFVAR TF@a                                                                     #    30/84
+MOVE TF@a int@0                                                                 #    31/84
+token: 57 ...                                                                   #    32/84
+token: 57 ...                                                                   #    33/84
+token: 57 ...                                                                   #    34/84
+token: 57 ...                                                                   #    35/84
+token: 35 ... a                                                                 #    36/84
+token: 45 ... =                                                                 #    37/84
+token: 53 ... 4                                                                 #    38/84
+|TOP--->|$|  SYMBOL                                                             #    39/84
+|TOP--->| |  STRING                                                             #    40/84
+token: 39 ... +                                                                 #    41/84
+|TOP--->|int|]|$|  SYMBOL                                                       #    42/84
+|TOP--->|4| | |  STRING                                                         #    43/84
+|TOP--->|int|  SYMBOL                                                           #    44/84
+|TOP--->|4|  STRING                                                             #    45/84
+MOVE GF@&pomInteger int@4                                                       #    46/84
+|TOP--->|R|$|  SYMBOL                                                           #    47/84
+|TOP--->|4| |  STRING                                                           #    48/84
+token: 53 ... 7                                                                 #    49/84
+|TOP--->|+|R|]|$|  SYMBOL                                                       #    50/84
+|TOP--->|+|4| | |  STRING                                                       #    51/84
+token: 57 ...                                                                   #    52/84
+|TOP--->|int|]|+|R|]|$|  SYMBOL                                                 #    53/84
+|TOP--->|7| |+|4| | |  STRING                                                   #    54/84
+|TOP--->|int|  SYMBOL                                                           #    55/84
+|TOP--->|7|  STRING                                                             #    56/84
+|TOP--->|R|+|R|]|$|  SYMBOL                                                     #    57/84
+|TOP--->|7|+|4| | |  STRING                                                     #    58/84
+|TOP--->|R|+|R|  SYMBOL                                                         #    59/84
+|TOP--->|4|+|7|  STRING                                                         #    60/84
+redukce                                                                         #    61/84
+ADD GF@&pomInteger int@4 int@7                                                  #    62/84
+MOVE TF@a GF@&pomInteger                                                        #    63/84
+token: 57 ...                                                                   #    64/84
+token: 57 ...                                                                   #    65/84
+token: 57 ...                                                                   #    66/84
+token: 57 ...                                                                   #    67/84
+token: 57 ...                                                                   #    68/84
+token: 15 ... print                                                             #    69/84
+token: 35 ... a                                                                 #    70/84
+|TOP--->|$|  SYMBOL                                                             #    71/84
+|TOP--->| |  STRING                                                             #    72/84
+token: 47 ... ;                                                                 #    73/84
+|TOP--->|i|]|$|  SYMBOL                                                         #    74/84
+|TOP--->|a| | |  STRING                                                         #    75/84
+|TOP--->|i|  SYMBOL                                                             #    76/84
+|TOP--->|a|  STRING                                                             #    77/84
+WRITE TF@a                                                                      #    78/84
+token: 57 ...                                                                   #    79/84
+token: 57 ...                                                                   #    80/84
+token: 7 ... end                                                                #    81/84
+token: 17 ... scope                                                             #    82/84
+token: 57 ...                                                                   #    83/84
+token: 58 ...                                                                   #    84/84
+

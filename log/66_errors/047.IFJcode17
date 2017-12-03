@@ -1,0 +1,88 @@
+# 2017-12-03 20:43:47.876865
+# SECTION: 66_errors
+# TEST: 047
+# INFO: unterminated braces group
+# REQUIRED EXTENSIONS: 
+# ACTIVATED EXTENSIONS: 
+# STATE: FAIL
+# 
+# COMPILER STDERR:
+# In if and loop statement can only be relational operators.
+# ERROR -  6 - ostatnÃ­ sÃ©mantickÃ© chyby.
+# 
+# INTERPRETER STDERR:
+# 
+# EXPECTED INTERPRETER STDOUT:
+
+
+
+# CURRENT INTERPRETER STDOUT:
+
+
+
+# INTERPRETER STDIN: 
+# 
+#
+# EXPECTED COMPILER EXIT CODE: 2
+# CURRENT COMPILER EXIT CODE: 6
+# EXPECTED INTERPRETER EXIT CODE: 0
+# CURRENT INTERPRETER EXIT CODE: None
+# PRICE: ---
+# GROOT: ---
+# 
+#   1: scope 
+#   2:  print ((2 + 3);
+#   3:  end scope
+
+########################################
+
+token: 17 ... scope                                                             #     1/51
+.IFJcode17                                                                      #     2/51
+JUMP $$scope                                                                    #     3/51
+LABEL $$scope                                                                   #     5/51
+DEFVAR GF@&pomInteger                                                           #     6/51
+MOVE GF@&pomInteger int@0                                                       #     7/51
+DEFVAR GF@&pomString                                                            #     8/51
+MOVE GF@&pomString string@                                                      #     9/51
+DEFVAR GF@&pomFloat                                                             #    10/51
+MOVE GF@&pomFloat float@0                                                       #    11/51
+DEFVAR GF@&pomBool                                                              #    12/51
+MOVE GF@&pomBool bool@false                                                     #    13/51
+DEFVAR GF@&pomCntr                                                              #    14/51
+MOVE GF@&pomCntr int@0                                                          #    15/51
+CREATEFRAME                                                                     #    16/51
+token: 57 ...                                                                   #    18/51
+token: 15 ... print                                                             #    19/51
+token: 50 ... (                                                                 #    20/51
+|TOP--->|$|  SYMBOL                                                             #    21/51
+|TOP--->| |  STRING                                                             #    22/51
+token: 50 ... (                                                                 #    23/51
+|TOP--->|(|]|$|  SYMBOL                                                         #    24/51
+|TOP--->|(| | |  STRING                                                         #    25/51
+token: 53 ... 2                                                                 #    26/51
+|TOP--->|(|]|(|]|$|  SYMBOL                                                     #    27/51
+|TOP--->|(| |(| | |  STRING                                                     #    28/51
+token: 39 ... +                                                                 #    29/51
+|TOP--->|int|]|(|]|(|]|$|  SYMBOL                                               #    30/51
+|TOP--->|2| |(| |(| | |  STRING                                                 #    31/51
+|TOP--->|int|  SYMBOL                                                           #    32/51
+|TOP--->|2|  STRING                                                             #    33/51
+WRITE TF@2                                                                      #    34/51
+|TOP--->|R|(|]|(|]|$|  SYMBOL                                                   #    35/51
+|TOP--->|2|(| |(| | |  STRING                                                   #    36/51
+token: 53 ... 3                                                                 #    37/51
+|TOP--->|+|R|]|(|]|(|]|$|  SYMBOL                                               #    38/51
+|TOP--->|+|2| |(| |(| | |  STRING                                               #    39/51
+token: 51 ... )                                                                 #    40/51
+|TOP--->|int|]|+|R|]|(|]|(|]|$|  SYMBOL                                         #    41/51
+|TOP--->|3| |+|2| |(| |(| | |  STRING                                           #    42/51
+|TOP--->|int|  SYMBOL                                                           #    43/51
+|TOP--->|3|  STRING                                                             #    44/51
+WRITE TF@3                                                                      #    45/51
+|TOP--->|R|+|R|]|(|]|(|]|$|  SYMBOL                                             #    46/51
+|TOP--->|3|+|2| |(| |(| | |  STRING                                             #    47/51
+|TOP--->|R|+|R|  SYMBOL                                                         #    48/51
+|TOP--->|2|+|3|  STRING                                                         #    49/51
+redukce                                                                         #    50/51
+ERROR on line 2                                                                 #    51/51
+

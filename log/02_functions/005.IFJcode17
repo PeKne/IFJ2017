@@ -1,0 +1,68 @@
+# 2017-12-03 20:43:47.075106
+# SECTION: 02_functions
+# TEST: 005
+# INFO: Chr function
+# REQUIRED EXTENSIONS: 
+# ACTIVATED EXTENSIONS: 
+# STATE: FAIL
+# 
+# COMPILER STDERR:
+# ERROR - 2 - chyba v programu v rÃ¡mci syntaktickÃ© analÃ½zy (chybnÃ¡ syntaxe programu).
+# 
+# INTERPRETER STDERR:
+# 
+# EXPECTED INTERPRETER STDOUT:
+
+# a
+
+
+# CURRENT INTERPRETER STDOUT:
+
+
+
+# INTERPRETER STDIN: 
+# 
+#
+# EXPECTED COMPILER EXIT CODE: 0
+# CURRENT COMPILER EXIT CODE: 2
+# EXPECTED INTERPRETER EXIT CODE: 0
+# CURRENT INTERPRETER EXIT CODE: None
+# PRICE: ---
+# GROOT: ---
+# 
+#   1: scope 
+#   2:  dim c as string 
+#   3:  c = chr(97) 
+#   4:  print c; 
+#   5:  end scope
+
+########################################
+
+token: 17 ... scope                                                             #     1/29
+.IFJcode17                                                                      #     2/29
+JUMP $$scope                                                                    #     3/29
+LABEL $$scope                                                                   #     5/29
+DEFVAR GF@&pomInteger                                                           #     6/29
+MOVE GF@&pomInteger int@0                                                       #     7/29
+DEFVAR GF@&pomString                                                            #     8/29
+MOVE GF@&pomString string@                                                      #     9/29
+DEFVAR GF@&pomFloat                                                             #    10/29
+MOVE GF@&pomFloat float@0                                                       #    11/29
+DEFVAR GF@&pomBool                                                              #    12/29
+MOVE GF@&pomBool bool@false                                                     #    13/29
+DEFVAR GF@&pomCntr                                                              #    14/29
+MOVE GF@&pomCntr int@0                                                          #    15/29
+CREATEFRAME                                                                     #    16/29
+token: 57 ...                                                                   #    18/29
+token: 3 ... dim                                                                #    19/29
+token: 35 ... c                                                                 #    20/29
+token: 0 ... as                                                                 #    21/29
+token: 18 ... string                                                            #    22/29
+token: 57 ...                                                                   #    23/29
+DEFVAR TF@c                                                                     #    24/29
+MOVE TF@c string@                                                               #    25/29
+token: 35 ... c                                                                 #    26/29
+token: 45 ... =                                                                 #    27/29
+token: 8 ... chr                                                                #    28/29
+ERROR on line 3                                                                 #    29/29
+

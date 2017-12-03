@@ -1,0 +1,114 @@
+# 2017-12-03 20:43:45.284109
+# SECTION: 01_basic
+# TEST: 04
+# INFO: variable declarations with edge cases
+# REQUIRED EXTENSIONS: 
+# ACTIVATED EXTENSIONS: 
+# STATE: FAIL
+# 
+# COMPILER STDERR:
+# 
+# INTERPRETER STDERR:
+# 1.1-5: syntax error, unexpected ID, expecting HEADER
+# 
+# EXPECTED INTERPRETER STDOUT:
+
+
+
+# CURRENT INTERPRETER STDOUT:
+
+
+
+# INTERPRETER STDIN: 
+# 
+#
+# EXPECTED COMPILER EXIT CODE: 0
+# CURRENT COMPILER EXIT CODE: 0
+# EXPECTED INTERPRETER EXIT CODE: 0
+# CURRENT INTERPRETER EXIT CODE: 51
+# PRICE: ---
+# GROOT: ---
+# 
+#   1: ' variable declarations with edge cases
+#   2: scope
+#   3: 	Dim _a45 as string
+#   4: 	Dim __b as integer
+#   5: 	Dim _ as double
+#   6: 	Dim __ as double
+#   7: 	Dim _47 as double
+#   8: 	Dim _47_ as double
+#   9: 	Dim _barman as double
+#  10: end scope
+
+########################################
+
+token: 57 ...                                                                   #     1/71
+token: 17 ... scope                                                             #     2/71
+.IFJcode17                                                                      #     3/71
+JUMP $$scope                                                                    #     4/71
+LABEL $$scope                                                                   #     6/71
+DEFVAR GF@&pomInteger                                                           #     7/71
+MOVE GF@&pomInteger int@0                                                       #     8/71
+DEFVAR GF@&pomString                                                            #     9/71
+MOVE GF@&pomString string@                                                      #    10/71
+DEFVAR GF@&pomFloat                                                             #    11/71
+MOVE GF@&pomFloat float@0                                                       #    12/71
+DEFVAR GF@&pomBool                                                              #    13/71
+MOVE GF@&pomBool bool@false                                                     #    14/71
+DEFVAR GF@&pomCntr                                                              #    15/71
+MOVE GF@&pomCntr int@0                                                          #    16/71
+CREATEFRAME                                                                     #    17/71
+token: 57 ...                                                                   #    19/71
+token: 3 ... dim                                                                #    20/71
+token: 35 ... _a45                                                              #    21/71
+token: 0 ... as                                                                 #    22/71
+token: 18 ... string                                                            #    23/71
+token: 57 ...                                                                   #    24/71
+DEFVAR TF@_a45                                                                  #    25/71
+MOVE TF@_a45 string@                                                            #    26/71
+token: 3 ... dim                                                                #    27/71
+token: 35 ... __b                                                               #    28/71
+token: 0 ... as                                                                 #    29/71
+token: 12 ... integer                                                           #    30/71
+token: 57 ...                                                                   #    31/71
+DEFVAR TF@__b                                                                   #    32/71
+MOVE TF@__b int@0                                                               #    33/71
+token: 3 ... dim                                                                #    34/71
+token: 35 ... _                                                                 #    35/71
+token: 0 ... as                                                                 #    36/71
+token: 5 ... double                                                             #    37/71
+token: 57 ...                                                                   #    38/71
+DEFVAR TF@_                                                                     #    39/71
+MOVE TF@_ float@0                                                               #    40/71
+token: 3 ... dim                                                                #    41/71
+token: 35 ... __                                                                #    42/71
+token: 0 ... as                                                                 #    43/71
+token: 5 ... double                                                             #    44/71
+token: 57 ...                                                                   #    45/71
+DEFVAR TF@__                                                                    #    46/71
+MOVE TF@__ float@0                                                              #    47/71
+token: 3 ... dim                                                                #    48/71
+token: 35 ... _47                                                               #    49/71
+token: 0 ... as                                                                 #    50/71
+token: 5 ... double                                                             #    51/71
+token: 57 ...                                                                   #    52/71
+DEFVAR TF@_47                                                                   #    53/71
+MOVE TF@_47 float@0                                                             #    54/71
+token: 3 ... dim                                                                #    55/71
+token: 35 ... _47_                                                              #    56/71
+token: 0 ... as                                                                 #    57/71
+token: 5 ... double                                                             #    58/71
+token: 57 ...                                                                   #    59/71
+DEFVAR TF@_47_                                                                  #    60/71
+MOVE TF@_47_ float@0                                                            #    61/71
+token: 3 ... dim                                                                #    62/71
+token: 35 ... _barman                                                           #    63/71
+token: 0 ... as                                                                 #    64/71
+token: 5 ... double                                                             #    65/71
+token: 57 ...                                                                   #    66/71
+DEFVAR TF@_barman                                                               #    67/71
+MOVE TF@_barman float@0                                                         #    68/71
+token: 7 ... end                                                                #    69/71
+token: 17 ... scope                                                             #    70/71
+token: 58 ...                                                                   #    71/71
+

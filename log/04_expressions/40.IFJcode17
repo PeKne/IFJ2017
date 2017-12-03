@@ -1,0 +1,153 @@
+# 2017-12-03 20:43:47.336950
+# SECTION: 04_expressions
+# TEST: 40
+# INFO: Double implicit conversion
+# REQUIRED EXTENSIONS: 
+# ACTIVATED EXTENSIONS: 
+# STATE: FAIL
+# 
+# COMPILER STDERR:
+# 
+# INTERPRETER STDERR:
+# 1.1-5: syntax error, unexpected ID, expecting HEADER
+# 
+# EXPECTED INTERPRETER STDOUT:
+
+#  3
+
+
+# CURRENT INTERPRETER STDOUT:
+
+
+
+# INTERPRETER STDIN: 
+# 
+#
+# EXPECTED COMPILER EXIT CODE: 0
+# CURRENT COMPILER EXIT CODE: 0
+# EXPECTED INTERPRETER EXIT CODE: 0
+# CURRENT INTERPRETER EXIT CODE: 51
+# PRICE: ---
+# GROOT: ---
+# 
+#   1: ' Double implicit conversion
+#   2: scope
+#   3: 	Dim x as double = 15.3
+#   4: 	DIM y as double = 3.6
+#   5: 	DIM z as double
+#   6: 	z = x \ y
+#   7: 	print z;
+#   8: 
+#   9: end scope
+
+########################################
+
+token: 57 ...                                                                   #     1/111
+token: 17 ... scope                                                             #     2/111
+.IFJcode17                                                                      #     3/111
+JUMP $$scope                                                                    #     4/111
+LABEL $$scope                                                                   #     6/111
+DEFVAR GF@&pomInteger                                                           #     7/111
+MOVE GF@&pomInteger int@0                                                       #     8/111
+DEFVAR GF@&pomString                                                            #     9/111
+MOVE GF@&pomString string@                                                      #    10/111
+DEFVAR GF@&pomFloat                                                             #    11/111
+MOVE GF@&pomFloat float@0                                                       #    12/111
+DEFVAR GF@&pomBool                                                              #    13/111
+MOVE GF@&pomBool bool@false                                                     #    14/111
+DEFVAR GF@&pomCntr                                                              #    15/111
+MOVE GF@&pomCntr int@0                                                          #    16/111
+CREATEFRAME                                                                     #    17/111
+token: 57 ...                                                                   #    19/111
+token: 3 ... dim                                                                #    20/111
+token: 35 ... x                                                                 #    21/111
+token: 0 ... as                                                                 #    22/111
+token: 5 ... double                                                             #    23/111
+token: 45 ... =                                                                 #    24/111
+DEFVAR TF@x                                                                     #    25/111
+MOVE TF@x float@0                                                               #    26/111
+token: 54 ... 15.3                                                              #    27/111
+|TOP--->|$|  SYMBOL                                                             #    28/111
+|TOP--->| |  STRING                                                             #    29/111
+token: 57 ...                                                                   #    30/111
+|TOP--->|double|]|$|  SYMBOL                                                    #    31/111
+|TOP--->|15.3| | |  STRING                                                      #    32/111
+|TOP--->|double|  SYMBOL                                                        #    33/111
+|TOP--->|15.3|  STRING                                                          #    34/111
+MOVE GF@&pomFloat float@15.3                                                    #    35/111
+MOVE TF@x GF@&pomFloat                                                          #    36/111
+token: 3 ... dim                                                                #    37/111
+token: 35 ... y                                                                 #    38/111
+token: 0 ... as                                                                 #    39/111
+token: 5 ... double                                                             #    40/111
+token: 45 ... =                                                                 #    41/111
+DEFVAR TF@y                                                                     #    42/111
+MOVE TF@y float@0                                                               #    43/111
+token: 54 ... 3.6                                                               #    44/111
+|TOP--->|$|  SYMBOL                                                             #    45/111
+|TOP--->| |  STRING                                                             #    46/111
+token: 57 ...                                                                   #    47/111
+|TOP--->|double|]|$|  SYMBOL                                                    #    48/111
+|TOP--->|3.6| | |  STRING                                                       #    49/111
+|TOP--->|double|  SYMBOL                                                        #    50/111
+|TOP--->|3.6|  STRING                                                           #    51/111
+MOVE GF@&pomFloat float@3.6                                                     #    52/111
+MOVE TF@y GF@&pomFloat                                                          #    53/111
+token: 3 ... dim                                                                #    54/111
+token: 35 ... z                                                                 #    55/111
+token: 0 ... as                                                                 #    56/111
+token: 5 ... double                                                             #    57/111
+token: 57 ...                                                                   #    58/111
+DEFVAR TF@z                                                                     #    59/111
+MOVE TF@z float@0                                                               #    60/111
+token: 35 ... z                                                                 #    61/111
+token: 45 ... =                                                                 #    62/111
+token: 35 ... x                                                                 #    63/111
+|TOP--->|$|  SYMBOL                                                             #    64/111
+|TOP--->| |  STRING                                                             #    65/111
+token: 37 ... \                                                                 #    66/111
+|TOP--->|i|]|$|  SYMBOL                                                         #    67/111
+|TOP--->|x| | |  STRING                                                         #    68/111
+|TOP--->|i|  SYMBOL                                                             #    69/111
+|TOP--->|x|  STRING                                                             #    70/111
+MOVE GF@&pomFloat TF@x                                                          #    71/111
+|TOP--->|R|$|  SYMBOL                                                           #    72/111
+|TOP--->|x| |  STRING                                                           #    73/111
+token: 35 ... y                                                                 #    74/111
+|TOP--->|\|R|]|$|  SYMBOL                                                       #    75/111
+|TOP--->|\|x| | |  STRING                                                       #    76/111
+token: 57 ...                                                                   #    77/111
+|TOP--->|i|]|\|R|]|$|  SYMBOL                                                   #    78/111
+|TOP--->|y| |\|x| | |  STRING                                                   #    79/111
+|TOP--->|i|  SYMBOL                                                             #    80/111
+|TOP--->|y|  STRING                                                             #    81/111
+|TOP--->|R|\|R|]|$|  SYMBOL                                                     #    82/111
+|TOP--->|y|\|x| | |  STRING                                                     #    83/111
+|TOP--->|R|\|R|  SYMBOL                                                         #    84/111
+|TOP--->|x|\|y|  STRING                                                         #    85/111
+redukce                                                                         #    86/111
+MOVE GF@&pomCntr int@0                                                          #    88/111
+LABEL $$WholeDiv_Begin0                                                         #    89/111
+ADD GF@&pomCntr GF@&pomCntr int@1                                               #    90/111
+SUB GF@&pomInteger GF@&pomInteger TF@y                                          #    91/111
+LT GF@&pomBool GF@&pomInteger int@0                                             #    92/111
+JUMPIFNEQ $$WholeDiv_Begin0 GF@&pomBool bool@true                               #    93/111
+SUB GF@&pomCntr GF@&pomCntr int@1                                               #    94/111
+MOVE GF@&pomInteger GF@&pomCntr                                                 #    95/111
+MOVE TF@z GF@&pomFloat                                                          #    96/111
+token: 15 ... print                                                             #    97/111
+token: 35 ... z                                                                 #    98/111
+|TOP--->|$|  SYMBOL                                                             #    99/111
+|TOP--->| |  STRING                                                             #   100/111
+token: 47 ... ;                                                                 #   101/111
+|TOP--->|i|]|$|  SYMBOL                                                         #   102/111
+|TOP--->|z| | |  STRING                                                         #   103/111
+|TOP--->|i|  SYMBOL                                                             #   104/111
+|TOP--->|z|  STRING                                                             #   105/111
+WRITE TF@z                                                                      #   106/111
+token: 57 ...                                                                   #   107/111
+token: 57 ...                                                                   #   108/111
+token: 7 ... end                                                                #   109/111
+token: 17 ... scope                                                             #   110/111
+token: 58 ...                                                                   #   111/111
+

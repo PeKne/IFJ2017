@@ -1,0 +1,63 @@
+# 2017-12-03 20:43:45.361660
+# SECTION: 01_basic
+# TEST: 24
+# INFO: Exotic print format
+# REQUIRED EXTENSIONS: 
+# ACTIVATED EXTENSIONS: 
+# STATE: FAIL
+# 
+# COMPILER STDERR:
+# LEX: Line: 3: Int value didnt end properly!
+# ERROR - 1 - chyba v programu v rÃ¡mci lexikÃ¡lnÃ­ analÃ½zy (chybnÃ¡ struktura aktuÃ¡lnÃ­ho lexÃ©mu).
+# 
+# INTERPRETER STDERR:
+# 
+# EXPECTED INTERPRETER STDOUT:
+
+#  42 42 42
+
+
+# CURRENT INTERPRETER STDOUT:
+
+
+
+# INTERPRETER STDIN: 
+# 
+#
+# EXPECTED COMPILER EXIT CODE: 0
+# CURRENT COMPILER EXIT CODE: 1
+# EXPECTED INTERPRETER EXIT CODE: 0
+# CURRENT INTERPRETER EXIT CODE: None
+# PRICE: ---
+# GROOT: ---
+# 
+#   1: ' Exotic print format
+#   2: scope
+#   3: 	print 42;
+#   4: 	print                     42               ;	
+#   5: 	print			42;
+#   6: end scope
+
+########################################
+
+token: 57 ...                                                                   #     1/22
+token: 17 ... scope                                                             #     2/22
+.IFJcode17                                                                      #     3/22
+JUMP $$scope                                                                    #     4/22
+LABEL $$scope                                                                   #     6/22
+DEFVAR GF@&pomInteger                                                           #     7/22
+MOVE GF@&pomInteger int@0                                                       #     8/22
+DEFVAR GF@&pomString                                                            #     9/22
+MOVE GF@&pomString string@                                                      #    10/22
+DEFVAR GF@&pomFloat                                                             #    11/22
+MOVE GF@&pomFloat float@0                                                       #    12/22
+DEFVAR GF@&pomBool                                                              #    13/22
+MOVE GF@&pomBool bool@false                                                     #    14/22
+DEFVAR GF@&pomCntr                                                              #    15/22
+MOVE GF@&pomCntr int@0                                                          #    16/22
+CREATEFRAME                                                                     #    17/22
+token: 57 ...                                                                   #    19/22
+token: 15 ... print                                                             #    20/22
+token: 59 ... 42                                                                #    21/22
+ERROR on line 3                                                                 #    22/22
+

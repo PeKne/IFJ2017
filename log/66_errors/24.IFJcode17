@@ -1,0 +1,79 @@
+# 2017-12-03 20:43:47.585182
+# SECTION: 66_errors
+# TEST: 24
+# INFO: Smaller number of arguments in definition
+# REQUIRED EXTENSIONS: 
+# ACTIVATED EXTENSIONS: 
+# STATE: FAIL
+# 
+# COMPILER STDERR:
+# parser.c:190:rule_function_head(): Argument count does not match with declaration
+# ERROR -  4 - sÃ©mantickÃ¡ chyba typovÃ© kompatibility v aritmetickÃ½ch, rÌeteÌzcovÃ½ch a relacÌnÃ­ch vÃ½razech, prÌÃ­p. Å¡patnÃ½ pocÌet cÌi typ parametruÌ u volÃ¡nÃ­ funkce.
+# 
+# INTERPRETER STDERR:
+# 
+# EXPECTED INTERPRETER STDOUT:
+
+
+
+# CURRENT INTERPRETER STDOUT:
+
+
+
+# INTERPRETER STDIN: 
+# 
+#
+# EXPECTED COMPILER EXIT CODE: 3
+# CURRENT COMPILER EXIT CODE: 4
+# EXPECTED INTERPRETER EXIT CODE: 0
+# CURRENT INTERPRETER EXIT CODE: None
+# PRICE: ---
+# GROOT: ---
+# 
+#   1: ' Smaller number of arguments in definition
+#   2: 
+#   3: declare function foo(a as integer, b as integer) as integer
+#   4: 
+#   5: function foo(a as integer) as integer
+#   6: 
+#   7: end function
+#   8: 
+#   9: scope
+#  10: 
+#  11: end scope 
+
+########################################
+
+token: 57 ...                                                                   #     1/33
+token: 57 ...                                                                   #     2/33
+token: 2 ... declare                                                            #     3/33
+.IFJcode17                                                                      #     4/33
+JUMP $$scope                                                                    #     5/33
+token: 9 ... function                                                           #     7/33
+token: 35 ... foo                                                               #     8/33
+token: 50 ... (                                                                 #     9/33
+token: 35 ... a                                                                 #    10/33
+rule_par                                                                        #    11/33
+token: 0 ... as                                                                 #    12/33
+token: 12 ... integer                                                           #    13/33
+token: 48 ... ,                                                                 #    14/33
+rule next par                                                                   #    15/33
+token: 35 ... b                                                                 #    16/33
+rule_par                                                                        #    17/33
+token: 0 ... as                                                                 #    18/33
+token: 12 ... integer                                                           #    19/33
+token: 51 ... )                                                                 #    20/33
+rule next par                                                                   #    21/33
+token: 0 ... as                                                                 #    22/33
+token: 12 ... integer                                                           #    23/33
+token: 57 ...                                                                   #    24/33
+token: 57 ...                                                                   #    25/33
+token: 9 ... function                                                           #    26/33
+token: 35 ... foo                                                               #    27/33
+token: 50 ... (                                                                 #    28/33
+token: 35 ... a                                                                 #    29/33
+token: 0 ... as                                                                 #    30/33
+token: 12 ... integer                                                           #    31/33
+token: 51 ... )                                                                 #    32/33
+ERROR on line 5                                                                 #    33/33
+

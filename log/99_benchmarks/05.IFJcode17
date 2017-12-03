@@ -1,0 +1,264 @@
+# 2017-12-03 20:43:48.817715
+# SECTION: 99_benchmarks
+# TEST: 05
+# INFO: factorial by recursion
+# REQUIRED EXTENSIONS: 
+# ACTIVATED EXTENSIONS: 
+# STATE: FAIL
+# 
+# COMPILER STDERR:
+# ERROR - 2 - chyba v programu v rÃ¡mci syntaktickÃ© analÃ½zy (chybnÃ¡ syntaxe programu).
+# 
+# INTERPRETER STDERR:
+# 
+# EXPECTED INTERPRETER STDOUT:
+
+#  3628800
+
+
+# CURRENT INTERPRETER STDOUT:
+
+
+
+# INTERPRETER STDIN: 
+# 
+#
+# EXPECTED COMPILER EXIT CODE: 0
+# CURRENT COMPILER EXIT CODE: 2
+# EXPECTED INTERPRETER EXIT CODE: 0
+# CURRENT INTERPRETER EXIT CODE: None
+# PRICE: ---
+# GROOT: ---
+# 
+#   1: ' factorial by recursion
+#   2: declare function factorial (n As integer) As integer
+#   3: function factorial (n As integer) As integer
+#   4: 	dim temp_result As integer
+#   5: 	dim decremented_n As integer
+#   6: 	dim result As integer
+#   7: 	if n < 2 Then
+#   8: 		result = 1
+#   9: 	Else
+#  10: 		decremented_n = n - 1
+#  11: 		temp_result = factorial(decremented_n)
+#  12: 		result = n * temp_result
+#  13: 	end if
+#  14: 	Return result
+#  15: end function
+#  16: 
+#  17: scope
+#  18: 	dim res as integer
+#  19: 	res = factorial(10)
+#  20: 	print res;
+#  21: end scope
+
+########################################
+
+token: 57 ...                                                                   #     1/210
+token: 2 ... declare                                                            #     2/210
+.IFJcode17                                                                      #     3/210
+JUMP $$scope                                                                    #     4/210
+token: 9 ... function                                                           #     6/210
+token: 35 ... factorial                                                         #     7/210
+token: 50 ... (                                                                 #     8/210
+token: 35 ... n                                                                 #     9/210
+rule_par                                                                        #    10/210
+token: 0 ... as                                                                 #    11/210
+token: 12 ... integer                                                           #    12/210
+token: 51 ... )                                                                 #    13/210
+rule next par                                                                   #    14/210
+token: 0 ... as                                                                 #    15/210
+token: 12 ... integer                                                           #    16/210
+token: 57 ...                                                                   #    17/210
+token: 9 ... function                                                           #    18/210
+token: 35 ... factorial                                                         #    19/210
+token: 50 ... (                                                                 #    20/210
+token: 35 ... n                                                                 #    21/210
+token: 0 ... as                                                                 #    22/210
+token: 12 ... integer                                                           #    23/210
+token: 51 ... )                                                                 #    24/210
+token: 0 ... as                                                                 #    25/210
+token: 12 ... integer                                                           #    26/210
+token: 57 ...                                                                   #    27/210
+LABEL $factorial                                                                #    28/210
+PUSHFRAME                                                                       #    29/210
+DEFVAR LF@&retval                                                               #    30/210
+token: 3 ... dim                                                                #    31/210
+token: 35 ... temp_result                                                       #    32/210
+token: 0 ... as                                                                 #    33/210
+token: 12 ... integer                                                           #    34/210
+token: 57 ...                                                                   #    35/210
+DEFVAR LF@temp_result                                                           #    36/210
+MOVE LF@temp_result int@0                                                       #    37/210
+token: 3 ... dim                                                                #    38/210
+token: 35 ... decremented_n                                                     #    39/210
+token: 0 ... as                                                                 #    40/210
+token: 12 ... integer                                                           #    41/210
+token: 57 ...                                                                   #    42/210
+DEFVAR LF@decremented_n                                                         #    43/210
+MOVE LF@decremented_n int@0                                                     #    44/210
+token: 3 ... dim                                                                #    45/210
+token: 35 ... result                                                            #    46/210
+token: 0 ... as                                                                 #    47/210
+token: 12 ... integer                                                           #    48/210
+token: 57 ...                                                                   #    49/210
+DEFVAR LF@result                                                                #    50/210
+MOVE LF@result int@0                                                            #    51/210
+token: 10 ... if                                                                #    52/210
+token: 35 ... n                                                                 #    53/210
+|TOP--->|$|  SYMBOL                                                             #    54/210
+|TOP--->| |  STRING                                                             #    55/210
+token: 41 ... <                                                                 #    56/210
+|TOP--->|i|]|$|  SYMBOL                                                         #    57/210
+|TOP--->|n| | |  STRING                                                         #    58/210
+|TOP--->|i|  SYMBOL                                                             #    59/210
+|TOP--->|n|  STRING                                                             #    60/210
+MOVE GF@&pomInteger LF@n                                                        #    61/210
+|TOP--->|R|$|  SYMBOL                                                           #    62/210
+|TOP--->|n| |  STRING                                                           #    63/210
+token: 53 ... 2                                                                 #    64/210
+|TOP--->|<|R|]|$|  SYMBOL                                                       #    65/210
+|TOP--->|<|n| | |  STRING                                                       #    66/210
+token: 20 ... then                                                              #    67/210
+|TOP--->|int|]|<|R|]|$|  SYMBOL                                                 #    68/210
+|TOP--->|2| |<|n| | |  STRING                                                   #    69/210
+|TOP--->|int|  SYMBOL                                                           #    70/210
+|TOP--->|2|  STRING                                                             #    71/210
+|TOP--->|R|<|R|]|$|  SYMBOL                                                     #    72/210
+|TOP--->|2|<|n| | |  STRING                                                     #    73/210
+|TOP--->|R|<|R|  SYMBOL                                                         #    74/210
+|TOP--->|n|<|2|  STRING                                                         #    75/210
+redukce                                                                         #    76/210
+LT GF@&pomBool LF@n int@2                                                       #    77/210
+JUMPIFNEQ $$else_1 GF@&pomBool bool@true                                        #    78/210
+token: 57 ...                                                                   #    79/210
+token: 35 ... result                                                            #    80/210
+token: 45 ... =                                                                 #    81/210
+token: 53 ... 1                                                                 #    82/210
+|TOP--->|$|  SYMBOL                                                             #    83/210
+|TOP--->| |  STRING                                                             #    84/210
+token: 57 ...                                                                   #    85/210
+|TOP--->|int|]|$|  SYMBOL                                                       #    86/210
+|TOP--->|1| | |  STRING                                                         #    87/210
+|TOP--->|int|  SYMBOL                                                           #    88/210
+|TOP--->|1|  STRING                                                             #    89/210
+MOVE GF@&pomInteger int@1                                                       #    90/210
+MOVE LF@result GF@&pomInteger                                                   #    91/210
+token: 6 ... else                                                               #    92/210
+JUMP $$endif_1                                                                  #    93/210
+LABEL $$else_1                                                                  #    94/210
+token: 57 ...                                                                   #    95/210
+token: 35 ... decremented_n                                                     #    96/210
+token: 45 ... =                                                                 #    97/210
+token: 35 ... n                                                                 #    98/210
+|TOP--->|$|  SYMBOL                                                             #    99/210
+|TOP--->| |  STRING                                                             #   100/210
+token: 40 ... -                                                                 #   101/210
+|TOP--->|i|]|$|  SYMBOL                                                         #   102/210
+|TOP--->|n| | |  STRING                                                         #   103/210
+|TOP--->|i|  SYMBOL                                                             #   104/210
+|TOP--->|n|  STRING                                                             #   105/210
+MOVE GF@&pomInteger LF@n                                                        #   106/210
+|TOP--->|R|$|  SYMBOL                                                           #   107/210
+|TOP--->|n| |  STRING                                                           #   108/210
+token: 53 ... 1                                                                 #   109/210
+|TOP--->|-|R|]|$|  SYMBOL                                                       #   110/210
+|TOP--->|-|n| | |  STRING                                                       #   111/210
+token: 57 ...                                                                   #   112/210
+|TOP--->|int|]|-|R|]|$|  SYMBOL                                                 #   113/210
+|TOP--->|1| |-|n| | |  STRING                                                   #   114/210
+|TOP--->|int|  SYMBOL                                                           #   115/210
+|TOP--->|1|  STRING                                                             #   116/210
+|TOP--->|R|-|R|]|$|  SYMBOL                                                     #   117/210
+|TOP--->|1|-|n| | |  STRING                                                     #   118/210
+|TOP--->|R|-|R|  SYMBOL                                                         #   119/210
+|TOP--->|n|-|1|  STRING                                                         #   120/210
+redukce                                                                         #   121/210
+SUB GF@&pomInteger LF@n int@1                                                   #   122/210
+MOVE LF@decremented_n GF@&pomInteger                                            #   123/210
+token: 35 ... temp_result                                                       #   124/210
+token: 45 ... =                                                                 #   125/210
+token: 35 ... factorial                                                         #   126/210
+token: 50 ... (                                                                 #   127/210
+token: 35 ... decremented_n                                                     #   128/210
+token: 51 ... )                                                                 #   129/210
+token: 57 ...                                                                   #   130/210
+CALL $factorial                                                                 #   131/210
+MOVE LF@temp_result LF@&retval                                                  #   132/210
+token: 35 ... result                                                            #   133/210
+token: 45 ... =                                                                 #   134/210
+token: 35 ... n                                                                 #   135/210
+|TOP--->|$|  SYMBOL                                                             #   136/210
+|TOP--->| |  STRING                                                             #   137/210
+token: 38 ... *                                                                 #   138/210
+|TOP--->|i|]|$|  SYMBOL                                                         #   139/210
+|TOP--->|n| | |  STRING                                                         #   140/210
+|TOP--->|i|  SYMBOL                                                             #   141/210
+|TOP--->|n|  STRING                                                             #   142/210
+MOVE GF@&pomInteger LF@n                                                        #   143/210
+|TOP--->|R|$|  SYMBOL                                                           #   144/210
+|TOP--->|n| |  STRING                                                           #   145/210
+token: 35 ... temp_result                                                       #   146/210
+|TOP--->|*|R|]|$|  SYMBOL                                                       #   147/210
+|TOP--->|*|n| | |  STRING                                                       #   148/210
+token: 57 ...                                                                   #   149/210
+|TOP--->|i|]|*|R|]|$|  SYMBOL                                                   #   150/210
+|TOP--->|temp_result| |*|n| | |  STRING                                         #   151/210
+|TOP--->|i|  SYMBOL                                                             #   152/210
+|TOP--->|temp_result|  STRING                                                   #   153/210
+|TOP--->|R|*|R|]|$|  SYMBOL                                                     #   154/210
+|TOP--->|temp_result|*|n| | |  STRING                                           #   155/210
+|TOP--->|R|*|R|  SYMBOL                                                         #   156/210
+|TOP--->|n|*|temp_result|  STRING                                               #   157/210
+redukce                                                                         #   158/210
+MUL GF@&pomInteger LF@n LF@temp_result                                          #   159/210
+MOVE LF@result GF@&pomInteger                                                   #   160/210
+token: 7 ... end                                                                #   161/210
+token: 10 ... if                                                                #   162/210
+LABEL $$endif_1                                                                 #   163/210
+token: 57 ...                                                                   #   164/210
+token: 16 ... return                                                            #   165/210
+token: 35 ... result                                                            #   166/210
+|TOP--->|$|  SYMBOL                                                             #   167/210
+|TOP--->| |  STRING                                                             #   168/210
+token: 57 ...                                                                   #   169/210
+|TOP--->|i|]|$|  SYMBOL                                                         #   170/210
+|TOP--->|result| | |  STRING                                                    #   171/210
+|TOP--->|i|  SYMBOL                                                             #   172/210
+|TOP--->|result|  STRING                                                        #   173/210
+MOVE GF@&pomInteger LF@result                                                   #   174/210
+token: 7 ... end                                                                #   175/210
+MOVE LF@&retval GF@&pomInteger                                                  #   176/210
+POPFRAME                                                                        #   177/210
+RETURN                                                                          #   178/210
+token: 9 ... function                                                           #   180/210
+token: 57 ...                                                                   #   181/210
+token: 57 ...                                                                   #   182/210
+token: 17 ... scope                                                             #   183/210
+LABEL $$scope                                                                   #   184/210
+DEFVAR GF@&pomInteger                                                           #   185/210
+MOVE GF@&pomInteger int@0                                                       #   186/210
+DEFVAR GF@&pomString                                                            #   187/210
+MOVE GF@&pomString string@                                                      #   188/210
+DEFVAR GF@&pomFloat                                                             #   189/210
+MOVE GF@&pomFloat float@0                                                       #   190/210
+DEFVAR GF@&pomBool                                                              #   191/210
+MOVE GF@&pomBool bool@false                                                     #   192/210
+DEFVAR GF@&pomCntr                                                              #   193/210
+MOVE GF@&pomCntr int@0                                                          #   194/210
+CREATEFRAME                                                                     #   195/210
+token: 57 ...                                                                   #   197/210
+token: 3 ... dim                                                                #   198/210
+token: 35 ... res                                                               #   199/210
+token: 0 ... as                                                                 #   200/210
+token: 12 ... integer                                                           #   201/210
+token: 57 ...                                                                   #   202/210
+DEFVAR TF@res                                                                   #   203/210
+MOVE TF@res int@0                                                               #   204/210
+token: 35 ... res                                                               #   205/210
+token: 45 ... =                                                                 #   206/210
+token: 35 ... factorial                                                         #   207/210
+token: 50 ... (                                                                 #   208/210
+token: 53 ... 10                                                                #   209/210
+ERROR on line 19                                                                #   210/210
+

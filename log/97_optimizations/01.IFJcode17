@@ -1,0 +1,193 @@
+# 2017-12-03 20:43:48.793318
+# SECTION: 97_optimizations
+# TEST: 01
+# INFO: constant expression evaluating
+# REQUIRED EXTENSIONS: 
+# ACTIVATED EXTENSIONS: 
+# STATE: FAIL
+# 
+# COMPILER STDERR:
+# In if and loop statement can only be relational operators.
+# ERROR -  6 - ostatnÃ­ sÃ©mantickÃ© chyby.
+# 
+# INTERPRETER STDERR:
+# 
+# EXPECTED INTERPRETER STDOUT:
+
+#  9.77918
+#  9.77918
+#  9.77918
+#  9.77918
+#  9.77918
+#  9.77918
+#  9.77918
+#  9.77918
+#  9.77918
+#  9.77918
+#  9.77918
+#  9.77918
+#  9.77918
+#  9.77918
+#  9.77918
+#  9.77918
+#  9.77918
+#  9.77918
+#  9.77918
+#  9.77918
+#  9.77918
+#  9.77918
+#  9.77918
+#  9.77918
+#  9.77918
+#  9.77918
+#  9.77918
+#  9.77918
+#  9.77918
+#  9.77918
+#  9.77918
+#  9.77918
+#  9.77918
+#  9.77918
+#  9.77918
+#  9.77918
+#  9.77918
+#  9.77918
+#  9.77918
+#  9.77918
+#  9.77918
+#  9.77918
+#  9.77918
+#  9.77918
+#  9.77918
+#  9.77918
+#  9.77918
+#  9.77918
+#  9.77918
+#  9.77918
+
+
+# CURRENT INTERPRETER STDOUT:
+
+
+
+# INTERPRETER STDIN: 
+# 
+#
+# EXPECTED COMPILER EXIT CODE: 0
+# CURRENT COMPILER EXIT CODE: 6
+# EXPECTED INTERPRETER EXIT CODE: 0
+# CURRENT INTERPRETER EXIT CODE: None
+# PRICE: ---
+# GROOT: ---
+# 
+#   1: ' constant expression evaluating
+#   2: 
+#   3: scope
+#   4: 	dim counter as integer = 50
+#   5: 
+#   6: 	do while counter > 0
+#   7: 		print (10.2 / 98 + (12 \ 3 * 6.85) - 14) / (0 - 5) + (0 + 9 - 8) * ((12+17.21)\(10.8 - 7));
+#   8: 		counter = counter - 1
+#   9: 		print !"\n";
+#  10: 	loop
+#  11: 
+#  12: end scope
+
+########################################
+
+token: 57 ...                                                                   #     1/97
+token: 57 ...                                                                   #     2/97
+token: 17 ... scope                                                             #     3/97
+.IFJcode17                                                                      #     4/97
+JUMP $$scope                                                                    #     5/97
+LABEL $$scope                                                                   #     7/97
+DEFVAR GF@&pomInteger                                                           #     8/97
+MOVE GF@&pomInteger int@0                                                       #     9/97
+DEFVAR GF@&pomString                                                            #    10/97
+MOVE GF@&pomString string@                                                      #    11/97
+DEFVAR GF@&pomFloat                                                             #    12/97
+MOVE GF@&pomFloat float@0                                                       #    13/97
+DEFVAR GF@&pomBool                                                              #    14/97
+MOVE GF@&pomBool bool@false                                                     #    15/97
+DEFVAR GF@&pomCntr                                                              #    16/97
+MOVE GF@&pomCntr int@0                                                          #    17/97
+CREATEFRAME                                                                     #    18/97
+token: 57 ...                                                                   #    20/97
+token: 3 ... dim                                                                #    21/97
+token: 35 ... counter                                                           #    22/97
+token: 0 ... as                                                                 #    23/97
+token: 12 ... integer                                                           #    24/97
+token: 45 ... =                                                                 #    25/97
+DEFVAR TF@counter                                                               #    26/97
+MOVE TF@counter int@0                                                           #    27/97
+token: 53 ... 50                                                                #    28/97
+|TOP--->|$|  SYMBOL                                                             #    29/97
+|TOP--->| |  STRING                                                             #    30/97
+token: 57 ...                                                                   #    31/97
+|TOP--->|int|]|$|  SYMBOL                                                       #    32/97
+|TOP--->|50| | |  STRING                                                        #    33/97
+|TOP--->|int|  SYMBOL                                                           #    34/97
+|TOP--->|50|  STRING                                                            #    35/97
+MOVE GF@&pomInteger int@50                                                      #    36/97
+MOVE TF@counter GF@&pomInteger                                                  #    37/97
+token: 57 ...                                                                   #    38/97
+token: 4 ... do                                                                 #    39/97
+token: 21 ... while                                                             #    40/97
+LABEL $$loop_1                                                                  #    41/97
+token: 35 ... counter                                                           #    42/97
+|TOP--->|$|  SYMBOL                                                             #    43/97
+|TOP--->| |  STRING                                                             #    44/97
+token: 42 ... >                                                                 #    45/97
+|TOP--->|i|]|$|  SYMBOL                                                         #    46/97
+|TOP--->|counter| | |  STRING                                                   #    47/97
+|TOP--->|i|  SYMBOL                                                             #    48/97
+|TOP--->|counter|  STRING                                                       #    49/97
+MOVE GF@&pomInteger TF@counter                                                  #    50/97
+|TOP--->|R|$|  SYMBOL                                                           #    51/97
+|TOP--->|counter| |  STRING                                                     #    52/97
+token: 53 ... 0                                                                 #    53/97
+|TOP--->|>|R|]|$|  SYMBOL                                                       #    54/97
+|TOP--->|>|counter| | |  STRING                                                 #    55/97
+token: 57 ...                                                                   #    56/97
+|TOP--->|int|]|>|R|]|$|  SYMBOL                                                 #    57/97
+|TOP--->|0| |>|counter| | |  STRING                                             #    58/97
+|TOP--->|int|  SYMBOL                                                           #    59/97
+|TOP--->|0|  STRING                                                             #    60/97
+|TOP--->|R|>|R|]|$|  SYMBOL                                                     #    61/97
+|TOP--->|0|>|counter| | |  STRING                                               #    62/97
+|TOP--->|R|>|R|  SYMBOL                                                         #    63/97
+|TOP--->|counter|>|0|  STRING                                                   #    64/97
+redukce                                                                         #    65/97
+GT GF@&pomBool TF@counter int@0                                                 #    66/97
+JUMPIFNEQ $$loop_end_1 GF@&pomBool bool@true                                    #    67/97
+token: 15 ... print                                                             #    68/97
+token: 50 ... (                                                                 #    69/97
+|TOP--->|$|  SYMBOL                                                             #    70/97
+|TOP--->| |  STRING                                                             #    71/97
+token: 54 ... 10.2                                                              #    72/97
+|TOP--->|(|]|$|  SYMBOL                                                         #    73/97
+|TOP--->|(| | |  STRING                                                         #    74/97
+token: 36 ... /                                                                 #    75/97
+|TOP--->|double|]|(|]|$|  SYMBOL                                                #    76/97
+|TOP--->|10.2| |(| | |  STRING                                                  #    77/97
+|TOP--->|double|  SYMBOL                                                        #    78/97
+|TOP--->|10.2|  STRING                                                          #    79/97
+WRITE TF@10.2                                                                   #    80/97
+|TOP--->|R|(|]|$|  SYMBOL                                                       #    81/97
+|TOP--->|10.2|(| | |  STRING                                                    #    82/97
+token: 53 ... 98                                                                #    83/97
+|TOP--->|/|R|]|(|]|$|  SYMBOL                                                   #    84/97
+|TOP--->|/|10.2| |(| | |  STRING                                                #    85/97
+token: 39 ... +                                                                 #    86/97
+|TOP--->|int|]|/|R|]|(|]|$|  SYMBOL                                             #    87/97
+|TOP--->|98| |/|10.2| |(| | |  STRING                                           #    88/97
+|TOP--->|int|  SYMBOL                                                           #    89/97
+|TOP--->|98|  STRING                                                            #    90/97
+WRITE TF@98                                                                     #    91/97
+|TOP--->|R|/|R|]|(|]|$|  SYMBOL                                                 #    92/97
+|TOP--->|98|/|10.2| |(| | |  STRING                                             #    93/97
+|TOP--->|R|/|R|  SYMBOL                                                         #    94/97
+|TOP--->|10.2|/|98|  STRING                                                     #    95/97
+redukce                                                                         #    96/97
+ERROR on line 7                                                                 #    97/97
+

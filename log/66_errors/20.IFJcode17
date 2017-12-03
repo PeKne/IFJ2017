@@ -1,0 +1,61 @@
+# 2017-12-03 20:43:47.574748
+# SECTION: 66_errors
+# TEST: 20
+# INFO: Colision of argument name and function name
+# REQUIRED EXTENSIONS: 
+# ACTIVATED EXTENSIONS: 
+# STATE: SUCCESS
+# 
+# COMPILER STDERR:
+# symbol.c:268:retrieve_function_data(): Function not found
+# ERROR - 3 - sÃ©mantickÃ¡ chyba v programu â nedefinovanÃ¡ funkce/promeÌnnÃ¡, pokus o redefinici funkce/promeÌnnÃ©, atd.
+# 
+# INTERPRETER STDERR:
+# 
+# EXPECTED INTERPRETER STDOUT:
+
+
+
+# CURRENT INTERPRETER STDOUT:
+
+
+
+# INTERPRETER STDIN: 
+# 
+#
+# EXPECTED COMPILER EXIT CODE: 3
+# CURRENT COMPILER EXIT CODE: 3
+# EXPECTED INTERPRETER EXIT CODE: 0
+# CURRENT INTERPRETER EXIT CODE: None
+# PRICE: ---
+# GROOT: ---
+# 
+#   1: ' Colision of argument name and function name
+#   2: 
+#   3: declare function foo1() as integer
+#   4: function bar(foo1 as integer) as integer
+#   5: return foo1
+#   6: end function
+#   7: 
+#   8: scope
+#   9: end scope
+
+########################################
+
+token: 57 ...                                                                   #     1/17
+token: 57 ...                                                                   #     2/17
+token: 2 ... declare                                                            #     3/17
+.IFJcode17                                                                      #     4/17
+JUMP $$scope                                                                    #     5/17
+token: 9 ... function                                                           #     7/17
+token: 35 ... foo1                                                              #     8/17
+token: 50 ... (                                                                 #     9/17
+token: 51 ... )                                                                 #    10/17
+rule_par                                                                        #    11/17
+token: 0 ... as                                                                 #    12/17
+token: 12 ... integer                                                           #    13/17
+token: 57 ...                                                                   #    14/17
+token: 9 ... function                                                           #    15/17
+token: 35 ... bar                                                               #    16/17
+ERROR on line 4                                                                 #    17/17
+

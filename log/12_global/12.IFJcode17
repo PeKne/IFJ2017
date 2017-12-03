@@ -1,0 +1,51 @@
+# 2017-12-03 20:43:47.488398
+# SECTION: 12_global
+# TEST: 12
+# INFO: collision normal, shared and shared
+# REQUIRED EXTENSIONS: GLOBAL
+# ACTIVATED EXTENSIONS: 
+# STATE: FAIL
+# 
+# COMPILER STDERR:
+# 
+# INTERPRETER STDERR:
+# 
+# EXPECTED INTERPRETER STDOUT:
+
+#  31 42
+
+
+# CURRENT INTERPRETER STDOUT:
+
+
+
+# INTERPRETER STDIN: 
+# 
+#
+# EXPECTED COMPILER EXIT CODE: 0
+# CURRENT COMPILER EXIT CODE: None
+# EXPECTED INTERPRETER EXIT CODE: 0
+# CURRENT INTERPRETER EXIT CODE: None
+# PRICE: ---
+# GROOT: ---
+# 
+#   1: ' collision normal, shared and shared
+#   2: 
+#   3: dim shared variable as integer = 31
+#   4: 
+#   5: function foo() as integer
+#   6: 	static variable as integer = 42
+#   7: 	return variable
+#   8: end function
+#   9: 
+#  10: scope
+#  11: 	print variable;
+#  12: 	dim variable as integer
+#  13: 	variable = foo()
+#  14: 	print variable;
+#  15: end scope
+
+########################################
+
+# ---
+

@@ -1,0 +1,106 @@
+# 2017-12-03 20:43:47.474796
+# SECTION: 08_booleans
+# TEST: 04
+# INFO: boolean functions
+# REQUIRED EXTENSIONS: BOOLOP
+# ACTIVATED EXTENSIONS: 
+# STATE: FAIL
+# 
+# COMPILER STDERR:
+# 
+# INTERPRETER STDERR:
+# 
+# EXPECTED INTERPRETER STDOUT:
+
+#  1
+
+
+# CURRENT INTERPRETER STDOUT:
+
+
+
+# INTERPRETER STDIN: 
+# 
+#
+# EXPECTED COMPILER EXIT CODE: 0
+# CURRENT COMPILER EXIT CODE: None
+# EXPECTED INTERPRETER EXIT CODE: 0
+# CURRENT INTERPRETER EXIT CODE: None
+# PRICE: ---
+# GROOT: ---
+# 
+#   1: ' boolean functions
+#   2: 
+#   3: function equali(a as integer, b as integer) as boolean
+#   4: 	return a = b
+#   5: end function
+#   6: 
+#   7: function equals(a as string, b as string) as boolean
+#   8: 	return a = b
+#   9: end function
+#  10: 
+#  11: function equalb(a as boolean, b as boolean) as boolean
+#  12: 	return a = b
+#  13: end function
+#  14: 
+#  15: function biggeri(a as integer, b as integer) as boolean
+#  16: 	return a > b
+#  17: end function
+#  18: 
+#  19: function biggerorequald(a as double, b as double) as boolean
+#  20: 	return a >= b
+#  21: end function
+#  22: 
+#  23: scope
+#  24: 	dim a as boolean = true
+#  25: 	dim res as boolean
+#  26: 	dim minus as integer
+#  27: 	minus = minus - 10
+#  28: 
+#  29: 	res = equali(1, 1)
+#  30: 	a = a and res
+#  31: 
+#  32: 	res = equali(1, 1.1)
+#  33: 	a = a and res
+#  34: 
+#  35: 	res = equali(1.7, 1.6)
+#  36: 	a = a and res
+#  37: 
+#  38: 	res = equali(1.8, 0.1)
+#  39: 	a = a and not res
+#  40: 
+#  41: 	res = equals(!"", !"")
+#  42: 	a = a and res
+#  43: 
+#  44: 	res = equals(!"         \n         ", !"         \n         ")
+#  45: 	a = a and res
+#  46: 
+#  47: 	res = equalb(true, true)
+#  48: 	a = a and res
+#  49: 
+#  50: 	res = equalb(false, false)
+#  51: 	a = a and res
+#  52: 
+#  53: 	res = biggeri(42, minus)
+#  54: 	a = a and res
+#  55: 
+#  56: 	res = biggeri(42.78, 41.78)
+#  57: 	a = a and res
+#  58: 
+#  59: 	res = biggerorequald(42.78, 42.78)
+#  60: 	a = a and res
+#  61: 
+#  62: 	res = biggerorequald(minus, 42.78)
+#  63: 	a = a and not res
+#  64: 
+#  65: 	if a then
+#  66: 		print 1;
+#  67: 	else
+#  68: 		print 0;
+#  69: 	end if
+#  70: end scope
+
+########################################
+
+# ---
+

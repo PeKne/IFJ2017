@@ -1,0 +1,59 @@
+# 2017-12-03 20:43:48.541352
+# SECTION: 66_errors
+# TEST: 250
+# INFO: Fail keyword
+# REQUIRED EXTENSIONS: 
+# ACTIVATED EXTENSIONS: 
+# STATE: SUCCESS
+# 
+# COMPILER STDERR:
+# LEX: Line: 2: Error, uknown token!
+# ERROR - 1 - chyba v programu v rÃ¡mci lexikÃ¡lnÃ­ analÃ½zy (chybnÃ¡ struktura aktuÃ¡lnÃ­ho lexÃ©mu).
+# 
+# INTERPRETER STDERR:
+# 
+# EXPECTED INTERPRETER STDOUT:
+
+
+
+# CURRENT INTERPRETER STDOUT:
+
+
+
+# INTERPRETER STDIN: 
+# 
+#
+# EXPECTED COMPILER EXIT CODE: 1
+# CURRENT COMPILER EXIT CODE: 1
+# EXPECTED INTERPRETER EXIT CODE: 0
+# CURRENT INTERPRETER EXIT CODE: None
+# PRICE: ---
+# GROOT: ---
+# 
+#   1: scope 
+#   2:  dim __a7@ as integer
+#   3:  end scope
+
+########################################
+
+token: 17 ... scope                                                             #     1/22
+.IFJcode17                                                                      #     2/22
+JUMP $$scope                                                                    #     3/22
+LABEL $$scope                                                                   #     5/22
+DEFVAR GF@&pomInteger                                                           #     6/22
+MOVE GF@&pomInteger int@0                                                       #     7/22
+DEFVAR GF@&pomString                                                            #     8/22
+MOVE GF@&pomString string@                                                      #     9/22
+DEFVAR GF@&pomFloat                                                             #    10/22
+MOVE GF@&pomFloat float@0                                                       #    11/22
+DEFVAR GF@&pomBool                                                              #    12/22
+MOVE GF@&pomBool bool@false                                                     #    13/22
+DEFVAR GF@&pomCntr                                                              #    14/22
+MOVE GF@&pomCntr int@0                                                          #    15/22
+CREATEFRAME                                                                     #    16/22
+token: 57 ...                                                                   #    18/22
+token: 3 ... dim                                                                #    19/22
+token: 35 ... __a7                                                              #    20/22
+token: 59 ...                                                                   #    21/22
+ERROR on line 2                                                                 #    22/22
+

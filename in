@@ -1,0 +1,7 @@
+'Swap
+scope 
+
+dim a as integer
+print 2;
+
+end scope

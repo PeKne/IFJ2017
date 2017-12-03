@@ -1,0 +1,43 @@
+# 2017-12-03 20:43:47.373932
+# SECTION: 05_conditions
+# TEST: 11
+# INFO: Call undefined function in expr
+# REQUIRED EXTENSIONS: FUNEXP
+# ACTIVATED EXTENSIONS: 
+# STATE: FAIL
+# 
+# COMPILER STDERR:
+# 
+# INTERPRETER STDERR:
+# 
+# EXPECTED INTERPRETER STDOUT:
+
+
+
+# CURRENT INTERPRETER STDOUT:
+
+
+
+# INTERPRETER STDIN: 
+# 
+#
+# EXPECTED COMPILER EXIT CODE: 3
+# CURRENT COMPILER EXIT CODE: None
+# EXPECTED INTERPRETER EXIT CODE: 0
+# CURRENT INTERPRETER EXIT CODE: None
+# PRICE: ---
+# GROOT: ---
+# 
+#   1: ' Call undefined function in expr
+#   2: scope
+#   3: 	if foo() > 8 then
+#   4: 		print 42;
+#   5: 	else
+#   6: 		print 58;
+#   7: 	end if
+#   8: end scope
+
+########################################
+
+# ---
+

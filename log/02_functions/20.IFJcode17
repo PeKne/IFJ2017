@@ -1,0 +1,50 @@
+# 2017-12-03 20:43:47.012980
+# SECTION: 02_functions
+# TEST: 20
+# INFO: Argument = var with same name as parametr
+# REQUIRED EXTENSIONS: FUNEXP
+# ACTIVATED EXTENSIONS: 
+# STATE: FAIL
+# 
+# COMPILER STDERR:
+# 
+# INTERPRETER STDERR:
+# 
+# EXPECTED INTERPRETER STDOUT:
+
+#  16
+
+
+# CURRENT INTERPRETER STDOUT:
+
+
+
+# INTERPRETER STDIN: 
+# 
+#
+# EXPECTED COMPILER EXIT CODE: 0
+# CURRENT COMPILER EXIT CODE: None
+# EXPECTED INTERPRETER EXIT CODE: 0
+# CURRENT INTERPRETER EXIT CODE: None
+# PRICE: ---
+# GROOT: ---
+# 
+#   1: ' Argument = var with same name as parametr
+#   2: 
+#   3: function GHGK6767__T7(a as integer) as integer
+#   4: 	return a * a
+#   5: end function
+#   6: 
+#   7: SCOPE
+#   8: 
+#   9: 	dim a as integer
+#  10: 	a = 2
+#  11: 	a = GHGK6767__T7(a) * GHGK6767__T7(a)
+#  12: 	print a;
+#  13: 
+#  14: END SCOPE
+
+########################################
+
+# ---
+

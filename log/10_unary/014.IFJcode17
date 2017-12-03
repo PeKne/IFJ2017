@@ -1,0 +1,39 @@
+# 2017-12-03 20:43:47.482214
+# SECTION: 10_unary
+# TEST: 014
+# INFO: assignment with operator (integer into string)
+# REQUIRED EXTENSIONS: UNARY
+# ACTIVATED EXTENSIONS: 
+# STATE: FAIL
+# 
+# COMPILER STDERR:
+# 
+# INTERPRETER STDERR:
+# 
+# EXPECTED INTERPRETER STDOUT:
+
+
+
+# CURRENT INTERPRETER STDOUT:
+
+
+
+# INTERPRETER STDIN: 
+# 
+#
+# EXPECTED COMPILER EXIT CODE: 4
+# CURRENT COMPILER EXIT CODE: None
+# EXPECTED INTERPRETER EXIT CODE: 0
+# CURRENT INTERPRETER EXIT CODE: None
+# PRICE: ---
+# GROOT: ---
+# 
+#   1: scope
+#   2:  dim a as string = !"random text"
+#   3:  a += 5
+#   4:  end scope
+
+########################################
+
+# ---
+

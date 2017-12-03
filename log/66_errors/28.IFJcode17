@@ -1,0 +1,102 @@
+# 2017-12-03 20:43:47.721901
+# SECTION: 66_errors
+# TEST: 28
+# INFO: redefined function
+# REQUIRED EXTENSIONS: 
+# ACTIVATED EXTENSIONS: 
+# STATE: FAIL
+# 
+# COMPILER STDERR:
+# ERROR - 3 - sÃ©mantickÃ¡ chyba v programu â nedefinovanÃ¡ funkce/promeÌnnÃ¡, pokus o redefinici funkce/promeÌnnÃ©, atd.
+# 
+# INTERPRETER STDERR:
+# 
+# EXPECTED INTERPRETER STDOUT:
+
+
+
+# CURRENT INTERPRETER STDOUT:
+
+
+
+# INTERPRETER STDIN: 
+# 
+#
+# EXPECTED COMPILER EXIT CODE: 3
+# CURRENT COMPILER EXIT CODE: -6
+# EXPECTED INTERPRETER EXIT CODE: 0
+# CURRENT INTERPRETER EXIT CODE: None
+# PRICE: ---
+# GROOT: ---
+# 
+#   1: ' redefined function
+#   2: 
+#   3: declare function foo(a as integer, b as integer) as integer
+#   4: 
+#   5: function foo(a as integer, b as integer) as integer
+#   6: 
+#   7: end function
+#   8: 
+#   9: function foo(a as integer, b as integer) as integer
+#  10: 
+#  11: end function
+#  12: 
+#  13: scope
+#  14: 
+#  15: end scope 
+
+########################################
+
+token: 57 ...                                                                   #     1/54
+token: 57 ...                                                                   #     2/54
+token: 2 ... declare                                                            #     3/54
+.IFJcode17                                                                      #     4/54
+JUMP $$scope                                                                    #     5/54
+token: 9 ... function                                                           #     7/54
+token: 35 ... foo                                                               #     8/54
+token: 50 ... (                                                                 #     9/54
+token: 35 ... a                                                                 #    10/54
+rule_par                                                                        #    11/54
+token: 0 ... as                                                                 #    12/54
+token: 12 ... integer                                                           #    13/54
+token: 48 ... ,                                                                 #    14/54
+rule next par                                                                   #    15/54
+token: 35 ... b                                                                 #    16/54
+rule_par                                                                        #    17/54
+token: 0 ... as                                                                 #    18/54
+token: 12 ... integer                                                           #    19/54
+token: 51 ... )                                                                 #    20/54
+rule next par                                                                   #    21/54
+token: 0 ... as                                                                 #    22/54
+token: 12 ... integer                                                           #    23/54
+token: 57 ...                                                                   #    24/54
+token: 57 ...                                                                   #    25/54
+token: 9 ... function                                                           #    26/54
+token: 35 ... foo                                                               #    27/54
+token: 50 ... (                                                                 #    28/54
+token: 35 ... a                                                                 #    29/54
+token: 0 ... as                                                                 #    30/54
+token: 12 ... integer                                                           #    31/54
+token: 48 ... ,                                                                 #    32/54
+token: 35 ... b                                                                 #    33/54
+token: 0 ... as                                                                 #    34/54
+token: 12 ... integer                                                           #    35/54
+token: 51 ... )                                                                 #    36/54
+token: 0 ... as                                                                 #    37/54
+token: 12 ... integer                                                           #    38/54
+token: 57 ...                                                                   #    39/54
+LABEL $foo                                                                      #    40/54
+PUSHFRAME                                                                       #    41/54
+DEFVAR LF@&retval                                                               #    42/54
+token: 57 ...                                                                   #    43/54
+token: 7 ... end                                                                #    44/54
+MOVE LF@&retval GF@&pomInteger                                                  #    45/54
+POPFRAME                                                                        #    46/54
+RETURN                                                                          #    47/54
+token: 9 ... function                                                           #    49/54
+token: 57 ...                                                                   #    50/54
+token: 57 ...                                                                   #    51/54
+token: 9 ... function                                                           #    52/54
+token: 35 ... foo                                                               #    53/54
+ERROR on line 9                                                                 #    54/54
+

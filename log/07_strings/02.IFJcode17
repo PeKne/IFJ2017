@@ -1,0 +1,303 @@
+# 2017-12-03 20:43:47.457147
+# SECTION: 07_strings
+# TEST: 02
+# INFO: string concat
+# REQUIRED EXTENSIONS: 
+# ACTIVATED EXTENSIONS: 
+# STATE: FAIL
+# 
+# COMPILER STDERR:
+# 
+# INTERPRETER STDERR:
+# 1.1-5: syntax error, unexpected ID, expecting HEADER
+# 
+# EXPECTED INTERPRETER STDOUT:
+
+#  my content 
+# foo barfoo barfoo bar
+# foo barfoo barfoo bar
+#  my content 
+
+
+# CURRENT INTERPRETER STDOUT:
+
+
+
+# INTERPRETER STDIN: 
+# 
+#
+# EXPECTED COMPILER EXIT CODE: 0
+# CURRENT COMPILER EXIT CODE: 0
+# EXPECTED INTERPRETER EXIT CODE: 0
+# CURRENT INTERPRETER EXIT CODE: 51
+# PRICE: ---
+# GROOT: ---
+# 
+#   1: ' string concat
+#   2: 
+#   3: scope
+#   4: 	dim a as string
+#   5: 	dim content as string = !" my content "
+#   6: 
+#   7: 	print a; content; !"\n";
+#   8: 
+#   9: 	dim b as string = !""
+#  10: 	dim c as string = !"foo bar"
+#  11: 	dim foo as string
+#  12: 	foo = c + !"" + c + !"" + c + !"\n"
+#  13: 
+#  14: 	print b; foo; foo; content; 
+#  15: end scope
+
+########################################
+
+token: 57 ...                                                                   #     1/251
+token: 57 ...                                                                   #     2/251
+token: 17 ... scope                                                             #     3/251
+.IFJcode17                                                                      #     4/251
+JUMP $$scope                                                                    #     5/251
+LABEL $$scope                                                                   #     7/251
+DEFVAR GF@&pomInteger                                                           #     8/251
+MOVE GF@&pomInteger int@0                                                       #     9/251
+DEFVAR GF@&pomString                                                            #    10/251
+MOVE GF@&pomString string@                                                      #    11/251
+DEFVAR GF@&pomFloat                                                             #    12/251
+MOVE GF@&pomFloat float@0                                                       #    13/251
+DEFVAR GF@&pomBool                                                              #    14/251
+MOVE GF@&pomBool bool@false                                                     #    15/251
+DEFVAR GF@&pomCntr                                                              #    16/251
+MOVE GF@&pomCntr int@0                                                          #    17/251
+CREATEFRAME                                                                     #    18/251
+token: 57 ...                                                                   #    20/251
+token: 3 ... dim                                                                #    21/251
+token: 35 ... a                                                                 #    22/251
+token: 0 ... as                                                                 #    23/251
+token: 18 ... string                                                            #    24/251
+token: 57 ...                                                                   #    25/251
+DEFVAR TF@a                                                                     #    26/251
+MOVE TF@a string@                                                               #    27/251
+token: 3 ... dim                                                                #    28/251
+token: 35 ... content                                                           #    29/251
+token: 0 ... as                                                                 #    30/251
+token: 18 ... string                                                            #    31/251
+token: 45 ... =                                                                 #    32/251
+DEFVAR TF@content                                                               #    33/251
+MOVE TF@content string@                                                         #    34/251
+token: 52 ... \032my\032content\032                                             #    35/251
+|TOP--->|$|  SYMBOL                                                             #    36/251
+|TOP--->| |  STRING                                                             #    37/251
+token: 57 ...                                                                   #    38/251
+|TOP--->|str|]|$|  SYMBOL                                                       #    39/251
+|TOP--->|\032my\032content\032| | |  STRING                                     #    40/251
+|TOP--->|str|  SYMBOL                                                           #    41/251
+|TOP--->|\032my\032content\032|  STRING                                         #    42/251
+MOVE GF@&pomString string@\032my\032content\032                                 #    43/251
+MOVE TF@content GF@&pomString                                                   #    44/251
+token: 57 ...                                                                   #    45/251
+token: 15 ... print                                                             #    46/251
+token: 35 ... a                                                                 #    47/251
+|TOP--->|$|  SYMBOL                                                             #    48/251
+|TOP--->| |  STRING                                                             #    49/251
+token: 47 ... ;                                                                 #    50/251
+|TOP--->|i|]|$|  SYMBOL                                                         #    51/251
+|TOP--->|a| | |  STRING                                                         #    52/251
+|TOP--->|i|  SYMBOL                                                             #    53/251
+|TOP--->|a|  STRING                                                             #    54/251
+WRITE TF@a                                                                      #    55/251
+token: 35 ... content                                                           #    56/251
+|TOP--->|$|  SYMBOL                                                             #    57/251
+|TOP--->| |  STRING                                                             #    58/251
+token: 47 ... ;                                                                 #    59/251
+|TOP--->|i|]|$|  SYMBOL                                                         #    60/251
+|TOP--->|content| | |  STRING                                                   #    61/251
+|TOP--->|i|  SYMBOL                                                             #    62/251
+|TOP--->|content|  STRING                                                       #    63/251
+WRITE TF@content                                                                #    64/251
+token: 52 ... \010                                                              #    65/251
+|TOP--->|$|  SYMBOL                                                             #    66/251
+|TOP--->| |  STRING                                                             #    67/251
+token: 47 ... ;                                                                 #    68/251
+|TOP--->|str|]|$|  SYMBOL                                                       #    69/251
+|TOP--->|\010| | |  STRING                                                      #    70/251
+|TOP--->|str|  SYMBOL                                                           #    71/251
+|TOP--->|\010|  STRING                                                          #    72/251
+WRITE string@\010                                                               #    73/251
+token: 57 ...                                                                   #    74/251
+token: 57 ...                                                                   #    75/251
+token: 3 ... dim                                                                #    76/251
+token: 35 ... b                                                                 #    77/251
+token: 0 ... as                                                                 #    78/251
+token: 18 ... string                                                            #    79/251
+token: 45 ... =                                                                 #    80/251
+DEFVAR TF@b                                                                     #    81/251
+MOVE TF@b string@                                                               #    82/251
+token: 52 ...                                                                   #    83/251
+|TOP--->|$|  SYMBOL                                                             #    84/251
+|TOP--->| |  STRING                                                             #    85/251
+token: 57 ...                                                                   #    86/251
+|TOP--->|str|]|$|  SYMBOL                                                       #    87/251
+|TOP--->|| | |  STRING                                                          #    88/251
+|TOP--->|str|  SYMBOL                                                           #    89/251
+|TOP--->||  STRING                                                              #    90/251
+MOVE GF@&pomString string@                                                      #    91/251
+MOVE TF@b GF@&pomString                                                         #    92/251
+token: 3 ... dim                                                                #    93/251
+token: 35 ... c                                                                 #    94/251
+token: 0 ... as                                                                 #    95/251
+token: 18 ... string                                                            #    96/251
+token: 45 ... =                                                                 #    97/251
+DEFVAR TF@c                                                                     #    98/251
+MOVE TF@c string@                                                               #    99/251
+token: 52 ... foo\032bar                                                        #   100/251
+|TOP--->|$|  SYMBOL                                                             #   101/251
+|TOP--->| |  STRING                                                             #   102/251
+token: 57 ...                                                                   #   103/251
+|TOP--->|str|]|$|  SYMBOL                                                       #   104/251
+|TOP--->|foo\032bar| | |  STRING                                                #   105/251
+|TOP--->|str|  SYMBOL                                                           #   106/251
+|TOP--->|foo\032bar|  STRING                                                    #   107/251
+MOVE GF@&pomString string@foo\032bar                                            #   108/251
+MOVE TF@c GF@&pomString                                                         #   109/251
+token: 3 ... dim                                                                #   110/251
+token: 35 ... foo                                                               #   111/251
+token: 0 ... as                                                                 #   112/251
+token: 18 ... string                                                            #   113/251
+token: 57 ...                                                                   #   114/251
+DEFVAR TF@foo                                                                   #   115/251
+MOVE TF@foo string@                                                             #   116/251
+token: 35 ... foo                                                               #   117/251
+token: 45 ... =                                                                 #   118/251
+token: 35 ... c                                                                 #   119/251
+|TOP--->|$|  SYMBOL                                                             #   120/251
+|TOP--->| |  STRING                                                             #   121/251
+token: 39 ... +                                                                 #   122/251
+|TOP--->|i|]|$|  SYMBOL                                                         #   123/251
+|TOP--->|c| | |  STRING                                                         #   124/251
+|TOP--->|i|  SYMBOL                                                             #   125/251
+|TOP--->|c|  STRING                                                             #   126/251
+MOVE GF@&pomString TF@c                                                         #   127/251
+|TOP--->|R|$|  SYMBOL                                                           #   128/251
+|TOP--->|c| |  STRING                                                           #   129/251
+token: 52 ...                                                                   #   130/251
+|TOP--->|+|R|]|$|  SYMBOL                                                       #   131/251
+|TOP--->|+|c| | |  STRING                                                       #   132/251
+token: 39 ... +                                                                 #   133/251
+|TOP--->|str|]|+|R|]|$|  SYMBOL                                                 #   134/251
+|TOP--->|| |+|c| | |  STRING                                                    #   135/251
+|TOP--->|str|  SYMBOL                                                           #   136/251
+|TOP--->||  STRING                                                              #   137/251
+|TOP--->|R|+|R|]|$|  SYMBOL                                                     #   138/251
+|TOP--->||+|c| | |  STRING                                                      #   139/251
+|TOP--->|R|+|R|  SYMBOL                                                         #   140/251
+|TOP--->|c|+||  STRING                                                          #   141/251
+redukce                                                                         #   142/251
+ADD GF@&pomString TF@c string@                                                  #   143/251
+|TOP--->|R|$|  SYMBOL                                                           #   144/251
+|TOP--->|GF@&pomString| |  STRING                                               #   145/251
+token: 35 ... c                                                                 #   146/251
+|TOP--->|+|R|]|$|  SYMBOL                                                       #   147/251
+|TOP--->|+|GF@&pomString| | |  STRING                                           #   148/251
+token: 39 ... +                                                                 #   149/251
+|TOP--->|i|]|+|R|]|$|  SYMBOL                                                   #   150/251
+|TOP--->|c| |+|GF@&pomString| | |  STRING                                       #   151/251
+|TOP--->|i|  SYMBOL                                                             #   152/251
+|TOP--->|c|  STRING                                                             #   153/251
+|TOP--->|R|+|R|]|$|  SYMBOL                                                     #   154/251
+|TOP--->|c|+|GF@&pomString| | |  STRING                                         #   155/251
+|TOP--->|R|+|R|  SYMBOL                                                         #   156/251
+|TOP--->|GF@&pomString|+|c|  STRING                                             #   157/251
+redukce                                                                         #   158/251
+CONCAT GF@&pomString GF@&pomString TF@c                                         #   159/251
+|TOP--->|R|$|  SYMBOL                                                           #   160/251
+|TOP--->|GF@&pomString| |  STRING                                               #   161/251
+token: 52 ...                                                                   #   162/251
+|TOP--->|+|R|]|$|  SYMBOL                                                       #   163/251
+|TOP--->|+|GF@&pomString| | |  STRING                                           #   164/251
+token: 39 ... +                                                                 #   165/251
+|TOP--->|str|]|+|R|]|$|  SYMBOL                                                 #   166/251
+|TOP--->|| |+|GF@&pomString| | |  STRING                                        #   167/251
+|TOP--->|str|  SYMBOL                                                           #   168/251
+|TOP--->||  STRING                                                              #   169/251
+|TOP--->|R|+|R|]|$|  SYMBOL                                                     #   170/251
+|TOP--->||+|GF@&pomString| | |  STRING                                          #   171/251
+|TOP--->|R|+|R|  SYMBOL                                                         #   172/251
+|TOP--->|GF@&pomString|+||  STRING                                              #   173/251
+redukce                                                                         #   174/251
+CONCAT GF@&pomString GF@&pomString string@                                      #   175/251
+|TOP--->|R|$|  SYMBOL                                                           #   176/251
+|TOP--->|GF@&pomString| |  STRING                                               #   177/251
+token: 35 ... c                                                                 #   178/251
+|TOP--->|+|R|]|$|  SYMBOL                                                       #   179/251
+|TOP--->|+|GF@&pomString| | |  STRING                                           #   180/251
+token: 39 ... +                                                                 #   181/251
+|TOP--->|i|]|+|R|]|$|  SYMBOL                                                   #   182/251
+|TOP--->|c| |+|GF@&pomString| | |  STRING                                       #   183/251
+|TOP--->|i|  SYMBOL                                                             #   184/251
+|TOP--->|c|  STRING                                                             #   185/251
+|TOP--->|R|+|R|]|$|  SYMBOL                                                     #   186/251
+|TOP--->|c|+|GF@&pomString| | |  STRING                                         #   187/251
+|TOP--->|R|+|R|  SYMBOL                                                         #   188/251
+|TOP--->|GF@&pomString|+|c|  STRING                                             #   189/251
+redukce                                                                         #   190/251
+CONCAT GF@&pomString GF@&pomString TF@c                                         #   191/251
+|TOP--->|R|$|  SYMBOL                                                           #   192/251
+|TOP--->|GF@&pomString| |  STRING                                               #   193/251
+token: 52 ... \010                                                              #   194/251
+|TOP--->|+|R|]|$|  SYMBOL                                                       #   195/251
+|TOP--->|+|GF@&pomString| | |  STRING                                           #   196/251
+token: 57 ...                                                                   #   197/251
+|TOP--->|str|]|+|R|]|$|  SYMBOL                                                 #   198/251
+|TOP--->|\010| |+|GF@&pomString| | |  STRING                                    #   199/251
+|TOP--->|str|  SYMBOL                                                           #   200/251
+|TOP--->|\010|  STRING                                                          #   201/251
+|TOP--->|R|+|R|]|$|  SYMBOL                                                     #   202/251
+|TOP--->|\010|+|GF@&pomString| | |  STRING                                      #   203/251
+|TOP--->|R|+|R|  SYMBOL                                                         #   204/251
+|TOP--->|GF@&pomString|+|\010|  STRING                                          #   205/251
+redukce                                                                         #   206/251
+CONCAT GF@&pomString GF@&pomString string@\010                                  #   207/251
+MOVE TF@foo GF@&pomString                                                       #   208/251
+token: 57 ...                                                                   #   209/251
+token: 15 ... print                                                             #   210/251
+token: 35 ... b                                                                 #   211/251
+|TOP--->|$|  SYMBOL                                                             #   212/251
+|TOP--->| |  STRING                                                             #   213/251
+token: 47 ... ;                                                                 #   214/251
+|TOP--->|i|]|$|  SYMBOL                                                         #   215/251
+|TOP--->|b| | |  STRING                                                         #   216/251
+|TOP--->|i|  SYMBOL                                                             #   217/251
+|TOP--->|b|  STRING                                                             #   218/251
+WRITE TF@b                                                                      #   219/251
+token: 35 ... foo                                                               #   220/251
+|TOP--->|$|  SYMBOL                                                             #   221/251
+|TOP--->| |  STRING                                                             #   222/251
+token: 47 ... ;                                                                 #   223/251
+|TOP--->|i|]|$|  SYMBOL                                                         #   224/251
+|TOP--->|foo| | |  STRING                                                       #   225/251
+|TOP--->|i|  SYMBOL                                                             #   226/251
+|TOP--->|foo|  STRING                                                           #   227/251
+WRITE TF@foo                                                                    #   228/251
+token: 35 ... foo                                                               #   229/251
+|TOP--->|$|  SYMBOL                                                             #   230/251
+|TOP--->| |  STRING                                                             #   231/251
+token: 47 ... ;                                                                 #   232/251
+|TOP--->|i|]|$|  SYMBOL                                                         #   233/251
+|TOP--->|foo| | |  STRING                                                       #   234/251
+|TOP--->|i|  SYMBOL                                                             #   235/251
+|TOP--->|foo|  STRING                                                           #   236/251
+WRITE TF@foo                                                                    #   237/251
+token: 35 ... content                                                           #   238/251
+|TOP--->|$|  SYMBOL                                                             #   239/251
+|TOP--->| |  STRING                                                             #   240/251
+token: 47 ... ;                                                                 #   241/251
+|TOP--->|i|]|$|  SYMBOL                                                         #   242/251
+|TOP--->|content| | |  STRING                                                   #   243/251
+|TOP--->|i|  SYMBOL                                                             #   244/251
+|TOP--->|content|  STRING                                                       #   245/251
+WRITE TF@content                                                                #   246/251
+token: 57 ...                                                                   #   247/251
+token: 7 ... end                                                                #   248/251
+token: 17 ... scope                                                             #   249/251
+token: 57 ...                                                                   #   250/251
+token: 58 ...                                                                   #   251/251
+

@@ -1,0 +1,75 @@
+# 2017-12-03 20:43:47.890235
+# SECTION: 66_errors
+# TEST: 050
+# INFO: missing operand in braces group
+# REQUIRED EXTENSIONS: 
+# ACTIVATED EXTENSIONS: 
+# STATE: FAIL
+# 
+# COMPILER STDERR:
+# ERROR - 1 - chyba v programu v rÃ¡mci lexikÃ¡lnÃ­ analÃ½zy (chybnÃ¡ struktura aktuÃ¡lnÃ­ho lexÃ©mu).
+# 
+# INTERPRETER STDERR:
+# 
+# EXPECTED INTERPRETER STDOUT:
+
+
+
+# CURRENT INTERPRETER STDOUT:
+
+
+
+# INTERPRETER STDIN: 
+# 
+#
+# EXPECTED COMPILER EXIT CODE: 2
+# CURRENT COMPILER EXIT CODE: 1
+# EXPECTED INTERPRETER EXIT CODE: 0
+# CURRENT INTERPRETER EXIT CODE: None
+# PRICE: ---
+# GROOT: ---
+# 
+#   1: scope 
+#   2:  print (* 6) + (5 + 9);
+#   3:  end scope
+
+########################################
+
+token: 17 ... scope                                                             #     1/39
+.IFJcode17                                                                      #     2/39
+JUMP $$scope                                                                    #     3/39
+LABEL $$scope                                                                   #     5/39
+DEFVAR GF@&pomInteger                                                           #     6/39
+MOVE GF@&pomInteger int@0                                                       #     7/39
+DEFVAR GF@&pomString                                                            #     8/39
+MOVE GF@&pomString string@                                                      #     9/39
+DEFVAR GF@&pomFloat                                                             #    10/39
+MOVE GF@&pomFloat float@0                                                       #    11/39
+DEFVAR GF@&pomBool                                                              #    12/39
+MOVE GF@&pomBool bool@false                                                     #    13/39
+DEFVAR GF@&pomCntr                                                              #    14/39
+MOVE GF@&pomCntr int@0                                                          #    15/39
+CREATEFRAME                                                                     #    16/39
+token: 57 ...                                                                   #    18/39
+token: 15 ... print                                                             #    19/39
+token: 50 ... (                                                                 #    20/39
+|TOP--->|$|  SYMBOL                                                             #    21/39
+|TOP--->| |  STRING                                                             #    22/39
+token: 38 ... *                                                                 #    23/39
+|TOP--->|(|]|$|  SYMBOL                                                         #    24/39
+|TOP--->|(| | |  STRING                                                         #    25/39
+token: 53 ... 6                                                                 #    26/39
+|TOP--->|*|]|(|]|$|  SYMBOL                                                     #    27/39
+|TOP--->|*| |(| | |  STRING                                                     #    28/39
+token: 51 ... )                                                                 #    29/39
+|TOP--->|int|]|*|]|(|]|$|  SYMBOL                                               #    30/39
+|TOP--->|6| |*| |(| | |  STRING                                                 #    31/39
+|TOP--->|int|  SYMBOL                                                           #    32/39
+|TOP--->|6|  STRING                                                             #    33/39
+WRITE TF@6                                                                      #    34/39
+|TOP--->|R|*|]|(|]|$|  SYMBOL                                                   #    35/39
+|TOP--->|6|*| |(| | |  STRING                                                   #    36/39
+|TOP--->|*|R|  SYMBOL                                                           #    37/39
+|TOP--->|*|6|  STRING                                                           #    38/39
+ERROR on line 2                                                                 #    39/39
+

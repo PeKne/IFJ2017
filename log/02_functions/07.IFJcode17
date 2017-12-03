@@ -1,0 +1,77 @@
+# 2017-12-03 20:43:46.970496
+# SECTION: 02_functions
+# TEST: 07
+# INFO: function params with declaration but invalid count
+# REQUIRED EXTENSIONS: 
+# ACTIVATED EXTENSIONS: 
+# STATE: FAIL
+# 
+# COMPILER STDERR:
+# ERROR -  4 - sÃ©mantickÃ¡ chyba typovÃ© kompatibility v aritmetickÃ½ch, rÌeteÌzcovÃ½ch a relacÌnÃ­ch vÃ½razech, prÌÃ­p. Å¡patnÃ½ pocÌet cÌi typ parametruÌ u volÃ¡nÃ­ funkce.
+# 
+# INTERPRETER STDERR:
+# 
+# EXPECTED INTERPRETER STDOUT:
+
+
+
+# CURRENT INTERPRETER STDOUT:
+
+
+
+# INTERPRETER STDIN: 
+# 
+#
+# EXPECTED COMPILER EXIT CODE: 3
+# CURRENT COMPILER EXIT CODE: 4
+# EXPECTED INTERPRETER EXIT CODE: 0
+# CURRENT INTERPRETER EXIT CODE: None
+# PRICE: ---
+# GROOT: ---
+# 
+#   1: ' function params with declaration but invalid count
+#   2: declare function bar(h as string, t as integer, x as string) as string
+#   3: 
+#   4: function bar(b as string, c as integer) as string
+#   5: end function 
+#   6: 
+#   7: scope
+#   8: end scope
+
+########################################
+
+token: 57 ...                                                                   #     1/35
+token: 2 ... declare                                                            #     2/35
+.IFJcode17                                                                      #     3/35
+JUMP $$scope                                                                    #     4/35
+token: 9 ... function                                                           #     6/35
+token: 35 ... bar                                                               #     7/35
+token: 50 ... (                                                                 #     8/35
+token: 35 ... h                                                                 #     9/35
+rule_par                                                                        #    10/35
+token: 0 ... as                                                                 #    11/35
+token: 18 ... string                                                            #    12/35
+token: 48 ... ,                                                                 #    13/35
+rule next par                                                                   #    14/35
+token: 35 ... t                                                                 #    15/35
+rule_par                                                                        #    16/35
+token: 0 ... as                                                                 #    17/35
+token: 12 ... integer                                                           #    18/35
+token: 48 ... ,                                                                 #    19/35
+rule next par                                                                   #    20/35
+token: 35 ... x                                                                 #    21/35
+rule_par                                                                        #    22/35
+token: 0 ... as                                                                 #    23/35
+token: 18 ... string                                                            #    24/35
+token: 51 ... )                                                                 #    25/35
+rule next par                                                                   #    26/35
+token: 0 ... as                                                                 #    27/35
+token: 18 ... string                                                            #    28/35
+token: 57 ...                                                                   #    29/35
+token: 57 ...                                                                   #    30/35
+token: 9 ... function                                                           #    31/35
+token: 35 ... bar                                                               #    32/35
+token: 50 ... (                                                                 #    33/35
+token: 35 ... b                                                                 #    34/35
+ERROR on line 4                                                                 #    35/35
+

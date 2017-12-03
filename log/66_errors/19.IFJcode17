@@ -1,0 +1,54 @@
+# 2017-12-03 20:43:47.571921
+# SECTION: 66_errors
+# TEST: 19
+# INFO: Colision of argument name and function name
+# REQUIRED EXTENSIONS: 
+# ACTIVATED EXTENSIONS: 
+# STATE: SUCCESS
+# 
+# COMPILER STDERR:
+# symbol.c:268:retrieve_function_data(): Function not found
+# ERROR - 3 - sÃ©mantickÃ¡ chyba v programu â nedefinovanÃ¡ funkce/promeÌnnÃ¡, pokus o redefinici funkce/promeÌnnÃ©, atd.
+# 
+# INTERPRETER STDERR:
+# 
+# EXPECTED INTERPRETER STDOUT:
+
+
+
+# CURRENT INTERPRETER STDOUT:
+
+
+
+# INTERPRETER STDIN: 
+# 
+#
+# EXPECTED COMPILER EXIT CODE: 3
+# CURRENT COMPILER EXIT CODE: 3
+# EXPECTED INTERPRETER EXIT CODE: 0
+# CURRENT INTERPRETER EXIT CODE: None
+# PRICE: ---
+# GROOT: ---
+# 
+#   1: ' Colision of argument name and function name
+#   2: 
+#   3: function foo1() as integer
+#   4: end function
+#   5: 
+#   6: function bar(foo1 as integer) as integer
+#   7:     return foo1
+#   8: end function
+#   9: 
+#  10: scope
+#  11: end scope
+
+########################################
+
+token: 57 ...                                                                   #     1/8
+token: 57 ...                                                                   #     2/8
+token: 9 ... function                                                           #     3/8
+.IFJcode17                                                                      #     4/8
+JUMP $$scope                                                                    #     5/8
+token: 35 ... foo1                                                              #     7/8
+ERROR on line 3                                                                 #     8/8
+

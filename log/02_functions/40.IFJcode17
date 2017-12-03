@@ -1,0 +1,68 @@
+# 2017-12-03 20:43:47.061888
+# SECTION: 02_functions
+# TEST: 40
+# INFO: Functions with implicit conversions
+# REQUIRED EXTENSIONS: 
+# ACTIVATED EXTENSIONS: 
+# STATE: FAIL
+# 
+# COMPILER STDERR:
+# symbol.c:268:retrieve_function_data(): Function not found
+# ERROR - 3 - sÃ©mantickÃ¡ chyba v programu â nedefinovanÃ¡ funkce/promeÌnnÃ¡, pokus o redefinici funkce/promeÌnnÃ©, atd.
+# 
+# INTERPRETER STDERR:
+# 
+# EXPECTED INTERPRETER STDOUT:
+
+#  2.9 2.4 2.4oy 6 6 0 0 0 0
+
+
+# CURRENT INTERPRETER STDOUT:
+
+
+
+# INTERPRETER STDIN: 
+# 
+#
+# EXPECTED COMPILER EXIT CODE: 0
+# CURRENT COMPILER EXIT CODE: 3
+# EXPECTED INTERPRETER EXIT CODE: 0
+# CURRENT INTERPRETER EXIT CODE: None
+# PRICE: ---
+# GROOT: ---
+# 
+#   1: ' Functions with implicit conversions
+#   2: 
+#   3: function foo1(a as double) as integer
+#   4:     print a;
+#   5: end function
+#   6: 
+#   7: function foo2(a as double) as double
+#   8:     print a;
+#   9: end function
+#  10: 
+#  11: function foo3(a as double) as string
+#  12:     print !"oy";
+#  13: end function
+#  14: 
+#  15: scope
+#  16:     dim a as integer = 5.6
+#  17:     dim b as integer = foo1(2.9)
+#  18:     dim c as double = foo1(2.4)
+#  19:     dim d as double = foo2(2.4)
+#  20:     dim e as string = foo3(2.6)
+#  21:     dim f as integer = foo1(a)
+#  22: 
+#  23:     print a;b;c;d;e;f;
+#  24: end scope
+
+########################################
+
+token: 57 ...                                                                   #     1/8
+token: 57 ...                                                                   #     2/8
+token: 9 ... function                                                           #     3/8
+.IFJcode17                                                                      #     4/8
+JUMP $$scope                                                                    #     5/8
+token: 35 ... foo1                                                              #     7/8
+ERROR on line 3                                                                 #     8/8
+

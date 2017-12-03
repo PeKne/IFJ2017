@@ -1,0 +1,91 @@
+# 2017-12-03 20:43:48.056197
+# SECTION: 66_errors
+# TEST: 105
+# INFO: Error in type compatibility
+# REQUIRED EXTENSIONS: 
+# ACTIVATED EXTENSIONS: 
+# STATE: SUCCESS
+# 
+# COMPILER STDERR:
+# Wrong types of operands!
+# Wrong string operation!
+# ERROR -  4 - sÃ©mantickÃ¡ chyba typovÃ© kompatibility v aritmetickÃ½ch, rÌeteÌzcovÃ½ch a relacÌnÃ­ch vÃ½razech, prÌÃ­p. Å¡patnÃ½ pocÌet cÌi typ parametruÌ u volÃ¡nÃ­ funkce.
+# 
+# INTERPRETER STDERR:
+# 
+# EXPECTED INTERPRETER STDOUT:
+
+
+
+# CURRENT INTERPRETER STDOUT:
+
+
+
+# INTERPRETER STDIN: 
+# 
+#
+# EXPECTED COMPILER EXIT CODE: 4
+# CURRENT COMPILER EXIT CODE: 4
+# EXPECTED INTERPRETER EXIT CODE: 0
+# CURRENT INTERPRETER EXIT CODE: None
+# PRICE: ---
+# GROOT: ---
+# 
+#   1: scope 
+#   2:  dim a as string 
+#   3:  a = a + 42 
+#   4:  end scope
+
+########################################
+
+token: 17 ... scope                                                             #     1/52
+.IFJcode17                                                                      #     2/52
+JUMP $$scope                                                                    #     3/52
+LABEL $$scope                                                                   #     5/52
+DEFVAR GF@&pomInteger                                                           #     6/52
+MOVE GF@&pomInteger int@0                                                       #     7/52
+DEFVAR GF@&pomString                                                            #     8/52
+MOVE GF@&pomString string@                                                      #     9/52
+DEFVAR GF@&pomFloat                                                             #    10/52
+MOVE GF@&pomFloat float@0                                                       #    11/52
+DEFVAR GF@&pomBool                                                              #    12/52
+MOVE GF@&pomBool bool@false                                                     #    13/52
+DEFVAR GF@&pomCntr                                                              #    14/52
+MOVE GF@&pomCntr int@0                                                          #    15/52
+CREATEFRAME                                                                     #    16/52
+token: 57 ...                                                                   #    18/52
+token: 3 ... dim                                                                #    19/52
+token: 35 ... a                                                                 #    20/52
+token: 0 ... as                                                                 #    21/52
+token: 18 ... string                                                            #    22/52
+token: 57 ...                                                                   #    23/52
+DEFVAR TF@a                                                                     #    24/52
+MOVE TF@a string@                                                               #    25/52
+token: 35 ... a                                                                 #    26/52
+token: 45 ... =                                                                 #    27/52
+token: 35 ... a                                                                 #    28/52
+|TOP--->|$|  SYMBOL                                                             #    29/52
+|TOP--->| |  STRING                                                             #    30/52
+token: 39 ... +                                                                 #    31/52
+|TOP--->|i|]|$|  SYMBOL                                                         #    32/52
+|TOP--->|a| | |  STRING                                                         #    33/52
+|TOP--->|i|  SYMBOL                                                             #    34/52
+|TOP--->|a|  STRING                                                             #    35/52
+MOVE GF@&pomString TF@a                                                         #    36/52
+|TOP--->|R|$|  SYMBOL                                                           #    37/52
+|TOP--->|a| |  STRING                                                           #    38/52
+token: 53 ... 42                                                                #    39/52
+|TOP--->|+|R|]|$|  SYMBOL                                                       #    40/52
+|TOP--->|+|a| | |  STRING                                                       #    41/52
+token: 57 ...                                                                   #    42/52
+|TOP--->|int|]|+|R|]|$|  SYMBOL                                                 #    43/52
+|TOP--->|42| |+|a| | |  STRING                                                  #    44/52
+|TOP--->|int|  SYMBOL                                                           #    45/52
+|TOP--->|42|  STRING                                                            #    46/52
+|TOP--->|R|+|R|]|$|  SYMBOL                                                     #    47/52
+|TOP--->|42|+|a| | |  STRING                                                    #    48/52
+|TOP--->|R|+|R|  SYMBOL                                                         #    49/52
+|TOP--->|a|+|42|  STRING                                                        #    50/52
+redukce                                                                         #    51/52
+ERROR on line 3                                                                 #    52/52
+

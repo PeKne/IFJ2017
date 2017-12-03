@@ -1,0 +1,323 @@
+# 2017-12-03 20:43:48.772784
+# SECTION: 96_programs
+# TEST: 07
+# INFO: Draw a pyramide
+# REQUIRED EXTENSIONS: 
+# ACTIVATED EXTENSIONS: 
+# STATE: FAIL
+# 
+# COMPILER STDERR:
+# Chyba v code_gen_expres TF@GF@&pomString TF@i TF@rows
+# Chyba v code_gen_expres TF@GF@&pomString TF@j TF@i
+# 
+# INTERPRETER STDERR:
+# 1.1-5: syntax error, unexpected ID, expecting HEADER
+# 
+# EXPECTED INTERPRETER STDOUT:
+
+# Enter number of rows
+# ? 
+#  1
+#  1 2
+#  1 2 3
+#  1 2 3 4
+#  1 2 3 4 5
+#  1 2 3 4 5 6
+#  1 2 3 4 5 6 7
+#  1 2 3 4 5 6 7 8
+#  1 2 3 4 5 6 7 8 9
+#  1 2 3 4 5 6 7 8 9 10
+
+
+# CURRENT INTERPRETER STDOUT:
+
+
+
+# INTERPRETER STDIN: 
+# 10
+#
+# EXPECTED COMPILER EXIT CODE: 0
+# CURRENT COMPILER EXIT CODE: 0
+# EXPECTED INTERPRETER EXIT CODE: 0
+# CURRENT INTERPRETER EXIT CODE: 51
+# PRICE: ---
+# GROOT: ---
+# 
+#   1: ' Draw a pyramide
+#   2: scope 
+#   3:     print !"Enter number of rows\n";
+#   4:     dim rows as integer
+#   5:     input rows
+#   6:     
+#   7:     print !"\n";
+#   8:     
+#   9:     dim i as integer = 1
+#  10:     dim j as integer = 1
+#  11:     
+#  12:     do while i <= rows
+#  13:         j = 1
+#  14:         do while j <= i
+#  15:         
+#  16:         
+#  17:             print j;
+#  18:             j = j + 1
+#  19:         loop
+#  20:         print !"\n";
+#  21:         i = i + 1
+#  22:     loop
+#  23:     
+#  24: end scope
+#  25:     
+
+########################################
+
+token: 57 ...                                                                   #     1/251
+token: 17 ... scope                                                             #     2/251
+.IFJcode17                                                                      #     3/251
+JUMP $$scope                                                                    #     4/251
+LABEL $$scope                                                                   #     6/251
+DEFVAR GF@&pomInteger                                                           #     7/251
+MOVE GF@&pomInteger int@0                                                       #     8/251
+DEFVAR GF@&pomString                                                            #     9/251
+MOVE GF@&pomString string@                                                      #    10/251
+DEFVAR GF@&pomFloat                                                             #    11/251
+MOVE GF@&pomFloat float@0                                                       #    12/251
+DEFVAR GF@&pomBool                                                              #    13/251
+MOVE GF@&pomBool bool@false                                                     #    14/251
+DEFVAR GF@&pomCntr                                                              #    15/251
+MOVE GF@&pomCntr int@0                                                          #    16/251
+CREATEFRAME                                                                     #    17/251
+token: 57 ...                                                                   #    19/251
+token: 15 ... print                                                             #    20/251
+token: 52 ... Enter\032number\032of\032rows\010                                 #    21/251
+|TOP--->|$|  SYMBOL                                                             #    22/251
+|TOP--->| |  STRING                                                             #    23/251
+token: 47 ... ;                                                                 #    24/251
+|TOP--->|str|]|$|  SYMBOL                                                       #    25/251
+|TOP--->|Enter\032number\032of\032rows\010| | |  STRING                         #    26/251
+|TOP--->|str|  SYMBOL                                                           #    27/251
+|TOP--->|Enter\032number\032of\032rows\010|  STRING                             #    28/251
+WRITE string@Enter\032number\032of\032rows\010                                  #    29/251
+token: 57 ...                                                                   #    30/251
+token: 3 ... dim                                                                #    31/251
+token: 35 ... rows                                                              #    32/251
+token: 0 ... as                                                                 #    33/251
+token: 12 ... integer                                                           #    34/251
+token: 57 ...                                                                   #    35/251
+DEFVAR TF@rows                                                                  #    36/251
+MOVE TF@rows int@0                                                              #    37/251
+token: 11 ... input                                                             #    38/251
+token: 35 ... rows                                                              #    39/251
+READ TF@rows int                                                                #    40/251
+token: 57 ...                                                                   #    41/251
+token: 57 ...                                                                   #    42/251
+token: 15 ... print                                                             #    43/251
+token: 52 ... \010                                                              #    44/251
+|TOP--->|$|  SYMBOL                                                             #    45/251
+|TOP--->| |  STRING                                                             #    46/251
+token: 47 ... ;                                                                 #    47/251
+|TOP--->|str|]|$|  SYMBOL                                                       #    48/251
+|TOP--->|\010| | |  STRING                                                      #    49/251
+|TOP--->|str|  SYMBOL                                                           #    50/251
+|TOP--->|\010|  STRING                                                          #    51/251
+WRITE string@\010                                                               #    52/251
+token: 57 ...                                                                   #    53/251
+token: 57 ...                                                                   #    54/251
+token: 3 ... dim                                                                #    55/251
+token: 35 ... i                                                                 #    56/251
+token: 0 ... as                                                                 #    57/251
+token: 12 ... integer                                                           #    58/251
+token: 45 ... =                                                                 #    59/251
+DEFVAR TF@i                                                                     #    60/251
+MOVE TF@i int@0                                                                 #    61/251
+token: 53 ... 1                                                                 #    62/251
+|TOP--->|$|  SYMBOL                                                             #    63/251
+|TOP--->| |  STRING                                                             #    64/251
+token: 57 ...                                                                   #    65/251
+|TOP--->|int|]|$|  SYMBOL                                                       #    66/251
+|TOP--->|1| | |  STRING                                                         #    67/251
+|TOP--->|int|  SYMBOL                                                           #    68/251
+|TOP--->|1|  STRING                                                             #    69/251
+MOVE GF@&pomInteger int@1                                                       #    70/251
+MOVE TF@i GF@&pomInteger                                                        #    71/251
+token: 3 ... dim                                                                #    72/251
+token: 35 ... j                                                                 #    73/251
+token: 0 ... as                                                                 #    74/251
+token: 12 ... integer                                                           #    75/251
+token: 45 ... =                                                                 #    76/251
+DEFVAR TF@j                                                                     #    77/251
+MOVE TF@j int@0                                                                 #    78/251
+token: 53 ... 1                                                                 #    79/251
+|TOP--->|$|  SYMBOL                                                             #    80/251
+|TOP--->| |  STRING                                                             #    81/251
+token: 57 ...                                                                   #    82/251
+|TOP--->|int|]|$|  SYMBOL                                                       #    83/251
+|TOP--->|1| | |  STRING                                                         #    84/251
+|TOP--->|int|  SYMBOL                                                           #    85/251
+|TOP--->|1|  STRING                                                             #    86/251
+MOVE GF@&pomInteger int@1                                                       #    87/251
+MOVE TF@j GF@&pomInteger                                                        #    88/251
+token: 57 ...                                                                   #    89/251
+token: 4 ... do                                                                 #    90/251
+token: 21 ... while                                                             #    91/251
+LABEL $$loop_1                                                                  #    92/251
+token: 35 ... i                                                                 #    93/251
+|TOP--->|$|  SYMBOL                                                             #    94/251
+|TOP--->| |  STRING                                                             #    95/251
+token: 43 ... <=                                                                #    96/251
+|TOP--->|i|]|$|  SYMBOL                                                         #    97/251
+|TOP--->|i| | |  STRING                                                         #    98/251
+|TOP--->|i|  SYMBOL                                                             #    99/251
+|TOP--->|i|  STRING                                                             #   100/251
+MOVE GF@&pomInteger TF@i                                                        #   101/251
+|TOP--->|R|$|  SYMBOL                                                           #   102/251
+|TOP--->|i| |  STRING                                                           #   103/251
+token: 35 ... rows                                                              #   104/251
+|TOP--->|<=|R|]|$|  SYMBOL                                                      #   105/251
+|TOP--->|<=|i| | |  STRING                                                      #   106/251
+token: 57 ...                                                                   #   107/251
+|TOP--->|i|]|<=|R|]|$|  SYMBOL                                                  #   108/251
+|TOP--->|rows| |<=|i| | |  STRING                                               #   109/251
+|TOP--->|i|  SYMBOL                                                             #   110/251
+|TOP--->|rows|  STRING                                                          #   111/251
+|TOP--->|R|<=|R|]|$|  SYMBOL                                                    #   112/251
+|TOP--->|rows|<=|i| | |  STRING                                                 #   113/251
+|TOP--->|R|<=|R|  SYMBOL                                                        #   114/251
+|TOP--->|i|<=|rows|  STRING                                                     #   115/251
+redukce                                                                         #   116/251
+JUMPIFNEQ $$loop_end_1 GF@&pomBool bool@true                                    #   117/251
+token: 35 ... j                                                                 #   118/251
+token: 45 ... =                                                                 #   119/251
+token: 53 ... 1                                                                 #   120/251
+|TOP--->|$|  SYMBOL                                                             #   121/251
+|TOP--->| |  STRING                                                             #   122/251
+token: 57 ...                                                                   #   123/251
+|TOP--->|int|]|$|  SYMBOL                                                       #   124/251
+|TOP--->|1| | |  STRING                                                         #   125/251
+|TOP--->|int|  SYMBOL                                                           #   126/251
+|TOP--->|1|  STRING                                                             #   127/251
+MOVE GF@&pomInteger int@1                                                       #   128/251
+MOVE TF@j GF@&pomInteger                                                        #   129/251
+token: 4 ... do                                                                 #   130/251
+token: 21 ... while                                                             #   131/251
+LABEL $$loop_1                                                                  #   132/251
+token: 35 ... j                                                                 #   133/251
+|TOP--->|$|  SYMBOL                                                             #   134/251
+|TOP--->| |  STRING                                                             #   135/251
+token: 43 ... <=                                                                #   136/251
+|TOP--->|i|]|$|  SYMBOL                                                         #   137/251
+|TOP--->|j| | |  STRING                                                         #   138/251
+|TOP--->|i|  SYMBOL                                                             #   139/251
+|TOP--->|j|  STRING                                                             #   140/251
+MOVE GF@&pomInteger TF@j                                                        #   141/251
+|TOP--->|R|$|  SYMBOL                                                           #   142/251
+|TOP--->|j| |  STRING                                                           #   143/251
+token: 35 ... i                                                                 #   144/251
+|TOP--->|<=|R|]|$|  SYMBOL                                                      #   145/251
+|TOP--->|<=|j| | |  STRING                                                      #   146/251
+token: 57 ...                                                                   #   147/251
+|TOP--->|i|]|<=|R|]|$|  SYMBOL                                                  #   148/251
+|TOP--->|i| |<=|j| | |  STRING                                                  #   149/251
+|TOP--->|i|  SYMBOL                                                             #   150/251
+|TOP--->|i|  STRING                                                             #   151/251
+|TOP--->|R|<=|R|]|$|  SYMBOL                                                    #   152/251
+|TOP--->|i|<=|j| | |  STRING                                                    #   153/251
+|TOP--->|R|<=|R|  SYMBOL                                                        #   154/251
+|TOP--->|j|<=|i|  STRING                                                        #   155/251
+redukce                                                                         #   156/251
+JUMPIFNEQ $$loop_end_1 GF@&pomBool bool@true                                    #   157/251
+token: 57 ...                                                                   #   158/251
+token: 57 ...                                                                   #   159/251
+token: 15 ... print                                                             #   160/251
+token: 35 ... j                                                                 #   161/251
+|TOP--->|$|  SYMBOL                                                             #   162/251
+|TOP--->| |  STRING                                                             #   163/251
+token: 47 ... ;                                                                 #   164/251
+|TOP--->|i|]|$|  SYMBOL                                                         #   165/251
+|TOP--->|j| | |  STRING                                                         #   166/251
+|TOP--->|i|  SYMBOL                                                             #   167/251
+|TOP--->|j|  STRING                                                             #   168/251
+WRITE TF@j                                                                      #   169/251
+token: 57 ...                                                                   #   170/251
+token: 35 ... j                                                                 #   171/251
+token: 45 ... =                                                                 #   172/251
+token: 35 ... j                                                                 #   173/251
+|TOP--->|$|  SYMBOL                                                             #   174/251
+|TOP--->| |  STRING                                                             #   175/251
+token: 39 ... +                                                                 #   176/251
+|TOP--->|i|]|$|  SYMBOL                                                         #   177/251
+|TOP--->|j| | |  STRING                                                         #   178/251
+|TOP--->|i|  SYMBOL                                                             #   179/251
+|TOP--->|j|  STRING                                                             #   180/251
+MOVE GF@&pomInteger TF@j                                                        #   181/251
+|TOP--->|R|$|  SYMBOL                                                           #   182/251
+|TOP--->|j| |  STRING                                                           #   183/251
+token: 53 ... 1                                                                 #   184/251
+|TOP--->|+|R|]|$|  SYMBOL                                                       #   185/251
+|TOP--->|+|j| | |  STRING                                                       #   186/251
+token: 57 ...                                                                   #   187/251
+|TOP--->|int|]|+|R|]|$|  SYMBOL                                                 #   188/251
+|TOP--->|1| |+|j| | |  STRING                                                   #   189/251
+|TOP--->|int|  SYMBOL                                                           #   190/251
+|TOP--->|1|  STRING                                                             #   191/251
+|TOP--->|R|+|R|]|$|  SYMBOL                                                     #   192/251
+|TOP--->|1|+|j| | |  STRING                                                     #   193/251
+|TOP--->|R|+|R|  SYMBOL                                                         #   194/251
+|TOP--->|j|+|1|  STRING                                                         #   195/251
+redukce                                                                         #   196/251
+ADD GF@&pomInteger TF@j int@1                                                   #   197/251
+MOVE TF@j GF@&pomInteger                                                        #   198/251
+token: 14 ... loop                                                              #   199/251
+JUMP $$loop_1                                                                   #   200/251
+LABEL $$loop_end_1                                                              #   201/251
+token: 57 ...                                                                   #   202/251
+token: 15 ... print                                                             #   203/251
+token: 52 ... \010                                                              #   204/251
+|TOP--->|$|  SYMBOL                                                             #   205/251
+|TOP--->| |  STRING                                                             #   206/251
+token: 47 ... ;                                                                 #   207/251
+|TOP--->|str|]|$|  SYMBOL                                                       #   208/251
+|TOP--->|\010| | |  STRING                                                      #   209/251
+|TOP--->|str|  SYMBOL                                                           #   210/251
+|TOP--->|\010|  STRING                                                          #   211/251
+WRITE string@\010                                                               #   212/251
+token: 57 ...                                                                   #   213/251
+token: 35 ... i                                                                 #   214/251
+token: 45 ... =                                                                 #   215/251
+token: 35 ... i                                                                 #   216/251
+|TOP--->|$|  SYMBOL                                                             #   217/251
+|TOP--->| |  STRING                                                             #   218/251
+token: 39 ... +                                                                 #   219/251
+|TOP--->|i|]|$|  SYMBOL                                                         #   220/251
+|TOP--->|i| | |  STRING                                                         #   221/251
+|TOP--->|i|  SYMBOL                                                             #   222/251
+|TOP--->|i|  STRING                                                             #   223/251
+MOVE GF@&pomInteger TF@i                                                        #   224/251
+|TOP--->|R|$|  SYMBOL                                                           #   225/251
+|TOP--->|i| |  STRING                                                           #   226/251
+token: 53 ... 1                                                                 #   227/251
+|TOP--->|+|R|]|$|  SYMBOL                                                       #   228/251
+|TOP--->|+|i| | |  STRING                                                       #   229/251
+token: 57 ...                                                                   #   230/251
+|TOP--->|int|]|+|R|]|$|  SYMBOL                                                 #   231/251
+|TOP--->|1| |+|i| | |  STRING                                                   #   232/251
+|TOP--->|int|  SYMBOL                                                           #   233/251
+|TOP--->|1|  STRING                                                             #   234/251
+|TOP--->|R|+|R|]|$|  SYMBOL                                                     #   235/251
+|TOP--->|1|+|i| | |  STRING                                                     #   236/251
+|TOP--->|R|+|R|  SYMBOL                                                         #   237/251
+|TOP--->|i|+|1|  STRING                                                         #   238/251
+redukce                                                                         #   239/251
+ADD GF@&pomInteger TF@i int@1                                                   #   240/251
+MOVE TF@i GF@&pomInteger                                                        #   241/251
+token: 14 ... loop                                                              #   242/251
+JUMP $$loop_2                                                                   #   243/251
+LABEL $$loop_end_2                                                              #   244/251
+token: 57 ...                                                                   #   245/251
+token: 57 ...                                                                   #   246/251
+token: 7 ... end                                                                #   247/251
+token: 17 ... scope                                                             #   248/251
+token: 57 ...                                                                   #   249/251
+token: 57 ...                                                                   #   250/251
+token: 58 ...                                                                   #   251/251
+

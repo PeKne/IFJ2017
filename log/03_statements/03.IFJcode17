@@ -1,0 +1,79 @@
+# 2017-12-03 20:43:47.117686
+# SECTION: 03_statements
+# TEST: 03
+# INFO: basic constant assigment with invalid types I
+# REQUIRED EXTENSIONS: 
+# ACTIVATED EXTENSIONS: 
+# STATE: SUCCESS
+# 
+# COMPILER STDERR:
+# Wrong types of operands!
+# ERROR -  4 - sÃ©mantickÃ¡ chyba typovÃ© kompatibility v aritmetickÃ½ch, rÌeteÌzcovÃ½ch a relacÌnÃ­ch vÃ½razech, prÌÃ­p. Å¡patnÃ½ pocÌet cÌi typ parametruÌ u volÃ¡nÃ­ funkce.
+# 
+# INTERPRETER STDERR:
+# 
+# EXPECTED INTERPRETER STDOUT:
+
+
+
+# CURRENT INTERPRETER STDOUT:
+
+
+
+# INTERPRETER STDIN: 
+# 
+#
+# EXPECTED COMPILER EXIT CODE: 4
+# CURRENT COMPILER EXIT CODE: 4
+# EXPECTED INTERPRETER EXIT CODE: 0
+# CURRENT INTERPRETER EXIT CODE: None
+# PRICE: ---
+# GROOT: ---
+# 
+#   1: ' basic constant assigment with invalid types I
+#   2: scope
+#   3: 
+#   4: dim b as integer
+#   5: b = !"foo"
+#   6: 
+#   7: end scope
+
+########################################
+
+token: 57 ...                                                                   #     1/38
+token: 17 ... scope                                                             #     2/38
+.IFJcode17                                                                      #     3/38
+JUMP $$scope                                                                    #     4/38
+LABEL $$scope                                                                   #     6/38
+DEFVAR GF@&pomInteger                                                           #     7/38
+MOVE GF@&pomInteger int@0                                                       #     8/38
+DEFVAR GF@&pomString                                                            #     9/38
+MOVE GF@&pomString string@                                                      #    10/38
+DEFVAR GF@&pomFloat                                                             #    11/38
+MOVE GF@&pomFloat float@0                                                       #    12/38
+DEFVAR GF@&pomBool                                                              #    13/38
+MOVE GF@&pomBool bool@false                                                     #    14/38
+DEFVAR GF@&pomCntr                                                              #    15/38
+MOVE GF@&pomCntr int@0                                                          #    16/38
+CREATEFRAME                                                                     #    17/38
+token: 57 ...                                                                   #    19/38
+token: 57 ...                                                                   #    20/38
+token: 3 ... dim                                                                #    21/38
+token: 35 ... b                                                                 #    22/38
+token: 0 ... as                                                                 #    23/38
+token: 12 ... integer                                                           #    24/38
+token: 57 ...                                                                   #    25/38
+DEFVAR TF@b                                                                     #    26/38
+MOVE TF@b int@0                                                                 #    27/38
+token: 35 ... b                                                                 #    28/38
+token: 45 ... =                                                                 #    29/38
+token: 52 ... foo                                                               #    30/38
+|TOP--->|$|  SYMBOL                                                             #    31/38
+|TOP--->| |  STRING                                                             #    32/38
+token: 57 ...                                                                   #    33/38
+|TOP--->|str|]|$|  SYMBOL                                                       #    34/38
+|TOP--->|foo| | |  STRING                                                       #    35/38
+|TOP--->|str|  SYMBOL                                                           #    36/38
+|TOP--->|foo|  STRING                                                           #    37/38
+ERROR on line 5                                                                 #    38/38
+

@@ -1,0 +1,82 @@
+# 2017-12-03 20:43:46.928795
+# SECTION: 01_basic
+# TEST: 007
+# INFO: Simple input and print
+# REQUIRED EXTENSIONS: 
+# ACTIVATED EXTENSIONS: 
+# STATE: FAIL
+# 
+# COMPILER STDERR:
+# 
+# INTERPRETER STDERR:
+# 1.1-5: syntax error, unexpected ID, expecting HEADER
+# 
+# EXPECTED INTERPRETER STDOUT:
+
+# ?  42
+
+
+# CURRENT INTERPRETER STDOUT:
+
+
+
+# INTERPRETER STDIN: 
+# 42
+#
+# EXPECTED COMPILER EXIT CODE: 0
+# CURRENT COMPILER EXIT CODE: 0
+# EXPECTED INTERPRETER EXIT CODE: 0
+# CURRENT INTERPRETER EXIT CODE: 51
+# PRICE: ---
+# GROOT: ---
+# 
+#   1: scope 
+#   2:  dim a as integer 
+#   3:  input a 
+#   4:  print a; 
+#   5: end scope
+
+########################################
+
+token: 17 ... scope                                                             #     1/43
+.IFJcode17                                                                      #     2/43
+JUMP $$scope                                                                    #     3/43
+LABEL $$scope                                                                   #     5/43
+DEFVAR GF@&pomInteger                                                           #     6/43
+MOVE GF@&pomInteger int@0                                                       #     7/43
+DEFVAR GF@&pomString                                                            #     8/43
+MOVE GF@&pomString string@                                                      #     9/43
+DEFVAR GF@&pomFloat                                                             #    10/43
+MOVE GF@&pomFloat float@0                                                       #    11/43
+DEFVAR GF@&pomBool                                                              #    12/43
+MOVE GF@&pomBool bool@false                                                     #    13/43
+DEFVAR GF@&pomCntr                                                              #    14/43
+MOVE GF@&pomCntr int@0                                                          #    15/43
+CREATEFRAME                                                                     #    16/43
+token: 57 ...                                                                   #    18/43
+token: 3 ... dim                                                                #    19/43
+token: 35 ... a                                                                 #    20/43
+token: 0 ... as                                                                 #    21/43
+token: 12 ... integer                                                           #    22/43
+token: 57 ...                                                                   #    23/43
+DEFVAR TF@a                                                                     #    24/43
+MOVE TF@a int@0                                                                 #    25/43
+token: 11 ... input                                                             #    26/43
+token: 35 ... a                                                                 #    27/43
+READ TF@a int                                                                   #    28/43
+token: 57 ...                                                                   #    29/43
+token: 15 ... print                                                             #    30/43
+token: 35 ... a                                                                 #    31/43
+|TOP--->|$|  SYMBOL                                                             #    32/43
+|TOP--->| |  STRING                                                             #    33/43
+token: 47 ... ;                                                                 #    34/43
+|TOP--->|i|]|$|  SYMBOL                                                         #    35/43
+|TOP--->|a| | |  STRING                                                         #    36/43
+|TOP--->|i|  SYMBOL                                                             #    37/43
+|TOP--->|a|  STRING                                                             #    38/43
+WRITE TF@a                                                                      #    39/43
+token: 57 ...                                                                   #    40/43
+token: 7 ... end                                                                #    41/43
+token: 17 ... scope                                                             #    42/43
+token: 58 ...                                                                   #    43/43
+

@@ -1,0 +1,128 @@
+# 2017-12-03 20:43:47.206752
+# SECTION: 04_expressions
+# TEST: 09
+# INFO: string concat
+# REQUIRED EXTENSIONS: 
+# ACTIVATED EXTENSIONS: 
+# STATE: FAIL
+# 
+# COMPILER STDERR:
+# 
+# INTERPRETER STDERR:
+# 1.1-5: syntax error, unexpected ID, expecting HEADER
+# 
+# EXPECTED INTERPRETER STDOUT:
+
+# master of puppets!
+
+
+# CURRENT INTERPRETER STDOUT:
+
+
+
+# INTERPRETER STDIN: 
+# 
+#
+# EXPECTED COMPILER EXIT CODE: 0
+# CURRENT COMPILER EXIT CODE: 0
+# EXPECTED INTERPRETER EXIT CODE: 0
+# CURRENT INTERPRETER EXIT CODE: 51
+# PRICE: ---
+# GROOT: ---
+# 
+#   1: ' string concat
+#   2: scope
+#   3:     dim a as string = !"master "
+#   4:     dim b as string = !" puppets!"
+#   5: 
+#   6:     print a; !"of"; b;
+#   7: end scope
+
+########################################
+
+token: 57 ...                                                                   #     1/87
+token: 17 ... scope                                                             #     2/87
+.IFJcode17                                                                      #     3/87
+JUMP $$scope                                                                    #     4/87
+LABEL $$scope                                                                   #     6/87
+DEFVAR GF@&pomInteger                                                           #     7/87
+MOVE GF@&pomInteger int@0                                                       #     8/87
+DEFVAR GF@&pomString                                                            #     9/87
+MOVE GF@&pomString string@                                                      #    10/87
+DEFVAR GF@&pomFloat                                                             #    11/87
+MOVE GF@&pomFloat float@0                                                       #    12/87
+DEFVAR GF@&pomBool                                                              #    13/87
+MOVE GF@&pomBool bool@false                                                     #    14/87
+DEFVAR GF@&pomCntr                                                              #    15/87
+MOVE GF@&pomCntr int@0                                                          #    16/87
+CREATEFRAME                                                                     #    17/87
+token: 57 ...                                                                   #    19/87
+token: 3 ... dim                                                                #    20/87
+token: 35 ... a                                                                 #    21/87
+token: 0 ... as                                                                 #    22/87
+token: 18 ... string                                                            #    23/87
+token: 45 ... =                                                                 #    24/87
+DEFVAR TF@a                                                                     #    25/87
+MOVE TF@a string@                                                               #    26/87
+token: 52 ... master\032                                                        #    27/87
+|TOP--->|$|  SYMBOL                                                             #    28/87
+|TOP--->| |  STRING                                                             #    29/87
+token: 57 ...                                                                   #    30/87
+|TOP--->|str|]|$|  SYMBOL                                                       #    31/87
+|TOP--->|master\032| | |  STRING                                                #    32/87
+|TOP--->|str|  SYMBOL                                                           #    33/87
+|TOP--->|master\032|  STRING                                                    #    34/87
+MOVE GF@&pomString string@master\032                                            #    35/87
+MOVE TF@a GF@&pomString                                                         #    36/87
+token: 3 ... dim                                                                #    37/87
+token: 35 ... b                                                                 #    38/87
+token: 0 ... as                                                                 #    39/87
+token: 18 ... string                                                            #    40/87
+token: 45 ... =                                                                 #    41/87
+DEFVAR TF@b                                                                     #    42/87
+MOVE TF@b string@                                                               #    43/87
+token: 52 ... \032puppets!                                                      #    44/87
+|TOP--->|$|  SYMBOL                                                             #    45/87
+|TOP--->| |  STRING                                                             #    46/87
+token: 57 ...                                                                   #    47/87
+|TOP--->|str|]|$|  SYMBOL                                                       #    48/87
+|TOP--->|\032puppets!| | |  STRING                                              #    49/87
+|TOP--->|str|  SYMBOL                                                           #    50/87
+|TOP--->|\032puppets!|  STRING                                                  #    51/87
+MOVE GF@&pomString string@\032puppets!                                          #    52/87
+MOVE TF@b GF@&pomString                                                         #    53/87
+token: 57 ...                                                                   #    54/87
+token: 15 ... print                                                             #    55/87
+token: 35 ... a                                                                 #    56/87
+|TOP--->|$|  SYMBOL                                                             #    57/87
+|TOP--->| |  STRING                                                             #    58/87
+token: 47 ... ;                                                                 #    59/87
+|TOP--->|i|]|$|  SYMBOL                                                         #    60/87
+|TOP--->|a| | |  STRING                                                         #    61/87
+|TOP--->|i|  SYMBOL                                                             #    62/87
+|TOP--->|a|  STRING                                                             #    63/87
+WRITE TF@a                                                                      #    64/87
+token: 52 ... of                                                                #    65/87
+|TOP--->|$|  SYMBOL                                                             #    66/87
+|TOP--->| |  STRING                                                             #    67/87
+token: 47 ... ;                                                                 #    68/87
+|TOP--->|str|]|$|  SYMBOL                                                       #    69/87
+|TOP--->|of| | |  STRING                                                        #    70/87
+|TOP--->|str|  SYMBOL                                                           #    71/87
+|TOP--->|of|  STRING                                                            #    72/87
+WRITE string@of                                                                 #    73/87
+token: 35 ... b                                                                 #    74/87
+|TOP--->|$|  SYMBOL                                                             #    75/87
+|TOP--->| |  STRING                                                             #    76/87
+token: 47 ... ;                                                                 #    77/87
+|TOP--->|i|]|$|  SYMBOL                                                         #    78/87
+|TOP--->|b| | |  STRING                                                         #    79/87
+|TOP--->|i|  SYMBOL                                                             #    80/87
+|TOP--->|b|  STRING                                                             #    81/87
+WRITE TF@b                                                                      #    82/87
+token: 57 ...                                                                   #    83/87
+token: 7 ... end                                                                #    84/87
+token: 17 ... scope                                                             #    85/87
+token: 57 ...                                                                   #    86/87
+token: 58 ...                                                                   #    87/87
+

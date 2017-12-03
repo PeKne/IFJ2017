@@ -1,0 +1,51 @@
+# 2017-12-03 20:43:47.489323
+# SECTION: 12_global
+# TEST: 21
+# INFO: static variable with dynamic assign
+# REQUIRED EXTENSIONS: GLOBAL
+# ACTIVATED EXTENSIONS: 
+# STATE: FAIL
+# 
+# COMPILER STDERR:
+# 
+# INTERPRETER STDERR:
+# 
+# EXPECTED INTERPRETER STDOUT:
+
+#  42
+
+
+# CURRENT INTERPRETER STDOUT:
+
+
+
+# INTERPRETER STDIN: 
+# 
+#
+# EXPECTED COMPILER EXIT CODE: 0
+# CURRENT COMPILER EXIT CODE: None
+# EXPECTED INTERPRETER EXIT CODE: 0
+# CURRENT INTERPRETER EXIT CODE: None
+# PRICE: ---
+# GROOT: ---
+# 
+#   1: ' static variable with dynamic assign
+#   2: 
+#   3: function counter(a as integer) as integer
+#   4: 	static c as integer
+#   5: 	c = a
+#   6: 	c = c + 1
+#   7: 	return c
+#   8: end function
+#   9: 
+#  10: scope
+#  11:     dim a as integer
+#  12:     a = 41
+#  13:     a = counter(a)
+#  14:     print a;
+#  15: end scope
+
+########################################
+
+# ---
+

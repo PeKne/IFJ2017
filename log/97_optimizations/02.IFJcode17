@@ -1,0 +1,227 @@
+# 2017-12-03 20:43:48.796668
+# SECTION: 97_optimizations
+# TEST: 02
+# INFO: constant propagation into loop
+# REQUIRED EXTENSIONS: 
+# ACTIVATED EXTENSIONS: 
+# STATE: FAIL
+# 
+# COMPILER STDERR:
+# In if and loop statement can only be relational operators.
+# ERROR -  6 - ostatnÃ­ sÃ©mantickÃ© chyby.
+# 
+# INTERPRETER STDERR:
+# 
+# EXPECTED INTERPRETER STDOUT:
+
+# -129.39
+# -129.39
+# -129.39
+# -129.39
+# -129.39
+# -129.39
+# -129.39
+# -129.39
+# -129.39
+# -129.39
+# -129.39
+# -129.39
+# -129.39
+# -129.39
+# -129.39
+# -129.39
+# -129.39
+# -129.39
+# -129.39
+# -129.39
+# -129.39
+# -129.39
+# -129.39
+# -129.39
+# -129.39
+# -129.39
+# -129.39
+# -129.39
+# -129.39
+# -129.39
+# -129.39
+# -129.39
+# -129.39
+# -129.39
+# -129.39
+# -129.39
+# -129.39
+# -129.39
+# -129.39
+# -129.39
+# -129.39
+# -129.39
+# -129.39
+# -129.39
+# -129.39
+# -129.39
+# -129.39
+# -129.39
+# -129.39
+# -129.39
+
+
+# CURRENT INTERPRETER STDOUT:
+
+
+
+# INTERPRETER STDIN: 
+# 
+#
+# EXPECTED COMPILER EXIT CODE: 0
+# CURRENT COMPILER EXIT CODE: 6
+# EXPECTED INTERPRETER EXIT CODE: 0
+# CURRENT INTERPRETER EXIT CODE: None
+# PRICE: ---
+# GROOT: ---
+# 
+#   1: ' constant propagation into loop
+#   2: 
+#   3: scope
+#   4: 	dim counter as integer = 50
+#   5: 	dim constant as integer = 8 + 7
+#   6: 
+#   7: 	do while counter > 0
+#   8: 		print (10.2 / 98 + (constant \ 3 * 6.85) - 14) / (constant - 5) + (constant + 9 - 8) * ((constant+17.21)\(10.8 - constant));
+#   9: 		counter = counter - 1
+#  10: 		print !"\n";
+#  11: 	loop
+#  12: 
+#  13: end scope
+
+########################################
+
+token: 57 ...                                                                   #     1/130
+token: 57 ...                                                                   #     2/130
+token: 17 ... scope                                                             #     3/130
+.IFJcode17                                                                      #     4/130
+JUMP $$scope                                                                    #     5/130
+LABEL $$scope                                                                   #     7/130
+DEFVAR GF@&pomInteger                                                           #     8/130
+MOVE GF@&pomInteger int@0                                                       #     9/130
+DEFVAR GF@&pomString                                                            #    10/130
+MOVE GF@&pomString string@                                                      #    11/130
+DEFVAR GF@&pomFloat                                                             #    12/130
+MOVE GF@&pomFloat float@0                                                       #    13/130
+DEFVAR GF@&pomBool                                                              #    14/130
+MOVE GF@&pomBool bool@false                                                     #    15/130
+DEFVAR GF@&pomCntr                                                              #    16/130
+MOVE GF@&pomCntr int@0                                                          #    17/130
+CREATEFRAME                                                                     #    18/130
+token: 57 ...                                                                   #    20/130
+token: 3 ... dim                                                                #    21/130
+token: 35 ... counter                                                           #    22/130
+token: 0 ... as                                                                 #    23/130
+token: 12 ... integer                                                           #    24/130
+token: 45 ... =                                                                 #    25/130
+DEFVAR TF@counter                                                               #    26/130
+MOVE TF@counter int@0                                                           #    27/130
+token: 53 ... 50                                                                #    28/130
+|TOP--->|$|  SYMBOL                                                             #    29/130
+|TOP--->| |  STRING                                                             #    30/130
+token: 57 ...                                                                   #    31/130
+|TOP--->|int|]|$|  SYMBOL                                                       #    32/130
+|TOP--->|50| | |  STRING                                                        #    33/130
+|TOP--->|int|  SYMBOL                                                           #    34/130
+|TOP--->|50|  STRING                                                            #    35/130
+MOVE GF@&pomInteger int@50                                                      #    36/130
+MOVE TF@counter GF@&pomInteger                                                  #    37/130
+token: 3 ... dim                                                                #    38/130
+token: 35 ... constant                                                          #    39/130
+token: 0 ... as                                                                 #    40/130
+token: 12 ... integer                                                           #    41/130
+token: 45 ... =                                                                 #    42/130
+DEFVAR TF@constant                                                              #    43/130
+MOVE TF@constant int@0                                                          #    44/130
+token: 53 ... 8                                                                 #    45/130
+|TOP--->|$|  SYMBOL                                                             #    46/130
+|TOP--->| |  STRING                                                             #    47/130
+token: 39 ... +                                                                 #    48/130
+|TOP--->|int|]|$|  SYMBOL                                                       #    49/130
+|TOP--->|8| | |  STRING                                                         #    50/130
+|TOP--->|int|  SYMBOL                                                           #    51/130
+|TOP--->|8|  STRING                                                             #    52/130
+MOVE GF@&pomInteger int@8                                                       #    53/130
+|TOP--->|R|$|  SYMBOL                                                           #    54/130
+|TOP--->|8| |  STRING                                                           #    55/130
+token: 53 ... 7                                                                 #    56/130
+|TOP--->|+|R|]|$|  SYMBOL                                                       #    57/130
+|TOP--->|+|8| | |  STRING                                                       #    58/130
+token: 57 ...                                                                   #    59/130
+|TOP--->|int|]|+|R|]|$|  SYMBOL                                                 #    60/130
+|TOP--->|7| |+|8| | |  STRING                                                   #    61/130
+|TOP--->|int|  SYMBOL                                                           #    62/130
+|TOP--->|7|  STRING                                                             #    63/130
+|TOP--->|R|+|R|]|$|  SYMBOL                                                     #    64/130
+|TOP--->|7|+|8| | |  STRING                                                     #    65/130
+|TOP--->|R|+|R|  SYMBOL                                                         #    66/130
+|TOP--->|8|+|7|  STRING                                                         #    67/130
+redukce                                                                         #    68/130
+ADD GF@&pomInteger int@8 int@7                                                  #    69/130
+MOVE TF@constant GF@&pomInteger                                                 #    70/130
+token: 57 ...                                                                   #    71/130
+token: 4 ... do                                                                 #    72/130
+token: 21 ... while                                                             #    73/130
+LABEL $$loop_1                                                                  #    74/130
+token: 35 ... counter                                                           #    75/130
+|TOP--->|$|  SYMBOL                                                             #    76/130
+|TOP--->| |  STRING                                                             #    77/130
+token: 42 ... >                                                                 #    78/130
+|TOP--->|i|]|$|  SYMBOL                                                         #    79/130
+|TOP--->|counter| | |  STRING                                                   #    80/130
+|TOP--->|i|  SYMBOL                                                             #    81/130
+|TOP--->|counter|  STRING                                                       #    82/130
+MOVE GF@&pomInteger TF@counter                                                  #    83/130
+|TOP--->|R|$|  SYMBOL                                                           #    84/130
+|TOP--->|counter| |  STRING                                                     #    85/130
+token: 53 ... 0                                                                 #    86/130
+|TOP--->|>|R|]|$|  SYMBOL                                                       #    87/130
+|TOP--->|>|counter| | |  STRING                                                 #    88/130
+token: 57 ...                                                                   #    89/130
+|TOP--->|int|]|>|R|]|$|  SYMBOL                                                 #    90/130
+|TOP--->|0| |>|counter| | |  STRING                                             #    91/130
+|TOP--->|int|  SYMBOL                                                           #    92/130
+|TOP--->|0|  STRING                                                             #    93/130
+|TOP--->|R|>|R|]|$|  SYMBOL                                                     #    94/130
+|TOP--->|0|>|counter| | |  STRING                                               #    95/130
+|TOP--->|R|>|R|  SYMBOL                                                         #    96/130
+|TOP--->|counter|>|0|  STRING                                                   #    97/130
+redukce                                                                         #    98/130
+GT GF@&pomBool TF@counter int@0                                                 #    99/130
+JUMPIFNEQ $$loop_end_1 GF@&pomBool bool@true                                    #   100/130
+token: 15 ... print                                                             #   101/130
+token: 50 ... (                                                                 #   102/130
+|TOP--->|$|  SYMBOL                                                             #   103/130
+|TOP--->| |  STRING                                                             #   104/130
+token: 54 ... 10.2                                                              #   105/130
+|TOP--->|(|]|$|  SYMBOL                                                         #   106/130
+|TOP--->|(| | |  STRING                                                         #   107/130
+token: 36 ... /                                                                 #   108/130
+|TOP--->|double|]|(|]|$|  SYMBOL                                                #   109/130
+|TOP--->|10.2| |(| | |  STRING                                                  #   110/130
+|TOP--->|double|  SYMBOL                                                        #   111/130
+|TOP--->|10.2|  STRING                                                          #   112/130
+WRITE TF@10.2                                                                   #   113/130
+|TOP--->|R|(|]|$|  SYMBOL                                                       #   114/130
+|TOP--->|10.2|(| | |  STRING                                                    #   115/130
+token: 53 ... 98                                                                #   116/130
+|TOP--->|/|R|]|(|]|$|  SYMBOL                                                   #   117/130
+|TOP--->|/|10.2| |(| | |  STRING                                                #   118/130
+token: 39 ... +                                                                 #   119/130
+|TOP--->|int|]|/|R|]|(|]|$|  SYMBOL                                             #   120/130
+|TOP--->|98| |/|10.2| |(| | |  STRING                                           #   121/130
+|TOP--->|int|  SYMBOL                                                           #   122/130
+|TOP--->|98|  STRING                                                            #   123/130
+WRITE TF@98                                                                     #   124/130
+|TOP--->|R|/|R|]|(|]|$|  SYMBOL                                                 #   125/130
+|TOP--->|98|/|10.2| |(| | |  STRING                                             #   126/130
+|TOP--->|R|/|R|  SYMBOL                                                         #   127/130
+|TOP--->|10.2|/|98|  STRING                                                     #   128/130
+redukce                                                                         #   129/130
+ERROR on line 8                                                                 #   130/130
+

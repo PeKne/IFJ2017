@@ -1,0 +1,104 @@
+# 2017-12-03 20:43:48.780923
+# SECTION: 96_programs
+# TEST: 12
+# INFO: Leap year
+# REQUIRED EXTENSIONS: 
+# ACTIVATED EXTENSIONS: 
+# STATE: FAIL
+# 
+# COMPILER STDERR:
+# symbol.c:268:retrieve_function_data(): Function not found
+# ERROR - 3 - sÃ©mantickÃ¡ chyba v programu â nedefinovanÃ¡ funkce/promeÌnnÃ¡, pokus o redefinici funkce/promeÌnnÃ©, atd.
+# 
+# INTERPRETER STDERR:
+# 
+# EXPECTED INTERPRETER STDOUT:
+
+# Enter a year: ?  2016 is a leap year
+
+
+# CURRENT INTERPRETER STDOUT:
+
+
+
+# INTERPRETER STDIN: 
+# 2016
+#
+# EXPECTED COMPILER EXIT CODE: 0
+# CURRENT COMPILER EXIT CODE: 3
+# EXPECTED INTERPRETER EXIT CODE: 0
+# CURRENT INTERPRETER EXIT CODE: None
+# PRICE: ---
+# GROOT: ---
+# 
+#   1: ' Leap year
+#   2: 
+#   3: declare function modulo(divident as integer, divider as integer) as integer
+#   4: 
+#   5: function get_year() as integer
+#   6:     print !"Enter a year: ";
+#   7:     dim year as integer
+#   8:     input year
+#   9:     return year
+#  10: end function
+#  11: 
+#  12: function modulo(divident as integer, divider as integer) as integer
+#  13:     dim res as integer
+#  14:     res = divident - (divident \ divider) * divider
+#  15:     return res
+#  16: end function
+#  17: 
+#  18: scope
+#  19:     dim year as integer
+#  20:     year = get_year()
+#  21:     dim res as integer
+#  22:     res = modulo(year, 4)
+#  23:     if(res = 0) then
+#  24:         res = modulo(year, 100)
+#  25:         if(res = 0) then
+#  26:             ' year is divisible by 400, hence the year is a leap year
+#  27:             res = modulo(year, 400)
+#  28:             if (res = 0) then
+#  29:                 print year; !" is a leap year";
+#  30:             else
+#  31:                 print year; !" is not a leap year";
+#  32:             end if
+#  33:         else
+#  34:             print year; !" is a leap year";
+#  35:         end if
+#  36:     
+#  37:     else
+#  38:          print year; !" is not a leap year";
+#  39:     end if
+#  40: end scope
+
+########################################
+
+token: 57 ...                                                                   #     1/28
+token: 57 ...                                                                   #     2/28
+token: 2 ... declare                                                            #     3/28
+.IFJcode17                                                                      #     4/28
+JUMP $$scope                                                                    #     5/28
+token: 9 ... function                                                           #     7/28
+token: 35 ... modulo                                                            #     8/28
+token: 50 ... (                                                                 #     9/28
+token: 35 ... divident                                                          #    10/28
+rule_par                                                                        #    11/28
+token: 0 ... as                                                                 #    12/28
+token: 12 ... integer                                                           #    13/28
+token: 48 ... ,                                                                 #    14/28
+rule next par                                                                   #    15/28
+token: 35 ... divider                                                           #    16/28
+rule_par                                                                        #    17/28
+token: 0 ... as                                                                 #    18/28
+token: 12 ... integer                                                           #    19/28
+token: 51 ... )                                                                 #    20/28
+rule next par                                                                   #    21/28
+token: 0 ... as                                                                 #    22/28
+token: 12 ... integer                                                           #    23/28
+token: 57 ...                                                                   #    24/28
+token: 57 ...                                                                   #    25/28
+token: 9 ... function                                                           #    26/28
+token: 35 ... get_year                                                          #    27/28
+ERROR on line 5                                                                 #    28/28
+

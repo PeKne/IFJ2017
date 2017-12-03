@@ -1,0 +1,56 @@
+# 2017-12-03 20:43:47.547568
+# SECTION: 66_errors
+# TEST: 12
+# INFO: Undeclared variable inside function
+# REQUIRED EXTENSIONS: 
+# ACTIVATED EXTENSIONS: 
+# STATE: SUCCESS
+# 
+# COMPILER STDERR:
+# symbol.c:268:retrieve_function_data(): Function not found
+# ERROR - 3 - sÃ©mantickÃ¡ chyba v programu â nedefinovanÃ¡ funkce/promeÌnnÃ¡, pokus o redefinici funkce/promeÌnnÃ©, atd.
+# 
+# INTERPRETER STDERR:
+# 
+# EXPECTED INTERPRETER STDOUT:
+
+
+
+# CURRENT INTERPRETER STDOUT:
+
+
+
+# INTERPRETER STDIN: 
+# 
+#
+# EXPECTED COMPILER EXIT CODE: 3
+# CURRENT COMPILER EXIT CODE: 3
+# EXPECTED INTERPRETER EXIT CODE: 0
+# CURRENT INTERPRETER EXIT CODE: None
+# PRICE: ---
+# GROOT: ---
+# 
+#   1: ' Undeclared variable inside function
+#   2: 
+#   3: function HGK____() as integer
+#   4: 	dim a as integer
+#   5: end function
+#   6: 
+#   7: function HGK____7874() as integer
+#   8: 	input a
+#   9: end function
+#  10: 
+#  11: scope
+#  12: 
+#  13: end scope
+
+########################################
+
+token: 57 ...                                                                   #     1/8
+token: 57 ...                                                                   #     2/8
+token: 9 ... function                                                           #     3/8
+.IFJcode17                                                                      #     4/8
+JUMP $$scope                                                                    #     5/8
+token: 35 ... hgk____                                                           #     7/8
+ERROR on line 3                                                                 #     8/8
+

@@ -1,0 +1,85 @@
+# 2017-12-03 20:43:48.789071
+# SECTION: 96_programs
+# TEST: 15
+# INFO: Taylor polynom for log
+# REQUIRED EXTENSIONS: 
+# ACTIVATED EXTENSIONS: 
+# STATE: FAIL
+# 
+# COMPILER STDERR:
+# symbol.c:268:retrieve_function_data(): Function not found
+# ERROR - 3 - sÃ©mantickÃ¡ chyba v programu â nedefinovanÃ¡ funkce/promeÌnnÃ¡, pokus o redefinici funkce/promeÌnnÃ©, atd.
+# 
+# INTERPRETER STDERR:
+# 
+# EXPECTED INTERPRETER STDOUT:
+
+# ?  2.24298
+# ? -2.06119
+
+
+# CURRENT INTERPRETER STDOUT:
+
+
+
+# INTERPRETER STDIN: 
+# 12.25
+# 0.125
+#
+# EXPECTED COMPILER EXIT CODE: 0
+# CURRENT COMPILER EXIT CODE: 3
+# EXPECTED INTERPRETER EXIT CODE: 0
+# CURRENT INTERPRETER EXIT CODE: None
+# PRICE: ---
+# GROOT: ---
+# 
+#   1: 'Taylor polynom for log
+#   2: 
+#   3: function taylor_log(x as double, n as integer) as double
+#   4: 	dim result as double
+#   5: 	dim x_exp as double = 1
+#   6: 	dim numerator_fraction as double
+#   7: 	dim i as integer = 1
+#   8: 
+#   9: 	if x > 1 then
+#  10: 		numerator_fraction = (x - 1) / x
+#  11: 
+#  12: 		do while i <= n
+#  13: 			x_exp = x_exp * numerator_fraction
+#  14: 			result = result + x_exp / i
+#  15: 			i = i + 1
+#  16: 		loop
+#  17: 	else
+#  18: 		x = 1 - x
+#  19: 
+#  20: 		do while i <= n
+#  21: 			x_exp = x_exp * x
+#  22: 			result = result - (x_exp / i)
+#  23: 			i = i + 1
+#  24: 		loop
+#  25: 	end if
+#  26: 	return result
+#  27: end function
+#  28: 
+#  29: scope
+#  30: 	dim d as double
+#  31: 
+#  32: 	input d
+#  33: 	d = taylor_log(d, 10)
+#  34: 	print d; !"\n";
+#  35: 
+#  36: 	input d
+#  37: 	d = taylor_log(d, 20)
+#  38: 	print d; !"\n";
+#  39: end scope
+
+########################################
+
+token: 57 ...                                                                   #     1/8
+token: 57 ...                                                                   #     2/8
+token: 9 ... function                                                           #     3/8
+.IFJcode17                                                                      #     4/8
+JUMP $$scope                                                                    #     5/8
+token: 35 ... taylor_log                                                        #     7/8
+ERROR on line 3                                                                 #     8/8
+

@@ -1,0 +1,222 @@
+# 2017-12-03 20:43:48.836050
+# SECTION: 99_benchmarks
+# TEST: 09
+# INFO: multiple string concatenations
+# REQUIRED EXTENSIONS: 
+# ACTIVATED EXTENSIONS: 
+# STATE: FAIL
+# 
+# COMPILER STDERR:
+# 
+# INTERPRETER STDERR:
+# 1.1-5: syntax error, unexpected ID, expecting HEADER
+# 
+# EXPECTED INTERPRETER STDOUT:
+
+#  barman barman barman barman barman barman barman barman barman barman barman barman barman barman barman barman barman barman barman barman barman barman barman barman barman barman barman barman barman barman barman barman barman barman barman barman barman barman barman barman barman barman
+
+
+# CURRENT INTERPRETER STDOUT:
+
+
+
+# INTERPRETER STDIN: 
+# 
+#
+# EXPECTED COMPILER EXIT CODE: 0
+# CURRENT COMPILER EXIT CODE: 0
+# EXPECTED INTERPRETER EXIT CODE: 0
+# CURRENT INTERPRETER EXIT CODE: 51
+# PRICE: ---
+# GROOT: ---
+# 
+#   1: ' multiple string concatenations
+#   2: scope
+#   3: 	dim buffer as string
+#   4: 	dim count as integer = 42
+#   5: 	do while count > 0
+#   6:         buffer = !"" + buffer + !" barman" + !"" ' for price and optimalization
+#   7:         count = count - 1
+#   8: 	loop
+#   9: 	print buffer;
+#  10: end scope
+
+########################################
+
+token: 57 ...                                                                   #     1/178
+token: 17 ... scope                                                             #     2/178
+.IFJcode17                                                                      #     3/178
+JUMP $$scope                                                                    #     4/178
+LABEL $$scope                                                                   #     6/178
+DEFVAR GF@&pomInteger                                                           #     7/178
+MOVE GF@&pomInteger int@0                                                       #     8/178
+DEFVAR GF@&pomString                                                            #     9/178
+MOVE GF@&pomString string@                                                      #    10/178
+DEFVAR GF@&pomFloat                                                             #    11/178
+MOVE GF@&pomFloat float@0                                                       #    12/178
+DEFVAR GF@&pomBool                                                              #    13/178
+MOVE GF@&pomBool bool@false                                                     #    14/178
+DEFVAR GF@&pomCntr                                                              #    15/178
+MOVE GF@&pomCntr int@0                                                          #    16/178
+CREATEFRAME                                                                     #    17/178
+token: 57 ...                                                                   #    19/178
+token: 3 ... dim                                                                #    20/178
+token: 35 ... buffer                                                            #    21/178
+token: 0 ... as                                                                 #    22/178
+token: 18 ... string                                                            #    23/178
+token: 57 ...                                                                   #    24/178
+DEFVAR TF@buffer                                                                #    25/178
+MOVE TF@buffer string@                                                          #    26/178
+token: 3 ... dim                                                                #    27/178
+token: 35 ... count                                                             #    28/178
+token: 0 ... as                                                                 #    29/178
+token: 12 ... integer                                                           #    30/178
+token: 45 ... =                                                                 #    31/178
+DEFVAR TF@count                                                                 #    32/178
+MOVE TF@count int@0                                                             #    33/178
+token: 53 ... 42                                                                #    34/178
+|TOP--->|$|  SYMBOL                                                             #    35/178
+|TOP--->| |  STRING                                                             #    36/178
+token: 57 ...                                                                   #    37/178
+|TOP--->|int|]|$|  SYMBOL                                                       #    38/178
+|TOP--->|42| | |  STRING                                                        #    39/178
+|TOP--->|int|  SYMBOL                                                           #    40/178
+|TOP--->|42|  STRING                                                            #    41/178
+MOVE GF@&pomInteger int@42                                                      #    42/178
+MOVE TF@count GF@&pomInteger                                                    #    43/178
+token: 4 ... do                                                                 #    44/178
+token: 21 ... while                                                             #    45/178
+LABEL $$loop_1                                                                  #    46/178
+token: 35 ... count                                                             #    47/178
+|TOP--->|$|  SYMBOL                                                             #    48/178
+|TOP--->| |  STRING                                                             #    49/178
+token: 42 ... >                                                                 #    50/178
+|TOP--->|i|]|$|  SYMBOL                                                         #    51/178
+|TOP--->|count| | |  STRING                                                     #    52/178
+|TOP--->|i|  SYMBOL                                                             #    53/178
+|TOP--->|count|  STRING                                                         #    54/178
+MOVE GF@&pomInteger TF@count                                                    #    55/178
+|TOP--->|R|$|  SYMBOL                                                           #    56/178
+|TOP--->|count| |  STRING                                                       #    57/178
+token: 53 ... 0                                                                 #    58/178
+|TOP--->|>|R|]|$|  SYMBOL                                                       #    59/178
+|TOP--->|>|count| | |  STRING                                                   #    60/178
+token: 57 ...                                                                   #    61/178
+|TOP--->|int|]|>|R|]|$|  SYMBOL                                                 #    62/178
+|TOP--->|0| |>|count| | |  STRING                                               #    63/178
+|TOP--->|int|  SYMBOL                                                           #    64/178
+|TOP--->|0|  STRING                                                             #    65/178
+|TOP--->|R|>|R|]|$|  SYMBOL                                                     #    66/178
+|TOP--->|0|>|count| | |  STRING                                                 #    67/178
+|TOP--->|R|>|R|  SYMBOL                                                         #    68/178
+|TOP--->|count|>|0|  STRING                                                     #    69/178
+redukce                                                                         #    70/178
+GT GF@&pomBool TF@count int@0                                                   #    71/178
+JUMPIFNEQ $$loop_end_1 GF@&pomBool bool@true                                    #    72/178
+token: 35 ... buffer                                                            #    73/178
+token: 45 ... =                                                                 #    74/178
+token: 52 ...                                                                   #    75/178
+|TOP--->|$|  SYMBOL                                                             #    76/178
+|TOP--->| |  STRING                                                             #    77/178
+token: 39 ... +                                                                 #    78/178
+|TOP--->|str|]|$|  SYMBOL                                                       #    79/178
+|TOP--->|| | |  STRING                                                          #    80/178
+|TOP--->|str|  SYMBOL                                                           #    81/178
+|TOP--->||  STRING                                                              #    82/178
+MOVE GF@&pomString string@                                                      #    83/178
+|TOP--->|R|$|  SYMBOL                                                           #    84/178
+|TOP--->|| |  STRING                                                            #    85/178
+token: 35 ... buffer                                                            #    86/178
+|TOP--->|+|R|]|$|  SYMBOL                                                       #    87/178
+|TOP--->|+|| | |  STRING                                                        #    88/178
+token: 39 ... +                                                                 #    89/178
+|TOP--->|i|]|+|R|]|$|  SYMBOL                                                   #    90/178
+|TOP--->|buffer| |+|| | |  STRING                                               #    91/178
+|TOP--->|i|  SYMBOL                                                             #    92/178
+|TOP--->|buffer|  STRING                                                        #    93/178
+|TOP--->|R|+|R|]|$|  SYMBOL                                                     #    94/178
+|TOP--->|buffer|+|| | |  STRING                                                 #    95/178
+|TOP--->|R|+|R|  SYMBOL                                                         #    96/178
+|TOP--->||+|buffer|  STRING                                                     #    97/178
+redukce                                                                         #    98/178
+CONCAT GF@&pomString GF@&pomString TF@buffer                                    #    99/178
+|TOP--->|R|$|  SYMBOL                                                           #   100/178
+|TOP--->|GF@&pomString| |  STRING                                               #   101/178
+token: 52 ... \032barman                                                        #   102/178
+|TOP--->|+|R|]|$|  SYMBOL                                                       #   103/178
+|TOP--->|+|GF@&pomString| | |  STRING                                           #   104/178
+token: 39 ... +                                                                 #   105/178
+|TOP--->|str|]|+|R|]|$|  SYMBOL                                                 #   106/178
+|TOP--->|\032barman| |+|GF@&pomString| | |  STRING                              #   107/178
+|TOP--->|str|  SYMBOL                                                           #   108/178
+|TOP--->|\032barman|  STRING                                                    #   109/178
+|TOP--->|R|+|R|]|$|  SYMBOL                                                     #   110/178
+|TOP--->|\032barman|+|GF@&pomString| | |  STRING                                #   111/178
+|TOP--->|R|+|R|  SYMBOL                                                         #   112/178
+|TOP--->|GF@&pomString|+|\032barman|  STRING                                    #   113/178
+redukce                                                                         #   114/178
+CONCAT GF@&pomString GF@&pomString string@\032barman                            #   115/178
+|TOP--->|R|$|  SYMBOL                                                           #   116/178
+|TOP--->|GF@&pomString| |  STRING                                               #   117/178
+token: 52 ...                                                                   #   118/178
+|TOP--->|+|R|]|$|  SYMBOL                                                       #   119/178
+|TOP--->|+|GF@&pomString| | |  STRING                                           #   120/178
+token: 57 ...                                                                   #   121/178
+|TOP--->|str|]|+|R|]|$|  SYMBOL                                                 #   122/178
+|TOP--->|| |+|GF@&pomString| | |  STRING                                        #   123/178
+|TOP--->|str|  SYMBOL                                                           #   124/178
+|TOP--->||  STRING                                                              #   125/178
+|TOP--->|R|+|R|]|$|  SYMBOL                                                     #   126/178
+|TOP--->||+|GF@&pomString| | |  STRING                                          #   127/178
+|TOP--->|R|+|R|  SYMBOL                                                         #   128/178
+|TOP--->|GF@&pomString|+||  STRING                                              #   129/178
+redukce                                                                         #   130/178
+CONCAT GF@&pomString GF@&pomString string@                                      #   131/178
+MOVE TF@buffer GF@&pomString                                                    #   132/178
+token: 35 ... count                                                             #   133/178
+token: 45 ... =                                                                 #   134/178
+token: 35 ... count                                                             #   135/178
+|TOP--->|$|  SYMBOL                                                             #   136/178
+|TOP--->| |  STRING                                                             #   137/178
+token: 40 ... -                                                                 #   138/178
+|TOP--->|i|]|$|  SYMBOL                                                         #   139/178
+|TOP--->|count| | |  STRING                                                     #   140/178
+|TOP--->|i|  SYMBOL                                                             #   141/178
+|TOP--->|count|  STRING                                                         #   142/178
+MOVE GF@&pomInteger TF@count                                                    #   143/178
+|TOP--->|R|$|  SYMBOL                                                           #   144/178
+|TOP--->|count| |  STRING                                                       #   145/178
+token: 53 ... 1                                                                 #   146/178
+|TOP--->|-|R|]|$|  SYMBOL                                                       #   147/178
+|TOP--->|-|count| | |  STRING                                                   #   148/178
+token: 57 ...                                                                   #   149/178
+|TOP--->|int|]|-|R|]|$|  SYMBOL                                                 #   150/178
+|TOP--->|1| |-|count| | |  STRING                                               #   151/178
+|TOP--->|int|  SYMBOL                                                           #   152/178
+|TOP--->|1|  STRING                                                             #   153/178
+|TOP--->|R|-|R|]|$|  SYMBOL                                                     #   154/178
+|TOP--->|1|-|count| | |  STRING                                                 #   155/178
+|TOP--->|R|-|R|  SYMBOL                                                         #   156/178
+|TOP--->|count|-|1|  STRING                                                     #   157/178
+redukce                                                                         #   158/178
+SUB GF@&pomInteger TF@count int@1                                               #   159/178
+MOVE TF@count GF@&pomInteger                                                    #   160/178
+token: 14 ... loop                                                              #   161/178
+JUMP $$loop_1                                                                   #   162/178
+LABEL $$loop_end_1                                                              #   163/178
+token: 57 ...                                                                   #   164/178
+token: 15 ... print                                                             #   165/178
+token: 35 ... buffer                                                            #   166/178
+|TOP--->|$|  SYMBOL                                                             #   167/178
+|TOP--->| |  STRING                                                             #   168/178
+token: 47 ... ;                                                                 #   169/178
+|TOP--->|i|]|$|  SYMBOL                                                         #   170/178
+|TOP--->|buffer| | |  STRING                                                    #   171/178
+|TOP--->|i|  SYMBOL                                                             #   172/178
+|TOP--->|buffer|  STRING                                                        #   173/178
+WRITE TF@buffer                                                                 #   174/178
+token: 57 ...                                                                   #   175/178
+token: 7 ... end                                                                #   176/178
+token: 17 ... scope                                                             #   177/178
+token: 58 ...                                                                   #   178/178
+

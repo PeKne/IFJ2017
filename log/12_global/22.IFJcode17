@@ -1,0 +1,51 @@
+# 2017-12-03 20:43:47.489422
+# SECTION: 12_global
+# TEST: 22
+# INFO: static variable with static assign
+# REQUIRED EXTENSIONS: GLOBAL
+# ACTIVATED EXTENSIONS: 
+# STATE: FAIL
+# 
+# COMPILER STDERR:
+# 
+# INTERPRETER STDERR:
+# 
+# EXPECTED INTERPRETER STDOUT:
+
+#  22 34
+
+
+# CURRENT INTERPRETER STDOUT:
+
+
+
+# INTERPRETER STDIN: 
+# 
+#
+# EXPECTED COMPILER EXIT CODE: 0
+# CURRENT COMPILER EXIT CODE: None
+# EXPECTED INTERPRETER EXIT CODE: 0
+# CURRENT INTERPRETER EXIT CODE: None
+# PRICE: ---
+# GROOT: ---
+# 
+#   1: ' static variable with static assign
+#   2: 
+#   3: function counter(add as integer) as integer
+#   4:     static a as integer = 3.1 * 4
+#   5:     a = a + add
+#   6:     return a
+#   7: end function
+#   8: 
+#   9: scope
+#  10:     dim a as integer
+#  11:     a = counter(10)
+#  12:     print a;
+#  13:     a = counter(12)
+#  14:     print a;
+#  15: end scope
+
+########################################
+
+# ---
+

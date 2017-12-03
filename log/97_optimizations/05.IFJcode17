@@ -1,0 +1,83 @@
+# 2017-12-03 20:43:48.807744
+# SECTION: 97_optimizations
+# TEST: 05
+# INFO: constant propagation after function call
+# REQUIRED EXTENSIONS: 
+# ACTIVATED EXTENSIONS: 
+# STATE: FAIL
+# 
+# COMPILER STDERR:
+# symbol.c:268:retrieve_function_data(): Function not found
+# ERROR - 3 - sÃ©mantickÃ¡ chyba v programu â nedefinovanÃ¡ funkce/promeÌnnÃ¡, pokus o redefinici funkce/promeÌnnÃ©, atd.
+# 
+# INTERPRETER STDERR:
+# 
+# EXPECTED INTERPRETER STDOUT:
+
+#  25
+#  50
+#  75
+#  0.08
+#  15700
+# -1478.84
+# Function called!
+# -42
+# -84
+# -126
+# -0.047619
+# -74214
+#  6871.67
+
+
+# CURRENT INTERPRETER STDOUT:
+
+
+
+# INTERPRETER STDIN: 
+# 
+#
+# EXPECTED COMPILER EXIT CODE: 0
+# CURRENT COMPILER EXIT CODE: 3
+# EXPECTED INTERPRETER EXIT CODE: 0
+# CURRENT INTERPRETER EXIT CODE: None
+# PRICE: ---
+# GROOT: ---
+# 
+#   1: ' constant propagation after function call
+#   2: 
+#   3: function function_() as integer
+#   4: 	print !"Function called!\n";
+#   5: 	return 0 - 42
+#   6: end function
+#   7: 
+#   8: scope
+#   9: 	dim const as integer = 25
+#  10: 
+#  11: 	print const; !"\n";
+#  12: 	print const * 2; !"\n";
+#  13: 	print const * 2 + const; !"\n";
+#  14: 	print 2 / const; !"\n";
+#  15: 	print const * (const * const + 3); !"\n";
+#  16: 	print (const - 98) / (const + 6) * (const * const + 3); !"\n";
+#  17: 
+#  18: 	const = function_()
+#  19: 
+#  20: 	print const; !"\n";
+#  21: 	print const * 2; !"\n";
+#  22: 	print const * 2 + const; !"\n";
+#  23: 	print 2 / const; !"\n";
+#  24: 	print const * (const * const + 3); !"\n";
+#  25: 	print (const - 98) / (const + 6) * (const * const + 3); !"\n";
+#  26: 
+#  27: end scope
+
+########################################
+
+token: 57 ...                                                                   #     1/8
+token: 57 ...                                                                   #     2/8
+token: 9 ... function                                                           #     3/8
+.IFJcode17                                                                      #     4/8
+JUMP $$scope                                                                    #     5/8
+token: 35 ... function_                                                         #     7/8
+ERROR on line 3                                                                 #     8/8
+

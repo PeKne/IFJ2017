@@ -1,0 +1,64 @@
+# 2017-12-03 20:43:46.989128
+# SECTION: 02_functions
+# TEST: 12
+# INFO: Recursive function
+# REQUIRED EXTENSIONS: 
+# ACTIVATED EXTENSIONS: 
+# STATE: FAIL
+# 
+# COMPILER STDERR:
+# symbol.c:268:retrieve_function_data(): Function not found
+# ERROR - 3 - sÃ©mantickÃ¡ chyba v programu â nedefinovanÃ¡ funkce/promeÌnnÃ¡, pokus o redefinici funkce/promeÌnnÃ©, atd.
+# 
+# INTERPRETER STDERR:
+# 
+# EXPECTED INTERPRETER STDOUT:
+
+#  42
+
+
+# CURRENT INTERPRETER STDOUT:
+
+
+
+# INTERPRETER STDIN: 
+# 
+#
+# EXPECTED COMPILER EXIT CODE: 0
+# CURRENT COMPILER EXIT CODE: 3
+# EXPECTED INTERPRETER EXIT CODE: 0
+# CURRENT INTERPRETER EXIT CODE: None
+# PRICE: ---
+# GROOT: ---
+# 
+#   1: ' Recursive function
+#   2: 
+#   3: function recursive(param as integer) as integer
+#   4: 	dim param0 as integer = 12
+#   5: 	dim res as integer = 10
+#   6: 	param0 = param - 1
+#   7: 	if param = 0 then
+#   8: 		return 42
+#   9: 	else
+#  10: 	    res = recursive(param0)
+#  11: 		return res
+#  12: 	end if
+#  13: end function
+#  14: 
+#  15: scope
+#  16: 	dim a as integer = 12
+#  17: 	a = recursive(4)
+#  18: 	print a;
+#  19: 
+#  20: end scope 
+
+########################################
+
+token: 57 ...                                                                   #     1/8
+token: 57 ...                                                                   #     2/8
+token: 9 ... function                                                           #     3/8
+.IFJcode17                                                                      #     4/8
+JUMP $$scope                                                                    #     5/8
+token: 35 ... recursive                                                         #     7/8
+ERROR on line 3                                                                 #     8/8
+

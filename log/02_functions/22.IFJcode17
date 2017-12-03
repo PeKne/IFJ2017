@@ -1,0 +1,80 @@
+# 2017-12-03 20:43:47.018386
+# SECTION: 02_functions
+# TEST: 22
+# INFO: Try to modify an argument passed by the value
+# REQUIRED EXTENSIONS: 
+# ACTIVATED EXTENSIONS: 
+# STATE: FAIL
+# 
+# COMPILER STDERR:
+# ERROR -  4 - sÃ©mantickÃ¡ chyba typovÃ© kompatibility v aritmetickÃ½ch, rÌeteÌzcovÃ½ch a relacÌnÃ­ch vÃ½razech, prÌÃ­p. Å¡patnÃ½ pocÌet cÌi typ parametruÌ u volÃ¡nÃ­ funkce.
+# 
+# INTERPRETER STDERR:
+# 
+# EXPECTED INTERPRETER STDOUT:
+
+#  10
+
+
+# CURRENT INTERPRETER STDOUT:
+
+
+
+# INTERPRETER STDIN: 
+# 
+#
+# EXPECTED COMPILER EXIT CODE: 0
+# CURRENT COMPILER EXIT CODE: 4
+# EXPECTED INTERPRETER EXIT CODE: 0
+# CURRENT INTERPRETER EXIT CODE: None
+# PRICE: ---
+# GROOT: ---
+# 
+#   1: ' Try to modify an argument passed by the value
+#   2: 
+#   3: declare function HJHKHJK(hjhjhj as integer) as integer
+#   4: 
+#   5: function HJHKHJK(dj as integer) as integer
+#   6: 	dj = 99
+#   7: end function
+#   8: 
+#   9: 
+#  10: 
+#  11: SCOPE
+#  12: 
+#  13: 	dim a as integer
+#  14: 	a = 10
+#  15: 
+#  16: 	dim b as integer
+#  17: 	b = HJHKHJK(a)
+#  18: 
+#  19: 	print a;
+#  20: 
+#  21: END SCOPE
+
+########################################
+
+token: 57 ...                                                                   #     1/24
+token: 57 ...                                                                   #     2/24
+token: 2 ... declare                                                            #     3/24
+.IFJcode17                                                                      #     4/24
+JUMP $$scope                                                                    #     5/24
+token: 9 ... function                                                           #     7/24
+token: 35 ... hjhkhjk                                                           #     8/24
+token: 50 ... (                                                                 #     9/24
+token: 35 ... hjhjhj                                                            #    10/24
+rule_par                                                                        #    11/24
+token: 0 ... as                                                                 #    12/24
+token: 12 ... integer                                                           #    13/24
+token: 51 ... )                                                                 #    14/24
+rule next par                                                                   #    15/24
+token: 0 ... as                                                                 #    16/24
+token: 12 ... integer                                                           #    17/24
+token: 57 ...                                                                   #    18/24
+token: 57 ...                                                                   #    19/24
+token: 9 ... function                                                           #    20/24
+token: 35 ... hjhkhjk                                                           #    21/24
+token: 50 ... (                                                                 #    22/24
+token: 35 ... dj                                                                #    23/24
+ERROR on line 5                                                                 #    24/24
+

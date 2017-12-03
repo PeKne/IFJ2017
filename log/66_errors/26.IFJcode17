@@ -1,0 +1,73 @@
+# 2017-12-03 20:43:47.591325
+# SECTION: 66_errors
+# TEST: 26
+# INFO: Declared but undefined
+# REQUIRED EXTENSIONS: 
+# ACTIVATED EXTENSIONS: 
+# STATE: FAIL
+# 
+# COMPILER STDERR:
+# 
+# INTERPRETER STDERR:
+# 
+# EXPECTED INTERPRETER STDOUT:
+
+
+
+# CURRENT INTERPRETER STDOUT:
+
+
+
+# INTERPRETER STDIN: 
+# 
+#
+# EXPECTED COMPILER EXIT CODE: 3
+# CURRENT COMPILER EXIT CODE: 0
+# EXPECTED INTERPRETER EXIT CODE: 0
+# CURRENT INTERPRETER EXIT CODE: None
+# PRICE: ---
+# GROOT: ---
+# 
+#   1: ' Declared but undefined
+#   2: 
+#   3: declare function foo() as integer
+#   4: 
+#   5: scope
+#   6: 
+#   7: end scope 
+
+########################################
+
+token: 57 ...                                                                   #     1/34
+token: 57 ...                                                                   #     2/34
+token: 2 ... declare                                                            #     3/34
+.IFJcode17                                                                      #     4/34
+JUMP $$scope                                                                    #     5/34
+token: 9 ... function                                                           #     7/34
+token: 35 ... foo                                                               #     8/34
+token: 50 ... (                                                                 #     9/34
+token: 51 ... )                                                                 #    10/34
+rule_par                                                                        #    11/34
+token: 0 ... as                                                                 #    12/34
+token: 12 ... integer                                                           #    13/34
+token: 57 ...                                                                   #    14/34
+token: 57 ...                                                                   #    15/34
+token: 17 ... scope                                                             #    16/34
+LABEL $$scope                                                                   #    17/34
+DEFVAR GF@&pomInteger                                                           #    18/34
+MOVE GF@&pomInteger int@0                                                       #    19/34
+DEFVAR GF@&pomString                                                            #    20/34
+MOVE GF@&pomString string@                                                      #    21/34
+DEFVAR GF@&pomFloat                                                             #    22/34
+MOVE GF@&pomFloat float@0                                                       #    23/34
+DEFVAR GF@&pomBool                                                              #    24/34
+MOVE GF@&pomBool bool@false                                                     #    25/34
+DEFVAR GF@&pomCntr                                                              #    26/34
+MOVE GF@&pomCntr int@0                                                          #    27/34
+CREATEFRAME                                                                     #    28/34
+token: 57 ...                                                                   #    30/34
+token: 57 ...                                                                   #    31/34
+token: 7 ... end                                                                #    32/34
+token: 17 ... scope                                                             #    33/34
+token: 58 ...                                                                   #    34/34
+

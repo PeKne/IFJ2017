@@ -1,0 +1,80 @@
+# 2017-12-03 20:43:45.290398
+# SECTION: 01_basic
+# TEST: 06
+# INFO: block comments
+# REQUIRED EXTENSIONS: 
+# ACTIVATED EXTENSIONS: 
+# STATE: FAIL
+# 
+# COMPILER STDERR:
+# 
+# INTERPRETER STDERR:
+# 1.1-5: syntax error, unexpected ID, expecting HEADER
+# 
+# EXPECTED INTERPRETER STDOUT:
+
+
+
+# CURRENT INTERPRETER STDOUT:
+
+
+
+# INTERPRETER STDIN: 
+# 
+#
+# EXPECTED COMPILER EXIT CODE: 0
+# CURRENT COMPILER EXIT CODE: 0
+# EXPECTED INTERPRETER EXIT CODE: 0
+# CURRENT INTERPRETER EXIT CODE: 51
+# PRICE: ---
+# GROOT: ---
+# 
+#   1: ' block comments
+#   2: scope
+#   3: 	/' this is comment '/
+#   4: 	dim b as string '
+#   5: 	dim a as string ' testing comment
+#   6: 	' whaat
+#   7: 	/' test ' '/
+#   8: end scope
+
+########################################
+
+token: 57 ...                                                                   #     1/39
+token: 17 ... scope                                                             #     2/39
+.IFJcode17                                                                      #     3/39
+JUMP $$scope                                                                    #     4/39
+LABEL $$scope                                                                   #     6/39
+DEFVAR GF@&pomInteger                                                           #     7/39
+MOVE GF@&pomInteger int@0                                                       #     8/39
+DEFVAR GF@&pomString                                                            #     9/39
+MOVE GF@&pomString string@                                                      #    10/39
+DEFVAR GF@&pomFloat                                                             #    11/39
+MOVE GF@&pomFloat float@0                                                       #    12/39
+DEFVAR GF@&pomBool                                                              #    13/39
+MOVE GF@&pomBool bool@false                                                     #    14/39
+DEFVAR GF@&pomCntr                                                              #    15/39
+MOVE GF@&pomCntr int@0                                                          #    16/39
+CREATEFRAME                                                                     #    17/39
+token: 57 ...                                                                   #    19/39
+token: 57 ...                                                                   #    20/39
+token: 3 ... dim                                                                #    21/39
+token: 35 ... b                                                                 #    22/39
+token: 0 ... as                                                                 #    23/39
+token: 18 ... string                                                            #    24/39
+token: 57 ...                                                                   #    25/39
+DEFVAR TF@b                                                                     #    26/39
+MOVE TF@b string@                                                               #    27/39
+token: 3 ... dim                                                                #    28/39
+token: 35 ... a                                                                 #    29/39
+token: 0 ... as                                                                 #    30/39
+token: 18 ... string                                                            #    31/39
+token: 57 ...                                                                   #    32/39
+DEFVAR TF@a                                                                     #    33/39
+MOVE TF@a string@                                                               #    34/39
+token: 57 ...                                                                   #    35/39
+token: 57 ...                                                                   #    36/39
+token: 7 ... end                                                                #    37/39
+token: 17 ... scope                                                             #    38/39
+token: 58 ...                                                                   #    39/39
+

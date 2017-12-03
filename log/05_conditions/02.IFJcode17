@@ -1,0 +1,108 @@
+# 2017-12-03 20:43:47.363727
+# SECTION: 05_conditions
+# TEST: 02
+# INFO: if recursion
+# REQUIRED EXTENSIONS: 
+# ACTIVATED EXTENSIONS: 
+# STATE: FAIL
+# 
+# COMPILER STDERR:
+# In if and loop statement can only be relational operators.
+# ERROR -  6 - ostatnÃ­ sÃ©mantickÃ© chyby.
+# 
+# INTERPRETER STDERR:
+# 
+# EXPECTED INTERPRETER STDOUT:
+
+#  42
+
+
+# CURRENT INTERPRETER STDOUT:
+
+
+
+# INTERPRETER STDIN: 
+# 
+#
+# EXPECTED COMPILER EXIT CODE: 0
+# CURRENT COMPILER EXIT CODE: 6
+# EXPECTED INTERPRETER EXIT CODE: 0
+# CURRENT INTERPRETER EXIT CODE: None
+# PRICE: ---
+# GROOT: ---
+# 
+#   1: ' if recursion
+#   2: scope
+#   3: 	if 8 >= (0 - 1) then
+#   4: 		if 75 > 8 then
+#   5: 			print 42;
+#   6: 		else
+#   7: 
+#   8: 		end if
+#   9: 	else
+#  10: 		if 8 > (5 - 12) then
+#  11: 			print 58;
+#  12: 		else
+#  13: 
+#  14: 		end if
+#  15: 	end if
+#  16: end scope
+
+########################################
+
+token: 57 ...                                                                   #     1/57
+token: 17 ... scope                                                             #     2/57
+.IFJcode17                                                                      #     3/57
+JUMP $$scope                                                                    #     4/57
+LABEL $$scope                                                                   #     6/57
+DEFVAR GF@&pomInteger                                                           #     7/57
+MOVE GF@&pomInteger int@0                                                       #     8/57
+DEFVAR GF@&pomString                                                            #     9/57
+MOVE GF@&pomString string@                                                      #    10/57
+DEFVAR GF@&pomFloat                                                             #    11/57
+MOVE GF@&pomFloat float@0                                                       #    12/57
+DEFVAR GF@&pomBool                                                              #    13/57
+MOVE GF@&pomBool bool@false                                                     #    14/57
+DEFVAR GF@&pomCntr                                                              #    15/57
+MOVE GF@&pomCntr int@0                                                          #    16/57
+CREATEFRAME                                                                     #    17/57
+token: 57 ...                                                                   #    19/57
+token: 10 ... if                                                                #    20/57
+token: 53 ... 8                                                                 #    21/57
+|TOP--->|$|  SYMBOL                                                             #    22/57
+|TOP--->| |  STRING                                                             #    23/57
+token: 44 ... >=                                                                #    24/57
+|TOP--->|int|]|$|  SYMBOL                                                       #    25/57
+|TOP--->|8| | |  STRING                                                         #    26/57
+|TOP--->|int|  SYMBOL                                                           #    27/57
+|TOP--->|8|  STRING                                                             #    28/57
+|TOP--->|R|$|  SYMBOL                                                           #    29/57
+|TOP--->|8| |  STRING                                                           #    30/57
+token: 50 ... (                                                                 #    31/57
+|TOP--->|>=|R|]|$|  SYMBOL                                                      #    32/57
+|TOP--->|>=|8| | |  STRING                                                      #    33/57
+token: 53 ... 0                                                                 #    34/57
+|TOP--->|(|]|>=|R|]|$|  SYMBOL                                                  #    35/57
+|TOP--->|(| |>=|8| | |  STRING                                                  #    36/57
+token: 40 ... -                                                                 #    37/57
+|TOP--->|int|]|(|]|>=|R|]|$|  SYMBOL                                            #    38/57
+|TOP--->|0| |(| |>=|8| | |  STRING                                              #    39/57
+|TOP--->|int|  SYMBOL                                                           #    40/57
+|TOP--->|0|  STRING                                                             #    41/57
+|TOP--->|R|(|]|>=|R|]|$|  SYMBOL                                                #    42/57
+|TOP--->|0|(| |>=|8| | |  STRING                                                #    43/57
+token: 53 ... 1                                                                 #    44/57
+|TOP--->|-|R|]|(|]|>=|R|]|$|  SYMBOL                                            #    45/57
+|TOP--->|-|0| |(| |>=|8| | |  STRING                                            #    46/57
+token: 51 ... )                                                                 #    47/57
+|TOP--->|int|]|-|R|]|(|]|>=|R|]|$|  SYMBOL                                      #    48/57
+|TOP--->|1| |-|0| |(| |>=|8| | |  STRING                                        #    49/57
+|TOP--->|int|  SYMBOL                                                           #    50/57
+|TOP--->|1|  STRING                                                             #    51/57
+|TOP--->|R|-|R|]|(|]|>=|R|]|$|  SYMBOL                                          #    52/57
+|TOP--->|1|-|0| |(| |>=|8| | |  STRING                                          #    53/57
+|TOP--->|R|-|R|  SYMBOL                                                         #    54/57
+|TOP--->|0|-|1|  STRING                                                         #    55/57
+redukce                                                                         #    56/57
+ERROR on line 3                                                                 #    57/57
+

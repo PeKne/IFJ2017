@@ -1,0 +1,92 @@
+# 2017-12-03 20:43:46.954196
+# SECTION: 02_functions
+# TEST: 02
+# INFO: empty function definition with declaration
+# REQUIRED EXTENSIONS: 
+# ACTIVATED EXTENSIONS: 
+# STATE: FAIL
+# 
+# COMPILER STDERR:
+# 
+# INTERPRETER STDERR:
+# 1.1-5: syntax error, unexpected ID, expecting HEADER
+# 
+# EXPECTED INTERPRETER STDOUT:
+
+
+
+# CURRENT INTERPRETER STDOUT:
+
+
+
+# INTERPRETER STDIN: 
+# 
+#
+# EXPECTED COMPILER EXIT CODE: 0
+# CURRENT COMPILER EXIT CODE: 0
+# EXPECTED INTERPRETER EXIT CODE: 0
+# CURRENT INTERPRETER EXIT CODE: 51
+# PRICE: ---
+# GROOT: ---
+# 
+#   1: ' empty function definition with declaration
+#   2: 
+#   3: declare function bar() as string
+#   4: 
+#   5: function bar() as string
+#   6: end function 
+#   7: 
+#   8: scope
+#   9: end scope
+
+########################################
+
+token: 57 ...                                                                   #     1/51
+token: 57 ...                                                                   #     2/51
+token: 2 ... declare                                                            #     3/51
+.IFJcode17                                                                      #     4/51
+JUMP $$scope                                                                    #     5/51
+token: 9 ... function                                                           #     7/51
+token: 35 ... bar                                                               #     8/51
+token: 50 ... (                                                                 #     9/51
+token: 51 ... )                                                                 #    10/51
+rule_par                                                                        #    11/51
+token: 0 ... as                                                                 #    12/51
+token: 18 ... string                                                            #    13/51
+token: 57 ...                                                                   #    14/51
+token: 57 ...                                                                   #    15/51
+token: 9 ... function                                                           #    16/51
+token: 35 ... bar                                                               #    17/51
+token: 50 ... (                                                                 #    18/51
+token: 51 ... )                                                                 #    19/51
+token: 0 ... as                                                                 #    20/51
+token: 18 ... string                                                            #    21/51
+token: 57 ...                                                                   #    22/51
+LABEL $bar                                                                      #    23/51
+PUSHFRAME                                                                       #    24/51
+DEFVAR LF@&retval                                                               #    25/51
+token: 7 ... end                                                                #    26/51
+MOVE LF@&retval GF@&pomString                                                   #    27/51
+POPFRAME                                                                        #    28/51
+RETURN                                                                          #    29/51
+token: 9 ... function                                                           #    31/51
+token: 57 ...                                                                   #    32/51
+token: 57 ...                                                                   #    33/51
+token: 17 ... scope                                                             #    34/51
+LABEL $$scope                                                                   #    35/51
+DEFVAR GF@&pomInteger                                                           #    36/51
+MOVE GF@&pomInteger int@0                                                       #    37/51
+DEFVAR GF@&pomString                                                            #    38/51
+MOVE GF@&pomString string@                                                      #    39/51
+DEFVAR GF@&pomFloat                                                             #    40/51
+MOVE GF@&pomFloat float@0                                                       #    41/51
+DEFVAR GF@&pomBool                                                              #    42/51
+MOVE GF@&pomBool bool@false                                                     #    43/51
+DEFVAR GF@&pomCntr                                                              #    44/51
+MOVE GF@&pomCntr int@0                                                          #    45/51
+CREATEFRAME                                                                     #    46/51
+token: 57 ...                                                                   #    48/51
+token: 7 ... end                                                                #    49/51
+token: 17 ... scope                                                             #    50/51
+token: 58 ...                                                                   #    51/51
+

@@ -1,0 +1,111 @@
+# 2017-12-03 20:43:47.054659
+# SECTION: 02_functions
+# TEST: 34
+# INFO: Print chr with double
+# REQUIRED EXTENSIONS: 
+# ACTIVATED EXTENSIONS: 
+# STATE: FAIL
+# 
+# COMPILER STDERR:
+# ERROR - 2 - chyba v programu v rÃ¡mci syntaktickÃ© analÃ½zy (chybnÃ¡ syntaxe programu).
+# 
+# INTERPRETER STDERR:
+# 
+# EXPECTED INTERPRETER STDOUT:
+
+# :(
+
+
+# CURRENT INTERPRETER STDOUT:
+
+
+
+# INTERPRETER STDIN: 
+# 
+#
+# EXPECTED COMPILER EXIT CODE: 0
+# CURRENT COMPILER EXIT CODE: 2
+# EXPECTED INTERPRETER EXIT CODE: 0
+# CURRENT INTERPRETER EXIT CODE: None
+# PRICE: ---
+# GROOT: ---
+# 
+#   1: ' Print chr with double
+#   2: 
+#   3: scope
+#   4:     dim a as double = 58.5
+#   5:     
+#   6:     dim b as string
+#   7:     b = !"GHGHGKGHGGHUILTZGFFG"
+#   8:     b = chr(a)
+#   9:     
+#  10:     print b;
+#  11:     
+#  12:     b = chr(40.3)
+#  13:     
+#  14:     print b;
+#  15:     
+#  16: end scope
+
+########################################
+
+token: 57 ...                                                                   #     1/61
+token: 57 ...                                                                   #     2/61
+token: 17 ... scope                                                             #     3/61
+.IFJcode17                                                                      #     4/61
+JUMP $$scope                                                                    #     5/61
+LABEL $$scope                                                                   #     7/61
+DEFVAR GF@&pomInteger                                                           #     8/61
+MOVE GF@&pomInteger int@0                                                       #     9/61
+DEFVAR GF@&pomString                                                            #    10/61
+MOVE GF@&pomString string@                                                      #    11/61
+DEFVAR GF@&pomFloat                                                             #    12/61
+MOVE GF@&pomFloat float@0                                                       #    13/61
+DEFVAR GF@&pomBool                                                              #    14/61
+MOVE GF@&pomBool bool@false                                                     #    15/61
+DEFVAR GF@&pomCntr                                                              #    16/61
+MOVE GF@&pomCntr int@0                                                          #    17/61
+CREATEFRAME                                                                     #    18/61
+token: 57 ...                                                                   #    20/61
+token: 3 ... dim                                                                #    21/61
+token: 35 ... a                                                                 #    22/61
+token: 0 ... as                                                                 #    23/61
+token: 5 ... double                                                             #    24/61
+token: 45 ... =                                                                 #    25/61
+DEFVAR TF@a                                                                     #    26/61
+MOVE TF@a float@0                                                               #    27/61
+token: 54 ... 58.5                                                              #    28/61
+|TOP--->|$|  SYMBOL                                                             #    29/61
+|TOP--->| |  STRING                                                             #    30/61
+token: 57 ...                                                                   #    31/61
+|TOP--->|double|]|$|  SYMBOL                                                    #    32/61
+|TOP--->|58.5| | |  STRING                                                      #    33/61
+|TOP--->|double|  SYMBOL                                                        #    34/61
+|TOP--->|58.5|  STRING                                                          #    35/61
+MOVE GF@&pomFloat float@58.5                                                    #    36/61
+MOVE TF@a GF@&pomFloat                                                          #    37/61
+token: 57 ...                                                                   #    38/61
+token: 3 ... dim                                                                #    39/61
+token: 35 ... b                                                                 #    40/61
+token: 0 ... as                                                                 #    41/61
+token: 18 ... string                                                            #    42/61
+token: 57 ...                                                                   #    43/61
+DEFVAR TF@b                                                                     #    44/61
+MOVE TF@b string@                                                               #    45/61
+token: 35 ... b                                                                 #    46/61
+token: 45 ... =                                                                 #    47/61
+token: 52 ... GHGHGKGHGGHUILTZGFFG                                              #    48/61
+|TOP--->|$|  SYMBOL                                                             #    49/61
+|TOP--->| |  STRING                                                             #    50/61
+token: 57 ...                                                                   #    51/61
+|TOP--->|str|]|$|  SYMBOL                                                       #    52/61
+|TOP--->|GHGHGKGHGGHUILTZGFFG| | |  STRING                                      #    53/61
+|TOP--->|str|  SYMBOL                                                           #    54/61
+|TOP--->|GHGHGKGHGGHUILTZGFFG|  STRING                                          #    55/61
+MOVE GF@&pomString string@GHGHGKGHGGHUILTZGFFG                                  #    56/61
+MOVE TF@b GF@&pomString                                                         #    57/61
+token: 35 ... b                                                                 #    58/61
+token: 45 ... =                                                                 #    59/61
+token: 8 ... chr                                                                #    60/61
+ERROR on line 8                                                                 #    61/61
+

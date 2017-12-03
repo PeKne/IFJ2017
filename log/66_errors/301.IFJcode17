@@ -1,0 +1,127 @@
+# 2017-12-03 20:43:48.701081
+# SECTION: 66_errors
+# TEST: 301
+# INFO: Return in scope
+# REQUIRED EXTENSIONS: 
+# ACTIVATED EXTENSIONS: 
+# STATE: FAIL
+# 
+# COMPILER STDERR:
+# 
+# INTERPRETER STDERR:
+# 
+# EXPECTED INTERPRETER STDOUT:
+
+
+
+# CURRENT INTERPRETER STDOUT:
+
+
+
+# INTERPRETER STDIN: 
+# 
+#
+# EXPECTED COMPILER EXIT CODE: 2
+# CURRENT COMPILER EXIT CODE: 0
+# EXPECTED INTERPRETER EXIT CODE: 0
+# CURRENT INTERPRETER EXIT CODE: None
+# PRICE: ---
+# GROOT: ---
+# 
+#   1: scope 
+#   2:  dim a as integer = 10 
+#   3:  if 1 < a < 20 then 
+#   4:  else 
+#   5:  end if 
+#   6:  end scope
+
+########################################
+
+token: 17 ... scope                                                             #     1/89
+.IFJcode17                                                                      #     2/89
+JUMP $$scope                                                                    #     3/89
+LABEL $$scope                                                                   #     5/89
+DEFVAR GF@&pomInteger                                                           #     6/89
+MOVE GF@&pomInteger int@0                                                       #     7/89
+DEFVAR GF@&pomString                                                            #     8/89
+MOVE GF@&pomString string@                                                      #     9/89
+DEFVAR GF@&pomFloat                                                             #    10/89
+MOVE GF@&pomFloat float@0                                                       #    11/89
+DEFVAR GF@&pomBool                                                              #    12/89
+MOVE GF@&pomBool bool@false                                                     #    13/89
+DEFVAR GF@&pomCntr                                                              #    14/89
+MOVE GF@&pomCntr int@0                                                          #    15/89
+CREATEFRAME                                                                     #    16/89
+token: 57 ...                                                                   #    18/89
+token: 3 ... dim                                                                #    19/89
+token: 35 ... a                                                                 #    20/89
+token: 0 ... as                                                                 #    21/89
+token: 12 ... integer                                                           #    22/89
+token: 45 ... =                                                                 #    23/89
+DEFVAR TF@a                                                                     #    24/89
+MOVE TF@a int@0                                                                 #    25/89
+token: 53 ... 10                                                                #    26/89
+|TOP--->|$|  SYMBOL                                                             #    27/89
+|TOP--->| |  STRING                                                             #    28/89
+token: 57 ...                                                                   #    29/89
+|TOP--->|int|]|$|  SYMBOL                                                       #    30/89
+|TOP--->|10| | |  STRING                                                        #    31/89
+|TOP--->|int|  SYMBOL                                                           #    32/89
+|TOP--->|10|  STRING                                                            #    33/89
+MOVE GF@&pomInteger int@10                                                      #    34/89
+MOVE TF@a GF@&pomInteger                                                        #    35/89
+token: 10 ... if                                                                #    36/89
+token: 53 ... 1                                                                 #    37/89
+|TOP--->|$|  SYMBOL                                                             #    38/89
+|TOP--->| |  STRING                                                             #    39/89
+token: 41 ... <                                                                 #    40/89
+|TOP--->|int|]|$|  SYMBOL                                                       #    41/89
+|TOP--->|1| | |  STRING                                                         #    42/89
+|TOP--->|int|  SYMBOL                                                           #    43/89
+|TOP--->|1|  STRING                                                             #    44/89
+|TOP--->|R|$|  SYMBOL                                                           #    45/89
+|TOP--->|1| |  STRING                                                           #    46/89
+token: 35 ... a                                                                 #    47/89
+|TOP--->|<|R|]|$|  SYMBOL                                                       #    48/89
+|TOP--->|<|1| | |  STRING                                                       #    49/89
+token: 41 ... <                                                                 #    50/89
+|TOP--->|i|]|<|R|]|$|  SYMBOL                                                   #    51/89
+|TOP--->|a| |<|1| | |  STRING                                                   #    52/89
+|TOP--->|i|  SYMBOL                                                             #    53/89
+|TOP--->|a|  STRING                                                             #    54/89
+|TOP--->|R|<|R|]|$|  SYMBOL                                                     #    55/89
+|TOP--->|a|<|1| | |  STRING                                                     #    56/89
+|TOP--->|R|<|R|  SYMBOL                                                         #    57/89
+|TOP--->|1|<|a|  STRING                                                         #    58/89
+redukce                                                                         #    59/89
+LT GF@&pomBool int@1 TF@a                                                       #    60/89
+|TOP--->|R|$|  SYMBOL                                                           #    61/89
+|TOP--->|a| |  STRING                                                           #    62/89
+token: 53 ... 20                                                                #    63/89
+|TOP--->|<|R|]|$|  SYMBOL                                                       #    64/89
+|TOP--->|<|a| | |  STRING                                                       #    65/89
+token: 20 ... then                                                              #    66/89
+|TOP--->|int|]|<|R|]|$|  SYMBOL                                                 #    67/89
+|TOP--->|20| |<|a| | |  STRING                                                  #    68/89
+|TOP--->|int|  SYMBOL                                                           #    69/89
+|TOP--->|20|  STRING                                                            #    70/89
+|TOP--->|R|<|R|]|$|  SYMBOL                                                     #    71/89
+|TOP--->|20|<|a| | |  STRING                                                    #    72/89
+|TOP--->|R|<|R|  SYMBOL                                                         #    73/89
+|TOP--->|a|<|20|  STRING                                                        #    74/89
+redukce                                                                         #    75/89
+LT GF@&pomBool TF@a int@20                                                      #    76/89
+JUMPIFNEQ $$else_1 GF@&pomBool bool@true                                        #    77/89
+token: 57 ...                                                                   #    78/89
+token: 6 ... else                                                               #    79/89
+JUMP $$endif_1                                                                  #    80/89
+LABEL $$else_1                                                                  #    81/89
+token: 57 ...                                                                   #    82/89
+token: 7 ... end                                                                #    83/89
+token: 10 ... if                                                                #    84/89
+LABEL $$endif_1                                                                 #    85/89
+token: 57 ...                                                                   #    86/89
+token: 7 ... end                                                                #    87/89
+token: 17 ... scope                                                             #    88/89
+token: 58 ...                                                                   #    89/89
+
