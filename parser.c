@@ -50,7 +50,7 @@ int rule_start_state(){ // stav <start t_state>
     return return_value;
 }
 
-int rule_scope(){ // pravidlo <scope>
+int rule_scope() { // pravidlo <scope>
     int return_value = ERR_SYN;
     int func_return;
     if(func_return = skip_blank_lines()) return func_return;
@@ -77,7 +77,7 @@ int rule_scope(){ // pravidlo <scope>
     return return_value;
 }
 
-int rule_function(){ // stav <function>
+int rule_function() { // stav <function>
     int return_value = ERR_SYN;
     int func_return;
     if(func_return = skip_blank_lines()) return func_return;
@@ -101,7 +101,7 @@ int rule_function(){ // stav <function>
 
 }
 
-int rule_function_dec(){ // stav <function-dec>
+int rule_function_dec() { // stav <function-dec>
     int return_value = ERR_SYN;
     int func_return;
 
@@ -112,26 +112,20 @@ int rule_function_dec(){ // stav <function-dec>
             if(func_return = generate_token()) return func_return;
 
             if(token.t_state == st_id){
-                htab_listitem *item;
-                item = htab_find(global.global_table, token.t_str.data);
-                if(item != NULL) {
-                    return ERR_SEM_PROG;
-                }
-                item = htab_lookup_add(global.global_table, token.t_str.data);
+                htab_listitem *item; 
+                item = htab_find(global.global_table, token.t_str.data); 
+                if(item != NULL) { 
+                    return ERR_SEM_PROG; 
+                } 
+                item = htab_lookup_add(global.global_table, token.t_str.data); 
                 function_init(item, token.t_str.data);
 
-                htab_t *local_table = htab_init(HTAB_SIZE);
-                if(local_table == NULL) {
-                    return ERR_INTERN;
-                }
+                htab_t *local_table = htab_init(HTAB_SIZE); 
+                if(local_table == NULL) { 
+                    return ERR_INTERN; 
+                } 
 
-                function_data *data_f = create_data_function(&token);
-                if(data_f == NULL) {
-                    free(local_table);
-                    return ERR_INTERN;
-                }
-
-                set_local_symbol_table(local_table, data_f);
+                item->pointer.function->local_symbol_table = local_table;
                 if(func_return = generate_token()) return func_return;
 
                 if(token.t_state == st_levzav){
@@ -159,74 +153,110 @@ int rule_function_dec(){ // stav <function-dec>
     return return_value;
 }
 
-int rule_function_head(){ // stav <function-head>
+int rule_function_head() { // stav <function-head>
     int return_value = ERR_SYN;
     int func_return;
     Tstring ident;///
     p = 1;
 
-    if(token.t_state ==  st_function){ // simulace pravidla 7.
+    if(token.t_state ==  st_function) { // simulace pravidla 7.
         if(func_return = generate_token()) return func_return;
 
-        if(token.t_state == st_id){
-            if(global.current_func_name == NULL) {
-                global.current_func_name = g_malloc(sizeof(char *) * token.t_str.length);
-            } else {
-                global.current_func_name = g_realloc(global.current_func_name, sizeof(char *) * token.t_str.length);
+        if(token.t_state == st_id) {
+            if(global.current_func_name == NULL) { 
+                global.current_func_name = g_malloc(sizeof(char *) * token.t_str.length); 
+            } else { 
+                global.current_func_name = g_realloc(global.current_func_name, sizeof(char *) * token.t_str.length); 
+            } 
+            strcpy(global.current_func_name, token.t_str.data); 
+            // 
+            htab_listitem *item; 
+            item = htab_find(global.global_table, token.t_str.data); 
+            if((item != NULL && item->pointer.function->defined == 1)) { 
+                return ERR_SEM_PROG; 
             }
-            strcpy(global.current_func_name, token.t_str.data);
-        //
-            htab_listitem *item;
-            item = htab_find(global.global_table, token.t_str.data);
-            if(item == NULL || (item != NULL && item->pointer.function->defined == 1)) {
-                return ERR_SEM_PROG;
-            }
-            
-            item->pointer.function->defined = 1;
 
-          if(retrieve_function_data(token.t_str.data) != 1) {
-              return ERR_SEM_PROG;
-          }
-          if(check_defined_function() == 1) {
-              free_data_function(global_data);
-              return ERR_SEM_PROG;
-          }
-          set_defined_function(global_data);
-          if(push_function_data(global_data->name) != 1) {
-            return ERR_INTERN;
-          }
-           if(retrieve_function_data(token.t_str.data) != 1) {
-              return ERR_SEM_PROG;
-          }
-          str_create_init(&ident, token.t_str.data);///
-            if(func_return = generate_token()) return func_return;
+            if(item == NULL) {
+                item = htab_lookup_add(global.global_table, token.t_str.data); 
+                function_init(item, token.t_str.data);
 
-            if(token.t_state == st_levzav){
+                str_create_init(&ident, token.t_str.data);
+
+                htab_t *local_table = htab_init(HTAB_SIZE); 
+                if(local_table == NULL) { 
+                    return ERR_INTERN; 
+                } 
+
+                item->pointer.function->local_symbol_table = local_table;
                 if(func_return = generate_token()) return func_return;
 
-                if((return_value = rule_check_par()) == 0){
+                if(token.t_state == st_levzav) {
+                    if(func_return = generate_token()) return func_return;
 
-                    if(token.t_state == st_pravzav){
-                        if(check_argument_count(ar_count) != 1) {
-                            debug_print("%s\n", "Argument count does not match with declaration");
-                            return ERR_SEM_TYPE;
-                        }
-                        if(func_return = generate_token()) return func_return;
+                    if((return_value = rule_par(item->pointer.function)) == 0) {
 
-                        if(token.t_state == st_as){
+                        if(token.t_state == st_pravzav) {
                             if(func_return = generate_token()) return func_return;
 
-                            if((return_value = rule_check_ret_type()) == 0){
+                            if(token.t_state == st_as) {
+                                if(func_return = generate_token()) return func_return;
 
-                                if(token.t_state == st_eol){
-                                    // TODO FUNKCE
-                                    printf("LABEL $%s\n", ident.data);///
-                                    printf("PUSHFRAME\n");
-                                    printf("DEFVAR LF@&retval\n");///
-                                    str_destroy(&ident);///
-                                    if(func_return = generate_token()) return func_return;
-                                    return_value = 0;
+                                if((return_value = rule_ret_type(item->pointer.function)) == 0) {
+                                    item->pointer.function->defined = 1; 
 
+                                    global.local_sym = item->pointer.function->local_symbol_table; 
+                                    global.current_arguments = item->pointer.function->arguments;
+
+                                    if(token.t_state == st_eol) {
+                                        // TODO FUNKCE
+                                        printf("LABEL $%s\n", ident.data);///
+                                        printf("PUSHFRAME\n");
+                                        printf("DEFVAR LF@&retval\n");///
+                                        str_destroy(&ident);///
+                                        if(func_return = generate_token()) return func_return;
+                                        return_value = 0; 
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }
+            } else {            
+                item->pointer.function->defined = 1; 
+
+                global.local_sym = item->pointer.function->local_symbol_table; 
+                global.current_arguments = item->pointer.function->arguments; 
+ 
+
+                str_create_init(&ident, token.t_str.data);///
+                if(func_return = generate_token()) return func_return;
+
+                if(token.t_state == st_levzav) {
+                    if(func_return = generate_token()) return func_return;
+
+                    if((return_value = rule_check_par()) == 0) {
+
+                        if(token.t_state == st_pravzav) {
+                            if(check_argument_count(ar_count) != 1) {
+                                debug_print("%s\n", "Argument count does not match with declaration");
+                                return ERR_SEM_TYPE;
+                            }
+                            if(func_return = generate_token()) return func_return;
+
+                            if(token.t_state == st_as) {
+                                if(func_return = generate_token()) return func_return;
+
+                                if((return_value = rule_check_ret_type()) == 0) {
+
+                                    if(token.t_state == st_eol) {
+                                        // TODO FUNKCE
+                                        printf("LABEL $%s\n", ident.data);///
+                                        printf("PUSHFRAME\n");
+                                        printf("DEFVAR LF@&retval\n");///
+                                        str_destroy(&ident);///
+                                        if(func_return = generate_token()) return func_return;
+                                        return_value = 0;
+                                    }
                                 }
                             }
                         }
@@ -235,7 +265,6 @@ int rule_function_head(){ // stav <function-head>
             }
         }
     }
-
     return return_value;
 }
 
