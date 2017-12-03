@@ -29,18 +29,18 @@ void init_gen() {
 }
 
 int skip_blank_lines(){
-    int lex_return;
+    int func_return;
     while(token.t_state == st_eol){
-        if(lex_return = generate_token()) return lex_return;
+        if(func_return = generate_token()) return func_return;
     }
     return 0;
 }
 
 int rule_start_state(){ // stav <start t_state>
     int return_value = ERR_SYN;
-    int lex_return;
-    if(lex_return = generate_token()) return lex_return;
-    if(lex_return = skip_blank_lines()) return lex_return;
+    int func_return;
+    if(func_return = generate_token()) return func_return;
+    if(func_return = skip_blank_lines()) return func_return;
     if(token.t_state == st_scope || token.t_state == st_declare || token.t_state == st_function){ // simulace pravidla 1.
         printf(".IFJcode17\n");///
         printf("JUMP $$scope\n\n");
@@ -52,21 +52,22 @@ int rule_start_state(){ // stav <start t_state>
 
 int rule_scope(){ // pravidlo <scope>
     int return_value = ERR_SYN;
-    int lex_return;
-    if(lex_return = skip_blank_lines()) return lex_return;
+    int func_return;
+    if(func_return = skip_blank_lines()) return func_return;
     if(token.t_state == st_scope){ // simulace pravidla 2.
         init_gen();
-        if(lex_return = generate_token()) return lex_return;
+        if(func_return = generate_token()) return func_return;
         if((return_value = rule_st_list()) == 0){
-            if(lex_return = skip_blank_lines()) return lex_return;
+            if(func_return = skip_blank_lines()) return func_return;
             if(token.t_state == st_end){
-                if(lex_return = generate_token()) return lex_return;
+                if(func_return = generate_token()) return func_return;
 
                 if(token.t_state == st_scope){
-                    if(lex_return = generate_token()) return lex_return;
-                    if(lex_return = skip_blank_lines()) return lex_return;
+                    if(func_return = generate_token()) return func_return;
+                    if(func_return = skip_blank_lines()) return func_return;
 
-                    if(token.t_state == st_eof)
+                    if(token.t_state != st_eof) return ERR_SYN;
+
                     return_value = 0;
                 }
             }
@@ -78,8 +79,8 @@ int rule_scope(){ // pravidlo <scope>
 
 int rule_function(){ // stav <function>
     int return_value = ERR_SYN;
-    int lex_return;
-    if(lex_return = skip_blank_lines()) return lex_return;
+    int func_return;
+    if(func_return = skip_blank_lines()) return func_return;
     if(token.t_state == st_function){ // simulace pravidla 3.
             if((return_value = rule_function_head()) == 0)
                 if((return_value = rule_st_list()) == 0)
@@ -102,13 +103,13 @@ int rule_function(){ // stav <function>
 
 int rule_function_dec(){ // stav <function-dec>
     int return_value = ERR_SYN;
-    int lex_return;
+    int func_return;
 
     if(token.t_state == st_declare){ // simulace pravidla 6.
-        if(lex_return = generate_token()) return lex_return;
+        if(func_return = generate_token()) return func_return;
 
         if(token.t_state == st_function){
-            if(lex_return = generate_token()) return lex_return;
+            if(func_return = generate_token()) return func_return;
 
             if(token.t_state == st_id){
                 htab_t *local_table = htab_init(HTAB_SIZE);
@@ -123,18 +124,18 @@ int rule_function_dec(){ // stav <function-dec>
                 }
 
                 set_local_symbol_table(local_table, data_f);
-                if(lex_return = generate_token()) return lex_return;
+                if(func_return = generate_token()) return func_return;
 
                 if(token.t_state == st_levzav){
-                    if(lex_return = generate_token()) return lex_return;
+                    if(func_return = generate_token()) return func_return;
 
                     if((return_value = rule_par(data_f)) == 0){
 
                         if(token.t_state == st_pravzav){
-                            if(lex_return = generate_token()) return lex_return;
+                            if(func_return = generate_token()) return func_return;
 
                             if(token.t_state == st_as){
-                                if(lex_return = generate_token()) return lex_return;
+                                if(func_return = generate_token()) return func_return;
 
                                 if((return_value = rule_ret_type(data_f)) == 0){
                                     function_data_to_table(global_table, data_f);
@@ -153,12 +154,12 @@ int rule_function_dec(){ // stav <function-dec>
 
 int rule_function_head(){ // stav <function-head>
     int return_value = ERR_SYN;
-    int lex_return;
+    int func_return;
     Tstring ident;///
     p = 1;
 
     if(token.t_state ==  st_function){ // simulace pravidla 7.
-        if(lex_return = generate_token()) return lex_return;
+        if(func_return = generate_token()) return func_return;
 
         if(token.t_state == st_id){
 
@@ -177,10 +178,10 @@ int rule_function_head(){ // stav <function-head>
               return ERR_SEM_PROG;
           }
           str_create_init(&ident, token.t_str.data);///
-            if(lex_return = generate_token()) return lex_return;
+            if(func_return = generate_token()) return func_return;
 
             if(token.t_state == st_levzav){
-                if(lex_return = generate_token()) return lex_return;
+                if(func_return = generate_token()) return func_return;
 
                 if((return_value = rule_check_par()) == 0){
 
@@ -189,10 +190,10 @@ int rule_function_head(){ // stav <function-head>
                             debug_print("%s\n", "Argument count does not match with declaration");
                             return ERR_SEM_TYPE;
                         }
-                        if(lex_return = generate_token()) return lex_return;
+                        if(func_return = generate_token()) return func_return;
 
                         if(token.t_state == st_as){
-                            if(lex_return = generate_token()) return lex_return;
+                            if(func_return = generate_token()) return func_return;
 
                             if((return_value = rule_check_ret_type()) == 0){
 
@@ -202,7 +203,7 @@ int rule_function_head(){ // stav <function-head>
                                     printf("PUSHFRAME\n");
                                     printf("DEFVAR LF@&retval\n");///
                                     str_destroy(&ident);///
-                                    if(lex_return = generate_token()) return lex_return;
+                                    if(func_return = generate_token()) return func_return;
                                     return_value = 0;
 
                                 }
@@ -219,8 +220,8 @@ int rule_function_head(){ // stav <function-head>
 
 int rule_function_tail(){ // stav <function-tail>
     int return_value = ERR_SYN;
-    int lex_return;
-    if(lex_return = skip_blank_lines()) return lex_return;
+    int func_return;
+    if(func_return = skip_blank_lines()) return func_return;
     if(token.t_state == st_end){ // simulace pravidla 8.
         // TADY ZJISTIT TYP NAVRATOVE HODNOTY FUNKCE
         Tstate type = return_function_type();
@@ -229,10 +230,10 @@ int rule_function_tail(){ // stav <function-tail>
         if (type == st_double)  printf("MOVE LF@&retval GF@&pomFloat\n");
         printf("POPFRAME\n");
         printf("RETURN\n\n");
-        if(lex_return = generate_token()) return lex_return;
+        if(func_return = generate_token()) return func_return;
 
         if(token.t_state == st_function){
-            if(lex_return = generate_token()) return lex_return;
+            if(func_return = generate_token()) return func_return;
             return_value = 0;
         }
     }
@@ -249,7 +250,7 @@ int rule_function_tail(){ // stav <function-tail>
 int rule_par(function_data *data_f){ // stav <par>
     printf("rule_par\n" );
     int return_value = ERR_SYN;
-    int lex_return;
+    int func_return;
     if(token.t_state == st_id){ // simulace pravidla 9.
         htab_listitem *item;
         if((item = htab_find((p == 1 ? global_data->local_symbol_table : global_table), token.t_str.data)) != NULL) {
@@ -265,10 +266,10 @@ int rule_par(function_data *data_f){ // stav <par>
             free_data_variable(data);
             return ERR_INTERN;
         }
-        if(lex_return = generate_token()) return lex_return;
+        if(func_return = generate_token()) return func_return;
 
         if(token.t_state == st_as){
-            if(lex_return = generate_token()) return lex_return;
+            if(func_return = generate_token()) return func_return;
 
             if((return_value = rule_arg_type(data_f)) == 0)
                 if((return_value = rule_type(data)) == 0)
@@ -289,10 +290,10 @@ int rule_par(function_data *data_f){ // stav <par>
 int rule_next_par(function_data *data_f){ // stav <next-par>
   printf("rule next par\n" );
     int return_value = ERR_SYN;
-    int lex_return;
+    int func_return;
     if(token.t_state ==  st_carka){ // simulace pravidla 11.
 
-        if(lex_return = generate_token()) return lex_return;
+        if(func_return = generate_token()) return func_return;
 
         if((return_value = rule_par(data_f)) == 0){
             return_value = 0;
@@ -310,19 +311,19 @@ int rule_next_par(function_data *data_f){ // stav <next-par>
 
 int rule_check_par(){ // stav <check-par>
     int return_value = ERR_SYN;
-    int lex_return;
+    int func_return;
     if(token.t_state == st_id){ // simulace pravidla 9.
         ar_count++;
         if(check_argument_name(token.t_str.data, ar_count) != 1) {
             return ERR_SEM_TYPE; //Meno premmenej nie je spravne
         }
-        if(lex_return = generate_token()) return lex_return;
+        if(func_return = generate_token()) return func_return;
 
         if(token.t_state == st_as){
-            if(lex_return = generate_token()) return lex_return;
+            if(func_return = generate_token()) return func_return;
 
             if((return_value = rule_check_arg_type()) == 0) {
-                if(lex_return = generate_token()) return lex_return;
+                if(func_return = generate_token()) return func_return;
 
                 if((return_value = rule_check_next_par()) == 0){
                     return_value = 0;
@@ -339,10 +340,10 @@ int rule_check_par(){ // stav <check-par>
 
 int rule_check_next_par(){ // stav <check-next-par>
     int return_value = ERR_SYN;
-    int lex_return;
+    int func_return;
     if(token.t_state ==  st_carka){ // simulace pravidla 11.
 
-      if(lex_return = generate_token()) return lex_return;
+      if(func_return = generate_token()) return func_return;
 
         if((return_value = rule_check_par()) == 0){
             return_value = 0;
@@ -357,10 +358,10 @@ int rule_check_next_par(){ // stav <check-next-par>
 
 int rule_type(variable_data *data){ // stav <type>
     int return_value = ERR_SYN;
-    int lex_return;
+    int func_return;
     if(token.t_state == st_integer || token.t_state == st_double || token.t_state == st_string){ // simulace pravidla 13., 14., 15.
         set_type_variable(data, &token);
-        if(lex_return = generate_token()) return lex_return;
+        if(func_return = generate_token()) return func_return;
         return_value = 0;
     }
 
@@ -369,10 +370,10 @@ int rule_type(variable_data *data){ // stav <type>
 
 int rule_ret_type(function_data *data_f){ // stav <ret-type>
     int return_value = ERR_SYN;
-    int lex_return;
+    int func_return;
     if(token.t_state == st_integer || token.t_state == st_double || token.t_state == st_string){ // simulace pravidla 13., 14., 15.
         set_return_type_function(data_f, &token);
-        if(lex_return = generate_token()) return lex_return;
+        if(func_return = generate_token()) return func_return;
         return_value = 0;
     }
 
@@ -381,12 +382,12 @@ int rule_ret_type(function_data *data_f){ // stav <ret-type>
 
 int rule_check_ret_type(){ // stav <check-ret-type>
     int return_value = ERR_SYN;
-    int lex_return;
+    int func_return;
     if(token.t_state == st_integer || token.t_state == st_double || token.t_state == st_string){ // simulace pravidla 13., 14., 15.
         if(check_function_return_type(token.t_state) == 0) {
             return ERR_SEM_TYPE;
         }
-        if(lex_return = generate_token()) return lex_return;
+        if(func_return = generate_token()) return func_return;
         return_value = 0;
     }
 
@@ -395,7 +396,7 @@ int rule_check_ret_type(){ // stav <check-ret-type>
 
 int rule_arg_type(function_data *data_f){ // stav <arg-type>
     int return_value = ERR_SYN;
-    int lex_return;
+    int func_return;
     if(token.t_state == st_integer || token.t_state == st_double || token.t_state == st_string){ // simulace pravidla 13., 14., 15.
         set_argument_type_function(data_f, &token);
         return_value = 0;
@@ -406,7 +407,7 @@ int rule_arg_type(function_data *data_f){ // stav <arg-type>
 
 int rule_check_arg_type(){ // stav <check-arg-type>
     int return_value = ERR_SYN;
-    int lex_return;
+    int func_return;
     if(token.t_state == st_integer || token.t_state == st_double || token.t_state == st_string){ // simulace pravidla 13., 14., 15.
         if(check_argument_type(token.t_state, ar_count) != 1) {
             return ERR_SEM_TYPE; //Neodpovedajuci datovy typ argumentu
@@ -419,8 +420,8 @@ int rule_check_arg_type(){ // stav <check-arg-type>
 
 int rule_st_list(){ // stav <st-list>
     int return_value = ERR_SYN;
-    int lex_return;
-    if(lex_return = skip_blank_lines()) return lex_return;
+    int func_return;
+    if(func_return = skip_blank_lines()) return func_return;
     if(token.t_state == st_id || token.t_state == st_dim || token.t_state == st_input ||
        token.t_state == st_print || token.t_state == st_if || token.t_state == st_do ||
        token.t_state == st_return  ){ // simulace pravidla 16.
@@ -438,14 +439,14 @@ int rule_st_list(){ // stav <st-list>
 
 int rule_stat(){ // stav <stat>
     int return_value = ERR_SYN;
-    int lex_return;
+    int func_return;
     Tstring ident;///
     Tstate instruct = 0;
     Tstate dest_type = 0;
 
     if(token.t_state == st_dim ){ // simulace pravidla 18.
 
-        if(lex_return = generate_token()) return lex_return;
+        if(func_return = generate_token()) return func_return;
 
         if(token.t_state == st_id){
             htab_listitem *item;
@@ -517,7 +518,7 @@ int rule_stat(){ // stav <stat>
 
 
     else if(token.t_state == st_input){ // simulace pravidla 28.
-        if(lex_return = generate_token()) return lex_return;
+        if(func_return = generate_token()) return func_return;
 
         if(token.t_state == st_id){
             if(variable_exist(token.t_str.data) == 0) {
@@ -530,7 +531,7 @@ int rule_stat(){ // stav <stat>
             else if (type == st_double)  printf("READ %s%s float\n",context, token.t_str.data);///
             else if (type == st_string)  printf("READ %s%s string\n",context, token.t_str.data);///
 
-            if(lex_return = generate_token()) return lex_return;
+            if(func_return = generate_token()) return func_return;
 
             return_value = 0;
         }
@@ -538,52 +539,52 @@ int rule_stat(){ // stav <stat>
 
     else if(token.t_state == st_print){ // simulace pravidla 29.
         instruct = st_print;
-        if(lex_return = generate_token()) return lex_return;
+        if(func_return = generate_token()) return func_return;
 
-        if((lex_return = precedent_analysis(instruct, dest_type)) == 0){
+        if((func_return = precedent_analysis(instruct, dest_type)) == 0){
             if(token.t_state == st_stred){
-                if(lex_return = generate_token()) return lex_return;
+                if(func_return = generate_token()) return func_return;
 
                 if((return_value = rule_pr_expr()) == 0){
                     return_value = 0;
                 }
             }
         }
-        else return lex_return;
+        else return func_return;
     }
 
     else if(token.t_state == st_if){ // simulace pravidla 32.
         instruct = st_if;
-        if(lex_return = generate_token()) return lex_return;
+        if(func_return = generate_token()) return func_return;
 
-        if((lex_return = precedent_analysis(instruct, dest_type)) == 0){
+        if((func_return = precedent_analysis(instruct, dest_type)) == 0){
             printf("JUMPIFNEQ $$else_%d GF@&pomBool bool@true\n", if_counter);///
 
             if(token.t_state == st_then){
-                if(lex_return = generate_token()) return lex_return;
+                if(func_return = generate_token()) return func_return;
 
                 if(token.t_state == st_eol){
-                    if(lex_return = generate_token()) return lex_return;
+                    if(func_return = generate_token()) return func_return;
 
                     if((return_value = rule_st_list()) == 0){
                         printf("JUMP $$endif_%d\n", if_counter);
                         printf("LABEL $$else_%d\n", if_counter);
 
                         if(token.t_state == st_else){
-                            if(lex_return = generate_token()) return lex_return;
+                            if(func_return = generate_token()) return func_return;
 
                             if(token.t_state == st_eol){
-                                if(lex_return = generate_token()) return lex_return;
+                                if(func_return = generate_token()) return func_return;
 
                                 if(rule_st_list() == 0){
 
                                     if(token.t_state == st_end){
-                                        if(lex_return = generate_token()) return lex_return;
+                                        if(func_return = generate_token()) return func_return;
 
                                         if(token.t_state == st_if){
                                             printf("LABEL $$endif_%d\n", if_counter);
                                             if_counter++;
-                                            if(lex_return = generate_token()) return lex_return;
+                                            if(func_return = generate_token()) return func_return;
 
                                             return_value = 0;
                                         }
@@ -592,9 +593,9 @@ int rule_stat(){ // stav <stat>
                             }
                         }
               else if(token.t_state == st_end){
-                if(lex_return = generate_token()) return lex_return;
+                if(func_return = generate_token()) return func_return;
                   if(token.t_state == st_if){
-                    if(lex_return = generate_token()) return lex_return;
+                    if(func_return = generate_token()) return func_return;
                       return_value = 0;
                   }
               }
@@ -602,29 +603,29 @@ int rule_stat(){ // stav <stat>
                 }
             }
         }
-        else return lex_return;
+        else return func_return;
     }//konec pravidla 32.
 
     else if(token.t_state == st_do){ // simulace pravidla 33.
-        if(lex_return = generate_token()) return lex_return;
+        if(func_return = generate_token()) return func_return;
 
         if(token.t_state == st_while){
             instruct = st_loop;
             printf("LABEL $$loop_%d\n", while_counter);
-            if(lex_return = generate_token()) return lex_return;
+            if(func_return = generate_token()) return func_return;
 
-            if((lex_return = precedent_analysis(instruct, dest_type)) == 0){
+            if((func_return = precedent_analysis(instruct, dest_type)) == 0){
 
                 if(token.t_state == st_eol){
                     printf("JUMPIFNEQ $$loop_end_%d GF@&pomBool bool@true\n", while_counter);
-                    if(lex_return = generate_token()) return lex_return;
+                    if(func_return = generate_token()) return func_return;
 
                     if((return_value = rule_st_list()) == 0){
                         printf("JUMP $$loop_%d\n", while_counter);
                         if(token.t_state == st_loop){
                             printf("LABEL $$loop_end_%d\n", while_counter);
                             while_counter++;
-                            if(lex_return = generate_token()) return lex_return;
+                            if(func_return = generate_token()) return func_return;
 
                             return_value = 0;
                         }
@@ -632,18 +633,21 @@ int rule_stat(){ // stav <stat>
                 }
 
             }
-            else return lex_return;
+            else return func_return;
         }
     }//konec 33. pravidla
 
     else if(token.t_state == st_return){ // simulace pravidla 34.
-        if(lex_return = generate_token()) return lex_return;
 
-        if((lex_return = precedent_analysis(instruct, dest_type)) == 0){
+        if(p == 0) return ERR_SYN;  //st_return se nesmi vyskytovat uvnitr scopu
+
+        if(func_return = generate_token()) return func_return;
+
+        if((func_return = precedent_analysis(instruct, dest_type)) == 0){
 
             return_value = 0;
         }
-        else return lex_return;
+        else return func_return;
     }
 
     return return_value;
@@ -651,17 +655,17 @@ int rule_stat(){ // stav <stat>
 
 int rule_eval(Tstring id){ // stav <eval>
     int return_value = ERR_SYN;
-    int lex_return;
-    if(lex_return = skip_blank_lines()) return lex_return;
+    int func_return;
+    if(func_return = skip_blank_lines()) return func_return;
     Tstate instruct = 0;
     Tstate dest_type = 0;
     dest_type = return_variable_type(id.data);
     char* context = (p == 0 ? "TF@" : "LF@");
 
     if(token.t_state == st_rovno ){ // simulace pravidla 19.
-        if(lex_return = generate_token()) return lex_return;
+        if(func_return = generate_token()) return func_return;
 
-        if((lex_return = precedent_analysis(instruct, dest_type)) == 0){
+        if((func_return = precedent_analysis(instruct, dest_type)) == 0){
             if (dest_type == st_integer) {
                 printf("MOVE %s%s GF@&pomInteger\n",context, id.data);
             } else if (dest_type == st_double) {
@@ -672,7 +676,7 @@ int rule_eval(Tstring id){ // stav <eval>
             }
             return_value = 0;
         }
-        else return lex_return;
+        else return func_return;
     }
 
     else if(token.t_state == st_id || token.t_state == st_dim || token.t_state == st_input ||
@@ -686,7 +690,7 @@ int rule_eval(Tstring id){ // stav <eval>
 
 int rule_assign(Tstring id){ // stav <assign>
     int return_value = ERR_SYN;
-    int lex_return;
+    int func_return;
     Tstate instruct = 0;
     Tstate dest_type = 0;
     char* context = (p == 0 ? "TF@" : "LF@");
@@ -708,7 +712,7 @@ int rule_assign(Tstring id){ // stav <assign>
         Tstate dest_fce_type = return_variable_type(token.t_str.data);
 
         if(item->type != type_function){// identifikator neni funkce
-          if((lex_return = precedent_analysis(instruct, dest_type)) == 0){
+          if((func_return = precedent_analysis(instruct, dest_type)) == 0){
             return_value = 0;
             if (dest_type == st_integer) {
                 printf("MOVE %s%s GF@&pomInteger\n",context, id.data);
@@ -718,7 +722,7 @@ int rule_assign(Tstring id){ // stav <assign>
                 printf("MOVE %s%s GF@&pomString\n",context, id.data);
             }
           }
-          else return lex_return;
+          else return func_return;
           str_destroy(&(fce));
           return return_value;
         }
@@ -754,7 +758,7 @@ int rule_assign(Tstring id){ // stav <assign>
             }
         }
     }// konec pravidla 23.
-    else if((lex_return = precedent_analysis(instruct, dest_type)) == 0){  //simulace pravidla 22.
+    else if((func_return = precedent_analysis(instruct, dest_type)) == 0){  //simulace pravidla 22.
         if      (dest_type == st_integer) {
             printf("MOVE %s%s GF@&pomInteger\n",context, id.data);
         } else if (dest_type == st_double) {
@@ -765,16 +769,16 @@ int rule_assign(Tstring id){ // stav <assign>
 
         return_value = 0;
     }
-    else return lex_return;
+    else return func_return;
     str_destroy(&(fce));
     return return_value;
 }// konec funkce rule_assign()
 
 int rule_call_par(){ // stav <call-par>
     int return_value = ERR_SYN;
-    int lex_return;
+    int func_return;
     if(token.t_state == st_id){ // simulace pravidla 24.
-        if(lex_return = generate_token()) return lex_return;
+        if(func_return = generate_token()) return func_return;
 
         if((return_value = rule_call_next_par()) == 0){
             return_value = 0;
@@ -790,10 +794,10 @@ int rule_call_par(){ // stav <call-par>
 
 int rule_call_next_par(){ // stav <call-next-par>
     int return_value = ERR_SYN;
-    int lex_return;
+    int func_return;
     if(token.t_state == st_carka){ // simulace pravidla 26.
 
-      if(lex_return = generate_token()) return lex_return;
+      if(func_return = generate_token()) return func_return;
 
         if((return_value = rule_call_par()) == 0){
             return_value = 0;
@@ -809,7 +813,7 @@ int rule_call_next_par(){ // stav <call-next-par>
 
 int rule_pr_expr(){ // stav <pr-expr>
     int return_value = ERR_SYN;
-    int lex_return;
+    int func_return;
     Tstate instruct = st_print;
     //printf("%s: ins:%d data: %s\n", "print", instruct, token.t_str.data);
     Tstate dest_type = 0;
@@ -817,13 +821,13 @@ int rule_pr_expr(){ // stav <pr-expr>
     if(token.t_state == st_dim || token.t_state == st_input ||
        token.t_state == st_print || token.t_state == st_if || token.t_state == st_do ||
        token.t_state == st_return || token.t_state == st_end || token.t_state == st_eol ){  // simulace pravidla 31.
-            if(lex_return = skip_blank_lines()) return lex_return;
+            if(func_return = skip_blank_lines()) return func_return;
             return_value = 0;
 
-    } else if((lex_return = precedent_analysis(instruct, dest_type)) == 0){  //simulace pravidla 30.
+    } else if((func_return = precedent_analysis(instruct, dest_type)) == 0){  //simulace pravidla 30.
 
         if(token.t_state == st_stred){
-            if(lex_return = generate_token()) return lex_return;
+            if(func_return = generate_token()) return func_return;
 
               if((return_value = rule_pr_expr()) == 0){
                 return_value = 0;
@@ -831,7 +835,7 @@ int rule_pr_expr(){ // stav <pr-expr>
         }
 
     }
-    else return lex_return;
+    else return func_return;
 
     return return_value;
 }
