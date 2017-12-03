@@ -86,7 +86,6 @@ int set_context(Tstring *context, int operand_type, Tstate dest_type, Tstring *o
         }
     } else if (operand_type == 0) {
         str_rewrite_data(context, "");
-
     }
     return 0;
 }

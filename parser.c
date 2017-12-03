@@ -24,7 +24,7 @@ void init_gen() {
         printf("MOVE GF@&pomFloat float@0\n");
         printf("DEFVAR GF@&pomBool\n");///
         printf("MOVE GF@&pomBool bool@false\n");///
-        printf("CREATEFRAME\n");///
+        printf("CREATEFRAME\n\n");///
 }
 
 int skip_blank_lines(){
@@ -209,6 +209,7 @@ int rule_function_tail(){ // stav <function-tail>
     if(skip_blank_lines() != 0) return ERR_LEX;
     int return_value = ERR_SYN;
     if(token.t_state == st_end){ // simulace pravidla 8.
+        // TADY ZJISTIT TYP NAVRATOVE HODNOTY FUNKCE
         printf("POPFRAME\n");
         printf("RETURN\n\n");
         if(return_value = generate_token()) return return_value;
@@ -410,6 +411,7 @@ int rule_stat(){ // stav <stat>
             htab_listitem *item;
             item = htab_find((p == 1 ? global_data->local_symbol_table : global_table), token.t_str.data);
             if(item != NULL) {
+                fprintf(stderr, "NULL rule_stat\n");
                 return ERR_SEM_PROG; //Premmenna nebola vramci danej funkcie deklarovana
             }
             free(item);
@@ -445,7 +447,6 @@ int rule_stat(){ // stav <stat>
                     if      (var_type == st_integer) printf("MOVE %s%s int@0\n", context, ident.data);
                     else if (var_type == st_double)  printf("MOVE %s%s float@0\n", context, ident.data);
                     else if (var_type == st_string)  printf("MOVE %s%s string@\n", context, ident.data);
-
                 }
             }
             str_destroy(&ident);///
@@ -485,8 +486,10 @@ int rule_stat(){ // stav <stat>
                 return ERR_SEM_PROG; //Premmenna nebola vramci danej funkcie deklarovana
             }
             char* context = (p == 0 ? "TF@" : "LF@");
-            //TODO type = return_type_variable
-            printf("READ %s%s GF@&pom\n",context, token.t_str.data);///
+            Tstate type = return_variable_type(token.t_str.data);
+            if      (type == st_integer) printf("READ %s%s int\n",context, token.t_str.data);///
+            else if (type == st_double)  printf("READ  %s%s float\n",context, token.t_str.data);///
+            else if (type == st_string)  printf("READ  %s%s string\n",context, token.t_str.data);///
             
             if(return_value = generate_token()) return return_value;
             
@@ -567,6 +570,7 @@ int rule_stat(){ // stav <stat>
         if(return_value = generate_token()) return return_value;
 
         if(token.t_state == st_while){
+            instruct = st_loop;
             printf("LABEL $$loop_%d\n", while_counter);            
             if(return_value = generate_token()) return return_value;
 

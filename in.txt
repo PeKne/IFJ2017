@@ -4,9 +4,12 @@ dim d as integer
 dim x as integer
 dim r as double
 dim f as string
+x = e + d 
 
-if e * f then
-x = e + r
+if 1 < 0 then
+print !"if1";
+else
+print !"else1";
 end if
-print f;
+
 END SCOPE

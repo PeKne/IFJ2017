@@ -1,0 +1,12 @@
+scope
+dim a as integer
+dim c as integer
+dim b as string
+Do While (a < 1)
+	print !"ted";
+b = !"f" + d
+
+input a
+
+loop
+end scope
