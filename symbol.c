@@ -333,6 +333,26 @@ int check_variable_type(char *variable_name, Tstate state)
 	return 0;
 }
 
+Tstate return_function_type(void)
+{
+	if((p == 1 ? global_data->local_symbol_table : global_table) == NULL) {
+		debug_print("%s\n", "Global_data not set");
+
+		return 0;
+	}
+
+	switch(global_data->return_type) {
+		case 'i':
+			return st_integer;
+		case 'd':
+			return st_double;
+		case 's':
+			return st_string;
+		default:
+			return 0;
+	}
+}
+
 Tstate return_variable_type(char *variable_name)
 {
 	htab_listitem *item = htab_find((p == 1 ? global_data->local_symbol_table : global_table), variable_name);

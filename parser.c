@@ -212,6 +212,7 @@ int rule_function_tail(){ // stav <function-tail>
     int return_value = ERR_SYN;
     if(token.t_state == st_end){ // simulace pravidla 8.
         // TADY ZJISTIT TYP NAVRATOVE HODNOTY FUNKCE
+        Tstate type = return_function_type();
         printf("POPFRAME\n");
         printf("RETURN\n\n");
         if(return_value = generate_token()) return return_value;
