@@ -247,6 +247,7 @@ int rule_function_tail(){ // stav <function-tail>
 }
 
 int rule_par(function_data *data_f){ // stav <par>
+    printf("rule_par\n" );
     int return_value = ERR_SYN;
     int lex_return;
     if(token.t_state == st_id){ // simulace pravidla 9.
@@ -286,9 +287,12 @@ int rule_par(function_data *data_f){ // stav <par>
 }
 
 int rule_next_par(function_data *data_f){ // stav <next-par>
+  printf("rule next par\n" );
     int return_value = ERR_SYN;
     int lex_return;
     if(token.t_state ==  st_carka){ // simulace pravidla 11.
+
+        if(lex_return = generate_token()) return lex_return;
 
         if((return_value = rule_par(data_f)) == 0){
             return_value = 0;
@@ -337,6 +341,8 @@ int rule_check_next_par(){ // stav <check-next-par>
     int return_value = ERR_SYN;
     int lex_return;
     if(token.t_state ==  st_carka){ // simulace pravidla 11.
+
+      if(lex_return = generate_token()) return lex_return;
 
         if((return_value = rule_check_par()) == 0){
             return_value = 0;
@@ -465,7 +471,7 @@ int rule_stat(){ // stav <stat>
                     return return_value;
                 }
 
-                if((return_value = rule_type(data)) == 0){                    
+                if((return_value = rule_type(data)) == 0){
                     variable_data_to_table((p == 1 ? global_data->local_symbol_table : global_table), data);
                     char* context = (p == 0 ? "TF@" : "LF@");
                     Tstate var_type = return_variable_type(ident.data);
@@ -478,7 +484,7 @@ int rule_stat(){ // stav <stat>
 
                     if((return_value = rule_eval(ident)) == 0){
                         return_value = 0;
-                    }                    
+                    }
                 }
             }
             str_destroy(&ident);///
@@ -703,6 +709,7 @@ int rule_assign(Tstring id){ // stav <assign>
 
         if(item->type != type_function){// identifikator neni funkce
           if((lex_return = precedent_analysis(instruct, dest_type)) == 0){
+            return_value = 0;
             if (dest_type == st_integer) {
                 printf("MOVE %s%s GF@&pomInteger\n",context, id.data);
             } else if (dest_type == st_double) {
@@ -712,7 +719,6 @@ int rule_assign(Tstring id){ // stav <assign>
             }
           }
           else return lex_return;
-
           str_destroy(&(fce));
           return return_value;
         }
@@ -786,6 +792,8 @@ int rule_call_next_par(){ // stav <call-next-par>
     int return_value = ERR_SYN;
     int lex_return;
     if(token.t_state == st_carka){ // simulace pravidla 26.
+
+      if(lex_return = generate_token()) return lex_return;
 
         if((return_value = rule_call_par()) == 0){
             return_value = 0;
