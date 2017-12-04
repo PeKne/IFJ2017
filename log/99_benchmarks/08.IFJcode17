@@ -1,4 +1,4 @@
-# 2017-12-04 12:08:01.865153
+# 2017-12-04 15:33:13.708269
 # SECTION: 99_benchmarks
 # TEST: 08
 # INFO: factorial by iteration method
@@ -9,16 +9,410 @@
 # COMPILER STDERR:
 # 
 # INTERPRETER STDERR:
-# 24.1-7: syntax error, unexpected ID, expecting END
+# Executing instruction: IJUMP at line: 2 with following arguments:
+# Executing instruction: ILABEL at line: 4 with following arguments:
+# Executing instruction: IDEFVAR at line: 5 with following arguments:
+# Dest: GF@&pomInteger
+# Executing instruction: IMOVE at line: 6 with following arguments:
+# Arg1: Const@=0(int)
+# Dest: GF@&pomInteger()
+# Executing instruction: IDEFVAR at line: 7 with following arguments:
+# Dest: GF@&pomString
+# Executing instruction: IMOVE at line: 8 with following arguments:
+# Arg1: Const@=(string)
+# Dest: GF@&pomString()
+# Executing instruction: IDEFVAR at line: 9 with following arguments:
+# Dest: GF@&pomFloat
+# Executing instruction: IMOVE at line: 10 with following arguments:
+# Arg1: Const@=0(double)
+# Dest: GF@&pomFloat()
+# Executing instruction: IDEFVAR at line: 11 with following arguments:
+# Dest: GF@&pomBool
+# Executing instruction: IMOVE at line: 12 with following arguments:
+# Arg1: Const@=false(bool)
+# Dest: GF@&pomBool()
+# Executing instruction: IDEFVAR at line: 13 with following arguments:
+# Dest: GF@&pomCntr
+# Executing instruction: IMOVE at line: 14 with following arguments:
+# Arg1: Const@=0(int)
+# Dest: GF@&pomCntr()
+# Executing instruction: ICREATEFRAME at line: 15 with following arguments:
+# Executing instruction: IDEFVAR at line: 17 with following arguments:
+# Dest: TF@a
+# Executing instruction: IMOVE at line: 18 with following arguments:
+# Arg1: Const@=0(int)
+# Dest: TF@a()
+# Executing instruction: IDEFVAR at line: 19 with following arguments:
+# Dest: TF@vysl
+# Executing instruction: IMOVE at line: 20 with following arguments:
+# Arg1: Const@=0(int)
+# Dest: TF@vysl()
+# Executing instruction: IWRITE at line: 21 with following arguments:
+# Arg1: Const@=Zadejte cislo pro vypocet faktorialu(string)
+# Executing instruction: IREAD at line: 22 with following arguments:
+# Dest: TF@a=0(int)
+# Executing instruction: IMOVE at line: 23 with following arguments:
+# Arg1: TF@a=10(int)
+# Dest: GF@&pomInteger=0(int)
+# Executing instruction: ILS at line: 24 with following arguments:
+# Arg1: TF@a=10(int)
+# Arg2: Const@=0(int)
+# Dest: GF@&pomBool=false(bool)
+# Executing instruction: IJUMPIFNEQ at line: 25 with following arguments:
+# Arg1: GF@&pomBool=false(bool)
+# Arg2: Const@=true(bool)
+# Executing instruction: ILABEL at line: 28 with following arguments:
+# Executing instruction: IMOVE at line: 29 with following arguments:
+# Arg1: Const@=1(int)
+# Dest: GF@&pomInteger=10(int)
+# Executing instruction: IMOVE at line: 30 with following arguments:
+# Arg1: GF@&pomInteger=1(int)
+# Dest: TF@vysl=0(int)
+# Executing instruction: ILABEL at line: 31 with following arguments:
+# Executing instruction: IMOVE at line: 32 with following arguments:
+# Arg1: TF@a=10(int)
+# Dest: GF@&pomInteger=1(int)
+# Executing instruction: IGT at line: 33 with following arguments:
+# Arg1: TF@a=10(int)
+# Arg2: Const@=0(int)
+# Dest: GF@&pomBool=false(bool)
+# Executing instruction: IJUMPIFNEQ at line: 34 with following arguments:
+# Arg1: GF@&pomBool=true(bool)
+# Arg2: Const@=true(bool)
+# Executing instruction: IMOVE at line: 35 with following arguments:
+# Arg1: TF@vysl=1(int)
+# Dest: GF@&pomInteger=10(int)
+# Executing instruction: IMULT at line: 36 with following arguments:
+# Arg1: TF@vysl=1(int)
+# Arg2: TF@a=10(int)
+# Dest: GF@&pomInteger=1(int)
+# Executing instruction: IMOVE at line: 37 with following arguments:
+# Arg1: GF@&pomInteger=10(int)
+# Dest: TF@vysl=1(int)
+# Executing instruction: IMOVE at line: 38 with following arguments:
+# Arg1: TF@a=10(int)
+# Dest: GF@&pomInteger=10(int)
+# Executing instruction: ISUB at line: 39 with following arguments:
+# Arg1: TF@a=10(int)
+# Arg2: Const@=1(int)
+# Dest: GF@&pomInteger=10(int)
+# Executing instruction: IMOVE at line: 40 with following arguments:
+# Arg1: GF@&pomInteger=9(int)
+# Dest: TF@a=10(int)
+# Executing instruction: IJUMP at line: 41 with following arguments:
+# Executing instruction: ILABEL at line: 31 with following arguments:
+# Executing instruction: IMOVE at line: 32 with following arguments:
+# Arg1: TF@a=9(int)
+# Dest: GF@&pomInteger=9(int)
+# Executing instruction: IGT at line: 33 with following arguments:
+# Arg1: TF@a=9(int)
+# Arg2: Const@=0(int)
+# Dest: GF@&pomBool=true(bool)
+# Executing instruction: IJUMPIFNEQ at line: 34 with following arguments:
+# Arg1: GF@&pomBool=true(bool)
+# Arg2: Const@=true(bool)
+# Executing instruction: IMOVE at line: 35 with following arguments:
+# Arg1: TF@vysl=10(int)
+# Dest: GF@&pomInteger=9(int)
+# Executing instruction: IMULT at line: 36 with following arguments:
+# Arg1: TF@vysl=10(int)
+# Arg2: TF@a=9(int)
+# Dest: GF@&pomInteger=10(int)
+# Executing instruction: IMOVE at line: 37 with following arguments:
+# Arg1: GF@&pomInteger=90(int)
+# Dest: TF@vysl=10(int)
+# Executing instruction: IMOVE at line: 38 with following arguments:
+# Arg1: TF@a=9(int)
+# Dest: GF@&pomInteger=90(int)
+# Executing instruction: ISUB at line: 39 with following arguments:
+# Arg1: TF@a=9(int)
+# Arg2: Const@=1(int)
+# Dest: GF@&pomInteger=9(int)
+# Executing instruction: IMOVE at line: 40 with following arguments:
+# Arg1: GF@&pomInteger=8(int)
+# Dest: TF@a=9(int)
+# Executing instruction: IJUMP at line: 41 with following arguments:
+# Executing instruction: ILABEL at line: 31 with following arguments:
+# Executing instruction: IMOVE at line: 32 with following arguments:
+# Arg1: TF@a=8(int)
+# Dest: GF@&pomInteger=8(int)
+# Executing instruction: IGT at line: 33 with following arguments:
+# Arg1: TF@a=8(int)
+# Arg2: Const@=0(int)
+# Dest: GF@&pomBool=true(bool)
+# Executing instruction: IJUMPIFNEQ at line: 34 with following arguments:
+# Arg1: GF@&pomBool=true(bool)
+# Arg2: Const@=true(bool)
+# Executing instruction: IMOVE at line: 35 with following arguments:
+# Arg1: TF@vysl=90(int)
+# Dest: GF@&pomInteger=8(int)
+# Executing instruction: IMULT at line: 36 with following arguments:
+# Arg1: TF@vysl=90(int)
+# Arg2: TF@a=8(int)
+# Dest: GF@&pomInteger=90(int)
+# Executing instruction: IMOVE at line: 37 with following arguments:
+# Arg1: GF@&pomInteger=720(int)
+# Dest: TF@vysl=90(int)
+# Executing instruction: IMOVE at line: 38 with following arguments:
+# Arg1: TF@a=8(int)
+# Dest: GF@&pomInteger=720(int)
+# Executing instruction: ISUB at line: 39 with following arguments:
+# Arg1: TF@a=8(int)
+# Arg2: Const@=1(int)
+# Dest: GF@&pomInteger=8(int)
+# Executing instruction: IMOVE at line: 40 with following arguments:
+# Arg1: GF@&pomInteger=7(int)
+# Dest: TF@a=8(int)
+# Executing instruction: IJUMP at line: 41 with following arguments:
+# Executing instruction: ILABEL at line: 31 with following arguments:
+# Executing instruction: IMOVE at line: 32 with following arguments:
+# Arg1: TF@a=7(int)
+# Dest: GF@&pomInteger=7(int)
+# Executing instruction: IGT at line: 33 with following arguments:
+# Arg1: TF@a=7(int)
+# Arg2: Const@=0(int)
+# Dest: GF@&pomBool=true(bool)
+# Executing instruction: IJUMPIFNEQ at line: 34 with following arguments:
+# Arg1: GF@&pomBool=true(bool)
+# Arg2: Const@=true(bool)
+# Executing instruction: IMOVE at line: 35 with following arguments:
+# Arg1: TF@vysl=720(int)
+# Dest: GF@&pomInteger=7(int)
+# Executing instruction: IMULT at line: 36 with following arguments:
+# Arg1: TF@vysl=720(int)
+# Arg2: TF@a=7(int)
+# Dest: GF@&pomInteger=720(int)
+# Executing instruction: IMOVE at line: 37 with following arguments:
+# Arg1: GF@&pomInteger=5040(int)
+# Dest: TF@vysl=720(int)
+# Executing instruction: IMOVE at line: 38 with following arguments:
+# Arg1: TF@a=7(int)
+# Dest: GF@&pomInteger=5040(int)
+# Executing instruction: ISUB at line: 39 with following arguments:
+# Arg1: TF@a=7(int)
+# Arg2: Const@=1(int)
+# Dest: GF@&pomInteger=7(int)
+# Executing instruction: IMOVE at line: 40 with following arguments:
+# Arg1: GF@&pomInteger=6(int)
+# Dest: TF@a=7(int)
+# Executing instruction: IJUMP at line: 41 with following arguments:
+# Executing instruction: ILABEL at line: 31 with following arguments:
+# Executing instruction: IMOVE at line: 32 with following arguments:
+# Arg1: TF@a=6(int)
+# Dest: GF@&pomInteger=6(int)
+# Executing instruction: IGT at line: 33 with following arguments:
+# Arg1: TF@a=6(int)
+# Arg2: Const@=0(int)
+# Dest: GF@&pomBool=true(bool)
+# Executing instruction: IJUMPIFNEQ at line: 34 with following arguments:
+# Arg1: GF@&pomBool=true(bool)
+# Arg2: Const@=true(bool)
+# Executing instruction: IMOVE at line: 35 with following arguments:
+# Arg1: TF@vysl=5040(int)
+# Dest: GF@&pomInteger=6(int)
+# Executing instruction: IMULT at line: 36 with following arguments:
+# Arg1: TF@vysl=5040(int)
+# Arg2: TF@a=6(int)
+# Dest: GF@&pomInteger=5040(int)
+# Executing instruction: IMOVE at line: 37 with following arguments:
+# Arg1: GF@&pomInteger=30240(int)
+# Dest: TF@vysl=5040(int)
+# Executing instruction: IMOVE at line: 38 with following arguments:
+# Arg1: TF@a=6(int)
+# Dest: GF@&pomInteger=30240(int)
+# Executing instruction: ISUB at line: 39 with following arguments:
+# Arg1: TF@a=6(int)
+# Arg2: Const@=1(int)
+# Dest: GF@&pomInteger=6(int)
+# Executing instruction: IMOVE at line: 40 with following arguments:
+# Arg1: GF@&pomInteger=5(int)
+# Dest: TF@a=6(int)
+# Executing instruction: IJUMP at line: 41 with following arguments:
+# Executing instruction: ILABEL at line: 31 with following arguments:
+# Executing instruction: IMOVE at line: 32 with following arguments:
+# Arg1: TF@a=5(int)
+# Dest: GF@&pomInteger=5(int)
+# Executing instruction: IGT at line: 33 with following arguments:
+# Arg1: TF@a=5(int)
+# Arg2: Const@=0(int)
+# Dest: GF@&pomBool=true(bool)
+# Executing instruction: IJUMPIFNEQ at line: 34 with following arguments:
+# Arg1: GF@&pomBool=true(bool)
+# Arg2: Const@=true(bool)
+# Executing instruction: IMOVE at line: 35 with following arguments:
+# Arg1: TF@vysl=30240(int)
+# Dest: GF@&pomInteger=5(int)
+# Executing instruction: IMULT at line: 36 with following arguments:
+# Arg1: TF@vysl=30240(int)
+# Arg2: TF@a=5(int)
+# Dest: GF@&pomInteger=30240(int)
+# Executing instruction: IMOVE at line: 37 with following arguments:
+# Arg1: GF@&pomInteger=151200(int)
+# Dest: TF@vysl=30240(int)
+# Executing instruction: IMOVE at line: 38 with following arguments:
+# Arg1: TF@a=5(int)
+# Dest: GF@&pomInteger=151200(int)
+# Executing instruction: ISUB at line: 39 with following arguments:
+# Arg1: TF@a=5(int)
+# Arg2: Const@=1(int)
+# Dest: GF@&pomInteger=5(int)
+# Executing instruction: IMOVE at line: 40 with following arguments:
+# Arg1: GF@&pomInteger=4(int)
+# Dest: TF@a=5(int)
+# Executing instruction: IJUMP at line: 41 with following arguments:
+# Executing instruction: ILABEL at line: 31 with following arguments:
+# Executing instruction: IMOVE at line: 32 with following arguments:
+# Arg1: TF@a=4(int)
+# Dest: GF@&pomInteger=4(int)
+# Executing instruction: IGT at line: 33 with following arguments:
+# Arg1: TF@a=4(int)
+# Arg2: Const@=0(int)
+# Dest: GF@&pomBool=true(bool)
+# Executing instruction: IJUMPIFNEQ at line: 34 with following arguments:
+# Arg1: GF@&pomBool=true(bool)
+# Arg2: Const@=true(bool)
+# Executing instruction: IMOVE at line: 35 with following arguments:
+# Arg1: TF@vysl=151200(int)
+# Dest: GF@&pomInteger=4(int)
+# Executing instruction: IMULT at line: 36 with following arguments:
+# Arg1: TF@vysl=151200(int)
+# Arg2: TF@a=4(int)
+# Dest: GF@&pomInteger=151200(int)
+# Executing instruction: IMOVE at line: 37 with following arguments:
+# Arg1: GF@&pomInteger=604800(int)
+# Dest: TF@vysl=151200(int)
+# Executing instruction: IMOVE at line: 38 with following arguments:
+# Arg1: TF@a=4(int)
+# Dest: GF@&pomInteger=604800(int)
+# Executing instruction: ISUB at line: 39 with following arguments:
+# Arg1: TF@a=4(int)
+# Arg2: Const@=1(int)
+# Dest: GF@&pomInteger=4(int)
+# Executing instruction: IMOVE at line: 40 with following arguments:
+# Arg1: GF@&pomInteger=3(int)
+# Dest: TF@a=4(int)
+# Executing instruction: IJUMP at line: 41 with following arguments:
+# Executing instruction: ILABEL at line: 31 with following arguments:
+# Executing instruction: IMOVE at line: 32 with following arguments:
+# Arg1: TF@a=3(int)
+# Dest: GF@&pomInteger=3(int)
+# Executing instruction: IGT at line: 33 with following arguments:
+# Arg1: TF@a=3(int)
+# Arg2: Const@=0(int)
+# Dest: GF@&pomBool=true(bool)
+# Executing instruction: IJUMPIFNEQ at line: 34 with following arguments:
+# Arg1: GF@&pomBool=true(bool)
+# Arg2: Const@=true(bool)
+# Executing instruction: IMOVE at line: 35 with following arguments:
+# Arg1: TF@vysl=604800(int)
+# Dest: GF@&pomInteger=3(int)
+# Executing instruction: IMULT at line: 36 with following arguments:
+# Arg1: TF@vysl=604800(int)
+# Arg2: TF@a=3(int)
+# Dest: GF@&pomInteger=604800(int)
+# Executing instruction: IMOVE at line: 37 with following arguments:
+# Arg1: GF@&pomInteger=1814400(int)
+# Dest: TF@vysl=604800(int)
+# Executing instruction: IMOVE at line: 38 with following arguments:
+# Arg1: TF@a=3(int)
+# Dest: GF@&pomInteger=1814400(int)
+# Executing instruction: ISUB at line: 39 with following arguments:
+# Arg1: TF@a=3(int)
+# Arg2: Const@=1(int)
+# Dest: GF@&pomInteger=3(int)
+# Executing instruction: IMOVE at line: 40 with following arguments:
+# Arg1: GF@&pomInteger=2(int)
+# Dest: TF@a=3(int)
+# Executing instruction: IJUMP at line: 41 with following arguments:
+# Executing instruction: ILABEL at line: 31 with following arguments:
+# Executing instruction: IMOVE at line: 32 with following arguments:
+# Arg1: TF@a=2(int)
+# Dest: GF@&pomInteger=2(int)
+# Executing instruction: IGT at line: 33 with following arguments:
+# Arg1: TF@a=2(int)
+# Arg2: Const@=0(int)
+# Dest: GF@&pomBool=true(bool)
+# Executing instruction: IJUMPIFNEQ at line: 34 with following arguments:
+# Arg1: GF@&pomBool=true(bool)
+# Arg2: Const@=true(bool)
+# Executing instruction: IMOVE at line: 35 with following arguments:
+# Arg1: TF@vysl=1814400(int)
+# Dest: GF@&pomInteger=2(int)
+# Executing instruction: IMULT at line: 36 with following arguments:
+# Arg1: TF@vysl=1814400(int)
+# Arg2: TF@a=2(int)
+# Dest: GF@&pomInteger=1814400(int)
+# Executing instruction: IMOVE at line: 37 with following arguments:
+# Arg1: GF@&pomInteger=3628800(int)
+# Dest: TF@vysl=1814400(int)
+# Executing instruction: IMOVE at line: 38 with following arguments:
+# Arg1: TF@a=2(int)
+# Dest: GF@&pomInteger=3628800(int)
+# Executing instruction: ISUB at line: 39 with following arguments:
+# Arg1: TF@a=2(int)
+# Arg2: Const@=1(int)
+# Dest: GF@&pomInteger=2(int)
+# Executing instruction: IMOVE at line: 40 with following arguments:
+# Arg1: GF@&pomInteger=1(int)
+# Dest: TF@a=2(int)
+# Executing instruction: IJUMP at line: 41 with following arguments:
+# Executing instruction: ILABEL at line: 31 with following arguments:
+# Executing instruction: IMOVE at line: 32 with following arguments:
+# Arg1: TF@a=1(int)
+# Dest: GF@&pomInteger=1(int)
+# Executing instruction: IGT at line: 33 with following arguments:
+# Arg1: TF@a=1(int)
+# Arg2: Const@=0(int)
+# Dest: GF@&pomBool=true(bool)
+# Executing instruction: IJUMPIFNEQ at line: 34 with following arguments:
+# Arg1: GF@&pomBool=true(bool)
+# Arg2: Const@=true(bool)
+# Executing instruction: IMOVE at line: 35 with following arguments:
+# Arg1: TF@vysl=3628800(int)
+# Dest: GF@&pomInteger=1(int)
+# Executing instruction: IMULT at line: 36 with following arguments:
+# Arg1: TF@vysl=3628800(int)
+# Arg2: TF@a=1(int)
+# Dest: GF@&pomInteger=3628800(int)
+# Executing instruction: IMOVE at line: 37 with following arguments:
+# Arg1: GF@&pomInteger=3628800(int)
+# Dest: TF@vysl=3628800(int)
+# Executing instruction: IMOVE at line: 38 with following arguments:
+# Arg1: TF@a=1(int)
+# Dest: GF@&pomInteger=3628800(int)
+# Executing instruction: ISUB at line: 39 with following arguments:
+# Arg1: TF@a=1(int)
+# Arg2: Const@=1(int)
+# Dest: GF@&pomInteger=1(int)
+# Executing instruction: IMOVE at line: 40 with following arguments:
+# Arg1: GF@&pomInteger=0(int)
+# Dest: TF@a=1(int)
+# Executing instruction: IJUMP at line: 41 with following arguments:
+# Executing instruction: ILABEL at line: 31 with following arguments:
+# Executing instruction: IMOVE at line: 32 with following arguments:
+# Arg1: TF@a=0(int)
+# Dest: GF@&pomInteger=0(int)
+# Executing instruction: IGT at line: 33 with following arguments:
+# Arg1: TF@a=0(int)
+# Arg2: Const@=0(int)
+# Dest: GF@&pomBool=true(bool)
+# Executing instruction: IJUMPIFNEQ at line: 34 with following arguments:
+# Arg1: GF@&pomBool=false(bool)
+# Arg2: Const@=true(bool)
+# Executing instruction: ILABEL at line: 42 with following arguments:
+# Executing instruction: IWRITE at line: 43 with following arguments:
+# Arg1: TF@vysl=3628800(int)
+# Executing instruction: ILABEL at line: 44 with following arguments:
+# Executing instruction: IGROOT at line: 46 with following arguments:
+# I am Groot at 46 (1135).
 # 
-# EXPECTED INTERPRETER STDOUT:
+# STDOUT DIFF:
+# --- expected
+# +++ actual
+# @@ -1 +1 @@
 
-# Zadejte cislo pro vypocet faktorialu?  3628800
-
-
-# CURRENT INTERPRETER STDOUT:
-
-
+# -Zadejte cislo pro vypocet faktorialu?  3628800
+# +Zadejte cislo pro vypocet faktorialu 3628800
 
 # INTERPRETER STDIN: 
 # 10
@@ -26,9 +420,9 @@
 # EXPECTED COMPILER EXIT CODE: 0
 # CURRENT COMPILER EXIT CODE: 0
 # EXPECTED INTERPRETER EXIT CODE: 0
-# CURRENT INTERPRETER EXIT CODE: 51
+# CURRENT INTERPRETER EXIT CODE: 0
 # PRICE: ---
-# GROOT: ---
+# GROOT: 1135
 # 
 #   1: ' factorial by iteration method
 #   2: 
@@ -51,50 +445,46 @@
 
 ########################################
 
-.IFJcode17                                                                      #     1/48
-JUMP $$scope                                                                    #     2/48
-LABEL $$scope                                                                   #     4/48
-DEFVAR GF@&pomInteger                                                           #     5/48
-MOVE GF@&pomInteger int@0                                                       #     6/48
-DEFVAR GF@&pomString                                                            #     7/48
-MOVE GF@&pomString string@                                                      #     8/48
-DEFVAR GF@&pomFloat                                                             #     9/48
-MOVE GF@&pomFloat float@0                                                       #    10/48
-DEFVAR GF@&pomBool                                                              #    11/48
-MOVE GF@&pomBool bool@false                                                     #    12/48
-DEFVAR GF@&pomCntr                                                              #    13/48
-MOVE GF@&pomCntr int@0                                                          #    14/48
-CREATEFRAME                                                                     #    15/48
-DEFVAR TF@a                                                                     #    17/48
-MOVE TF@a int@0                                                                 #    18/48
-DEFVAR TF@vysl                                                                  #    19/48
-MOVE TF@vysl int@0                                                              #    20/48
-WRITE string@Zadejte\032cislo\032pro\032vypocet\032faktorialu                   #    21/48
-READ TF@a int                                                                   #    22/48
-MOVE GF@&pomInteger TF@a                                                        #    23/48
-redukce                                                                         #    24/48
-LT GF@&pomBool TF@a int@0                                                       #    25/48
-JUMPIFNEQ $$else_1 GF@&pomBool bool@true                                        #    26/48
-WRITE string@\010Faktorial\032nelze\032spocitat\010                             #    27/48
-JUMP $$endif_1                                                                  #    28/48
-LABEL $$else_1                                                                  #    29/48
-MOVE GF@&pomInteger int@1                                                       #    30/48
-MOVE TF@vysl GF@&pomInteger                                                     #    31/48
-LABEL $$loop_1                                                                  #    32/48
-MOVE GF@&pomInteger TF@a                                                        #    33/48
-redukce                                                                         #    34/48
-GT GF@&pomBool TF@a int@0                                                       #    35/48
-JUMPIFNEQ $$loop_end_1 GF@&pomBool bool@true                                    #    36/48
-MOVE GF@&pomInteger TF@vysl                                                     #    37/48
-redukce                                                                         #    38/48
-MUL GF@&pomInteger TF@vysl TF@a                                                 #    39/48
-MOVE TF@vysl GF@&pomInteger                                                     #    40/48
-MOVE GF@&pomInteger TF@a                                                        #    41/48
-redukce                                                                         #    42/48
-SUB GF@&pomInteger TF@a int@1                                                   #    43/48
-MOVE TF@a GF@&pomInteger                                                        #    44/48
-JUMP $$loop_1                                                                   #    45/48
-LABEL $$loop_end_1                                                              #    46/48
-WRITE TF@vysl                                                                   #    47/48
-LABEL $$endif_1                                                                 #    48/48
+.IFJcode17                                                                      #     1/44
+JUMP $$scope                                                                    #     2/44
+LABEL $$scope                                                                   #     4/44
+DEFVAR GF@&pomInteger                                                           #     5/44
+MOVE GF@&pomInteger int@0                                                       #     6/44
+DEFVAR GF@&pomString                                                            #     7/44
+MOVE GF@&pomString string@                                                      #     8/44
+DEFVAR GF@&pomFloat                                                             #     9/44
+MOVE GF@&pomFloat float@0                                                       #    10/44
+DEFVAR GF@&pomBool                                                              #    11/44
+MOVE GF@&pomBool bool@false                                                     #    12/44
+DEFVAR GF@&pomCntr                                                              #    13/44
+MOVE GF@&pomCntr int@0                                                          #    14/44
+CREATEFRAME                                                                     #    15/44
+DEFVAR TF@a                                                                     #    17/44
+MOVE TF@a int@0                                                                 #    18/44
+DEFVAR TF@vysl                                                                  #    19/44
+MOVE TF@vysl int@0                                                              #    20/44
+WRITE string@Zadejte\032cislo\032pro\032vypocet\032faktorialu                   #    21/44
+READ TF@a int                                                                   #    22/44
+MOVE GF@&pomInteger TF@a                                                        #    23/44
+LT GF@&pomBool TF@a int@0                                                       #    24/44
+JUMPIFNEQ $$else_1 GF@&pomBool bool@true                                        #    25/44
+WRITE string@\010Faktorial\032nelze\032spocitat\010                             #    26/44
+JUMP $$endif_1                                                                  #    27/44
+LABEL $$else_1                                                                  #    28/44
+MOVE GF@&pomInteger int@1                                                       #    29/44
+MOVE TF@vysl GF@&pomInteger                                                     #    30/44
+LABEL $$loop_1                                                                  #    31/44
+MOVE GF@&pomInteger TF@a                                                        #    32/44
+GT GF@&pomBool TF@a int@0                                                       #    33/44
+JUMPIFNEQ $$loop_end_1 GF@&pomBool bool@true                                    #    34/44
+MOVE GF@&pomInteger TF@vysl                                                     #    35/44
+MUL GF@&pomInteger TF@vysl TF@a                                                 #    36/44
+MOVE TF@vysl GF@&pomInteger                                                     #    37/44
+MOVE GF@&pomInteger TF@a                                                        #    38/44
+SUB GF@&pomInteger TF@a int@1                                                   #    39/44
+MOVE TF@a GF@&pomInteger                                                        #    40/44
+JUMP $$loop_1                                                                   #    41/44
+LABEL $$loop_end_1                                                              #    42/44
+WRITE TF@vysl                                                                   #    43/44
+LABEL $$endif_1                                                                 #    44/44
 

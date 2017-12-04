@@ -1,4 +1,4 @@
-# 2017-12-04 12:08:01.852432
+# 2017-12-04 15:33:13.689483
 # SECTION: 97_optimizations
 # TEST: 04
 # INFO: constant propagation into loop II
@@ -8,7 +8,7 @@
 # 
 # COMPILER STDERR:
 # In if and loop statement can only be relational operators.
-# ERROR - 3 - sÃ©mantickÃ¡ chyba v programu â nedefinovanÃ¡ funkce/promeÌnnÃ¡, pokus o redefinici funkce/promeÌnnÃ©, atd.
+# ERROR -  6 - ostatnÃ­ sÃ©mantickÃ© chyby.
 # 
 # INTERPRETER STDERR:
 # 
@@ -74,7 +74,7 @@
 # 
 #
 # EXPECTED COMPILER EXIT CODE: 0
-# CURRENT COMPILER EXIT CODE: 3
+# CURRENT COMPILER EXIT CODE: 6
 # EXPECTED INTERPRETER EXIT CODE: 0
 # CURRENT INTERPRETER EXIT CODE: None
 # PRICE: ---
@@ -96,37 +96,34 @@
 
 ########################################
 
-.IFJcode17                                                                      #     1/35
-JUMP $$scope                                                                    #     2/35
-LABEL $$scope                                                                   #     4/35
-DEFVAR GF@&pomInteger                                                           #     5/35
-MOVE GF@&pomInteger int@0                                                       #     6/35
-DEFVAR GF@&pomString                                                            #     7/35
-MOVE GF@&pomString string@                                                      #     8/35
-DEFVAR GF@&pomFloat                                                             #     9/35
-MOVE GF@&pomFloat float@0                                                       #    10/35
-DEFVAR GF@&pomBool                                                              #    11/35
-MOVE GF@&pomBool bool@false                                                     #    12/35
-DEFVAR GF@&pomCntr                                                              #    13/35
-MOVE GF@&pomCntr int@0                                                          #    14/35
-CREATEFRAME                                                                     #    15/35
-DEFVAR TF@counter                                                               #    17/35
-MOVE TF@counter int@0                                                           #    18/35
-MOVE GF@&pomInteger int@50                                                      #    19/35
-MOVE TF@counter GF@&pomInteger                                                  #    20/35
-DEFVAR TF@constant                                                              #    21/35
-MOVE TF@constant int@0                                                          #    22/35
-MOVE GF@&pomInteger int@8                                                       #    23/35
-redukce                                                                         #    24/35
-ADD GF@&pomInteger int@8 int@7                                                  #    25/35
-MOVE TF@constant GF@&pomInteger                                                 #    26/35
-LABEL $$loop_1                                                                  #    27/35
-MOVE GF@&pomInteger TF@counter                                                  #    28/35
-redukce                                                                         #    29/35
-GT GF@&pomBool TF@counter int@0                                                 #    30/35
-JUMPIFNEQ $$loop_end_1 GF@&pomBool bool@true                                    #    31/35
-WRITE TF@10.2                                                                   #    32/35
-WRITE TF@98                                                                     #    33/35
-redukce                                                                         #    34/35
-ERROR on line 8                                                                 #    35/35
+.IFJcode17                                                                      #     1/32
+JUMP $$scope                                                                    #     2/32
+LABEL $$scope                                                                   #     4/32
+DEFVAR GF@&pomInteger                                                           #     5/32
+MOVE GF@&pomInteger int@0                                                       #     6/32
+DEFVAR GF@&pomString                                                            #     7/32
+MOVE GF@&pomString string@                                                      #     8/32
+DEFVAR GF@&pomFloat                                                             #     9/32
+MOVE GF@&pomFloat float@0                                                       #    10/32
+DEFVAR GF@&pomBool                                                              #    11/32
+MOVE GF@&pomBool bool@false                                                     #    12/32
+DEFVAR GF@&pomCntr                                                              #    13/32
+MOVE GF@&pomCntr int@0                                                          #    14/32
+CREATEFRAME                                                                     #    15/32
+DEFVAR TF@counter                                                               #    17/32
+MOVE TF@counter int@0                                                           #    18/32
+MOVE GF@&pomInteger int@50                                                      #    19/32
+MOVE TF@counter GF@&pomInteger                                                  #    20/32
+DEFVAR TF@constant                                                              #    21/32
+MOVE TF@constant int@0                                                          #    22/32
+MOVE GF@&pomInteger int@8                                                       #    23/32
+ADD GF@&pomInteger int@8 int@7                                                  #    24/32
+MOVE TF@constant GF@&pomInteger                                                 #    25/32
+LABEL $$loop_1                                                                  #    26/32
+MOVE GF@&pomInteger TF@counter                                                  #    27/32
+GT GF@&pomBool TF@counter int@0                                                 #    28/32
+JUMPIFNEQ $$loop_end_1 GF@&pomBool bool@true                                    #    29/32
+WRITE float@10.2                                                                #    30/32
+WRITE int@98                                                                    #    31/32
+ERROR on line 8                                                                 #    32/32
 

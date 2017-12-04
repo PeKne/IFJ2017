@@ -1,4 +1,4 @@
-# 2017-12-04 12:08:00.998166
+# 2017-12-04 15:33:12.266313
 # SECTION: 02_functions
 # TEST: 12
 # INFO: Recursive function
@@ -53,53 +53,51 @@
 
 ########################################
 
-.IFJcode17                                                                      #     1/52
-JUMP $$scope                                                                    #     2/52
-rule_par                                                                        #     4/52
-rule next par                                                                   #     5/52
-LABEL $recursive                                                                #     6/52
-PUSHFRAME                                                                       #     7/52
-DEFVAR LF@&retval                                                               #     8/52
-DEFVAR LF@param0                                                                #     9/52
-MOVE LF@param0 int@0                                                            #    10/52
-MOVE GF@&pomInteger int@12                                                      #    11/52
-MOVE LF@param0 GF@&pomInteger                                                   #    12/52
-DEFVAR LF@res                                                                   #    13/52
-MOVE LF@res int@0                                                               #    14/52
-MOVE GF@&pomInteger int@10                                                      #    15/52
-MOVE LF@res GF@&pomInteger                                                      #    16/52
-MOVE GF@&pomInteger LF@param                                                    #    17/52
-redukce                                                                         #    18/52
-SUB GF@&pomInteger LF@param int@1                                               #    19/52
-MOVE LF@param0 GF@&pomInteger                                                   #    20/52
-MOVE GF@&pomInteger LF@param                                                    #    21/52
-redukce                                                                         #    22/52
-EQ GF@&pomBool LF@param int@0                                                   #    23/52
-JUMPIFNEQ $$else_1 GF@&pomBool bool@true                                        #    24/52
-JUMP $$endif_1                                                                  #    25/52
-LABEL $$else_1                                                                  #    26/52
-CALL $recursive                                                                 #    27/52
-MOVE LF@res LF@&retval                                                          #    28/52
-MOVE GF@&pomInteger LF@res                                                      #    29/52
-LABEL $$endif_1                                                                 #    30/52
-MOVE LF@&retval GF@&pomInteger                                                  #    31/52
-POPFRAME                                                                        #    32/52
-RETURN                                                                          #    33/52
-LABEL $$scope                                                                   #    35/52
-DEFVAR GF@&pomInteger                                                           #    36/52
-MOVE GF@&pomInteger int@0                                                       #    37/52
-DEFVAR GF@&pomString                                                            #    38/52
-MOVE GF@&pomString string@                                                      #    39/52
-DEFVAR GF@&pomFloat                                                             #    40/52
-MOVE GF@&pomFloat float@0                                                       #    41/52
-DEFVAR GF@&pomBool                                                              #    42/52
-MOVE GF@&pomBool bool@false                                                     #    43/52
-DEFVAR GF@&pomCntr                                                              #    44/52
-MOVE GF@&pomCntr int@0                                                          #    45/52
-CREATEFRAME                                                                     #    46/52
-DEFVAR TF@a                                                                     #    48/52
-MOVE TF@a int@0                                                                 #    49/52
-MOVE GF@&pomInteger int@12                                                      #    50/52
-MOVE TF@a GF@&pomInteger                                                        #    51/52
-ERROR on line 17                                                                #    52/52
+.IFJcode17                                                                      #     1/50
+JUMP $$scope                                                                    #     2/50
+rule_par                                                                        #     4/50
+rule next par                                                                   #     5/50
+LABEL $recursive                                                                #     6/50
+PUSHFRAME                                                                       #     7/50
+DEFVAR LF@&retval                                                               #     8/50
+DEFVAR LF@param0                                                                #     9/50
+MOVE LF@param0 int@0                                                            #    10/50
+MOVE GF@&pomInteger int@12                                                      #    11/50
+MOVE LF@param0 GF@&pomInteger                                                   #    12/50
+DEFVAR LF@res                                                                   #    13/50
+MOVE LF@res int@0                                                               #    14/50
+MOVE GF@&pomInteger int@10                                                      #    15/50
+MOVE LF@res GF@&pomInteger                                                      #    16/50
+MOVE GF@&pomInteger LF@param                                                    #    17/50
+SUB GF@&pomInteger LF@param int@1                                               #    18/50
+MOVE LF@param0 GF@&pomInteger                                                   #    19/50
+MOVE GF@&pomInteger LF@param                                                    #    20/50
+EQ GF@&pomBool LF@param int@0                                                   #    21/50
+JUMPIFNEQ $$else_1 GF@&pomBool bool@true                                        #    22/50
+JUMP $$endif_1                                                                  #    23/50
+LABEL $$else_1                                                                  #    24/50
+CALL $recursive                                                                 #    25/50
+MOVE LF@res LF@&retval                                                          #    26/50
+MOVE GF@&pomInteger LF@res                                                      #    27/50
+LABEL $$endif_1                                                                 #    28/50
+MOVE LF@&retval GF@&pomInteger                                                  #    29/50
+POPFRAME                                                                        #    30/50
+RETURN                                                                          #    31/50
+LABEL $$scope                                                                   #    33/50
+DEFVAR GF@&pomInteger                                                           #    34/50
+MOVE GF@&pomInteger int@0                                                       #    35/50
+DEFVAR GF@&pomString                                                            #    36/50
+MOVE GF@&pomString string@                                                      #    37/50
+DEFVAR GF@&pomFloat                                                             #    38/50
+MOVE GF@&pomFloat float@0                                                       #    39/50
+DEFVAR GF@&pomBool                                                              #    40/50
+MOVE GF@&pomBool bool@false                                                     #    41/50
+DEFVAR GF@&pomCntr                                                              #    42/50
+MOVE GF@&pomCntr int@0                                                          #    43/50
+CREATEFRAME                                                                     #    44/50
+DEFVAR TF@a                                                                     #    46/50
+MOVE TF@a int@0                                                                 #    47/50
+MOVE GF@&pomInteger int@12                                                      #    48/50
+MOVE TF@a GF@&pomInteger                                                        #    49/50
+ERROR on line 17                                                                #    50/50
 

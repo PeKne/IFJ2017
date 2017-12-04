@@ -1,4 +1,4 @@
-# 2017-12-04 12:08:00.911909
+# 2017-12-04 15:33:12.119220
 # SECTION: 01_basic
 # TEST: 30
 # INFO: All formats of double
@@ -8,7 +8,7 @@
 # 
 # COMPILER STDERR:
 # In if and loop statement can only be relational operators.
-# ERROR - 3 - sÃ©mantickÃ¡ chyba v programu â nedefinovanÃ¡ funkce/promeÌnnÃ¡, pokus o redefinici funkce/promeÌnnÃ©, atd.
+# ERROR -  6 - ostatnÃ­ sÃ©mantickÃ© chyby.
 # 
 # INTERPRETER STDERR:
 # 
@@ -25,7 +25,7 @@
 # 
 #
 # EXPECTED COMPILER EXIT CODE: 0
-# CURRENT COMPILER EXIT CODE: 3
+# CURRENT COMPILER EXIT CODE: 6
 # EXPECTED INTERPRETER EXIT CODE: 0
 # CURRENT INTERPRETER EXIT CODE: None
 # PRICE: ---
@@ -49,58 +49,57 @@
 
 ########################################
 
-.IFJcode17                                                                      #     1/56
-JUMP $$scope                                                                    #     2/56
-LABEL $$scope                                                                   #     4/56
-DEFVAR GF@&pomInteger                                                           #     5/56
-MOVE GF@&pomInteger int@0                                                       #     6/56
-DEFVAR GF@&pomString                                                            #     7/56
-MOVE GF@&pomString string@                                                      #     8/56
-DEFVAR GF@&pomFloat                                                             #     9/56
-MOVE GF@&pomFloat float@0                                                       #    10/56
-DEFVAR GF@&pomBool                                                              #    11/56
-MOVE GF@&pomBool bool@false                                                     #    12/56
-DEFVAR GF@&pomCntr                                                              #    13/56
-MOVE GF@&pomCntr int@0                                                          #    14/56
-CREATEFRAME                                                                     #    15/56
-DEFVAR TF@a                                                                     #    17/56
-MOVE TF@a float@0                                                               #    18/56
-MOVE GF@&pomFloat float@11.43                                                   #    19/56
-MOVE TF@a GF@&pomFloat                                                          #    20/56
-DEFVAR TF@b                                                                     #    21/56
-MOVE TF@b float@0                                                               #    22/56
-MOVE GF@&pomFloat float@31e2                                                    #    23/56
-MOVE TF@b GF@&pomFloat                                                          #    24/56
-DEFVAR TF@c                                                                     #    25/56
-MOVE TF@c float@0                                                               #    26/56
-MOVE GF@&pomFloat float@31e-3                                                   #    27/56
-MOVE TF@c GF@&pomFloat                                                          #    28/56
-DEFVAR TF@d                                                                     #    29/56
-MOVE TF@d float@0                                                               #    30/56
-MOVE GF@&pomFloat float@31.42e2                                                 #    31/56
-MOVE TF@d GF@&pomFloat                                                          #    32/56
-DEFVAR TF@e                                                                     #    33/56
-MOVE TF@e float@0                                                               #    34/56
-MOVE GF@&pomFloat float@31.42e-2                                                #    35/56
-MOVE TF@e GF@&pomFloat                                                          #    36/56
-DEFVAR TF@f                                                                     #    37/56
-MOVE TF@f float@0                                                               #    38/56
-MOVE GF@&pomFloat float@31e2                                                    #    39/56
-MOVE TF@f GF@&pomFloat                                                          #    40/56
-DEFVAR TF@g                                                                     #    41/56
-MOVE TF@g float@0                                                               #    42/56
-MOVE GF@&pomFloat float@341e-4                                                  #    43/56
-MOVE TF@g GF@&pomFloat                                                          #    44/56
-DEFVAR TF@h                                                                     #    45/56
-MOVE TF@h float@0                                                               #    46/56
-MOVE GF@&pomFloat float@31.42e2                                                 #    47/56
-MOVE TF@h GF@&pomFloat                                                          #    48/56
-DEFVAR TF@i                                                                     #    49/56
-MOVE TF@i float@0                                                               #    50/56
-MOVE GF@&pomFloat float@31.42e-2                                                #    51/56
-MOVE TF@i GF@&pomFloat                                                          #    52/56
-WRITE TF@a                                                                      #    53/56
-WRITE TF@b                                                                      #    54/56
-redukce                                                                         #    55/56
-ERROR on line 13                                                                #    56/56
+.IFJcode17                                                                      #     1/55
+JUMP $$scope                                                                    #     2/55
+LABEL $$scope                                                                   #     4/55
+DEFVAR GF@&pomInteger                                                           #     5/55
+MOVE GF@&pomInteger int@0                                                       #     6/55
+DEFVAR GF@&pomString                                                            #     7/55
+MOVE GF@&pomString string@                                                      #     8/55
+DEFVAR GF@&pomFloat                                                             #     9/55
+MOVE GF@&pomFloat float@0                                                       #    10/55
+DEFVAR GF@&pomBool                                                              #    11/55
+MOVE GF@&pomBool bool@false                                                     #    12/55
+DEFVAR GF@&pomCntr                                                              #    13/55
+MOVE GF@&pomCntr int@0                                                          #    14/55
+CREATEFRAME                                                                     #    15/55
+DEFVAR TF@a                                                                     #    17/55
+MOVE TF@a float@0                                                               #    18/55
+MOVE GF@&pomFloat float@11.43                                                   #    19/55
+MOVE TF@a GF@&pomFloat                                                          #    20/55
+DEFVAR TF@b                                                                     #    21/55
+MOVE TF@b float@0                                                               #    22/55
+MOVE GF@&pomFloat float@31e2                                                    #    23/55
+MOVE TF@b GF@&pomFloat                                                          #    24/55
+DEFVAR TF@c                                                                     #    25/55
+MOVE TF@c float@0                                                               #    26/55
+MOVE GF@&pomFloat float@31e-3                                                   #    27/55
+MOVE TF@c GF@&pomFloat                                                          #    28/55
+DEFVAR TF@d                                                                     #    29/55
+MOVE TF@d float@0                                                               #    30/55
+MOVE GF@&pomFloat float@31.42e2                                                 #    31/55
+MOVE TF@d GF@&pomFloat                                                          #    32/55
+DEFVAR TF@e                                                                     #    33/55
+MOVE TF@e float@0                                                               #    34/55
+MOVE GF@&pomFloat float@31.42e-2                                                #    35/55
+MOVE TF@e GF@&pomFloat                                                          #    36/55
+DEFVAR TF@f                                                                     #    37/55
+MOVE TF@f float@0                                                               #    38/55
+MOVE GF@&pomFloat float@31e2                                                    #    39/55
+MOVE TF@f GF@&pomFloat                                                          #    40/55
+DEFVAR TF@g                                                                     #    41/55
+MOVE TF@g float@0                                                               #    42/55
+MOVE GF@&pomFloat float@341e-4                                                  #    43/55
+MOVE TF@g GF@&pomFloat                                                          #    44/55
+DEFVAR TF@h                                                                     #    45/55
+MOVE TF@h float@0                                                               #    46/55
+MOVE GF@&pomFloat float@31.42e2                                                 #    47/55
+MOVE TF@h GF@&pomFloat                                                          #    48/55
+DEFVAR TF@i                                                                     #    49/55
+MOVE TF@i float@0                                                               #    50/55
+MOVE GF@&pomFloat float@31.42e-2                                                #    51/55
+MOVE TF@i GF@&pomFloat                                                          #    52/55
+WRITE TF@a                                                                      #    53/55
+WRITE TF@b                                                                      #    54/55
+ERROR on line 13                                                                #    55/55
 

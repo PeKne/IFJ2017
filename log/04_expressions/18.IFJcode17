@@ -1,4 +1,4 @@
-# 2017-12-04 12:08:01.150024
+# 2017-12-04 15:33:12.451710
 # SECTION: 04_expressions
 # TEST: 18
 # INFO: comments inside expressions
@@ -49,33 +49,32 @@
 
 ########################################
 
-.IFJcode17                                                                      #     1/32
-JUMP $$scope                                                                    #     2/32
-rule_par                                                                        #     4/32
-LABEL $foo                                                                      #     5/32
-PUSHFRAME                                                                       #     6/32
-DEFVAR LF@&retval                                                               #     7/32
-MOVE LF@&retval GF@&pomInteger                                                  #     8/32
-POPFRAME                                                                        #     9/32
-RETURN                                                                          #    10/32
-LABEL $$scope                                                                   #    12/32
-DEFVAR GF@&pomInteger                                                           #    13/32
-MOVE GF@&pomInteger int@0                                                       #    14/32
-DEFVAR GF@&pomString                                                            #    15/32
-MOVE GF@&pomString string@                                                      #    16/32
-DEFVAR GF@&pomFloat                                                             #    17/32
-MOVE GF@&pomFloat float@0                                                       #    18/32
-DEFVAR GF@&pomBool                                                              #    19/32
-MOVE GF@&pomBool bool@false                                                     #    20/32
-DEFVAR GF@&pomCntr                                                              #    21/32
-MOVE GF@&pomCntr int@0                                                          #    22/32
-CREATEFRAME                                                                     #    23/32
-DEFVAR TF@a                                                                     #    25/32
-MOVE TF@a int@0                                                                 #    26/32
-CALL $foo                                                                       #    27/32
-MOVE TF@a TF@&retval                                                            #    28/32
-MOVE GF@&pomInteger TF@a                                                        #    29/32
-redukce                                                                         #    30/32
-ADD GF@&pomInteger TF@a int@3                                                   #    31/32
-ERROR on line 11                                                                #    32/32
+.IFJcode17                                                                      #     1/31
+JUMP $$scope                                                                    #     2/31
+rule_par                                                                        #     4/31
+LABEL $foo                                                                      #     5/31
+PUSHFRAME                                                                       #     6/31
+DEFVAR LF@&retval                                                               #     7/31
+MOVE LF@&retval GF@&pomInteger                                                  #     8/31
+POPFRAME                                                                        #     9/31
+RETURN                                                                          #    10/31
+LABEL $$scope                                                                   #    12/31
+DEFVAR GF@&pomInteger                                                           #    13/31
+MOVE GF@&pomInteger int@0                                                       #    14/31
+DEFVAR GF@&pomString                                                            #    15/31
+MOVE GF@&pomString string@                                                      #    16/31
+DEFVAR GF@&pomFloat                                                             #    17/31
+MOVE GF@&pomFloat float@0                                                       #    18/31
+DEFVAR GF@&pomBool                                                              #    19/31
+MOVE GF@&pomBool bool@false                                                     #    20/31
+DEFVAR GF@&pomCntr                                                              #    21/31
+MOVE GF@&pomCntr int@0                                                          #    22/31
+CREATEFRAME                                                                     #    23/31
+DEFVAR TF@a                                                                     #    25/31
+MOVE TF@a int@0                                                                 #    26/31
+CALL $foo                                                                       #    27/31
+MOVE TF@a TF@&retval                                                            #    28/31
+MOVE GF@&pomInteger TF@a                                                        #    29/31
+ADD GF@&pomInteger TF@a int@3                                                   #    30/31
+ERROR on line 11                                                                #    31/31
 

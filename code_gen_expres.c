@@ -10,6 +10,7 @@
 extern int p;
 extern int whole_div_cntr;
 
+// Zkontroluje, jestli je typ double, jinak vrátí integer
 int isDouble(char *operand) {
     int operand_type = st_integer;
     int length = strlen(operand);
@@ -22,6 +23,7 @@ int isDouble(char *operand) {
     return operand_type;
 }
 
+// vrací typ promenné v retezci, ktery se pote tiskne
 int check_operand (char *operand) {
     int operand_type;
     if (!isdigit(operand[0])) {
@@ -41,20 +43,18 @@ int check_operand (char *operand) {
     return operand_type;
 }
 
+// na základě cílové proměnné vybere datový typ, do kterého se bude výraz převádět a správně zvolí kontext pro generaci kodu
 int set_context(Tstring *context, int operand_type, Tstate dest_type, Tstring *operand) {  
     double converted = 0.0;  
     if (operand_type == st_id) {
         if (p == 0) str_rewrite_data(context, "TF@");
         else        str_rewrite_data(context, "LF@");
     } else if (operand_type == st_integer){
-        //TODO PRI IF A WHILE SPATNY TYP DRUHE PROMENNE - NEMA BYT VZDY TEN PRVNI
-        if (dest_type == st_integer || dest_type == 0) {
+        if (dest_type == st_integer || dest_type == 0) { // dest_type 0 znamena, ze se vyraz nebude nikam prirazovat
             str_rewrite_data(context, "int@");
         }
         else if (dest_type == st_double || dest_type == 0) {
             str_rewrite_data(context, "float@");
-            /*str_push_char(operand,'.');
-            str_push_char(operand,'0');*/
         }
 
         else {

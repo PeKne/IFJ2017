@@ -1,4 +1,4 @@
-# 2017-12-04 12:08:01.505876
+# 2017-12-04 15:33:13.268638
 # SECTION: 66_errors
 # TEST: 104
 # INFO: Error in type compatibility
@@ -38,25 +38,23 @@
 
 ########################################
 
-.IFJcode17                                                                      #     1/23
-JUMP $$scope                                                                    #     2/23
-LABEL $$scope                                                                   #     4/23
-DEFVAR GF@&pomInteger                                                           #     5/23
-MOVE GF@&pomInteger int@0                                                       #     6/23
-DEFVAR GF@&pomString                                                            #     7/23
-MOVE GF@&pomString string@                                                      #     8/23
-DEFVAR GF@&pomFloat                                                             #     9/23
-MOVE GF@&pomFloat float@0                                                       #    10/23
-DEFVAR GF@&pomBool                                                              #    11/23
-MOVE GF@&pomBool bool@false                                                     #    12/23
-DEFVAR GF@&pomCntr                                                              #    13/23
-MOVE GF@&pomCntr int@0                                                          #    14/23
-CREATEFRAME                                                                     #    15/23
-DEFVAR TF@a                                                                     #    17/23
-MOVE TF@a string@                                                               #    18/23
-MOVE GF@&pomString TF@a                                                         #    19/23
-redukce                                                                         #    20/23
-ADD GF@&pomString TF@a string@ahoj                                              #    21/23
-redukce                                                                         #    22/23
-ERROR on line 3                                                                 #    23/23
+.IFJcode17                                                                      #     1/21
+JUMP $$scope                                                                    #     2/21
+LABEL $$scope                                                                   #     4/21
+DEFVAR GF@&pomInteger                                                           #     5/21
+MOVE GF@&pomInteger int@0                                                       #     6/21
+DEFVAR GF@&pomString                                                            #     7/21
+MOVE GF@&pomString string@                                                      #     8/21
+DEFVAR GF@&pomFloat                                                             #     9/21
+MOVE GF@&pomFloat float@0                                                       #    10/21
+DEFVAR GF@&pomBool                                                              #    11/21
+MOVE GF@&pomBool bool@false                                                     #    12/21
+DEFVAR GF@&pomCntr                                                              #    13/21
+MOVE GF@&pomCntr int@0                                                          #    14/21
+CREATEFRAME                                                                     #    15/21
+DEFVAR TF@a                                                                     #    17/21
+MOVE TF@a string@                                                               #    18/21
+MOVE GF@&pomString TF@a                                                         #    19/21
+ADD GF@&pomString TF@a string@ahoj                                              #    20/21
+ERROR on line 3                                                                 #    21/21
 

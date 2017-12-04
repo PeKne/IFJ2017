@@ -1,4 +1,4 @@
-# 2017-12-04 12:08:01.256635
+# 2017-12-04 15:33:12.654026
 # SECTION: 06_loops
 # TEST: 03
 # INFO: nested while loop
@@ -8,7 +8,7 @@
 # 
 # COMPILER STDERR:
 # In if and loop statement can only be relational operators.
-# ERROR - 3 - sÃ©mantickÃ¡ chyba v programu â nedefinovanÃ¡ funkce/promeÌnnÃ¡, pokus o redefinici funkce/promeÌnnÃ©, atd.
+# ERROR -  6 - ostatnÃ­ sÃ©mantickÃ© chyby.
 # 
 # INTERPRETER STDERR:
 # 
@@ -25,7 +25,7 @@
 # 
 #
 # EXPECTED COMPILER EXIT CODE: 0
-# CURRENT COMPILER EXIT CODE: 3
+# CURRENT COMPILER EXIT CODE: 6
 # EXPECTED INTERPRETER EXIT CODE: 0
 # CURRENT INTERPRETER EXIT CODE: None
 # PRICE: ---
@@ -47,30 +47,29 @@
 
 ########################################
 
-.IFJcode17                                                                      #     1/28
-JUMP $$scope                                                                    #     2/28
-LABEL $$scope                                                                   #     4/28
-DEFVAR GF@&pomInteger                                                           #     5/28
-MOVE GF@&pomInteger int@0                                                       #     6/28
-DEFVAR GF@&pomString                                                            #     7/28
-MOVE GF@&pomString string@                                                      #     8/28
-DEFVAR GF@&pomFloat                                                             #     9/28
-MOVE GF@&pomFloat float@0                                                       #    10/28
-DEFVAR GF@&pomBool                                                              #    11/28
-MOVE GF@&pomBool bool@false                                                     #    12/28
-DEFVAR GF@&pomCntr                                                              #    13/28
-MOVE GF@&pomCntr int@0                                                          #    14/28
-CREATEFRAME                                                                     #    15/28
-DEFVAR TF@a                                                                     #    17/28
-MOVE TF@a int@0                                                                 #    18/28
-MOVE GF@&pomInteger int@25                                                      #    19/28
-MOVE TF@a GF@&pomInteger                                                        #    20/28
-DEFVAR TF@b                                                                     #    21/28
-MOVE TF@b int@0                                                                 #    22/28
-MOVE GF@&pomInteger int@10                                                      #    23/28
-MOVE TF@b GF@&pomInteger                                                        #    24/28
-LABEL $$loop_1                                                                  #    25/28
-MOVE GF@&pomInteger TF@a                                                        #    26/28
-redukce                                                                         #    27/28
-ERROR on line 5                                                                 #    28/28
+.IFJcode17                                                                      #     1/27
+JUMP $$scope                                                                    #     2/27
+LABEL $$scope                                                                   #     4/27
+DEFVAR GF@&pomInteger                                                           #     5/27
+MOVE GF@&pomInteger int@0                                                       #     6/27
+DEFVAR GF@&pomString                                                            #     7/27
+MOVE GF@&pomString string@                                                      #     8/27
+DEFVAR GF@&pomFloat                                                             #     9/27
+MOVE GF@&pomFloat float@0                                                       #    10/27
+DEFVAR GF@&pomBool                                                              #    11/27
+MOVE GF@&pomBool bool@false                                                     #    12/27
+DEFVAR GF@&pomCntr                                                              #    13/27
+MOVE GF@&pomCntr int@0                                                          #    14/27
+CREATEFRAME                                                                     #    15/27
+DEFVAR TF@a                                                                     #    17/27
+MOVE TF@a int@0                                                                 #    18/27
+MOVE GF@&pomInteger int@25                                                      #    19/27
+MOVE TF@a GF@&pomInteger                                                        #    20/27
+DEFVAR TF@b                                                                     #    21/27
+MOVE TF@b int@0                                                                 #    22/27
+MOVE GF@&pomInteger int@10                                                      #    23/27
+MOVE TF@b GF@&pomInteger                                                        #    24/27
+LABEL $$loop_1                                                                  #    25/27
+MOVE GF@&pomInteger TF@a                                                        #    26/27
+ERROR on line 5                                                                 #    27/27
 

@@ -1,4 +1,4 @@
-# 2017-12-04 12:08:01.250457
+# 2017-12-04 15:33:12.641113
 # SECTION: 05_conditions
 # TEST: 17
 # INFO: String relations
@@ -14,16 +14,147 @@
 # Chyba v code_gen_expres TF@GF@&pomString TF@a string@ahoj
 # 
 # INTERPRETER STDERR:
-# 22.1-7: syntax error, unexpected ID, expecting END
+# Executing instruction: IJUMP at line: 2 with following arguments:
+# Executing instruction: ILABEL at line: 4 with following arguments:
+# Executing instruction: IDEFVAR at line: 5 with following arguments:
+# Dest: GF@&pomInteger
+# Executing instruction: IMOVE at line: 6 with following arguments:
+# Arg1: Const@=0(int)
+# Dest: GF@&pomInteger()
+# Executing instruction: IDEFVAR at line: 7 with following arguments:
+# Dest: GF@&pomString
+# Executing instruction: IMOVE at line: 8 with following arguments:
+# Arg1: Const@=(string)
+# Dest: GF@&pomString()
+# Executing instruction: IDEFVAR at line: 9 with following arguments:
+# Dest: GF@&pomFloat
+# Executing instruction: IMOVE at line: 10 with following arguments:
+# Arg1: Const@=0(double)
+# Dest: GF@&pomFloat()
+# Executing instruction: IDEFVAR at line: 11 with following arguments:
+# Dest: GF@&pomBool
+# Executing instruction: IMOVE at line: 12 with following arguments:
+# Arg1: Const@=false(bool)
+# Dest: GF@&pomBool()
+# Executing instruction: IDEFVAR at line: 13 with following arguments:
+# Dest: GF@&pomCntr
+# Executing instruction: IMOVE at line: 14 with following arguments:
+# Arg1: Const@=0(int)
+# Dest: GF@&pomCntr()
+# Executing instruction: ICREATEFRAME at line: 15 with following arguments:
+# Executing instruction: IDEFVAR at line: 17 with following arguments:
+# Dest: TF@a
+# Executing instruction: IMOVE at line: 18 with following arguments:
+# Arg1: Const@=(string)
+# Dest: TF@a()
+# Executing instruction: IMOVE at line: 19 with following arguments:
+# Arg1: Const@=ahoj(string)
+# Dest: GF@&pomString=(string)
+# Executing instruction: IMOVE at line: 20 with following arguments:
+# Arg1: GF@&pomString=ahoj(string)
+# Dest: TF@a=(string)
+# Executing instruction: IMOVE at line: 21 with following arguments:
+# Arg1: TF@a=ahoj(string)
+# Dest: GF@&pomString=ahoj(string)
+# Executing instruction: ILS at line: 22 with following arguments:
+# Arg1: TF@a=ahoj(string)
+# Arg2: Const@=bhoj(string)
+# Dest: GF@&pomBool=false(bool)
+# Executing instruction: IJUMPIFNEQ at line: 23 with following arguments:
+# Arg1: GF@&pomBool=true(bool)
+# Arg2: Const@=true(bool)
+# Executing instruction: IWRITE at line: 24 with following arguments:
+# Arg1: Const@=OK(string)
+# Executing instruction: IJUMP at line: 25 with following arguments:
+# Executing instruction: ILABEL at line: 28 with following arguments:
+# Executing instruction: IMOVE at line: 29 with following arguments:
+# Arg1: TF@a=ahoj(string)
+# Dest: GF@&pomString=ahoj(string)
+# Executing instruction: IJUMPIFNEQ at line: 30 with following arguments:
+# Arg1: GF@&pomBool=true(bool)
+# Arg2: Const@=true(bool)
+# Executing instruction: IWRITE at line: 31 with following arguments:
+# Arg1: Const@=OK(string)
+# Executing instruction: IJUMP at line: 32 with following arguments:
+# Executing instruction: ILABEL at line: 35 with following arguments:
+# Executing instruction: IMOVE at line: 36 with following arguments:
+# Arg1: TF@a=ahoj(string)
+# Dest: GF@&pomString=ahoj(string)
+# Executing instruction: IJUMPIFNEQ at line: 37 with following arguments:
+# Arg1: GF@&pomBool=true(bool)
+# Arg2: Const@=true(bool)
+# Executing instruction: IWRITE at line: 38 with following arguments:
+# Arg1: Const@=OK(string)
+# Executing instruction: IJUMP at line: 39 with following arguments:
+# Executing instruction: ILABEL at line: 42 with following arguments:
+# Executing instruction: IMOVE at line: 43 with following arguments:
+# Arg1: TF@a=ahoj(string)
+# Dest: GF@&pomString=ahoj(string)
+# Executing instruction: IJUMPIFNEQ at line: 44 with following arguments:
+# Arg1: GF@&pomBool=true(bool)
+# Arg2: Const@=true(bool)
+# Executing instruction: IWRITE at line: 45 with following arguments:
+# Arg1: Const@=OK(string)
+# Executing instruction: IJUMP at line: 46 with following arguments:
+# Executing instruction: ILABEL at line: 49 with following arguments:
+# Executing instruction: IMOVE at line: 50 with following arguments:
+# Arg1: TF@a=ahoj(string)
+# Dest: GF@&pomString=ahoj(string)
+# Executing instruction: IJUMPIFNEQ at line: 51 with following arguments:
+# Arg1: GF@&pomBool=true(bool)
+# Arg2: Const@=true(bool)
+# Executing instruction: IWRITE at line: 52 with following arguments:
+# Arg1: Const@=OK(string)
+# Executing instruction: IJUMP at line: 53 with following arguments:
+# Executing instruction: ILABEL at line: 56 with following arguments:
+# Executing instruction: IMOVE at line: 57 with following arguments:
+# Arg1: TF@a=ahoj(string)
+# Dest: GF@&pomString=ahoj(string)
+# Executing instruction: IJUMPIFNEQ at line: 58 with following arguments:
+# Arg1: GF@&pomBool=true(bool)
+# Arg2: Const@=true(bool)
+# Executing instruction: IWRITE at line: 59 with following arguments:
+# Arg1: Const@=OK(string)
+# Executing instruction: IJUMP at line: 60 with following arguments:
+# Executing instruction: ILABEL at line: 63 with following arguments:
+# Executing instruction: IMOVE at line: 64 with following arguments:
+# Arg1: TF@a=ahoj(string)
+# Dest: GF@&pomString=ahoj(string)
+# Executing instruction: IEQ at line: 65 with following arguments:
+# Arg1: TF@a=ahoj(string)
+# Arg2: Const@=ahoj(string)
+# Dest: GF@&pomBool=true(bool)
+# Executing instruction: IJUMPIFNEQ at line: 66 with following arguments:
+# Arg1: GF@&pomBool=true(bool)
+# Arg2: Const@=true(bool)
+# Executing instruction: IWRITE at line: 67 with following arguments:
+# Arg1: Const@=OK(string)
+# Executing instruction: IJUMP at line: 68 with following arguments:
+# Executing instruction: ILABEL at line: 71 with following arguments:
+# Executing instruction: IMOVE at line: 72 with following arguments:
+# Arg1: TF@a=ahoj(string)
+# Dest: GF@&pomString=ahoj(string)
+# Executing instruction: IEQ at line: 73 with following arguments:
+# Arg1: TF@a=ahoj(string)
+# Arg2: Const@=bhoj(string)
+# Dest: GF@&pomBool=true(bool)
+# Executing instruction: IJUMPIFNEQ at line: 74 with following arguments:
+# Arg1: GF@&pomBool=false(bool)
+# Arg2: Const@=true(bool)
+# Executing instruction: ILABEL at line: 77 with following arguments:
+# Executing instruction: IWRITE at line: 78 with following arguments:
+# Arg1: Const@=NOTOK(string)
+# Executing instruction: ILABEL at line: 79 with following arguments:
+# Executing instruction: IGROOT at line: 81 with following arguments:
+# I am Groot at 81 (306).
 # 
-# EXPECTED INTERPRETER STDOUT:
+# STDOUT DIFF:
+# --- expected
+# +++ actual
+# @@ -1 +1 @@
 
-# OKNOTOKOKOKNOTOKOKOKNOTOK
-
-
-# CURRENT INTERPRETER STDOUT:
-
-
+# -OKNOTOKOKOKNOTOKOKOKNOTOK
+# +OKOKOKOKOKOKOKNOTOK
 
 # INTERPRETER STDIN: 
 # 
@@ -31,9 +162,9 @@
 # EXPECTED COMPILER EXIT CODE: 0
 # CURRENT COMPILER EXIT CODE: 0
 # EXPECTED INTERPRETER EXIT CODE: 0
-# CURRENT INTERPRETER EXIT CODE: 51
+# CURRENT INTERPRETER EXIT CODE: 0
 # PRICE: ---
-# GROOT: ---
+# GROOT: 306
 # 
 #   1: ' String relations
 #   2: 
@@ -95,89 +226,81 @@
 
 ########################################
 
-.IFJcode17                                                                      #     1/87
-JUMP $$scope                                                                    #     2/87
-LABEL $$scope                                                                   #     4/87
-DEFVAR GF@&pomInteger                                                           #     5/87
-MOVE GF@&pomInteger int@0                                                       #     6/87
-DEFVAR GF@&pomString                                                            #     7/87
-MOVE GF@&pomString string@                                                      #     8/87
-DEFVAR GF@&pomFloat                                                             #     9/87
-MOVE GF@&pomFloat float@0                                                       #    10/87
-DEFVAR GF@&pomBool                                                              #    11/87
-MOVE GF@&pomBool bool@false                                                     #    12/87
-DEFVAR GF@&pomCntr                                                              #    13/87
-MOVE GF@&pomCntr int@0                                                          #    14/87
-CREATEFRAME                                                                     #    15/87
-DEFVAR TF@a                                                                     #    17/87
-MOVE TF@a string@                                                               #    18/87
-MOVE GF@&pomString string@ahoj                                                  #    19/87
-MOVE TF@a GF@&pomString                                                         #    20/87
-MOVE GF@&pomString TF@a                                                         #    21/87
-redukce                                                                         #    22/87
-LT GF@&pomBool TF@a string@bhoj                                                 #    23/87
-JUMPIFNEQ $$else_1 GF@&pomBool bool@true                                        #    24/87
-WRITE string@OK                                                                 #    25/87
-JUMP $$endif_1                                                                  #    26/87
-LABEL $$else_1                                                                  #    27/87
-WRITE string@NOTOK                                                              #    28/87
-LABEL $$endif_1                                                                 #    29/87
-MOVE GF@&pomString TF@a                                                         #    30/87
-redukce                                                                         #    31/87
-JUMPIFNEQ $$else_2 GF@&pomBool bool@true                                        #    32/87
-WRITE string@OK                                                                 #    33/87
-JUMP $$endif_2                                                                  #    34/87
-LABEL $$else_2                                                                  #    35/87
-WRITE string@NOTOK                                                              #    36/87
-LABEL $$endif_2                                                                 #    37/87
-MOVE GF@&pomString TF@a                                                         #    38/87
-redukce                                                                         #    39/87
-JUMPIFNEQ $$else_3 GF@&pomBool bool@true                                        #    40/87
-WRITE string@OK                                                                 #    41/87
-JUMP $$endif_3                                                                  #    42/87
-LABEL $$else_3                                                                  #    43/87
-WRITE string@NOTOK                                                              #    44/87
-LABEL $$endif_3                                                                 #    45/87
-MOVE GF@&pomString TF@a                                                         #    46/87
-redukce                                                                         #    47/87
-JUMPIFNEQ $$else_4 GF@&pomBool bool@true                                        #    48/87
-WRITE string@OK                                                                 #    49/87
-JUMP $$endif_4                                                                  #    50/87
-LABEL $$else_4                                                                  #    51/87
-WRITE string@NOTOK                                                              #    52/87
-LABEL $$endif_4                                                                 #    53/87
-MOVE GF@&pomString TF@a                                                         #    54/87
-redukce                                                                         #    55/87
-JUMPIFNEQ $$else_5 GF@&pomBool bool@true                                        #    56/87
-WRITE string@OK                                                                 #    57/87
-JUMP $$endif_5                                                                  #    58/87
-LABEL $$else_5                                                                  #    59/87
-WRITE string@NOTOK                                                              #    60/87
-LABEL $$endif_5                                                                 #    61/87
-MOVE GF@&pomString TF@a                                                         #    62/87
-redukce                                                                         #    63/87
-JUMPIFNEQ $$else_6 GF@&pomBool bool@true                                        #    64/87
-WRITE string@OK                                                                 #    65/87
-JUMP $$endif_6                                                                  #    66/87
-LABEL $$else_6                                                                  #    67/87
-WRITE string@NOTOK                                                              #    68/87
-LABEL $$endif_6                                                                 #    69/87
-MOVE GF@&pomString TF@a                                                         #    70/87
-redukce                                                                         #    71/87
-EQ GF@&pomBool TF@a string@ahoj                                                 #    72/87
-JUMPIFNEQ $$else_7 GF@&pomBool bool@true                                        #    73/87
-WRITE string@OK                                                                 #    74/87
-JUMP $$endif_7                                                                  #    75/87
-LABEL $$else_7                                                                  #    76/87
-WRITE string@NOTOK                                                              #    77/87
-LABEL $$endif_7                                                                 #    78/87
-MOVE GF@&pomString TF@a                                                         #    79/87
-redukce                                                                         #    80/87
-EQ GF@&pomBool TF@a string@bhoj                                                 #    81/87
-JUMPIFNEQ $$else_8 GF@&pomBool bool@true                                        #    82/87
-WRITE string@OK                                                                 #    83/87
-JUMP $$endif_8                                                                  #    84/87
-LABEL $$else_8                                                                  #    85/87
-WRITE string@NOTOK                                                              #    86/87
-LABEL $$endif_8                                                                 #    87/87
+.IFJcode17                                                                      #     1/79
+JUMP $$scope                                                                    #     2/79
+LABEL $$scope                                                                   #     4/79
+DEFVAR GF@&pomInteger                                                           #     5/79
+MOVE GF@&pomInteger int@0                                                       #     6/79
+DEFVAR GF@&pomString                                                            #     7/79
+MOVE GF@&pomString string@                                                      #     8/79
+DEFVAR GF@&pomFloat                                                             #     9/79
+MOVE GF@&pomFloat float@0                                                       #    10/79
+DEFVAR GF@&pomBool                                                              #    11/79
+MOVE GF@&pomBool bool@false                                                     #    12/79
+DEFVAR GF@&pomCntr                                                              #    13/79
+MOVE GF@&pomCntr int@0                                                          #    14/79
+CREATEFRAME                                                                     #    15/79
+DEFVAR TF@a                                                                     #    17/79
+MOVE TF@a string@                                                               #    18/79
+MOVE GF@&pomString string@ahoj                                                  #    19/79
+MOVE TF@a GF@&pomString                                                         #    20/79
+MOVE GF@&pomString TF@a                                                         #    21/79
+LT GF@&pomBool TF@a string@bhoj                                                 #    22/79
+JUMPIFNEQ $$else_1 GF@&pomBool bool@true                                        #    23/79
+WRITE string@OK                                                                 #    24/79
+JUMP $$endif_1                                                                  #    25/79
+LABEL $$else_1                                                                  #    26/79
+WRITE string@NOTOK                                                              #    27/79
+LABEL $$endif_1                                                                 #    28/79
+MOVE GF@&pomString TF@a                                                         #    29/79
+JUMPIFNEQ $$else_2 GF@&pomBool bool@true                                        #    30/79
+WRITE string@OK                                                                 #    31/79
+JUMP $$endif_2                                                                  #    32/79
+LABEL $$else_2                                                                  #    33/79
+WRITE string@NOTOK                                                              #    34/79
+LABEL $$endif_2                                                                 #    35/79
+MOVE GF@&pomString TF@a                                                         #    36/79
+JUMPIFNEQ $$else_3 GF@&pomBool bool@true                                        #    37/79
+WRITE string@OK                                                                 #    38/79
+JUMP $$endif_3                                                                  #    39/79
+LABEL $$else_3                                                                  #    40/79
+WRITE string@NOTOK                                                              #    41/79
+LABEL $$endif_3                                                                 #    42/79
+MOVE GF@&pomString TF@a                                                         #    43/79
+JUMPIFNEQ $$else_4 GF@&pomBool bool@true                                        #    44/79
+WRITE string@OK                                                                 #    45/79
+JUMP $$endif_4                                                                  #    46/79
+LABEL $$else_4                                                                  #    47/79
+WRITE string@NOTOK                                                              #    48/79
+LABEL $$endif_4                                                                 #    49/79
+MOVE GF@&pomString TF@a                                                         #    50/79
+JUMPIFNEQ $$else_5 GF@&pomBool bool@true                                        #    51/79
+WRITE string@OK                                                                 #    52/79
+JUMP $$endif_5                                                                  #    53/79
+LABEL $$else_5                                                                  #    54/79
+WRITE string@NOTOK                                                              #    55/79
+LABEL $$endif_5                                                                 #    56/79
+MOVE GF@&pomString TF@a                                                         #    57/79
+JUMPIFNEQ $$else_6 GF@&pomBool bool@true                                        #    58/79
+WRITE string@OK                                                                 #    59/79
+JUMP $$endif_6                                                                  #    60/79
+LABEL $$else_6                                                                  #    61/79
+WRITE string@NOTOK                                                              #    62/79
+LABEL $$endif_6                                                                 #    63/79
+MOVE GF@&pomString TF@a                                                         #    64/79
+EQ GF@&pomBool TF@a string@ahoj                                                 #    65/79
+JUMPIFNEQ $$else_7 GF@&pomBool bool@true                                        #    66/79
+WRITE string@OK                                                                 #    67/79
+JUMP $$endif_7                                                                  #    68/79
+LABEL $$else_7                                                                  #    69/79
+WRITE string@NOTOK                                                              #    70/79
+LABEL $$endif_7                                                                 #    71/79
+MOVE GF@&pomString TF@a                                                         #    72/79
+EQ GF@&pomBool TF@a string@bhoj                                                 #    73/79
+JUMPIFNEQ $$else_8 GF@&pomBool bool@true                                        #    74/79
+WRITE string@OK                                                                 #    75/79
+JUMP $$endif_8                                                                  #    76/79
+LABEL $$else_8                                                                  #    77/79
+WRITE string@NOTOK                                                              #    78/79
+LABEL $$endif_8                                                                 #    79/79
 

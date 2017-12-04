@@ -1,4 +1,4 @@
-# 2017-12-04 12:08:01.829688
+# 2017-12-04 15:33:13.662326
 # SECTION: 96_programs
 # TEST: 05
 # INFO: Print biggest number from three numbers
@@ -9,16 +9,81 @@
 # COMPILER STDERR:
 # 
 # INTERPRETER STDERR:
-# 27.1-7: syntax error, unexpected ID, expecting END
+# Executing instruction: IJUMP at line: 2 with following arguments:
+# Executing instruction: ILABEL at line: 4 with following arguments:
+# Executing instruction: IDEFVAR at line: 5 with following arguments:
+# Dest: GF@&pomInteger
+# Executing instruction: IMOVE at line: 6 with following arguments:
+# Arg1: Const@=0(int)
+# Dest: GF@&pomInteger()
+# Executing instruction: IDEFVAR at line: 7 with following arguments:
+# Dest: GF@&pomString
+# Executing instruction: IMOVE at line: 8 with following arguments:
+# Arg1: Const@=(string)
+# Dest: GF@&pomString()
+# Executing instruction: IDEFVAR at line: 9 with following arguments:
+# Dest: GF@&pomFloat
+# Executing instruction: IMOVE at line: 10 with following arguments:
+# Arg1: Const@=0(double)
+# Dest: GF@&pomFloat()
+# Executing instruction: IDEFVAR at line: 11 with following arguments:
+# Dest: GF@&pomBool
+# Executing instruction: IMOVE at line: 12 with following arguments:
+# Arg1: Const@=false(bool)
+# Dest: GF@&pomBool()
+# Executing instruction: IDEFVAR at line: 13 with following arguments:
+# Dest: GF@&pomCntr
+# Executing instruction: IMOVE at line: 14 with following arguments:
+# Arg1: Const@=0(int)
+# Dest: GF@&pomCntr()
+# Executing instruction: ICREATEFRAME at line: 15 with following arguments:
+# Executing instruction: IDEFVAR at line: 17 with following arguments:
+# Dest: TF@a
+# Executing instruction: IMOVE at line: 18 with following arguments:
+# Arg1: Const@=0(int)
+# Dest: TF@a()
+# Executing instruction: IDEFVAR at line: 19 with following arguments:
+# Dest: TF@b
+# Executing instruction: IMOVE at line: 20 with following arguments:
+# Arg1: Const@=0(int)
+# Dest: TF@b()
+# Executing instruction: IDEFVAR at line: 21 with following arguments:
+# Dest: TF@c
+# Executing instruction: IMOVE at line: 22 with following arguments:
+# Arg1: Const@=0(int)
+# Dest: TF@c()
+# Executing instruction: IREAD at line: 23 with following arguments:
+# Dest: TF@a=0(int)
+# Executing instruction: IREAD at line: 24 with following arguments:
+# Dest: TF@b=0(int)
+# Executing instruction: IREAD at line: 25 with following arguments:
+# Dest: TF@c=0(int)
+# Executing instruction: IMOVE at line: 26 with following arguments:
+# Arg1: TF@c=125(int)
+# Dest: GF@&pomInteger=0(int)
+# Executing instruction: IGT at line: 27 with following arguments:
+# Arg1: TF@c=125(int)
+# Arg2: TF@b=150(int)
+# Dest: GF@&pomBool=false(bool)
+# Executing instruction: IJUMPIFNEQ at line: 28 with following arguments:
+# Arg1: GF@&pomBool=false(bool)
+# Arg2: Const@=true(bool)
+# Executing instruction: ILABEL at line: 34 with following arguments:
+# Executing instruction: IWRITE at line: 35 with following arguments:
+# Arg1: TF@a=100(int)
+# Executing instruction: ILABEL at line: 36 with following arguments:
+# Executing instruction: IJUMP at line: 37 with following arguments:
+# Executing instruction: ILABEL at line: 40 with following arguments:
+# Executing instruction: IGROOT at line: 42 with following arguments:
+# I am Groot at 42 (158).
 # 
-# EXPECTED INTERPRETER STDOUT:
+# STDOUT DIFF:
+# --- expected
+# +++ actual
+# @@ -1 +1 @@
 
-# ? ? ?  150
-
-
-# CURRENT INTERPRETER STDOUT:
-
-
+# -? ? ?  150
+# + 100
 
 # INTERPRETER STDIN: 
 # 100
@@ -28,9 +93,9 @@
 # EXPECTED COMPILER EXIT CODE: 0
 # CURRENT COMPILER EXIT CODE: 0
 # EXPECTED INTERPRETER EXIT CODE: 0
-# CURRENT INTERPRETER EXIT CODE: 51
+# CURRENT INTERPRETER EXIT CODE: 0
 # PRICE: ---
-# GROOT: ---
+# GROOT: 158
 # 
 #   1: ' Print biggest number from three numbers
 #   2: scope
@@ -57,44 +122,42 @@
 
 ########################################
 
-.IFJcode17                                                                      #     1/42
-JUMP $$scope                                                                    #     2/42
-LABEL $$scope                                                                   #     4/42
-DEFVAR GF@&pomInteger                                                           #     5/42
-MOVE GF@&pomInteger int@0                                                       #     6/42
-DEFVAR GF@&pomString                                                            #     7/42
-MOVE GF@&pomString string@                                                      #     8/42
-DEFVAR GF@&pomFloat                                                             #     9/42
-MOVE GF@&pomFloat float@0                                                       #    10/42
-DEFVAR GF@&pomBool                                                              #    11/42
-MOVE GF@&pomBool bool@false                                                     #    12/42
-DEFVAR GF@&pomCntr                                                              #    13/42
-MOVE GF@&pomCntr int@0                                                          #    14/42
-CREATEFRAME                                                                     #    15/42
-DEFVAR TF@a                                                                     #    17/42
-MOVE TF@a int@0                                                                 #    18/42
-DEFVAR TF@b                                                                     #    19/42
-MOVE TF@b int@0                                                                 #    20/42
-DEFVAR TF@c                                                                     #    21/42
-MOVE TF@c int@0                                                                 #    22/42
-READ TF@a int                                                                   #    23/42
-READ TF@b int                                                                   #    24/42
-READ TF@c int                                                                   #    25/42
-MOVE GF@&pomInteger TF@c                                                        #    26/42
-redukce                                                                         #    27/42
-GT GF@&pomBool TF@c TF@b                                                        #    28/42
-JUMPIFNEQ $$else_1 GF@&pomBool bool@true                                        #    29/42
-MOVE GF@&pomInteger TF@c                                                        #    30/42
-redukce                                                                         #    31/42
-GT GF@&pomBool TF@c TF@a                                                        #    32/42
-JUMPIFNEQ $$else_1 GF@&pomBool bool@true                                        #    33/42
-WRITE TF@c                                                                      #    34/42
-JUMP $$endif_1                                                                  #    35/42
-LABEL $$else_1                                                                  #    36/42
-WRITE TF@a                                                                      #    37/42
-LABEL $$endif_1                                                                 #    38/42
-JUMP $$endif_2                                                                  #    39/42
-LABEL $$else_2                                                                  #    40/42
-WRITE TF@b                                                                      #    41/42
-LABEL $$endif_2                                                                 #    42/42
+.IFJcode17                                                                      #     1/40
+JUMP $$scope                                                                    #     2/40
+LABEL $$scope                                                                   #     4/40
+DEFVAR GF@&pomInteger                                                           #     5/40
+MOVE GF@&pomInteger int@0                                                       #     6/40
+DEFVAR GF@&pomString                                                            #     7/40
+MOVE GF@&pomString string@                                                      #     8/40
+DEFVAR GF@&pomFloat                                                             #     9/40
+MOVE GF@&pomFloat float@0                                                       #    10/40
+DEFVAR GF@&pomBool                                                              #    11/40
+MOVE GF@&pomBool bool@false                                                     #    12/40
+DEFVAR GF@&pomCntr                                                              #    13/40
+MOVE GF@&pomCntr int@0                                                          #    14/40
+CREATEFRAME                                                                     #    15/40
+DEFVAR TF@a                                                                     #    17/40
+MOVE TF@a int@0                                                                 #    18/40
+DEFVAR TF@b                                                                     #    19/40
+MOVE TF@b int@0                                                                 #    20/40
+DEFVAR TF@c                                                                     #    21/40
+MOVE TF@c int@0                                                                 #    22/40
+READ TF@a int                                                                   #    23/40
+READ TF@b int                                                                   #    24/40
+READ TF@c int                                                                   #    25/40
+MOVE GF@&pomInteger TF@c                                                        #    26/40
+GT GF@&pomBool TF@c TF@b                                                        #    27/40
+JUMPIFNEQ $$else_1 GF@&pomBool bool@true                                        #    28/40
+MOVE GF@&pomInteger TF@c                                                        #    29/40
+GT GF@&pomBool TF@c TF@a                                                        #    30/40
+JUMPIFNEQ $$else_1 GF@&pomBool bool@true                                        #    31/40
+WRITE TF@c                                                                      #    32/40
+JUMP $$endif_1                                                                  #    33/40
+LABEL $$else_1                                                                  #    34/40
+WRITE TF@a                                                                      #    35/40
+LABEL $$endif_1                                                                 #    36/40
+JUMP $$endif_2                                                                  #    37/40
+LABEL $$else_2                                                                  #    38/40
+WRITE TF@b                                                                      #    39/40
+LABEL $$endif_2                                                                 #    40/40
 

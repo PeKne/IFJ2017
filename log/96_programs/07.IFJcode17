@@ -1,4 +1,4 @@
-# 2017-12-04 12:08:01.838368
+# 2017-12-04 15:33:13.672396
 # SECTION: 96_programs
 # TEST: 07
 # INFO: Draw a pyramide
@@ -11,7 +11,7 @@
 # Chyba v code_gen_expres TF@GF@&pomString TF@j TF@i
 # 
 # INTERPRETER STDERR:
-# 32.1-7: syntax error, unexpected ID, expecting END
+# Label already exists!
 # 
 # EXPECTED INTERPRETER STDOUT:
 
@@ -39,7 +39,7 @@
 # EXPECTED COMPILER EXIT CODE: 0
 # CURRENT COMPILER EXIT CODE: 0
 # EXPECTED INTERPRETER EXIT CODE: 0
-# CURRENT INTERPRETER EXIT CODE: 51
+# CURRENT INTERPRETER EXIT CODE: 52
 # PRICE: ---
 # GROOT: ---
 # 
@@ -71,55 +71,51 @@
 
 ########################################
 
-.IFJcode17                                                                      #     1/53
-JUMP $$scope                                                                    #     2/53
-LABEL $$scope                                                                   #     4/53
-DEFVAR GF@&pomInteger                                                           #     5/53
-MOVE GF@&pomInteger int@0                                                       #     6/53
-DEFVAR GF@&pomString                                                            #     7/53
-MOVE GF@&pomString string@                                                      #     8/53
-DEFVAR GF@&pomFloat                                                             #     9/53
-MOVE GF@&pomFloat float@0                                                       #    10/53
-DEFVAR GF@&pomBool                                                              #    11/53
-MOVE GF@&pomBool bool@false                                                     #    12/53
-DEFVAR GF@&pomCntr                                                              #    13/53
-MOVE GF@&pomCntr int@0                                                          #    14/53
-CREATEFRAME                                                                     #    15/53
-WRITE string@Enter\032number\032of\032rows\010                                  #    17/53
-DEFVAR TF@rows                                                                  #    18/53
-MOVE TF@rows int@0                                                              #    19/53
-READ TF@rows int                                                                #    20/53
-WRITE string@\010                                                               #    21/53
-DEFVAR TF@i                                                                     #    22/53
-MOVE TF@i int@0                                                                 #    23/53
-MOVE GF@&pomInteger int@1                                                       #    24/53
-MOVE TF@i GF@&pomInteger                                                        #    25/53
-DEFVAR TF@j                                                                     #    26/53
-MOVE TF@j int@0                                                                 #    27/53
-MOVE GF@&pomInteger int@1                                                       #    28/53
-MOVE TF@j GF@&pomInteger                                                        #    29/53
-LABEL $$loop_1                                                                  #    30/53
-MOVE GF@&pomInteger TF@i                                                        #    31/53
-redukce                                                                         #    32/53
-JUMPIFNEQ $$loop_end_1 GF@&pomBool bool@true                                    #    33/53
-MOVE GF@&pomInteger int@1                                                       #    34/53
-MOVE TF@j GF@&pomInteger                                                        #    35/53
-LABEL $$loop_1                                                                  #    36/53
-MOVE GF@&pomInteger TF@j                                                        #    37/53
-redukce                                                                         #    38/53
-JUMPIFNEQ $$loop_end_1 GF@&pomBool bool@true                                    #    39/53
-WRITE TF@j                                                                      #    40/53
-MOVE GF@&pomInteger TF@j                                                        #    41/53
-redukce                                                                         #    42/53
-ADD GF@&pomInteger TF@j int@1                                                   #    43/53
-MOVE TF@j GF@&pomInteger                                                        #    44/53
-JUMP $$loop_1                                                                   #    45/53
-LABEL $$loop_end_1                                                              #    46/53
-WRITE string@\010                                                               #    47/53
-MOVE GF@&pomInteger TF@i                                                        #    48/53
-redukce                                                                         #    49/53
-ADD GF@&pomInteger TF@i int@1                                                   #    50/53
-MOVE TF@i GF@&pomInteger                                                        #    51/53
-JUMP $$loop_2                                                                   #    52/53
-LABEL $$loop_end_2                                                              #    53/53
+.IFJcode17                                                                      #     1/49
+JUMP $$scope                                                                    #     2/49
+LABEL $$scope                                                                   #     4/49
+DEFVAR GF@&pomInteger                                                           #     5/49
+MOVE GF@&pomInteger int@0                                                       #     6/49
+DEFVAR GF@&pomString                                                            #     7/49
+MOVE GF@&pomString string@                                                      #     8/49
+DEFVAR GF@&pomFloat                                                             #     9/49
+MOVE GF@&pomFloat float@0                                                       #    10/49
+DEFVAR GF@&pomBool                                                              #    11/49
+MOVE GF@&pomBool bool@false                                                     #    12/49
+DEFVAR GF@&pomCntr                                                              #    13/49
+MOVE GF@&pomCntr int@0                                                          #    14/49
+CREATEFRAME                                                                     #    15/49
+WRITE string@Enter\032number\032of\032rows\010                                  #    17/49
+DEFVAR TF@rows                                                                  #    18/49
+MOVE TF@rows int@0                                                              #    19/49
+READ TF@rows int                                                                #    20/49
+WRITE string@\010                                                               #    21/49
+DEFVAR TF@i                                                                     #    22/49
+MOVE TF@i int@0                                                                 #    23/49
+MOVE GF@&pomInteger int@1                                                       #    24/49
+MOVE TF@i GF@&pomInteger                                                        #    25/49
+DEFVAR TF@j                                                                     #    26/49
+MOVE TF@j int@0                                                                 #    27/49
+MOVE GF@&pomInteger int@1                                                       #    28/49
+MOVE TF@j GF@&pomInteger                                                        #    29/49
+LABEL $$loop_1                                                                  #    30/49
+MOVE GF@&pomInteger TF@i                                                        #    31/49
+JUMPIFNEQ $$loop_end_1 GF@&pomBool bool@true                                    #    32/49
+MOVE GF@&pomInteger int@1                                                       #    33/49
+MOVE TF@j GF@&pomInteger                                                        #    34/49
+LABEL $$loop_1                                                                  #    35/49
+MOVE GF@&pomInteger TF@j                                                        #    36/49
+JUMPIFNEQ $$loop_end_1 GF@&pomBool bool@true                                    #    37/49
+WRITE TF@j                                                                      #    38/49
+MOVE GF@&pomInteger TF@j                                                        #    39/49
+ADD GF@&pomInteger TF@j int@1                                                   #    40/49
+MOVE TF@j GF@&pomInteger                                                        #    41/49
+JUMP $$loop_1                                                                   #    42/49
+LABEL $$loop_end_1                                                              #    43/49
+WRITE string@\010                                                               #    44/49
+MOVE GF@&pomInteger TF@i                                                        #    45/49
+ADD GF@&pomInteger TF@i int@1                                                   #    46/49
+MOVE TF@i GF@&pomInteger                                                        #    47/49
+JUMP $$loop_2                                                                   #    48/49
+LABEL $$loop_end_2                                                              #    49/49
 

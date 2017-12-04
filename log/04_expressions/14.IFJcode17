@@ -1,4 +1,4 @@
-# 2017-12-04 12:08:01.139848
+# 2017-12-04 15:33:12.433402
 # SECTION: 04_expressions
 # TEST: 14
 # INFO: Test for implicit conversion
@@ -9,7 +9,70 @@
 # COMPILER STDERR:
 # 
 # INTERPRETER STDERR:
-# 28.1-7: syntax error, unexpected ID, expecting END
+# Executing instruction: IJUMP at line: 2 with following arguments:
+# Executing instruction: ILABEL at line: 4 with following arguments:
+# Executing instruction: IDEFVAR at line: 5 with following arguments:
+# Dest: GF@&pomInteger
+# Executing instruction: IMOVE at line: 6 with following arguments:
+# Arg1: Const@=0(int)
+# Dest: GF@&pomInteger()
+# Executing instruction: IDEFVAR at line: 7 with following arguments:
+# Dest: GF@&pomString
+# Executing instruction: IMOVE at line: 8 with following arguments:
+# Arg1: Const@=(string)
+# Dest: GF@&pomString()
+# Executing instruction: IDEFVAR at line: 9 with following arguments:
+# Dest: GF@&pomFloat
+# Executing instruction: IMOVE at line: 10 with following arguments:
+# Arg1: Const@=0(double)
+# Dest: GF@&pomFloat()
+# Executing instruction: IDEFVAR at line: 11 with following arguments:
+# Dest: GF@&pomBool
+# Executing instruction: IMOVE at line: 12 with following arguments:
+# Arg1: Const@=false(bool)
+# Dest: GF@&pomBool()
+# Executing instruction: IDEFVAR at line: 13 with following arguments:
+# Dest: GF@&pomCntr
+# Executing instruction: IMOVE at line: 14 with following arguments:
+# Arg1: Const@=0(int)
+# Dest: GF@&pomCntr()
+# Executing instruction: ICREATEFRAME at line: 15 with following arguments:
+# Executing instruction: IDEFVAR at line: 17 with following arguments:
+# Dest: TF@a
+# Executing instruction: IMOVE at line: 18 with following arguments:
+# Arg1: Const@=0(double)
+# Dest: TF@a()
+# Executing instruction: IMOVE at line: 19 with following arguments:
+# Arg1: Const@=123.4565(double)
+# Dest: GF@&pomFloat=0(double)
+# Executing instruction: IMOVE at line: 20 with following arguments:
+# Arg1: GF@&pomFloat=123.4565(double)
+# Dest: TF@a=0(double)
+# Executing instruction: IDEFVAR at line: 21 with following arguments:
+# Dest: TF@b
+# Executing instruction: IMOVE at line: 22 with following arguments:
+# Arg1: Const@=0(int)
+# Dest: TF@b()
+# Executing instruction: IMOVE at line: 23 with following arguments:
+# Arg1: Const@=456465(int)
+# Dest: GF@&pomInteger=0(int)
+# Executing instruction: IMOVE at line: 24 with following arguments:
+# Arg1: GF@&pomInteger=456465(int)
+# Dest: TF@b=0(int)
+# Executing instruction: IDEFVAR at line: 25 with following arguments:
+# Dest: TF@c
+# Executing instruction: IMOVE at line: 26 with following arguments:
+# Arg1: Const@=0(double)
+# Dest: TF@c()
+# Executing instruction: IMOVE at line: 27 with following arguments:
+# Arg1: TF@a=123.4565(double)
+# Dest: GF@&pomFloat=123.4565(double)
+# Executing instruction: IMULT at line: 28 with following arguments:
+# Arg1: TF@a=123.4565(double)
+# Arg2: TF@b=456465(int)
+# Dest: GF@&pomFloat=123.4565(double)
+# Error at line: 28
+# Wrong operand type!
 # 
 # EXPECTED INTERPRETER STDOUT:
 
@@ -26,7 +89,7 @@
 # EXPECTED COMPILER EXIT CODE: 0
 # CURRENT COMPILER EXIT CODE: 0
 # EXPECTED INTERPRETER EXIT CODE: 0
-# CURRENT INTERPRETER EXIT CODE: 51
+# CURRENT INTERPRETER EXIT CODE: 53
 # PRICE: ---
 # GROOT: ---
 # 
@@ -48,39 +111,35 @@
 
 ########################################
 
-.IFJcode17                                                                      #     1/37
-JUMP $$scope                                                                    #     2/37
-LABEL $$scope                                                                   #     4/37
-DEFVAR GF@&pomInteger                                                           #     5/37
-MOVE GF@&pomInteger int@0                                                       #     6/37
-DEFVAR GF@&pomString                                                            #     7/37
-MOVE GF@&pomString string@                                                      #     8/37
-DEFVAR GF@&pomFloat                                                             #     9/37
-MOVE GF@&pomFloat float@0                                                       #    10/37
-DEFVAR GF@&pomBool                                                              #    11/37
-MOVE GF@&pomBool bool@false                                                     #    12/37
-DEFVAR GF@&pomCntr                                                              #    13/37
-MOVE GF@&pomCntr int@0                                                          #    14/37
-CREATEFRAME                                                                     #    15/37
-DEFVAR TF@a                                                                     #    17/37
-MOVE TF@a float@0                                                               #    18/37
-MOVE GF@&pomFloat float@123.4565                                                #    19/37
-MOVE TF@a GF@&pomFloat                                                          #    20/37
-DEFVAR TF@b                                                                     #    21/37
-MOVE TF@b int@0                                                                 #    22/37
-MOVE GF@&pomInteger int@456465                                                  #    23/37
-MOVE TF@b GF@&pomInteger                                                        #    24/37
-DEFVAR TF@c                                                                     #    25/37
-MOVE TF@c float@0                                                               #    26/37
-MOVE GF@&pomFloat TF@a                                                          #    27/37
-redukce                                                                         #    28/37
-MUL GF@&pomFloat TF@a TF@b                                                      #    29/37
-redukce                                                                         #    30/37
-DIV GF@&pomFloat GF@&pomFloat TF@b                                              #    31/37
-redukce                                                                         #    32/37
-MUL GF@&pomFloat GF@&pomFloat TF@b                                              #    33/37
-redukce                                                                         #    34/37
-DIV GF@&pomFloat GF@&pomFloat TF@b                                              #    35/37
-MOVE TF@c GF@&pomFloat                                                          #    36/37
-WRITE TF@c                                                                      #    37/37
+.IFJcode17                                                                      #     1/33
+JUMP $$scope                                                                    #     2/33
+LABEL $$scope                                                                   #     4/33
+DEFVAR GF@&pomInteger                                                           #     5/33
+MOVE GF@&pomInteger int@0                                                       #     6/33
+DEFVAR GF@&pomString                                                            #     7/33
+MOVE GF@&pomString string@                                                      #     8/33
+DEFVAR GF@&pomFloat                                                             #     9/33
+MOVE GF@&pomFloat float@0                                                       #    10/33
+DEFVAR GF@&pomBool                                                              #    11/33
+MOVE GF@&pomBool bool@false                                                     #    12/33
+DEFVAR GF@&pomCntr                                                              #    13/33
+MOVE GF@&pomCntr int@0                                                          #    14/33
+CREATEFRAME                                                                     #    15/33
+DEFVAR TF@a                                                                     #    17/33
+MOVE TF@a float@0                                                               #    18/33
+MOVE GF@&pomFloat float@123.4565                                                #    19/33
+MOVE TF@a GF@&pomFloat                                                          #    20/33
+DEFVAR TF@b                                                                     #    21/33
+MOVE TF@b int@0                                                                 #    22/33
+MOVE GF@&pomInteger int@456465                                                  #    23/33
+MOVE TF@b GF@&pomInteger                                                        #    24/33
+DEFVAR TF@c                                                                     #    25/33
+MOVE TF@c float@0                                                               #    26/33
+MOVE GF@&pomFloat TF@a                                                          #    27/33
+MUL GF@&pomFloat TF@a TF@b                                                      #    28/33
+DIV GF@&pomFloat GF@&pomFloat TF@b                                              #    29/33
+MUL GF@&pomFloat GF@&pomFloat TF@b                                              #    30/33
+DIV GF@&pomFloat GF@&pomFloat TF@b                                              #    31/33
+MOVE TF@c GF@&pomFloat                                                          #    32/33
+WRITE TF@c                                                                      #    33/33
 

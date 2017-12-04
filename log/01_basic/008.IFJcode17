@@ -1,4 +1,4 @@
-# 2017-12-04 12:08:00.954929
+# 2017-12-04 15:33:12.160447
 # SECTION: 01_basic
 # TEST: 008
 # INFO: Add two inputs
@@ -8,7 +8,7 @@
 # 
 # COMPILER STDERR:
 # In if and loop statement can only be relational operators.
-# ERROR - 3 - sÃ©mantickÃ¡ chyba v programu â nedefinovanÃ¡ funkce/promeÌnnÃ¡, pokus o redefinici funkce/promeÌnnÃ©, atd.
+# ERROR -  6 - ostatnÃ­ sÃ©mantickÃ© chyby.
 # 
 # INTERPRETER STDERR:
 # 
@@ -26,7 +26,7 @@
 # 24
 #
 # EXPECTED COMPILER EXIT CODE: 0
-# CURRENT COMPILER EXIT CODE: 3
+# CURRENT COMPILER EXIT CODE: 6
 # EXPECTED INTERPRETER EXIT CODE: 0
 # CURRENT INTERPRETER EXIT CODE: None
 # PRICE: ---
@@ -42,28 +42,27 @@
 
 ########################################
 
-.IFJcode17                                                                      #     1/26
-JUMP $$scope                                                                    #     2/26
-LABEL $$scope                                                                   #     4/26
-DEFVAR GF@&pomInteger                                                           #     5/26
-MOVE GF@&pomInteger int@0                                                       #     6/26
-DEFVAR GF@&pomString                                                            #     7/26
-MOVE GF@&pomString string@                                                      #     8/26
-DEFVAR GF@&pomFloat                                                             #     9/26
-MOVE GF@&pomFloat float@0                                                       #    10/26
-DEFVAR GF@&pomBool                                                              #    11/26
-MOVE GF@&pomBool bool@false                                                     #    12/26
-DEFVAR GF@&pomCntr                                                              #    13/26
-MOVE GF@&pomCntr int@0                                                          #    14/26
-CREATEFRAME                                                                     #    15/26
-DEFVAR TF@a                                                                     #    17/26
-MOVE TF@a int@0                                                                 #    18/26
-DEFVAR TF@b                                                                     #    19/26
-MOVE TF@b int@0                                                                 #    20/26
-READ TF@a int                                                                   #    21/26
-READ TF@b int                                                                   #    22/26
-WRITE TF@a                                                                      #    23/26
-WRITE TF@b                                                                      #    24/26
-redukce                                                                         #    25/26
-ERROR on line 6                                                                 #    26/26
+.IFJcode17                                                                      #     1/25
+JUMP $$scope                                                                    #     2/25
+LABEL $$scope                                                                   #     4/25
+DEFVAR GF@&pomInteger                                                           #     5/25
+MOVE GF@&pomInteger int@0                                                       #     6/25
+DEFVAR GF@&pomString                                                            #     7/25
+MOVE GF@&pomString string@                                                      #     8/25
+DEFVAR GF@&pomFloat                                                             #     9/25
+MOVE GF@&pomFloat float@0                                                       #    10/25
+DEFVAR GF@&pomBool                                                              #    11/25
+MOVE GF@&pomBool bool@false                                                     #    12/25
+DEFVAR GF@&pomCntr                                                              #    13/25
+MOVE GF@&pomCntr int@0                                                          #    14/25
+CREATEFRAME                                                                     #    15/25
+DEFVAR TF@a                                                                     #    17/25
+MOVE TF@a int@0                                                                 #    18/25
+DEFVAR TF@b                                                                     #    19/25
+MOVE TF@b int@0                                                                 #    20/25
+READ TF@a int                                                                   #    21/25
+READ TF@b int                                                                   #    22/25
+WRITE TF@a                                                                      #    23/25
+WRITE TF@b                                                                      #    24/25
+ERROR on line 6                                                                 #    25/25
 

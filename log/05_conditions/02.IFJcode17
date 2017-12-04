@@ -1,4 +1,4 @@
-# 2017-12-04 12:08:01.224403
+# 2017-12-04 15:33:12.613721
 # SECTION: 05_conditions
 # TEST: 02
 # INFO: if recursion
@@ -8,7 +8,7 @@
 # 
 # COMPILER STDERR:
 # In if and loop statement can only be relational operators.
-# ERROR - 3 - sÃ©mantickÃ¡ chyba v programu â nedefinovanÃ¡ funkce/promeÌnnÃ¡, pokus o redefinici funkce/promeÌnnÃ©, atd.
+# ERROR -  6 - ostatnÃ­ sÃ©mantickÃ© chyby.
 # 
 # INTERPRETER STDERR:
 # 
@@ -25,7 +25,7 @@
 # 
 #
 # EXPECTED COMPILER EXIT CODE: 0
-# CURRENT COMPILER EXIT CODE: 3
+# CURRENT COMPILER EXIT CODE: 6
 # EXPECTED INTERPRETER EXIT CODE: 0
 # CURRENT INTERPRETER EXIT CODE: None
 # PRICE: ---
@@ -50,20 +50,19 @@
 
 ########################################
 
-.IFJcode17                                                                      #     1/18
-JUMP $$scope                                                                    #     2/18
-LABEL $$scope                                                                   #     4/18
-DEFVAR GF@&pomInteger                                                           #     5/18
-MOVE GF@&pomInteger int@0                                                       #     6/18
-DEFVAR GF@&pomString                                                            #     7/18
-MOVE GF@&pomString string@                                                      #     8/18
-DEFVAR GF@&pomFloat                                                             #     9/18
-MOVE GF@&pomFloat float@0                                                       #    10/18
-DEFVAR GF@&pomBool                                                              #    11/18
-MOVE GF@&pomBool bool@false                                                     #    12/18
-DEFVAR GF@&pomCntr                                                              #    13/18
-MOVE GF@&pomCntr int@0                                                          #    14/18
-CREATEFRAME                                                                     #    15/18
-redukce                                                                         #    17/18
-ERROR on line 3                                                                 #    18/18
+.IFJcode17                                                                      #     1/17
+JUMP $$scope                                                                    #     2/17
+LABEL $$scope                                                                   #     4/17
+DEFVAR GF@&pomInteger                                                           #     5/17
+MOVE GF@&pomInteger int@0                                                       #     6/17
+DEFVAR GF@&pomString                                                            #     7/17
+MOVE GF@&pomString string@                                                      #     8/17
+DEFVAR GF@&pomFloat                                                             #     9/17
+MOVE GF@&pomFloat float@0                                                       #    10/17
+DEFVAR GF@&pomBool                                                              #    11/17
+MOVE GF@&pomBool bool@false                                                     #    12/17
+DEFVAR GF@&pomCntr                                                              #    13/17
+MOVE GF@&pomCntr int@0                                                          #    14/17
+CREATEFRAME                                                                     #    15/17
+ERROR on line 3                                                                 #    17/17
 

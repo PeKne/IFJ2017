@@ -1,24 +1,49 @@
-# 2017-12-04 12:08:00.948901
+# 2017-12-04 15:33:12.154709
 # SECTION: 01_basic
 # TEST: 006
 # INFO: Simple double print
 # REQUIRED EXTENSIONS: 
 # ACTIVATED EXTENSIONS: 
-# STATE: FAIL
+# STATE: SUCCESS
 # 
 # COMPILER STDERR:
 # 
 # INTERPRETER STDERR:
-# 17.7-8: syntax error, unexpected ID
+# Executing instruction: IJUMP at line: 2 with following arguments:
+# Executing instruction: ILABEL at line: 4 with following arguments:
+# Executing instruction: IDEFVAR at line: 5 with following arguments:
+# Dest: GF@&pomInteger
+# Executing instruction: IMOVE at line: 6 with following arguments:
+# Arg1: Const@=0(int)
+# Dest: GF@&pomInteger()
+# Executing instruction: IDEFVAR at line: 7 with following arguments:
+# Dest: GF@&pomString
+# Executing instruction: IMOVE at line: 8 with following arguments:
+# Arg1: Const@=(string)
+# Dest: GF@&pomString()
+# Executing instruction: IDEFVAR at line: 9 with following arguments:
+# Dest: GF@&pomFloat
+# Executing instruction: IMOVE at line: 10 with following arguments:
+# Arg1: Const@=0(double)
+# Dest: GF@&pomFloat()
+# Executing instruction: IDEFVAR at line: 11 with following arguments:
+# Dest: GF@&pomBool
+# Executing instruction: IMOVE at line: 12 with following arguments:
+# Arg1: Const@=false(bool)
+# Dest: GF@&pomBool()
+# Executing instruction: IDEFVAR at line: 13 with following arguments:
+# Dest: GF@&pomCntr
+# Executing instruction: IMOVE at line: 14 with following arguments:
+# Arg1: Const@=0(int)
+# Dest: GF@&pomCntr()
+# Executing instruction: ICREATEFRAME at line: 15 with following arguments:
+# Executing instruction: IWRITE at line: 17 with following arguments:
+# Arg1: Const@=5876.78(double)
+# Executing instruction: IGROOT at line: 19 with following arguments:
+# I am Groot at 19 (64).
 # 
-# EXPECTED INTERPRETER STDOUT:
-
-#  5876.78
-
-
-# CURRENT INTERPRETER STDOUT:
-
-
+# STDOUT DIFF:
+# 
 
 # INTERPRETER STDIN: 
 # 
@@ -26,9 +51,9 @@
 # EXPECTED COMPILER EXIT CODE: 0
 # CURRENT COMPILER EXIT CODE: 0
 # EXPECTED INTERPRETER EXIT CODE: 0
-# CURRENT INTERPRETER EXIT CODE: 51
-# PRICE: ---
-# GROOT: ---
+# CURRENT INTERPRETER EXIT CODE: 0
+# PRICE: 64 (18+46)
+# GROOT: 64
 # 
 #   1: scope 
 #   2:  print 5876.78; 
@@ -50,5 +75,5 @@ MOVE GF@&pomBool bool@false                                                     
 DEFVAR GF@&pomCntr                                                              #    13/17
 MOVE GF@&pomCntr int@0                                                          #    14/17
 CREATEFRAME                                                                     #    15/17
-WRITE TF@5876.78                                                                #    17/17
+WRITE float@5876.78                                                             #    17/17
 

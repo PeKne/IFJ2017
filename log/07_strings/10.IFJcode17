@@ -1,4 +1,4 @@
-# 2017-12-04 12:08:01.290073
+# 2017-12-04 15:33:12.933414
 # SECTION: 07_strings
 # TEST: 10
 # INFO: combined input with builtin functions (TODO: stdout)
@@ -63,35 +63,34 @@
 
 ########################################
 
-.IFJcode17                                                                      #     1/33
-JUMP $$scope                                                                    #     2/33
-LABEL $$scope                                                                   #     4/33
-DEFVAR GF@&pomInteger                                                           #     5/33
-MOVE GF@&pomInteger int@0                                                       #     6/33
-DEFVAR GF@&pomString                                                            #     7/33
-MOVE GF@&pomString string@                                                      #     8/33
-DEFVAR GF@&pomFloat                                                             #     9/33
-MOVE GF@&pomFloat float@0                                                       #    10/33
-DEFVAR GF@&pomBool                                                              #    11/33
-MOVE GF@&pomBool bool@false                                                     #    12/33
-DEFVAR GF@&pomCntr                                                              #    13/33
-MOVE GF@&pomCntr int@0                                                          #    14/33
-CREATEFRAME                                                                     #    15/33
-DEFVAR TF@s1                                                                    #    17/33
-MOVE TF@s1 string@                                                              #    18/33
-DEFVAR TF@s2                                                                    #    19/33
-MOVE TF@s2 string@                                                              #    20/33
-DEFVAR TF@s1len                                                                 #    21/33
-MOVE TF@s1len int@0                                                             #    22/33
-MOVE GF@&pomString string@Toto\032je\032nejaky\032text                          #    23/33
-MOVE TF@s1 GF@&pomString                                                        #    24/33
-MOVE GF@&pomString TF@s1                                                        #    25/33
-redukce                                                                         #    26/33
-ADD GF@&pomString TF@s1 string@,\032ktery\032jeste\032trochu\032obohatime       #    27/33
-MOVE TF@s2 GF@&pomString                                                        #    28/33
-WRITE TF@s1                                                                     #    29/33
-WRITE string@\010                                                               #    30/33
-WRITE TF@s2                                                                     #    31/33
-WRITE string@\010                                                               #    32/33
-ERROR on line 13                                                                #    33/33
+.IFJcode17                                                                      #     1/32
+JUMP $$scope                                                                    #     2/32
+LABEL $$scope                                                                   #     4/32
+DEFVAR GF@&pomInteger                                                           #     5/32
+MOVE GF@&pomInteger int@0                                                       #     6/32
+DEFVAR GF@&pomString                                                            #     7/32
+MOVE GF@&pomString string@                                                      #     8/32
+DEFVAR GF@&pomFloat                                                             #     9/32
+MOVE GF@&pomFloat float@0                                                       #    10/32
+DEFVAR GF@&pomBool                                                              #    11/32
+MOVE GF@&pomBool bool@false                                                     #    12/32
+DEFVAR GF@&pomCntr                                                              #    13/32
+MOVE GF@&pomCntr int@0                                                          #    14/32
+CREATEFRAME                                                                     #    15/32
+DEFVAR TF@s1                                                                    #    17/32
+MOVE TF@s1 string@                                                              #    18/32
+DEFVAR TF@s2                                                                    #    19/32
+MOVE TF@s2 string@                                                              #    20/32
+DEFVAR TF@s1len                                                                 #    21/32
+MOVE TF@s1len int@0                                                             #    22/32
+MOVE GF@&pomString string@Toto\032je\032nejaky\032text                          #    23/32
+MOVE TF@s1 GF@&pomString                                                        #    24/32
+MOVE GF@&pomString TF@s1                                                        #    25/32
+ADD GF@&pomString TF@s1 string@,\032ktery\032jeste\032trochu\032obohatime       #    26/32
+MOVE TF@s2 GF@&pomString                                                        #    27/32
+WRITE TF@s1                                                                     #    28/32
+WRITE string@\010                                                               #    29/32
+WRITE TF@s2                                                                     #    30/32
+WRITE string@\010                                                               #    31/32
+ERROR on line 13                                                                #    32/32
 

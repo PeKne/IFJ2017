@@ -1,4 +1,4 @@
-# 2017-12-04 12:08:01.288456
+# 2017-12-04 15:33:12.931530
 # SECTION: 07_strings
 # TEST: 05
 # INFO: chr builtin function
@@ -49,27 +49,26 @@
 
 ########################################
 
-.IFJcode17                                                                      #     1/25
-JUMP $$scope                                                                    #     2/25
-LABEL $$scope                                                                   #     4/25
-DEFVAR GF@&pomInteger                                                           #     5/25
-MOVE GF@&pomInteger int@0                                                       #     6/25
-DEFVAR GF@&pomString                                                            #     7/25
-MOVE GF@&pomString string@                                                      #     8/25
-DEFVAR GF@&pomFloat                                                             #     9/25
-MOVE GF@&pomFloat float@0                                                       #    10/25
-DEFVAR GF@&pomBool                                                              #    11/25
-MOVE GF@&pomBool bool@false                                                     #    12/25
-DEFVAR GF@&pomCntr                                                              #    13/25
-MOVE GF@&pomCntr int@0                                                          #    14/25
-CREATEFRAME                                                                     #    15/25
-DEFVAR TF@res                                                                   #    17/25
-MOVE TF@res string@                                                             #    18/25
-DEFVAR TF@tmp                                                                   #    19/25
-MOVE TF@tmp int@0                                                               #    20/25
-MOVE GF@&pomInteger int@0                                                       #    21/25
-redukce                                                                         #    22/25
-SUB GF@&pomInteger int@0 int@10                                                 #    23/25
-MOVE TF@tmp GF@&pomInteger                                                      #    24/25
-ERROR on line 7                                                                 #    25/25
+.IFJcode17                                                                      #     1/24
+JUMP $$scope                                                                    #     2/24
+LABEL $$scope                                                                   #     4/24
+DEFVAR GF@&pomInteger                                                           #     5/24
+MOVE GF@&pomInteger int@0                                                       #     6/24
+DEFVAR GF@&pomString                                                            #     7/24
+MOVE GF@&pomString string@                                                      #     8/24
+DEFVAR GF@&pomFloat                                                             #     9/24
+MOVE GF@&pomFloat float@0                                                       #    10/24
+DEFVAR GF@&pomBool                                                              #    11/24
+MOVE GF@&pomBool bool@false                                                     #    12/24
+DEFVAR GF@&pomCntr                                                              #    13/24
+MOVE GF@&pomCntr int@0                                                          #    14/24
+CREATEFRAME                                                                     #    15/24
+DEFVAR TF@res                                                                   #    17/24
+MOVE TF@res string@                                                             #    18/24
+DEFVAR TF@tmp                                                                   #    19/24
+MOVE TF@tmp int@0                                                               #    20/24
+MOVE GF@&pomInteger int@0                                                       #    21/24
+SUB GF@&pomInteger int@0 int@10                                                 #    22/24
+MOVE TF@tmp GF@&pomInteger                                                      #    23/24
+ERROR on line 7                                                                 #    24/24
 

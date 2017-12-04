@@ -1,4 +1,4 @@
-# 2017-12-04 12:08:01.151771
+# 2017-12-04 15:33:12.453080
 # SECTION: 04_expressions
 # TEST: 19
 # INFO: function used as variable
@@ -42,32 +42,31 @@
 
 ########################################
 
-.IFJcode17                                                                      #     1/31
-JUMP $$scope                                                                    #     2/31
-rule_par                                                                        #     4/31
-LABEL $foo                                                                      #     5/31
-PUSHFRAME                                                                       #     6/31
-DEFVAR LF@&retval                                                               #     7/31
-MOVE LF@&retval GF@&pomInteger                                                  #     8/31
-POPFRAME                                                                        #     9/31
-RETURN                                                                          #    10/31
-LABEL $$scope                                                                   #    12/31
-DEFVAR GF@&pomInteger                                                           #    13/31
-MOVE GF@&pomInteger int@0                                                       #    14/31
-DEFVAR GF@&pomString                                                            #    15/31
-MOVE GF@&pomString string@                                                      #    16/31
-DEFVAR GF@&pomFloat                                                             #    17/31
-MOVE GF@&pomFloat float@0                                                       #    18/31
-DEFVAR GF@&pomBool                                                              #    19/31
-MOVE GF@&pomBool bool@false                                                     #    20/31
-DEFVAR GF@&pomCntr                                                              #    21/31
-MOVE GF@&pomCntr int@0                                                          #    22/31
-CREATEFRAME                                                                     #    23/31
-DEFVAR TF@a                                                                     #    25/31
-MOVE TF@a int@0                                                                 #    26/31
-MOVE GF@&pomInteger int@3                                                       #    27/31
-redukce                                                                         #    28/31
-ADD GF@&pomInteger int@3 TF@foo                                                 #    29/31
-MOVE TF@a GF@&pomInteger                                                        #    30/31
-WRITE TF@a                                                                      #    31/31
+.IFJcode17                                                                      #     1/30
+JUMP $$scope                                                                    #     2/30
+rule_par                                                                        #     4/30
+LABEL $foo                                                                      #     5/30
+PUSHFRAME                                                                       #     6/30
+DEFVAR LF@&retval                                                               #     7/30
+MOVE LF@&retval GF@&pomInteger                                                  #     8/30
+POPFRAME                                                                        #     9/30
+RETURN                                                                          #    10/30
+LABEL $$scope                                                                   #    12/30
+DEFVAR GF@&pomInteger                                                           #    13/30
+MOVE GF@&pomInteger int@0                                                       #    14/30
+DEFVAR GF@&pomString                                                            #    15/30
+MOVE GF@&pomString string@                                                      #    16/30
+DEFVAR GF@&pomFloat                                                             #    17/30
+MOVE GF@&pomFloat float@0                                                       #    18/30
+DEFVAR GF@&pomBool                                                              #    19/30
+MOVE GF@&pomBool bool@false                                                     #    20/30
+DEFVAR GF@&pomCntr                                                              #    21/30
+MOVE GF@&pomCntr int@0                                                          #    22/30
+CREATEFRAME                                                                     #    23/30
+DEFVAR TF@a                                                                     #    25/30
+MOVE TF@a int@0                                                                 #    26/30
+MOVE GF@&pomInteger int@3                                                       #    27/30
+ADD GF@&pomInteger int@3 TF@foo                                                 #    28/30
+MOVE TF@a GF@&pomInteger                                                        #    29/30
+WRITE TF@a                                                                      #    30/30
 

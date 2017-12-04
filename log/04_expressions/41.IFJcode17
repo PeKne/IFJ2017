@@ -1,4 +1,4 @@
-# 2017-12-04 12:08:01.209952
+# 2017-12-04 15:33:12.590724
 # SECTION: 04_expressions
 # TEST: 41
 # INFO: maximum for C integer
@@ -9,16 +9,81 @@
 # COMPILER STDERR:
 # 
 # INTERPRETER STDERR:
-# 20.1-7: syntax error, unexpected ID, expecting END
+# Executing instruction: IJUMP at line: 2 with following arguments:
+# Executing instruction: ILABEL at line: 4 with following arguments:
+# Executing instruction: IDEFVAR at line: 5 with following arguments:
+# Dest: GF@&pomInteger
+# Executing instruction: IMOVE at line: 6 with following arguments:
+# Arg1: Const@=0(int)
+# Dest: GF@&pomInteger()
+# Executing instruction: IDEFVAR at line: 7 with following arguments:
+# Dest: GF@&pomString
+# Executing instruction: IMOVE at line: 8 with following arguments:
+# Arg1: Const@=(string)
+# Dest: GF@&pomString()
+# Executing instruction: IDEFVAR at line: 9 with following arguments:
+# Dest: GF@&pomFloat
+# Executing instruction: IMOVE at line: 10 with following arguments:
+# Arg1: Const@=0(double)
+# Dest: GF@&pomFloat()
+# Executing instruction: IDEFVAR at line: 11 with following arguments:
+# Dest: GF@&pomBool
+# Executing instruction: IMOVE at line: 12 with following arguments:
+# Arg1: Const@=false(bool)
+# Dest: GF@&pomBool()
+# Executing instruction: IDEFVAR at line: 13 with following arguments:
+# Dest: GF@&pomCntr
+# Executing instruction: IMOVE at line: 14 with following arguments:
+# Arg1: Const@=0(int)
+# Dest: GF@&pomCntr()
+# Executing instruction: ICREATEFRAME at line: 15 with following arguments:
+# Executing instruction: IDEFVAR at line: 17 with following arguments:
+# Dest: TF@a
+# Executing instruction: IMOVE at line: 18 with following arguments:
+# Arg1: Const@=0(int)
+# Dest: TF@a()
+# Executing instruction: IMOVE at line: 19 with following arguments:
+# Arg1: Const@=2(int)
+# Dest: GF@&pomInteger=0(int)
+# Executing instruction: IMULT at line: 20 with following arguments:
+# Arg1: Const@=2(int)
+# Arg2: Const@=1000000000(int)
+# Dest: GF@&pomInteger=2(int)
+# Executing instruction: IMULT at line: 21 with following arguments:
+# Arg1: Const@=147(int)
+# Arg2: Const@=1000000(int)
+# Dest: GF@&pomInteger=2000000000(int)
+# Executing instruction: IADD at line: 22 with following arguments:
+# Arg1: GF@&pomInteger=147000000(int)
+# Arg2: GF@&pomInteger=147000000(int)
+# Dest: GF@&pomInteger=147000000(int)
+# Executing instruction: IMULT at line: 23 with following arguments:
+# Arg1: Const@=483(int)
+# Arg2: Const@=1000(int)
+# Dest: GF@&pomInteger=294000000(int)
+# Executing instruction: IADD at line: 24 with following arguments:
+# Arg1: GF@&pomInteger=483000(int)
+# Arg2: GF@&pomInteger=483000(int)
+# Dest: GF@&pomInteger=483000(int)
+# Executing instruction: IADD at line: 25 with following arguments:
+# Arg1: GF@&pomInteger=966000(int)
+# Arg2: Const@=647(int)
+# Dest: GF@&pomInteger=966000(int)
+# Executing instruction: IMOVE at line: 26 with following arguments:
+# Arg1: GF@&pomInteger=966647(int)
+# Dest: TF@a=0(int)
+# Executing instruction: IWRITE at line: 27 with following arguments:
+# Arg1: TF@a=966647(int)
+# Executing instruction: IGROOT at line: 29 with following arguments:
+# I am Groot at 29 (168).
 # 
-# EXPECTED INTERPRETER STDOUT:
+# STDOUT DIFF:
+# --- expected
+# +++ actual
+# @@ -1 +1 @@
 
-#  2147483647
-
-
-# CURRENT INTERPRETER STDOUT:
-
-
+# - 2147483647
+# + 966647
 
 # INTERPRETER STDIN: 
 # 
@@ -26,9 +91,9 @@
 # EXPECTED COMPILER EXIT CODE: 0
 # CURRENT COMPILER EXIT CODE: 0
 # EXPECTED INTERPRETER EXIT CODE: 0
-# CURRENT INTERPRETER EXIT CODE: 51
+# CURRENT INTERPRETER EXIT CODE: 0
 # PRICE: ---
-# GROOT: ---
+# GROOT: 168
 # 
 #   1: ' maximum for C integer
 #   2: 
@@ -39,35 +104,29 @@
 
 ########################################
 
-.IFJcode17                                                                      #     1/33
-JUMP $$scope                                                                    #     2/33
-LABEL $$scope                                                                   #     4/33
-DEFVAR GF@&pomInteger                                                           #     5/33
-MOVE GF@&pomInteger int@0                                                       #     6/33
-DEFVAR GF@&pomString                                                            #     7/33
-MOVE GF@&pomString string@                                                      #     8/33
-DEFVAR GF@&pomFloat                                                             #     9/33
-MOVE GF@&pomFloat float@0                                                       #    10/33
-DEFVAR GF@&pomBool                                                              #    11/33
-MOVE GF@&pomBool bool@false                                                     #    12/33
-DEFVAR GF@&pomCntr                                                              #    13/33
-MOVE GF@&pomCntr int@0                                                          #    14/33
-CREATEFRAME                                                                     #    15/33
-DEFVAR TF@a                                                                     #    17/33
-MOVE TF@a int@0                                                                 #    18/33
-MOVE GF@&pomInteger int@2                                                       #    19/33
-redukce                                                                         #    20/33
-MUL GF@&pomInteger int@2 int@1000000000                                         #    21/33
-redukce                                                                         #    22/33
-MUL GF@&pomInteger int@147 int@1000000                                          #    23/33
-redukce                                                                         #    24/33
-ADD GF@&pomInteger GF@&pomInteger GF@&pomInteger                                #    25/33
-redukce                                                                         #    26/33
-MUL GF@&pomInteger int@483 int@1000                                             #    27/33
-redukce                                                                         #    28/33
-ADD GF@&pomInteger GF@&pomInteger GF@&pomInteger                                #    29/33
-redukce                                                                         #    30/33
-ADD GF@&pomInteger GF@&pomInteger int@647                                       #    31/33
-MOVE TF@a GF@&pomInteger                                                        #    32/33
-WRITE TF@a                                                                      #    33/33
+.IFJcode17                                                                      #     1/27
+JUMP $$scope                                                                    #     2/27
+LABEL $$scope                                                                   #     4/27
+DEFVAR GF@&pomInteger                                                           #     5/27
+MOVE GF@&pomInteger int@0                                                       #     6/27
+DEFVAR GF@&pomString                                                            #     7/27
+MOVE GF@&pomString string@                                                      #     8/27
+DEFVAR GF@&pomFloat                                                             #     9/27
+MOVE GF@&pomFloat float@0                                                       #    10/27
+DEFVAR GF@&pomBool                                                              #    11/27
+MOVE GF@&pomBool bool@false                                                     #    12/27
+DEFVAR GF@&pomCntr                                                              #    13/27
+MOVE GF@&pomCntr int@0                                                          #    14/27
+CREATEFRAME                                                                     #    15/27
+DEFVAR TF@a                                                                     #    17/27
+MOVE TF@a int@0                                                                 #    18/27
+MOVE GF@&pomInteger int@2                                                       #    19/27
+MUL GF@&pomInteger int@2 int@1000000000                                         #    20/27
+MUL GF@&pomInteger int@147 int@1000000                                          #    21/27
+ADD GF@&pomInteger GF@&pomInteger GF@&pomInteger                                #    22/27
+MUL GF@&pomInteger int@483 int@1000                                             #    23/27
+ADD GF@&pomInteger GF@&pomInteger GF@&pomInteger                                #    24/27
+ADD GF@&pomInteger GF@&pomInteger int@647                                       #    25/27
+MOVE TF@a GF@&pomInteger                                                        #    26/27
+WRITE TF@a                                                                      #    27/27
 

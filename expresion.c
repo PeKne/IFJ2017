@@ -294,10 +294,12 @@ int expresion_reduction(TStack *s, Tstate instruct, int reduce_counter, Tstring 
         if (instruct == st_print) {
             if (symbol == ex_str) {
                 printf("WRITE string@%s\n",ret_string->data);
-
+            } else if (symbol == ex_integer) {
+                printf("WRITE int@%s\n",ret_string->data);
+            } else if (symbol == ex_double) {
+                printf("WRITE float@%s\n",ret_string->data);
             } else {
                 printf("WRITE %s%s\n",context, ret_string->data);
-
             }
         } else if (reduce_counter == 0) {
 
@@ -403,16 +405,7 @@ int expresion_reduction(TStack *s, Tstate instruct, int reduce_counter, Tstring 
                 SPop(s);
                 if(SEmpty(s)){
                     Tstate op2_type = return_variable_type(operand_2.data);
-                    /*printf("%s typ: %d\n",operand_2.data, op2_type);
-                    printf("instr: %d\n", instruct);*/
-
-                    /*if (op2_type == 0 && instruct != st_if && instruct != st_loop) { // neinicializovana promenna == primo zapsany string !"ss", nelze vyhodit chybu
-                        fprintf(stderr, "PROMENNA\n");
-                        str_destroy(&(operand_1));
-                        str_destroy(&(operand_2));
-                        return ERR_SEM_PROG;
-                    }*/
-
+                    
                     // GENEROVANI
                     if (dest_type == st_integer) {
                         if (op2_type == st_string) {

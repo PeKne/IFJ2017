@@ -1,4 +1,4 @@
-# 2017-12-04 12:08:01.845109
+# 2017-12-04 15:33:13.680914
 # SECTION: 96_programs
 # TEST: 15
 # INFO: Taylor polynom for log
@@ -76,102 +76,88 @@
 
 ########################################
 
-.IFJcode17                                                                      #     1/101
-JUMP $$scope                                                                    #     2/101
-rule_par                                                                        #     4/101
-rule next par                                                                   #     5/101
-rule_par                                                                        #     6/101
-rule next par                                                                   #     7/101
-LABEL $taylor_log                                                               #     8/101
-PUSHFRAME                                                                       #     9/101
-DEFVAR LF@&retval                                                               #    10/101
-DEFVAR LF@result                                                                #    11/101
-MOVE LF@result float@0                                                          #    12/101
-DEFVAR LF@x_exp                                                                 #    13/101
-MOVE LF@x_exp float@0                                                           #    14/101
-MOVE GF@&pomFloat float@1.0                                                     #    15/101
-MOVE LF@x_exp GF@&pomFloat                                                      #    16/101
-DEFVAR LF@numerator_fraction                                                    #    17/101
-MOVE LF@numerator_fraction float@0                                              #    18/101
-DEFVAR LF@i                                                                     #    19/101
-MOVE LF@i int@0                                                                 #    20/101
-MOVE GF@&pomInteger int@1                                                       #    21/101
-MOVE LF@i GF@&pomInteger                                                        #    22/101
-MOVE GF@&pomFloat LF@x                                                          #    23/101
-redukce                                                                         #    24/101
-GT GF@&pomBool LF@x int@1                                                       #    25/101
-JUMPIFNEQ $$else_1 GF@&pomBool bool@true                                        #    26/101
-MOVE GF@&pomFloat LF@x                                                          #    27/101
-redukce                                                                         #    28/101
-SUB GF@&pomFloat LF@x float@1                                                   #    29/101
-redukce                                                                         #    30/101
-DIV GF@&pomFloat GF@&pomFloat LF@x                                              #    31/101
-MOVE LF@numerator_fraction GF@&pomFloat                                         #    32/101
-LABEL $$loop_1                                                                  #    33/101
-MOVE GF@&pomInteger LF@i                                                        #    34/101
-redukce                                                                         #    35/101
-JUMPIFNEQ $$loop_end_1 GF@&pomBool bool@true                                    #    36/101
-MOVE GF@&pomFloat LF@x_exp                                                      #    37/101
-redukce                                                                         #    38/101
-MUL GF@&pomFloat LF@x_exp LF@numerator_fraction                                 #    39/101
-MOVE LF@x_exp GF@&pomFloat                                                      #    40/101
-MOVE GF@&pomFloat LF@result                                                     #    41/101
-redukce                                                                         #    42/101
-DIV GF@&pomFloat LF@x_exp LF@i                                                  #    43/101
-redukce                                                                         #    44/101
-ADD GF@&pomFloat LF@result GF@&pomFloat                                         #    45/101
-MOVE LF@result GF@&pomFloat                                                     #    46/101
-MOVE GF@&pomInteger LF@i                                                        #    47/101
-redukce                                                                         #    48/101
-ADD GF@&pomInteger LF@i int@1                                                   #    49/101
-MOVE LF@i GF@&pomInteger                                                        #    50/101
-JUMP $$loop_1                                                                   #    51/101
-LABEL $$loop_end_1                                                              #    52/101
-JUMP $$endif_1                                                                  #    53/101
-LABEL $$else_1                                                                  #    54/101
-MOVE GF@&pomFloat float@1.0                                                     #    55/101
-redukce                                                                         #    56/101
-SUB GF@&pomFloat float@1.0 LF@x                                                 #    57/101
-MOVE LF@x GF@&pomFloat                                                          #    58/101
-LABEL $$loop_2                                                                  #    59/101
-MOVE GF@&pomInteger LF@i                                                        #    60/101
-redukce                                                                         #    61/101
-JUMPIFNEQ $$loop_end_2 GF@&pomBool bool@true                                    #    62/101
-MOVE GF@&pomFloat LF@x_exp                                                      #    63/101
-redukce                                                                         #    64/101
-MUL GF@&pomFloat LF@x_exp LF@x                                                  #    65/101
-MOVE LF@x_exp GF@&pomFloat                                                      #    66/101
-MOVE GF@&pomFloat LF@result                                                     #    67/101
-redukce                                                                         #    68/101
-DIV GF@&pomFloat LF@x_exp LF@i                                                  #    69/101
-redukce                                                                         #    70/101
-SUB GF@&pomFloat LF@result GF@&pomFloat                                         #    71/101
-MOVE LF@result GF@&pomFloat                                                     #    72/101
-MOVE GF@&pomInteger LF@i                                                        #    73/101
-redukce                                                                         #    74/101
-ADD GF@&pomInteger LF@i int@1                                                   #    75/101
-MOVE LF@i GF@&pomInteger                                                        #    76/101
-JUMP $$loop_2                                                                   #    77/101
-LABEL $$loop_end_2                                                              #    78/101
-LABEL $$endif_1                                                                 #    79/101
-MOVE GF@&pomFloat LF@result                                                     #    80/101
-MOVE LF@&retval GF@&pomFloat                                                    #    81/101
-POPFRAME                                                                        #    82/101
-RETURN                                                                          #    83/101
-LABEL $$scope                                                                   #    85/101
-DEFVAR GF@&pomInteger                                                           #    86/101
-MOVE GF@&pomInteger int@0                                                       #    87/101
-DEFVAR GF@&pomString                                                            #    88/101
-MOVE GF@&pomString string@                                                      #    89/101
-DEFVAR GF@&pomFloat                                                             #    90/101
-MOVE GF@&pomFloat float@0                                                       #    91/101
-DEFVAR GF@&pomBool                                                              #    92/101
-MOVE GF@&pomBool bool@false                                                     #    93/101
-DEFVAR GF@&pomCntr                                                              #    94/101
-MOVE GF@&pomCntr int@0                                                          #    95/101
-CREATEFRAME                                                                     #    96/101
-DEFVAR TF@d                                                                     #    98/101
-MOVE TF@d float@0                                                               #    99/101
-READ TF@d float                                                                 #   100/101
-ERROR on line 33                                                                #   101/101
+.IFJcode17                                                                      #     1/87
+JUMP $$scope                                                                    #     2/87
+rule_par                                                                        #     4/87
+rule next par                                                                   #     5/87
+rule_par                                                                        #     6/87
+rule next par                                                                   #     7/87
+LABEL $taylor_log                                                               #     8/87
+PUSHFRAME                                                                       #     9/87
+DEFVAR LF@&retval                                                               #    10/87
+DEFVAR LF@result                                                                #    11/87
+MOVE LF@result float@0                                                          #    12/87
+DEFVAR LF@x_exp                                                                 #    13/87
+MOVE LF@x_exp float@0                                                           #    14/87
+MOVE GF@&pomFloat float@1.0                                                     #    15/87
+MOVE LF@x_exp GF@&pomFloat                                                      #    16/87
+DEFVAR LF@numerator_fraction                                                    #    17/87
+MOVE LF@numerator_fraction float@0                                              #    18/87
+DEFVAR LF@i                                                                     #    19/87
+MOVE LF@i int@0                                                                 #    20/87
+MOVE GF@&pomInteger int@1                                                       #    21/87
+MOVE LF@i GF@&pomInteger                                                        #    22/87
+MOVE GF@&pomFloat LF@x                                                          #    23/87
+GT GF@&pomBool LF@x int@1                                                       #    24/87
+JUMPIFNEQ $$else_1 GF@&pomBool bool@true                                        #    25/87
+MOVE GF@&pomFloat LF@x                                                          #    26/87
+SUB GF@&pomFloat LF@x float@1                                                   #    27/87
+DIV GF@&pomFloat GF@&pomFloat LF@x                                              #    28/87
+MOVE LF@numerator_fraction GF@&pomFloat                                         #    29/87
+LABEL $$loop_1                                                                  #    30/87
+MOVE GF@&pomInteger LF@i                                                        #    31/87
+JUMPIFNEQ $$loop_end_1 GF@&pomBool bool@true                                    #    32/87
+MOVE GF@&pomFloat LF@x_exp                                                      #    33/87
+MUL GF@&pomFloat LF@x_exp LF@numerator_fraction                                 #    34/87
+MOVE LF@x_exp GF@&pomFloat                                                      #    35/87
+MOVE GF@&pomFloat LF@result                                                     #    36/87
+DIV GF@&pomFloat LF@x_exp LF@i                                                  #    37/87
+ADD GF@&pomFloat LF@result GF@&pomFloat                                         #    38/87
+MOVE LF@result GF@&pomFloat                                                     #    39/87
+MOVE GF@&pomInteger LF@i                                                        #    40/87
+ADD GF@&pomInteger LF@i int@1                                                   #    41/87
+MOVE LF@i GF@&pomInteger                                                        #    42/87
+JUMP $$loop_1                                                                   #    43/87
+LABEL $$loop_end_1                                                              #    44/87
+JUMP $$endif_1                                                                  #    45/87
+LABEL $$else_1                                                                  #    46/87
+MOVE GF@&pomFloat float@1.0                                                     #    47/87
+SUB GF@&pomFloat float@1.0 LF@x                                                 #    48/87
+MOVE LF@x GF@&pomFloat                                                          #    49/87
+LABEL $$loop_2                                                                  #    50/87
+MOVE GF@&pomInteger LF@i                                                        #    51/87
+JUMPIFNEQ $$loop_end_2 GF@&pomBool bool@true                                    #    52/87
+MOVE GF@&pomFloat LF@x_exp                                                      #    53/87
+MUL GF@&pomFloat LF@x_exp LF@x                                                  #    54/87
+MOVE LF@x_exp GF@&pomFloat                                                      #    55/87
+MOVE GF@&pomFloat LF@result                                                     #    56/87
+DIV GF@&pomFloat LF@x_exp LF@i                                                  #    57/87
+SUB GF@&pomFloat LF@result GF@&pomFloat                                         #    58/87
+MOVE LF@result GF@&pomFloat                                                     #    59/87
+MOVE GF@&pomInteger LF@i                                                        #    60/87
+ADD GF@&pomInteger LF@i int@1                                                   #    61/87
+MOVE LF@i GF@&pomInteger                                                        #    62/87
+JUMP $$loop_2                                                                   #    63/87
+LABEL $$loop_end_2                                                              #    64/87
+LABEL $$endif_1                                                                 #    65/87
+MOVE GF@&pomFloat LF@result                                                     #    66/87
+MOVE LF@&retval GF@&pomFloat                                                    #    67/87
+POPFRAME                                                                        #    68/87
+RETURN                                                                          #    69/87
+LABEL $$scope                                                                   #    71/87
+DEFVAR GF@&pomInteger                                                           #    72/87
+MOVE GF@&pomInteger int@0                                                       #    73/87
+DEFVAR GF@&pomString                                                            #    74/87
+MOVE GF@&pomString string@                                                      #    75/87
+DEFVAR GF@&pomFloat                                                             #    76/87
+MOVE GF@&pomFloat float@0                                                       #    77/87
+DEFVAR GF@&pomBool                                                              #    78/87
+MOVE GF@&pomBool bool@false                                                     #    79/87
+DEFVAR GF@&pomCntr                                                              #    80/87
+MOVE GF@&pomCntr int@0                                                          #    81/87
+CREATEFRAME                                                                     #    82/87
+DEFVAR TF@d                                                                     #    84/87
+MOVE TF@d float@0                                                               #    85/87
+READ TF@d float                                                                 #    86/87
+ERROR on line 33                                                                #    87/87
 

@@ -1,4 +1,4 @@
-# 2017-12-04 12:08:00.999852
+# 2017-12-04 15:33:12.267930
 # SECTION: 02_functions
 # TEST: 13
 # INFO: calling multiple functions
@@ -67,31 +67,29 @@
 
 ########################################
 
-.IFJcode17                                                                      #     1/29
-JUMP $$scope                                                                    #     2/29
-rule_par                                                                        #     4/29
-rule next par                                                                   #     5/29
-LABEL $_add_two                                                                 #     6/29
-PUSHFRAME                                                                       #     7/29
-DEFVAR LF@&retval                                                               #     8/29
-DEFVAR LF@res                                                                   #     9/29
-MOVE LF@res int@0                                                               #    10/29
-MOVE GF@&pomInteger int@0                                                       #    11/29
-redukce                                                                         #    12/29
-SUB GF@&pomInteger int@0 int@15                                                 #    13/29
-MOVE LF@res GF@&pomInteger                                                      #    14/29
-MOVE GF@&pomInteger LF@_                                                        #    15/29
-redukce                                                                         #    16/29
-ADD GF@&pomInteger LF@_ int@2                                                   #    17/29
-MOVE LF@res GF@&pomInteger                                                      #    18/29
-MOVE GF@&pomInteger LF@res                                                      #    19/29
-MOVE LF@&retval GF@&pomInteger                                                  #    20/29
-POPFRAME                                                                        #    21/29
-RETURN                                                                          #    22/29
-rule_par                                                                        #    24/29
-rule next par                                                                   #    25/29
-rule_par                                                                        #    26/29
-rule next par                                                                   #    27/29
-Nezhoduje sa meno argumentu 1                                                   #    28/29
-ERROR on line 11                                                                #    29/29
+.IFJcode17                                                                      #     1/27
+JUMP $$scope                                                                    #     2/27
+rule_par                                                                        #     4/27
+rule next par                                                                   #     5/27
+LABEL $_add_two                                                                 #     6/27
+PUSHFRAME                                                                       #     7/27
+DEFVAR LF@&retval                                                               #     8/27
+DEFVAR LF@res                                                                   #     9/27
+MOVE LF@res int@0                                                               #    10/27
+MOVE GF@&pomInteger int@0                                                       #    11/27
+SUB GF@&pomInteger int@0 int@15                                                 #    12/27
+MOVE LF@res GF@&pomInteger                                                      #    13/27
+MOVE GF@&pomInteger LF@_                                                        #    14/27
+ADD GF@&pomInteger LF@_ int@2                                                   #    15/27
+MOVE LF@res GF@&pomInteger                                                      #    16/27
+MOVE GF@&pomInteger LF@res                                                      #    17/27
+MOVE LF@&retval GF@&pomInteger                                                  #    18/27
+POPFRAME                                                                        #    19/27
+RETURN                                                                          #    20/27
+rule_par                                                                        #    22/27
+rule next par                                                                   #    23/27
+rule_par                                                                        #    24/27
+rule next par                                                                   #    25/27
+Nezhoduje sa meno argumentu 1                                                   #    26/27
+ERROR on line 11                                                                #    27/27
 

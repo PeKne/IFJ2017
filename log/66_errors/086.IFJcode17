@@ -1,4 +1,4 @@
-# 2017-12-04 12:08:01.486905
+# 2017-12-04 15:33:13.246171
 # SECTION: 66_errors
 # TEST: 086
 # INFO: Print without semicolon
@@ -49,6 +49,6 @@ MOVE GF@&pomBool bool@false                                                     
 DEFVAR GF@&pomCntr                                                              #    13/18
 MOVE GF@&pomCntr int@0                                                          #    14/18
 CREATEFRAME                                                                     #    15/18
-WRITE TF@10                                                                     #    17/18
+WRITE int@10                                                                    #    17/18
 ERROR on line 2                                                                 #    18/18
 

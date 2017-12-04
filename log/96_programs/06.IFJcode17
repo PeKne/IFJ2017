@@ -1,4 +1,4 @@
-# 2017-12-04 12:08:01.834180
+# 2017-12-04 15:33:13.667394
 # SECTION: 96_programs
 # TEST: 06
 # INFO: Program to Count Number of Digits in an Integer
@@ -10,16 +10,66 @@
 # Chyba v code_gen_expres TF@GF@&pomString TF@a int@0
 # 
 # INTERPRETER STDERR:
-# 24.1-7: syntax error, unexpected ID, expecting END
+# Executing instruction: IJUMP at line: 2 with following arguments:
+# Executing instruction: ILABEL at line: 4 with following arguments:
+# Executing instruction: IDEFVAR at line: 5 with following arguments:
+# Dest: GF@&pomInteger
+# Executing instruction: IMOVE at line: 6 with following arguments:
+# Arg1: Const@=0(int)
+# Dest: GF@&pomInteger()
+# Executing instruction: IDEFVAR at line: 7 with following arguments:
+# Dest: GF@&pomString
+# Executing instruction: IMOVE at line: 8 with following arguments:
+# Arg1: Const@=(string)
+# Dest: GF@&pomString()
+# Executing instruction: IDEFVAR at line: 9 with following arguments:
+# Dest: GF@&pomFloat
+# Executing instruction: IMOVE at line: 10 with following arguments:
+# Arg1: Const@=0(double)
+# Dest: GF@&pomFloat()
+# Executing instruction: IDEFVAR at line: 11 with following arguments:
+# Dest: GF@&pomBool
+# Executing instruction: IMOVE at line: 12 with following arguments:
+# Arg1: Const@=false(bool)
+# Dest: GF@&pomBool()
+# Executing instruction: IDEFVAR at line: 13 with following arguments:
+# Dest: GF@&pomCntr
+# Executing instruction: IMOVE at line: 14 with following arguments:
+# Arg1: Const@=0(int)
+# Dest: GF@&pomCntr()
+# Executing instruction: ICREATEFRAME at line: 15 with following arguments:
+# Executing instruction: IDEFVAR at line: 17 with following arguments:
+# Dest: TF@a
+# Executing instruction: IMOVE at line: 18 with following arguments:
+# Arg1: Const@=0(int)
+# Dest: TF@a()
+# Executing instruction: IREAD at line: 19 with following arguments:
+# Dest: TF@a=0(int)
+# Executing instruction: IDEFVAR at line: 20 with following arguments:
+# Dest: TF@soucet
+# Executing instruction: IMOVE at line: 21 with following arguments:
+# Arg1: Const@=0(int)
+# Dest: TF@soucet()
+# Executing instruction: ILABEL at line: 22 with following arguments:
+# Executing instruction: IMOVE at line: 23 with following arguments:
+# Arg1: TF@a=1456534(int)
+# Dest: GF@&pomInteger=0(int)
+# Executing instruction: IJUMPIFNEQ at line: 24 with following arguments:
+# Arg1: GF@&pomBool=false(bool)
+# Arg2: Const@=true(bool)
+# Executing instruction: ILABEL at line: 40 with following arguments:
+# Executing instruction: IWRITE at line: 41 with following arguments:
+# Arg1: TF@soucet=0(int)
+# Executing instruction: IGROOT at line: 43 with following arguments:
+# I am Groot at 43 (113).
 # 
-# EXPECTED INTERPRETER STDOUT:
+# STDOUT DIFF:
+# --- expected
+# +++ actual
+# @@ -1 +1 @@
 
-# ?  7
-
-
-# CURRENT INTERPRETER STDOUT:
-
-
+# -?  7
+# + 0
 
 # INTERPRETER STDIN: 
 # 1456534
@@ -27,9 +77,9 @@
 # EXPECTED COMPILER EXIT CODE: 0
 # CURRENT COMPILER EXIT CODE: 0
 # EXPECTED INTERPRETER EXIT CODE: 0
-# CURRENT INTERPRETER EXIT CODE: 51
+# CURRENT INTERPRETER EXIT CODE: 0
 # PRICE: ---
-# GROOT: ---
+# GROOT: 113
 # 
 #   1: ' Program to Count Number of Digits in an Integer
 #   2: scope
@@ -47,45 +97,42 @@
 
 ########################################
 
-.IFJcode17                                                                      #     1/44
-JUMP $$scope                                                                    #     2/44
-LABEL $$scope                                                                   #     4/44
-DEFVAR GF@&pomInteger                                                           #     5/44
-MOVE GF@&pomInteger int@0                                                       #     6/44
-DEFVAR GF@&pomString                                                            #     7/44
-MOVE GF@&pomString string@                                                      #     8/44
-DEFVAR GF@&pomFloat                                                             #     9/44
-MOVE GF@&pomFloat float@0                                                       #    10/44
-DEFVAR GF@&pomBool                                                              #    11/44
-MOVE GF@&pomBool bool@false                                                     #    12/44
-DEFVAR GF@&pomCntr                                                              #    13/44
-MOVE GF@&pomCntr int@0                                                          #    14/44
-CREATEFRAME                                                                     #    15/44
-DEFVAR TF@a                                                                     #    17/44
-MOVE TF@a int@0                                                                 #    18/44
-READ TF@a int                                                                   #    19/44
-DEFVAR TF@soucet                                                                #    20/44
-MOVE TF@soucet int@0                                                            #    21/44
-LABEL $$loop_1                                                                  #    22/44
-MOVE GF@&pomInteger TF@a                                                        #    23/44
-redukce                                                                         #    24/44
-JUMPIFNEQ $$loop_end_1 GF@&pomBool bool@true                                    #    25/44
-MOVE GF@&pomInteger TF@a                                                        #    26/44
-redukce                                                                         #    27/44
-MOVE GF@&pomCntr int@0                                                          #    29/44
-LABEL $$WholeDiv_Begin0                                                         #    30/44
-ADD GF@&pomCntr GF@&pomCntr int@1                                               #    31/44
-SUB GF@&pomInteger GF@&pomInteger int@10                                        #    32/44
-LT GF@&pomBool GF@&pomInteger int@0                                             #    33/44
-JUMPIFNEQ $$WholeDiv_Begin0 GF@&pomBool bool@true                               #    34/44
-SUB GF@&pomCntr GF@&pomCntr int@1                                               #    35/44
-MOVE GF@&pomInteger GF@&pomCntr                                                 #    36/44
-MOVE TF@a GF@&pomInteger                                                        #    37/44
-MOVE GF@&pomInteger TF@soucet                                                   #    38/44
-redukce                                                                         #    39/44
-ADD GF@&pomInteger TF@soucet int@1                                              #    40/44
-MOVE TF@soucet GF@&pomInteger                                                   #    41/44
-JUMP $$loop_1                                                                   #    42/44
-LABEL $$loop_end_1                                                              #    43/44
-WRITE TF@soucet                                                                 #    44/44
+.IFJcode17                                                                      #     1/41
+JUMP $$scope                                                                    #     2/41
+LABEL $$scope                                                                   #     4/41
+DEFVAR GF@&pomInteger                                                           #     5/41
+MOVE GF@&pomInteger int@0                                                       #     6/41
+DEFVAR GF@&pomString                                                            #     7/41
+MOVE GF@&pomString string@                                                      #     8/41
+DEFVAR GF@&pomFloat                                                             #     9/41
+MOVE GF@&pomFloat float@0                                                       #    10/41
+DEFVAR GF@&pomBool                                                              #    11/41
+MOVE GF@&pomBool bool@false                                                     #    12/41
+DEFVAR GF@&pomCntr                                                              #    13/41
+MOVE GF@&pomCntr int@0                                                          #    14/41
+CREATEFRAME                                                                     #    15/41
+DEFVAR TF@a                                                                     #    17/41
+MOVE TF@a int@0                                                                 #    18/41
+READ TF@a int                                                                   #    19/41
+DEFVAR TF@soucet                                                                #    20/41
+MOVE TF@soucet int@0                                                            #    21/41
+LABEL $$loop_1                                                                  #    22/41
+MOVE GF@&pomInteger TF@a                                                        #    23/41
+JUMPIFNEQ $$loop_end_1 GF@&pomBool bool@true                                    #    24/41
+MOVE GF@&pomInteger TF@a                                                        #    25/41
+MOVE GF@&pomCntr int@0                                                          #    27/41
+LABEL $$WholeDiv_Begin0                                                         #    28/41
+ADD GF@&pomCntr GF@&pomCntr int@1                                               #    29/41
+SUB GF@&pomInteger GF@&pomInteger int@10                                        #    30/41
+LT GF@&pomBool GF@&pomInteger int@0                                             #    31/41
+JUMPIFNEQ $$WholeDiv_Begin0 GF@&pomBool bool@true                               #    32/41
+SUB GF@&pomCntr GF@&pomCntr int@1                                               #    33/41
+MOVE GF@&pomInteger GF@&pomCntr                                                 #    34/41
+MOVE TF@a GF@&pomInteger                                                        #    35/41
+MOVE GF@&pomInteger TF@soucet                                                   #    36/41
+ADD GF@&pomInteger TF@soucet int@1                                              #    37/41
+MOVE TF@soucet GF@&pomInteger                                                   #    38/41
+JUMP $$loop_1                                                                   #    39/41
+LABEL $$loop_end_1                                                              #    40/41
+WRITE TF@soucet                                                                 #    41/41
 

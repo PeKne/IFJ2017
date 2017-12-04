@@ -1,24 +1,460 @@
-# 2017-12-04 12:08:01.197744
+# 2017-12-04 15:33:12.578849
 # SECTION: 04_expressions
 # TEST: 37
 # INFO: Random math expressionwith too many items, integers and floats
 # REQUIRED EXTENSIONS: 
 # ACTIVATED EXTENSIONS: 
-# STATE: FAIL
+# STATE: SUCCESS
 # 
 # COMPILER STDERR:
 # 
 # INTERPRETER STDERR:
-# 20.1-7: syntax error, unexpected ID, expecting END
+# Executing instruction: IJUMP at line: 2 with following arguments:
+# Executing instruction: ILABEL at line: 4 with following arguments:
+# Executing instruction: IDEFVAR at line: 5 with following arguments:
+# Dest: GF@&pomInteger
+# Executing instruction: IMOVE at line: 6 with following arguments:
+# Arg1: Const@=0(int)
+# Dest: GF@&pomInteger()
+# Executing instruction: IDEFVAR at line: 7 with following arguments:
+# Dest: GF@&pomString
+# Executing instruction: IMOVE at line: 8 with following arguments:
+# Arg1: Const@=(string)
+# Dest: GF@&pomString()
+# Executing instruction: IDEFVAR at line: 9 with following arguments:
+# Dest: GF@&pomFloat
+# Executing instruction: IMOVE at line: 10 with following arguments:
+# Arg1: Const@=0(double)
+# Dest: GF@&pomFloat()
+# Executing instruction: IDEFVAR at line: 11 with following arguments:
+# Dest: GF@&pomBool
+# Executing instruction: IMOVE at line: 12 with following arguments:
+# Arg1: Const@=false(bool)
+# Dest: GF@&pomBool()
+# Executing instruction: IDEFVAR at line: 13 with following arguments:
+# Dest: GF@&pomCntr
+# Executing instruction: IMOVE at line: 14 with following arguments:
+# Arg1: Const@=0(int)
+# Dest: GF@&pomCntr()
+# Executing instruction: ICREATEFRAME at line: 15 with following arguments:
+# Executing instruction: IDEFVAR at line: 17 with following arguments:
+# Dest: TF@a
+# Executing instruction: IMOVE at line: 18 with following arguments:
+# Arg1: Const@=0(double)
+# Dest: TF@a()
+# Executing instruction: IMOVE at line: 19 with following arguments:
+# Arg1: Const@=46(double)
+# Dest: GF@&pomFloat=0(double)
+# Executing instruction: ISUB at line: 20 with following arguments:
+# Arg1: Const@=46(double)
+# Arg2: Const@=0.010679321368541(double)
+# Dest: GF@&pomFloat=46(double)
+# Executing instruction: IADD at line: 21 with following arguments:
+# Arg1: GF@&pomFloat=45.98932067863146(double)
+# Arg2: Const@=0.43068018249733(double)
+# Dest: GF@&pomFloat=45.98932067863146(double)
+# Executing instruction: ISUB at line: 22 with following arguments:
+# Arg1: GF@&pomFloat=46.42000086112879(double)
+# Arg2: Const@=0.32809254030143(double)
+# Dest: GF@&pomFloat=46.42000086112879(double)
+# Executing instruction: IADD at line: 23 with following arguments:
+# Arg1: GF@&pomFloat=46.09190832082736(double)
+# Arg2: Const@=86(double)
+# Dest: GF@&pomFloat=46.09190832082736(double)
+# Executing instruction: IADD at line: 24 with following arguments:
+# Arg1: GF@&pomFloat=132.0919083208274(double)
+# Arg2: Const@=99(double)
+# Dest: GF@&pomFloat=132.0919083208274(double)
+# Executing instruction: IADD at line: 25 with following arguments:
+# Arg1: GF@&pomFloat=231.0919083208274(double)
+# Arg2: Const@=57(double)
+# Dest: GF@&pomFloat=231.0919083208274(double)
+# Executing instruction: ISUB at line: 26 with following arguments:
+# Arg1: GF@&pomFloat=288.0919083208274(double)
+# Arg2: Const@=11(double)
+# Dest: GF@&pomFloat=288.0919083208274(double)
+# Executing instruction: IADD at line: 27 with following arguments:
+# Arg1: GF@&pomFloat=277.0919083208274(double)
+# Arg2: Const@=46(double)
+# Dest: GF@&pomFloat=277.0919083208274(double)
+# Executing instruction: ISUB at line: 28 with following arguments:
+# Arg1: GF@&pomFloat=323.0919083208274(double)
+# Arg2: Const@=26(double)
+# Dest: GF@&pomFloat=323.0919083208274(double)
+# Executing instruction: ISUB at line: 29 with following arguments:
+# Arg1: GF@&pomFloat=297.0919083208274(double)
+# Arg2: Const@=36(double)
+# Dest: GF@&pomFloat=297.0919083208274(double)
+# Executing instruction: IADD at line: 30 with following arguments:
+# Arg1: GF@&pomFloat=261.0919083208274(double)
+# Arg2: Const@=0.31033481858221(double)
+# Dest: GF@&pomFloat=261.0919083208274(double)
+# Executing instruction: IADD at line: 31 with following arguments:
+# Arg1: GF@&pomFloat=261.4022431394096(double)
+# Arg2: Const@=3(double)
+# Dest: GF@&pomFloat=261.4022431394096(double)
+# Executing instruction: IADD at line: 32 with following arguments:
+# Arg1: GF@&pomFloat=264.4022431394096(double)
+# Arg2: Const@=68(double)
+# Dest: GF@&pomFloat=264.4022431394096(double)
+# Executing instruction: ISUB at line: 33 with following arguments:
+# Arg1: GF@&pomFloat=332.4022431394096(double)
+# Arg2: Const@=0.15577337059927(double)
+# Dest: GF@&pomFloat=332.4022431394096(double)
+# Executing instruction: IADD at line: 34 with following arguments:
+# Arg1: GF@&pomFloat=332.2464697688103(double)
+# Arg2: Const@=0.50213853106934(double)
+# Dest: GF@&pomFloat=332.2464697688103(double)
+# Executing instruction: IADD at line: 35 with following arguments:
+# Arg1: GF@&pomFloat=332.7486082998797(double)
+# Arg2: Const@=0.39725105017296(double)
+# Dest: GF@&pomFloat=332.7486082998797(double)
+# Executing instruction: ISUB at line: 36 with following arguments:
+# Arg1: GF@&pomFloat=333.1458593500526(double)
+# Arg2: Const@=6(double)
+# Dest: GF@&pomFloat=333.1458593500526(double)
+# Executing instruction: IADD at line: 37 with following arguments:
+# Arg1: GF@&pomFloat=327.1458593500526(double)
+# Arg2: Const@=48(double)
+# Dest: GF@&pomFloat=327.1458593500526(double)
+# Executing instruction: IADD at line: 38 with following arguments:
+# Arg1: GF@&pomFloat=375.1458593500526(double)
+# Arg2: Const@=0.24880350625552(double)
+# Dest: GF@&pomFloat=375.1458593500526(double)
+# Executing instruction: ISUB at line: 39 with following arguments:
+# Arg1: GF@&pomFloat=375.3946628563081(double)
+# Arg2: Const@=0.57491885292107(double)
+# Dest: GF@&pomFloat=375.3946628563081(double)
+# Executing instruction: IADD at line: 40 with following arguments:
+# Arg1: GF@&pomFloat=374.819744003387(double)
+# Arg2: Const@=0.82779553617714(double)
+# Dest: GF@&pomFloat=374.819744003387(double)
+# Executing instruction: IADD at line: 41 with following arguments:
+# Arg1: GF@&pomFloat=375.6475395395641(double)
+# Arg2: Const@=0.06800285403989401(double)
+# Dest: GF@&pomFloat=375.6475395395641(double)
+# Executing instruction: ISUB at line: 42 with following arguments:
+# Arg1: GF@&pomFloat=375.715542393604(double)
+# Arg2: Const@=0.34956657204291(double)
+# Dest: GF@&pomFloat=375.715542393604(double)
+# Executing instruction: ISUB at line: 43 with following arguments:
+# Arg1: GF@&pomFloat=375.3659758215611(double)
+# Arg2: Const@=96(double)
+# Dest: GF@&pomFloat=375.3659758215611(double)
+# Executing instruction: ISUB at line: 44 with following arguments:
+# Arg1: GF@&pomFloat=279.3659758215611(double)
+# Arg2: Const@=0.92281451631468(double)
+# Dest: GF@&pomFloat=279.3659758215611(double)
+# Executing instruction: ISUB at line: 45 with following arguments:
+# Arg1: GF@&pomFloat=278.4431613052464(double)
+# Arg2: Const@=46(double)
+# Dest: GF@&pomFloat=278.4431613052464(double)
+# Executing instruction: ISUB at line: 46 with following arguments:
+# Arg1: GF@&pomFloat=232.4431613052464(double)
+# Arg2: Const@=0.50963992136979(double)
+# Dest: GF@&pomFloat=232.4431613052464(double)
+# Executing instruction: IADD at line: 47 with following arguments:
+# Arg1: GF@&pomFloat=231.9335213838766(double)
+# Arg2: Const@=0.61052328143759(double)
+# Dest: GF@&pomFloat=231.9335213838766(double)
+# Executing instruction: IADD at line: 48 with following arguments:
+# Arg1: GF@&pomFloat=232.5440446653142(double)
+# Arg2: Const@=42(double)
+# Dest: GF@&pomFloat=232.5440446653142(double)
+# Executing instruction: IADD at line: 49 with following arguments:
+# Arg1: GF@&pomFloat=274.5440446653142(double)
+# Arg2: Const@=0.87657525943433(double)
+# Dest: GF@&pomFloat=274.5440446653142(double)
+# Executing instruction: ISUB at line: 50 with following arguments:
+# Arg1: GF@&pomFloat=275.4206199247486(double)
+# Arg2: Const@=0.09945742418033(double)
+# Dest: GF@&pomFloat=275.4206199247486(double)
+# Executing instruction: ISUB at line: 51 with following arguments:
+# Arg1: GF@&pomFloat=275.3211625005682(double)
+# Arg2: Const@=0.34566249947327(double)
+# Dest: GF@&pomFloat=275.3211625005682(double)
+# Executing instruction: IADD at line: 52 with following arguments:
+# Arg1: GF@&pomFloat=274.9755000010949(double)
+# Arg2: Const@=66(double)
+# Dest: GF@&pomFloat=274.9755000010949(double)
+# Executing instruction: ISUB at line: 53 with following arguments:
+# Arg1: GF@&pomFloat=340.9755000010949(double)
+# Arg2: Const@=0.76161749323905(double)
+# Dest: GF@&pomFloat=340.9755000010949(double)
+# Executing instruction: ISUB at line: 54 with following arguments:
+# Arg1: GF@&pomFloat=340.2138825078559(double)
+# Arg2: Const@=0.15526197206008(double)
+# Dest: GF@&pomFloat=340.2138825078559(double)
+# Executing instruction: IADD at line: 55 with following arguments:
+# Arg1: GF@&pomFloat=340.0586205357958(double)
+# Arg2: Const@=45(double)
+# Dest: GF@&pomFloat=340.0586205357958(double)
+# Executing instruction: IADD at line: 56 with following arguments:
+# Arg1: GF@&pomFloat=385.0586205357958(double)
+# Arg2: Const@=0.43469567989684(double)
+# Dest: GF@&pomFloat=385.0586205357958(double)
+# Executing instruction: IADD at line: 57 with following arguments:
+# Arg1: GF@&pomFloat=385.4933162156926(double)
+# Arg2: Const@=0.58769545638361(double)
+# Dest: GF@&pomFloat=385.4933162156926(double)
+# Executing instruction: ISUB at line: 58 with following arguments:
+# Arg1: GF@&pomFloat=386.0810116720762(double)
+# Arg2: Const@=0.39669711300949(double)
+# Dest: GF@&pomFloat=386.0810116720762(double)
+# Executing instruction: IADD at line: 59 with following arguments:
+# Arg1: GF@&pomFloat=385.6843145590667(double)
+# Arg2: Const@=0.1453927886418(double)
+# Dest: GF@&pomFloat=385.6843145590667(double)
+# Executing instruction: ISUB at line: 60 with following arguments:
+# Arg1: GF@&pomFloat=385.8297073477085(double)
+# Arg2: Const@=0.15035997431276(double)
+# Dest: GF@&pomFloat=385.8297073477085(double)
+# Executing instruction: IADD at line: 61 with following arguments:
+# Arg1: GF@&pomFloat=385.6793473733957(double)
+# Arg2: Const@=50(double)
+# Dest: GF@&pomFloat=385.6793473733957(double)
+# Executing instruction: ISUB at line: 62 with following arguments:
+# Arg1: GF@&pomFloat=435.6793473733957(double)
+# Arg2: Const@=70(double)
+# Dest: GF@&pomFloat=435.6793473733957(double)
+# Executing instruction: ISUB at line: 63 with following arguments:
+# Arg1: GF@&pomFloat=365.6793473733957(double)
+# Arg2: Const@=74(double)
+# Dest: GF@&pomFloat=365.6793473733957(double)
+# Executing instruction: ISUB at line: 64 with following arguments:
+# Arg1: GF@&pomFloat=291.6793473733957(double)
+# Arg2: Const@=0.098130883694687(double)
+# Dest: GF@&pomFloat=291.6793473733957(double)
+# Executing instruction: ISUB at line: 65 with following arguments:
+# Arg1: GF@&pomFloat=291.581216489701(double)
+# Arg2: Const@=38(double)
+# Dest: GF@&pomFloat=291.581216489701(double)
+# Executing instruction: IADD at line: 66 with following arguments:
+# Arg1: GF@&pomFloat=253.581216489701(double)
+# Arg2: Const@=0.8993101552591199(double)
+# Dest: GF@&pomFloat=253.581216489701(double)
+# Executing instruction: ISUB at line: 67 with following arguments:
+# Arg1: GF@&pomFloat=254.4805266449602(double)
+# Arg2: Const@=0.81198468329943(double)
+# Dest: GF@&pomFloat=254.4805266449602(double)
+# Executing instruction: IADD at line: 68 with following arguments:
+# Arg1: GF@&pomFloat=253.6685419616607(double)
+# Arg2: Const@=0.68384696901024(double)
+# Dest: GF@&pomFloat=253.6685419616607(double)
+# Executing instruction: ISUB at line: 69 with following arguments:
+# Arg1: GF@&pomFloat=254.3523889306709(double)
+# Arg2: Const@=95(double)
+# Dest: GF@&pomFloat=254.3523889306709(double)
+# Executing instruction: ISUB at line: 70 with following arguments:
+# Arg1: GF@&pomFloat=159.3523889306709(double)
+# Arg2: Const@=0.17217174739212(double)
+# Dest: GF@&pomFloat=159.3523889306709(double)
+# Executing instruction: IADD at line: 71 with following arguments:
+# Arg1: GF@&pomFloat=159.1802171832788(double)
+# Arg2: Const@=72(double)
+# Dest: GF@&pomFloat=159.1802171832788(double)
+# Executing instruction: ISUB at line: 72 with following arguments:
+# Arg1: GF@&pomFloat=231.1802171832788(double)
+# Arg2: Const@=26(double)
+# Dest: GF@&pomFloat=231.1802171832788(double)
+# Executing instruction: ISUB at line: 73 with following arguments:
+# Arg1: GF@&pomFloat=205.1802171832788(double)
+# Arg2: Const@=0.66572260096004(double)
+# Dest: GF@&pomFloat=205.1802171832788(double)
+# Executing instruction: IADD at line: 74 with following arguments:
+# Arg1: GF@&pomFloat=204.5144945823188(double)
+# Arg2: Const@=0.52673281194956(double)
+# Dest: GF@&pomFloat=204.5144945823188(double)
+# Executing instruction: IADD at line: 75 with following arguments:
+# Arg1: GF@&pomFloat=205.0412273942683(double)
+# Arg2: Const@=0.99886705959163(double)
+# Dest: GF@&pomFloat=205.0412273942683(double)
+# Executing instruction: IADD at line: 76 with following arguments:
+# Arg1: GF@&pomFloat=206.04009445386(double)
+# Arg2: Const@=49(double)
+# Dest: GF@&pomFloat=206.04009445386(double)
+# Executing instruction: IADD at line: 77 with following arguments:
+# Arg1: GF@&pomFloat=255.04009445386(double)
+# Arg2: Const@=0.90417160368719(double)
+# Dest: GF@&pomFloat=255.04009445386(double)
+# Executing instruction: ISUB at line: 78 with following arguments:
+# Arg1: GF@&pomFloat=255.9442660575471(double)
+# Arg2: Const@=74(double)
+# Dest: GF@&pomFloat=255.9442660575471(double)
+# Executing instruction: IADD at line: 79 with following arguments:
+# Arg1: GF@&pomFloat=181.9442660575471(double)
+# Arg2: Const@=0.41429367913599(double)
+# Dest: GF@&pomFloat=181.9442660575471(double)
+# Executing instruction: ISUB at line: 80 with following arguments:
+# Arg1: GF@&pomFloat=182.3585597366831(double)
+# Arg2: Const@=0.89222735440928(double)
+# Dest: GF@&pomFloat=182.3585597366831(double)
+# Executing instruction: IADD at line: 81 with following arguments:
+# Arg1: GF@&pomFloat=181.4663323822739(double)
+# Arg2: Const@=53(double)
+# Dest: GF@&pomFloat=181.4663323822739(double)
+# Executing instruction: IADD at line: 82 with following arguments:
+# Arg1: GF@&pomFloat=234.4663323822739(double)
+# Arg2: Const@=23(double)
+# Dest: GF@&pomFloat=234.4663323822739(double)
+# Executing instruction: IADD at line: 83 with following arguments:
+# Arg1: GF@&pomFloat=257.4663323822739(double)
+# Arg2: Const@=83(double)
+# Dest: GF@&pomFloat=257.4663323822739(double)
+# Executing instruction: ISUB at line: 84 with following arguments:
+# Arg1: GF@&pomFloat=340.4663323822739(double)
+# Arg2: Const@=0.75109822151768(double)
+# Dest: GF@&pomFloat=340.4663323822739(double)
+# Executing instruction: IADD at line: 85 with following arguments:
+# Arg1: GF@&pomFloat=339.7152341607562(double)
+# Arg2: Const@=88(double)
+# Dest: GF@&pomFloat=339.7152341607562(double)
+# Executing instruction: IADD at line: 86 with following arguments:
+# Arg1: GF@&pomFloat=427.7152341607562(double)
+# Arg2: Const@=0.26620691561429(double)
+# Dest: GF@&pomFloat=427.7152341607562(double)
+# Executing instruction: IADD at line: 87 with following arguments:
+# Arg1: GF@&pomFloat=427.9814410763705(double)
+# Arg2: Const@=0.65726425436198(double)
+# Dest: GF@&pomFloat=427.9814410763705(double)
+# Executing instruction: ISUB at line: 88 with following arguments:
+# Arg1: GF@&pomFloat=428.6387053307325(double)
+# Arg2: Const@=0.96422492291975(double)
+# Dest: GF@&pomFloat=428.6387053307325(double)
+# Executing instruction: IADD at line: 89 with following arguments:
+# Arg1: GF@&pomFloat=427.6744804078127(double)
+# Arg2: Const@=77(double)
+# Dest: GF@&pomFloat=427.6744804078127(double)
+# Executing instruction: IADD at line: 90 with following arguments:
+# Arg1: GF@&pomFloat=504.6744804078127(double)
+# Arg2: Const@=0.14849523461819(double)
+# Dest: GF@&pomFloat=504.6744804078127(double)
+# Executing instruction: ISUB at line: 91 with following arguments:
+# Arg1: GF@&pomFloat=504.8229756424309(double)
+# Arg2: Const@=0.4415650081083(double)
+# Dest: GF@&pomFloat=504.8229756424309(double)
+# Executing instruction: ISUB at line: 92 with following arguments:
+# Arg1: GF@&pomFloat=504.3814106343226(double)
+# Arg2: Const@=92(double)
+# Dest: GF@&pomFloat=504.3814106343226(double)
+# Executing instruction: IADD at line: 93 with following arguments:
+# Arg1: GF@&pomFloat=412.3814106343226(double)
+# Arg2: Const@=81(double)
+# Dest: GF@&pomFloat=412.3814106343226(double)
+# Executing instruction: IADD at line: 94 with following arguments:
+# Arg1: GF@&pomFloat=493.3814106343226(double)
+# Arg2: Const@=77(double)
+# Dest: GF@&pomFloat=493.3814106343226(double)
+# Executing instruction: ISUB at line: 95 with following arguments:
+# Arg1: GF@&pomFloat=570.3814106343226(double)
+# Arg2: Const@=0.99431962053958(double)
+# Dest: GF@&pomFloat=570.3814106343226(double)
+# Executing instruction: IADD at line: 96 with following arguments:
+# Arg1: GF@&pomFloat=569.387091013783(double)
+# Arg2: Const@=0.84222860394149(double)
+# Dest: GF@&pomFloat=569.387091013783(double)
+# Executing instruction: ISUB at line: 97 with following arguments:
+# Arg1: GF@&pomFloat=570.2293196177245(double)
+# Arg2: Const@=0.60182912116955(double)
+# Dest: GF@&pomFloat=570.2293196177245(double)
+# Executing instruction: IADD at line: 98 with following arguments:
+# Arg1: GF@&pomFloat=569.627490496555(double)
+# Arg2: Const@=0.90371497855695(double)
+# Dest: GF@&pomFloat=569.627490496555(double)
+# Executing instruction: ISUB at line: 99 with following arguments:
+# Arg1: GF@&pomFloat=570.531205475112(double)
+# Arg2: Const@=90(double)
+# Dest: GF@&pomFloat=570.531205475112(double)
+# Executing instruction: IADD at line: 100 with following arguments:
+# Arg1: GF@&pomFloat=480.531205475112(double)
+# Arg2: Const@=6(double)
+# Dest: GF@&pomFloat=480.531205475112(double)
+# Executing instruction: ISUB at line: 101 with following arguments:
+# Arg1: GF@&pomFloat=486.531205475112(double)
+# Arg2: Const@=72(double)
+# Dest: GF@&pomFloat=486.531205475112(double)
+# Executing instruction: IADD at line: 102 with following arguments:
+# Arg1: GF@&pomFloat=414.531205475112(double)
+# Arg2: Const@=0.9045003735947(double)
+# Dest: GF@&pomFloat=414.531205475112(double)
+# Executing instruction: IADD at line: 103 with following arguments:
+# Arg1: GF@&pomFloat=415.4357058487067(double)
+# Arg2: Const@=83(double)
+# Dest: GF@&pomFloat=415.4357058487067(double)
+# Executing instruction: ISUB at line: 104 with following arguments:
+# Arg1: GF@&pomFloat=498.4357058487067(double)
+# Arg2: Const@=6(double)
+# Dest: GF@&pomFloat=498.4357058487067(double)
+# Executing instruction: IADD at line: 105 with following arguments:
+# Arg1: GF@&pomFloat=492.4357058487067(double)
+# Arg2: Const@=67(double)
+# Dest: GF@&pomFloat=492.4357058487067(double)
+# Executing instruction: IADD at line: 106 with following arguments:
+# Arg1: GF@&pomFloat=559.4357058487067(double)
+# Arg2: Const@=71(double)
+# Dest: GF@&pomFloat=559.4357058487067(double)
+# Executing instruction: IADD at line: 107 with following arguments:
+# Arg1: GF@&pomFloat=630.4357058487067(double)
+# Arg2: Const@=0.74566726747233(double)
+# Dest: GF@&pomFloat=630.4357058487067(double)
+# Executing instruction: IADD at line: 108 with following arguments:
+# Arg1: GF@&pomFloat=631.181373116179(double)
+# Arg2: Const@=0.27871737828418(double)
+# Dest: GF@&pomFloat=631.181373116179(double)
+# Executing instruction: IADD at line: 109 with following arguments:
+# Arg1: GF@&pomFloat=631.4600904944632(double)
+# Arg2: Const@=19(double)
+# Dest: GF@&pomFloat=631.4600904944632(double)
+# Executing instruction: IADD at line: 110 with following arguments:
+# Arg1: GF@&pomFloat=650.4600904944632(double)
+# Arg2: Const@=0.22285753266088(double)
+# Dest: GF@&pomFloat=650.4600904944632(double)
+# Executing instruction: ISUB at line: 111 with following arguments:
+# Arg1: GF@&pomFloat=650.6829480271241(double)
+# Arg2: Const@=28(double)
+# Dest: GF@&pomFloat=650.6829480271241(double)
+# Executing instruction: IADD at line: 112 with following arguments:
+# Arg1: GF@&pomFloat=622.6829480271241(double)
+# Arg2: Const@=41(double)
+# Dest: GF@&pomFloat=622.6829480271241(double)
+# Executing instruction: ISUB at line: 113 with following arguments:
+# Arg1: GF@&pomFloat=663.6829480271241(double)
+# Arg2: Const@=0.40053957533116(double)
+# Dest: GF@&pomFloat=663.6829480271241(double)
+# Executing instruction: IADD at line: 114 with following arguments:
+# Arg1: GF@&pomFloat=663.2824084517929(double)
+# Arg2: Const@=0.23337697202031(double)
+# Dest: GF@&pomFloat=663.2824084517929(double)
+# Executing instruction: ISUB at line: 115 with following arguments:
+# Arg1: GF@&pomFloat=663.5157854238132(double)
+# Arg2: Const@=14(double)
+# Dest: GF@&pomFloat=663.5157854238132(double)
+# Executing instruction: IADD at line: 116 with following arguments:
+# Arg1: GF@&pomFloat=649.5157854238132(double)
+# Arg2: Const@=0.036446608619972(double)
+# Dest: GF@&pomFloat=649.5157854238132(double)
+# Executing instruction: IADD at line: 117 with following arguments:
+# Arg1: GF@&pomFloat=649.5522320324332(double)
+# Arg2: Const@=0.11081079119389(double)
+# Dest: GF@&pomFloat=649.5522320324332(double)
+# Executing instruction: ISUB at line: 118 with following arguments:
+# Arg1: GF@&pomFloat=649.6630428236271(double)
+# Arg2: Const@=85(double)
+# Dest: GF@&pomFloat=649.6630428236271(double)
+# Executing instruction: ISUB at line: 119 with following arguments:
+# Arg1: GF@&pomFloat=564.6630428236271(double)
+# Arg2: Const@=84(double)
+# Dest: GF@&pomFloat=564.6630428236271(double)
+# Executing instruction: IMOVE at line: 120 with following arguments:
+# Arg1: GF@&pomFloat=480.6630428236271(double)
+# Dest: TF@a=0(double)
+# Executing instruction: IWRITE at line: 121 with following arguments:
+# Arg1: TF@a=480.6630428236271(double)
+# Executing instruction: IGROOT at line: 123 with following arguments:
+# I am Groot at 123 (1390).
 # 
-# EXPECTED INTERPRETER STDOUT:
-
-#  480.663
-
-
-# CURRENT INTERPRETER STDOUT:
-
-
+# STDOUT DIFF:
+# 
 
 # INTERPRETER STDIN: 
 # 
@@ -26,9 +462,9 @@
 # EXPECTED COMPILER EXIT CODE: 0
 # CURRENT COMPILER EXIT CODE: 0
 # EXPECTED INTERPRETER EXIT CODE: 0
-# CURRENT INTERPRETER EXIT CODE: 51
-# PRICE: ---
-# GROOT: ---
+# CURRENT INTERPRETER EXIT CODE: 0
+# PRICE: 1390 (422+968)
+# GROOT: 1390
 # 
 #   1: ' Random math expressionwith too many items, integers and floats
 #   2: 
@@ -42,223 +478,123 @@
 
 ########################################
 
-.IFJcode17                                                                      #     1/221
-JUMP $$scope                                                                    #     2/221
-LABEL $$scope                                                                   #     4/221
-DEFVAR GF@&pomInteger                                                           #     5/221
-MOVE GF@&pomInteger int@0                                                       #     6/221
-DEFVAR GF@&pomString                                                            #     7/221
-MOVE GF@&pomString string@                                                      #     8/221
-DEFVAR GF@&pomFloat                                                             #     9/221
-MOVE GF@&pomFloat float@0                                                       #    10/221
-DEFVAR GF@&pomBool                                                              #    11/221
-MOVE GF@&pomBool bool@false                                                     #    12/221
-DEFVAR GF@&pomCntr                                                              #    13/221
-MOVE GF@&pomCntr int@0                                                          #    14/221
-CREATEFRAME                                                                     #    15/221
-DEFVAR TF@a                                                                     #    17/221
-MOVE TF@a float@0                                                               #    18/221
-MOVE GF@&pomFloat float@46.0                                                    #    19/221
-redukce                                                                         #    20/221
-SUB GF@&pomFloat float@46.0 float@0.010679321368541                             #    21/221
-redukce                                                                         #    22/221
-ADD GF@&pomFloat GF@&pomFloat float@0.43068018249733                            #    23/221
-redukce                                                                         #    24/221
-SUB GF@&pomFloat GF@&pomFloat float@0.32809254030143                            #    25/221
-redukce                                                                         #    26/221
-ADD GF@&pomFloat GF@&pomFloat float@86                                          #    27/221
-redukce                                                                         #    28/221
-ADD GF@&pomFloat GF@&pomFloat float@99                                          #    29/221
-redukce                                                                         #    30/221
-ADD GF@&pomFloat GF@&pomFloat float@57                                          #    31/221
-redukce                                                                         #    32/221
-SUB GF@&pomFloat GF@&pomFloat float@11                                          #    33/221
-redukce                                                                         #    34/221
-ADD GF@&pomFloat GF@&pomFloat float@46                                          #    35/221
-redukce                                                                         #    36/221
-SUB GF@&pomFloat GF@&pomFloat float@26                                          #    37/221
-redukce                                                                         #    38/221
-SUB GF@&pomFloat GF@&pomFloat float@36                                          #    39/221
-redukce                                                                         #    40/221
-ADD GF@&pomFloat GF@&pomFloat float@0.31033481858221                            #    41/221
-redukce                                                                         #    42/221
-ADD GF@&pomFloat GF@&pomFloat float@3                                           #    43/221
-redukce                                                                         #    44/221
-ADD GF@&pomFloat GF@&pomFloat float@68                                          #    45/221
-redukce                                                                         #    46/221
-SUB GF@&pomFloat GF@&pomFloat float@0.15577337059927                            #    47/221
-redukce                                                                         #    48/221
-ADD GF@&pomFloat GF@&pomFloat float@0.50213853106934                            #    49/221
-redukce                                                                         #    50/221
-ADD GF@&pomFloat GF@&pomFloat float@0.39725105017296                            #    51/221
-redukce                                                                         #    52/221
-SUB GF@&pomFloat GF@&pomFloat float@6                                           #    53/221
-redukce                                                                         #    54/221
-ADD GF@&pomFloat GF@&pomFloat float@48                                          #    55/221
-redukce                                                                         #    56/221
-ADD GF@&pomFloat GF@&pomFloat float@0.24880350625552                            #    57/221
-redukce                                                                         #    58/221
-SUB GF@&pomFloat GF@&pomFloat float@0.57491885292107                            #    59/221
-redukce                                                                         #    60/221
-ADD GF@&pomFloat GF@&pomFloat float@0.82779553617714                            #    61/221
-redukce                                                                         #    62/221
-ADD GF@&pomFloat GF@&pomFloat float@0.068002854039894                           #    63/221
-redukce                                                                         #    64/221
-SUB GF@&pomFloat GF@&pomFloat float@0.34956657204291                            #    65/221
-redukce                                                                         #    66/221
-SUB GF@&pomFloat GF@&pomFloat float@96                                          #    67/221
-redukce                                                                         #    68/221
-SUB GF@&pomFloat GF@&pomFloat float@0.92281451631468                            #    69/221
-redukce                                                                         #    70/221
-SUB GF@&pomFloat GF@&pomFloat float@46                                          #    71/221
-redukce                                                                         #    72/221
-SUB GF@&pomFloat GF@&pomFloat float@0.50963992136979                            #    73/221
-redukce                                                                         #    74/221
-ADD GF@&pomFloat GF@&pomFloat float@0.61052328143759                            #    75/221
-redukce                                                                         #    76/221
-ADD GF@&pomFloat GF@&pomFloat float@42                                          #    77/221
-redukce                                                                         #    78/221
-ADD GF@&pomFloat GF@&pomFloat float@0.87657525943433                            #    79/221
-redukce                                                                         #    80/221
-SUB GF@&pomFloat GF@&pomFloat float@0.09945742418033                            #    81/221
-redukce                                                                         #    82/221
-SUB GF@&pomFloat GF@&pomFloat float@0.34566249947327                            #    83/221
-redukce                                                                         #    84/221
-ADD GF@&pomFloat GF@&pomFloat float@66                                          #    85/221
-redukce                                                                         #    86/221
-SUB GF@&pomFloat GF@&pomFloat float@0.76161749323905                            #    87/221
-redukce                                                                         #    88/221
-SUB GF@&pomFloat GF@&pomFloat float@0.15526197206008                            #    89/221
-redukce                                                                         #    90/221
-ADD GF@&pomFloat GF@&pomFloat float@45                                          #    91/221
-redukce                                                                         #    92/221
-ADD GF@&pomFloat GF@&pomFloat float@0.43469567989684                            #    93/221
-redukce                                                                         #    94/221
-ADD GF@&pomFloat GF@&pomFloat float@0.58769545638361                            #    95/221
-redukce                                                                         #    96/221
-SUB GF@&pomFloat GF@&pomFloat float@0.39669711300949                            #    97/221
-redukce                                                                         #    98/221
-ADD GF@&pomFloat GF@&pomFloat float@0.1453927886418                             #    99/221
-redukce                                                                         #   100/221
-SUB GF@&pomFloat GF@&pomFloat float@0.15035997431276                            #   101/221
-redukce                                                                         #   102/221
-ADD GF@&pomFloat GF@&pomFloat float@50                                          #   103/221
-redukce                                                                         #   104/221
-SUB GF@&pomFloat GF@&pomFloat float@70                                          #   105/221
-redukce                                                                         #   106/221
-SUB GF@&pomFloat GF@&pomFloat float@74                                          #   107/221
-redukce                                                                         #   108/221
-SUB GF@&pomFloat GF@&pomFloat float@0.098130883694687                           #   109/221
-redukce                                                                         #   110/221
-SUB GF@&pomFloat GF@&pomFloat float@38                                          #   111/221
-redukce                                                                         #   112/221
-ADD GF@&pomFloat GF@&pomFloat float@0.89931015525912                            #   113/221
-redukce                                                                         #   114/221
-SUB GF@&pomFloat GF@&pomFloat float@0.81198468329943                            #   115/221
-redukce                                                                         #   116/221
-ADD GF@&pomFloat GF@&pomFloat float@0.68384696901024                            #   117/221
-redukce                                                                         #   118/221
-SUB GF@&pomFloat GF@&pomFloat float@95                                          #   119/221
-redukce                                                                         #   120/221
-SUB GF@&pomFloat GF@&pomFloat float@0.17217174739212                            #   121/221
-redukce                                                                         #   122/221
-ADD GF@&pomFloat GF@&pomFloat float@72                                          #   123/221
-redukce                                                                         #   124/221
-SUB GF@&pomFloat GF@&pomFloat float@26                                          #   125/221
-redukce                                                                         #   126/221
-SUB GF@&pomFloat GF@&pomFloat float@0.66572260096004                            #   127/221
-redukce                                                                         #   128/221
-ADD GF@&pomFloat GF@&pomFloat float@0.52673281194956                            #   129/221
-redukce                                                                         #   130/221
-ADD GF@&pomFloat GF@&pomFloat float@0.99886705959163                            #   131/221
-redukce                                                                         #   132/221
-ADD GF@&pomFloat GF@&pomFloat float@49                                          #   133/221
-redukce                                                                         #   134/221
-ADD GF@&pomFloat GF@&pomFloat float@0.90417160368719                            #   135/221
-redukce                                                                         #   136/221
-SUB GF@&pomFloat GF@&pomFloat float@74                                          #   137/221
-redukce                                                                         #   138/221
-ADD GF@&pomFloat GF@&pomFloat float@0.41429367913599                            #   139/221
-redukce                                                                         #   140/221
-SUB GF@&pomFloat GF@&pomFloat float@0.89222735440928                            #   141/221
-redukce                                                                         #   142/221
-ADD GF@&pomFloat GF@&pomFloat float@53                                          #   143/221
-redukce                                                                         #   144/221
-ADD GF@&pomFloat GF@&pomFloat float@23                                          #   145/221
-redukce                                                                         #   146/221
-ADD GF@&pomFloat GF@&pomFloat float@83                                          #   147/221
-redukce                                                                         #   148/221
-SUB GF@&pomFloat GF@&pomFloat float@0.75109822151768                            #   149/221
-redukce                                                                         #   150/221
-ADD GF@&pomFloat GF@&pomFloat float@88                                          #   151/221
-redukce                                                                         #   152/221
-ADD GF@&pomFloat GF@&pomFloat float@0.26620691561429                            #   153/221
-redukce                                                                         #   154/221
-ADD GF@&pomFloat GF@&pomFloat float@0.65726425436198                            #   155/221
-redukce                                                                         #   156/221
-SUB GF@&pomFloat GF@&pomFloat float@0.96422492291975                            #   157/221
-redukce                                                                         #   158/221
-ADD GF@&pomFloat GF@&pomFloat float@77                                          #   159/221
-redukce                                                                         #   160/221
-ADD GF@&pomFloat GF@&pomFloat float@0.14849523461819                            #   161/221
-redukce                                                                         #   162/221
-SUB GF@&pomFloat GF@&pomFloat float@0.4415650081083                             #   163/221
-redukce                                                                         #   164/221
-SUB GF@&pomFloat GF@&pomFloat float@92                                          #   165/221
-redukce                                                                         #   166/221
-ADD GF@&pomFloat GF@&pomFloat float@81                                          #   167/221
-redukce                                                                         #   168/221
-ADD GF@&pomFloat GF@&pomFloat float@77                                          #   169/221
-redukce                                                                         #   170/221
-SUB GF@&pomFloat GF@&pomFloat float@0.99431962053958                            #   171/221
-redukce                                                                         #   172/221
-ADD GF@&pomFloat GF@&pomFloat float@0.84222860394149                            #   173/221
-redukce                                                                         #   174/221
-SUB GF@&pomFloat GF@&pomFloat float@0.60182912116955                            #   175/221
-redukce                                                                         #   176/221
-ADD GF@&pomFloat GF@&pomFloat float@0.90371497855695                            #   177/221
-redukce                                                                         #   178/221
-SUB GF@&pomFloat GF@&pomFloat float@90                                          #   179/221
-redukce                                                                         #   180/221
-ADD GF@&pomFloat GF@&pomFloat float@6                                           #   181/221
-redukce                                                                         #   182/221
-SUB GF@&pomFloat GF@&pomFloat float@72                                          #   183/221
-redukce                                                                         #   184/221
-ADD GF@&pomFloat GF@&pomFloat float@0.9045003735947                             #   185/221
-redukce                                                                         #   186/221
-ADD GF@&pomFloat GF@&pomFloat float@83                                          #   187/221
-redukce                                                                         #   188/221
-SUB GF@&pomFloat GF@&pomFloat float@6                                           #   189/221
-redukce                                                                         #   190/221
-ADD GF@&pomFloat GF@&pomFloat float@67                                          #   191/221
-redukce                                                                         #   192/221
-ADD GF@&pomFloat GF@&pomFloat float@71                                          #   193/221
-redukce                                                                         #   194/221
-ADD GF@&pomFloat GF@&pomFloat float@0.74566726747233                            #   195/221
-redukce                                                                         #   196/221
-ADD GF@&pomFloat GF@&pomFloat float@0.27871737828418                            #   197/221
-redukce                                                                         #   198/221
-ADD GF@&pomFloat GF@&pomFloat float@19                                          #   199/221
-redukce                                                                         #   200/221
-ADD GF@&pomFloat GF@&pomFloat float@0.22285753266088                            #   201/221
-redukce                                                                         #   202/221
-SUB GF@&pomFloat GF@&pomFloat float@28                                          #   203/221
-redukce                                                                         #   204/221
-ADD GF@&pomFloat GF@&pomFloat float@41                                          #   205/221
-redukce                                                                         #   206/221
-SUB GF@&pomFloat GF@&pomFloat float@0.40053957533116                            #   207/221
-redukce                                                                         #   208/221
-ADD GF@&pomFloat GF@&pomFloat float@0.23337697202031                            #   209/221
-redukce                                                                         #   210/221
-SUB GF@&pomFloat GF@&pomFloat float@14                                          #   211/221
-redukce                                                                         #   212/221
-ADD GF@&pomFloat GF@&pomFloat float@0.036446608619972                           #   213/221
-redukce                                                                         #   214/221
-ADD GF@&pomFloat GF@&pomFloat float@0.11081079119389                            #   215/221
-redukce                                                                         #   216/221
-SUB GF@&pomFloat GF@&pomFloat float@85                                          #   217/221
-redukce                                                                         #   218/221
-SUB GF@&pomFloat GF@&pomFloat float@84                                          #   219/221
-MOVE TF@a GF@&pomFloat                                                          #   220/221
-WRITE TF@a                                                                      #   221/221
+.IFJcode17                                                                      #     1/121
+JUMP $$scope                                                                    #     2/121
+LABEL $$scope                                                                   #     4/121
+DEFVAR GF@&pomInteger                                                           #     5/121
+MOVE GF@&pomInteger int@0                                                       #     6/121
+DEFVAR GF@&pomString                                                            #     7/121
+MOVE GF@&pomString string@                                                      #     8/121
+DEFVAR GF@&pomFloat                                                             #     9/121
+MOVE GF@&pomFloat float@0                                                       #    10/121
+DEFVAR GF@&pomBool                                                              #    11/121
+MOVE GF@&pomBool bool@false                                                     #    12/121
+DEFVAR GF@&pomCntr                                                              #    13/121
+MOVE GF@&pomCntr int@0                                                          #    14/121
+CREATEFRAME                                                                     #    15/121
+DEFVAR TF@a                                                                     #    17/121
+MOVE TF@a float@0                                                               #    18/121
+MOVE GF@&pomFloat float@46.0                                                    #    19/121
+SUB GF@&pomFloat float@46.0 float@0.010679321368541                             #    20/121
+ADD GF@&pomFloat GF@&pomFloat float@0.43068018249733                            #    21/121
+SUB GF@&pomFloat GF@&pomFloat float@0.32809254030143                            #    22/121
+ADD GF@&pomFloat GF@&pomFloat float@86                                          #    23/121
+ADD GF@&pomFloat GF@&pomFloat float@99                                          #    24/121
+ADD GF@&pomFloat GF@&pomFloat float@57                                          #    25/121
+SUB GF@&pomFloat GF@&pomFloat float@11                                          #    26/121
+ADD GF@&pomFloat GF@&pomFloat float@46                                          #    27/121
+SUB GF@&pomFloat GF@&pomFloat float@26                                          #    28/121
+SUB GF@&pomFloat GF@&pomFloat float@36                                          #    29/121
+ADD GF@&pomFloat GF@&pomFloat float@0.31033481858221                            #    30/121
+ADD GF@&pomFloat GF@&pomFloat float@3                                           #    31/121
+ADD GF@&pomFloat GF@&pomFloat float@68                                          #    32/121
+SUB GF@&pomFloat GF@&pomFloat float@0.15577337059927                            #    33/121
+ADD GF@&pomFloat GF@&pomFloat float@0.50213853106934                            #    34/121
+ADD GF@&pomFloat GF@&pomFloat float@0.39725105017296                            #    35/121
+SUB GF@&pomFloat GF@&pomFloat float@6                                           #    36/121
+ADD GF@&pomFloat GF@&pomFloat float@48                                          #    37/121
+ADD GF@&pomFloat GF@&pomFloat float@0.24880350625552                            #    38/121
+SUB GF@&pomFloat GF@&pomFloat float@0.57491885292107                            #    39/121
+ADD GF@&pomFloat GF@&pomFloat float@0.82779553617714                            #    40/121
+ADD GF@&pomFloat GF@&pomFloat float@0.068002854039894                           #    41/121
+SUB GF@&pomFloat GF@&pomFloat float@0.34956657204291                            #    42/121
+SUB GF@&pomFloat GF@&pomFloat float@96                                          #    43/121
+SUB GF@&pomFloat GF@&pomFloat float@0.92281451631468                            #    44/121
+SUB GF@&pomFloat GF@&pomFloat float@46                                          #    45/121
+SUB GF@&pomFloat GF@&pomFloat float@0.50963992136979                            #    46/121
+ADD GF@&pomFloat GF@&pomFloat float@0.61052328143759                            #    47/121
+ADD GF@&pomFloat GF@&pomFloat float@42                                          #    48/121
+ADD GF@&pomFloat GF@&pomFloat float@0.87657525943433                            #    49/121
+SUB GF@&pomFloat GF@&pomFloat float@0.09945742418033                            #    50/121
+SUB GF@&pomFloat GF@&pomFloat float@0.34566249947327                            #    51/121
+ADD GF@&pomFloat GF@&pomFloat float@66                                          #    52/121
+SUB GF@&pomFloat GF@&pomFloat float@0.76161749323905                            #    53/121
+SUB GF@&pomFloat GF@&pomFloat float@0.15526197206008                            #    54/121
+ADD GF@&pomFloat GF@&pomFloat float@45                                          #    55/121
+ADD GF@&pomFloat GF@&pomFloat float@0.43469567989684                            #    56/121
+ADD GF@&pomFloat GF@&pomFloat float@0.58769545638361                            #    57/121
+SUB GF@&pomFloat GF@&pomFloat float@0.39669711300949                            #    58/121
+ADD GF@&pomFloat GF@&pomFloat float@0.1453927886418                             #    59/121
+SUB GF@&pomFloat GF@&pomFloat float@0.15035997431276                            #    60/121
+ADD GF@&pomFloat GF@&pomFloat float@50                                          #    61/121
+SUB GF@&pomFloat GF@&pomFloat float@70                                          #    62/121
+SUB GF@&pomFloat GF@&pomFloat float@74                                          #    63/121
+SUB GF@&pomFloat GF@&pomFloat float@0.098130883694687                           #    64/121
+SUB GF@&pomFloat GF@&pomFloat float@38                                          #    65/121
+ADD GF@&pomFloat GF@&pomFloat float@0.89931015525912                            #    66/121
+SUB GF@&pomFloat GF@&pomFloat float@0.81198468329943                            #    67/121
+ADD GF@&pomFloat GF@&pomFloat float@0.68384696901024                            #    68/121
+SUB GF@&pomFloat GF@&pomFloat float@95                                          #    69/121
+SUB GF@&pomFloat GF@&pomFloat float@0.17217174739212                            #    70/121
+ADD GF@&pomFloat GF@&pomFloat float@72                                          #    71/121
+SUB GF@&pomFloat GF@&pomFloat float@26                                          #    72/121
+SUB GF@&pomFloat GF@&pomFloat float@0.66572260096004                            #    73/121
+ADD GF@&pomFloat GF@&pomFloat float@0.52673281194956                            #    74/121
+ADD GF@&pomFloat GF@&pomFloat float@0.99886705959163                            #    75/121
+ADD GF@&pomFloat GF@&pomFloat float@49                                          #    76/121
+ADD GF@&pomFloat GF@&pomFloat float@0.90417160368719                            #    77/121
+SUB GF@&pomFloat GF@&pomFloat float@74                                          #    78/121
+ADD GF@&pomFloat GF@&pomFloat float@0.41429367913599                            #    79/121
+SUB GF@&pomFloat GF@&pomFloat float@0.89222735440928                            #    80/121
+ADD GF@&pomFloat GF@&pomFloat float@53                                          #    81/121
+ADD GF@&pomFloat GF@&pomFloat float@23                                          #    82/121
+ADD GF@&pomFloat GF@&pomFloat float@83                                          #    83/121
+SUB GF@&pomFloat GF@&pomFloat float@0.75109822151768                            #    84/121
+ADD GF@&pomFloat GF@&pomFloat float@88                                          #    85/121
+ADD GF@&pomFloat GF@&pomFloat float@0.26620691561429                            #    86/121
+ADD GF@&pomFloat GF@&pomFloat float@0.65726425436198                            #    87/121
+SUB GF@&pomFloat GF@&pomFloat float@0.96422492291975                            #    88/121
+ADD GF@&pomFloat GF@&pomFloat float@77                                          #    89/121
+ADD GF@&pomFloat GF@&pomFloat float@0.14849523461819                            #    90/121
+SUB GF@&pomFloat GF@&pomFloat float@0.4415650081083                             #    91/121
+SUB GF@&pomFloat GF@&pomFloat float@92                                          #    92/121
+ADD GF@&pomFloat GF@&pomFloat float@81                                          #    93/121
+ADD GF@&pomFloat GF@&pomFloat float@77                                          #    94/121
+SUB GF@&pomFloat GF@&pomFloat float@0.99431962053958                            #    95/121
+ADD GF@&pomFloat GF@&pomFloat float@0.84222860394149                            #    96/121
+SUB GF@&pomFloat GF@&pomFloat float@0.60182912116955                            #    97/121
+ADD GF@&pomFloat GF@&pomFloat float@0.90371497855695                            #    98/121
+SUB GF@&pomFloat GF@&pomFloat float@90                                          #    99/121
+ADD GF@&pomFloat GF@&pomFloat float@6                                           #   100/121
+SUB GF@&pomFloat GF@&pomFloat float@72                                          #   101/121
+ADD GF@&pomFloat GF@&pomFloat float@0.9045003735947                             #   102/121
+ADD GF@&pomFloat GF@&pomFloat float@83                                          #   103/121
+SUB GF@&pomFloat GF@&pomFloat float@6                                           #   104/121
+ADD GF@&pomFloat GF@&pomFloat float@67                                          #   105/121
+ADD GF@&pomFloat GF@&pomFloat float@71                                          #   106/121
+ADD GF@&pomFloat GF@&pomFloat float@0.74566726747233                            #   107/121
+ADD GF@&pomFloat GF@&pomFloat float@0.27871737828418                            #   108/121
+ADD GF@&pomFloat GF@&pomFloat float@19                                          #   109/121
+ADD GF@&pomFloat GF@&pomFloat float@0.22285753266088                            #   110/121
+SUB GF@&pomFloat GF@&pomFloat float@28                                          #   111/121
+ADD GF@&pomFloat GF@&pomFloat float@41                                          #   112/121
+SUB GF@&pomFloat GF@&pomFloat float@0.40053957533116                            #   113/121
+ADD GF@&pomFloat GF@&pomFloat float@0.23337697202031                            #   114/121
+SUB GF@&pomFloat GF@&pomFloat float@14                                          #   115/121
+ADD GF@&pomFloat GF@&pomFloat float@0.036446608619972                           #   116/121
+ADD GF@&pomFloat GF@&pomFloat float@0.11081079119389                            #   117/121
+SUB GF@&pomFloat GF@&pomFloat float@85                                          #   118/121
+SUB GF@&pomFloat GF@&pomFloat float@84                                          #   119/121
+MOVE TF@a GF@&pomFloat                                                          #   120/121
+WRITE TF@a                                                                      #   121/121
 

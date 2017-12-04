@@ -1,4 +1,4 @@
-# 2017-12-04 12:08:01.184382
+# 2017-12-04 15:33:12.549728
 # SECTION: 04_expressions
 # TEST: 32
 # INFO: Random math expression test
@@ -9,7 +9,56 @@
 # COMPILER STDERR:
 # 
 # INTERPRETER STDERR:
-# 20.1-7: syntax error, unexpected ID, expecting END
+# Executing instruction: IJUMP at line: 2 with following arguments:
+# Executing instruction: ILABEL at line: 4 with following arguments:
+# Executing instruction: IDEFVAR at line: 5 with following arguments:
+# Dest: GF@&pomInteger
+# Executing instruction: IMOVE at line: 6 with following arguments:
+# Arg1: Const@=0(int)
+# Dest: GF@&pomInteger()
+# Executing instruction: IDEFVAR at line: 7 with following arguments:
+# Dest: GF@&pomString
+# Executing instruction: IMOVE at line: 8 with following arguments:
+# Arg1: Const@=(string)
+# Dest: GF@&pomString()
+# Executing instruction: IDEFVAR at line: 9 with following arguments:
+# Dest: GF@&pomFloat
+# Executing instruction: IMOVE at line: 10 with following arguments:
+# Arg1: Const@=0(double)
+# Dest: GF@&pomFloat()
+# Executing instruction: IDEFVAR at line: 11 with following arguments:
+# Dest: GF@&pomBool
+# Executing instruction: IMOVE at line: 12 with following arguments:
+# Arg1: Const@=false(bool)
+# Dest: GF@&pomBool()
+# Executing instruction: IDEFVAR at line: 13 with following arguments:
+# Dest: GF@&pomCntr
+# Executing instruction: IMOVE at line: 14 with following arguments:
+# Arg1: Const@=0(int)
+# Dest: GF@&pomCntr()
+# Executing instruction: ICREATEFRAME at line: 15 with following arguments:
+# Executing instruction: IDEFVAR at line: 17 with following arguments:
+# Dest: TF@a
+# Executing instruction: IMOVE at line: 18 with following arguments:
+# Arg1: Const@=0(double)
+# Dest: TF@a()
+# Executing instruction: IMOVE at line: 19 with following arguments:
+# Arg1: Const@=565656(double)
+# Dest: GF@&pomFloat=0(double)
+# Executing instruction: IMOVE at line: 21 with following arguments:
+# Arg1: Const@=0(int)
+# Dest: GF@&pomCntr=0(int)
+# Executing instruction: ILABEL at line: 22 with following arguments:
+# Executing instruction: IADD at line: 23 with following arguments:
+# Arg1: GF@&pomCntr=0(int)
+# Arg2: Const@=1(int)
+# Dest: GF@&pomCntr=0(int)
+# Executing instruction: ISUB at line: 24 with following arguments:
+# Arg1: GF@&pomInteger=0(int)
+# Arg2: Const@=1.001(double)
+# Dest: GF@&pomInteger=0(int)
+# Error at line: 24
+# Wrong operand type!
 # 
 # EXPECTED INTERPRETER STDOUT:
 
@@ -26,7 +75,7 @@
 # EXPECTED COMPILER EXIT CODE: 0
 # CURRENT COMPILER EXIT CODE: 0
 # EXPECTED INTERPRETER EXIT CODE: 0
-# CURRENT INTERPRETER EXIT CODE: 51
+# CURRENT INTERPRETER EXIT CODE: 53
 # PRICE: ---
 # GROOT: ---
 # 
@@ -41,83 +90,74 @@
 
 ########################################
 
-.IFJcode17                                                                      #     1/87
-JUMP $$scope                                                                    #     2/87
-LABEL $$scope                                                                   #     4/87
-DEFVAR GF@&pomInteger                                                           #     5/87
-MOVE GF@&pomInteger int@0                                                       #     6/87
-DEFVAR GF@&pomString                                                            #     7/87
-MOVE GF@&pomString string@                                                      #     8/87
-DEFVAR GF@&pomFloat                                                             #     9/87
-MOVE GF@&pomFloat float@0                                                       #    10/87
-DEFVAR GF@&pomBool                                                              #    11/87
-MOVE GF@&pomBool bool@false                                                     #    12/87
-DEFVAR GF@&pomCntr                                                              #    13/87
-MOVE GF@&pomCntr int@0                                                          #    14/87
-CREATEFRAME                                                                     #    15/87
-DEFVAR TF@a                                                                     #    17/87
-MOVE TF@a float@0                                                               #    18/87
-MOVE GF@&pomFloat float@565656.0                                                #    19/87
-redukce                                                                         #    20/87
-MOVE GF@&pomCntr int@0                                                          #    22/87
-LABEL $$WholeDiv_Begin0                                                         #    23/87
-ADD GF@&pomCntr GF@&pomCntr int@1                                               #    24/87
-SUB GF@&pomInteger GF@&pomInteger float@1.001                                   #    25/87
-LT GF@&pomBool GF@&pomInteger int@0                                             #    26/87
-JUMPIFNEQ $$WholeDiv_Begin0 GF@&pomBool bool@true                               #    27/87
-SUB GF@&pomCntr GF@&pomCntr int@1                                               #    28/87
-MOVE GF@&pomInteger GF@&pomCntr                                                 #    29/87
-redukce                                                                         #    30/87
-MOVE GF@&pomCntr int@0                                                          #    32/87
-LABEL $$WholeDiv_Begin1                                                         #    33/87
-ADD GF@&pomCntr GF@&pomCntr int@1                                               #    34/87
-SUB GF@&pomInteger GF@&pomInteger float@1.51111                                 #    35/87
-LT GF@&pomBool GF@&pomInteger int@0                                             #    36/87
-JUMPIFNEQ $$WholeDiv_Begin1 GF@&pomBool bool@true                               #    37/87
-SUB GF@&pomCntr GF@&pomCntr int@1                                               #    38/87
-MOVE GF@&pomInteger GF@&pomCntr                                                 #    39/87
-redukce                                                                         #    40/87
-MOVE GF@&pomCntr int@0                                                          #    42/87
-LABEL $$WholeDiv_Begin2                                                         #    43/87
-ADD GF@&pomCntr GF@&pomCntr int@1                                               #    44/87
-SUB GF@&pomInteger GF@&pomInteger GF@&pomFloat                                  #    45/87
-LT GF@&pomBool GF@&pomInteger int@0                                             #    46/87
-JUMPIFNEQ $$WholeDiv_Begin2 GF@&pomBool bool@true                               #    47/87
-SUB GF@&pomCntr GF@&pomCntr int@1                                               #    48/87
-MOVE GF@&pomInteger GF@&pomCntr                                                 #    49/87
-redukce                                                                         #    50/87
-DIV GF@&pomFloat float@55656 float@5665                                         #    51/87
-redukce                                                                         #    52/87
-MOVE GF@&pomCntr int@0                                                          #    54/87
-LABEL $$WholeDiv_Begin3                                                         #    55/87
-ADD GF@&pomCntr GF@&pomCntr int@1                                               #    56/87
-SUB GF@&pomInteger GF@&pomInteger float@3.5                                     #    57/87
-LT GF@&pomBool GF@&pomInteger int@0                                             #    58/87
-JUMPIFNEQ $$WholeDiv_Begin3 GF@&pomBool bool@true                               #    59/87
-SUB GF@&pomCntr GF@&pomCntr int@1                                               #    60/87
-MOVE GF@&pomInteger GF@&pomCntr                                                 #    61/87
-redukce                                                                         #    62/87
-MOVE GF@&pomCntr int@0                                                          #    64/87
-LABEL $$WholeDiv_Begin4                                                         #    65/87
-ADD GF@&pomCntr GF@&pomCntr int@1                                               #    66/87
-SUB GF@&pomInteger GF@&pomInteger float@1.5                                     #    67/87
-LT GF@&pomBool GF@&pomInteger int@0                                             #    68/87
-JUMPIFNEQ $$WholeDiv_Begin4 GF@&pomBool bool@true                               #    69/87
-SUB GF@&pomCntr GF@&pomCntr int@1                                               #    70/87
-MOVE GF@&pomInteger GF@&pomCntr                                                 #    71/87
-redukce                                                                         #    72/87
-MOVE GF@&pomCntr int@0                                                          #    74/87
-LABEL $$WholeDiv_Begin5                                                         #    75/87
-ADD GF@&pomCntr GF@&pomCntr int@1                                               #    76/87
-SUB GF@&pomInteger GF@&pomInteger float@5.5                                     #    77/87
-LT GF@&pomBool GF@&pomInteger int@0                                             #    78/87
-JUMPIFNEQ $$WholeDiv_Begin5 GF@&pomBool bool@true                               #    79/87
-SUB GF@&pomCntr GF@&pomCntr int@1                                               #    80/87
-MOVE GF@&pomInteger GF@&pomCntr                                                 #    81/87
-redukce                                                                         #    82/87
-ADD GF@&pomFloat GF@&pomFloat GF@&pomFloat                                      #    83/87
-redukce                                                                         #    84/87
-DIV GF@&pomFloat GF@&pomFloat float@3                                           #    85/87
-MOVE TF@a GF@&pomFloat                                                          #    86/87
-WRITE TF@a                                                                      #    87/87
+.IFJcode17                                                                      #     1/78
+JUMP $$scope                                                                    #     2/78
+LABEL $$scope                                                                   #     4/78
+DEFVAR GF@&pomInteger                                                           #     5/78
+MOVE GF@&pomInteger int@0                                                       #     6/78
+DEFVAR GF@&pomString                                                            #     7/78
+MOVE GF@&pomString string@                                                      #     8/78
+DEFVAR GF@&pomFloat                                                             #     9/78
+MOVE GF@&pomFloat float@0                                                       #    10/78
+DEFVAR GF@&pomBool                                                              #    11/78
+MOVE GF@&pomBool bool@false                                                     #    12/78
+DEFVAR GF@&pomCntr                                                              #    13/78
+MOVE GF@&pomCntr int@0                                                          #    14/78
+CREATEFRAME                                                                     #    15/78
+DEFVAR TF@a                                                                     #    17/78
+MOVE TF@a float@0                                                               #    18/78
+MOVE GF@&pomFloat float@565656.0                                                #    19/78
+MOVE GF@&pomCntr int@0                                                          #    21/78
+LABEL $$WholeDiv_Begin0                                                         #    22/78
+ADD GF@&pomCntr GF@&pomCntr int@1                                               #    23/78
+SUB GF@&pomInteger GF@&pomInteger float@1.001                                   #    24/78
+LT GF@&pomBool GF@&pomInteger int@0                                             #    25/78
+JUMPIFNEQ $$WholeDiv_Begin0 GF@&pomBool bool@true                               #    26/78
+SUB GF@&pomCntr GF@&pomCntr int@1                                               #    27/78
+MOVE GF@&pomInteger GF@&pomCntr                                                 #    28/78
+MOVE GF@&pomCntr int@0                                                          #    30/78
+LABEL $$WholeDiv_Begin1                                                         #    31/78
+ADD GF@&pomCntr GF@&pomCntr int@1                                               #    32/78
+SUB GF@&pomInteger GF@&pomInteger float@1.51111                                 #    33/78
+LT GF@&pomBool GF@&pomInteger int@0                                             #    34/78
+JUMPIFNEQ $$WholeDiv_Begin1 GF@&pomBool bool@true                               #    35/78
+SUB GF@&pomCntr GF@&pomCntr int@1                                               #    36/78
+MOVE GF@&pomInteger GF@&pomCntr                                                 #    37/78
+MOVE GF@&pomCntr int@0                                                          #    39/78
+LABEL $$WholeDiv_Begin2                                                         #    40/78
+ADD GF@&pomCntr GF@&pomCntr int@1                                               #    41/78
+SUB GF@&pomInteger GF@&pomInteger GF@&pomFloat                                  #    42/78
+LT GF@&pomBool GF@&pomInteger int@0                                             #    43/78
+JUMPIFNEQ $$WholeDiv_Begin2 GF@&pomBool bool@true                               #    44/78
+SUB GF@&pomCntr GF@&pomCntr int@1                                               #    45/78
+MOVE GF@&pomInteger GF@&pomCntr                                                 #    46/78
+DIV GF@&pomFloat float@55656 float@5665                                         #    47/78
+MOVE GF@&pomCntr int@0                                                          #    49/78
+LABEL $$WholeDiv_Begin3                                                         #    50/78
+ADD GF@&pomCntr GF@&pomCntr int@1                                               #    51/78
+SUB GF@&pomInteger GF@&pomInteger float@3.5                                     #    52/78
+LT GF@&pomBool GF@&pomInteger int@0                                             #    53/78
+JUMPIFNEQ $$WholeDiv_Begin3 GF@&pomBool bool@true                               #    54/78
+SUB GF@&pomCntr GF@&pomCntr int@1                                               #    55/78
+MOVE GF@&pomInteger GF@&pomCntr                                                 #    56/78
+MOVE GF@&pomCntr int@0                                                          #    58/78
+LABEL $$WholeDiv_Begin4                                                         #    59/78
+ADD GF@&pomCntr GF@&pomCntr int@1                                               #    60/78
+SUB GF@&pomInteger GF@&pomInteger float@1.5                                     #    61/78
+LT GF@&pomBool GF@&pomInteger int@0                                             #    62/78
+JUMPIFNEQ $$WholeDiv_Begin4 GF@&pomBool bool@true                               #    63/78
+SUB GF@&pomCntr GF@&pomCntr int@1                                               #    64/78
+MOVE GF@&pomInteger GF@&pomCntr                                                 #    65/78
+MOVE GF@&pomCntr int@0                                                          #    67/78
+LABEL $$WholeDiv_Begin5                                                         #    68/78
+ADD GF@&pomCntr GF@&pomCntr int@1                                               #    69/78
+SUB GF@&pomInteger GF@&pomInteger float@5.5                                     #    70/78
+LT GF@&pomBool GF@&pomInteger int@0                                             #    71/78
+JUMPIFNEQ $$WholeDiv_Begin5 GF@&pomBool bool@true                               #    72/78
+SUB GF@&pomCntr GF@&pomCntr int@1                                               #    73/78
+MOVE GF@&pomInteger GF@&pomCntr                                                 #    74/78
+ADD GF@&pomFloat GF@&pomFloat GF@&pomFloat                                      #    75/78
+DIV GF@&pomFloat GF@&pomFloat float@3                                           #    76/78
+MOVE TF@a GF@&pomFloat                                                          #    77/78
+WRITE TF@a                                                                      #    78/78
 

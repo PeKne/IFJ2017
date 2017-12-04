@@ -1,4 +1,4 @@
-# 2017-12-04 12:08:01.156788
+# 2017-12-04 15:33:12.457665
 # SECTION: 04_expressions
 # TEST: 22
 # INFO: Doubles with another format
@@ -8,7 +8,7 @@
 # 
 # COMPILER STDERR:
 # In if and loop statement can only be relational operators.
-# ERROR - 3 - sÃ©mantickÃ¡ chyba v programu â nedefinovanÃ¡ funkce/promeÌnnÃ¡, pokus o redefinici funkce/promeÌnnÃ©, atd.
+# ERROR -  6 - ostatnÃ­ sÃ©mantickÃ© chyby.
 # 
 # INTERPRETER STDERR:
 # 
@@ -25,7 +25,7 @@
 # 
 #
 # EXPECTED COMPILER EXIT CODE: 0
-# CURRENT COMPILER EXIT CODE: 3
+# CURRENT COMPILER EXIT CODE: 6
 # EXPECTED INTERPRETER EXIT CODE: 0
 # CURRENT INTERPRETER EXIT CODE: None
 # PRICE: ---
@@ -44,34 +44,33 @@
 
 ########################################
 
-.IFJcode17                                                                      #     1/32
-JUMP $$scope                                                                    #     2/32
-LABEL $$scope                                                                   #     4/32
-DEFVAR GF@&pomInteger                                                           #     5/32
-MOVE GF@&pomInteger int@0                                                       #     6/32
-DEFVAR GF@&pomString                                                            #     7/32
-MOVE GF@&pomString string@                                                      #     8/32
-DEFVAR GF@&pomFloat                                                             #     9/32
-MOVE GF@&pomFloat float@0                                                       #    10/32
-DEFVAR GF@&pomBool                                                              #    11/32
-MOVE GF@&pomBool bool@false                                                     #    12/32
-DEFVAR GF@&pomCntr                                                              #    13/32
-MOVE GF@&pomCntr int@0                                                          #    14/32
-CREATEFRAME                                                                     #    15/32
-DEFVAR TF@a                                                                     #    17/32
-MOVE TF@a float@0                                                               #    18/32
-MOVE GF@&pomFloat float@10.8                                                    #    19/32
-MOVE TF@a GF@&pomFloat                                                          #    20/32
-DEFVAR TF@b                                                                     #    21/32
-MOVE TF@b float@0                                                               #    22/32
-MOVE GF@&pomFloat float@67.432e-2                                               #    23/32
-MOVE TF@b GF@&pomFloat                                                          #    24/32
-DEFVAR TF@c                                                                     #    25/32
-MOVE TF@c float@0                                                               #    26/32
-MOVE GF@&pomFloat float@67.432e2                                                #    27/32
-MOVE TF@c GF@&pomFloat                                                          #    28/32
-WRITE TF@a                                                                      #    29/32
-WRITE TF@b                                                                      #    30/32
-redukce                                                                         #    31/32
-ERROR on line 8                                                                 #    32/32
+.IFJcode17                                                                      #     1/31
+JUMP $$scope                                                                    #     2/31
+LABEL $$scope                                                                   #     4/31
+DEFVAR GF@&pomInteger                                                           #     5/31
+MOVE GF@&pomInteger int@0                                                       #     6/31
+DEFVAR GF@&pomString                                                            #     7/31
+MOVE GF@&pomString string@                                                      #     8/31
+DEFVAR GF@&pomFloat                                                             #     9/31
+MOVE GF@&pomFloat float@0                                                       #    10/31
+DEFVAR GF@&pomBool                                                              #    11/31
+MOVE GF@&pomBool bool@false                                                     #    12/31
+DEFVAR GF@&pomCntr                                                              #    13/31
+MOVE GF@&pomCntr int@0                                                          #    14/31
+CREATEFRAME                                                                     #    15/31
+DEFVAR TF@a                                                                     #    17/31
+MOVE TF@a float@0                                                               #    18/31
+MOVE GF@&pomFloat float@10.8                                                    #    19/31
+MOVE TF@a GF@&pomFloat                                                          #    20/31
+DEFVAR TF@b                                                                     #    21/31
+MOVE TF@b float@0                                                               #    22/31
+MOVE GF@&pomFloat float@67.432e-2                                               #    23/31
+MOVE TF@b GF@&pomFloat                                                          #    24/31
+DEFVAR TF@c                                                                     #    25/31
+MOVE TF@c float@0                                                               #    26/31
+MOVE GF@&pomFloat float@67.432e2                                                #    27/31
+MOVE TF@c GF@&pomFloat                                                          #    28/31
+WRITE TF@a                                                                      #    29/31
+WRITE TF@b                                                                      #    30/31
+ERROR on line 8                                                                 #    31/31
 

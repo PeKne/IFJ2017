@@ -1,4 +1,4 @@
-# 2017-12-04 12:08:01.405689
+# 2017-12-04 15:33:13.151003
 # SECTION: 66_errors
 # TEST: 028
 # INFO: wrong if termination
@@ -37,24 +37,23 @@
 
 ########################################
 
-.IFJcode17                                                                      #     1/22
-JUMP $$scope                                                                    #     2/22
-LABEL $$scope                                                                   #     4/22
-DEFVAR GF@&pomInteger                                                           #     5/22
-MOVE GF@&pomInteger int@0                                                       #     6/22
-DEFVAR GF@&pomString                                                            #     7/22
-MOVE GF@&pomString string@                                                      #     8/22
-DEFVAR GF@&pomFloat                                                             #     9/22
-MOVE GF@&pomFloat float@0                                                       #    10/22
-DEFVAR GF@&pomBool                                                              #    11/22
-MOVE GF@&pomBool bool@false                                                     #    12/22
-DEFVAR GF@&pomCntr                                                              #    13/22
-MOVE GF@&pomCntr int@0                                                          #    14/22
-CREATEFRAME                                                                     #    15/22
-redukce                                                                         #    17/22
-LT GF@&pomBool int@1 int@2                                                      #    18/22
-JUMPIFNEQ $$else_1 GF@&pomBool bool@true                                        #    19/22
-JUMP $$endif_1                                                                  #    20/22
-LABEL $$else_1                                                                  #    21/22
-ERROR on line 3                                                                 #    22/22
+.IFJcode17                                                                      #     1/21
+JUMP $$scope                                                                    #     2/21
+LABEL $$scope                                                                   #     4/21
+DEFVAR GF@&pomInteger                                                           #     5/21
+MOVE GF@&pomInteger int@0                                                       #     6/21
+DEFVAR GF@&pomString                                                            #     7/21
+MOVE GF@&pomString string@                                                      #     8/21
+DEFVAR GF@&pomFloat                                                             #     9/21
+MOVE GF@&pomFloat float@0                                                       #    10/21
+DEFVAR GF@&pomBool                                                              #    11/21
+MOVE GF@&pomBool bool@false                                                     #    12/21
+DEFVAR GF@&pomCntr                                                              #    13/21
+MOVE GF@&pomCntr int@0                                                          #    14/21
+CREATEFRAME                                                                     #    15/21
+LT GF@&pomBool int@1 int@2                                                      #    17/21
+JUMPIFNEQ $$else_1 GF@&pomBool bool@true                                        #    18/21
+JUMP $$endif_1                                                                  #    19/21
+LABEL $$else_1                                                                  #    20/21
+ERROR on line 3                                                                 #    21/21
 

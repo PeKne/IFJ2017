@@ -1,4 +1,4 @@
-# 2017-12-04 12:08:01.797218
+# 2017-12-04 15:33:13.620649
 # SECTION: 66_errors
 # TEST: 301
 # INFO: (a > b) > 1
@@ -38,31 +38,29 @@
 
 ########################################
 
-.IFJcode17                                                                      #     1/29
-JUMP $$scope                                                                    #     2/29
-LABEL $$scope                                                                   #     4/29
-DEFVAR GF@&pomInteger                                                           #     5/29
-MOVE GF@&pomInteger int@0                                                       #     6/29
-DEFVAR GF@&pomString                                                            #     7/29
-MOVE GF@&pomString string@                                                      #     8/29
-DEFVAR GF@&pomFloat                                                             #     9/29
-MOVE GF@&pomFloat float@0                                                       #    10/29
-DEFVAR GF@&pomBool                                                              #    11/29
-MOVE GF@&pomBool bool@false                                                     #    12/29
-DEFVAR GF@&pomCntr                                                              #    13/29
-MOVE GF@&pomCntr int@0                                                          #    14/29
-CREATEFRAME                                                                     #    15/29
-DEFVAR TF@a                                                                     #    17/29
-MOVE TF@a int@0                                                                 #    18/29
-DEFVAR TF@b                                                                     #    19/29
-MOVE TF@b int@0                                                                 #    20/29
-MOVE GF@&pomInteger TF@a                                                        #    21/29
-redukce                                                                         #    22/29
-GT GF@&pomBool TF@a TF@b                                                        #    23/29
-redukce                                                                         #    24/29
-GT GF@&pomBool TF@b int@1                                                       #    25/29
-JUMPIFNEQ $$else_1 GF@&pomBool bool@true                                        #    26/29
-JUMP $$endif_1                                                                  #    27/29
-LABEL $$else_1                                                                  #    28/29
-LABEL $$endif_1                                                                 #    29/29
+.IFJcode17                                                                      #     1/27
+JUMP $$scope                                                                    #     2/27
+LABEL $$scope                                                                   #     4/27
+DEFVAR GF@&pomInteger                                                           #     5/27
+MOVE GF@&pomInteger int@0                                                       #     6/27
+DEFVAR GF@&pomString                                                            #     7/27
+MOVE GF@&pomString string@                                                      #     8/27
+DEFVAR GF@&pomFloat                                                             #     9/27
+MOVE GF@&pomFloat float@0                                                       #    10/27
+DEFVAR GF@&pomBool                                                              #    11/27
+MOVE GF@&pomBool bool@false                                                     #    12/27
+DEFVAR GF@&pomCntr                                                              #    13/27
+MOVE GF@&pomCntr int@0                                                          #    14/27
+CREATEFRAME                                                                     #    15/27
+DEFVAR TF@a                                                                     #    17/27
+MOVE TF@a int@0                                                                 #    18/27
+DEFVAR TF@b                                                                     #    19/27
+MOVE TF@b int@0                                                                 #    20/27
+MOVE GF@&pomInteger TF@a                                                        #    21/27
+GT GF@&pomBool TF@a TF@b                                                        #    22/27
+GT GF@&pomBool TF@b int@1                                                       #    23/27
+JUMPIFNEQ $$else_1 GF@&pomBool bool@true                                        #    24/27
+JUMP $$endif_1                                                                  #    25/27
+LABEL $$else_1                                                                  #    26/27
+LABEL $$endif_1                                                                 #    27/27
 

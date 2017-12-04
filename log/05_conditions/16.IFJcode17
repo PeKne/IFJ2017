@@ -1,4 +1,4 @@
-# 2017-12-04 12:08:01.246045
+# 2017-12-04 15:33:12.635575
 # SECTION: 05_conditions
 # TEST: 16
 # INFO: Many conditions double version
@@ -10,7 +10,7 @@
 # Chyba v code_gen_expres TF@GF@&pomString TF@a int@0
 # Chyba v code_gen_expres TF@GF@&pomString TF@a int@0
 # In if and loop statement can only be relational operators.
-# ERROR - 3 - sÃ©mantickÃ¡ chyba v programu â nedefinovanÃ¡ funkce/promeÌnnÃ¡, pokus o redefinici funkce/promeÌnnÃ©, atd.
+# ERROR -  6 - ostatnÃ­ sÃ©mantickÃ© chyby.
 # 
 # INTERPRETER STDERR:
 # 
@@ -27,7 +27,7 @@
 # 
 #
 # EXPECTED COMPILER EXIT CODE: 0
-# CURRENT COMPILER EXIT CODE: 3
+# CURRENT COMPILER EXIT CODE: 6
 # EXPECTED INTERPRETER EXIT CODE: 0
 # CURRENT INTERPRETER EXIT CODE: None
 # PRICE: ---
@@ -98,50 +98,46 @@
 
 ########################################
 
-.IFJcode17                                                                      #     1/48
-JUMP $$scope                                                                    #     2/48
-LABEL $$scope                                                                   #     4/48
-DEFVAR GF@&pomInteger                                                           #     5/48
-MOVE GF@&pomInteger int@0                                                       #     6/48
-DEFVAR GF@&pomString                                                            #     7/48
-MOVE GF@&pomString string@                                                      #     8/48
-DEFVAR GF@&pomFloat                                                             #     9/48
-MOVE GF@&pomFloat float@0                                                       #    10/48
-DEFVAR GF@&pomBool                                                              #    11/48
-MOVE GF@&pomBool bool@false                                                     #    12/48
-DEFVAR GF@&pomCntr                                                              #    13/48
-MOVE GF@&pomCntr int@0                                                          #    14/48
-CREATEFRAME                                                                     #    15/48
-DEFVAR TF@a                                                                     #    17/48
-MOVE TF@a float@0                                                               #    18/48
-MOVE GF@&pomFloat float@1.1                                                     #    19/48
-MOVE TF@a GF@&pomFloat                                                          #    20/48
-MOVE GF@&pomFloat TF@a                                                          #    21/48
-redukce                                                                         #    22/48
-LT GF@&pomBool TF@a int@1                                                       #    23/48
-JUMPIFNEQ $$else_1 GF@&pomBool bool@true                                        #    24/48
-WRITE string@OK                                                                 #    25/48
-JUMP $$endif_1                                                                  #    26/48
-LABEL $$else_1                                                                  #    27/48
-WRITE string@NOTOK                                                              #    28/48
-LABEL $$endif_1                                                                 #    29/48
-MOVE GF@&pomFloat TF@a                                                          #    30/48
-redukce                                                                         #    31/48
-JUMPIFNEQ $$else_2 GF@&pomBool bool@true                                        #    32/48
-WRITE string@OK                                                                 #    33/48
-JUMP $$endif_2                                                                  #    34/48
-LABEL $$else_2                                                                  #    35/48
-WRITE string@NOTOK                                                              #    36/48
-LABEL $$endif_2                                                                 #    37/48
-MOVE GF@&pomFloat TF@a                                                          #    38/48
-redukce                                                                         #    39/48
-JUMPIFNEQ $$else_3 GF@&pomBool bool@true                                        #    40/48
-WRITE string@OK                                                                 #    41/48
-JUMP $$endif_3                                                                  #    42/48
-LABEL $$else_3                                                                  #    43/48
-WRITE string@NOTOK                                                              #    44/48
-LABEL $$endif_3                                                                 #    45/48
-MOVE GF@&pomFloat TF@a                                                          #    46/48
-redukce                                                                         #    47/48
-ERROR on line 26                                                                #    48/48
+.IFJcode17                                                                      #     1/44
+JUMP $$scope                                                                    #     2/44
+LABEL $$scope                                                                   #     4/44
+DEFVAR GF@&pomInteger                                                           #     5/44
+MOVE GF@&pomInteger int@0                                                       #     6/44
+DEFVAR GF@&pomString                                                            #     7/44
+MOVE GF@&pomString string@                                                      #     8/44
+DEFVAR GF@&pomFloat                                                             #     9/44
+MOVE GF@&pomFloat float@0                                                       #    10/44
+DEFVAR GF@&pomBool                                                              #    11/44
+MOVE GF@&pomBool bool@false                                                     #    12/44
+DEFVAR GF@&pomCntr                                                              #    13/44
+MOVE GF@&pomCntr int@0                                                          #    14/44
+CREATEFRAME                                                                     #    15/44
+DEFVAR TF@a                                                                     #    17/44
+MOVE TF@a float@0                                                               #    18/44
+MOVE GF@&pomFloat float@1.1                                                     #    19/44
+MOVE TF@a GF@&pomFloat                                                          #    20/44
+MOVE GF@&pomFloat TF@a                                                          #    21/44
+LT GF@&pomBool TF@a int@1                                                       #    22/44
+JUMPIFNEQ $$else_1 GF@&pomBool bool@true                                        #    23/44
+WRITE string@OK                                                                 #    24/44
+JUMP $$endif_1                                                                  #    25/44
+LABEL $$else_1                                                                  #    26/44
+WRITE string@NOTOK                                                              #    27/44
+LABEL $$endif_1                                                                 #    28/44
+MOVE GF@&pomFloat TF@a                                                          #    29/44
+JUMPIFNEQ $$else_2 GF@&pomBool bool@true                                        #    30/44
+WRITE string@OK                                                                 #    31/44
+JUMP $$endif_2                                                                  #    32/44
+LABEL $$else_2                                                                  #    33/44
+WRITE string@NOTOK                                                              #    34/44
+LABEL $$endif_2                                                                 #    35/44
+MOVE GF@&pomFloat TF@a                                                          #    36/44
+JUMPIFNEQ $$else_3 GF@&pomBool bool@true                                        #    37/44
+WRITE string@OK                                                                 #    38/44
+JUMP $$endif_3                                                                  #    39/44
+LABEL $$else_3                                                                  #    40/44
+WRITE string@NOTOK                                                              #    41/44
+LABEL $$endif_3                                                                 #    42/44
+MOVE GF@&pomFloat TF@a                                                          #    43/44
+ERROR on line 26                                                                #    44/44
 
