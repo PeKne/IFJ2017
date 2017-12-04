@@ -239,7 +239,7 @@ int rule_function_head() { // stav <function-head>
                         if(token.t_state == st_pravzav) {
                             if(check_argument_count(ar_count) != 1) {
                                 debug_print("%s\n", "Argument count does not match with declaration");
-                                return ERR_SEM_TYPE;
+                                return ERR_SEM_PROG;
                             }
                             if(func_return = generate_token()) return func_return;
 
@@ -298,9 +298,14 @@ int rule_par(function_data *data_f){ // stav <par>
     int func_return;
     if(token.t_state == st_id){ // simulace pravidla 9.
         htab_listitem *item;
+        item = htab_find(global.global_table, token.t_str.data);
+        if(item != NULL && item->type == type_function) {
+            return ERR_SEM_PROG;
+        }
+
         if((item = htab_find(data_f->local_symbol_table, token.t_str.data)) != NULL) {
             printf("Function has another parameter with same name");
-            return ERR_SEM_TYPE;
+            return ERR_SEM_PROG;
         }
         item = htab_lookup_add(data_f->local_symbol_table, token.t_str.data);
         variable_init(item, token.t_str.data);
@@ -355,10 +360,10 @@ int rule_check_par(){ // stav <check-par>
     int func_return;
     if(token.t_state == st_id){ // simulace pravidla 9.
         ar_count++;
-        if(check_argument_name(token.t_str.data, ar_count) != 1) {
+        /*if(check_argument_name(token.t_str.data, ar_count) != 1) {
             printf("Nezhoduje sa meno argumentu %d\n", ar_count);
-            return ERR_SEM_TYPE; //Meno premmenej nie je spravne
-        }
+            return ERR_SEM_PROG; //Meno premmenej nie je spravne
+        }*/
         if(func_return = generate_token()) return func_return;
 
         if(token.t_state == st_as){
@@ -427,7 +432,7 @@ int rule_check_ret_type(){ // stav <check-ret-type>
     int func_return;
     if(token.t_state == st_integer || token.t_state == st_double || token.t_state == st_string){ // simulace pravidla 13., 14., 15.
         if(check_function_return_type(token.t_state) == 0) {
-            return ERR_SEM_TYPE;
+            return ERR_SEM_PROG;
         }
         if(func_return = generate_token()) return func_return;
         return_value = 0;
@@ -452,7 +457,7 @@ int rule_check_arg_type(){ // stav <check-arg-type>
     int func_return;
     if(token.t_state == st_integer || token.t_state == st_double || token.t_state == st_string){ // simulace pravidla 13., 14., 15.
         if(check_argument_type(token.t_state, ar_count) != 1) {
-            return ERR_SEM_TYPE; //Neodpovedajuci datovy typ argumentu
+            return ERR_SEM_PROG; //Neodpovedajuci datovy typ argumentu
         }
         return_value = 0;
     }
