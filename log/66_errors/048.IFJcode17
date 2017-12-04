@@ -1,4 +1,4 @@
-# 2017-12-03 20:43:47.881799
+# 2017-12-04 12:08:01.430754
 # SECTION: 66_errors
 # TEST: 048
 # INFO: missing operator
@@ -8,7 +8,7 @@
 # 
 # COMPILER STDERR:
 # In if and loop statement can only be relational operators.
-# ERROR -  6 - ostatnÃ­ sÃ©mantickÃ© chyby.
+# ERROR - 3 - sÃ©mantickÃ¡ chyba v programu â nedefinovanÃ¡ funkce/promeÌnnÃ¡, pokus o redefinici funkce/promeÌnnÃ©, atd.
 # 
 # INTERPRETER STDERR:
 # 
@@ -24,7 +24,7 @@
 # 
 #
 # EXPECTED COMPILER EXIT CODE: 2
-# CURRENT COMPILER EXIT CODE: 6
+# CURRENT COMPILER EXIT CODE: 3
 # EXPECTED INTERPRETER EXIT CODE: 0
 # CURRENT INTERPRETER EXIT CODE: None
 # PRICE: ---
@@ -36,50 +36,22 @@
 
 ########################################
 
-token: 17 ... scope                                                             #     1/48
-.IFJcode17                                                                      #     2/48
-JUMP $$scope                                                                    #     3/48
-LABEL $$scope                                                                   #     5/48
-DEFVAR GF@&pomInteger                                                           #     6/48
-MOVE GF@&pomInteger int@0                                                       #     7/48
-DEFVAR GF@&pomString                                                            #     8/48
-MOVE GF@&pomString string@                                                      #     9/48
-DEFVAR GF@&pomFloat                                                             #    10/48
-MOVE GF@&pomFloat float@0                                                       #    11/48
-DEFVAR GF@&pomBool                                                              #    12/48
-MOVE GF@&pomBool bool@false                                                     #    13/48
-DEFVAR GF@&pomCntr                                                              #    14/48
-MOVE GF@&pomCntr int@0                                                          #    15/48
-CREATEFRAME                                                                     #    16/48
-token: 57 ...                                                                   #    18/48
-token: 15 ... print                                                             #    19/48
-token: 50 ... (                                                                 #    20/48
-|TOP--->|$|  SYMBOL                                                             #    21/48
-|TOP--->| |  STRING                                                             #    22/48
-token: 53 ... 5                                                                 #    23/48
-|TOP--->|(|]|$|  SYMBOL                                                         #    24/48
-|TOP--->|(| | |  STRING                                                         #    25/48
-token: 39 ... +                                                                 #    26/48
-|TOP--->|int|]|(|]|$|  SYMBOL                                                   #    27/48
-|TOP--->|5| |(| | |  STRING                                                     #    28/48
-|TOP--->|int|  SYMBOL                                                           #    29/48
-|TOP--->|5|  STRING                                                             #    30/48
-WRITE TF@5                                                                      #    31/48
-|TOP--->|R|(|]|$|  SYMBOL                                                       #    32/48
-|TOP--->|5|(| | |  STRING                                                       #    33/48
-token: 53 ... 9                                                                 #    34/48
-|TOP--->|+|R|]|(|]|$|  SYMBOL                                                   #    35/48
-|TOP--->|+|5| |(| | |  STRING                                                   #    36/48
-token: 51 ... )                                                                 #    37/48
-|TOP--->|int|]|+|R|]|(|]|$|  SYMBOL                                             #    38/48
-|TOP--->|9| |+|5| |(| | |  STRING                                               #    39/48
-|TOP--->|int|  SYMBOL                                                           #    40/48
-|TOP--->|9|  STRING                                                             #    41/48
-WRITE TF@9                                                                      #    42/48
-|TOP--->|R|+|R|]|(|]|$|  SYMBOL                                                 #    43/48
-|TOP--->|9|+|5| |(| | |  STRING                                                 #    44/48
-|TOP--->|R|+|R|  SYMBOL                                                         #    45/48
-|TOP--->|5|+|9|  STRING                                                         #    46/48
-redukce                                                                         #    47/48
-ERROR on line 2                                                                 #    48/48
+.IFJcode17                                                                      #     1/20
+JUMP $$scope                                                                    #     2/20
+LABEL $$scope                                                                   #     4/20
+DEFVAR GF@&pomInteger                                                           #     5/20
+MOVE GF@&pomInteger int@0                                                       #     6/20
+DEFVAR GF@&pomString                                                            #     7/20
+MOVE GF@&pomString string@                                                      #     8/20
+DEFVAR GF@&pomFloat                                                             #     9/20
+MOVE GF@&pomFloat float@0                                                       #    10/20
+DEFVAR GF@&pomBool                                                              #    11/20
+MOVE GF@&pomBool bool@false                                                     #    12/20
+DEFVAR GF@&pomCntr                                                              #    13/20
+MOVE GF@&pomCntr int@0                                                          #    14/20
+CREATEFRAME                                                                     #    15/20
+WRITE TF@5                                                                      #    17/20
+WRITE TF@9                                                                      #    18/20
+redukce                                                                         #    19/20
+ERROR on line 2                                                                 #    20/20
 

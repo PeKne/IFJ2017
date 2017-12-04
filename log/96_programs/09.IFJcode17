@@ -1,4 +1,4 @@
-# 2017-12-03 20:43:48.776897
+# 2017-12-04 12:08:01.840084
 # SECTION: 96_programs
 # TEST: 09
 # INFO: Count modulo
@@ -7,8 +7,7 @@
 # STATE: FAIL
 # 
 # COMPILER STDERR:
-# symbol.c:268:retrieve_function_data(): Function not found
-# ERROR - 3 - sÃ©mantickÃ¡ chyba v programu â nedefinovanÃ¡ funkce/promeÌnnÃ¡, pokus o redefinici funkce/promeÌnnÃ©, atd.
+# ERROR - 2 - chyba v programu v rÃ¡mci syntaktickÃ© analÃ½zy (chybnÃ¡ syntaxe programu).
 # 
 # INTERPRETER STDERR:
 # 
@@ -25,7 +24,7 @@
 # 
 #
 # EXPECTED COMPILER EXIT CODE: 0
-# CURRENT COMPILER EXIT CODE: 3
+# CURRENT COMPILER EXIT CODE: 2
 # EXPECTED INTERPRETER EXIT CODE: 0
 # CURRENT INTERPRETER EXIT CODE: None
 # PRICE: ---
@@ -46,10 +45,49 @@
 
 ########################################
 
-token: 57 ...                                                                   #     1/7
-token: 9 ... function                                                           #     2/7
-.IFJcode17                                                                      #     3/7
-JUMP $$scope                                                                    #     4/7
-token: 35 ... modulo                                                            #     6/7
-ERROR on line 2                                                                 #     7/7
+.IFJcode17                                                                      #     1/49
+JUMP $$scope                                                                    #     2/49
+rule_par                                                                        #     4/49
+rule next par                                                                   #     5/49
+rule_par                                                                        #     6/49
+rule next par                                                                   #     7/49
+LABEL $modulo                                                                   #     8/49
+PUSHFRAME                                                                       #     9/49
+DEFVAR LF@&retval                                                               #    10/49
+DEFVAR LF@vysledek                                                              #    11/49
+MOVE LF@vysledek int@0                                                          #    12/49
+MOVE GF@&pomInteger LF@delitel                                                  #    13/49
+redukce                                                                         #    14/49
+MOVE GF@&pomCntr int@0                                                          #    16/49
+LABEL $$WholeDiv_Begin0                                                         #    17/49
+ADD GF@&pomCntr GF@&pomCntr int@1                                               #    18/49
+SUB GF@&pomInteger GF@&pomInteger LF@delenec                                    #    19/49
+LT GF@&pomBool GF@&pomInteger int@0                                             #    20/49
+JUMPIFNEQ $$WholeDiv_Begin0 GF@&pomBool bool@true                               #    21/49
+SUB GF@&pomCntr GF@&pomCntr int@1                                               #    22/49
+MOVE GF@&pomInteger GF@&pomCntr                                                 #    23/49
+redukce                                                                         #    24/49
+MUL GF@&pomInteger GF@&pomInteger LF@delenec                                    #    25/49
+redukce                                                                         #    26/49
+SUB GF@&pomInteger LF@delitel GF@&pomInteger                                    #    27/49
+MOVE LF@vysledek GF@&pomInteger                                                 #    28/49
+MOVE GF@&pomInteger LF@vysledek                                                 #    29/49
+MOVE LF@&retval GF@&pomInteger                                                  #    30/49
+POPFRAME                                                                        #    31/49
+RETURN                                                                          #    32/49
+LABEL $$scope                                                                   #    34/49
+DEFVAR GF@&pomInteger                                                           #    35/49
+MOVE GF@&pomInteger int@0                                                       #    36/49
+DEFVAR GF@&pomString                                                            #    37/49
+MOVE GF@&pomString string@                                                      #    38/49
+DEFVAR GF@&pomFloat                                                             #    39/49
+MOVE GF@&pomFloat float@0                                                       #    40/49
+DEFVAR GF@&pomBool                                                              #    41/49
+MOVE GF@&pomBool bool@false                                                     #    42/49
+DEFVAR GF@&pomCntr                                                              #    43/49
+MOVE GF@&pomCntr int@0                                                          #    44/49
+CREATEFRAME                                                                     #    45/49
+DEFVAR TF@a                                                                     #    47/49
+MOVE TF@a int@0                                                                 #    48/49
+ERROR on line 10                                                                #    49/49
 

@@ -1,7 +1,7 @@
-# 2017-12-03 20:43:48.696668
+# 2017-12-04 12:08:01.795501
 # SECTION: 66_errors
 # TEST: 300
-# INFO: Return in scope
+# INFO: invalid types to compare
 # REQUIRED EXTENSIONS: 
 # ACTIVATED EXTENSIONS: 
 # STATE: FAIL
@@ -28,26 +28,39 @@
 # PRICE: ---
 # GROOT: ---
 # 
-#   1: scope  end scope
+#   1: scope 
+#   2:  dim a as integer = 10 
+#   3:  if 1 < a < 20 then 
+#   4:  else 
+#   5:  end if 
+#   6:  end scope
 
 ########################################
 
-token: 17 ... scope                                                             #     1/20
-.IFJcode17                                                                      #     2/20
-JUMP $$scope                                                                    #     3/20
-LABEL $$scope                                                                   #     5/20
-DEFVAR GF@&pomInteger                                                           #     6/20
-MOVE GF@&pomInteger int@0                                                       #     7/20
-DEFVAR GF@&pomString                                                            #     8/20
-MOVE GF@&pomString string@                                                      #     9/20
-DEFVAR GF@&pomFloat                                                             #    10/20
-MOVE GF@&pomFloat float@0                                                       #    11/20
-DEFVAR GF@&pomBool                                                              #    12/20
-MOVE GF@&pomBool bool@false                                                     #    13/20
-DEFVAR GF@&pomCntr                                                              #    14/20
-MOVE GF@&pomCntr int@0                                                          #    15/20
-CREATEFRAME                                                                     #    16/20
-token: 7 ... end                                                                #    18/20
-token: 17 ... scope                                                             #    19/20
-token: 58 ...                                                                   #    20/20
+.IFJcode17                                                                      #     1/28
+JUMP $$scope                                                                    #     2/28
+LABEL $$scope                                                                   #     4/28
+DEFVAR GF@&pomInteger                                                           #     5/28
+MOVE GF@&pomInteger int@0                                                       #     6/28
+DEFVAR GF@&pomString                                                            #     7/28
+MOVE GF@&pomString string@                                                      #     8/28
+DEFVAR GF@&pomFloat                                                             #     9/28
+MOVE GF@&pomFloat float@0                                                       #    10/28
+DEFVAR GF@&pomBool                                                              #    11/28
+MOVE GF@&pomBool bool@false                                                     #    12/28
+DEFVAR GF@&pomCntr                                                              #    13/28
+MOVE GF@&pomCntr int@0                                                          #    14/28
+CREATEFRAME                                                                     #    15/28
+DEFVAR TF@a                                                                     #    17/28
+MOVE TF@a int@0                                                                 #    18/28
+MOVE GF@&pomInteger int@10                                                      #    19/28
+MOVE TF@a GF@&pomInteger                                                        #    20/28
+redukce                                                                         #    21/28
+LT GF@&pomBool int@1 TF@a                                                       #    22/28
+redukce                                                                         #    23/28
+LT GF@&pomBool TF@a int@20                                                      #    24/28
+JUMPIFNEQ $$else_1 GF@&pomBool bool@true                                        #    25/28
+JUMP $$endif_1                                                                  #    26/28
+LABEL $$else_1                                                                  #    27/28
+LABEL $$endif_1                                                                 #    28/28
 

@@ -1,4 +1,4 @@
-# 2017-12-03 20:43:48.648169
+# 2017-12-04 12:08:01.770416
 # SECTION: 66_errors
 # TEST: 283
 # INFO: Lexical error
@@ -36,32 +36,21 @@
 
 ########################################
 
-token: 17 ... scope                                                             #     1/30
-.IFJcode17                                                                      #     2/30
-JUMP $$scope                                                                    #     3/30
-LABEL $$scope                                                                   #     5/30
-DEFVAR GF@&pomInteger                                                           #     6/30
-MOVE GF@&pomInteger int@0                                                       #     7/30
-DEFVAR GF@&pomString                                                            #     8/30
-MOVE GF@&pomString string@                                                      #     9/30
-DEFVAR GF@&pomFloat                                                             #    10/30
-MOVE GF@&pomFloat float@0                                                       #    11/30
-DEFVAR GF@&pomBool                                                              #    12/30
-MOVE GF@&pomBool bool@false                                                     #    13/30
-DEFVAR GF@&pomCntr                                                              #    14/30
-MOVE GF@&pomCntr int@0                                                          #    15/30
-CREATEFRAME                                                                     #    16/30
-token: 57 ...                                                                   #    18/30
-token: 3 ... dim                                                                #    19/30
-token: 35 ... a                                                                 #    20/30
-token: 0 ... as                                                                 #    21/30
-token: 5 ... double                                                             #    22/30
-token: 45 ... =                                                                 #    23/30
-DEFVAR TF@a                                                                     #    24/30
-MOVE TF@a float@0                                                               #    25/30
-token: 53 ... 31                                                                #    26/30
-|TOP--->|$|  SYMBOL                                                             #    27/30
-|TOP--->| |  STRING                                                             #    28/30
-token: 59 ...                                                                   #    29/30
-ERROR on line 2                                                                 #    30/30
+.IFJcode17                                                                      #     1/19
+JUMP $$scope                                                                    #     2/19
+LABEL $$scope                                                                   #     4/19
+DEFVAR GF@&pomInteger                                                           #     5/19
+MOVE GF@&pomInteger int@0                                                       #     6/19
+DEFVAR GF@&pomString                                                            #     7/19
+MOVE GF@&pomString string@                                                      #     8/19
+DEFVAR GF@&pomFloat                                                             #     9/19
+MOVE GF@&pomFloat float@0                                                       #    10/19
+DEFVAR GF@&pomBool                                                              #    11/19
+MOVE GF@&pomBool bool@false                                                     #    12/19
+DEFVAR GF@&pomCntr                                                              #    13/19
+MOVE GF@&pomCntr int@0                                                          #    14/19
+CREATEFRAME                                                                     #    15/19
+DEFVAR TF@a                                                                     #    17/19
+MOVE TF@a float@0                                                               #    18/19
+ERROR on line 2                                                                 #    19/19
 

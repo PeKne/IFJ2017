@@ -1,4 +1,4 @@
-# 2017-12-03 20:43:47.828225
+# 2017-12-04 12:08:01.407141
 # SECTION: 66_errors
 # TEST: 029
 # INFO: wrong if termination
@@ -7,7 +7,7 @@
 # STATE: SUCCESS
 # 
 # COMPILER STDERR:
-# symbol.c:311:variable_exist(): Variable not found
+# Variable not found
 # Not defined variable
 # ERROR - 3 - sÃ©mantickÃ¡ chyba v programu â nedefinovanÃ¡ funkce/promeÌnnÃ¡, pokus o redefinici funkce/promeÌnnÃ©, atd.
 # 
@@ -37,49 +37,22 @@
 
 ########################################
 
-token: 17 ... scope                                                             #     1/47
-.IFJcode17                                                                      #     2/47
-JUMP $$scope                                                                    #     3/47
-LABEL $$scope                                                                   #     5/47
-DEFVAR GF@&pomInteger                                                           #     6/47
-MOVE GF@&pomInteger int@0                                                       #     7/47
-DEFVAR GF@&pomString                                                            #     8/47
-MOVE GF@&pomString string@                                                      #     9/47
-DEFVAR GF@&pomFloat                                                             #    10/47
-MOVE GF@&pomFloat float@0                                                       #    11/47
-DEFVAR GF@&pomBool                                                              #    12/47
-MOVE GF@&pomBool bool@false                                                     #    13/47
-DEFVAR GF@&pomCntr                                                              #    14/47
-MOVE GF@&pomCntr int@0                                                          #    15/47
-CREATEFRAME                                                                     #    16/47
-token: 57 ...                                                                   #    18/47
-token: 10 ... if                                                                #    19/47
-token: 53 ... 1                                                                 #    20/47
-|TOP--->|$|  SYMBOL                                                             #    21/47
-|TOP--->| |  STRING                                                             #    22/47
-token: 41 ... <                                                                 #    23/47
-|TOP--->|int|]|$|  SYMBOL                                                       #    24/47
-|TOP--->|1| | |  STRING                                                         #    25/47
-|TOP--->|int|  SYMBOL                                                           #    26/47
-|TOP--->|1|  STRING                                                             #    27/47
-|TOP--->|R|$|  SYMBOL                                                           #    28/47
-|TOP--->|1| |  STRING                                                           #    29/47
-token: 53 ... 2                                                                 #    30/47
-|TOP--->|<|R|]|$|  SYMBOL                                                       #    31/47
-|TOP--->|<|1| | |  STRING                                                       #    32/47
-token: 20 ... then                                                              #    33/47
-|TOP--->|int|]|<|R|]|$|  SYMBOL                                                 #    34/47
-|TOP--->|2| |<|1| | |  STRING                                                   #    35/47
-|TOP--->|int|  SYMBOL                                                           #    36/47
-|TOP--->|2|  STRING                                                             #    37/47
-|TOP--->|R|<|R|]|$|  SYMBOL                                                     #    38/47
-|TOP--->|2|<|1| | |  STRING                                                     #    39/47
-|TOP--->|R|<|R|  SYMBOL                                                         #    40/47
-|TOP--->|1|<|2|  STRING                                                         #    41/47
-redukce                                                                         #    42/47
-LT GF@&pomBool int@1 int@2                                                      #    43/47
-JUMPIFNEQ $$else_1 GF@&pomBool bool@true                                        #    44/47
-token: 57 ...                                                                   #    45/47
-token: 35 ... wend                                                              #    46/47
-ERROR on line 3                                                                 #    47/47
+.IFJcode17                                                                      #     1/20
+JUMP $$scope                                                                    #     2/20
+LABEL $$scope                                                                   #     4/20
+DEFVAR GF@&pomInteger                                                           #     5/20
+MOVE GF@&pomInteger int@0                                                       #     6/20
+DEFVAR GF@&pomString                                                            #     7/20
+MOVE GF@&pomString string@                                                      #     8/20
+DEFVAR GF@&pomFloat                                                             #     9/20
+MOVE GF@&pomFloat float@0                                                       #    10/20
+DEFVAR GF@&pomBool                                                              #    11/20
+MOVE GF@&pomBool bool@false                                                     #    12/20
+DEFVAR GF@&pomCntr                                                              #    13/20
+MOVE GF@&pomCntr int@0                                                          #    14/20
+CREATEFRAME                                                                     #    15/20
+redukce                                                                         #    17/20
+LT GF@&pomBool int@1 int@2                                                      #    18/20
+JUMPIFNEQ $$else_1 GF@&pomBool bool@true                                        #    19/20
+ERROR on line 3                                                                 #    20/20
 

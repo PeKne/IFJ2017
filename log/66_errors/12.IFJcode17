@@ -1,4 +1,4 @@
-# 2017-12-03 20:43:47.547568
+# 2017-12-04 12:08:01.342149
 # SECTION: 66_errors
 # TEST: 12
 # INFO: Undeclared variable inside function
@@ -7,7 +7,9 @@
 # STATE: SUCCESS
 # 
 # COMPILER STDERR:
-# symbol.c:268:retrieve_function_data(): Function not found
+# Variable not found
+# parser.c:564:rule_stat(): Not defined variable
+# 
 # ERROR - 3 - sÃ©mantickÃ¡ chyba v programu â nedefinovanÃ¡ funkce/promeÌnnÃ¡, pokus o redefinici funkce/promeÌnnÃ©, atd.
 # 
 # INTERPRETER STDERR:
@@ -46,11 +48,20 @@
 
 ########################################
 
-token: 57 ...                                                                   #     1/8
-token: 57 ...                                                                   #     2/8
-token: 9 ... function                                                           #     3/8
-.IFJcode17                                                                      #     4/8
-JUMP $$scope                                                                    #     5/8
-token: 35 ... hgk____                                                           #     7/8
-ERROR on line 3                                                                 #     8/8
+.IFJcode17                                                                      #     1/18
+JUMP $$scope                                                                    #     2/18
+rule_par                                                                        #     4/18
+LABEL $hgk____                                                                  #     5/18
+PUSHFRAME                                                                       #     6/18
+DEFVAR LF@&retval                                                               #     7/18
+DEFVAR LF@a                                                                     #     8/18
+MOVE LF@a int@0                                                                 #     9/18
+MOVE LF@&retval GF@&pomInteger                                                  #    10/18
+POPFRAME                                                                        #    11/18
+RETURN                                                                          #    12/18
+rule_par                                                                        #    14/18
+LABEL $hgk____7874                                                              #    15/18
+PUSHFRAME                                                                       #    16/18
+DEFVAR LF@&retval                                                               #    17/18
+ERROR on line 8                                                                 #    18/18
 

@@ -1,4 +1,4 @@
-# 2017-12-03 20:43:47.083008
+# 2017-12-04 12:08:01.063717
 # SECTION: 02_functions
 # TEST: 007
 # INFO: function double implicit return
@@ -7,10 +7,9 @@
 # STATE: FAIL
 # 
 # COMPILER STDERR:
-# symbol.c:268:retrieve_function_data(): Function not found
-# ERROR - 3 - sÃ©mantickÃ¡ chyba v programu â nedefinovanÃ¡ funkce/promeÌnnÃ¡, pokus o redefinici funkce/promeÌnnÃ©, atd.
 # 
 # INTERPRETER STDERR:
+# 4.1-8: syntax error, unexpected ID, expecting END
 # 
 # EXPECTED INTERPRETER STDOUT:
 
@@ -25,9 +24,9 @@
 # 
 #
 # EXPECTED COMPILER EXIT CODE: 0
-# CURRENT COMPILER EXIT CODE: 3
+# CURRENT COMPILER EXIT CODE: 0
 # EXPECTED INTERPRETER EXIT CODE: 0
-# CURRENT INTERPRETER EXIT CODE: None
+# CURRENT INTERPRETER EXIT CODE: 51
 # PRICE: ---
 # GROOT: ---
 # 
@@ -41,9 +40,30 @@
 
 ########################################
 
-token: 9 ... function                                                           #     1/6
-.IFJcode17                                                                      #     2/6
-JUMP $$scope                                                                    #     3/6
-token: 35 ... foo                                                               #     5/6
-ERROR on line 1                                                                 #     6/6
+.IFJcode17                                                                      #     1/29
+JUMP $$scope                                                                    #     2/29
+rule_par                                                                        #     4/29
+LABEL $foo                                                                      #     5/29
+PUSHFRAME                                                                       #     6/29
+DEFVAR LF@&retval                                                               #     7/29
+MOVE LF@&retval GF@&pomFloat                                                    #     8/29
+POPFRAME                                                                        #     9/29
+RETURN                                                                          #    10/29
+LABEL $$scope                                                                   #    12/29
+DEFVAR GF@&pomInteger                                                           #    13/29
+MOVE GF@&pomInteger int@0                                                       #    14/29
+DEFVAR GF@&pomString                                                            #    15/29
+MOVE GF@&pomString string@                                                      #    16/29
+DEFVAR GF@&pomFloat                                                             #    17/29
+MOVE GF@&pomFloat float@0                                                       #    18/29
+DEFVAR GF@&pomBool                                                              #    19/29
+MOVE GF@&pomBool bool@false                                                     #    20/29
+DEFVAR GF@&pomCntr                                                              #    21/29
+MOVE GF@&pomCntr int@0                                                          #    22/29
+CREATEFRAME                                                                     #    23/29
+DEFVAR TF@a                                                                     #    25/29
+MOVE TF@a float@0                                                               #    26/29
+CALL $foo                                                                       #    27/29
+MOVE TF@a TF@&retval                                                            #    28/29
+WRITE TF@a                                                                      #    29/29
 

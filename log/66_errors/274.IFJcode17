@@ -1,4 +1,4 @@
-# 2017-12-03 20:43:48.628459
+# 2017-12-04 12:08:01.760376
 # SECTION: 66_errors
 # TEST: 274
 # INFO: Redefine build-in function
@@ -37,10 +37,7 @@
 
 ########################################
 
-token: 2 ... declare                                                            #     1/7
-.IFJcode17                                                                      #     2/7
-JUMP $$scope                                                                    #     3/7
-token: 9 ... function                                                           #     5/7
-token: 1 ... asc                                                                #     6/7
-ERROR on line 1                                                                 #     7/7
+.IFJcode17                                                                      #     1/4
+JUMP $$scope                                                                    #     2/4
+ERROR on line 1                                                                 #     4/4
 

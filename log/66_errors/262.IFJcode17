@@ -1,4 +1,4 @@
-# 2017-12-03 20:43:48.588926
+# 2017-12-04 12:08:01.741305
 # SECTION: 66_errors
 # TEST: 262
 # INFO: Fail type compatibility
@@ -34,39 +34,21 @@
 
 ########################################
 
-token: 17 ... scope                                                             #     1/37
-.IFJcode17                                                                      #     2/37
-JUMP $$scope                                                                    #     3/37
-LABEL $$scope                                                                   #     5/37
-DEFVAR GF@&pomInteger                                                           #     6/37
-MOVE GF@&pomInteger int@0                                                       #     7/37
-DEFVAR GF@&pomString                                                            #     8/37
-MOVE GF@&pomString string@                                                      #     9/37
-DEFVAR GF@&pomFloat                                                             #    10/37
-MOVE GF@&pomFloat float@0                                                       #    11/37
-DEFVAR GF@&pomBool                                                              #    12/37
-MOVE GF@&pomBool bool@false                                                     #    13/37
-DEFVAR GF@&pomCntr                                                              #    14/37
-MOVE GF@&pomCntr int@0                                                          #    15/37
-CREATEFRAME                                                                     #    16/37
-token: 57 ...                                                                   #    18/37
-token: 3 ... dim                                                                #    19/37
-token: 35 ... __a7as                                                            #    20/37
-token: 0 ... as                                                                 #    21/37
-token: 18 ... string                                                            #    22/37
-token: 45 ... =                                                                 #    23/37
-DEFVAR TF@__a7as                                                                #    24/37
-MOVE TF@__a7as string@                                                          #    25/37
-token: 53 ... 31                                                                #    26/37
-|TOP--->|$|  SYMBOL                                                             #    27/37
-|TOP--->| |  STRING                                                             #    28/37
-token: 57 ...                                                                   #    29/37
-|TOP--->|int|]|$|  SYMBOL                                                       #    30/37
-|TOP--->|31| | |  STRING                                                        #    31/37
-|TOP--->|int|  SYMBOL                                                           #    32/37
-|TOP--->|31|  STRING                                                            #    33/37
-MOVE TF@__a7as GF@&pomString                                                    #    34/37
-token: 7 ... end                                                                #    35/37
-token: 17 ... scope                                                             #    36/37
-token: 58 ...                                                                   #    37/37
+.IFJcode17                                                                      #     1/19
+JUMP $$scope                                                                    #     2/19
+LABEL $$scope                                                                   #     4/19
+DEFVAR GF@&pomInteger                                                           #     5/19
+MOVE GF@&pomInteger int@0                                                       #     6/19
+DEFVAR GF@&pomString                                                            #     7/19
+MOVE GF@&pomString string@                                                      #     8/19
+DEFVAR GF@&pomFloat                                                             #     9/19
+MOVE GF@&pomFloat float@0                                                       #    10/19
+DEFVAR GF@&pomBool                                                              #    11/19
+MOVE GF@&pomBool bool@false                                                     #    12/19
+DEFVAR GF@&pomCntr                                                              #    13/19
+MOVE GF@&pomCntr int@0                                                          #    14/19
+CREATEFRAME                                                                     #    15/19
+DEFVAR TF@__a7as                                                                #    17/19
+MOVE TF@__a7as string@                                                          #    18/19
+MOVE TF@__a7as GF@&pomString                                                    #    19/19
 

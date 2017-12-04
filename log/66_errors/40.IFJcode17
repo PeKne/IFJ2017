@@ -1,4 +1,4 @@
-# 2017-12-03 20:43:47.749273
+# 2017-12-04 12:08:01.377329
 # SECTION: 66_errors
 # TEST: 40
 # INFO: Fail implicit conversion
@@ -39,40 +39,21 @@
 
 ########################################
 
-token: 57 ...                                                                   #     1/38
-token: 57 ...                                                                   #     2/38
-token: 17 ... scope                                                             #     3/38
-.IFJcode17                                                                      #     4/38
-JUMP $$scope                                                                    #     5/38
-LABEL $$scope                                                                   #     7/38
-DEFVAR GF@&pomInteger                                                           #     8/38
-MOVE GF@&pomInteger int@0                                                       #     9/38
-DEFVAR GF@&pomString                                                            #    10/38
-MOVE GF@&pomString string@                                                      #    11/38
-DEFVAR GF@&pomFloat                                                             #    12/38
-MOVE GF@&pomFloat float@0                                                       #    13/38
-DEFVAR GF@&pomBool                                                              #    14/38
-MOVE GF@&pomBool bool@false                                                     #    15/38
-DEFVAR GF@&pomCntr                                                              #    16/38
-MOVE GF@&pomCntr int@0                                                          #    17/38
-CREATEFRAME                                                                     #    18/38
-token: 57 ...                                                                   #    20/38
-token: 3 ... dim                                                                #    21/38
-token: 35 ... a                                                                 #    22/38
-token: 0 ... as                                                                 #    23/38
-token: 12 ... integer                                                           #    24/38
-token: 57 ...                                                                   #    25/38
-DEFVAR TF@a                                                                     #    26/38
-MOVE TF@a int@0                                                                 #    27/38
-token: 35 ... a                                                                 #    28/38
-token: 45 ... =                                                                 #    29/38
-token: 52 ...                                                                   #    30/38
-|TOP--->|$|  SYMBOL                                                             #    31/38
-|TOP--->| |  STRING                                                             #    32/38
-token: 57 ...                                                                   #    33/38
-|TOP--->|str|]|$|  SYMBOL                                                       #    34/38
-|TOP--->|| | |  STRING                                                          #    35/38
-|TOP--->|str|  SYMBOL                                                           #    36/38
-|TOP--->||  STRING                                                              #    37/38
-ERROR on line 5                                                                 #    38/38
+.IFJcode17                                                                      #     1/19
+JUMP $$scope                                                                    #     2/19
+LABEL $$scope                                                                   #     4/19
+DEFVAR GF@&pomInteger                                                           #     5/19
+MOVE GF@&pomInteger int@0                                                       #     6/19
+DEFVAR GF@&pomString                                                            #     7/19
+MOVE GF@&pomString string@                                                      #     8/19
+DEFVAR GF@&pomFloat                                                             #     9/19
+MOVE GF@&pomFloat float@0                                                       #    10/19
+DEFVAR GF@&pomBool                                                              #    11/19
+MOVE GF@&pomBool bool@false                                                     #    12/19
+DEFVAR GF@&pomCntr                                                              #    13/19
+MOVE GF@&pomCntr int@0                                                          #    14/19
+CREATEFRAME                                                                     #    15/19
+DEFVAR TF@a                                                                     #    17/19
+MOVE TF@a int@0                                                                 #    18/19
+ERROR on line 5                                                                 #    19/19
 

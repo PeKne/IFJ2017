@@ -1,4 +1,4 @@
-# 2017-12-03 20:43:48.545134
+# 2017-12-04 12:08:01.724707
 # SECTION: 66_errors
 # TEST: 251
 # INFO: Fail keyword
@@ -35,24 +35,19 @@
 
 ########################################
 
-token: 17 ... scope                                                             #     1/22
-.IFJcode17                                                                      #     2/22
-JUMP $$scope                                                                    #     3/22
-LABEL $$scope                                                                   #     5/22
-DEFVAR GF@&pomInteger                                                           #     6/22
-MOVE GF@&pomInteger int@0                                                       #     7/22
-DEFVAR GF@&pomString                                                            #     8/22
-MOVE GF@&pomString string@                                                      #     9/22
-DEFVAR GF@&pomFloat                                                             #    10/22
-MOVE GF@&pomFloat float@0                                                       #    11/22
-DEFVAR GF@&pomBool                                                              #    12/22
-MOVE GF@&pomBool bool@false                                                     #    13/22
-DEFVAR GF@&pomCntr                                                              #    14/22
-MOVE GF@&pomCntr int@0                                                          #    15/22
-CREATEFRAME                                                                     #    16/22
-token: 57 ...                                                                   #    18/22
-token: 3 ... dim                                                                #    19/22
-token: 35 ... __a7as                                                            #    20/22
-token: 12 ... integer                                                           #    21/22
-ERROR on line 2                                                                 #    22/22
+.IFJcode17                                                                      #     1/17
+JUMP $$scope                                                                    #     2/17
+LABEL $$scope                                                                   #     4/17
+DEFVAR GF@&pomInteger                                                           #     5/17
+MOVE GF@&pomInteger int@0                                                       #     6/17
+DEFVAR GF@&pomString                                                            #     7/17
+MOVE GF@&pomString string@                                                      #     8/17
+DEFVAR GF@&pomFloat                                                             #     9/17
+MOVE GF@&pomFloat float@0                                                       #    10/17
+DEFVAR GF@&pomBool                                                              #    11/17
+MOVE GF@&pomBool bool@false                                                     #    12/17
+DEFVAR GF@&pomCntr                                                              #    13/17
+MOVE GF@&pomCntr int@0                                                          #    14/17
+CREATEFRAME                                                                     #    15/17
+ERROR on line 2                                                                 #    17/17
 

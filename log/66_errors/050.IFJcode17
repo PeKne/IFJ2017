@@ -1,4 +1,4 @@
-# 2017-12-03 20:43:47.890235
+# 2017-12-04 12:08:01.433856
 # SECTION: 66_errors
 # TEST: 050
 # INFO: missing operand in braces group
@@ -35,41 +35,20 @@
 
 ########################################
 
-token: 17 ... scope                                                             #     1/39
-.IFJcode17                                                                      #     2/39
-JUMP $$scope                                                                    #     3/39
-LABEL $$scope                                                                   #     5/39
-DEFVAR GF@&pomInteger                                                           #     6/39
-MOVE GF@&pomInteger int@0                                                       #     7/39
-DEFVAR GF@&pomString                                                            #     8/39
-MOVE GF@&pomString string@                                                      #     9/39
-DEFVAR GF@&pomFloat                                                             #    10/39
-MOVE GF@&pomFloat float@0                                                       #    11/39
-DEFVAR GF@&pomBool                                                              #    12/39
-MOVE GF@&pomBool bool@false                                                     #    13/39
-DEFVAR GF@&pomCntr                                                              #    14/39
-MOVE GF@&pomCntr int@0                                                          #    15/39
-CREATEFRAME                                                                     #    16/39
-token: 57 ...                                                                   #    18/39
-token: 15 ... print                                                             #    19/39
-token: 50 ... (                                                                 #    20/39
-|TOP--->|$|  SYMBOL                                                             #    21/39
-|TOP--->| |  STRING                                                             #    22/39
-token: 38 ... *                                                                 #    23/39
-|TOP--->|(|]|$|  SYMBOL                                                         #    24/39
-|TOP--->|(| | |  STRING                                                         #    25/39
-token: 53 ... 6                                                                 #    26/39
-|TOP--->|*|]|(|]|$|  SYMBOL                                                     #    27/39
-|TOP--->|*| |(| | |  STRING                                                     #    28/39
-token: 51 ... )                                                                 #    29/39
-|TOP--->|int|]|*|]|(|]|$|  SYMBOL                                               #    30/39
-|TOP--->|6| |*| |(| | |  STRING                                                 #    31/39
-|TOP--->|int|  SYMBOL                                                           #    32/39
-|TOP--->|6|  STRING                                                             #    33/39
-WRITE TF@6                                                                      #    34/39
-|TOP--->|R|*|]|(|]|$|  SYMBOL                                                   #    35/39
-|TOP--->|6|*| |(| | |  STRING                                                   #    36/39
-|TOP--->|*|R|  SYMBOL                                                           #    37/39
-|TOP--->|*|6|  STRING                                                           #    38/39
-ERROR on line 2                                                                 #    39/39
+.IFJcode17                                                                      #     1/18
+JUMP $$scope                                                                    #     2/18
+LABEL $$scope                                                                   #     4/18
+DEFVAR GF@&pomInteger                                                           #     5/18
+MOVE GF@&pomInteger int@0                                                       #     6/18
+DEFVAR GF@&pomString                                                            #     7/18
+MOVE GF@&pomString string@                                                      #     8/18
+DEFVAR GF@&pomFloat                                                             #     9/18
+MOVE GF@&pomFloat float@0                                                       #    10/18
+DEFVAR GF@&pomBool                                                              #    11/18
+MOVE GF@&pomBool bool@false                                                     #    12/18
+DEFVAR GF@&pomCntr                                                              #    13/18
+MOVE GF@&pomCntr int@0                                                          #    14/18
+CREATEFRAME                                                                     #    15/18
+WRITE TF@6                                                                      #    17/18
+ERROR on line 2                                                                 #    18/18
 

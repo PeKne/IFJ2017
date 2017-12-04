@@ -1,4 +1,4 @@
-# 2017-12-03 20:43:47.075106
+# 2017-12-04 12:08:01.056327
 # SECTION: 02_functions
 # TEST: 005
 # INFO: Chr function
@@ -38,31 +38,21 @@
 
 ########################################
 
-token: 17 ... scope                                                             #     1/29
-.IFJcode17                                                                      #     2/29
-JUMP $$scope                                                                    #     3/29
-LABEL $$scope                                                                   #     5/29
-DEFVAR GF@&pomInteger                                                           #     6/29
-MOVE GF@&pomInteger int@0                                                       #     7/29
-DEFVAR GF@&pomString                                                            #     8/29
-MOVE GF@&pomString string@                                                      #     9/29
-DEFVAR GF@&pomFloat                                                             #    10/29
-MOVE GF@&pomFloat float@0                                                       #    11/29
-DEFVAR GF@&pomBool                                                              #    12/29
-MOVE GF@&pomBool bool@false                                                     #    13/29
-DEFVAR GF@&pomCntr                                                              #    14/29
-MOVE GF@&pomCntr int@0                                                          #    15/29
-CREATEFRAME                                                                     #    16/29
-token: 57 ...                                                                   #    18/29
-token: 3 ... dim                                                                #    19/29
-token: 35 ... c                                                                 #    20/29
-token: 0 ... as                                                                 #    21/29
-token: 18 ... string                                                            #    22/29
-token: 57 ...                                                                   #    23/29
-DEFVAR TF@c                                                                     #    24/29
-MOVE TF@c string@                                                               #    25/29
-token: 35 ... c                                                                 #    26/29
-token: 45 ... =                                                                 #    27/29
-token: 8 ... chr                                                                #    28/29
-ERROR on line 3                                                                 #    29/29
+.IFJcode17                                                                      #     1/19
+JUMP $$scope                                                                    #     2/19
+LABEL $$scope                                                                   #     4/19
+DEFVAR GF@&pomInteger                                                           #     5/19
+MOVE GF@&pomInteger int@0                                                       #     6/19
+DEFVAR GF@&pomString                                                            #     7/19
+MOVE GF@&pomString string@                                                      #     8/19
+DEFVAR GF@&pomFloat                                                             #     9/19
+MOVE GF@&pomFloat float@0                                                       #    10/19
+DEFVAR GF@&pomBool                                                              #    11/19
+MOVE GF@&pomBool bool@false                                                     #    12/19
+DEFVAR GF@&pomCntr                                                              #    13/19
+MOVE GF@&pomCntr int@0                                                          #    14/19
+CREATEFRAME                                                                     #    15/19
+DEFVAR TF@c                                                                     #    17/19
+MOVE TF@c string@                                                               #    18/19
+ERROR on line 3                                                                 #    19/19
 

@@ -1,4 +1,4 @@
-# 2017-12-03 20:43:47.516387
+# 2017-12-04 12:08:01.322706
 # SECTION: 66_errors
 # TEST: 02
 # INFO: Declaration and definition of function aren't the same
@@ -41,24 +41,8 @@
 
 ########################################
 
-token: 57 ...                                                                   #     1/21
-token: 57 ...                                                                   #     2/21
-token: 2 ... declare                                                            #     3/21
-.IFJcode17                                                                      #     4/21
-JUMP $$scope                                                                    #     5/21
-token: 9 ... function                                                           #     7/21
-token: 35 ... fooqwead                                                          #     8/21
-token: 50 ... (                                                                 #     9/21
-token: 51 ... )                                                                 #    10/21
-rule_par                                                                        #    11/21
-token: 0 ... as                                                                 #    12/21
-token: 12 ... integer                                                           #    13/21
-token: 57 ...                                                                   #    14/21
-token: 9 ... function                                                           #    15/21
-token: 35 ... fooqwead                                                          #    16/21
-token: 50 ... (                                                                 #    17/21
-token: 51 ... )                                                                 #    18/21
-token: 0 ... as                                                                 #    19/21
-token: 18 ... string                                                            #    20/21
-ERROR on line 4                                                                 #    21/21
+.IFJcode17                                                                      #     1/5
+JUMP $$scope                                                                    #     2/5
+rule_par                                                                        #     4/5
+ERROR on line 4                                                                 #     5/5
 

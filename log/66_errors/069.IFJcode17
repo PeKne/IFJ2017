@@ -1,4 +1,4 @@
-# 2017-12-03 20:43:47.957146
+# 2017-12-04 12:08:01.462038
 # SECTION: 66_errors
 # TEST: 069
 # INFO: Undefined variable assignment in function
@@ -7,7 +7,8 @@
 # STATE: SUCCESS
 # 
 # COMPILER STDERR:
-# symbol.c:268:retrieve_function_data(): Function not found
+# Variable not found
+# Not defined variable
 # ERROR - 3 - sÃ©mantickÃ¡ chyba v programu â nedefinovanÃ¡ funkce/promeÌnnÃ¡, pokus o redefinici funkce/promeÌnnÃ©, atd.
 # 
 # INTERPRETER STDERR:
@@ -39,9 +40,13 @@
 
 ########################################
 
-token: 9 ... function                                                           #     1/6
-.IFJcode17                                                                      #     2/6
-JUMP $$scope                                                                    #     3/6
-token: 35 ... foo                                                               #     5/6
-ERROR on line 1                                                                 #     6/6
+.IFJcode17                                                                      #     1/10
+JUMP $$scope                                                                    #     2/10
+rule_par                                                                        #     4/10
+LABEL $foo                                                                      #     5/10
+PUSHFRAME                                                                       #     6/10
+DEFVAR LF@&retval                                                               #     7/10
+DEFVAR LF@a                                                                     #     8/10
+MOVE LF@a int@0                                                                 #     9/10
+ERROR on line 3                                                                 #    10/10
 

@@ -1,4 +1,4 @@
-# 2017-12-03 20:43:47.320251
+# 2017-12-04 12:08:01.199851
 # SECTION: 04_expressions
 # TEST: 38
 # INFO: Variables, functions and too many integers and doubles and implicit conversion of return
@@ -7,8 +7,8 @@
 # STATE: FAIL
 # 
 # COMPILER STDERR:
-# symbol.c:268:retrieve_function_data(): Function not found
-# ERROR - 3 - sÃ©mantickÃ¡ chyba v programu â nedefinovanÃ¡ funkce/promeÌnnÃ¡, pokus o redefinici funkce/promeÌnnÃ©, atd.
+# Wrong types of operands!
+# ERROR -  4 - sÃ©mantickÃ¡ chyba typovÃ© kompatibility v aritmetickÃ½ch, rÌeteÌzcovÃ½ch a relacÌnÃ­ch vÃ½razech, prÌÃ­p. Å¡patnÃ½ pocÌet cÌi typ parametruÌ u volÃ¡nÃ­ funkce.
 # 
 # INTERPRETER STDERR:
 # 
@@ -25,7 +25,7 @@
 # 
 #
 # EXPECTED COMPILER EXIT CODE: 0
-# CURRENT COMPILER EXIT CODE: 3
+# CURRENT COMPILER EXIT CODE: 4
 # EXPECTED INTERPRETER EXIT CODE: 0
 # CURRENT INTERPRETER EXIT CODE: None
 # PRICE: ---
@@ -81,11 +81,115 @@
 
 ########################################
 
-token: 57 ...                                                                   #     1/8
-token: 57 ...                                                                   #     2/8
-token: 9 ... function                                                           #     3/8
-.IFJcode17                                                                      #     4/8
-JUMP $$scope                                                                    #     5/8
-token: 35 ... foo                                                               #     7/8
-ERROR on line 3                                                                 #     8/8
+.IFJcode17                                                                      #     1/115
+JUMP $$scope                                                                    #     2/115
+rule_par                                                                        #     4/115
+LABEL $foo                                                                      #     5/115
+PUSHFRAME                                                                       #     6/115
+DEFVAR LF@&retval                                                               #     7/115
+MOVE LF@&retval GF@&pomInteger                                                  #     8/115
+POPFRAME                                                                        #     9/115
+RETURN                                                                          #    10/115
+rule_par                                                                        #    12/115
+LABEL $foooo                                                                    #    13/115
+PUSHFRAME                                                                       #    14/115
+DEFVAR LF@&retval                                                               #    15/115
+MOVE LF@&retval GF@&pomFloat                                                    #    16/115
+POPFRAME                                                                        #    17/115
+RETURN                                                                          #    18/115
+LABEL $$scope                                                                   #    20/115
+DEFVAR GF@&pomInteger                                                           #    21/115
+MOVE GF@&pomInteger int@0                                                       #    22/115
+DEFVAR GF@&pomString                                                            #    23/115
+MOVE GF@&pomString string@                                                      #    24/115
+DEFVAR GF@&pomFloat                                                             #    25/115
+MOVE GF@&pomFloat float@0                                                       #    26/115
+DEFVAR GF@&pomBool                                                              #    27/115
+MOVE GF@&pomBool bool@false                                                     #    28/115
+DEFVAR GF@&pomCntr                                                              #    29/115
+MOVE GF@&pomCntr int@0                                                          #    30/115
+CREATEFRAME                                                                     #    31/115
+DEFVAR TF@ptaenhjwiyfaucgiijwvsaztwxdyes                                        #    33/115
+MOVE TF@ptaenhjwiyfaucgiijwvsaztwxdyes int@0                                    #    34/115
+MOVE GF@&pomInteger int@23                                                      #    35/115
+MOVE TF@ptaenhjwiyfaucgiijwvsaztwxdyes GF@&pomInteger                           #    36/115
+DEFVAR TF@obqsdcoqqqfuejvttyynrogxrocasi                                        #    37/115
+MOVE TF@obqsdcoqqqfuejvttyynrogxrocasi int@0                                    #    38/115
+MOVE GF@&pomInteger int@2                                                       #    39/115
+MOVE TF@obqsdcoqqqfuejvttyynrogxrocasi GF@&pomInteger                           #    40/115
+DEFVAR TF@mlviooepzxvsgjmthaugywmmfmnfjd                                        #    41/115
+MOVE TF@mlviooepzxvsgjmthaugywmmfmnfjd int@0                                    #    42/115
+MOVE GF@&pomInteger int@55                                                      #    43/115
+MOVE TF@mlviooepzxvsgjmthaugywmmfmnfjd GF@&pomInteger                           #    44/115
+DEFVAR TF@aubkyyypgvstjpxmscurejjlisyesy                                        #    45/115
+MOVE TF@aubkyyypgvstjpxmscurejjlisyesy float@0                                  #    46/115
+MOVE GF@&pomFloat float@0.5309487541816                                         #    47/115
+MOVE TF@aubkyyypgvstjpxmscurejjlisyesy GF@&pomFloat                             #    48/115
+DEFVAR TF@ibenbkevxltuupkbakucutnvywtvbh                                        #    49/115
+MOVE TF@ibenbkevxltuupkbakucutnvywtvbh int@0                                    #    50/115
+MOVE GF@&pomInteger int@6                                                       #    51/115
+MOVE TF@ibenbkevxltuupkbakucutnvywtvbh GF@&pomInteger                           #    52/115
+DEFVAR TF@zvlhaazerkuelpyqanvvzkxyhwmopo                                        #    53/115
+MOVE TF@zvlhaazerkuelpyqanvvzkxyhwmopo float@0                                  #    54/115
+MOVE GF@&pomFloat float@0.41150804814487                                        #    55/115
+MOVE TF@zvlhaazerkuelpyqanvvzkxyhwmopo GF@&pomFloat                             #    56/115
+DEFVAR TF@biwpjmqpzkuairjlyfkfdvumzpcwnk                                        #    57/115
+MOVE TF@biwpjmqpzkuairjlyfkfdvumzpcwnk float@0                                  #    58/115
+MOVE GF@&pomFloat float@0.57787783377705                                        #    59/115
+MOVE TF@biwpjmqpzkuairjlyfkfdvumzpcwnk GF@&pomFloat                             #    60/115
+DEFVAR TF@pvghbferyxnqklaztiygcllnylccff                                        #    61/115
+MOVE TF@pvghbferyxnqklaztiygcllnylccff float@0                                  #    62/115
+MOVE GF@&pomFloat float@0.89604342444616                                        #    63/115
+MOVE TF@pvghbferyxnqklaztiygcllnylccff GF@&pomFloat                             #    64/115
+DEFVAR TF@bjyhqvxmbabpvxuoxudghybtuebyoc                                        #    65/115
+MOVE TF@bjyhqvxmbabpvxuoxudghybtuebyoc int@0                                    #    66/115
+MOVE GF@&pomInteger int@5                                                       #    67/115
+MOVE TF@bjyhqvxmbabpvxuoxudghybtuebyoc GF@&pomInteger                           #    68/115
+DEFVAR TF@pzbdbfrixjxzkfwphncvinbequqxsr                                        #    69/115
+MOVE TF@pzbdbfrixjxzkfwphncvinbequqxsr int@0                                    #    70/115
+MOVE GF@&pomInteger int@47                                                      #    71/115
+MOVE TF@pzbdbfrixjxzkfwphncvinbequqxsr GF@&pomInteger                           #    72/115
+DEFVAR TF@wjfsauimiiabbxhkzyzhjpgbspzrgj                                        #    73/115
+MOVE TF@wjfsauimiiabbxhkzyzhjpgbspzrgj int@0                                    #    74/115
+MOVE GF@&pomInteger int@3                                                       #    75/115
+MOVE TF@wjfsauimiiabbxhkzyzhjpgbspzrgj GF@&pomInteger                           #    76/115
+DEFVAR TF@qvzzzzzseesvnxnkthilenpahvsjtp                                        #    77/115
+MOVE TF@qvzzzzzseesvnxnkthilenpahvsjtp int@0                                    #    78/115
+MOVE GF@&pomInteger int@32                                                      #    79/115
+MOVE TF@qvzzzzzseesvnxnkthilenpahvsjtp GF@&pomInteger                           #    80/115
+DEFVAR TF@vncjhdmisjpotqnogczyoobttsbewt                                        #    81/115
+MOVE TF@vncjhdmisjpotqnogczyoobttsbewt float@0                                  #    82/115
+MOVE GF@&pomFloat float@0.93275502088142                                        #    83/115
+MOVE TF@vncjhdmisjpotqnogczyoobttsbewt GF@&pomFloat                             #    84/115
+DEFVAR TF@jnwjncqojvrlaalbaxjgcaxbtxafeg                                        #    85/115
+MOVE TF@jnwjncqojvrlaalbaxjgcaxbtxafeg int@0                                    #    86/115
+MOVE GF@&pomInteger int@73                                                      #    87/115
+MOVE TF@jnwjncqojvrlaalbaxjgcaxbtxafeg GF@&pomInteger                           #    88/115
+DEFVAR TF@hoejqyvxwdmogfszpatogrfcidlimy                                        #    89/115
+MOVE TF@hoejqyvxwdmogfszpatogrfcidlimy float@0                                  #    90/115
+MOVE GF@&pomFloat float@0.3799013608973                                         #    91/115
+MOVE TF@hoejqyvxwdmogfszpatogrfcidlimy GF@&pomFloat                             #    92/115
+DEFVAR TF@letnwqfbglemlcgezncujohwubtjhq                                        #    93/115
+MOVE TF@letnwqfbglemlcgezncujohwubtjhq float@0                                  #    94/115
+MOVE GF@&pomFloat float@0.0544138499789                                         #    95/115
+MOVE TF@letnwqfbglemlcgezncujohwubtjhq GF@&pomFloat                             #    96/115
+DEFVAR TF@fccjjqyzqgujlvmfcnrpzsykisawce                                        #    97/115
+MOVE TF@fccjjqyzqgujlvmfcnrpzsykisawce float@0                                  #    98/115
+MOVE GF@&pomFloat float@0.012340153573239                                       #    99/115
+MOVE TF@fccjjqyzqgujlvmfcnrpzsykisawce GF@&pomFloat                             #   100/115
+DEFVAR TF@phxtstqceplxwdpurunxxthbyhjibl                                        #   101/115
+MOVE TF@phxtstqceplxwdpurunxxthbyhjibl int@0                                    #   102/115
+MOVE GF@&pomInteger int@94                                                      #   103/115
+MOVE TF@phxtstqceplxwdpurunxxthbyhjibl GF@&pomInteger                           #   104/115
+DEFVAR TF@xedeqtwaddfhbyftdzirmgmcxjpbpk                                        #   105/115
+MOVE TF@xedeqtwaddfhbyftdzirmgmcxjpbpk int@0                                    #   106/115
+MOVE GF@&pomInteger int@58                                                      #   107/115
+MOVE TF@xedeqtwaddfhbyftdzirmgmcxjpbpk GF@&pomInteger                           #   108/115
+DEFVAR TF@ifvhyaajtnxlzqrsduvhjudaikvjtn                                        #   109/115
+MOVE TF@ifvhyaajtnxlzqrsduvhjudaikvjtn float@0                                  #   110/115
+MOVE GF@&pomFloat float@0.4587897413684                                         #   111/115
+MOVE TF@ifvhyaajtnxlzqrsduvhjudaikvjtn GF@&pomFloat                             #   112/115
+DEFVAR TF@result                                                                #   113/115
+MOVE TF@result float@0                                                          #   114/115
+ERROR on line 33                                                                #   115/115
 

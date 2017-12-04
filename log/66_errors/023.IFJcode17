@@ -1,4 +1,4 @@
-# 2017-12-03 20:43:47.798740
+# 2017-12-04 12:08:01.398033
 # SECTION: 66_errors
 # TEST: 023
 # INFO: scope without end
@@ -33,21 +33,19 @@
 
 ########################################
 
-token: 17 ... scope                                                             #     1/19
-.IFJcode17                                                                      #     2/19
-JUMP $$scope                                                                    #     3/19
-LABEL $$scope                                                                   #     5/19
-DEFVAR GF@&pomInteger                                                           #     6/19
-MOVE GF@&pomInteger int@0                                                       #     7/19
-DEFVAR GF@&pomString                                                            #     8/19
-MOVE GF@&pomString string@                                                      #     9/19
-DEFVAR GF@&pomFloat                                                             #    10/19
-MOVE GF@&pomFloat float@0                                                       #    11/19
-DEFVAR GF@&pomBool                                                              #    12/19
-MOVE GF@&pomBool bool@false                                                     #    13/19
-DEFVAR GF@&pomCntr                                                              #    14/19
-MOVE GF@&pomCntr int@0                                                          #    15/19
-CREATEFRAME                                                                     #    16/19
-token: 58 ...                                                                   #    18/19
-ERROR on line 1                                                                 #    19/19
+.IFJcode17                                                                      #     1/17
+JUMP $$scope                                                                    #     2/17
+LABEL $$scope                                                                   #     4/17
+DEFVAR GF@&pomInteger                                                           #     5/17
+MOVE GF@&pomInteger int@0                                                       #     6/17
+DEFVAR GF@&pomString                                                            #     7/17
+MOVE GF@&pomString string@                                                      #     8/17
+DEFVAR GF@&pomFloat                                                             #     9/17
+MOVE GF@&pomFloat float@0                                                       #    10/17
+DEFVAR GF@&pomBool                                                              #    11/17
+MOVE GF@&pomBool bool@false                                                     #    12/17
+DEFVAR GF@&pomCntr                                                              #    13/17
+MOVE GF@&pomCntr int@0                                                          #    14/17
+CREATEFRAME                                                                     #    15/17
+ERROR on line 1                                                                 #    17/17
 

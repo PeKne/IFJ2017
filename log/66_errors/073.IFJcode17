@@ -1,14 +1,12 @@
-# 2017-12-03 20:43:47.969614
+# 2017-12-04 12:08:01.468670
 # SECTION: 66_errors
 # TEST: 073
 # INFO: Undefined variable in calling function
 # REQUIRED EXTENSIONS: 
 # ACTIVATED EXTENSIONS: 
-# STATE: SUCCESS
+# STATE: FAIL
 # 
 # COMPILER STDERR:
-# symbol.c:268:retrieve_function_data(): Function not found
-# ERROR - 3 - sÃ©mantickÃ¡ chyba v programu â nedefinovanÃ¡ funkce/promeÌnnÃ¡, pokus o redefinici funkce/promeÌnnÃ©, atd.
 # 
 # INTERPRETER STDERR:
 # 
@@ -24,7 +22,7 @@
 # 
 #
 # EXPECTED COMPILER EXIT CODE: 3
-# CURRENT COMPILER EXIT CODE: 3
+# CURRENT COMPILER EXIT CODE: 0
 # EXPECTED INTERPRETER EXIT CODE: 0
 # CURRENT INTERPRETER EXIT CODE: None
 # PRICE: ---
@@ -39,9 +37,30 @@
 
 ########################################
 
-token: 9 ... function                                                           #     1/6
-.IFJcode17                                                                      #     2/6
-JUMP $$scope                                                                    #     3/6
-token: 35 ... foo                                                               #     5/6
-ERROR on line 1                                                                 #     6/6
+.IFJcode17                                                                      #     1/29
+JUMP $$scope                                                                    #     2/29
+rule_par                                                                        #     4/29
+rule next par                                                                   #     5/29
+LABEL $foo                                                                      #     6/29
+PUSHFRAME                                                                       #     7/29
+DEFVAR LF@&retval                                                               #     8/29
+MOVE LF@&retval GF@&pomInteger                                                  #     9/29
+POPFRAME                                                                        #    10/29
+RETURN                                                                          #    11/29
+LABEL $$scope                                                                   #    13/29
+DEFVAR GF@&pomInteger                                                           #    14/29
+MOVE GF@&pomInteger int@0                                                       #    15/29
+DEFVAR GF@&pomString                                                            #    16/29
+MOVE GF@&pomString string@                                                      #    17/29
+DEFVAR GF@&pomFloat                                                             #    18/29
+MOVE GF@&pomFloat float@0                                                       #    19/29
+DEFVAR GF@&pomBool                                                              #    20/29
+MOVE GF@&pomBool bool@false                                                     #    21/29
+DEFVAR GF@&pomCntr                                                              #    22/29
+MOVE GF@&pomCntr int@0                                                          #    23/29
+CREATEFRAME                                                                     #    24/29
+DEFVAR TF@a                                                                     #    26/29
+MOVE TF@a int@0                                                                 #    27/29
+CALL $foo                                                                       #    28/29
+MOVE TF@a TF@&retval                                                            #    29/29
 

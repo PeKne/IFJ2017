@@ -628,6 +628,6 @@ int generate_token()
             }
         }
     }
-    printf("token: %d ... %s\n",token.t_state, token.t_str.data );
+    //printf("token: %d ... %s\n",token.t_state, token.t_str.data );
     return error;
 }

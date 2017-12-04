@@ -1,4 +1,4 @@
-# 2017-12-03 20:43:45.302338
+# 2017-12-04 12:08:00.094065
 # SECTION: 01_basic
 # TEST: 09
 # INFO: Use all data types
@@ -44,48 +44,25 @@
 
 ########################################
 
-token: 57 ...                                                                   #     1/46
-token: 17 ... scope                                                             #     2/46
-.IFJcode17                                                                      #     3/46
-JUMP $$scope                                                                    #     4/46
-LABEL $$scope                                                                   #     6/46
-DEFVAR GF@&pomInteger                                                           #     7/46
-MOVE GF@&pomInteger int@0                                                       #     8/46
-DEFVAR GF@&pomString                                                            #     9/46
-MOVE GF@&pomString string@                                                      #    10/46
-DEFVAR GF@&pomFloat                                                             #    11/46
-MOVE GF@&pomFloat float@0                                                       #    12/46
-DEFVAR GF@&pomBool                                                              #    13/46
-MOVE GF@&pomBool bool@false                                                     #    14/46
-DEFVAR GF@&pomCntr                                                              #    15/46
-MOVE GF@&pomCntr int@0                                                          #    16/46
-CREATEFRAME                                                                     #    17/46
-token: 57 ...                                                                   #    19/46
-token: 57 ...                                                                   #    20/46
-token: 3 ... dim                                                                #    21/46
-token: 35 ... _a669                                                             #    22/46
-token: 0 ... as                                                                 #    23/46
-token: 12 ... integer                                                           #    24/46
-token: 45 ... =                                                                 #    25/46
-DEFVAR TF@_a669                                                                 #    26/46
-MOVE TF@_a669 int@0                                                             #    27/46
-token: 53 ... 445655454                                                         #    28/46
-|TOP--->|$|  SYMBOL                                                             #    29/46
-|TOP--->| |  STRING                                                             #    30/46
-token: 57 ...                                                                   #    31/46
-|TOP--->|int|]|$|  SYMBOL                                                       #    32/46
-|TOP--->|445655454| | |  STRING                                                 #    33/46
-|TOP--->|int|  SYMBOL                                                           #    34/46
-|TOP--->|445655454|  STRING                                                     #    35/46
-MOVE GF@&pomInteger int@445655454                                               #    36/46
-MOVE TF@_a669 GF@&pomInteger                                                    #    37/46
-token: 3 ... dim                                                                #    38/46
-token: 35 ... b__67678                                                          #    39/46
-token: 0 ... as                                                                 #    40/46
-token: 18 ... string                                                            #    41/46
-token: 45 ... =                                                                 #    42/46
-DEFVAR TF@b__67678                                                              #    43/46
-MOVE TF@b__67678 string@                                                        #    44/46
-token: 59 ... FGGHGHHghjhhjhj\0328\032                                          #    45/46
-ERROR on line 5                                                                 #    46/46
+.IFJcode17                                                                      #     1/23
+JUMP $$scope                                                                    #     2/23
+LABEL $$scope                                                                   #     4/23
+DEFVAR GF@&pomInteger                                                           #     5/23
+MOVE GF@&pomInteger int@0                                                       #     6/23
+DEFVAR GF@&pomString                                                            #     7/23
+MOVE GF@&pomString string@                                                      #     8/23
+DEFVAR GF@&pomFloat                                                             #     9/23
+MOVE GF@&pomFloat float@0                                                       #    10/23
+DEFVAR GF@&pomBool                                                              #    11/23
+MOVE GF@&pomBool bool@false                                                     #    12/23
+DEFVAR GF@&pomCntr                                                              #    13/23
+MOVE GF@&pomCntr int@0                                                          #    14/23
+CREATEFRAME                                                                     #    15/23
+DEFVAR TF@_a669                                                                 #    17/23
+MOVE TF@_a669 int@0                                                             #    18/23
+MOVE GF@&pomInteger int@445655454                                               #    19/23
+MOVE TF@_a669 GF@&pomInteger                                                    #    20/23
+DEFVAR TF@b__67678                                                              #    21/23
+MOVE TF@b__67678 string@                                                        #    22/23
+ERROR on line 5                                                                 #    23/23
 

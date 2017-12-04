@@ -1,24 +1,75 @@
-# 2017-12-03 20:43:47.206752
+# 2017-12-04 12:08:01.132262
 # SECTION: 04_expressions
 # TEST: 09
 # INFO: string concat
 # REQUIRED EXTENSIONS: 
 # ACTIVATED EXTENSIONS: 
-# STATE: FAIL
+# STATE: SUCCESS
 # 
 # COMPILER STDERR:
 # 
 # INTERPRETER STDERR:
-# 1.1-5: syntax error, unexpected ID, expecting HEADER
+# Executing instruction: IJUMP at line: 2 with following arguments:
+# Executing instruction: ILABEL at line: 4 with following arguments:
+# Executing instruction: IDEFVAR at line: 5 with following arguments:
+# Dest: GF@&pomInteger
+# Executing instruction: IMOVE at line: 6 with following arguments:
+# Arg1: Const@=0(int)
+# Dest: GF@&pomInteger()
+# Executing instruction: IDEFVAR at line: 7 with following arguments:
+# Dest: GF@&pomString
+# Executing instruction: IMOVE at line: 8 with following arguments:
+# Arg1: Const@=(string)
+# Dest: GF@&pomString()
+# Executing instruction: IDEFVAR at line: 9 with following arguments:
+# Dest: GF@&pomFloat
+# Executing instruction: IMOVE at line: 10 with following arguments:
+# Arg1: Const@=0(double)
+# Dest: GF@&pomFloat()
+# Executing instruction: IDEFVAR at line: 11 with following arguments:
+# Dest: GF@&pomBool
+# Executing instruction: IMOVE at line: 12 with following arguments:
+# Arg1: Const@=false(bool)
+# Dest: GF@&pomBool()
+# Executing instruction: IDEFVAR at line: 13 with following arguments:
+# Dest: GF@&pomCntr
+# Executing instruction: IMOVE at line: 14 with following arguments:
+# Arg1: Const@=0(int)
+# Dest: GF@&pomCntr()
+# Executing instruction: ICREATEFRAME at line: 15 with following arguments:
+# Executing instruction: IDEFVAR at line: 17 with following arguments:
+# Dest: TF@a
+# Executing instruction: IMOVE at line: 18 with following arguments:
+# Arg1: Const@=(string)
+# Dest: TF@a()
+# Executing instruction: IMOVE at line: 19 with following arguments:
+# Arg1: Const@=master (string)
+# Dest: GF@&pomString=(string)
+# Executing instruction: IMOVE at line: 20 with following arguments:
+# Arg1: GF@&pomString=master (string)
+# Dest: TF@a=(string)
+# Executing instruction: IDEFVAR at line: 21 with following arguments:
+# Dest: TF@b
+# Executing instruction: IMOVE at line: 22 with following arguments:
+# Arg1: Const@=(string)
+# Dest: TF@b()
+# Executing instruction: IMOVE at line: 23 with following arguments:
+# Arg1: Const@= puppets!(string)
+# Dest: GF@&pomString=master (string)
+# Executing instruction: IMOVE at line: 24 with following arguments:
+# Arg1: GF@&pomString= puppets!(string)
+# Dest: TF@b=(string)
+# Executing instruction: IWRITE at line: 25 with following arguments:
+# Arg1: TF@a=master (string)
+# Executing instruction: IWRITE at line: 26 with following arguments:
+# Arg1: Const@=of(string)
+# Executing instruction: IWRITE at line: 27 with following arguments:
+# Arg1: TF@b= puppets!(string)
+# Executing instruction: IGROOT at line: 29 with following arguments:
+# I am Groot at 29 (132).
 # 
-# EXPECTED INTERPRETER STDOUT:
-
-# master of puppets!
-
-
-# CURRENT INTERPRETER STDOUT:
-
-
+# STDOUT DIFF:
+# 
 
 # INTERPRETER STDIN: 
 # 
@@ -26,9 +77,9 @@
 # EXPECTED COMPILER EXIT CODE: 0
 # CURRENT COMPILER EXIT CODE: 0
 # EXPECTED INTERPRETER EXIT CODE: 0
-# CURRENT INTERPRETER EXIT CODE: 51
-# PRICE: ---
-# GROOT: ---
+# CURRENT INTERPRETER EXIT CODE: 0
+# PRICE: 132 (34+98)
+# GROOT: 132
 # 
 #   1: ' string concat
 #   2: scope
@@ -40,89 +91,29 @@
 
 ########################################
 
-token: 57 ...                                                                   #     1/87
-token: 17 ... scope                                                             #     2/87
-.IFJcode17                                                                      #     3/87
-JUMP $$scope                                                                    #     4/87
-LABEL $$scope                                                                   #     6/87
-DEFVAR GF@&pomInteger                                                           #     7/87
-MOVE GF@&pomInteger int@0                                                       #     8/87
-DEFVAR GF@&pomString                                                            #     9/87
-MOVE GF@&pomString string@                                                      #    10/87
-DEFVAR GF@&pomFloat                                                             #    11/87
-MOVE GF@&pomFloat float@0                                                       #    12/87
-DEFVAR GF@&pomBool                                                              #    13/87
-MOVE GF@&pomBool bool@false                                                     #    14/87
-DEFVAR GF@&pomCntr                                                              #    15/87
-MOVE GF@&pomCntr int@0                                                          #    16/87
-CREATEFRAME                                                                     #    17/87
-token: 57 ...                                                                   #    19/87
-token: 3 ... dim                                                                #    20/87
-token: 35 ... a                                                                 #    21/87
-token: 0 ... as                                                                 #    22/87
-token: 18 ... string                                                            #    23/87
-token: 45 ... =                                                                 #    24/87
-DEFVAR TF@a                                                                     #    25/87
-MOVE TF@a string@                                                               #    26/87
-token: 52 ... master\032                                                        #    27/87
-|TOP--->|$|  SYMBOL                                                             #    28/87
-|TOP--->| |  STRING                                                             #    29/87
-token: 57 ...                                                                   #    30/87
-|TOP--->|str|]|$|  SYMBOL                                                       #    31/87
-|TOP--->|master\032| | |  STRING                                                #    32/87
-|TOP--->|str|  SYMBOL                                                           #    33/87
-|TOP--->|master\032|  STRING                                                    #    34/87
-MOVE GF@&pomString string@master\032                                            #    35/87
-MOVE TF@a GF@&pomString                                                         #    36/87
-token: 3 ... dim                                                                #    37/87
-token: 35 ... b                                                                 #    38/87
-token: 0 ... as                                                                 #    39/87
-token: 18 ... string                                                            #    40/87
-token: 45 ... =                                                                 #    41/87
-DEFVAR TF@b                                                                     #    42/87
-MOVE TF@b string@                                                               #    43/87
-token: 52 ... \032puppets!                                                      #    44/87
-|TOP--->|$|  SYMBOL                                                             #    45/87
-|TOP--->| |  STRING                                                             #    46/87
-token: 57 ...                                                                   #    47/87
-|TOP--->|str|]|$|  SYMBOL                                                       #    48/87
-|TOP--->|\032puppets!| | |  STRING                                              #    49/87
-|TOP--->|str|  SYMBOL                                                           #    50/87
-|TOP--->|\032puppets!|  STRING                                                  #    51/87
-MOVE GF@&pomString string@\032puppets!                                          #    52/87
-MOVE TF@b GF@&pomString                                                         #    53/87
-token: 57 ...                                                                   #    54/87
-token: 15 ... print                                                             #    55/87
-token: 35 ... a                                                                 #    56/87
-|TOP--->|$|  SYMBOL                                                             #    57/87
-|TOP--->| |  STRING                                                             #    58/87
-token: 47 ... ;                                                                 #    59/87
-|TOP--->|i|]|$|  SYMBOL                                                         #    60/87
-|TOP--->|a| | |  STRING                                                         #    61/87
-|TOP--->|i|  SYMBOL                                                             #    62/87
-|TOP--->|a|  STRING                                                             #    63/87
-WRITE TF@a                                                                      #    64/87
-token: 52 ... of                                                                #    65/87
-|TOP--->|$|  SYMBOL                                                             #    66/87
-|TOP--->| |  STRING                                                             #    67/87
-token: 47 ... ;                                                                 #    68/87
-|TOP--->|str|]|$|  SYMBOL                                                       #    69/87
-|TOP--->|of| | |  STRING                                                        #    70/87
-|TOP--->|str|  SYMBOL                                                           #    71/87
-|TOP--->|of|  STRING                                                            #    72/87
-WRITE string@of                                                                 #    73/87
-token: 35 ... b                                                                 #    74/87
-|TOP--->|$|  SYMBOL                                                             #    75/87
-|TOP--->| |  STRING                                                             #    76/87
-token: 47 ... ;                                                                 #    77/87
-|TOP--->|i|]|$|  SYMBOL                                                         #    78/87
-|TOP--->|b| | |  STRING                                                         #    79/87
-|TOP--->|i|  SYMBOL                                                             #    80/87
-|TOP--->|b|  STRING                                                             #    81/87
-WRITE TF@b                                                                      #    82/87
-token: 57 ...                                                                   #    83/87
-token: 7 ... end                                                                #    84/87
-token: 17 ... scope                                                             #    85/87
-token: 57 ...                                                                   #    86/87
-token: 58 ...                                                                   #    87/87
+.IFJcode17                                                                      #     1/27
+JUMP $$scope                                                                    #     2/27
+LABEL $$scope                                                                   #     4/27
+DEFVAR GF@&pomInteger                                                           #     5/27
+MOVE GF@&pomInteger int@0                                                       #     6/27
+DEFVAR GF@&pomString                                                            #     7/27
+MOVE GF@&pomString string@                                                      #     8/27
+DEFVAR GF@&pomFloat                                                             #     9/27
+MOVE GF@&pomFloat float@0                                                       #    10/27
+DEFVAR GF@&pomBool                                                              #    11/27
+MOVE GF@&pomBool bool@false                                                     #    12/27
+DEFVAR GF@&pomCntr                                                              #    13/27
+MOVE GF@&pomCntr int@0                                                          #    14/27
+CREATEFRAME                                                                     #    15/27
+DEFVAR TF@a                                                                     #    17/27
+MOVE TF@a string@                                                               #    18/27
+MOVE GF@&pomString string@master\032                                            #    19/27
+MOVE TF@a GF@&pomString                                                         #    20/27
+DEFVAR TF@b                                                                     #    21/27
+MOVE TF@b string@                                                               #    22/27
+MOVE GF@&pomString string@\032puppets!                                          #    23/27
+MOVE TF@b GF@&pomString                                                         #    24/27
+WRITE TF@a                                                                      #    25/27
+WRITE string@of                                                                 #    26/27
+WRITE TF@b                                                                      #    27/27
 

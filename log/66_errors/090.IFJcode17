@@ -1,4 +1,4 @@
-# 2017-12-03 20:43:48.021951
+# 2017-12-04 12:08:01.492535
 # SECTION: 66_errors
 # TEST: 090
 # INFO: Lexical error in assignment
@@ -34,6 +34,5 @@
 
 ########################################
 
-token: 59 ... 3.                                                                #     1/2
-ERROR on line 1                                                                 #     2/2
+ERROR on line 1                                                                 #     1/1
 

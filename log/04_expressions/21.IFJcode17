@@ -1,4 +1,4 @@
-# 2017-12-03 20:43:47.252614
+# 2017-12-04 12:08:01.155366
 # SECTION: 04_expressions
 # TEST: 21
 # INFO: Add doubles with +e
@@ -8,7 +8,7 @@
 # 
 # COMPILER STDERR:
 # In if and loop statement can only be relational operators.
-# ERROR -  6 - ostatnÃ­ sÃ©mantickÃ© chyby.
+# ERROR - 3 - sÃ©mantickÃ¡ chyba v programu â nedefinovanÃ¡ funkce/promeÌnnÃ¡, pokus o redefinici funkce/promeÌnnÃ©, atd.
 # 
 # INTERPRETER STDERR:
 # 
@@ -25,7 +25,7 @@
 # 
 #
 # EXPECTED COMPILER EXIT CODE: 0
-# CURRENT COMPILER EXIT CODE: 6
+# CURRENT COMPILER EXIT CODE: 3
 # EXPECTED INTERPRETER EXIT CODE: 0
 # CURRENT INTERPRETER EXIT CODE: None
 # PRICE: ---
@@ -41,83 +41,30 @@
 
 ########################################
 
-token: 57 ...                                                                   #     1/81
-token: 17 ... scope                                                             #     2/81
-.IFJcode17                                                                      #     3/81
-JUMP $$scope                                                                    #     4/81
-LABEL $$scope                                                                   #     6/81
-DEFVAR GF@&pomInteger                                                           #     7/81
-MOVE GF@&pomInteger int@0                                                       #     8/81
-DEFVAR GF@&pomString                                                            #     9/81
-MOVE GF@&pomString string@                                                      #    10/81
-DEFVAR GF@&pomFloat                                                             #    11/81
-MOVE GF@&pomFloat float@0                                                       #    12/81
-DEFVAR GF@&pomBool                                                              #    13/81
-MOVE GF@&pomBool bool@false                                                     #    14/81
-DEFVAR GF@&pomCntr                                                              #    15/81
-MOVE GF@&pomCntr int@0                                                          #    16/81
-CREATEFRAME                                                                     #    17/81
-token: 57 ...                                                                   #    19/81
-token: 3 ... dim                                                                #    20/81
-token: 35 ... ahoj                                                              #    21/81
-token: 0 ... as                                                                 #    22/81
-token: 5 ... double                                                             #    23/81
-token: 45 ... =                                                                 #    24/81
-DEFVAR TF@ahoj                                                                  #    25/81
-MOVE TF@ahoj float@0                                                            #    26/81
-token: 56 ... 10.8e2                                                            #    27/81
-|TOP--->|$|  SYMBOL                                                             #    28/81
-|TOP--->| |  STRING                                                             #    29/81
-token: 57 ...                                                                   #    30/81
-|TOP--->|double|]|$|  SYMBOL                                                    #    31/81
-|TOP--->|10.8e2| | |  STRING                                                    #    32/81
-|TOP--->|double|  SYMBOL                                                        #    33/81
-|TOP--->|10.8e2|  STRING                                                        #    34/81
-MOVE GF@&pomFloat float@10.8e2                                                  #    35/81
-MOVE TF@ahoj GF@&pomFloat                                                       #    36/81
-token: 3 ... dim                                                                #    37/81
-token: 35 ... neboj                                                             #    38/81
-token: 0 ... as                                                                 #    39/81
-token: 5 ... double                                                             #    40/81
-token: 45 ... =                                                                 #    41/81
-DEFVAR TF@neboj                                                                 #    42/81
-MOVE TF@neboj float@0                                                           #    43/81
-token: 56 ... 67.432e-2                                                         #    44/81
-|TOP--->|$|  SYMBOL                                                             #    45/81
-|TOP--->| |  STRING                                                             #    46/81
-token: 57 ...                                                                   #    47/81
-|TOP--->|double|]|$|  SYMBOL                                                    #    48/81
-|TOP--->|67.432e-2| | |  STRING                                                 #    49/81
-|TOP--->|double|  SYMBOL                                                        #    50/81
-|TOP--->|67.432e-2|  STRING                                                     #    51/81
-MOVE GF@&pomFloat float@67.432e-2                                               #    52/81
-MOVE TF@neboj GF@&pomFloat                                                      #    53/81
-token: 57 ...                                                                   #    54/81
-token: 15 ... print                                                             #    55/81
-token: 35 ... ahoj                                                              #    56/81
-|TOP--->|$|  SYMBOL                                                             #    57/81
-|TOP--->| |  STRING                                                             #    58/81
-token: 39 ... +                                                                 #    59/81
-|TOP--->|i|]|$|  SYMBOL                                                         #    60/81
-|TOP--->|ahoj| | |  STRING                                                      #    61/81
-|TOP--->|i|  SYMBOL                                                             #    62/81
-|TOP--->|ahoj|  STRING                                                          #    63/81
-WRITE TF@ahoj                                                                   #    64/81
-|TOP--->|R|$|  SYMBOL                                                           #    65/81
-|TOP--->|ahoj| |  STRING                                                        #    66/81
-token: 35 ... neboj                                                             #    67/81
-|TOP--->|+|R|]|$|  SYMBOL                                                       #    68/81
-|TOP--->|+|ahoj| | |  STRING                                                    #    69/81
-token: 47 ... ;                                                                 #    70/81
-|TOP--->|i|]|+|R|]|$|  SYMBOL                                                   #    71/81
-|TOP--->|neboj| |+|ahoj| | |  STRING                                            #    72/81
-|TOP--->|i|  SYMBOL                                                             #    73/81
-|TOP--->|neboj|  STRING                                                         #    74/81
-WRITE TF@neboj                                                                  #    75/81
-|TOP--->|R|+|R|]|$|  SYMBOL                                                     #    76/81
-|TOP--->|neboj|+|ahoj| | |  STRING                                              #    77/81
-|TOP--->|R|+|R|  SYMBOL                                                         #    78/81
-|TOP--->|ahoj|+|neboj|  STRING                                                  #    79/81
-redukce                                                                         #    80/81
-ERROR on line 6                                                                 #    81/81
+.IFJcode17                                                                      #     1/28
+JUMP $$scope                                                                    #     2/28
+LABEL $$scope                                                                   #     4/28
+DEFVAR GF@&pomInteger                                                           #     5/28
+MOVE GF@&pomInteger int@0                                                       #     6/28
+DEFVAR GF@&pomString                                                            #     7/28
+MOVE GF@&pomString string@                                                      #     8/28
+DEFVAR GF@&pomFloat                                                             #     9/28
+MOVE GF@&pomFloat float@0                                                       #    10/28
+DEFVAR GF@&pomBool                                                              #    11/28
+MOVE GF@&pomBool bool@false                                                     #    12/28
+DEFVAR GF@&pomCntr                                                              #    13/28
+MOVE GF@&pomCntr int@0                                                          #    14/28
+CREATEFRAME                                                                     #    15/28
+DEFVAR TF@ahoj                                                                  #    17/28
+MOVE TF@ahoj float@0                                                            #    18/28
+MOVE GF@&pomFloat float@10.8e2                                                  #    19/28
+MOVE TF@ahoj GF@&pomFloat                                                       #    20/28
+DEFVAR TF@neboj                                                                 #    21/28
+MOVE TF@neboj float@0                                                           #    22/28
+MOVE GF@&pomFloat float@67.432e-2                                               #    23/28
+MOVE TF@neboj GF@&pomFloat                                                      #    24/28
+WRITE TF@ahoj                                                                   #    25/28
+WRITE TF@neboj                                                                  #    26/28
+redukce                                                                         #    27/28
+ERROR on line 6                                                                 #    28/28
 

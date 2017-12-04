@@ -1,4 +1,4 @@
-# 2017-12-03 20:43:47.007188
+# 2017-12-04 12:08:01.011436
 # SECTION: 02_functions
 # TEST: 16
 # INFO: Function call function which have input
@@ -7,10 +7,9 @@
 # STATE: FAIL
 # 
 # COMPILER STDERR:
-# symbol.c:268:retrieve_function_data(): Function not found
-# ERROR - 3 - sÃ©mantickÃ¡ chyba v programu â nedefinovanÃ¡ funkce/promeÌnnÃ¡, pokus o redefinici funkce/promeÌnnÃ©, atd.
 # 
 # INTERPRETER STDERR:
+# 4.1-8: syntax error, unexpected ID, expecting END
 # 
 # EXPECTED INTERPRETER STDOUT:
 
@@ -25,9 +24,9 @@
 # 
 #
 # EXPECTED COMPILER EXIT CODE: 0
-# CURRENT COMPILER EXIT CODE: 3
+# CURRENT COMPILER EXIT CODE: 0
 # EXPECTED INTERPRETER EXIT CODE: 0
-# CURRENT INTERPRETER EXIT CODE: None
+# CURRENT INTERPRETER EXIT CODE: 51
 # PRICE: ---
 # GROOT: ---
 # 
@@ -57,11 +56,60 @@
 
 ########################################
 
-token: 57 ...                                                                   #     1/8
-token: 57 ...                                                                   #     2/8
-token: 9 ... function                                                           #     3/8
-.IFJcode17                                                                      #     4/8
-JUMP $$scope                                                                    #     5/8
-token: 35 ... gk6767__                                                          #     7/8
-ERROR on line 3                                                                 #     8/8
+.IFJcode17                                                                      #     1/61
+JUMP $$scope                                                                    #     2/61
+rule_par                                                                        #     4/61
+LABEL $gk6767__                                                                 #     5/61
+PUSHFRAME                                                                       #     6/61
+DEFVAR LF@&retval                                                               #     7/61
+MOVE LF@&retval GF@&pomInteger                                                  #     8/61
+POPFRAME                                                                        #     9/61
+RETURN                                                                          #    10/61
+rule_par                                                                        #    12/61
+LABEL $gkj5___ggk                                                               #    13/61
+PUSHFRAME                                                                       #    14/61
+DEFVAR LF@&retval                                                               #    15/61
+DEFVAR LF@a                                                                     #    16/61
+MOVE LF@a int@0                                                                 #    17/61
+MOVE GF@&pomInteger int@10                                                      #    18/61
+MOVE LF@a GF@&pomInteger                                                        #    19/61
+CALL $gk6767__                                                                  #    20/61
+MOVE LF@a LF@&retval                                                            #    21/61
+MOVE GF@&pomInteger LF@a                                                        #    22/61
+MOVE LF@&retval GF@&pomInteger                                                  #    23/61
+POPFRAME                                                                        #    24/61
+RETURN                                                                          #    25/61
+rule_par                                                                        #    27/61
+LABEL $foo                                                                      #    28/61
+PUSHFRAME                                                                       #    29/61
+DEFVAR LF@&retval                                                               #    30/61
+DEFVAR LF@a                                                                     #    31/61
+MOVE LF@a int@0                                                                 #    32/61
+MOVE GF@&pomInteger int@11                                                      #    33/61
+MOVE LF@a GF@&pomInteger                                                        #    34/61
+CALL $gkj5___ggk                                                                #    35/61
+MOVE LF@a LF@&retval                                                            #    36/61
+MOVE GF@&pomInteger LF@a                                                        #    37/61
+MOVE LF@&retval GF@&pomInteger                                                  #    38/61
+POPFRAME                                                                        #    39/61
+RETURN                                                                          #    40/61
+LABEL $$scope                                                                   #    42/61
+DEFVAR GF@&pomInteger                                                           #    43/61
+MOVE GF@&pomInteger int@0                                                       #    44/61
+DEFVAR GF@&pomString                                                            #    45/61
+MOVE GF@&pomString string@                                                      #    46/61
+DEFVAR GF@&pomFloat                                                             #    47/61
+MOVE GF@&pomFloat float@0                                                       #    48/61
+DEFVAR GF@&pomBool                                                              #    49/61
+MOVE GF@&pomBool bool@false                                                     #    50/61
+DEFVAR GF@&pomCntr                                                              #    51/61
+MOVE GF@&pomCntr int@0                                                          #    52/61
+CREATEFRAME                                                                     #    53/61
+DEFVAR TF@a                                                                     #    55/61
+MOVE TF@a int@0                                                                 #    56/61
+MOVE GF@&pomInteger int@9                                                       #    57/61
+MOVE TF@a GF@&pomInteger                                                        #    58/61
+CALL $foo                                                                       #    59/61
+MOVE TF@a TF@&retval                                                            #    60/61
+WRITE TF@a                                                                      #    61/61
 

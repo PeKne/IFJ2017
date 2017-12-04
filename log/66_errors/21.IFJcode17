@@ -1,4 +1,4 @@
-# 2017-12-03 20:43:47.577793
+# 2017-12-04 12:08:01.355827
 # SECTION: 66_errors
 # TEST: 21
 # INFO: Colision of argument name and function name
@@ -7,7 +7,6 @@
 # STATE: FAIL
 # 
 # COMPILER STDERR:
-# parser.c:257:rule_par(): Function has another parameter with same name
 # ERROR -  4 - sÃ©mantickÃ¡ chyba typovÃ© kompatibility v aritmetickÃ½ch, rÌeteÌzcovÃ½ch a relacÌnÃ­ch vÃ½razech, prÌÃ­p. Å¡patnÃ½ pocÌet cÌi typ parametruÌ u volÃ¡nÃ­ funkce.
 # 
 # INTERPRETER STDERR:
@@ -49,62 +48,17 @@
 
 ########################################
 
-token: 57 ...                                                                   #     1/60
-token: 57 ...                                                                   #     2/60
-token: 2 ... declare                                                            #     3/60
-.IFJcode17                                                                      #     4/60
-JUMP $$scope                                                                    #     5/60
-token: 9 ... function                                                           #     7/60
-token: 35 ... foo1                                                              #     8/60
-token: 50 ... (                                                                 #     9/60
-token: 51 ... )                                                                 #    10/60
-rule_par                                                                        #    11/60
-token: 0 ... as                                                                 #    12/60
-token: 12 ... integer                                                           #    13/60
-token: 57 ...                                                                   #    14/60
-token: 2 ... declare                                                            #    15/60
-token: 9 ... function                                                           #    16/60
-token: 35 ... bar                                                               #    17/60
-token: 50 ... (                                                                 #    18/60
-token: 35 ... foo1                                                              #    19/60
-rule_par                                                                        #    20/60
-token: 0 ... as                                                                 #    21/60
-token: 12 ... integer                                                           #    22/60
-token: 51 ... )                                                                 #    23/60
-rule next par                                                                   #    24/60
-token: 0 ... as                                                                 #    25/60
-token: 12 ... integer                                                           #    26/60
-token: 57 ...                                                                   #    27/60
-token: 57 ...                                                                   #    28/60
-token: 9 ... function                                                           #    29/60
-token: 35 ... foo1                                                              #    30/60
-token: 50 ... (                                                                 #    31/60
-token: 51 ... )                                                                 #    32/60
-token: 0 ... as                                                                 #    33/60
-token: 12 ... integer                                                           #    34/60
-token: 57 ...                                                                   #    35/60
-LABEL $foo1                                                                     #    36/60
-PUSHFRAME                                                                       #    37/60
-DEFVAR LF@&retval                                                               #    38/60
-token: 16 ... return                                                            #    39/60
-token: 53 ... 42                                                                #    40/60
-|TOP--->|$|  SYMBOL                                                             #    41/60
-|TOP--->| |  STRING                                                             #    42/60
-token: 57 ...                                                                   #    43/60
-|TOP--->|int|]|$|  SYMBOL                                                       #    44/60
-|TOP--->|42| | |  STRING                                                        #    45/60
-|TOP--->|int|  SYMBOL                                                           #    46/60
-|TOP--->|42|  STRING                                                            #    47/60
-token: 7 ... end                                                                #    48/60
-MOVE LF@&retval GF@&pomInteger                                                  #    49/60
-POPFRAME                                                                        #    50/60
-RETURN                                                                          #    51/60
-token: 9 ... function                                                           #    53/60
-token: 57 ...                                                                   #    54/60
-token: 57 ...                                                                   #    55/60
-token: 9 ... function                                                           #    56/60
-token: 35 ... bar                                                               #    57/60
-token: 50 ... (                                                                 #    58/60
-token: 35 ... a                                                                 #    59/60
-ERROR on line 10                                                                #    60/60
+.IFJcode17                                                                      #     1/15
+JUMP $$scope                                                                    #     2/15
+rule_par                                                                        #     4/15
+rule_par                                                                        #     5/15
+rule next par                                                                   #     6/15
+LABEL $foo1                                                                     #     7/15
+PUSHFRAME                                                                       #     8/15
+DEFVAR LF@&retval                                                               #     9/15
+MOVE LF@&retval GF@&pomInteger                                                  #    10/15
+POPFRAME                                                                        #    11/15
+RETURN                                                                          #    12/15
+Nezhoduje sa meno argumentu 1                                                   #    14/15
+ERROR on line 10                                                                #    15/15
 

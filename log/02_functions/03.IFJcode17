@@ -1,4 +1,4 @@
-# 2017-12-03 20:43:46.957286
+# 2017-12-04 12:08:00.972165
 # SECTION: 02_functions
 # TEST: 03
 # INFO: variable same name like function
@@ -7,7 +7,6 @@
 # STATE: SUCCESS
 # 
 # COMPILER STDERR:
-# symbol.c:268:retrieve_function_data(): Function not found
 # ERROR - 3 - sÃ©mantickÃ¡ chyba v programu â nedefinovanÃ¡ funkce/promeÌnnÃ¡, pokus o redefinici funkce/promeÌnnÃ©, atd.
 # 
 # INTERPRETER STDERR:
@@ -43,11 +42,27 @@
 
 ########################################
 
-token: 57 ...                                                                   #     1/8
-token: 57 ...                                                                   #     2/8
-token: 9 ... function                                                           #     3/8
-.IFJcode17                                                                      #     4/8
-JUMP $$scope                                                                    #     5/8
-token: 35 ... bar                                                               #     7/8
-ERROR on line 3                                                                 #     8/8
+.IFJcode17                                                                      #     1/26
+JUMP $$scope                                                                    #     2/26
+rule_par                                                                        #     4/26
+LABEL $bar                                                                      #     5/26
+PUSHFRAME                                                                       #     6/26
+DEFVAR LF@&retval                                                               #     7/26
+MOVE LF@&retval GF@&pomString                                                   #     8/26
+POPFRAME                                                                        #     9/26
+RETURN                                                                          #    10/26
+LABEL $$scope                                                                   #    12/26
+DEFVAR GF@&pomInteger                                                           #    13/26
+MOVE GF@&pomInteger int@0                                                       #    14/26
+DEFVAR GF@&pomString                                                            #    15/26
+MOVE GF@&pomString string@                                                      #    16/26
+DEFVAR GF@&pomFloat                                                             #    17/26
+MOVE GF@&pomFloat float@0                                                       #    18/26
+DEFVAR GF@&pomBool                                                              #    19/26
+MOVE GF@&pomBool bool@false                                                     #    20/26
+DEFVAR GF@&pomCntr                                                              #    21/26
+MOVE GF@&pomCntr int@0                                                          #    22/26
+CREATEFRAME                                                                     #    23/26
+Variable already defined                                                        #    25/26
+ERROR on line 8                                                                 #    26/26
 

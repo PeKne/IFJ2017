@@ -1,15 +1,54 @@
-# 2017-12-03 20:43:45.290398
+# 2017-12-04 12:08:00.079668
 # SECTION: 01_basic
 # TEST: 06
 # INFO: block comments
 # REQUIRED EXTENSIONS: 
 # ACTIVATED EXTENSIONS: 
-# STATE: FAIL
+# STATE: SUCCESS
 # 
 # COMPILER STDERR:
 # 
 # INTERPRETER STDERR:
-# 1.1-5: syntax error, unexpected ID, expecting HEADER
+# Executing instruction: IJUMP at line: 2 with following arguments:
+# Executing instruction: ILABEL at line: 4 with following arguments:
+# Executing instruction: IDEFVAR at line: 5 with following arguments:
+# Dest: GF@&pomInteger
+# Executing instruction: IMOVE at line: 6 with following arguments:
+# Arg1: Const@=0(int)
+# Dest: GF@&pomInteger()
+# Executing instruction: IDEFVAR at line: 7 with following arguments:
+# Dest: GF@&pomString
+# Executing instruction: IMOVE at line: 8 with following arguments:
+# Arg1: Const@=(string)
+# Dest: GF@&pomString()
+# Executing instruction: IDEFVAR at line: 9 with following arguments:
+# Dest: GF@&pomFloat
+# Executing instruction: IMOVE at line: 10 with following arguments:
+# Arg1: Const@=0(double)
+# Dest: GF@&pomFloat()
+# Executing instruction: IDEFVAR at line: 11 with following arguments:
+# Dest: GF@&pomBool
+# Executing instruction: IMOVE at line: 12 with following arguments:
+# Arg1: Const@=false(bool)
+# Dest: GF@&pomBool()
+# Executing instruction: IDEFVAR at line: 13 with following arguments:
+# Dest: GF@&pomCntr
+# Executing instruction: IMOVE at line: 14 with following arguments:
+# Arg1: Const@=0(int)
+# Dest: GF@&pomCntr()
+# Executing instruction: ICREATEFRAME at line: 15 with following arguments:
+# Executing instruction: IDEFVAR at line: 17 with following arguments:
+# Dest: TF@b
+# Executing instruction: IMOVE at line: 18 with following arguments:
+# Arg1: Const@=(string)
+# Dest: TF@b()
+# Executing instruction: IDEFVAR at line: 19 with following arguments:
+# Dest: TF@a
+# Executing instruction: IMOVE at line: 20 with following arguments:
+# Arg1: Const@=(string)
+# Dest: TF@a()
+# Executing instruction: IGROOT at line: 22 with following arguments:
+# I am Groot at 22 (81).
 # 
 # EXPECTED INTERPRETER STDOUT:
 
@@ -25,9 +64,9 @@
 # EXPECTED COMPILER EXIT CODE: 0
 # CURRENT COMPILER EXIT CODE: 0
 # EXPECTED INTERPRETER EXIT CODE: 0
-# CURRENT INTERPRETER EXIT CODE: 51
-# PRICE: ---
-# GROOT: ---
+# CURRENT INTERPRETER EXIT CODE: 0
+# PRICE: 81 (18+63)
+# GROOT: 81
 # 
 #   1: ' block comments
 #   2: scope
@@ -40,41 +79,22 @@
 
 ########################################
 
-token: 57 ...                                                                   #     1/39
-token: 17 ... scope                                                             #     2/39
-.IFJcode17                                                                      #     3/39
-JUMP $$scope                                                                    #     4/39
-LABEL $$scope                                                                   #     6/39
-DEFVAR GF@&pomInteger                                                           #     7/39
-MOVE GF@&pomInteger int@0                                                       #     8/39
-DEFVAR GF@&pomString                                                            #     9/39
-MOVE GF@&pomString string@                                                      #    10/39
-DEFVAR GF@&pomFloat                                                             #    11/39
-MOVE GF@&pomFloat float@0                                                       #    12/39
-DEFVAR GF@&pomBool                                                              #    13/39
-MOVE GF@&pomBool bool@false                                                     #    14/39
-DEFVAR GF@&pomCntr                                                              #    15/39
-MOVE GF@&pomCntr int@0                                                          #    16/39
-CREATEFRAME                                                                     #    17/39
-token: 57 ...                                                                   #    19/39
-token: 57 ...                                                                   #    20/39
-token: 3 ... dim                                                                #    21/39
-token: 35 ... b                                                                 #    22/39
-token: 0 ... as                                                                 #    23/39
-token: 18 ... string                                                            #    24/39
-token: 57 ...                                                                   #    25/39
-DEFVAR TF@b                                                                     #    26/39
-MOVE TF@b string@                                                               #    27/39
-token: 3 ... dim                                                                #    28/39
-token: 35 ... a                                                                 #    29/39
-token: 0 ... as                                                                 #    30/39
-token: 18 ... string                                                            #    31/39
-token: 57 ...                                                                   #    32/39
-DEFVAR TF@a                                                                     #    33/39
-MOVE TF@a string@                                                               #    34/39
-token: 57 ...                                                                   #    35/39
-token: 57 ...                                                                   #    36/39
-token: 7 ... end                                                                #    37/39
-token: 17 ... scope                                                             #    38/39
-token: 58 ...                                                                   #    39/39
+.IFJcode17                                                                      #     1/20
+JUMP $$scope                                                                    #     2/20
+LABEL $$scope                                                                   #     4/20
+DEFVAR GF@&pomInteger                                                           #     5/20
+MOVE GF@&pomInteger int@0                                                       #     6/20
+DEFVAR GF@&pomString                                                            #     7/20
+MOVE GF@&pomString string@                                                      #     8/20
+DEFVAR GF@&pomFloat                                                             #     9/20
+MOVE GF@&pomFloat float@0                                                       #    10/20
+DEFVAR GF@&pomBool                                                              #    11/20
+MOVE GF@&pomBool bool@false                                                     #    12/20
+DEFVAR GF@&pomCntr                                                              #    13/20
+MOVE GF@&pomCntr int@0                                                          #    14/20
+CREATEFRAME                                                                     #    15/20
+DEFVAR TF@b                                                                     #    17/20
+MOVE TF@b string@                                                               #    18/20
+DEFVAR TF@a                                                                     #    19/20
+MOVE TF@a string@                                                               #    20/20
 

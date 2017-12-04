@@ -1,4 +1,4 @@
-# 2017-12-03 20:43:47.313736
+# 2017-12-04 12:08:01.193239
 # SECTION: 04_expressions
 # TEST: 36
 # INFO: Big number of float integers +-
@@ -7,10 +7,9 @@
 # STATE: FAIL
 # 
 # COMPILER STDERR:
-# LEX: Line: 4: Double value didnt end properly!
-# ERROR - 1 - chyba v programu v rÃ¡mci lexikÃ¡lnÃ­ analÃ½zy (chybnÃ¡ struktura aktuÃ¡lnÃ­ho lexÃ©mu).
 # 
 # INTERPRETER STDERR:
+# 20.1-7: syntax error, unexpected ID, expecting END
 # 
 # EXPECTED INTERPRETER STDOUT:
 
@@ -25,9 +24,9 @@
 # 
 #
 # EXPECTED COMPILER EXIT CODE: 0
-# CURRENT COMPILER EXIT CODE: 1
+# CURRENT COMPILER EXIT CODE: 0
 # EXPECTED INTERPRETER EXIT CODE: 0
-# CURRENT INTERPRETER EXIT CODE: None
+# CURRENT INTERPRETER EXIT CODE: 51
 # PRICE: ---
 # GROOT: ---
 # 
@@ -43,32 +42,223 @@
 
 ########################################
 
-token: 57 ...                                                                   #     1/30
-token: 17 ... scope                                                             #     2/30
-.IFJcode17                                                                      #     3/30
-JUMP $$scope                                                                    #     4/30
-LABEL $$scope                                                                   #     6/30
-DEFVAR GF@&pomInteger                                                           #     7/30
-MOVE GF@&pomInteger int@0                                                       #     8/30
-DEFVAR GF@&pomString                                                            #     9/30
-MOVE GF@&pomString string@                                                      #    10/30
-DEFVAR GF@&pomFloat                                                             #    11/30
-MOVE GF@&pomFloat float@0                                                       #    12/30
-DEFVAR GF@&pomBool                                                              #    13/30
-MOVE GF@&pomBool bool@false                                                     #    14/30
-DEFVAR GF@&pomCntr                                                              #    15/30
-MOVE GF@&pomCntr int@0                                                          #    16/30
-CREATEFRAME                                                                     #    17/30
-token: 57 ...                                                                   #    19/30
-token: 3 ... dim                                                                #    20/30
-token: 35 ... a                                                                 #    21/30
-token: 0 ... as                                                                 #    22/30
-token: 5 ... double                                                             #    23/30
-token: 57 ...                                                                   #    24/30
-DEFVAR TF@a                                                                     #    25/30
-MOVE TF@a float@0                                                               #    26/30
-token: 35 ... a                                                                 #    27/30
-token: 45 ... =                                                                 #    28/30
-token: 59 ... 0.15392032971323                                                  #    29/30
-ERROR on line 4                                                                 #    30/30
+.IFJcode17                                                                      #     1/221
+JUMP $$scope                                                                    #     2/221
+LABEL $$scope                                                                   #     4/221
+DEFVAR GF@&pomInteger                                                           #     5/221
+MOVE GF@&pomInteger int@0                                                       #     6/221
+DEFVAR GF@&pomString                                                            #     7/221
+MOVE GF@&pomString string@                                                      #     8/221
+DEFVAR GF@&pomFloat                                                             #     9/221
+MOVE GF@&pomFloat float@0                                                       #    10/221
+DEFVAR GF@&pomBool                                                              #    11/221
+MOVE GF@&pomBool bool@false                                                     #    12/221
+DEFVAR GF@&pomCntr                                                              #    13/221
+MOVE GF@&pomCntr int@0                                                          #    14/221
+CREATEFRAME                                                                     #    15/221
+DEFVAR TF@a                                                                     #    17/221
+MOVE TF@a float@0                                                               #    18/221
+MOVE GF@&pomFloat float@0.15392032971323                                        #    19/221
+redukce                                                                         #    20/221
+ADD GF@&pomFloat float@0.15392032971323 float@0.45034736183022                  #    21/221
+redukce                                                                         #    22/221
+SUB GF@&pomFloat GF@&pomFloat float@0.22857732755531                            #    23/221
+redukce                                                                         #    24/221
+SUB GF@&pomFloat GF@&pomFloat float@0.10393178095293                            #    25/221
+redukce                                                                         #    26/221
+ADD GF@&pomFloat GF@&pomFloat float@0.5770683007208                             #    27/221
+redukce                                                                         #    28/221
+SUB GF@&pomFloat GF@&pomFloat float@0.20937356036593                            #    29/221
+redukce                                                                         #    30/221
+ADD GF@&pomFloat GF@&pomFloat float@0.88500488311285                            #    31/221
+redukce                                                                         #    32/221
+SUB GF@&pomFloat GF@&pomFloat float@0.17863870280731                            #    33/221
+redukce                                                                         #    34/221
+SUB GF@&pomFloat GF@&pomFloat float@0.43715851168947                            #    35/221
+redukce                                                                         #    36/221
+SUB GF@&pomFloat GF@&pomFloat float@0.63981254568315                            #    37/221
+redukce                                                                         #    38/221
+ADD GF@&pomFloat GF@&pomFloat float@0.80222906768426                            #    39/221
+redukce                                                                         #    40/221
+ADD GF@&pomFloat GF@&pomFloat float@0.90395464929936                            #    41/221
+redukce                                                                         #    42/221
+SUB GF@&pomFloat GF@&pomFloat float@0.22485914231504                            #    43/221
+redukce                                                                         #    44/221
+ADD GF@&pomFloat GF@&pomFloat float@0.80677499659675                            #    45/221
+redukce                                                                         #    46/221
+ADD GF@&pomFloat GF@&pomFloat float@0.33955973030047                            #    47/221
+redukce                                                                         #    48/221
+SUB GF@&pomFloat GF@&pomFloat float@0.55546566357625                            #    49/221
+redukce                                                                         #    50/221
+ADD GF@&pomFloat GF@&pomFloat float@0.48636960121168                            #    51/221
+redukce                                                                         #    52/221
+ADD GF@&pomFloat GF@&pomFloat float@0.24275394354144                            #    53/221
+redukce                                                                         #    54/221
+ADD GF@&pomFloat GF@&pomFloat float@0.71708868617056                            #    55/221
+redukce                                                                         #    56/221
+ADD GF@&pomFloat GF@&pomFloat float@0.34579125714758                            #    57/221
+redukce                                                                         #    58/221
+ADD GF@&pomFloat GF@&pomFloat float@0.72488219091896                            #    59/221
+redukce                                                                         #    60/221
+ADD GF@&pomFloat GF@&pomFloat float@0.95435832857823                            #    61/221
+redukce                                                                         #    62/221
+ADD GF@&pomFloat GF@&pomFloat float@0.018903809608381                           #    63/221
+redukce                                                                         #    64/221
+ADD GF@&pomFloat GF@&pomFloat float@0.8041277959962                             #    65/221
+redukce                                                                         #    66/221
+ADD GF@&pomFloat GF@&pomFloat float@0.023946794226741                           #    67/221
+redukce                                                                         #    68/221
+SUB GF@&pomFloat GF@&pomFloat float@0.77646734974183                            #    69/221
+redukce                                                                         #    70/221
+SUB GF@&pomFloat GF@&pomFloat float@0.23172008769201                            #    71/221
+redukce                                                                         #    72/221
+ADD GF@&pomFloat GF@&pomFloat float@0.84111053582333                            #    73/221
+redukce                                                                         #    74/221
+ADD GF@&pomFloat GF@&pomFloat float@0.4591088306434                             #    75/221
+redukce                                                                         #    76/221
+SUB GF@&pomFloat GF@&pomFloat float@0.19041681903899                            #    77/221
+redukce                                                                         #    78/221
+ADD GF@&pomFloat GF@&pomFloat float@0.98236713138519                            #    79/221
+redukce                                                                         #    80/221
+SUB GF@&pomFloat GF@&pomFloat float@0.11567312298141                            #    81/221
+redukce                                                                         #    82/221
+SUB GF@&pomFloat GF@&pomFloat float@0.56689354989999                            #    83/221
+redukce                                                                         #    84/221
+ADD GF@&pomFloat GF@&pomFloat float@0.63308663090369                            #    85/221
+redukce                                                                         #    86/221
+ADD GF@&pomFloat GF@&pomFloat float@0.54199194281455                            #    87/221
+redukce                                                                         #    88/221
+SUB GF@&pomFloat GF@&pomFloat float@0.042272554730192                           #    89/221
+redukce                                                                         #    90/221
+ADD GF@&pomFloat GF@&pomFloat float@0.38295422977905                            #    91/221
+redukce                                                                         #    92/221
+ADD GF@&pomFloat GF@&pomFloat float@0.95800455378276                            #    93/221
+redukce                                                                         #    94/221
+ADD GF@&pomFloat GF@&pomFloat float@0.036290351783992                           #    95/221
+redukce                                                                         #    96/221
+SUB GF@&pomFloat GF@&pomFloat float@0.63809956313954                            #    97/221
+redukce                                                                         #    98/221
+SUB GF@&pomFloat GF@&pomFloat float@0.84864554081515                            #    99/221
+redukce                                                                         #   100/221
+SUB GF@&pomFloat GF@&pomFloat float@0.97947909262938                            #   101/221
+redukce                                                                         #   102/221
+ADD GF@&pomFloat GF@&pomFloat float@0.82777797096771                            #   103/221
+redukce                                                                         #   104/221
+ADD GF@&pomFloat GF@&pomFloat float@0.95212024215242                            #   105/221
+redukce                                                                         #   106/221
+SUB GF@&pomFloat GF@&pomFloat float@0.39922194946521                            #   107/221
+redukce                                                                         #   108/221
+ADD GF@&pomFloat GF@&pomFloat float@0.92141141552544                            #   109/221
+redukce                                                                         #   110/221
+SUB GF@&pomFloat GF@&pomFloat float@0.19430580697689                            #   111/221
+redukce                                                                         #   112/221
+SUB GF@&pomFloat GF@&pomFloat float@0.64444554347752                            #   113/221
+redukce                                                                         #   114/221
+SUB GF@&pomFloat GF@&pomFloat float@0.32520966060702                            #   115/221
+redukce                                                                         #   116/221
+SUB GF@&pomFloat GF@&pomFloat float@0.57075888131315                            #   117/221
+redukce                                                                         #   118/221
+SUB GF@&pomFloat GF@&pomFloat float@0.77997415549121                            #   119/221
+redukce                                                                         #   120/221
+SUB GF@&pomFloat GF@&pomFloat float@0.95823753343813                            #   121/221
+redukce                                                                         #   122/221
+SUB GF@&pomFloat GF@&pomFloat float@0.11608309443858                            #   123/221
+redukce                                                                         #   124/221
+SUB GF@&pomFloat GF@&pomFloat float@0.75942019408542                            #   125/221
+redukce                                                                         #   126/221
+SUB GF@&pomFloat GF@&pomFloat float@0.82284970247319                            #   127/221
+redukce                                                                         #   128/221
+SUB GF@&pomFloat GF@&pomFloat float@0.91226126948011                            #   129/221
+redukce                                                                         #   130/221
+SUB GF@&pomFloat GF@&pomFloat float@0.93316854859384                            #   131/221
+redukce                                                                         #   132/221
+ADD GF@&pomFloat GF@&pomFloat float@0.89463229332801                            #   133/221
+redukce                                                                         #   134/221
+ADD GF@&pomFloat GF@&pomFloat float@0.34335702999651                            #   135/221
+redukce                                                                         #   136/221
+SUB GF@&pomFloat GF@&pomFloat float@0.38929377560937                            #   137/221
+redukce                                                                         #   138/221
+ADD GF@&pomFloat GF@&pomFloat float@0.82994798562953                            #   139/221
+redukce                                                                         #   140/221
+SUB GF@&pomFloat GF@&pomFloat float@0.87888436013781                            #   141/221
+redukce                                                                         #   142/221
+SUB GF@&pomFloat GF@&pomFloat float@0.35640355262738                            #   143/221
+redukce                                                                         #   144/221
+SUB GF@&pomFloat GF@&pomFloat float@0.21351195416111                            #   145/221
+redukce                                                                         #   146/221
+ADD GF@&pomFloat GF@&pomFloat float@0.23747843654709                            #   147/221
+redukce                                                                         #   148/221
+ADD GF@&pomFloat GF@&pomFloat float@0.41442929227577                            #   149/221
+redukce                                                                         #   150/221
+ADD GF@&pomFloat GF@&pomFloat float@0.6511562115751                             #   151/221
+redukce                                                                         #   152/221
+SUB GF@&pomFloat GF@&pomFloat float@0.43560120204259                            #   153/221
+redukce                                                                         #   154/221
+ADD GF@&pomFloat GF@&pomFloat float@0.16913385045209                            #   155/221
+redukce                                                                         #   156/221
+ADD GF@&pomFloat GF@&pomFloat float@0.39923315606976                            #   157/221
+redukce                                                                         #   158/221
+ADD GF@&pomFloat GF@&pomFloat float@0.73933730774528                            #   159/221
+redukce                                                                         #   160/221
+ADD GF@&pomFloat GF@&pomFloat float@0.88804860873523                            #   161/221
+redukce                                                                         #   162/221
+SUB GF@&pomFloat GF@&pomFloat float@0.97775317215256                            #   163/221
+redukce                                                                         #   164/221
+SUB GF@&pomFloat GF@&pomFloat float@0.93239587169718                            #   165/221
+redukce                                                                         #   166/221
+ADD GF@&pomFloat GF@&pomFloat float@0.86142201389252                            #   167/221
+redukce                                                                         #   168/221
+ADD GF@&pomFloat GF@&pomFloat float@0.24544257309541                            #   169/221
+redukce                                                                         #   170/221
+SUB GF@&pomFloat GF@&pomFloat float@0.72288686815784                            #   171/221
+redukce                                                                         #   172/221
+ADD GF@&pomFloat GF@&pomFloat float@0.5031232561465                             #   173/221
+redukce                                                                         #   174/221
+ADD GF@&pomFloat GF@&pomFloat float@0.37358963553495                            #   175/221
+redukce                                                                         #   176/221
+SUB GF@&pomFloat GF@&pomFloat float@0.34539146877145                            #   177/221
+redukce                                                                         #   178/221
+SUB GF@&pomFloat GF@&pomFloat float@0.24450102273584                            #   179/221
+redukce                                                                         #   180/221
+SUB GF@&pomFloat GF@&pomFloat float@0.22434624341519                            #   181/221
+redukce                                                                         #   182/221
+ADD GF@&pomFloat GF@&pomFloat float@0.4058097044033                             #   183/221
+redukce                                                                         #   184/221
+SUB GF@&pomFloat GF@&pomFloat float@0.54116594024988                            #   185/221
+redukce                                                                         #   186/221
+SUB GF@&pomFloat GF@&pomFloat float@0.7173163135151                             #   187/221
+redukce                                                                         #   188/221
+ADD GF@&pomFloat GF@&pomFloat float@0.90828158841854                            #   189/221
+redukce                                                                         #   190/221
+ADD GF@&pomFloat GF@&pomFloat float@0.48578712832452                            #   191/221
+redukce                                                                         #   192/221
+SUB GF@&pomFloat GF@&pomFloat float@0.89055054443448                            #   193/221
+redukce                                                                         #   194/221
+SUB GF@&pomFloat GF@&pomFloat float@0.70156869138664                            #   195/221
+redukce                                                                         #   196/221
+SUB GF@&pomFloat GF@&pomFloat float@0.052272440889977                           #   197/221
+redukce                                                                         #   198/221
+SUB GF@&pomFloat GF@&pomFloat float@0.67214471924684                            #   199/221
+redukce                                                                         #   200/221
+SUB GF@&pomFloat GF@&pomFloat float@0.7583599895045                             #   201/221
+redukce                                                                         #   202/221
+SUB GF@&pomFloat GF@&pomFloat float@0.57597289447485                            #   203/221
+redukce                                                                         #   204/221
+ADD GF@&pomFloat GF@&pomFloat float@0.28093752231493                            #   205/221
+redukce                                                                         #   206/221
+SUB GF@&pomFloat GF@&pomFloat float@0.9489006981947                             #   207/221
+redukce                                                                         #   208/221
+SUB GF@&pomFloat GF@&pomFloat float@0.15001685784665                            #   209/221
+redukce                                                                         #   210/221
+ADD GF@&pomFloat GF@&pomFloat float@0.78178339720787                            #   211/221
+redukce                                                                         #   212/221
+SUB GF@&pomFloat GF@&pomFloat float@0.46734504702843                            #   213/221
+redukce                                                                         #   214/221
+SUB GF@&pomFloat GF@&pomFloat float@0.6044920913896                             #   215/221
+redukce                                                                         #   216/221
+SUB GF@&pomFloat GF@&pomFloat float@0.31241466911156                            #   217/221
+redukce                                                                         #   218/221
+SUB GF@&pomFloat GF@&pomFloat float@0.70392135889452                            #   219/221
+MOVE TF@a GF@&pomFloat                                                          #   220/221
+WRITE TF@a                                                                      #   221/221
 

@@ -1,4 +1,4 @@
-# 2017-12-03 20:43:47.283539
+# 2017-12-04 12:08:01.174207
 # SECTION: 04_expressions
 # TEST: 27
 # INFO: Divide priority (fail types)
@@ -7,8 +7,8 @@
 # STATE: FAIL
 # 
 # COMPILER STDERR:
-# LEX: Line: 3: Int value didnt end properly!
-# ERROR - 1 - chyba v programu v rÃ¡mci lexikÃ¡lnÃ­ analÃ½zy (chybnÃ¡ struktura aktuÃ¡lnÃ­ho lexÃ©mu).
+# In if and loop statement can only be relational operators.
+# ERROR - 3 - sÃ©mantickÃ¡ chyba v programu â nedefinovanÃ¡ funkce/promeÌnnÃ¡, pokus o redefinici funkce/promeÌnnÃ©, atd.
 # 
 # INTERPRETER STDERR:
 # 
@@ -25,7 +25,7 @@
 # 
 #
 # EXPECTED COMPILER EXIT CODE: 0
-# CURRENT COMPILER EXIT CODE: 1
+# CURRENT COMPILER EXIT CODE: 3
 # EXPECTED INTERPRETER EXIT CODE: 0
 # CURRENT INTERPRETER EXIT CODE: None
 # PRICE: ---
@@ -38,24 +38,23 @@
 
 ########################################
 
-token: 57 ...                                                                   #     1/22
-token: 17 ... scope                                                             #     2/22
-.IFJcode17                                                                      #     3/22
-JUMP $$scope                                                                    #     4/22
-LABEL $$scope                                                                   #     6/22
-DEFVAR GF@&pomInteger                                                           #     7/22
-MOVE GF@&pomInteger int@0                                                       #     8/22
-DEFVAR GF@&pomString                                                            #     9/22
-MOVE GF@&pomString string@                                                      #    10/22
-DEFVAR GF@&pomFloat                                                             #    11/22
-MOVE GF@&pomFloat float@0                                                       #    12/22
-DEFVAR GF@&pomBool                                                              #    13/22
-MOVE GF@&pomBool bool@false                                                     #    14/22
-DEFVAR GF@&pomCntr                                                              #    15/22
-MOVE GF@&pomCntr int@0                                                          #    16/22
-CREATEFRAME                                                                     #    17/22
-token: 57 ...                                                                   #    19/22
-token: 15 ... print                                                             #    20/22
-token: 59 ... 100000                                                            #    21/22
-ERROR on line 3                                                                 #    22/22
+.IFJcode17                                                                      #     1/21
+JUMP $$scope                                                                    #     2/21
+LABEL $$scope                                                                   #     4/21
+DEFVAR GF@&pomInteger                                                           #     5/21
+MOVE GF@&pomInteger int@0                                                       #     6/21
+DEFVAR GF@&pomString                                                            #     7/21
+MOVE GF@&pomString string@                                                      #     8/21
+DEFVAR GF@&pomFloat                                                             #     9/21
+MOVE GF@&pomFloat float@0                                                       #    10/21
+DEFVAR GF@&pomBool                                                              #    11/21
+MOVE GF@&pomBool bool@false                                                     #    12/21
+DEFVAR GF@&pomCntr                                                              #    13/21
+MOVE GF@&pomCntr int@0                                                          #    14/21
+CREATEFRAME                                                                     #    15/21
+WRITE TF@100000                                                                 #    17/21
+WRITE TF@3                                                                      #    18/21
+WRITE TF@4                                                                      #    19/21
+redukce                                                                         #    20/21
+ERROR on line 3                                                                 #    21/21
 

@@ -1,14 +1,12 @@
-# 2017-12-03 20:43:47.574748
+# 2017-12-04 12:08:01.354341
 # SECTION: 66_errors
 # TEST: 20
 # INFO: Colision of argument name and function name
 # REQUIRED EXTENSIONS: 
 # ACTIVATED EXTENSIONS: 
-# STATE: SUCCESS
+# STATE: FAIL
 # 
 # COMPILER STDERR:
-# symbol.c:268:retrieve_function_data(): Function not found
-# ERROR - 3 - sÃ©mantickÃ¡ chyba v programu â nedefinovanÃ¡ funkce/promeÌnnÃ¡, pokus o redefinici funkce/promeÌnnÃ©, atd.
 # 
 # INTERPRETER STDERR:
 # 
@@ -24,7 +22,7 @@
 # 
 #
 # EXPECTED COMPILER EXIT CODE: 3
-# CURRENT COMPILER EXIT CODE: 3
+# CURRENT COMPILER EXIT CODE: 0
 # EXPECTED INTERPRETER EXIT CODE: 0
 # CURRENT INTERPRETER EXIT CODE: None
 # PRICE: ---
@@ -42,20 +40,28 @@
 
 ########################################
 
-token: 57 ...                                                                   #     1/17
-token: 57 ...                                                                   #     2/17
-token: 2 ... declare                                                            #     3/17
-.IFJcode17                                                                      #     4/17
-JUMP $$scope                                                                    #     5/17
-token: 9 ... function                                                           #     7/17
-token: 35 ... foo1                                                              #     8/17
-token: 50 ... (                                                                 #     9/17
-token: 51 ... )                                                                 #    10/17
-rule_par                                                                        #    11/17
-token: 0 ... as                                                                 #    12/17
-token: 12 ... integer                                                           #    13/17
-token: 57 ...                                                                   #    14/17
-token: 9 ... function                                                           #    15/17
-token: 35 ... bar                                                               #    16/17
-ERROR on line 4                                                                 #    17/17
+.IFJcode17                                                                      #     1/27
+JUMP $$scope                                                                    #     2/27
+rule_par                                                                        #     4/27
+rule_par                                                                        #     5/27
+rule next par                                                                   #     6/27
+LABEL $bar                                                                      #     7/27
+PUSHFRAME                                                                       #     8/27
+DEFVAR LF@&retval                                                               #     9/27
+MOVE GF@&pomInteger LF@foo1                                                     #    10/27
+MOVE LF@&retval GF@&pomInteger                                                  #    11/27
+POPFRAME                                                                        #    12/27
+RETURN                                                                          #    13/27
+LABEL $$scope                                                                   #    15/27
+DEFVAR GF@&pomInteger                                                           #    16/27
+MOVE GF@&pomInteger int@0                                                       #    17/27
+DEFVAR GF@&pomString                                                            #    18/27
+MOVE GF@&pomString string@                                                      #    19/27
+DEFVAR GF@&pomFloat                                                             #    20/27
+MOVE GF@&pomFloat float@0                                                       #    21/27
+DEFVAR GF@&pomBool                                                              #    22/27
+MOVE GF@&pomBool bool@false                                                     #    23/27
+DEFVAR GF@&pomCntr                                                              #    24/27
+MOVE GF@&pomCntr int@0                                                          #    25/27
+CREATEFRAME                                                                     #    26/27
 

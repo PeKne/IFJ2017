@@ -1,4 +1,4 @@
-# 2017-12-03 20:43:47.058286
+# 2017-12-04 12:08:01.050178
 # SECTION: 02_functions
 # TEST: 39
 # INFO: hanoi towers recursion
@@ -68,45 +68,16 @@
 
 ########################################
 
-token: 57 ...                                                                   #     1/42
-token: 57 ...                                                                   #     2/42
-token: 2 ... declare                                                            #     3/42
-.IFJcode17                                                                      #     4/42
-JUMP $$scope                                                                    #     5/42
-token: 9 ... function                                                           #     7/42
-token: 35 ... hanoi                                                             #     8/42
-token: 50 ... (                                                                 #     9/42
-token: 35 ... ________________                                                  #    10/42
-rule_par                                                                        #    11/42
-token: 0 ... as                                                                 #    12/42
-token: 12 ... integer                                                           #    13/42
-token: 48 ... ,                                                                 #    14/42
-rule next par                                                                   #    15/42
-token: 35 ... from                                                              #    16/42
-rule_par                                                                        #    17/42
-token: 0 ... as                                                                 #    18/42
-token: 18 ... string                                                            #    19/42
-token: 48 ... ,                                                                 #    20/42
-rule next par                                                                   #    21/42
-token: 35 ... too                                                               #    22/42
-rule_par                                                                        #    23/42
-token: 0 ... as                                                                 #    24/42
-token: 18 ... string                                                            #    25/42
-token: 48 ... ,                                                                 #    26/42
-rule next par                                                                   #    27/42
-token: 35 ... middle                                                            #    28/42
-rule_par                                                                        #    29/42
-token: 0 ... as                                                                 #    30/42
-token: 18 ... string                                                            #    31/42
-token: 51 ... )                                                                 #    32/42
-rule next par                                                                   #    33/42
-token: 0 ... as                                                                 #    34/42
-token: 12 ... integer                                                           #    35/42
-token: 57 ...                                                                   #    36/42
-token: 57 ...                                                                   #    37/42
-token: 9 ... function                                                           #    38/42
-token: 35 ... hanoi                                                             #    39/42
-token: 50 ... (                                                                 #    40/42
-token: 35 ... n                                                                 #    41/42
-ERROR on line 5                                                                 #    42/42
+.IFJcode17                                                                      #     1/13
+JUMP $$scope                                                                    #     2/13
+rule_par                                                                        #     4/13
+rule next par                                                                   #     5/13
+rule_par                                                                        #     6/13
+rule next par                                                                   #     7/13
+rule_par                                                                        #     8/13
+rule next par                                                                   #     9/13
+rule_par                                                                        #    10/13
+rule next par                                                                   #    11/13
+Nezhoduje sa meno argumentu 1                                                   #    12/13
+ERROR on line 5                                                                 #    13/13
 

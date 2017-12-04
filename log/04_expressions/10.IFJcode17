@@ -1,4 +1,4 @@
-# 2017-12-03 20:43:47.209774
+# 2017-12-04 12:08:01.134072
 # SECTION: 04_expressions
 # TEST: 10
 # INFO: Convert integer into double
@@ -7,8 +7,8 @@
 # STATE: FAIL
 # 
 # COMPILER STDERR:
-# symbol.c:268:retrieve_function_data(): Function not found
-# ERROR - 3 - sÃ©mantickÃ¡ chyba v programu â nedefinovanÃ¡ funkce/promeÌnnÃ¡, pokus o redefinici funkce/promeÌnnÃ©, atd.
+# Wrong types of operands!
+# ERROR -  4 - sÃ©mantickÃ¡ chyba typovÃ© kompatibility v aritmetickÃ½ch, rÌeteÌzcovÃ½ch a relacÌnÃ­ch vÃ½razech, prÌÃ­p. Å¡patnÃ½ pocÌet cÌi typ parametruÌ u volÃ¡nÃ­ funkce.
 # 
 # INTERPRETER STDERR:
 # 
@@ -25,7 +25,7 @@
 # 
 #
 # EXPECTED COMPILER EXIT CODE: 0
-# CURRENT COMPILER EXIT CODE: 3
+# CURRENT COMPILER EXIT CODE: 4
 # EXPECTED INTERPRETER EXIT CODE: 0
 # CURRENT INTERPRETER EXIT CODE: None
 # PRICE: ---
@@ -48,10 +48,35 @@
 
 ########################################
 
-token: 57 ...                                                                   #     1/7
-token: 9 ... function                                                           #     2/7
-.IFJcode17                                                                      #     3/7
-JUMP $$scope                                                                    #     4/7
-token: 35 ... foo                                                               #     6/7
-ERROR on line 2                                                                 #     7/7
+.IFJcode17                                                                      #     1/34
+JUMP $$scope                                                                    #     2/34
+rule_par                                                                        #     4/34
+rule next par                                                                   #     5/34
+rule_par                                                                        #     6/34
+rule next par                                                                   #     7/34
+LABEL $foo                                                                      #     8/34
+PUSHFRAME                                                                       #     9/34
+DEFVAR LF@&retval                                                               #    10/34
+MOVE LF@&retval GF@&pomInteger                                                  #    11/34
+POPFRAME                                                                        #    12/34
+RETURN                                                                          #    13/34
+LABEL $$scope                                                                   #    15/34
+DEFVAR GF@&pomInteger                                                           #    16/34
+MOVE GF@&pomInteger int@0                                                       #    17/34
+DEFVAR GF@&pomString                                                            #    18/34
+MOVE GF@&pomString string@                                                      #    19/34
+DEFVAR GF@&pomFloat                                                             #    20/34
+MOVE GF@&pomFloat float@0                                                       #    21/34
+DEFVAR GF@&pomBool                                                              #    22/34
+MOVE GF@&pomBool bool@false                                                     #    23/34
+DEFVAR GF@&pomCntr                                                              #    24/34
+MOVE GF@&pomCntr int@0                                                          #    25/34
+CREATEFRAME                                                                     #    26/34
+DEFVAR TF@a                                                                     #    28/34
+MOVE TF@a int@0                                                                 #    29/34
+MOVE GF@&pomInteger int@3                                                       #    30/34
+MOVE TF@a GF@&pomInteger                                                        #    31/34
+DEFVAR TF@b                                                                     #    32/34
+MOVE TF@b float@0                                                               #    33/34
+ERROR on line 11                                                                #    34/34
 

@@ -1,4 +1,4 @@
-# 2017-12-03 20:43:47.982368
+# 2017-12-04 12:08:01.474527
 # SECTION: 66_errors
 # TEST: 078
 # INFO: Declaration after scope
@@ -35,25 +35,19 @@
 
 ########################################
 
-token: 17 ... scope                                                             #     1/23
-.IFJcode17                                                                      #     2/23
-JUMP $$scope                                                                    #     3/23
-LABEL $$scope                                                                   #     5/23
-DEFVAR GF@&pomInteger                                                           #     6/23
-MOVE GF@&pomInteger int@0                                                       #     7/23
-DEFVAR GF@&pomString                                                            #     8/23
-MOVE GF@&pomString string@                                                      #     9/23
-DEFVAR GF@&pomFloat                                                             #    10/23
-MOVE GF@&pomFloat float@0                                                       #    11/23
-DEFVAR GF@&pomBool                                                              #    12/23
-MOVE GF@&pomBool bool@false                                                     #    13/23
-DEFVAR GF@&pomCntr                                                              #    14/23
-MOVE GF@&pomCntr int@0                                                          #    15/23
-CREATEFRAME                                                                     #    16/23
-token: 57 ...                                                                   #    18/23
-token: 7 ... end                                                                #    19/23
-token: 17 ... scope                                                             #    20/23
-token: 57 ...                                                                   #    21/23
-token: 2 ... declare                                                            #    22/23
-ERROR on line 3                                                                 #    23/23
+.IFJcode17                                                                      #     1/17
+JUMP $$scope                                                                    #     2/17
+LABEL $$scope                                                                   #     4/17
+DEFVAR GF@&pomInteger                                                           #     5/17
+MOVE GF@&pomInteger int@0                                                       #     6/17
+DEFVAR GF@&pomString                                                            #     7/17
+MOVE GF@&pomString string@                                                      #     8/17
+DEFVAR GF@&pomFloat                                                             #     9/17
+MOVE GF@&pomFloat float@0                                                       #    10/17
+DEFVAR GF@&pomBool                                                              #    11/17
+MOVE GF@&pomBool bool@false                                                     #    12/17
+DEFVAR GF@&pomCntr                                                              #    13/17
+MOVE GF@&pomCntr int@0                                                          #    14/17
+CREATEFRAME                                                                     #    15/17
+ERROR on line 3                                                                 #    17/17
 

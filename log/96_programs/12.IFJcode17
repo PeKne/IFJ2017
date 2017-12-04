@@ -1,4 +1,4 @@
-# 2017-12-03 20:43:48.780923
+# 2017-12-04 12:08:01.841917
 # SECTION: 96_programs
 # TEST: 12
 # INFO: Leap year
@@ -7,8 +7,7 @@
 # STATE: FAIL
 # 
 # COMPILER STDERR:
-# symbol.c:268:retrieve_function_data(): Function not found
-# ERROR - 3 - sÃ©mantickÃ¡ chyba v programu â nedefinovanÃ¡ funkce/promeÌnnÃ¡, pokus o redefinici funkce/promeÌnnÃ©, atd.
+# ERROR - 2 - chyba v programu v rÃ¡mci syntaktickÃ© analÃ½zy (chybnÃ¡ syntaxe programu).
 # 
 # INTERPRETER STDERR:
 # 
@@ -25,7 +24,7 @@
 # 2016
 #
 # EXPECTED COMPILER EXIT CODE: 0
-# CURRENT COMPILER EXIT CODE: 3
+# CURRENT COMPILER EXIT CODE: 2
 # EXPECTED INTERPRETER EXIT CODE: 0
 # CURRENT INTERPRETER EXIT CODE: None
 # PRICE: ---
@@ -74,31 +73,65 @@
 
 ########################################
 
-token: 57 ...                                                                   #     1/28
-token: 57 ...                                                                   #     2/28
-token: 2 ... declare                                                            #     3/28
-.IFJcode17                                                                      #     4/28
-JUMP $$scope                                                                    #     5/28
-token: 9 ... function                                                           #     7/28
-token: 35 ... modulo                                                            #     8/28
-token: 50 ... (                                                                 #     9/28
-token: 35 ... divident                                                          #    10/28
-rule_par                                                                        #    11/28
-token: 0 ... as                                                                 #    12/28
-token: 12 ... integer                                                           #    13/28
-token: 48 ... ,                                                                 #    14/28
-rule next par                                                                   #    15/28
-token: 35 ... divider                                                           #    16/28
-rule_par                                                                        #    17/28
-token: 0 ... as                                                                 #    18/28
-token: 12 ... integer                                                           #    19/28
-token: 51 ... )                                                                 #    20/28
-rule next par                                                                   #    21/28
-token: 0 ... as                                                                 #    22/28
-token: 12 ... integer                                                           #    23/28
-token: 57 ...                                                                   #    24/28
-token: 57 ...                                                                   #    25/28
-token: 9 ... function                                                           #    26/28
-token: 35 ... get_year                                                          #    27/28
-ERROR on line 5                                                                 #    28/28
+.IFJcode17                                                                      #     1/66
+JUMP $$scope                                                                    #     2/66
+rule_par                                                                        #     4/66
+rule next par                                                                   #     5/66
+rule_par                                                                        #     6/66
+rule next par                                                                   #     7/66
+rule_par                                                                        #     8/66
+LABEL $get_year                                                                 #     9/66
+PUSHFRAME                                                                       #    10/66
+DEFVAR LF@&retval                                                               #    11/66
+WRITE string@Enter\032a\032year:\032                                            #    12/66
+DEFVAR LF@year                                                                  #    13/66
+MOVE LF@year int@0                                                              #    14/66
+READ LF@year int                                                                #    15/66
+MOVE GF@&pomInteger LF@year                                                     #    16/66
+MOVE LF@&retval GF@&pomInteger                                                  #    17/66
+POPFRAME                                                                        #    18/66
+RETURN                                                                          #    19/66
+LABEL $modulo                                                                   #    21/66
+PUSHFRAME                                                                       #    22/66
+DEFVAR LF@&retval                                                               #    23/66
+DEFVAR LF@res                                                                   #    24/66
+MOVE LF@res int@0                                                               #    25/66
+MOVE GF@&pomInteger LF@divident                                                 #    26/66
+redukce                                                                         #    27/66
+MOVE GF@&pomCntr int@0                                                          #    29/66
+LABEL $$WholeDiv_Begin0                                                         #    30/66
+ADD GF@&pomCntr GF@&pomCntr int@1                                               #    31/66
+SUB GF@&pomInteger GF@&pomInteger LF@divider                                    #    32/66
+LT GF@&pomBool GF@&pomInteger int@0                                             #    33/66
+JUMPIFNEQ $$WholeDiv_Begin0 GF@&pomBool bool@true                               #    34/66
+SUB GF@&pomCntr GF@&pomCntr int@1                                               #    35/66
+MOVE GF@&pomInteger GF@&pomCntr                                                 #    36/66
+redukce                                                                         #    37/66
+MUL GF@&pomInteger GF@&pomInteger LF@divider                                    #    38/66
+redukce                                                                         #    39/66
+SUB GF@&pomInteger LF@divident GF@&pomInteger                                   #    40/66
+MOVE LF@res GF@&pomInteger                                                      #    41/66
+MOVE GF@&pomInteger LF@res                                                      #    42/66
+MOVE LF@&retval GF@&pomInteger                                                  #    43/66
+POPFRAME                                                                        #    44/66
+RETURN                                                                          #    45/66
+LABEL $$scope                                                                   #    47/66
+DEFVAR GF@&pomInteger                                                           #    48/66
+MOVE GF@&pomInteger int@0                                                       #    49/66
+DEFVAR GF@&pomString                                                            #    50/66
+MOVE GF@&pomString string@                                                      #    51/66
+DEFVAR GF@&pomFloat                                                             #    52/66
+MOVE GF@&pomFloat float@0                                                       #    53/66
+DEFVAR GF@&pomBool                                                              #    54/66
+MOVE GF@&pomBool bool@false                                                     #    55/66
+DEFVAR GF@&pomCntr                                                              #    56/66
+MOVE GF@&pomCntr int@0                                                          #    57/66
+CREATEFRAME                                                                     #    58/66
+DEFVAR TF@year                                                                  #    60/66
+MOVE TF@year int@0                                                              #    61/66
+CALL $get_year                                                                  #    62/66
+MOVE TF@year TF@&retval                                                         #    63/66
+DEFVAR TF@res                                                                   #    64/66
+MOVE TF@res int@0                                                               #    65/66
+ERROR on line 22                                                                #    66/66
 

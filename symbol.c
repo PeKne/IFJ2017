@@ -19,7 +19,7 @@ void set_type_variable(variable_data *data, Ttoken *token)
 			break;
 
 		default:
-			fprintf(stderr, "Variable type not known.");
+			debug_print("%s\n", "Variable type not known.");
 			break;
 	}
 }
@@ -33,7 +33,7 @@ void set_value_variable(variable_data *data, Ttoken *token)
 				data->inicialized = 1;
 				break;
 			} else {
-				fprintf(stderr, "Not correct value.\n");
+				debug_print("%s\n", "Not correct value.\n");
 				break;
 			}
 
@@ -43,7 +43,7 @@ void set_value_variable(variable_data *data, Ttoken *token)
 				data->inicialized = 1;
 				break;
 			} else {
-				fprintf(stderr, "Not corret value\n");
+				debug_print("%s\n", "Not corret value\n");
 				break;
 			}
 
@@ -53,7 +53,7 @@ void set_value_variable(variable_data *data, Ttoken *token)
 			break;
 
 		default:
-			fprintf(stderr, "Variable type not known.\n");
+			debug_print("%s\n", "Variable type not known.\n");
 			break;
 	}
 }
@@ -83,7 +83,7 @@ void set_return_type_function(function_data *data, Ttoken *token)
 			break;
 
 		default:
-			fprintf(stderr, "Variable type not known.");
+			debug_print("%s\n", "Variable type not known.");
 			break;
 	}
 }
@@ -99,7 +99,7 @@ int add_argument_function(function_data *data, Ttoken *token)
 	} 
 
 	if(data->arguments == NULL) {
-		fprintf(stderr, "Error allocating memory for argument data.");
+		debug_print("%s\n", "Error allocating memory for argument data.");
 
 		return 1;
 	}
@@ -126,7 +126,7 @@ void set_argument_type_function(function_data *data, Ttoken *token)
 			break;
 
 		default:
-			fprintf(stderr, "Variable type not known.");
+			debug_print("%s\n", "Variable type not known.");
 			break;
 	}
 }
@@ -155,7 +155,7 @@ void free_data_function(function_data *data)
 int variable_exist(char *variable_name)
 {
 	if((p == 1 ? global.local_sym : global.global_table) == NULL) {
-		fprintf(stderr, "global table not set\n");
+		debug_print("%s\n", "global table not set\n");
 
 		return 0;
 	}
@@ -163,7 +163,7 @@ int variable_exist(char *variable_name)
 	htab_listitem *item;
 	item = htab_find((p == 1 ? global.local_sym : global.global_table), variable_name);
 	if(item == NULL) {
-		fprintf(stderr, "Variable not found\n");
+		debug_print("%s\n", "Variable not found\n");
 
 		return 0;
 	}
@@ -176,7 +176,7 @@ int check_variable_type(char *variable_name, Tstate state)
 	htab_listitem *item;
 	item = htab_find((p == 1 ? global.local_sym : global.global_table), variable_name);
 	if(item == NULL) {
-		fprintf(stderr, "Variable not found\n");
+		debug_print("%s\n", "Variable not found\n");
 		return 0;
 	}
 
@@ -215,7 +215,7 @@ Tstate return_variable_type(char *variable_name)
 Tstate return_function_type(void)
 {
 	if(global.current_func_name == NULL) {
-		fprintf(stderr, "global.current_func_name not set\n");
+		debug_print("%s\n", "global.current_func_name not set\n");
 
 		return 0;
 	}
@@ -223,7 +223,7 @@ Tstate return_function_type(void)
 	htab_listitem *item;
 	item = htab_find(global.global_table, global.current_func_name);
 	if(item == NULL) {
-		fprintf(stderr, "Func not found\n");
+		debug_print("%s\n", "Func not found\n");
 
 		return 0;
 	}
@@ -245,7 +245,7 @@ int check_variable_inicialized(char *variable_name)
 	htab_listitem *item;
 	item = htab_find((p == 1 ? global.local_sym : global.global_table), variable_name);
 	if(item == NULL) {
-		fprintf(stderr, "Variable not found\n");
+		debug_print("%s\n", "Variable not found\n");
 
 		return 0;
 	}
@@ -260,7 +260,7 @@ int check_variable_inicialized(char *variable_name)
 int check_function_return_type(Tstate state)
 {
 	if(global.current_func_name == NULL) {
-		fprintf(stderr, "global.current_func_name not set\n");
+		debug_print("%s\n", "global.current_func_name not set\n");
 
 		return 0;
 	}
@@ -268,7 +268,7 @@ int check_function_return_type(Tstate state)
 	htab_listitem *item;
 	item = htab_find(global.global_table, global.current_func_name);
 	if(item == NULL) {
-		fprintf(stderr, "Func not found\n");
+		debug_print("%s\n", "Func not found\n");
 
 		return 0;
 	}
@@ -285,7 +285,7 @@ int check_function_return_type(Tstate state)
 int check_argument_count(unsigned count)
 {
 	if(global.current_func_name == NULL) {
-		fprintf(stderr, "global.current_func_name not set\n");
+		debug_print("%s\n", "global.current_func_name not set\n");
 
 		return 0;
 	}
@@ -293,7 +293,7 @@ int check_argument_count(unsigned count)
 	htab_listitem *item;
 	item = htab_find(global.global_table, global.current_func_name);
 	if(item == NULL) {
-		fprintf(stderr, "Func not found");
+		debug_print("%s\n", "Func not found");
 
 		return 0;
 	}
@@ -308,7 +308,7 @@ int check_argument_count(unsigned count)
 int check_argument_type(Tstate state, unsigned index)
 {
 	if(global.current_arguments == NULL) {
-		fprintf(stderr, "global.current_arguments not set\n");
+		debug_print("%s\n", "global.current_arguments not set\n");
 
 		return 0;
 	}
@@ -325,7 +325,7 @@ int check_argument_type(Tstate state, unsigned index)
 int check_argument_name(char *name, unsigned index)
 {
 	if(global.current_arguments == NULL) {
-		fprintf(stderr, "global.current_arguments not set.\n");
+		debug_print("%s\n", "global.current_arguments not set.\n");
 
 		return 0;
 	}
@@ -340,7 +340,7 @@ int check_argument_name(char *name, unsigned index)
 int check_defined_function(void) 
 {
 	if(global.current_func_name == NULL) {
-		fprintf(stderr, "global.current_func_name not set\b");
+		debug_print("%s\n", "global.current_func_name not set\b");
 
 		return 0;
 	}
@@ -348,7 +348,7 @@ int check_defined_function(void)
 	htab_listitem *item;
 	item = htab_find(global.global_table, global.current_func_name);
 	if(item == NULL) {
-		fprintf(stderr, "Func not found\n");
+		debug_print("%s\n", "Func not found\n");
 
 		return 0;
 	}

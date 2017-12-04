@@ -1,4 +1,4 @@
-# 2017-12-03 20:43:47.373519
+# 2017-12-04 12:08:01.234634
 # SECTION: 05_conditions
 # TEST: 09
 # INFO: Condition with implicit conversion
@@ -7,8 +7,8 @@
 # STATE: FAIL
 # 
 # COMPILER STDERR:
-# LEX: Line: 3: Int value didnt end properly!
-# ERROR - 1 - chyba v programu v rÃ¡mci lexikÃ¡lnÃ­ analÃ½zy (chybnÃ¡ struktura aktuÃ¡lnÃ­ho lexÃ©mu).
+# In if and loop statement can only be relational operators.
+# ERROR - 3 - sÃ©mantickÃ¡ chyba v programu â nedefinovanÃ¡ funkce/promeÌnnÃ¡, pokus o redefinici funkce/promeÌnnÃ©, atd.
 # 
 # INTERPRETER STDERR:
 # 
@@ -25,7 +25,7 @@
 # 
 #
 # EXPECTED COMPILER EXIT CODE: 0
-# CURRENT COMPILER EXIT CODE: 1
+# CURRENT COMPILER EXIT CODE: 3
 # EXPECTED INTERPRETER EXIT CODE: 0
 # CURRENT INTERPRETER EXIT CODE: None
 # PRICE: ---
@@ -42,30 +42,20 @@
 
 ########################################
 
-token: 57 ...                                                                   #     1/28
-token: 17 ... scope                                                             #     2/28
-.IFJcode17                                                                      #     3/28
-JUMP $$scope                                                                    #     4/28
-LABEL $$scope                                                                   #     6/28
-DEFVAR GF@&pomInteger                                                           #     7/28
-MOVE GF@&pomInteger int@0                                                       #     8/28
-DEFVAR GF@&pomString                                                            #     9/28
-MOVE GF@&pomString string@                                                      #    10/28
-DEFVAR GF@&pomFloat                                                             #    11/28
-MOVE GF@&pomFloat float@0                                                       #    12/28
-DEFVAR GF@&pomBool                                                              #    13/28
-MOVE GF@&pomBool bool@false                                                     #    14/28
-DEFVAR GF@&pomCntr                                                              #    15/28
-MOVE GF@&pomCntr int@0                                                          #    16/28
-CREATEFRAME                                                                     #    17/28
-token: 57 ...                                                                   #    19/28
-token: 10 ... if                                                                #    20/28
-token: 50 ... (                                                                 #    21/28
-|TOP--->|$|  SYMBOL                                                             #    22/28
-|TOP--->| |  STRING                                                             #    23/28
-token: 50 ... (                                                                 #    24/28
-|TOP--->|(|]|$|  SYMBOL                                                         #    25/28
-|TOP--->|(| | |  STRING                                                         #    26/28
-token: 59 ... 8                                                                 #    27/28
-ERROR on line 3                                                                 #    28/28
+.IFJcode17                                                                      #     1/18
+JUMP $$scope                                                                    #     2/18
+LABEL $$scope                                                                   #     4/18
+DEFVAR GF@&pomInteger                                                           #     5/18
+MOVE GF@&pomInteger int@0                                                       #     6/18
+DEFVAR GF@&pomString                                                            #     7/18
+MOVE GF@&pomString string@                                                      #     8/18
+DEFVAR GF@&pomFloat                                                             #     9/18
+MOVE GF@&pomFloat float@0                                                       #    10/18
+DEFVAR GF@&pomBool                                                              #    11/18
+MOVE GF@&pomBool bool@false                                                     #    12/18
+DEFVAR GF@&pomCntr                                                              #    13/18
+MOVE GF@&pomCntr int@0                                                          #    14/18
+CREATEFRAME                                                                     #    15/18
+redukce                                                                         #    17/18
+ERROR on line 3                                                                 #    18/18
 

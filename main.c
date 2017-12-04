@@ -24,8 +24,6 @@ int main() {
 
     token.t_line = 1;
 
-    //str_create(&gen_str);
-
     global_init();
 
     int parser;

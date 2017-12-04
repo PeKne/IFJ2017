@@ -1,4 +1,4 @@
-# 2017-12-03 20:43:48.789071
+# 2017-12-04 12:08:01.845109
 # SECTION: 96_programs
 # TEST: 15
 # INFO: Taylor polynom for log
@@ -7,8 +7,9 @@
 # STATE: FAIL
 # 
 # COMPILER STDERR:
-# symbol.c:268:retrieve_function_data(): Function not found
-# ERROR - 3 - sÃ©mantickÃ¡ chyba v programu â nedefinovanÃ¡ funkce/promeÌnnÃ¡, pokus o redefinici funkce/promeÌnnÃ©, atd.
+# Chyba v code_gen_expres LF@GF@&pomString LF@i LF@n
+# Chyba v code_gen_expres LF@GF@&pomString LF@i LF@n
+# ERROR - 2 - chyba v programu v rÃ¡mci syntaktickÃ© analÃ½zy (chybnÃ¡ syntaxe programu).
 # 
 # INTERPRETER STDERR:
 # 
@@ -27,7 +28,7 @@
 # 0.125
 #
 # EXPECTED COMPILER EXIT CODE: 0
-# CURRENT COMPILER EXIT CODE: 3
+# CURRENT COMPILER EXIT CODE: 2
 # EXPECTED INTERPRETER EXIT CODE: 0
 # CURRENT INTERPRETER EXIT CODE: None
 # PRICE: ---
@@ -75,11 +76,102 @@
 
 ########################################
 
-token: 57 ...                                                                   #     1/8
-token: 57 ...                                                                   #     2/8
-token: 9 ... function                                                           #     3/8
-.IFJcode17                                                                      #     4/8
-JUMP $$scope                                                                    #     5/8
-token: 35 ... taylor_log                                                        #     7/8
-ERROR on line 3                                                                 #     8/8
+.IFJcode17                                                                      #     1/101
+JUMP $$scope                                                                    #     2/101
+rule_par                                                                        #     4/101
+rule next par                                                                   #     5/101
+rule_par                                                                        #     6/101
+rule next par                                                                   #     7/101
+LABEL $taylor_log                                                               #     8/101
+PUSHFRAME                                                                       #     9/101
+DEFVAR LF@&retval                                                               #    10/101
+DEFVAR LF@result                                                                #    11/101
+MOVE LF@result float@0                                                          #    12/101
+DEFVAR LF@x_exp                                                                 #    13/101
+MOVE LF@x_exp float@0                                                           #    14/101
+MOVE GF@&pomFloat float@1.0                                                     #    15/101
+MOVE LF@x_exp GF@&pomFloat                                                      #    16/101
+DEFVAR LF@numerator_fraction                                                    #    17/101
+MOVE LF@numerator_fraction float@0                                              #    18/101
+DEFVAR LF@i                                                                     #    19/101
+MOVE LF@i int@0                                                                 #    20/101
+MOVE GF@&pomInteger int@1                                                       #    21/101
+MOVE LF@i GF@&pomInteger                                                        #    22/101
+MOVE GF@&pomFloat LF@x                                                          #    23/101
+redukce                                                                         #    24/101
+GT GF@&pomBool LF@x int@1                                                       #    25/101
+JUMPIFNEQ $$else_1 GF@&pomBool bool@true                                        #    26/101
+MOVE GF@&pomFloat LF@x                                                          #    27/101
+redukce                                                                         #    28/101
+SUB GF@&pomFloat LF@x float@1                                                   #    29/101
+redukce                                                                         #    30/101
+DIV GF@&pomFloat GF@&pomFloat LF@x                                              #    31/101
+MOVE LF@numerator_fraction GF@&pomFloat                                         #    32/101
+LABEL $$loop_1                                                                  #    33/101
+MOVE GF@&pomInteger LF@i                                                        #    34/101
+redukce                                                                         #    35/101
+JUMPIFNEQ $$loop_end_1 GF@&pomBool bool@true                                    #    36/101
+MOVE GF@&pomFloat LF@x_exp                                                      #    37/101
+redukce                                                                         #    38/101
+MUL GF@&pomFloat LF@x_exp LF@numerator_fraction                                 #    39/101
+MOVE LF@x_exp GF@&pomFloat                                                      #    40/101
+MOVE GF@&pomFloat LF@result                                                     #    41/101
+redukce                                                                         #    42/101
+DIV GF@&pomFloat LF@x_exp LF@i                                                  #    43/101
+redukce                                                                         #    44/101
+ADD GF@&pomFloat LF@result GF@&pomFloat                                         #    45/101
+MOVE LF@result GF@&pomFloat                                                     #    46/101
+MOVE GF@&pomInteger LF@i                                                        #    47/101
+redukce                                                                         #    48/101
+ADD GF@&pomInteger LF@i int@1                                                   #    49/101
+MOVE LF@i GF@&pomInteger                                                        #    50/101
+JUMP $$loop_1                                                                   #    51/101
+LABEL $$loop_end_1                                                              #    52/101
+JUMP $$endif_1                                                                  #    53/101
+LABEL $$else_1                                                                  #    54/101
+MOVE GF@&pomFloat float@1.0                                                     #    55/101
+redukce                                                                         #    56/101
+SUB GF@&pomFloat float@1.0 LF@x                                                 #    57/101
+MOVE LF@x GF@&pomFloat                                                          #    58/101
+LABEL $$loop_2                                                                  #    59/101
+MOVE GF@&pomInteger LF@i                                                        #    60/101
+redukce                                                                         #    61/101
+JUMPIFNEQ $$loop_end_2 GF@&pomBool bool@true                                    #    62/101
+MOVE GF@&pomFloat LF@x_exp                                                      #    63/101
+redukce                                                                         #    64/101
+MUL GF@&pomFloat LF@x_exp LF@x                                                  #    65/101
+MOVE LF@x_exp GF@&pomFloat                                                      #    66/101
+MOVE GF@&pomFloat LF@result                                                     #    67/101
+redukce                                                                         #    68/101
+DIV GF@&pomFloat LF@x_exp LF@i                                                  #    69/101
+redukce                                                                         #    70/101
+SUB GF@&pomFloat LF@result GF@&pomFloat                                         #    71/101
+MOVE LF@result GF@&pomFloat                                                     #    72/101
+MOVE GF@&pomInteger LF@i                                                        #    73/101
+redukce                                                                         #    74/101
+ADD GF@&pomInteger LF@i int@1                                                   #    75/101
+MOVE LF@i GF@&pomInteger                                                        #    76/101
+JUMP $$loop_2                                                                   #    77/101
+LABEL $$loop_end_2                                                              #    78/101
+LABEL $$endif_1                                                                 #    79/101
+MOVE GF@&pomFloat LF@result                                                     #    80/101
+MOVE LF@&retval GF@&pomFloat                                                    #    81/101
+POPFRAME                                                                        #    82/101
+RETURN                                                                          #    83/101
+LABEL $$scope                                                                   #    85/101
+DEFVAR GF@&pomInteger                                                           #    86/101
+MOVE GF@&pomInteger int@0                                                       #    87/101
+DEFVAR GF@&pomString                                                            #    88/101
+MOVE GF@&pomString string@                                                      #    89/101
+DEFVAR GF@&pomFloat                                                             #    90/101
+MOVE GF@&pomFloat float@0                                                       #    91/101
+DEFVAR GF@&pomBool                                                              #    92/101
+MOVE GF@&pomBool bool@false                                                     #    93/101
+DEFVAR GF@&pomCntr                                                              #    94/101
+MOVE GF@&pomCntr int@0                                                          #    95/101
+CREATEFRAME                                                                     #    96/101
+DEFVAR TF@d                                                                     #    98/101
+MOVE TF@d float@0                                                               #    99/101
+READ TF@d float                                                                 #   100/101
+ERROR on line 33                                                                #   101/101
 

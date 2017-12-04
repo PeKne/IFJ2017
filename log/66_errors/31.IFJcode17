@@ -1,4 +1,4 @@
-# 2017-12-03 20:43:47.730307
+# 2017-12-04 12:08:01.369758
 # SECTION: 66_errors
 # TEST: 31
 # INFO: Undefined variable
@@ -7,7 +7,7 @@
 # STATE: SUCCESS
 # 
 # COMPILER STDERR:
-# symbol.c:311:variable_exist(): Variable not found
+# Variable not found
 # Not defined variable
 # ERROR - 3 - sÃ©mantickÃ¡ chyba v programu â nedefinovanÃ¡ funkce/promeÌnnÃ¡, pokus o redefinici funkce/promeÌnnÃ©, atd.
 # 
@@ -41,31 +41,21 @@
 
 ########################################
 
-token: 57 ...                                                                   #     1/29
-token: 17 ... scope                                                             #     2/29
-.IFJcode17                                                                      #     3/29
-JUMP $$scope                                                                    #     4/29
-LABEL $$scope                                                                   #     6/29
-DEFVAR GF@&pomInteger                                                           #     7/29
-MOVE GF@&pomInteger int@0                                                       #     8/29
-DEFVAR GF@&pomString                                                            #     9/29
-MOVE GF@&pomString string@                                                      #    10/29
-DEFVAR GF@&pomFloat                                                             #    11/29
-MOVE GF@&pomFloat float@0                                                       #    12/29
-DEFVAR GF@&pomBool                                                              #    13/29
-MOVE GF@&pomBool bool@false                                                     #    14/29
-DEFVAR GF@&pomCntr                                                              #    15/29
-MOVE GF@&pomCntr int@0                                                          #    16/29
-CREATEFRAME                                                                     #    17/29
-token: 57 ...                                                                   #    19/29
-token: 57 ...                                                                   #    20/29
-token: 3 ... dim                                                                #    21/29
-token: 35 ... a                                                                 #    22/29
-token: 0 ... as                                                                 #    23/29
-token: 12 ... integer                                                           #    24/29
-token: 57 ...                                                                   #    25/29
-DEFVAR TF@a                                                                     #    26/29
-MOVE TF@a int@0                                                                 #    27/29
-token: 35 ... b                                                                 #    28/29
-ERROR on line 5                                                                 #    29/29
+.IFJcode17                                                                      #     1/19
+JUMP $$scope                                                                    #     2/19
+LABEL $$scope                                                                   #     4/19
+DEFVAR GF@&pomInteger                                                           #     5/19
+MOVE GF@&pomInteger int@0                                                       #     6/19
+DEFVAR GF@&pomString                                                            #     7/19
+MOVE GF@&pomString string@                                                      #     8/19
+DEFVAR GF@&pomFloat                                                             #     9/19
+MOVE GF@&pomFloat float@0                                                       #    10/19
+DEFVAR GF@&pomBool                                                              #    11/19
+MOVE GF@&pomBool bool@false                                                     #    12/19
+DEFVAR GF@&pomCntr                                                              #    13/19
+MOVE GF@&pomCntr int@0                                                          #    14/19
+CREATEFRAME                                                                     #    15/19
+DEFVAR TF@a                                                                     #    17/19
+MOVE TF@a int@0                                                                 #    18/19
+ERROR on line 5                                                                 #    19/19
 

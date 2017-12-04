@@ -1,4 +1,4 @@
-# 2017-12-03 20:43:47.061888
+# 2017-12-04 12:08:01.051835
 # SECTION: 02_functions
 # TEST: 40
 # INFO: Functions with implicit conversions
@@ -7,8 +7,7 @@
 # STATE: FAIL
 # 
 # COMPILER STDERR:
-# symbol.c:268:retrieve_function_data(): Function not found
-# ERROR - 3 - sÃ©mantickÃ¡ chyba v programu â nedefinovanÃ¡ funkce/promeÌnnÃ¡, pokus o redefinici funkce/promeÌnnÃ©, atd.
+# ERROR - 2 - chyba v programu v rÃ¡mci syntaktickÃ© analÃ½zy (chybnÃ¡ syntaxe programu).
 # 
 # INTERPRETER STDERR:
 # 
@@ -25,7 +24,7 @@
 # 
 #
 # EXPECTED COMPILER EXIT CODE: 0
-# CURRENT COMPILER EXIT CODE: 3
+# CURRENT COMPILER EXIT CODE: 2
 # EXPECTED INTERPRETER EXIT CODE: 0
 # CURRENT INTERPRETER EXIT CODE: None
 # PRICE: ---
@@ -47,22 +46,68 @@
 #  14: 
 #  15: scope
 #  16:     dim a as integer = 5.6
-#  17:     dim b as integer = foo1(2.9)
-#  18:     dim c as double = foo1(2.4)
-#  19:     dim d as double = foo2(2.4)
-#  20:     dim e as string = foo3(2.6)
-#  21:     dim f as integer = foo1(a)
-#  22: 
-#  23:     print a;b;c;d;e;f;
-#  24: end scope
+#  17:     dim b as integer
+#  18:     b = foo1(2.9)
+#  19:     dim c as double
+#  20:     c = foo1(2.4)
+#  21:     dim d as double
+#  22:     d = foo2(2.4)
+#  23:     dim e as string
+#  24:     e = foo3(2.6)
+#  25:     dim f as integer
+#  26:     f = foo1(a)
+#  27: 
+#  28:     print a;b;c;d;e;f;
+#  29: end scope
 
 ########################################
 
-token: 57 ...                                                                   #     1/8
-token: 57 ...                                                                   #     2/8
-token: 9 ... function                                                           #     3/8
-.IFJcode17                                                                      #     4/8
-JUMP $$scope                                                                    #     5/8
-token: 35 ... foo1                                                              #     7/8
-ERROR on line 3                                                                 #     8/8
+.IFJcode17                                                                      #     1/53
+JUMP $$scope                                                                    #     2/53
+rule_par                                                                        #     4/53
+rule next par                                                                   #     5/53
+LABEL $foo1                                                                     #     6/53
+PUSHFRAME                                                                       #     7/53
+DEFVAR LF@&retval                                                               #     8/53
+WRITE LF@a                                                                      #     9/53
+MOVE LF@&retval GF@&pomInteger                                                  #    10/53
+POPFRAME                                                                        #    11/53
+RETURN                                                                          #    12/53
+rule_par                                                                        #    14/53
+rule next par                                                                   #    15/53
+LABEL $foo2                                                                     #    16/53
+PUSHFRAME                                                                       #    17/53
+DEFVAR LF@&retval                                                               #    18/53
+WRITE LF@a                                                                      #    19/53
+MOVE LF@&retval GF@&pomFloat                                                    #    20/53
+POPFRAME                                                                        #    21/53
+RETURN                                                                          #    22/53
+rule_par                                                                        #    24/53
+rule next par                                                                   #    25/53
+LABEL $foo3                                                                     #    26/53
+PUSHFRAME                                                                       #    27/53
+DEFVAR LF@&retval                                                               #    28/53
+WRITE string@oy                                                                 #    29/53
+MOVE LF@&retval GF@&pomString                                                   #    30/53
+POPFRAME                                                                        #    31/53
+RETURN                                                                          #    32/53
+LABEL $$scope                                                                   #    34/53
+DEFVAR GF@&pomInteger                                                           #    35/53
+MOVE GF@&pomInteger int@0                                                       #    36/53
+DEFVAR GF@&pomString                                                            #    37/53
+MOVE GF@&pomString string@                                                      #    38/53
+DEFVAR GF@&pomFloat                                                             #    39/53
+MOVE GF@&pomFloat float@0                                                       #    40/53
+DEFVAR GF@&pomBool                                                              #    41/53
+MOVE GF@&pomBool bool@false                                                     #    42/53
+DEFVAR GF@&pomCntr                                                              #    43/53
+MOVE GF@&pomCntr int@0                                                          #    44/53
+CREATEFRAME                                                                     #    45/53
+DEFVAR TF@a                                                                     #    47/53
+MOVE TF@a int@0                                                                 #    48/53
+MOVE GF@&pomInteger int@6                                                       #    49/53
+MOVE TF@a GF@&pomInteger                                                        #    50/53
+DEFVAR TF@b                                                                     #    51/53
+MOVE TF@b int@0                                                                 #    52/53
+ERROR on line 18                                                                #    53/53
 

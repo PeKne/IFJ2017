@@ -1,4 +1,4 @@
-# 2017-12-03 20:43:45.326848
+# 2017-12-04 12:08:00.119877
 # SECTION: 01_basic
 # TEST: 21
 # INFO: Sčítačka
@@ -9,7 +9,7 @@
 # COMPILER STDERR:
 # 
 # INTERPRETER STDERR:
-# 1.1-5: syntax error, unexpected ID, expecting HEADER
+# 27.1-7: syntax error, unexpected ID, expecting END
 # 
 # EXPECTED INTERPRETER STDOUT:
 
@@ -51,117 +51,34 @@
 
 ########################################
 
-token: 57 ...                                                                   #     1/115
-token: 57 ...                                                                   #     2/115
-token: 57 ...                                                                   #     3/115
-token: 57 ...                                                                   #     4/115
-token: 17 ... scope                                                             #     5/115
-.IFJcode17                                                                      #     6/115
-JUMP $$scope                                                                    #     7/115
-LABEL $$scope                                                                   #     9/115
-DEFVAR GF@&pomInteger                                                           #    10/115
-MOVE GF@&pomInteger int@0                                                       #    11/115
-DEFVAR GF@&pomString                                                            #    12/115
-MOVE GF@&pomString string@                                                      #    13/115
-DEFVAR GF@&pomFloat                                                             #    14/115
-MOVE GF@&pomFloat float@0                                                       #    15/115
-DEFVAR GF@&pomBool                                                              #    16/115
-MOVE GF@&pomBool bool@false                                                     #    17/115
-DEFVAR GF@&pomCntr                                                              #    18/115
-MOVE GF@&pomCntr int@0                                                          #    19/115
-CREATEFRAME                                                                     #    20/115
-token: 57 ...                                                                   #    22/115
-token: 57 ...                                                                   #    23/115
-token: 3 ... dim                                                                #    24/115
-token: 35 ... a                                                                 #    25/115
-token: 0 ... as                                                                 #    26/115
-token: 12 ... integer                                                           #    27/115
-token: 57 ...                                                                   #    28/115
-DEFVAR TF@a                                                                     #    29/115
-MOVE TF@a int@0                                                                 #    30/115
-token: 3 ... dim                                                                #    31/115
-token: 35 ... b                                                                 #    32/115
-token: 0 ... as                                                                 #    33/115
-token: 12 ... integer                                                           #    34/115
-token: 57 ...                                                                   #    35/115
-DEFVAR TF@b                                                                     #    36/115
-MOVE TF@b int@0                                                                 #    37/115
-token: 3 ... dim                                                                #    38/115
-token: 35 ... c                                                                 #    39/115
-token: 0 ... as                                                                 #    40/115
-token: 12 ... integer                                                           #    41/115
-token: 57 ...                                                                   #    42/115
-DEFVAR TF@c                                                                     #    43/115
-MOVE TF@c int@0                                                                 #    44/115
-token: 11 ... input                                                             #    45/115
-token: 35 ... a                                                                 #    46/115
-READ TF@a int                                                                   #    47/115
-token: 57 ...                                                                   #    48/115
-token: 11 ... input                                                             #    49/115
-token: 35 ... b                                                                 #    50/115
-READ TF@b int                                                                   #    51/115
-token: 57 ...                                                                   #    52/115
-token: 11 ... input                                                             #    53/115
-token: 35 ... c                                                                 #    54/115
-READ TF@c int                                                                   #    55/115
-token: 57 ...                                                                   #    56/115
-token: 35 ... a                                                                 #    57/115
-token: 45 ... =                                                                 #    58/115
-token: 35 ... a                                                                 #    59/115
-|TOP--->|$|  SYMBOL                                                             #    60/115
-|TOP--->| |  STRING                                                             #    61/115
-token: 39 ... +                                                                 #    62/115
-|TOP--->|i|]|$|  SYMBOL                                                         #    63/115
-|TOP--->|a| | |  STRING                                                         #    64/115
-|TOP--->|i|  SYMBOL                                                             #    65/115
-|TOP--->|a|  STRING                                                             #    66/115
-MOVE GF@&pomInteger TF@a                                                        #    67/115
-|TOP--->|R|$|  SYMBOL                                                           #    68/115
-|TOP--->|a| |  STRING                                                           #    69/115
-token: 35 ... b                                                                 #    70/115
-|TOP--->|+|R|]|$|  SYMBOL                                                       #    71/115
-|TOP--->|+|a| | |  STRING                                                       #    72/115
-token: 39 ... +                                                                 #    73/115
-|TOP--->|i|]|+|R|]|$|  SYMBOL                                                   #    74/115
-|TOP--->|b| |+|a| | |  STRING                                                   #    75/115
-|TOP--->|i|  SYMBOL                                                             #    76/115
-|TOP--->|b|  STRING                                                             #    77/115
-|TOP--->|R|+|R|]|$|  SYMBOL                                                     #    78/115
-|TOP--->|b|+|a| | |  STRING                                                     #    79/115
-|TOP--->|R|+|R|  SYMBOL                                                         #    80/115
-|TOP--->|a|+|b|  STRING                                                         #    81/115
-redukce                                                                         #    82/115
-ADD GF@&pomInteger TF@a TF@b                                                    #    83/115
-|TOP--->|R|$|  SYMBOL                                                           #    84/115
-|TOP--->|GF@&pomInteger| |  STRING                                              #    85/115
-token: 35 ... c                                                                 #    86/115
-|TOP--->|+|R|]|$|  SYMBOL                                                       #    87/115
-|TOP--->|+|GF@&pomInteger| | |  STRING                                          #    88/115
-token: 57 ...                                                                   #    89/115
-|TOP--->|i|]|+|R|]|$|  SYMBOL                                                   #    90/115
-|TOP--->|c| |+|GF@&pomInteger| | |  STRING                                      #    91/115
-|TOP--->|i|  SYMBOL                                                             #    92/115
-|TOP--->|c|  STRING                                                             #    93/115
-|TOP--->|R|+|R|]|$|  SYMBOL                                                     #    94/115
-|TOP--->|c|+|GF@&pomInteger| | |  STRING                                        #    95/115
-|TOP--->|R|+|R|  SYMBOL                                                         #    96/115
-|TOP--->|GF@&pomInteger|+|c|  STRING                                            #    97/115
-redukce                                                                         #    98/115
-ADD GF@&pomInteger GF@&pomInteger TF@c                                          #    99/115
-MOVE TF@a GF@&pomInteger                                                        #   100/115
-token: 15 ... print                                                             #   101/115
-token: 35 ... a                                                                 #   102/115
-|TOP--->|$|  SYMBOL                                                             #   103/115
-|TOP--->| |  STRING                                                             #   104/115
-token: 47 ... ;                                                                 #   105/115
-|TOP--->|i|]|$|  SYMBOL                                                         #   106/115
-|TOP--->|a| | |  STRING                                                         #   107/115
-|TOP--->|i|  SYMBOL                                                             #   108/115
-|TOP--->|a|  STRING                                                             #   109/115
-WRITE TF@a                                                                      #   110/115
-token: 57 ...                                                                   #   111/115
-token: 57 ...                                                                   #   112/115
-token: 7 ... end                                                                #   113/115
-token: 17 ... scope                                                             #   114/115
-token: 58 ...                                                                   #   115/115
+.IFJcode17                                                                      #     1/32
+JUMP $$scope                                                                    #     2/32
+LABEL $$scope                                                                   #     4/32
+DEFVAR GF@&pomInteger                                                           #     5/32
+MOVE GF@&pomInteger int@0                                                       #     6/32
+DEFVAR GF@&pomString                                                            #     7/32
+MOVE GF@&pomString string@                                                      #     8/32
+DEFVAR GF@&pomFloat                                                             #     9/32
+MOVE GF@&pomFloat float@0                                                       #    10/32
+DEFVAR GF@&pomBool                                                              #    11/32
+MOVE GF@&pomBool bool@false                                                     #    12/32
+DEFVAR GF@&pomCntr                                                              #    13/32
+MOVE GF@&pomCntr int@0                                                          #    14/32
+CREATEFRAME                                                                     #    15/32
+DEFVAR TF@a                                                                     #    17/32
+MOVE TF@a int@0                                                                 #    18/32
+DEFVAR TF@b                                                                     #    19/32
+MOVE TF@b int@0                                                                 #    20/32
+DEFVAR TF@c                                                                     #    21/32
+MOVE TF@c int@0                                                                 #    22/32
+READ TF@a int                                                                   #    23/32
+READ TF@b int                                                                   #    24/32
+READ TF@c int                                                                   #    25/32
+MOVE GF@&pomInteger TF@a                                                        #    26/32
+redukce                                                                         #    27/32
+ADD GF@&pomInteger TF@a TF@b                                                    #    28/32
+redukce                                                                         #    29/32
+ADD GF@&pomInteger GF@&pomInteger TF@c                                          #    30/32
+MOVE TF@a GF@&pomInteger                                                        #    31/32
+WRITE TF@a                                                                      #    32/32
 

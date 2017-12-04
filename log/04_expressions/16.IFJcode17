@@ -1,4 +1,4 @@
-# 2017-12-03 20:43:47.238362
+# 2017-12-04 12:08:01.148112
 # SECTION: 04_expressions
 # TEST: 16
 # INFO: exp(x) 6 iteration with loop
@@ -9,7 +9,7 @@
 # COMPILER STDERR:
 # 
 # INTERPRETER STDERR:
-# 1.1-5: syntax error, unexpected ID, expecting HEADER
+# 33.1-7: syntax error, unexpected ID, expecting END
 # 
 # EXPECTED INTERPRETER STDOUT:
 
@@ -60,270 +60,58 @@
 
 ########################################
 
-token: 57 ...                                                                   #     1/268
-token: 57 ...                                                                   #     2/268
-token: 17 ... scope                                                             #     3/268
-.IFJcode17                                                                      #     4/268
-JUMP $$scope                                                                    #     5/268
-LABEL $$scope                                                                   #     7/268
-DEFVAR GF@&pomInteger                                                           #     8/268
-MOVE GF@&pomInteger int@0                                                       #     9/268
-DEFVAR GF@&pomString                                                            #    10/268
-MOVE GF@&pomString string@                                                      #    11/268
-DEFVAR GF@&pomFloat                                                             #    12/268
-MOVE GF@&pomFloat float@0                                                       #    13/268
-DEFVAR GF@&pomBool                                                              #    14/268
-MOVE GF@&pomBool bool@false                                                     #    15/268
-DEFVAR GF@&pomCntr                                                              #    16/268
-MOVE GF@&pomCntr int@0                                                          #    17/268
-CREATEFRAME                                                                     #    18/268
-token: 57 ...                                                                   #    20/268
-token: 57 ...                                                                   #    21/268
-token: 3 ... dim                                                                #    22/268
-token: 35 ... vysledek                                                          #    23/268
-token: 0 ... as                                                                 #    24/268
-token: 5 ... double                                                             #    25/268
-token: 57 ...                                                                   #    26/268
-DEFVAR TF@vysledek                                                              #    27/268
-MOVE TF@vysledek float@0                                                        #    28/268
-token: 3 ... dim                                                                #    29/268
-token: 35 ... citatel                                                           #    30/268
-token: 0 ... as                                                                 #    31/268
-token: 12 ... integer                                                           #    32/268
-token: 57 ...                                                                   #    33/268
-DEFVAR TF@citatel                                                               #    34/268
-MOVE TF@citatel int@0                                                           #    35/268
-token: 35 ... citatel                                                           #    36/268
-token: 45 ... =                                                                 #    37/268
-token: 53 ... 1                                                                 #    38/268
-|TOP--->|$|  SYMBOL                                                             #    39/268
-|TOP--->| |  STRING                                                             #    40/268
-token: 57 ...                                                                   #    41/268
-|TOP--->|int|]|$|  SYMBOL                                                       #    42/268
-|TOP--->|1| | |  STRING                                                         #    43/268
-|TOP--->|int|  SYMBOL                                                           #    44/268
-|TOP--->|1|  STRING                                                             #    45/268
-MOVE GF@&pomInteger int@1                                                       #    46/268
-MOVE TF@citatel GF@&pomInteger                                                  #    47/268
-token: 3 ... dim                                                                #    48/268
-token: 35 ... jmenovatel                                                        #    49/268
-token: 0 ... as                                                                 #    50/268
-token: 12 ... integer                                                           #    51/268
-token: 57 ...                                                                   #    52/268
-DEFVAR TF@jmenovatel                                                            #    53/268
-MOVE TF@jmenovatel int@0                                                        #    54/268
-token: 35 ... jmenovatel                                                        #    55/268
-token: 45 ... =                                                                 #    56/268
-token: 53 ... 1                                                                 #    57/268
-|TOP--->|$|  SYMBOL                                                             #    58/268
-|TOP--->| |  STRING                                                             #    59/268
-token: 57 ...                                                                   #    60/268
-|TOP--->|int|]|$|  SYMBOL                                                       #    61/268
-|TOP--->|1| | |  STRING                                                         #    62/268
-|TOP--->|int|  SYMBOL                                                           #    63/268
-|TOP--->|1|  STRING                                                             #    64/268
-MOVE GF@&pomInteger int@1                                                       #    65/268
-MOVE TF@jmenovatel GF@&pomInteger                                               #    66/268
-token: 57 ...                                                                   #    67/268
-token: 3 ... dim                                                                #    68/268
-token: 35 ... pocitadlo                                                         #    69/268
-token: 0 ... as                                                                 #    70/268
-token: 12 ... integer                                                           #    71/268
-token: 57 ...                                                                   #    72/268
-DEFVAR TF@pocitadlo                                                             #    73/268
-MOVE TF@pocitadlo int@0                                                         #    74/268
-token: 35 ... pocitadlo                                                         #    75/268
-token: 45 ... =                                                                 #    76/268
-token: 53 ... 1                                                                 #    77/268
-|TOP--->|$|  SYMBOL                                                             #    78/268
-|TOP--->| |  STRING                                                             #    79/268
-token: 57 ...                                                                   #    80/268
-|TOP--->|int|]|$|  SYMBOL                                                       #    81/268
-|TOP--->|1| | |  STRING                                                         #    82/268
-|TOP--->|int|  SYMBOL                                                           #    83/268
-|TOP--->|1|  STRING                                                             #    84/268
-MOVE GF@&pomInteger int@1                                                       #    85/268
-MOVE TF@pocitadlo GF@&pomInteger                                                #    86/268
-token: 57 ...                                                                   #    87/268
-token: 4 ... do                                                                 #    88/268
-token: 21 ... while                                                             #    89/268
-LABEL $$loop_1                                                                  #    90/268
-token: 35 ... pocitadlo                                                         #    91/268
-|TOP--->|$|  SYMBOL                                                             #    92/268
-|TOP--->| |  STRING                                                             #    93/268
-token: 41 ... <                                                                 #    94/268
-|TOP--->|i|]|$|  SYMBOL                                                         #    95/268
-|TOP--->|pocitadlo| | |  STRING                                                 #    96/268
-|TOP--->|i|  SYMBOL                                                             #    97/268
-|TOP--->|pocitadlo|  STRING                                                     #    98/268
-MOVE GF@&pomInteger TF@pocitadlo                                                #    99/268
-|TOP--->|R|$|  SYMBOL                                                           #   100/268
-|TOP--->|pocitadlo| |  STRING                                                   #   101/268
-token: 53 ... 7                                                                 #   102/268
-|TOP--->|<|R|]|$|  SYMBOL                                                       #   103/268
-|TOP--->|<|pocitadlo| | |  STRING                                               #   104/268
-token: 57 ...                                                                   #   105/268
-|TOP--->|int|]|<|R|]|$|  SYMBOL                                                 #   106/268
-|TOP--->|7| |<|pocitadlo| | |  STRING                                           #   107/268
-|TOP--->|int|  SYMBOL                                                           #   108/268
-|TOP--->|7|  STRING                                                             #   109/268
-|TOP--->|R|<|R|]|$|  SYMBOL                                                     #   110/268
-|TOP--->|7|<|pocitadlo| | |  STRING                                             #   111/268
-|TOP--->|R|<|R|  SYMBOL                                                         #   112/268
-|TOP--->|pocitadlo|<|7|  STRING                                                 #   113/268
-redukce                                                                         #   114/268
-LT GF@&pomBool TF@pocitadlo int@7                                               #   115/268
-JUMPIFNEQ $$loop_end_1 GF@&pomBool bool@true                                    #   116/268
-token: 57 ...                                                                   #   117/268
-token: 35 ... vysledek                                                          #   118/268
-token: 45 ... =                                                                 #   119/268
-token: 35 ... vysledek                                                          #   120/268
-|TOP--->|$|  SYMBOL                                                             #   121/268
-|TOP--->| |  STRING                                                             #   122/268
-token: 39 ... +                                                                 #   123/268
-|TOP--->|i|]|$|  SYMBOL                                                         #   124/268
-|TOP--->|vysledek| | |  STRING                                                  #   125/268
-|TOP--->|i|  SYMBOL                                                             #   126/268
-|TOP--->|vysledek|  STRING                                                      #   127/268
-MOVE GF@&pomFloat TF@vysledek                                                   #   128/268
-|TOP--->|R|$|  SYMBOL                                                           #   129/268
-|TOP--->|vysledek| |  STRING                                                    #   130/268
-token: 35 ... citatel                                                           #   131/268
-|TOP--->|+|R|]|$|  SYMBOL                                                       #   132/268
-|TOP--->|+|vysledek| | |  STRING                                                #   133/268
-token: 36 ... /                                                                 #   134/268
-|TOP--->|i|]|+|R|]|$|  SYMBOL                                                   #   135/268
-|TOP--->|citatel| |+|vysledek| | |  STRING                                      #   136/268
-|TOP--->|i|  SYMBOL                                                             #   137/268
-|TOP--->|citatel|  STRING                                                       #   138/268
-|TOP--->|R|+|R|]|$|  SYMBOL                                                     #   139/268
-|TOP--->|citatel|+|vysledek| | |  STRING                                        #   140/268
-token: 35 ... jmenovatel                                                        #   141/268
-|TOP--->|/|R|]|+|R|]|$|  SYMBOL                                                 #   142/268
-|TOP--->|/|citatel| |+|vysledek| | |  STRING                                    #   143/268
-token: 57 ...                                                                   #   144/268
-|TOP--->|i|]|/|R|]|+|R|]|$|  SYMBOL                                             #   145/268
-|TOP--->|jmenovatel| |/|citatel| |+|vysledek| | |  STRING                       #   146/268
-|TOP--->|i|  SYMBOL                                                             #   147/268
-|TOP--->|jmenovatel|  STRING                                                    #   148/268
-|TOP--->|R|/|R|]|+|R|]|$|  SYMBOL                                               #   149/268
-|TOP--->|jmenovatel|/|citatel| |+|vysledek| | |  STRING                         #   150/268
-|TOP--->|R|/|R|  SYMBOL                                                         #   151/268
-|TOP--->|citatel|/|jmenovatel|  STRING                                          #   152/268
-redukce                                                                         #   153/268
-DIV GF@&pomFloat TF@citatel TF@jmenovatel                                       #   154/268
-|TOP--->|R|+|R|]|$|  SYMBOL                                                     #   155/268
-|TOP--->|GF@&pomFloat|+|vysledek| | |  STRING                                   #   156/268
-|TOP--->|R|+|R|  SYMBOL                                                         #   157/268
-|TOP--->|vysledek|+|GF@&pomFloat|  STRING                                       #   158/268
-redukce                                                                         #   159/268
-ADD GF@&pomFloat TF@vysledek GF@&pomFloat                                       #   160/268
-MOVE TF@vysledek GF@&pomFloat                                                   #   161/268
-token: 57 ...                                                                   #   162/268
-token: 35 ... citatel                                                           #   163/268
-token: 45 ... =                                                                 #   164/268
-token: 35 ... citatel                                                           #   165/268
-|TOP--->|$|  SYMBOL                                                             #   166/268
-|TOP--->| |  STRING                                                             #   167/268
-token: 38 ... *                                                                 #   168/268
-|TOP--->|i|]|$|  SYMBOL                                                         #   169/268
-|TOP--->|citatel| | |  STRING                                                   #   170/268
-|TOP--->|i|  SYMBOL                                                             #   171/268
-|TOP--->|citatel|  STRING                                                       #   172/268
-MOVE GF@&pomInteger TF@citatel                                                  #   173/268
-|TOP--->|R|$|  SYMBOL                                                           #   174/268
-|TOP--->|citatel| |  STRING                                                     #   175/268
-token: 53 ... 2                                                                 #   176/268
-|TOP--->|*|R|]|$|  SYMBOL                                                       #   177/268
-|TOP--->|*|citatel| | |  STRING                                                 #   178/268
-token: 57 ...                                                                   #   179/268
-|TOP--->|int|]|*|R|]|$|  SYMBOL                                                 #   180/268
-|TOP--->|2| |*|citatel| | |  STRING                                             #   181/268
-|TOP--->|int|  SYMBOL                                                           #   182/268
-|TOP--->|2|  STRING                                                             #   183/268
-|TOP--->|R|*|R|]|$|  SYMBOL                                                     #   184/268
-|TOP--->|2|*|citatel| | |  STRING                                               #   185/268
-|TOP--->|R|*|R|  SYMBOL                                                         #   186/268
-|TOP--->|citatel|*|2|  STRING                                                   #   187/268
-redukce                                                                         #   188/268
-MUL GF@&pomInteger TF@citatel int@2                                             #   189/268
-MOVE TF@citatel GF@&pomInteger                                                  #   190/268
-token: 35 ... jmenovatel                                                        #   191/268
-token: 45 ... =                                                                 #   192/268
-token: 35 ... jmenovatel                                                        #   193/268
-|TOP--->|$|  SYMBOL                                                             #   194/268
-|TOP--->| |  STRING                                                             #   195/268
-token: 38 ... *                                                                 #   196/268
-|TOP--->|i|]|$|  SYMBOL                                                         #   197/268
-|TOP--->|jmenovatel| | |  STRING                                                #   198/268
-|TOP--->|i|  SYMBOL                                                             #   199/268
-|TOP--->|jmenovatel|  STRING                                                    #   200/268
-MOVE GF@&pomInteger TF@jmenovatel                                               #   201/268
-|TOP--->|R|$|  SYMBOL                                                           #   202/268
-|TOP--->|jmenovatel| |  STRING                                                  #   203/268
-token: 35 ... pocitadlo                                                         #   204/268
-|TOP--->|*|R|]|$|  SYMBOL                                                       #   205/268
-|TOP--->|*|jmenovatel| | |  STRING                                              #   206/268
-token: 57 ...                                                                   #   207/268
-|TOP--->|i|]|*|R|]|$|  SYMBOL                                                   #   208/268
-|TOP--->|pocitadlo| |*|jmenovatel| | |  STRING                                  #   209/268
-|TOP--->|i|  SYMBOL                                                             #   210/268
-|TOP--->|pocitadlo|  STRING                                                     #   211/268
-|TOP--->|R|*|R|]|$|  SYMBOL                                                     #   212/268
-|TOP--->|pocitadlo|*|jmenovatel| | |  STRING                                    #   213/268
-|TOP--->|R|*|R|  SYMBOL                                                         #   214/268
-|TOP--->|jmenovatel|*|pocitadlo|  STRING                                        #   215/268
-redukce                                                                         #   216/268
-MUL GF@&pomInteger TF@jmenovatel TF@pocitadlo                                   #   217/268
-MOVE TF@jmenovatel GF@&pomInteger                                               #   218/268
-token: 57 ...                                                                   #   219/268
-token: 35 ... pocitadlo                                                         #   220/268
-token: 45 ... =                                                                 #   221/268
-token: 35 ... pocitadlo                                                         #   222/268
-|TOP--->|$|  SYMBOL                                                             #   223/268
-|TOP--->| |  STRING                                                             #   224/268
-token: 39 ... +                                                                 #   225/268
-|TOP--->|i|]|$|  SYMBOL                                                         #   226/268
-|TOP--->|pocitadlo| | |  STRING                                                 #   227/268
-|TOP--->|i|  SYMBOL                                                             #   228/268
-|TOP--->|pocitadlo|  STRING                                                     #   229/268
-MOVE GF@&pomInteger TF@pocitadlo                                                #   230/268
-|TOP--->|R|$|  SYMBOL                                                           #   231/268
-|TOP--->|pocitadlo| |  STRING                                                   #   232/268
-token: 53 ... 1                                                                 #   233/268
-|TOP--->|+|R|]|$|  SYMBOL                                                       #   234/268
-|TOP--->|+|pocitadlo| | |  STRING                                               #   235/268
-token: 57 ...                                                                   #   236/268
-|TOP--->|int|]|+|R|]|$|  SYMBOL                                                 #   237/268
-|TOP--->|1| |+|pocitadlo| | |  STRING                                           #   238/268
-|TOP--->|int|  SYMBOL                                                           #   239/268
-|TOP--->|1|  STRING                                                             #   240/268
-|TOP--->|R|+|R|]|$|  SYMBOL                                                     #   241/268
-|TOP--->|1|+|pocitadlo| | |  STRING                                             #   242/268
-|TOP--->|R|+|R|  SYMBOL                                                         #   243/268
-|TOP--->|pocitadlo|+|1|  STRING                                                 #   244/268
-redukce                                                                         #   245/268
-ADD GF@&pomInteger TF@pocitadlo int@1                                           #   246/268
-MOVE TF@pocitadlo GF@&pomInteger                                                #   247/268
-token: 57 ...                                                                   #   248/268
-token: 14 ... loop                                                              #   249/268
-JUMP $$loop_1                                                                   #   250/268
-LABEL $$loop_end_1                                                              #   251/268
-token: 57 ...                                                                   #   252/268
-token: 57 ...                                                                   #   253/268
-token: 15 ... print                                                             #   254/268
-token: 35 ... vysledek                                                          #   255/268
-|TOP--->|$|  SYMBOL                                                             #   256/268
-|TOP--->| |  STRING                                                             #   257/268
-token: 47 ... ;                                                                 #   258/268
-|TOP--->|i|]|$|  SYMBOL                                                         #   259/268
-|TOP--->|vysledek| | |  STRING                                                  #   260/268
-|TOP--->|i|  SYMBOL                                                             #   261/268
-|TOP--->|vysledek|  STRING                                                      #   262/268
-WRITE TF@vysledek                                                               #   263/268
-token: 57 ...                                                                   #   264/268
-token: 57 ...                                                                   #   265/268
-token: 7 ... end                                                                #   266/268
-token: 17 ... scope                                                             #   267/268
-token: 58 ...                                                                   #   268/268
+.IFJcode17                                                                      #     1/56
+JUMP $$scope                                                                    #     2/56
+LABEL $$scope                                                                   #     4/56
+DEFVAR GF@&pomInteger                                                           #     5/56
+MOVE GF@&pomInteger int@0                                                       #     6/56
+DEFVAR GF@&pomString                                                            #     7/56
+MOVE GF@&pomString string@                                                      #     8/56
+DEFVAR GF@&pomFloat                                                             #     9/56
+MOVE GF@&pomFloat float@0                                                       #    10/56
+DEFVAR GF@&pomBool                                                              #    11/56
+MOVE GF@&pomBool bool@false                                                     #    12/56
+DEFVAR GF@&pomCntr                                                              #    13/56
+MOVE GF@&pomCntr int@0                                                          #    14/56
+CREATEFRAME                                                                     #    15/56
+DEFVAR TF@vysledek                                                              #    17/56
+MOVE TF@vysledek float@0                                                        #    18/56
+DEFVAR TF@citatel                                                               #    19/56
+MOVE TF@citatel int@0                                                           #    20/56
+MOVE GF@&pomInteger int@1                                                       #    21/56
+MOVE TF@citatel GF@&pomInteger                                                  #    22/56
+DEFVAR TF@jmenovatel                                                            #    23/56
+MOVE TF@jmenovatel int@0                                                        #    24/56
+MOVE GF@&pomInteger int@1                                                       #    25/56
+MOVE TF@jmenovatel GF@&pomInteger                                               #    26/56
+DEFVAR TF@pocitadlo                                                             #    27/56
+MOVE TF@pocitadlo int@0                                                         #    28/56
+MOVE GF@&pomInteger int@1                                                       #    29/56
+MOVE TF@pocitadlo GF@&pomInteger                                                #    30/56
+LABEL $$loop_1                                                                  #    31/56
+MOVE GF@&pomInteger TF@pocitadlo                                                #    32/56
+redukce                                                                         #    33/56
+LT GF@&pomBool TF@pocitadlo int@7                                               #    34/56
+JUMPIFNEQ $$loop_end_1 GF@&pomBool bool@true                                    #    35/56
+MOVE GF@&pomFloat TF@vysledek                                                   #    36/56
+redukce                                                                         #    37/56
+DIV GF@&pomFloat TF@citatel TF@jmenovatel                                       #    38/56
+redukce                                                                         #    39/56
+ADD GF@&pomFloat TF@vysledek GF@&pomFloat                                       #    40/56
+MOVE TF@vysledek GF@&pomFloat                                                   #    41/56
+MOVE GF@&pomInteger TF@citatel                                                  #    42/56
+redukce                                                                         #    43/56
+MUL GF@&pomInteger TF@citatel int@2                                             #    44/56
+MOVE TF@citatel GF@&pomInteger                                                  #    45/56
+MOVE GF@&pomInteger TF@jmenovatel                                               #    46/56
+redukce                                                                         #    47/56
+MUL GF@&pomInteger TF@jmenovatel TF@pocitadlo                                   #    48/56
+MOVE TF@jmenovatel GF@&pomInteger                                               #    49/56
+MOVE GF@&pomInteger TF@pocitadlo                                                #    50/56
+redukce                                                                         #    51/56
+ADD GF@&pomInteger TF@pocitadlo int@1                                           #    52/56
+MOVE TF@pocitadlo GF@&pomInteger                                                #    53/56
+JUMP $$loop_1                                                                   #    54/56
+LABEL $$loop_end_1                                                              #    55/56
+WRITE TF@vysledek                                                               #    56/56
 

@@ -1,4 +1,4 @@
-# 2017-12-03 20:43:46.933494
+# 2017-12-04 12:08:00.954929
 # SECTION: 01_basic
 # TEST: 008
 # INFO: Add two inputs
@@ -8,7 +8,7 @@
 # 
 # COMPILER STDERR:
 # In if and loop statement can only be relational operators.
-# ERROR -  6 - ostatnÃ­ sÃ©mantickÃ© chyby.
+# ERROR - 3 - sÃ©mantickÃ¡ chyba v programu â nedefinovanÃ¡ funkce/promeÌnnÃ¡, pokus o redefinici funkce/promeÌnnÃ©, atd.
 # 
 # INTERPRETER STDERR:
 # 
@@ -26,7 +26,7 @@
 # 24
 #
 # EXPECTED COMPILER EXIT CODE: 0
-# CURRENT COMPILER EXIT CODE: 6
+# CURRENT COMPILER EXIT CODE: 3
 # EXPECTED INTERPRETER EXIT CODE: 0
 # CURRENT INTERPRETER EXIT CODE: None
 # PRICE: ---
@@ -42,69 +42,28 @@
 
 ########################################
 
-token: 17 ... scope                                                             #     1/67
-.IFJcode17                                                                      #     2/67
-JUMP $$scope                                                                    #     3/67
-LABEL $$scope                                                                   #     5/67
-DEFVAR GF@&pomInteger                                                           #     6/67
-MOVE GF@&pomInteger int@0                                                       #     7/67
-DEFVAR GF@&pomString                                                            #     8/67
-MOVE GF@&pomString string@                                                      #     9/67
-DEFVAR GF@&pomFloat                                                             #    10/67
-MOVE GF@&pomFloat float@0                                                       #    11/67
-DEFVAR GF@&pomBool                                                              #    12/67
-MOVE GF@&pomBool bool@false                                                     #    13/67
-DEFVAR GF@&pomCntr                                                              #    14/67
-MOVE GF@&pomCntr int@0                                                          #    15/67
-CREATEFRAME                                                                     #    16/67
-token: 57 ...                                                                   #    18/67
-token: 3 ... dim                                                                #    19/67
-token: 35 ... a                                                                 #    20/67
-token: 0 ... as                                                                 #    21/67
-token: 12 ... integer                                                           #    22/67
-token: 57 ...                                                                   #    23/67
-DEFVAR TF@a                                                                     #    24/67
-MOVE TF@a int@0                                                                 #    25/67
-token: 3 ... dim                                                                #    26/67
-token: 35 ... b                                                                 #    27/67
-token: 0 ... as                                                                 #    28/67
-token: 12 ... integer                                                           #    29/67
-token: 57 ...                                                                   #    30/67
-DEFVAR TF@b                                                                     #    31/67
-MOVE TF@b int@0                                                                 #    32/67
-token: 11 ... input                                                             #    33/67
-token: 35 ... a                                                                 #    34/67
-READ TF@a int                                                                   #    35/67
-token: 57 ...                                                                   #    36/67
-token: 11 ... input                                                             #    37/67
-token: 35 ... b                                                                 #    38/67
-READ TF@b int                                                                   #    39/67
-token: 57 ...                                                                   #    40/67
-token: 15 ... print                                                             #    41/67
-token: 35 ... a                                                                 #    42/67
-|TOP--->|$|  SYMBOL                                                             #    43/67
-|TOP--->| |  STRING                                                             #    44/67
-token: 39 ... +                                                                 #    45/67
-|TOP--->|i|]|$|  SYMBOL                                                         #    46/67
-|TOP--->|a| | |  STRING                                                         #    47/67
-|TOP--->|i|  SYMBOL                                                             #    48/67
-|TOP--->|a|  STRING                                                             #    49/67
-WRITE TF@a                                                                      #    50/67
-|TOP--->|R|$|  SYMBOL                                                           #    51/67
-|TOP--->|a| |  STRING                                                           #    52/67
-token: 35 ... b                                                                 #    53/67
-|TOP--->|+|R|]|$|  SYMBOL                                                       #    54/67
-|TOP--->|+|a| | |  STRING                                                       #    55/67
-token: 47 ... ;                                                                 #    56/67
-|TOP--->|i|]|+|R|]|$|  SYMBOL                                                   #    57/67
-|TOP--->|b| |+|a| | |  STRING                                                   #    58/67
-|TOP--->|i|  SYMBOL                                                             #    59/67
-|TOP--->|b|  STRING                                                             #    60/67
-WRITE TF@b                                                                      #    61/67
-|TOP--->|R|+|R|]|$|  SYMBOL                                                     #    62/67
-|TOP--->|b|+|a| | |  STRING                                                     #    63/67
-|TOP--->|R|+|R|  SYMBOL                                                         #    64/67
-|TOP--->|a|+|b|  STRING                                                         #    65/67
-redukce                                                                         #    66/67
-ERROR on line 6                                                                 #    67/67
+.IFJcode17                                                                      #     1/26
+JUMP $$scope                                                                    #     2/26
+LABEL $$scope                                                                   #     4/26
+DEFVAR GF@&pomInteger                                                           #     5/26
+MOVE GF@&pomInteger int@0                                                       #     6/26
+DEFVAR GF@&pomString                                                            #     7/26
+MOVE GF@&pomString string@                                                      #     8/26
+DEFVAR GF@&pomFloat                                                             #     9/26
+MOVE GF@&pomFloat float@0                                                       #    10/26
+DEFVAR GF@&pomBool                                                              #    11/26
+MOVE GF@&pomBool bool@false                                                     #    12/26
+DEFVAR GF@&pomCntr                                                              #    13/26
+MOVE GF@&pomCntr int@0                                                          #    14/26
+CREATEFRAME                                                                     #    15/26
+DEFVAR TF@a                                                                     #    17/26
+MOVE TF@a int@0                                                                 #    18/26
+DEFVAR TF@b                                                                     #    19/26
+MOVE TF@b int@0                                                                 #    20/26
+READ TF@a int                                                                   #    21/26
+READ TF@b int                                                                   #    22/26
+WRITE TF@a                                                                      #    23/26
+WRITE TF@b                                                                      #    24/26
+redukce                                                                         #    25/26
+ERROR on line 6                                                                 #    26/26
 

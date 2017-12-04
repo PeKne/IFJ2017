@@ -1,4 +1,4 @@
-# 2017-12-03 20:43:46.993760
+# 2017-12-04 12:08:00.999852
 # SECTION: 02_functions
 # TEST: 13
 # INFO: calling multiple functions
@@ -7,8 +7,7 @@
 # STATE: FAIL
 # 
 # COMPILER STDERR:
-# symbol.c:268:retrieve_function_data(): Function not found
-# ERROR - 3 - sÃ©mantickÃ¡ chyba v programu â nedefinovanÃ¡ funkce/promeÌnnÃ¡, pokus o redefinici funkce/promeÌnnÃ©, atd.
+# ERROR -  4 - sÃ©mantickÃ¡ chyba typovÃ© kompatibility v aritmetickÃ½ch, rÌeteÌzcovÃ½ch a relacÌnÃ­ch vÃ½razech, prÌÃ­p. Å¡patnÃ½ pocÌet cÌi typ parametruÌ u volÃ¡nÃ­ funkce.
 # 
 # INTERPRETER STDERR:
 # 
@@ -25,7 +24,7 @@
 # 
 #
 # EXPECTED COMPILER EXIT CODE: 0
-# CURRENT COMPILER EXIT CODE: 3
+# CURRENT COMPILER EXIT CODE: 4
 # EXPECTED INTERPRETER EXIT CODE: 0
 # CURRENT INTERPRETER EXIT CODE: None
 # PRICE: ---
@@ -68,11 +67,31 @@
 
 ########################################
 
-token: 57 ...                                                                   #     1/8
-token: 57 ...                                                                   #     2/8
-token: 9 ... function                                                           #     3/8
-.IFJcode17                                                                      #     4/8
-JUMP $$scope                                                                    #     5/8
-token: 35 ... _add_two                                                          #     7/8
-ERROR on line 3                                                                 #     8/8
+.IFJcode17                                                                      #     1/29
+JUMP $$scope                                                                    #     2/29
+rule_par                                                                        #     4/29
+rule next par                                                                   #     5/29
+LABEL $_add_two                                                                 #     6/29
+PUSHFRAME                                                                       #     7/29
+DEFVAR LF@&retval                                                               #     8/29
+DEFVAR LF@res                                                                   #     9/29
+MOVE LF@res int@0                                                               #    10/29
+MOVE GF@&pomInteger int@0                                                       #    11/29
+redukce                                                                         #    12/29
+SUB GF@&pomInteger int@0 int@15                                                 #    13/29
+MOVE LF@res GF@&pomInteger                                                      #    14/29
+MOVE GF@&pomInteger LF@_                                                        #    15/29
+redukce                                                                         #    16/29
+ADD GF@&pomInteger LF@_ int@2                                                   #    17/29
+MOVE LF@res GF@&pomInteger                                                      #    18/29
+MOVE GF@&pomInteger LF@res                                                      #    19/29
+MOVE LF@&retval GF@&pomInteger                                                  #    20/29
+POPFRAME                                                                        #    21/29
+RETURN                                                                          #    22/29
+rule_par                                                                        #    24/29
+rule next par                                                                   #    25/29
+rule_par                                                                        #    26/29
+rule next par                                                                   #    27/29
+Nezhoduje sa meno argumentu 1                                                   #    28/29
+ERROR on line 11                                                                #    29/29
 

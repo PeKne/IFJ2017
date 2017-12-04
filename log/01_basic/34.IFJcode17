@@ -1,24 +1,73 @@
-# 2017-12-03 20:43:46.905508
+# 2017-12-04 12:08:00.929166
 # SECTION: 01_basic
 # TEST: 34
 # INFO: _ as variable name
 # REQUIRED EXTENSIONS: 
 # ACTIVATED EXTENSIONS: 
-# STATE: FAIL
+# STATE: SUCCESS
 # 
 # COMPILER STDERR:
 # 
 # INTERPRETER STDERR:
-# 1.1-5: syntax error, unexpected ID, expecting HEADER
+# Executing instruction: IJUMP at line: 2 with following arguments:
+# Executing instruction: ILABEL at line: 4 with following arguments:
+# Executing instruction: IDEFVAR at line: 5 with following arguments:
+# Dest: GF@&pomInteger
+# Executing instruction: IMOVE at line: 6 with following arguments:
+# Arg1: Const@=0(int)
+# Dest: GF@&pomInteger()
+# Executing instruction: IDEFVAR at line: 7 with following arguments:
+# Dest: GF@&pomString
+# Executing instruction: IMOVE at line: 8 with following arguments:
+# Arg1: Const@=(string)
+# Dest: GF@&pomString()
+# Executing instruction: IDEFVAR at line: 9 with following arguments:
+# Dest: GF@&pomFloat
+# Executing instruction: IMOVE at line: 10 with following arguments:
+# Arg1: Const@=0(double)
+# Dest: GF@&pomFloat()
+# Executing instruction: IDEFVAR at line: 11 with following arguments:
+# Dest: GF@&pomBool
+# Executing instruction: IMOVE at line: 12 with following arguments:
+# Arg1: Const@=false(bool)
+# Dest: GF@&pomBool()
+# Executing instruction: IDEFVAR at line: 13 with following arguments:
+# Dest: GF@&pomCntr
+# Executing instruction: IMOVE at line: 14 with following arguments:
+# Arg1: Const@=0(int)
+# Dest: GF@&pomCntr()
+# Executing instruction: ICREATEFRAME at line: 15 with following arguments:
+# Executing instruction: IDEFVAR at line: 17 with following arguments:
+# Dest: TF@_
+# Executing instruction: IMOVE at line: 18 with following arguments:
+# Arg1: Const@=0(int)
+# Dest: TF@_()
+# Executing instruction: IMOVE at line: 19 with following arguments:
+# Arg1: Const@=6(int)
+# Dest: GF@&pomInteger=0(int)
+# Executing instruction: IMOVE at line: 20 with following arguments:
+# Arg1: GF@&pomInteger=6(int)
+# Dest: TF@_=0(int)
+# Executing instruction: IDEFVAR at line: 21 with following arguments:
+# Dest: TF@__
+# Executing instruction: IMOVE at line: 22 with following arguments:
+# Arg1: Const@=0(double)
+# Dest: TF@__()
+# Executing instruction: IMOVE at line: 23 with following arguments:
+# Arg1: Const@=5(double)
+# Dest: GF@&pomFloat=0(double)
+# Executing instruction: IMOVE at line: 24 with following arguments:
+# Arg1: GF@&pomFloat=5(double)
+# Dest: TF@__=0(double)
+# Executing instruction: IWRITE at line: 25 with following arguments:
+# Arg1: TF@_=6(int)
+# Executing instruction: IWRITE at line: 26 with following arguments:
+# Arg1: TF@__=5(double)
+# Executing instruction: IGROOT at line: 28 with following arguments:
+# I am Groot at 28 (127).
 # 
-# EXPECTED INTERPRETER STDOUT:
-
-#  6 5
-
-
-# CURRENT INTERPRETER STDOUT:
-
-
+# STDOUT DIFF:
+# 
 
 # INTERPRETER STDIN: 
 # 
@@ -26,9 +75,9 @@
 # EXPECTED COMPILER EXIT CODE: 0
 # CURRENT COMPILER EXIT CODE: 0
 # EXPECTED INTERPRETER EXIT CODE: 0
-# CURRENT INTERPRETER EXIT CODE: 51
-# PRICE: ---
-# GROOT: ---
+# CURRENT INTERPRETER EXIT CODE: 0
+# PRICE: 127 (30+97)
+# GROOT: 127
 # 
 #   1: ' _ as variable name
 #   2: 
@@ -40,79 +89,28 @@
 
 ########################################
 
-token: 57 ...                                                                   #     1/77
-token: 57 ...                                                                   #     2/77
-token: 17 ... scope                                                             #     3/77
-.IFJcode17                                                                      #     4/77
-JUMP $$scope                                                                    #     5/77
-LABEL $$scope                                                                   #     7/77
-DEFVAR GF@&pomInteger                                                           #     8/77
-MOVE GF@&pomInteger int@0                                                       #     9/77
-DEFVAR GF@&pomString                                                            #    10/77
-MOVE GF@&pomString string@                                                      #    11/77
-DEFVAR GF@&pomFloat                                                             #    12/77
-MOVE GF@&pomFloat float@0                                                       #    13/77
-DEFVAR GF@&pomBool                                                              #    14/77
-MOVE GF@&pomBool bool@false                                                     #    15/77
-DEFVAR GF@&pomCntr                                                              #    16/77
-MOVE GF@&pomCntr int@0                                                          #    17/77
-CREATEFRAME                                                                     #    18/77
-token: 57 ...                                                                   #    20/77
-token: 3 ... dim                                                                #    21/77
-token: 35 ... _                                                                 #    22/77
-token: 0 ... as                                                                 #    23/77
-token: 12 ... integer                                                           #    24/77
-token: 45 ... =                                                                 #    25/77
-DEFVAR TF@_                                                                     #    26/77
-MOVE TF@_ int@0                                                                 #    27/77
-token: 54 ... 6.5                                                               #    28/77
-|TOP--->|$|  SYMBOL                                                             #    29/77
-|TOP--->| |  STRING                                                             #    30/77
-token: 57 ...                                                                   #    31/77
-|TOP--->|double|]|$|  SYMBOL                                                    #    32/77
-|TOP--->|6.5| | |  STRING                                                       #    33/77
-|TOP--->|double|  SYMBOL                                                        #    34/77
-|TOP--->|6.5|  STRING                                                           #    35/77
-MOVE GF@&pomInteger int@6                                                       #    36/77
-MOVE TF@_ GF@&pomInteger                                                        #    37/77
-token: 3 ... dim                                                                #    38/77
-token: 35 ... __                                                                #    39/77
-token: 0 ... as                                                                 #    40/77
-token: 5 ... double                                                             #    41/77
-token: 45 ... =                                                                 #    42/77
-DEFVAR TF@__                                                                    #    43/77
-MOVE TF@__ float@0                                                              #    44/77
-token: 53 ... 5                                                                 #    45/77
-|TOP--->|$|  SYMBOL                                                             #    46/77
-|TOP--->| |  STRING                                                             #    47/77
-token: 57 ...                                                                   #    48/77
-|TOP--->|int|]|$|  SYMBOL                                                       #    49/77
-|TOP--->|5| | |  STRING                                                         #    50/77
-|TOP--->|int|  SYMBOL                                                           #    51/77
-|TOP--->|5|  STRING                                                             #    52/77
-MOVE GF@&pomFloat float@5.0                                                     #    53/77
-MOVE TF@__ GF@&pomFloat                                                         #    54/77
-token: 15 ... print                                                             #    55/77
-token: 35 ... _                                                                 #    56/77
-|TOP--->|$|  SYMBOL                                                             #    57/77
-|TOP--->| |  STRING                                                             #    58/77
-token: 47 ... ;                                                                 #    59/77
-|TOP--->|i|]|$|  SYMBOL                                                         #    60/77
-|TOP--->|_| | |  STRING                                                         #    61/77
-|TOP--->|i|  SYMBOL                                                             #    62/77
-|TOP--->|_|  STRING                                                             #    63/77
-WRITE TF@_                                                                      #    64/77
-token: 35 ... __                                                                #    65/77
-|TOP--->|$|  SYMBOL                                                             #    66/77
-|TOP--->| |  STRING                                                             #    67/77
-token: 47 ... ;                                                                 #    68/77
-|TOP--->|i|]|$|  SYMBOL                                                         #    69/77
-|TOP--->|__| | |  STRING                                                        #    70/77
-|TOP--->|i|  SYMBOL                                                             #    71/77
-|TOP--->|__|  STRING                                                            #    72/77
-WRITE TF@__                                                                     #    73/77
-token: 57 ...                                                                   #    74/77
-token: 7 ... end                                                                #    75/77
-token: 17 ... scope                                                             #    76/77
-token: 58 ...                                                                   #    77/77
+.IFJcode17                                                                      #     1/26
+JUMP $$scope                                                                    #     2/26
+LABEL $$scope                                                                   #     4/26
+DEFVAR GF@&pomInteger                                                           #     5/26
+MOVE GF@&pomInteger int@0                                                       #     6/26
+DEFVAR GF@&pomString                                                            #     7/26
+MOVE GF@&pomString string@                                                      #     8/26
+DEFVAR GF@&pomFloat                                                             #     9/26
+MOVE GF@&pomFloat float@0                                                       #    10/26
+DEFVAR GF@&pomBool                                                              #    11/26
+MOVE GF@&pomBool bool@false                                                     #    12/26
+DEFVAR GF@&pomCntr                                                              #    13/26
+MOVE GF@&pomCntr int@0                                                          #    14/26
+CREATEFRAME                                                                     #    15/26
+DEFVAR TF@_                                                                     #    17/26
+MOVE TF@_ int@0                                                                 #    18/26
+MOVE GF@&pomInteger int@6                                                       #    19/26
+MOVE TF@_ GF@&pomInteger                                                        #    20/26
+DEFVAR TF@__                                                                    #    21/26
+MOVE TF@__ float@0                                                              #    22/26
+MOVE GF@&pomFloat float@5.0                                                     #    23/26
+MOVE TF@__ GF@&pomFloat                                                         #    24/26
+WRITE TF@_                                                                      #    25/26
+WRITE TF@__                                                                     #    26/26
 

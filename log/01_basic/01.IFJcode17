@@ -1,15 +1,44 @@
-# 2017-12-03 20:43:45.269142
+# 2017-12-04 12:08:00.048654
 # SECTION: 01_basic
 # TEST: 01
 # INFO: single scope without any statements
 # REQUIRED EXTENSIONS: 
 # ACTIVATED EXTENSIONS: 
-# STATE: FAIL
+# STATE: SUCCESS
 # 
 # COMPILER STDERR:
 # 
 # INTERPRETER STDERR:
-# 1.1-5: syntax error, unexpected ID, expecting HEADER
+# Executing instruction: IJUMP at line: 2 with following arguments:
+# Executing instruction: ILABEL at line: 4 with following arguments:
+# Executing instruction: IDEFVAR at line: 5 with following arguments:
+# Dest: GF@&pomInteger
+# Executing instruction: IMOVE at line: 6 with following arguments:
+# Arg1: Const@=0(int)
+# Dest: GF@&pomInteger()
+# Executing instruction: IDEFVAR at line: 7 with following arguments:
+# Dest: GF@&pomString
+# Executing instruction: IMOVE at line: 8 with following arguments:
+# Arg1: Const@=(string)
+# Dest: GF@&pomString()
+# Executing instruction: IDEFVAR at line: 9 with following arguments:
+# Dest: GF@&pomFloat
+# Executing instruction: IMOVE at line: 10 with following arguments:
+# Arg1: Const@=0(double)
+# Dest: GF@&pomFloat()
+# Executing instruction: IDEFVAR at line: 11 with following arguments:
+# Dest: GF@&pomBool
+# Executing instruction: IMOVE at line: 12 with following arguments:
+# Arg1: Const@=false(bool)
+# Dest: GF@&pomBool()
+# Executing instruction: IDEFVAR at line: 13 with following arguments:
+# Dest: GF@&pomCntr
+# Executing instruction: IMOVE at line: 14 with following arguments:
+# Arg1: Const@=0(int)
+# Dest: GF@&pomCntr()
+# Executing instruction: ICREATEFRAME at line: 15 with following arguments:
+# Executing instruction: IGROOT at line: 18 with following arguments:
+# I am Groot at 18 (59).
 # 
 # EXPECTED INTERPRETER STDOUT:
 
@@ -25,9 +54,9 @@
 # EXPECTED COMPILER EXIT CODE: 0
 # CURRENT COMPILER EXIT CODE: 0
 # EXPECTED INTERPRETER EXIT CODE: 0
-# CURRENT INTERPRETER EXIT CODE: 51
-# PRICE: ---
-# GROOT: ---
+# CURRENT INTERPRETER EXIT CODE: 0
+# PRICE: 59 (14+45)
+# GROOT: 59
 # 
 #   1: ' single scope without any statements
 #   2: SCOPE
@@ -35,24 +64,18 @@
 
 ########################################
 
-token: 57 ...                                                                   #     1/22
-token: 17 ... scope                                                             #     2/22
-.IFJcode17                                                                      #     3/22
-JUMP $$scope                                                                    #     4/22
-LABEL $$scope                                                                   #     6/22
-DEFVAR GF@&pomInteger                                                           #     7/22
-MOVE GF@&pomInteger int@0                                                       #     8/22
-DEFVAR GF@&pomString                                                            #     9/22
-MOVE GF@&pomString string@                                                      #    10/22
-DEFVAR GF@&pomFloat                                                             #    11/22
-MOVE GF@&pomFloat float@0                                                       #    12/22
-DEFVAR GF@&pomBool                                                              #    13/22
-MOVE GF@&pomBool bool@false                                                     #    14/22
-DEFVAR GF@&pomCntr                                                              #    15/22
-MOVE GF@&pomCntr int@0                                                          #    16/22
-CREATEFRAME                                                                     #    17/22
-token: 57 ...                                                                   #    19/22
-token: 7 ... end                                                                #    20/22
-token: 17 ... scope                                                             #    21/22
-token: 58 ...                                                                   #    22/22
+.IFJcode17                                                                      #     1/16
+JUMP $$scope                                                                    #     2/16
+LABEL $$scope                                                                   #     4/16
+DEFVAR GF@&pomInteger                                                           #     5/16
+MOVE GF@&pomInteger int@0                                                       #     6/16
+DEFVAR GF@&pomString                                                            #     7/16
+MOVE GF@&pomString string@                                                      #     8/16
+DEFVAR GF@&pomFloat                                                             #     9/16
+MOVE GF@&pomFloat float@0                                                       #    10/16
+DEFVAR GF@&pomBool                                                              #    11/16
+MOVE GF@&pomBool bool@false                                                     #    12/16
+DEFVAR GF@&pomCntr                                                              #    13/16
+MOVE GF@&pomCntr int@0                                                          #    14/16
+CREATEFRAME                                                                     #    15/16
 

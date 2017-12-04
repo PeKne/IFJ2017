@@ -1,4 +1,4 @@
-# 2017-12-03 20:43:47.421286
+# 2017-12-04 12:08:01.264083
 # SECTION: 06_loops
 # TEST: 19
 # INFO: substr in loop
@@ -52,59 +52,27 @@
 
 ########################################
 
-token: 57 ...                                                                   #     1/57
-token: 57 ...                                                                   #     2/57
-token: 17 ... scope                                                             #     3/57
-.IFJcode17                                                                      #     4/57
-JUMP $$scope                                                                    #     5/57
-LABEL $$scope                                                                   #     7/57
-DEFVAR GF@&pomInteger                                                           #     8/57
-MOVE GF@&pomInteger int@0                                                       #     9/57
-DEFVAR GF@&pomString                                                            #    10/57
-MOVE GF@&pomString string@                                                      #    11/57
-DEFVAR GF@&pomFloat                                                             #    12/57
-MOVE GF@&pomFloat float@0                                                       #    13/57
-DEFVAR GF@&pomBool                                                              #    14/57
-MOVE GF@&pomBool bool@false                                                     #    15/57
-DEFVAR GF@&pomCntr                                                              #    16/57
-MOVE GF@&pomCntr int@0                                                          #    17/57
-CREATEFRAME                                                                     #    18/57
-token: 57 ...                                                                   #    20/57
-token: 3 ... dim                                                                #    21/57
-token: 35 ... a                                                                 #    22/57
-token: 0 ... as                                                                 #    23/57
-token: 18 ... string                                                            #    24/57
-token: 57 ...                                                                   #    25/57
-DEFVAR TF@a                                                                     #    26/57
-MOVE TF@a string@                                                               #    27/57
-token: 3 ... dim                                                                #    28/57
-token: 35 ... a_len                                                             #    29/57
-token: 0 ... as                                                                 #    30/57
-token: 12 ... integer                                                           #    31/57
-token: 57 ...                                                                   #    32/57
-DEFVAR TF@a_len                                                                 #    33/57
-MOVE TF@a_len int@0                                                             #    34/57
-token: 3 ... dim                                                                #    35/57
-token: 35 ... res                                                               #    36/57
-token: 0 ... as                                                                 #    37/57
-token: 18 ... string                                                            #    38/57
-token: 57 ...                                                                   #    39/57
-DEFVAR TF@res                                                                   #    40/57
-MOVE TF@res string@                                                             #    41/57
-token: 35 ... a                                                                 #    42/57
-token: 45 ... =                                                                 #    43/57
-token: 52 ... hgdfh_DFGkf5665678                                                #    44/57
-|TOP--->|$|  SYMBOL                                                             #    45/57
-|TOP--->| |  STRING                                                             #    46/57
-token: 57 ...                                                                   #    47/57
-|TOP--->|str|]|$|  SYMBOL                                                       #    48/57
-|TOP--->|hgdfh_DFGkf5665678| | |  STRING                                        #    49/57
-|TOP--->|str|  SYMBOL                                                           #    50/57
-|TOP--->|hgdfh_DFGkf5665678|  STRING                                            #    51/57
-MOVE GF@&pomString string@hgdfh_DFGkf5665678                                    #    52/57
-MOVE TF@a GF@&pomString                                                         #    53/57
-token: 35 ... a_len                                                             #    54/57
-token: 45 ... =                                                                 #    55/57
-token: 13 ... length                                                            #    56/57
-ERROR on line 8                                                                 #    57/57
+.IFJcode17                                                                      #     1/25
+JUMP $$scope                                                                    #     2/25
+LABEL $$scope                                                                   #     4/25
+DEFVAR GF@&pomInteger                                                           #     5/25
+MOVE GF@&pomInteger int@0                                                       #     6/25
+DEFVAR GF@&pomString                                                            #     7/25
+MOVE GF@&pomString string@                                                      #     8/25
+DEFVAR GF@&pomFloat                                                             #     9/25
+MOVE GF@&pomFloat float@0                                                       #    10/25
+DEFVAR GF@&pomBool                                                              #    11/25
+MOVE GF@&pomBool bool@false                                                     #    12/25
+DEFVAR GF@&pomCntr                                                              #    13/25
+MOVE GF@&pomCntr int@0                                                          #    14/25
+CREATEFRAME                                                                     #    15/25
+DEFVAR TF@a                                                                     #    17/25
+MOVE TF@a string@                                                               #    18/25
+DEFVAR TF@a_len                                                                 #    19/25
+MOVE TF@a_len int@0                                                             #    20/25
+DEFVAR TF@res                                                                   #    21/25
+MOVE TF@res string@                                                             #    22/25
+MOVE GF@&pomString string@hgdfh_DFGkf5665678                                    #    23/25
+MOVE TF@a GF@&pomString                                                         #    24/25
+ERROR on line 8                                                                 #    25/25
 
