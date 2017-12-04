@@ -1,4 +1,4 @@
-# 2017-12-03 20:43:46.970496
+# 2017-12-04 12:08:00.985687
 # SECTION: 02_functions
 # TEST: 07
 # INFO: function params with declaration but invalid count
@@ -40,38 +40,14 @@
 
 ########################################
 
-token: 57 ...                                                                   #     1/35
-token: 2 ... declare                                                            #     2/35
-.IFJcode17                                                                      #     3/35
-JUMP $$scope                                                                    #     4/35
-token: 9 ... function                                                           #     6/35
-token: 35 ... bar                                                               #     7/35
-token: 50 ... (                                                                 #     8/35
-token: 35 ... h                                                                 #     9/35
-rule_par                                                                        #    10/35
-token: 0 ... as                                                                 #    11/35
-token: 18 ... string                                                            #    12/35
-token: 48 ... ,                                                                 #    13/35
-rule next par                                                                   #    14/35
-token: 35 ... t                                                                 #    15/35
-rule_par                                                                        #    16/35
-token: 0 ... as                                                                 #    17/35
-token: 12 ... integer                                                           #    18/35
-token: 48 ... ,                                                                 #    19/35
-rule next par                                                                   #    20/35
-token: 35 ... x                                                                 #    21/35
-rule_par                                                                        #    22/35
-token: 0 ... as                                                                 #    23/35
-token: 18 ... string                                                            #    24/35
-token: 51 ... )                                                                 #    25/35
-rule next par                                                                   #    26/35
-token: 0 ... as                                                                 #    27/35
-token: 18 ... string                                                            #    28/35
-token: 57 ...                                                                   #    29/35
-token: 57 ...                                                                   #    30/35
-token: 9 ... function                                                           #    31/35
-token: 35 ... bar                                                               #    32/35
-token: 50 ... (                                                                 #    33/35
-token: 35 ... b                                                                 #    34/35
-ERROR on line 4                                                                 #    35/35
+.IFJcode17                                                                      #     1/11
+JUMP $$scope                                                                    #     2/11
+rule_par                                                                        #     4/11
+rule next par                                                                   #     5/11
+rule_par                                                                        #     6/11
+rule next par                                                                   #     7/11
+rule_par                                                                        #     8/11
+rule next par                                                                   #     9/11
+Nezhoduje sa meno argumentu 1                                                   #    10/11
+ERROR on line 4                                                                 #    11/11
 

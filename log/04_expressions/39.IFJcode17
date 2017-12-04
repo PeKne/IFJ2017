@@ -1,4 +1,4 @@
-# 2017-12-03 20:43:47.324515
+# 2017-12-04 12:08:01.201911
 # SECTION: 04_expressions
 # TEST: 39
 # INFO: expresion 2013
@@ -7,7 +7,7 @@
 # STATE: FAIL
 # 
 # COMPILER STDERR:
-# LEX: Line: 4: Int value didnt end properly!
+# LEX: Line: 5: Double value didnt end properly!
 # ERROR - 1 - chyba v programu v rÃ¡mci lexikÃ¡lnÃ­ analÃ½zy (chybnÃ¡ struktura aktuÃ¡lnÃ­ho lexÃ©mu).
 # 
 # INTERPRETER STDERR:
@@ -47,35 +47,80 @@
 
 ########################################
 
-token: 57 ...                                                                   #     1/33
-token: 17 ... scope                                                             #     2/33
-.IFJcode17                                                                      #     3/33
-JUMP $$scope                                                                    #     4/33
-LABEL $$scope                                                                   #     6/33
-DEFVAR GF@&pomInteger                                                           #     7/33
-MOVE GF@&pomInteger int@0                                                       #     8/33
-DEFVAR GF@&pomString                                                            #     9/33
-MOVE GF@&pomString string@                                                      #    10/33
-DEFVAR GF@&pomFloat                                                             #    11/33
-MOVE GF@&pomFloat float@0                                                       #    12/33
-DEFVAR GF@&pomBool                                                              #    13/33
-MOVE GF@&pomBool bool@false                                                     #    14/33
-DEFVAR GF@&pomCntr                                                              #    15/33
-MOVE GF@&pomCntr int@0                                                          #    16/33
-CREATEFRAME                                                                     #    17/33
-token: 57 ...                                                                   #    19/33
-token: 3 ... dim                                                                #    20/33
-token: 35 ... a                                                                 #    21/33
-token: 0 ... as                                                                 #    22/33
-token: 12 ... integer                                                           #    23/33
-token: 57 ...                                                                   #    24/33
-DEFVAR TF@a                                                                     #    25/33
-MOVE TF@a int@0                                                                 #    26/33
-token: 35 ... a                                                                 #    27/33
-token: 45 ... =                                                                 #    28/33
-token: 50 ... (                                                                 #    29/33
-|TOP--->|$|  SYMBOL                                                             #    30/33
-|TOP--->| |  STRING                                                             #    31/33
-token: 59 ... 5                                                                 #    32/33
-ERROR on line 4                                                                 #    33/33
+.IFJcode17                                                                      #     1/78
+JUMP $$scope                                                                    #     2/78
+LABEL $$scope                                                                   #     4/78
+DEFVAR GF@&pomInteger                                                           #     5/78
+MOVE GF@&pomInteger int@0                                                       #     6/78
+DEFVAR GF@&pomString                                                            #     7/78
+MOVE GF@&pomString string@                                                      #     8/78
+DEFVAR GF@&pomFloat                                                             #     9/78
+MOVE GF@&pomFloat float@0                                                       #    10/78
+DEFVAR GF@&pomBool                                                              #    11/78
+MOVE GF@&pomBool bool@false                                                     #    12/78
+DEFVAR GF@&pomCntr                                                              #    13/78
+MOVE GF@&pomCntr int@0                                                          #    14/78
+CREATEFRAME                                                                     #    15/78
+DEFVAR TF@a                                                                     #    17/78
+MOVE TF@a int@0                                                                 #    18/78
+MOVE GF@&pomInteger int@5                                                       #    19/78
+redukce                                                                         #    20/78
+MUL GF@&pomInteger int@5 int@964                                                #    21/78
+redukce                                                                         #    22/78
+MUL GF@&pomInteger int@556 int@2                                                #    23/78
+redukce                                                                         #    24/78
+ADD GF@&pomInteger GF@&pomInteger GF@&pomInteger                                #    25/78
+redukce                                                                         #    26/78
+MUL GF@&pomInteger int@485 int@6                                                #    27/78
+redukce                                                                         #    28/78
+SUB GF@&pomInteger GF@&pomInteger GF@&pomInteger                                #    29/78
+redukce                                                                         #    30/78
+SUB GF@&pomInteger GF@&pomInteger int@89                                        #    31/78
+redukce                                                                         #    32/78
+SUB GF@&pomInteger GF@&pomInteger int@98                                        #    33/78
+redukce                                                                         #    34/78
+ADD GF@&pomInteger GF@&pomInteger int@352                                       #    35/78
+redukce                                                                         #    36/78
+SUB GF@&pomInteger GF@&pomInteger int@187                                       #    37/78
+redukce                                                                         #    38/78
+DIV GF@&pomInteger GF@&pomInteger int@100                                       #    39/78
+redukce                                                                         #    40/78
+ADD GF@&pomInteger GF@&pomInteger int@0                                         #    41/78
+redukce                                                                         #    42/78
+SUB GF@&pomInteger int@45 int@5                                                 #    43/78
+redukce                                                                         #    44/78
+ADD GF@&pomInteger int@21 int@99                                                #    45/78
+redukce                                                                         #    46/78
+MUL GF@&pomInteger GF@&pomInteger GF@&pomInteger                                #    47/78
+redukce                                                                         #    48/78
+MUL GF@&pomInteger int@1 GF@&pomInteger                                         #    49/78
+redukce                                                                         #    50/78
+MUL GF@&pomInteger GF@&pomInteger int@4                                         #    51/78
+redukce                                                                         #    52/78
+DIV GF@&pomInteger GF@&pomInteger int@98                                        #    53/78
+redukce                                                                         #    54/78
+ADD GF@&pomInteger GF@&pomInteger GF@&pomInteger                                #    55/78
+redukce                                                                         #    56/78
+SUB GF@&pomInteger int@48 int@55                                                #    57/78
+redukce                                                                         #    58/78
+SUB GF@&pomInteger GF@&pomInteger int@51                                        #    59/78
+redukce                                                                         #    60/78
+MUL GF@&pomInteger GF@&pomInteger int@410                                       #    61/78
+redukce                                                                         #    62/78
+MUL GF@&pomInteger int@21 int@56                                                #    63/78
+redukce                                                                         #    64/78
+ADD GF@&pomInteger GF@&pomInteger GF@&pomInteger                                #    65/78
+redukce                                                                         #    66/78
+MUL GF@&pomInteger GF@&pomInteger int@0                                         #    67/78
+redukce                                                                         #    68/78
+MUL GF@&pomInteger GF@&pomInteger int@585                                       #    69/78
+redukce                                                                         #    70/78
+ADD GF@&pomInteger GF@&pomInteger GF@&pomInteger                                #    71/78
+MOVE TF@a GF@&pomInteger                                                        #    72/78
+MOVE GF@&pomInteger TF@a                                                        #    73/78
+redukce                                                                         #    74/78
+MUL GF@&pomInteger TF@a int@482                                                 #    75/78
+redukce                                                                         #    76/78
+DIV GF@&pomInteger GF@&pomInteger TF@a                                          #    77/78
+ERROR on line 5                                                                 #    78/78
 

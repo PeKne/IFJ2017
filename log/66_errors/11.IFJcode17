@@ -1,4 +1,4 @@
-# 2017-12-03 20:43:47.544441
+# 2017-12-04 12:08:01.340550
 # SECTION: 66_errors
 # TEST: 11
 # INFO: Function call undefined function
@@ -7,7 +7,8 @@
 # STATE: SUCCESS
 # 
 # COMPILER STDERR:
-# symbol.c:268:retrieve_function_data(): Function not found
+# parser.c:746:rule_assign(): NULL hashtable error
+# 
 # ERROR - 3 - sÃ©mantickÃ¡ chyba v programu â nedefinovanÃ¡ funkce/promeÌnnÃ¡, pokus o redefinici funkce/promeÌnnÃ©, atd.
 # 
 # INTERPRETER STDERR:
@@ -46,11 +47,13 @@
 
 ########################################
 
-token: 57 ...                                                                   #     1/8
-token: 57 ...                                                                   #     2/8
-token: 9 ... function                                                           #     3/8
-.IFJcode17                                                                      #     4/8
-JUMP $$scope                                                                    #     5/8
-token: 35 ... foo                                                               #     7/8
-ERROR on line 3                                                                 #     8/8
+.IFJcode17                                                                      #     1/10
+JUMP $$scope                                                                    #     2/10
+rule_par                                                                        #     4/10
+LABEL $foo                                                                      #     5/10
+PUSHFRAME                                                                       #     6/10
+DEFVAR LF@&retval                                                               #     7/10
+DEFVAR LF@a                                                                     #     8/10
+MOVE LF@a int@0                                                                 #     9/10
+ERROR on line 5                                                                 #    10/10
 

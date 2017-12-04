@@ -1,4 +1,4 @@
-# 2017-12-03 20:43:48.756781
+# 2017-12-04 12:08:01.829688
 # SECTION: 96_programs
 # TEST: 05
 # INFO: Print biggest number from three numbers
@@ -9,7 +9,7 @@
 # COMPILER STDERR:
 # 
 # INTERPRETER STDERR:
-# 1.1-5: syntax error, unexpected ID, expecting HEADER
+# 27.1-7: syntax error, unexpected ID, expecting END
 # 
 # EXPECTED INTERPRETER STDOUT:
 
@@ -57,166 +57,44 @@
 
 ########################################
 
-token: 57 ...                                                                   #     1/164
-token: 17 ... scope                                                             #     2/164
-.IFJcode17                                                                      #     3/164
-JUMP $$scope                                                                    #     4/164
-LABEL $$scope                                                                   #     6/164
-DEFVAR GF@&pomInteger                                                           #     7/164
-MOVE GF@&pomInteger int@0                                                       #     8/164
-DEFVAR GF@&pomString                                                            #     9/164
-MOVE GF@&pomString string@                                                      #    10/164
-DEFVAR GF@&pomFloat                                                             #    11/164
-MOVE GF@&pomFloat float@0                                                       #    12/164
-DEFVAR GF@&pomBool                                                              #    13/164
-MOVE GF@&pomBool bool@false                                                     #    14/164
-DEFVAR GF@&pomCntr                                                              #    15/164
-MOVE GF@&pomCntr int@0                                                          #    16/164
-CREATEFRAME                                                                     #    17/164
-token: 57 ...                                                                   #    19/164
-token: 57 ...                                                                   #    20/164
-token: 3 ... dim                                                                #    21/164
-token: 35 ... a                                                                 #    22/164
-token: 0 ... as                                                                 #    23/164
-token: 12 ... integer                                                           #    24/164
-token: 57 ...                                                                   #    25/164
-DEFVAR TF@a                                                                     #    26/164
-MOVE TF@a int@0                                                                 #    27/164
-token: 3 ... dim                                                                #    28/164
-token: 35 ... b                                                                 #    29/164
-token: 0 ... as                                                                 #    30/164
-token: 12 ... integer                                                           #    31/164
-token: 57 ...                                                                   #    32/164
-DEFVAR TF@b                                                                     #    33/164
-MOVE TF@b int@0                                                                 #    34/164
-token: 3 ... dim                                                                #    35/164
-token: 35 ... c                                                                 #    36/164
-token: 0 ... as                                                                 #    37/164
-token: 12 ... integer                                                           #    38/164
-token: 57 ...                                                                   #    39/164
-DEFVAR TF@c                                                                     #    40/164
-MOVE TF@c int@0                                                                 #    41/164
-token: 57 ...                                                                   #    42/164
-token: 11 ... input                                                             #    43/164
-token: 35 ... a                                                                 #    44/164
-READ TF@a int                                                                   #    45/164
-token: 57 ...                                                                   #    46/164
-token: 11 ... input                                                             #    47/164
-token: 35 ... b                                                                 #    48/164
-READ TF@b int                                                                   #    49/164
-token: 57 ...                                                                   #    50/164
-token: 11 ... input                                                             #    51/164
-token: 35 ... c                                                                 #    52/164
-READ TF@c int                                                                   #    53/164
-token: 57 ...                                                                   #    54/164
-token: 57 ...                                                                   #    55/164
-token: 10 ... if                                                                #    56/164
-token: 35 ... c                                                                 #    57/164
-|TOP--->|$|  SYMBOL                                                             #    58/164
-|TOP--->| |  STRING                                                             #    59/164
-token: 42 ... >                                                                 #    60/164
-|TOP--->|i|]|$|  SYMBOL                                                         #    61/164
-|TOP--->|c| | |  STRING                                                         #    62/164
-|TOP--->|i|  SYMBOL                                                             #    63/164
-|TOP--->|c|  STRING                                                             #    64/164
-MOVE GF@&pomInteger TF@c                                                        #    65/164
-|TOP--->|R|$|  SYMBOL                                                           #    66/164
-|TOP--->|c| |  STRING                                                           #    67/164
-token: 35 ... b                                                                 #    68/164
-|TOP--->|>|R|]|$|  SYMBOL                                                       #    69/164
-|TOP--->|>|c| | |  STRING                                                       #    70/164
-token: 20 ... then                                                              #    71/164
-|TOP--->|i|]|>|R|]|$|  SYMBOL                                                   #    72/164
-|TOP--->|b| |>|c| | |  STRING                                                   #    73/164
-|TOP--->|i|  SYMBOL                                                             #    74/164
-|TOP--->|b|  STRING                                                             #    75/164
-|TOP--->|R|>|R|]|$|  SYMBOL                                                     #    76/164
-|TOP--->|b|>|c| | |  STRING                                                     #    77/164
-|TOP--->|R|>|R|  SYMBOL                                                         #    78/164
-|TOP--->|c|>|b|  STRING                                                         #    79/164
-redukce                                                                         #    80/164
-GT GF@&pomBool TF@c TF@b                                                        #    81/164
-JUMPIFNEQ $$else_1 GF@&pomBool bool@true                                        #    82/164
-token: 57 ...                                                                   #    83/164
-token: 10 ... if                                                                #    84/164
-token: 35 ... c                                                                 #    85/164
-|TOP--->|$|  SYMBOL                                                             #    86/164
-|TOP--->| |  STRING                                                             #    87/164
-token: 42 ... >                                                                 #    88/164
-|TOP--->|i|]|$|  SYMBOL                                                         #    89/164
-|TOP--->|c| | |  STRING                                                         #    90/164
-|TOP--->|i|  SYMBOL                                                             #    91/164
-|TOP--->|c|  STRING                                                             #    92/164
-MOVE GF@&pomInteger TF@c                                                        #    93/164
-|TOP--->|R|$|  SYMBOL                                                           #    94/164
-|TOP--->|c| |  STRING                                                           #    95/164
-token: 35 ... a                                                                 #    96/164
-|TOP--->|>|R|]|$|  SYMBOL                                                       #    97/164
-|TOP--->|>|c| | |  STRING                                                       #    98/164
-token: 20 ... then                                                              #    99/164
-|TOP--->|i|]|>|R|]|$|  SYMBOL                                                   #   100/164
-|TOP--->|a| |>|c| | |  STRING                                                   #   101/164
-|TOP--->|i|  SYMBOL                                                             #   102/164
-|TOP--->|a|  STRING                                                             #   103/164
-|TOP--->|R|>|R|]|$|  SYMBOL                                                     #   104/164
-|TOP--->|a|>|c| | |  STRING                                                     #   105/164
-|TOP--->|R|>|R|  SYMBOL                                                         #   106/164
-|TOP--->|c|>|a|  STRING                                                         #   107/164
-redukce                                                                         #   108/164
-GT GF@&pomBool TF@c TF@a                                                        #   109/164
-JUMPIFNEQ $$else_1 GF@&pomBool bool@true                                        #   110/164
-token: 57 ...                                                                   #   111/164
-token: 15 ... print                                                             #   112/164
-token: 35 ... c                                                                 #   113/164
-|TOP--->|$|  SYMBOL                                                             #   114/164
-|TOP--->| |  STRING                                                             #   115/164
-token: 47 ... ;                                                                 #   116/164
-|TOP--->|i|]|$|  SYMBOL                                                         #   117/164
-|TOP--->|c| | |  STRING                                                         #   118/164
-|TOP--->|i|  SYMBOL                                                             #   119/164
-|TOP--->|c|  STRING                                                             #   120/164
-WRITE TF@c                                                                      #   121/164
-token: 57 ...                                                                   #   122/164
-token: 6 ... else                                                               #   123/164
-JUMP $$endif_1                                                                  #   124/164
-LABEL $$else_1                                                                  #   125/164
-token: 57 ...                                                                   #   126/164
-token: 15 ... print                                                             #   127/164
-token: 35 ... a                                                                 #   128/164
-|TOP--->|$|  SYMBOL                                                             #   129/164
-|TOP--->| |  STRING                                                             #   130/164
-token: 47 ... ;                                                                 #   131/164
-|TOP--->|i|]|$|  SYMBOL                                                         #   132/164
-|TOP--->|a| | |  STRING                                                         #   133/164
-|TOP--->|i|  SYMBOL                                                             #   134/164
-|TOP--->|a|  STRING                                                             #   135/164
-WRITE TF@a                                                                      #   136/164
-token: 57 ...                                                                   #   137/164
-token: 7 ... end                                                                #   138/164
-token: 10 ... if                                                                #   139/164
-LABEL $$endif_1                                                                 #   140/164
-token: 57 ...                                                                   #   141/164
-token: 6 ... else                                                               #   142/164
-JUMP $$endif_2                                                                  #   143/164
-LABEL $$else_2                                                                  #   144/164
-token: 57 ...                                                                   #   145/164
-token: 15 ... print                                                             #   146/164
-token: 35 ... b                                                                 #   147/164
-|TOP--->|$|  SYMBOL                                                             #   148/164
-|TOP--->| |  STRING                                                             #   149/164
-token: 47 ... ;                                                                 #   150/164
-|TOP--->|i|]|$|  SYMBOL                                                         #   151/164
-|TOP--->|b| | |  STRING                                                         #   152/164
-|TOP--->|i|  SYMBOL                                                             #   153/164
-|TOP--->|b|  STRING                                                             #   154/164
-WRITE TF@b                                                                      #   155/164
-token: 57 ...                                                                   #   156/164
-token: 7 ... end                                                                #   157/164
-token: 10 ... if                                                                #   158/164
-LABEL $$endif_2                                                                 #   159/164
-token: 57 ...                                                                   #   160/164
-token: 57 ...                                                                   #   161/164
-token: 7 ... end                                                                #   162/164
-token: 17 ... scope                                                             #   163/164
-token: 58 ...                                                                   #   164/164
+.IFJcode17                                                                      #     1/42
+JUMP $$scope                                                                    #     2/42
+LABEL $$scope                                                                   #     4/42
+DEFVAR GF@&pomInteger                                                           #     5/42
+MOVE GF@&pomInteger int@0                                                       #     6/42
+DEFVAR GF@&pomString                                                            #     7/42
+MOVE GF@&pomString string@                                                      #     8/42
+DEFVAR GF@&pomFloat                                                             #     9/42
+MOVE GF@&pomFloat float@0                                                       #    10/42
+DEFVAR GF@&pomBool                                                              #    11/42
+MOVE GF@&pomBool bool@false                                                     #    12/42
+DEFVAR GF@&pomCntr                                                              #    13/42
+MOVE GF@&pomCntr int@0                                                          #    14/42
+CREATEFRAME                                                                     #    15/42
+DEFVAR TF@a                                                                     #    17/42
+MOVE TF@a int@0                                                                 #    18/42
+DEFVAR TF@b                                                                     #    19/42
+MOVE TF@b int@0                                                                 #    20/42
+DEFVAR TF@c                                                                     #    21/42
+MOVE TF@c int@0                                                                 #    22/42
+READ TF@a int                                                                   #    23/42
+READ TF@b int                                                                   #    24/42
+READ TF@c int                                                                   #    25/42
+MOVE GF@&pomInteger TF@c                                                        #    26/42
+redukce                                                                         #    27/42
+GT GF@&pomBool TF@c TF@b                                                        #    28/42
+JUMPIFNEQ $$else_1 GF@&pomBool bool@true                                        #    29/42
+MOVE GF@&pomInteger TF@c                                                        #    30/42
+redukce                                                                         #    31/42
+GT GF@&pomBool TF@c TF@a                                                        #    32/42
+JUMPIFNEQ $$else_1 GF@&pomBool bool@true                                        #    33/42
+WRITE TF@c                                                                      #    34/42
+JUMP $$endif_1                                                                  #    35/42
+LABEL $$else_1                                                                  #    36/42
+WRITE TF@a                                                                      #    37/42
+LABEL $$endif_1                                                                 #    38/42
+JUMP $$endif_2                                                                  #    39/42
+LABEL $$else_2                                                                  #    40/42
+WRITE TF@b                                                                      #    41/42
+LABEL $$endif_2                                                                 #    42/42
 

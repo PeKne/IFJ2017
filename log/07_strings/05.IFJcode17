@@ -1,4 +1,4 @@
-# 2017-12-03 20:43:47.467724
+# 2017-12-04 12:08:01.288456
 # SECTION: 07_strings
 # TEST: 05
 # INFO: chr builtin function
@@ -49,68 +49,27 @@
 
 ########################################
 
-token: 57 ...                                                                   #     1/66
-token: 17 ... scope                                                             #     2/66
-.IFJcode17                                                                      #     3/66
-JUMP $$scope                                                                    #     4/66
-LABEL $$scope                                                                   #     6/66
-DEFVAR GF@&pomInteger                                                           #     7/66
-MOVE GF@&pomInteger int@0                                                       #     8/66
-DEFVAR GF@&pomString                                                            #     9/66
-MOVE GF@&pomString string@                                                      #    10/66
-DEFVAR GF@&pomFloat                                                             #    11/66
-MOVE GF@&pomFloat float@0                                                       #    12/66
-DEFVAR GF@&pomBool                                                              #    13/66
-MOVE GF@&pomBool bool@false                                                     #    14/66
-DEFVAR GF@&pomCntr                                                              #    15/66
-MOVE GF@&pomCntr int@0                                                          #    16/66
-CREATEFRAME                                                                     #    17/66
-token: 57 ...                                                                   #    19/66
-token: 3 ... dim                                                                #    20/66
-token: 35 ... res                                                               #    21/66
-token: 0 ... as                                                                 #    22/66
-token: 18 ... string                                                            #    23/66
-token: 57 ...                                                                   #    24/66
-DEFVAR TF@res                                                                   #    25/66
-MOVE TF@res string@                                                             #    26/66
-token: 3 ... dim                                                                #    27/66
-token: 35 ... tmp                                                               #    28/66
-token: 0 ... as                                                                 #    29/66
-token: 12 ... integer                                                           #    30/66
-token: 57 ...                                                                   #    31/66
-DEFVAR TF@tmp                                                                   #    32/66
-MOVE TF@tmp int@0                                                               #    33/66
-token: 35 ... tmp                                                               #    34/66
-token: 45 ... =                                                                 #    35/66
-token: 53 ... 0                                                                 #    36/66
-|TOP--->|$|  SYMBOL                                                             #    37/66
-|TOP--->| |  STRING                                                             #    38/66
-token: 40 ... -                                                                 #    39/66
-|TOP--->|int|]|$|  SYMBOL                                                       #    40/66
-|TOP--->|0| | |  STRING                                                         #    41/66
-|TOP--->|int|  SYMBOL                                                           #    42/66
-|TOP--->|0|  STRING                                                             #    43/66
-MOVE GF@&pomInteger int@0                                                       #    44/66
-|TOP--->|R|$|  SYMBOL                                                           #    45/66
-|TOP--->|0| |  STRING                                                           #    46/66
-token: 53 ... 10                                                                #    47/66
-|TOP--->|-|R|]|$|  SYMBOL                                                       #    48/66
-|TOP--->|-|0| | |  STRING                                                       #    49/66
-token: 57 ...                                                                   #    50/66
-|TOP--->|int|]|-|R|]|$|  SYMBOL                                                 #    51/66
-|TOP--->|10| |-|0| | |  STRING                                                  #    52/66
-|TOP--->|int|  SYMBOL                                                           #    53/66
-|TOP--->|10|  STRING                                                            #    54/66
-|TOP--->|R|-|R|]|$|  SYMBOL                                                     #    55/66
-|TOP--->|10|-|0| | |  STRING                                                    #    56/66
-|TOP--->|R|-|R|  SYMBOL                                                         #    57/66
-|TOP--->|0|-|10|  STRING                                                        #    58/66
-redukce                                                                         #    59/66
-SUB GF@&pomInteger int@0 int@10                                                 #    60/66
-MOVE TF@tmp GF@&pomInteger                                                      #    61/66
-token: 57 ...                                                                   #    62/66
-token: 35 ... res                                                               #    63/66
-token: 45 ... =                                                                 #    64/66
-token: 8 ... chr                                                                #    65/66
-ERROR on line 7                                                                 #    66/66
+.IFJcode17                                                                      #     1/25
+JUMP $$scope                                                                    #     2/25
+LABEL $$scope                                                                   #     4/25
+DEFVAR GF@&pomInteger                                                           #     5/25
+MOVE GF@&pomInteger int@0                                                       #     6/25
+DEFVAR GF@&pomString                                                            #     7/25
+MOVE GF@&pomString string@                                                      #     8/25
+DEFVAR GF@&pomFloat                                                             #     9/25
+MOVE GF@&pomFloat float@0                                                       #    10/25
+DEFVAR GF@&pomBool                                                              #    11/25
+MOVE GF@&pomBool bool@false                                                     #    12/25
+DEFVAR GF@&pomCntr                                                              #    13/25
+MOVE GF@&pomCntr int@0                                                          #    14/25
+CREATEFRAME                                                                     #    15/25
+DEFVAR TF@res                                                                   #    17/25
+MOVE TF@res string@                                                             #    18/25
+DEFVAR TF@tmp                                                                   #    19/25
+MOVE TF@tmp int@0                                                               #    20/25
+MOVE GF@&pomInteger int@0                                                       #    21/25
+redukce                                                                         #    22/25
+SUB GF@&pomInteger int@0 int@10                                                 #    23/25
+MOVE TF@tmp GF@&pomInteger                                                      #    24/25
+ERROR on line 7                                                                 #    25/25
 

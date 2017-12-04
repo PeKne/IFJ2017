@@ -1,4 +1,4 @@
-# 2017-12-03 20:43:48.598356
+# 2017-12-04 12:08:01.745814
 # SECTION: 66_errors
 # TEST: 265
 # INFO: Fail type compatibility
@@ -38,30 +38,19 @@
 
 ########################################
 
-token: 17 ... scope                                                             #     1/28
-.IFJcode17                                                                      #     2/28
-JUMP $$scope                                                                    #     3/28
-LABEL $$scope                                                                   #     5/28
-DEFVAR GF@&pomInteger                                                           #     6/28
-MOVE GF@&pomInteger int@0                                                       #     7/28
-DEFVAR GF@&pomString                                                            #     8/28
-MOVE GF@&pomString string@                                                      #     9/28
-DEFVAR GF@&pomFloat                                                             #    10/28
-MOVE GF@&pomFloat float@0                                                       #    11/28
-DEFVAR GF@&pomBool                                                              #    12/28
-MOVE GF@&pomBool bool@false                                                     #    13/28
-DEFVAR GF@&pomCntr                                                              #    14/28
-MOVE GF@&pomCntr int@0                                                          #    15/28
-CREATEFRAME                                                                     #    16/28
-token: 57 ...                                                                   #    18/28
-token: 10 ... if                                                                #    19/28
-token: 52 ...                                                                   #    20/28
-|TOP--->|$|  SYMBOL                                                             #    21/28
-|TOP--->| |  STRING                                                             #    22/28
-token: 20 ... then                                                              #    23/28
-|TOP--->|str|]|$|  SYMBOL                                                       #    24/28
-|TOP--->|| | |  STRING                                                          #    25/28
-|TOP--->|str|  SYMBOL                                                           #    26/28
-|TOP--->||  STRING                                                              #    27/28
-ERROR on line 2                                                                 #    28/28
+.IFJcode17                                                                      #     1/17
+JUMP $$scope                                                                    #     2/17
+LABEL $$scope                                                                   #     4/17
+DEFVAR GF@&pomInteger                                                           #     5/17
+MOVE GF@&pomInteger int@0                                                       #     6/17
+DEFVAR GF@&pomString                                                            #     7/17
+MOVE GF@&pomString string@                                                      #     8/17
+DEFVAR GF@&pomFloat                                                             #     9/17
+MOVE GF@&pomFloat float@0                                                       #    10/17
+DEFVAR GF@&pomBool                                                              #    11/17
+MOVE GF@&pomBool bool@false                                                     #    12/17
+DEFVAR GF@&pomCntr                                                              #    13/17
+MOVE GF@&pomCntr int@0                                                          #    14/17
+CREATEFRAME                                                                     #    15/17
+ERROR on line 2                                                                 #    17/17
 

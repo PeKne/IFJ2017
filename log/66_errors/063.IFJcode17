@@ -1,4 +1,4 @@
-# 2017-12-03 20:43:47.938918
+# 2017-12-04 12:08:01.453739
 # SECTION: 66_errors
 # TEST: 063
 # INFO: do while without expression
@@ -36,27 +36,20 @@
 
 ########################################
 
-token: 17 ... scope                                                             #     1/25
-.IFJcode17                                                                      #     2/25
-JUMP $$scope                                                                    #     3/25
-LABEL $$scope                                                                   #     5/25
-DEFVAR GF@&pomInteger                                                           #     6/25
-MOVE GF@&pomInteger int@0                                                       #     7/25
-DEFVAR GF@&pomString                                                            #     8/25
-MOVE GF@&pomString string@                                                      #     9/25
-DEFVAR GF@&pomFloat                                                             #    10/25
-MOVE GF@&pomFloat float@0                                                       #    11/25
-DEFVAR GF@&pomBool                                                              #    12/25
-MOVE GF@&pomBool bool@false                                                     #    13/25
-DEFVAR GF@&pomCntr                                                              #    14/25
-MOVE GF@&pomCntr int@0                                                          #    15/25
-CREATEFRAME                                                                     #    16/25
-token: 57 ...                                                                   #    18/25
-token: 4 ... do                                                                 #    19/25
-token: 21 ... while                                                             #    20/25
-LABEL $$loop_1                                                                  #    21/25
-token: 57 ...                                                                   #    22/25
-|TOP--->|$|  SYMBOL                                                             #    23/25
-|TOP--->| |  STRING                                                             #    24/25
-ERROR on line 2                                                                 #    25/25
+.IFJcode17                                                                      #     1/18
+JUMP $$scope                                                                    #     2/18
+LABEL $$scope                                                                   #     4/18
+DEFVAR GF@&pomInteger                                                           #     5/18
+MOVE GF@&pomInteger int@0                                                       #     6/18
+DEFVAR GF@&pomString                                                            #     7/18
+MOVE GF@&pomString string@                                                      #     8/18
+DEFVAR GF@&pomFloat                                                             #     9/18
+MOVE GF@&pomFloat float@0                                                       #    10/18
+DEFVAR GF@&pomBool                                                              #    11/18
+MOVE GF@&pomBool bool@false                                                     #    12/18
+DEFVAR GF@&pomCntr                                                              #    13/18
+MOVE GF@&pomCntr int@0                                                          #    14/18
+CREATEFRAME                                                                     #    15/18
+LABEL $$loop_1                                                                  #    17/18
+ERROR on line 2                                                                 #    18/18
 

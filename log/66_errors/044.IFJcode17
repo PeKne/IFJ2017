@@ -1,4 +1,4 @@
-# 2017-12-03 20:43:47.868120
+# 2017-12-04 12:08:01.424996
 # SECTION: 66_errors
 # TEST: 044
 # INFO: invalid operators order
@@ -7,7 +7,6 @@
 # STATE: FAIL
 # 
 # COMPILER STDERR:
-# LEX: Line: 2: Int value didnt end properly!
 # ERROR - 1 - chyba v programu v rÃ¡mci lexikÃ¡lnÃ­ analÃ½zy (chybnÃ¡ struktura aktuÃ¡lnÃ­ho lexÃ©mu).
 # 
 # INTERPRETER STDERR:
@@ -36,37 +35,21 @@
 
 ########################################
 
-token: 17 ... scope                                                             #     1/35
-.IFJcode17                                                                      #     2/35
-JUMP $$scope                                                                    #     3/35
-LABEL $$scope                                                                   #     5/35
-DEFVAR GF@&pomInteger                                                           #     6/35
-MOVE GF@&pomInteger int@0                                                       #     7/35
-DEFVAR GF@&pomString                                                            #     8/35
-MOVE GF@&pomString string@                                                      #     9/35
-DEFVAR GF@&pomFloat                                                             #    10/35
-MOVE GF@&pomFloat float@0                                                       #    11/35
-DEFVAR GF@&pomBool                                                              #    12/35
-MOVE GF@&pomBool bool@false                                                     #    13/35
-DEFVAR GF@&pomCntr                                                              #    14/35
-MOVE GF@&pomCntr int@0                                                          #    15/35
-CREATEFRAME                                                                     #    16/35
-token: 57 ...                                                                   #    18/35
-token: 15 ... print                                                             #    19/35
-token: 53 ... 2                                                                 #    20/35
-|TOP--->|$|  SYMBOL                                                             #    21/35
-|TOP--->| |  STRING                                                             #    22/35
-token: 39 ... +                                                                 #    23/35
-|TOP--->|int|]|$|  SYMBOL                                                       #    24/35
-|TOP--->|2| | |  STRING                                                         #    25/35
-|TOP--->|int|  SYMBOL                                                           #    26/35
-|TOP--->|2|  STRING                                                             #    27/35
-WRITE TF@2                                                                      #    28/35
-|TOP--->|R|$|  SYMBOL                                                           #    29/35
-|TOP--->|2| |  STRING                                                           #    30/35
-token: 38 ... *                                                                 #    31/35
-|TOP--->|+|R|]|$|  SYMBOL                                                       #    32/35
-|TOP--->|+|2| | |  STRING                                                       #    33/35
-token: 59 ... 8                                                                 #    34/35
-ERROR on line 2                                                                 #    35/35
+.IFJcode17                                                                      #     1/19
+JUMP $$scope                                                                    #     2/19
+LABEL $$scope                                                                   #     4/19
+DEFVAR GF@&pomInteger                                                           #     5/19
+MOVE GF@&pomInteger int@0                                                       #     6/19
+DEFVAR GF@&pomString                                                            #     7/19
+MOVE GF@&pomString string@                                                      #     8/19
+DEFVAR GF@&pomFloat                                                             #     9/19
+MOVE GF@&pomFloat float@0                                                       #    10/19
+DEFVAR GF@&pomBool                                                              #    11/19
+MOVE GF@&pomBool bool@false                                                     #    12/19
+DEFVAR GF@&pomCntr                                                              #    13/19
+MOVE GF@&pomCntr int@0                                                          #    14/19
+CREATEFRAME                                                                     #    15/19
+WRITE TF@2                                                                      #    17/19
+WRITE TF@8                                                                      #    18/19
+ERROR on line 2                                                                 #    19/19
 

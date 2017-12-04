@@ -1,4 +1,4 @@
-# 2017-12-03 20:43:48.807744
+# 2017-12-04 12:08:01.854160
 # SECTION: 97_optimizations
 # TEST: 05
 # INFO: constant propagation after function call
@@ -7,7 +7,7 @@
 # STATE: FAIL
 # 
 # COMPILER STDERR:
-# symbol.c:268:retrieve_function_data(): Function not found
+# In if and loop statement can only be relational operators.
 # ERROR - 3 - sÃ©mantickÃ¡ chyba v programu â nedefinovanÃ¡ funkce/promeÌnnÃ¡, pokus o redefinici funkce/promeÌnnÃ©, atd.
 # 
 # INTERPRETER STDERR:
@@ -73,11 +73,13 @@
 
 ########################################
 
-token: 57 ...                                                                   #     1/8
-token: 57 ...                                                                   #     2/8
-token: 9 ... function                                                           #     3/8
-.IFJcode17                                                                      #     4/8
-JUMP $$scope                                                                    #     5/8
-token: 35 ... function_                                                         #     7/8
-ERROR on line 3                                                                 #     8/8
+.IFJcode17                                                                      #     1/10
+JUMP $$scope                                                                    #     2/10
+rule_par                                                                        #     4/10
+LABEL $function_                                                                #     5/10
+PUSHFRAME                                                                       #     6/10
+DEFVAR LF@&retval                                                               #     7/10
+WRITE string@Function\032called!\010                                            #     8/10
+redukce                                                                         #     9/10
+ERROR on line 5                                                                 #    10/10
 

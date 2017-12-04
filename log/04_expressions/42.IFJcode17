@@ -1,24 +1,60 @@
-# 2017-12-03 20:43:47.350811
+# 2017-12-04 12:08:01.215296
 # SECTION: 04_expressions
 # TEST: 42
 # INFO: maximum for C integer
 # REQUIRED EXTENSIONS: 
 # ACTIVATED EXTENSIONS: 
-# STATE: FAIL
+# STATE: SUCCESS
 # 
 # COMPILER STDERR:
 # 
 # INTERPRETER STDERR:
-# 1.1-5: syntax error, unexpected ID, expecting HEADER
+# Executing instruction: IJUMP at line: 2 with following arguments:
+# Executing instruction: ILABEL at line: 4 with following arguments:
+# Executing instruction: IDEFVAR at line: 5 with following arguments:
+# Dest: GF@&pomInteger
+# Executing instruction: IMOVE at line: 6 with following arguments:
+# Arg1: Const@=0(int)
+# Dest: GF@&pomInteger()
+# Executing instruction: IDEFVAR at line: 7 with following arguments:
+# Dest: GF@&pomString
+# Executing instruction: IMOVE at line: 8 with following arguments:
+# Arg1: Const@=(string)
+# Dest: GF@&pomString()
+# Executing instruction: IDEFVAR at line: 9 with following arguments:
+# Dest: GF@&pomFloat
+# Executing instruction: IMOVE at line: 10 with following arguments:
+# Arg1: Const@=0(double)
+# Dest: GF@&pomFloat()
+# Executing instruction: IDEFVAR at line: 11 with following arguments:
+# Dest: GF@&pomBool
+# Executing instruction: IMOVE at line: 12 with following arguments:
+# Arg1: Const@=false(bool)
+# Dest: GF@&pomBool()
+# Executing instruction: IDEFVAR at line: 13 with following arguments:
+# Dest: GF@&pomCntr
+# Executing instruction: IMOVE at line: 14 with following arguments:
+# Arg1: Const@=0(int)
+# Dest: GF@&pomCntr()
+# Executing instruction: ICREATEFRAME at line: 15 with following arguments:
+# Executing instruction: IDEFVAR at line: 17 with following arguments:
+# Dest: TF@a
+# Executing instruction: IMOVE at line: 18 with following arguments:
+# Arg1: Const@=0(double)
+# Dest: TF@a()
+# Executing instruction: IMOVE at line: 19 with following arguments:
+# Arg1: Const@=1.79769e+308(double)
+# Dest: GF@&pomFloat=0(double)
+# Executing instruction: IMOVE at line: 20 with following arguments:
+# Arg1: GF@&pomFloat=1.79769e+308(double)
+# Dest: TF@a=0(double)
+# Executing instruction: IWRITE at line: 21 with following arguments:
+# Arg1: TF@a=1.79769e+308(double)
+# Executing instruction: IGROOT at line: 23 with following arguments:
+# I am Groot at 23 (93).
 # 
-# EXPECTED INTERPRETER STDOUT:
-
-#  1.79769e+308
-
-
-# CURRENT INTERPRETER STDOUT:
-
-
+# STDOUT DIFF:
+# 
 
 # INTERPRETER STDIN: 
 # 
@@ -26,9 +62,9 @@
 # EXPECTED COMPILER EXIT CODE: 0
 # CURRENT COMPILER EXIT CODE: 0
 # EXPECTED INTERPRETER EXIT CODE: 0
-# CURRENT INTERPRETER EXIT CODE: 51
-# PRICE: ---
-# GROOT: ---
+# CURRENT INTERPRETER EXIT CODE: 0
+# PRICE: 93 (22+71)
+# GROOT: 93
 # 
 #   1: ' maximum for C integer
 #   2: 
@@ -39,53 +75,23 @@
 
 ########################################
 
-token: 57 ...                                                                   #     1/51
-token: 57 ...                                                                   #     2/51
-token: 17 ... scope                                                             #     3/51
-.IFJcode17                                                                      #     4/51
-JUMP $$scope                                                                    #     5/51
-LABEL $$scope                                                                   #     7/51
-DEFVAR GF@&pomInteger                                                           #     8/51
-MOVE GF@&pomInteger int@0                                                       #     9/51
-DEFVAR GF@&pomString                                                            #    10/51
-MOVE GF@&pomString string@                                                      #    11/51
-DEFVAR GF@&pomFloat                                                             #    12/51
-MOVE GF@&pomFloat float@0                                                       #    13/51
-DEFVAR GF@&pomBool                                                              #    14/51
-MOVE GF@&pomBool bool@false                                                     #    15/51
-DEFVAR GF@&pomCntr                                                              #    16/51
-MOVE GF@&pomCntr int@0                                                          #    17/51
-CREATEFRAME                                                                     #    18/51
-token: 57 ...                                                                   #    20/51
-token: 3 ... dim                                                                #    21/51
-token: 35 ... a                                                                 #    22/51
-token: 0 ... as                                                                 #    23/51
-token: 5 ... double                                                             #    24/51
-token: 45 ... =                                                                 #    25/51
-DEFVAR TF@a                                                                     #    26/51
-MOVE TF@a float@0                                                               #    27/51
-token: 56 ... 1.79769e+308                                                      #    28/51
-|TOP--->|$|  SYMBOL                                                             #    29/51
-|TOP--->| |  STRING                                                             #    30/51
-token: 57 ...                                                                   #    31/51
-|TOP--->|double|]|$|  SYMBOL                                                    #    32/51
-|TOP--->|1.79769e+308| | |  STRING                                              #    33/51
-|TOP--->|double|  SYMBOL                                                        #    34/51
-|TOP--->|1.79769e+308|  STRING                                                  #    35/51
-MOVE GF@&pomFloat float@1.79769e+308                                            #    36/51
-MOVE TF@a GF@&pomFloat                                                          #    37/51
-token: 15 ... print                                                             #    38/51
-token: 35 ... a                                                                 #    39/51
-|TOP--->|$|  SYMBOL                                                             #    40/51
-|TOP--->| |  STRING                                                             #    41/51
-token: 47 ... ;                                                                 #    42/51
-|TOP--->|i|]|$|  SYMBOL                                                         #    43/51
-|TOP--->|a| | |  STRING                                                         #    44/51
-|TOP--->|i|  SYMBOL                                                             #    45/51
-|TOP--->|a|  STRING                                                             #    46/51
-WRITE TF@a                                                                      #    47/51
-token: 57 ...                                                                   #    48/51
-token: 7 ... end                                                                #    49/51
-token: 17 ... scope                                                             #    50/51
-token: 58 ...                                                                   #    51/51
+.IFJcode17                                                                      #     1/21
+JUMP $$scope                                                                    #     2/21
+LABEL $$scope                                                                   #     4/21
+DEFVAR GF@&pomInteger                                                           #     5/21
+MOVE GF@&pomInteger int@0                                                       #     6/21
+DEFVAR GF@&pomString                                                            #     7/21
+MOVE GF@&pomString string@                                                      #     8/21
+DEFVAR GF@&pomFloat                                                             #     9/21
+MOVE GF@&pomFloat float@0                                                       #    10/21
+DEFVAR GF@&pomBool                                                              #    11/21
+MOVE GF@&pomBool bool@false                                                     #    12/21
+DEFVAR GF@&pomCntr                                                              #    13/21
+MOVE GF@&pomCntr int@0                                                          #    14/21
+CREATEFRAME                                                                     #    15/21
+DEFVAR TF@a                                                                     #    17/21
+MOVE TF@a float@0                                                               #    18/21
+MOVE GF@&pomFloat float@1.79769e+308                                            #    19/21
+MOVE TF@a GF@&pomFloat                                                          #    20/21
+WRITE TF@a                                                                      #    21/21
 

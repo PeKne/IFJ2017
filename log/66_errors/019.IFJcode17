@@ -1,4 +1,4 @@
-# 2017-12-03 20:43:47.785566
+# 2017-12-04 12:08:01.392199
 # SECTION: 66_errors
 # TEST: 019
 # INFO: wrong string escape sequence I
@@ -34,6 +34,5 @@
 
 ########################################
 
-token: 59 ...                                                                   #     1/2
-ERROR on line 1                                                                 #     2/2
+ERROR on line 1                                                                 #     1/1
 

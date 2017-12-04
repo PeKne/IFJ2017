@@ -1,4 +1,4 @@
-# 2017-12-03 20:43:48.827906
+# 2017-12-04 12:08:01.865153
 # SECTION: 99_benchmarks
 # TEST: 08
 # INFO: factorial by iteration method
@@ -9,7 +9,7 @@
 # COMPILER STDERR:
 # 
 # INTERPRETER STDERR:
-# 1.1-5: syntax error, unexpected ID, expecting HEADER
+# 24.1-7: syntax error, unexpected ID, expecting END
 # 
 # EXPECTED INTERPRETER STDOUT:
 
@@ -51,213 +51,50 @@
 
 ########################################
 
-token: 57 ...                                                                   #     1/211
-token: 57 ...                                                                   #     2/211
-token: 17 ... scope                                                             #     3/211
-.IFJcode17                                                                      #     4/211
-JUMP $$scope                                                                    #     5/211
-LABEL $$scope                                                                   #     7/211
-DEFVAR GF@&pomInteger                                                           #     8/211
-MOVE GF@&pomInteger int@0                                                       #     9/211
-DEFVAR GF@&pomString                                                            #    10/211
-MOVE GF@&pomString string@                                                      #    11/211
-DEFVAR GF@&pomFloat                                                             #    12/211
-MOVE GF@&pomFloat float@0                                                       #    13/211
-DEFVAR GF@&pomBool                                                              #    14/211
-MOVE GF@&pomBool bool@false                                                     #    15/211
-DEFVAR GF@&pomCntr                                                              #    16/211
-MOVE GF@&pomCntr int@0                                                          #    17/211
-CREATEFRAME                                                                     #    18/211
-token: 57 ...                                                                   #    20/211
-token: 3 ... dim                                                                #    21/211
-token: 35 ... a                                                                 #    22/211
-token: 0 ... as                                                                 #    23/211
-token: 12 ... integer                                                           #    24/211
-token: 57 ...                                                                   #    25/211
-DEFVAR TF@a                                                                     #    26/211
-MOVE TF@a int@0                                                                 #    27/211
-token: 3 ... dim                                                                #    28/211
-token: 35 ... vysl                                                              #    29/211
-token: 0 ... as                                                                 #    30/211
-token: 12 ... integer                                                           #    31/211
-token: 57 ...                                                                   #    32/211
-DEFVAR TF@vysl                                                                  #    33/211
-MOVE TF@vysl int@0                                                              #    34/211
-token: 15 ... print                                                             #    35/211
-token: 52 ... Zadejte\032cislo\032pro\032vypocet\032faktorialu                  #    36/211
-|TOP--->|$|  SYMBOL                                                             #    37/211
-|TOP--->| |  STRING                                                             #    38/211
-token: 47 ... ;                                                                 #    39/211
-|TOP--->|str|]|$|  SYMBOL                                                       #    40/211
-|TOP--->|Zadejte\032cislo\032pro\032vypocet\032faktorialu| | |  STRING          #    41/211
-|TOP--->|str|  SYMBOL                                                           #    42/211
-|TOP--->|Zadejte\032cislo\032pro\032vypocet\032faktorialu|  STRING              #    43/211
-WRITE string@Zadejte\032cislo\032pro\032vypocet\032faktorialu                   #    44/211
-token: 57 ...                                                                   #    45/211
-token: 11 ... input                                                             #    46/211
-token: 35 ... a                                                                 #    47/211
-READ TF@a int                                                                   #    48/211
-token: 57 ...                                                                   #    49/211
-token: 10 ... if                                                                #    50/211
-token: 35 ... a                                                                 #    51/211
-|TOP--->|$|  SYMBOL                                                             #    52/211
-|TOP--->| |  STRING                                                             #    53/211
-token: 41 ... <                                                                 #    54/211
-|TOP--->|i|]|$|  SYMBOL                                                         #    55/211
-|TOP--->|a| | |  STRING                                                         #    56/211
-|TOP--->|i|  SYMBOL                                                             #    57/211
-|TOP--->|a|  STRING                                                             #    58/211
-MOVE GF@&pomInteger TF@a                                                        #    59/211
-|TOP--->|R|$|  SYMBOL                                                           #    60/211
-|TOP--->|a| |  STRING                                                           #    61/211
-token: 53 ... 0                                                                 #    62/211
-|TOP--->|<|R|]|$|  SYMBOL                                                       #    63/211
-|TOP--->|<|a| | |  STRING                                                       #    64/211
-token: 20 ... then                                                              #    65/211
-|TOP--->|int|]|<|R|]|$|  SYMBOL                                                 #    66/211
-|TOP--->|0| |<|a| | |  STRING                                                   #    67/211
-|TOP--->|int|  SYMBOL                                                           #    68/211
-|TOP--->|0|  STRING                                                             #    69/211
-|TOP--->|R|<|R|]|$|  SYMBOL                                                     #    70/211
-|TOP--->|0|<|a| | |  STRING                                                     #    71/211
-|TOP--->|R|<|R|  SYMBOL                                                         #    72/211
-|TOP--->|a|<|0|  STRING                                                         #    73/211
-redukce                                                                         #    74/211
-LT GF@&pomBool TF@a int@0                                                       #    75/211
-JUMPIFNEQ $$else_1 GF@&pomBool bool@true                                        #    76/211
-token: 57 ...                                                                   #    77/211
-token: 15 ... print                                                             #    78/211
-token: 52 ... \010Faktorial\032nelze\032spocitat\010                            #    79/211
-|TOP--->|$|  SYMBOL                                                             #    80/211
-|TOP--->| |  STRING                                                             #    81/211
-token: 47 ... ;                                                                 #    82/211
-|TOP--->|str|]|$|  SYMBOL                                                       #    83/211
-|TOP--->|\010Faktorial\032nelze\032spocitat\010| | |  STRING                    #    84/211
-|TOP--->|str|  SYMBOL                                                           #    85/211
-|TOP--->|\010Faktorial\032nelze\032spocitat\010|  STRING                        #    86/211
-WRITE string@\010Faktorial\032nelze\032spocitat\010                             #    87/211
-token: 57 ...                                                                   #    88/211
-token: 6 ... else                                                               #    89/211
-JUMP $$endif_1                                                                  #    90/211
-LABEL $$else_1                                                                  #    91/211
-token: 57 ...                                                                   #    92/211
-token: 35 ... vysl                                                              #    93/211
-token: 45 ... =                                                                 #    94/211
-token: 53 ... 1                                                                 #    95/211
-|TOP--->|$|  SYMBOL                                                             #    96/211
-|TOP--->| |  STRING                                                             #    97/211
-token: 57 ...                                                                   #    98/211
-|TOP--->|int|]|$|  SYMBOL                                                       #    99/211
-|TOP--->|1| | |  STRING                                                         #   100/211
-|TOP--->|int|  SYMBOL                                                           #   101/211
-|TOP--->|1|  STRING                                                             #   102/211
-MOVE GF@&pomInteger int@1                                                       #   103/211
-MOVE TF@vysl GF@&pomInteger                                                     #   104/211
-token: 4 ... do                                                                 #   105/211
-token: 21 ... while                                                             #   106/211
-LABEL $$loop_1                                                                  #   107/211
-token: 35 ... a                                                                 #   108/211
-|TOP--->|$|  SYMBOL                                                             #   109/211
-|TOP--->| |  STRING                                                             #   110/211
-token: 42 ... >                                                                 #   111/211
-|TOP--->|i|]|$|  SYMBOL                                                         #   112/211
-|TOP--->|a| | |  STRING                                                         #   113/211
-|TOP--->|i|  SYMBOL                                                             #   114/211
-|TOP--->|a|  STRING                                                             #   115/211
-MOVE GF@&pomInteger TF@a                                                        #   116/211
-|TOP--->|R|$|  SYMBOL                                                           #   117/211
-|TOP--->|a| |  STRING                                                           #   118/211
-token: 53 ... 0                                                                 #   119/211
-|TOP--->|>|R|]|$|  SYMBOL                                                       #   120/211
-|TOP--->|>|a| | |  STRING                                                       #   121/211
-token: 57 ...                                                                   #   122/211
-|TOP--->|int|]|>|R|]|$|  SYMBOL                                                 #   123/211
-|TOP--->|0| |>|a| | |  STRING                                                   #   124/211
-|TOP--->|int|  SYMBOL                                                           #   125/211
-|TOP--->|0|  STRING                                                             #   126/211
-|TOP--->|R|>|R|]|$|  SYMBOL                                                     #   127/211
-|TOP--->|0|>|a| | |  STRING                                                     #   128/211
-|TOP--->|R|>|R|  SYMBOL                                                         #   129/211
-|TOP--->|a|>|0|  STRING                                                         #   130/211
-redukce                                                                         #   131/211
-GT GF@&pomBool TF@a int@0                                                       #   132/211
-JUMPIFNEQ $$loop_end_1 GF@&pomBool bool@true                                    #   133/211
-token: 35 ... vysl                                                              #   134/211
-token: 45 ... =                                                                 #   135/211
-token: 35 ... vysl                                                              #   136/211
-|TOP--->|$|  SYMBOL                                                             #   137/211
-|TOP--->| |  STRING                                                             #   138/211
-token: 38 ... *                                                                 #   139/211
-|TOP--->|i|]|$|  SYMBOL                                                         #   140/211
-|TOP--->|vysl| | |  STRING                                                      #   141/211
-|TOP--->|i|  SYMBOL                                                             #   142/211
-|TOP--->|vysl|  STRING                                                          #   143/211
-MOVE GF@&pomInteger TF@vysl                                                     #   144/211
-|TOP--->|R|$|  SYMBOL                                                           #   145/211
-|TOP--->|vysl| |  STRING                                                        #   146/211
-token: 35 ... a                                                                 #   147/211
-|TOP--->|*|R|]|$|  SYMBOL                                                       #   148/211
-|TOP--->|*|vysl| | |  STRING                                                    #   149/211
-token: 57 ...                                                                   #   150/211
-|TOP--->|i|]|*|R|]|$|  SYMBOL                                                   #   151/211
-|TOP--->|a| |*|vysl| | |  STRING                                                #   152/211
-|TOP--->|i|  SYMBOL                                                             #   153/211
-|TOP--->|a|  STRING                                                             #   154/211
-|TOP--->|R|*|R|]|$|  SYMBOL                                                     #   155/211
-|TOP--->|a|*|vysl| | |  STRING                                                  #   156/211
-|TOP--->|R|*|R|  SYMBOL                                                         #   157/211
-|TOP--->|vysl|*|a|  STRING                                                      #   158/211
-redukce                                                                         #   159/211
-MUL GF@&pomInteger TF@vysl TF@a                                                 #   160/211
-MOVE TF@vysl GF@&pomInteger                                                     #   161/211
-token: 35 ... a                                                                 #   162/211
-token: 45 ... =                                                                 #   163/211
-token: 35 ... a                                                                 #   164/211
-|TOP--->|$|  SYMBOL                                                             #   165/211
-|TOP--->| |  STRING                                                             #   166/211
-token: 40 ... -                                                                 #   167/211
-|TOP--->|i|]|$|  SYMBOL                                                         #   168/211
-|TOP--->|a| | |  STRING                                                         #   169/211
-|TOP--->|i|  SYMBOL                                                             #   170/211
-|TOP--->|a|  STRING                                                             #   171/211
-MOVE GF@&pomInteger TF@a                                                        #   172/211
-|TOP--->|R|$|  SYMBOL                                                           #   173/211
-|TOP--->|a| |  STRING                                                           #   174/211
-token: 53 ... 1                                                                 #   175/211
-|TOP--->|-|R|]|$|  SYMBOL                                                       #   176/211
-|TOP--->|-|a| | |  STRING                                                       #   177/211
-token: 57 ...                                                                   #   178/211
-|TOP--->|int|]|-|R|]|$|  SYMBOL                                                 #   179/211
-|TOP--->|1| |-|a| | |  STRING                                                   #   180/211
-|TOP--->|int|  SYMBOL                                                           #   181/211
-|TOP--->|1|  STRING                                                             #   182/211
-|TOP--->|R|-|R|]|$|  SYMBOL                                                     #   183/211
-|TOP--->|1|-|a| | |  STRING                                                     #   184/211
-|TOP--->|R|-|R|  SYMBOL                                                         #   185/211
-|TOP--->|a|-|1|  STRING                                                         #   186/211
-redukce                                                                         #   187/211
-SUB GF@&pomInteger TF@a int@1                                                   #   188/211
-MOVE TF@a GF@&pomInteger                                                        #   189/211
-token: 14 ... loop                                                              #   190/211
-JUMP $$loop_1                                                                   #   191/211
-LABEL $$loop_end_1                                                              #   192/211
-token: 57 ...                                                                   #   193/211
-token: 15 ... print                                                             #   194/211
-token: 35 ... vysl                                                              #   195/211
-|TOP--->|$|  SYMBOL                                                             #   196/211
-|TOP--->| |  STRING                                                             #   197/211
-token: 47 ... ;                                                                 #   198/211
-|TOP--->|i|]|$|  SYMBOL                                                         #   199/211
-|TOP--->|vysl| | |  STRING                                                      #   200/211
-|TOP--->|i|  SYMBOL                                                             #   201/211
-|TOP--->|vysl|  STRING                                                          #   202/211
-WRITE TF@vysl                                                                   #   203/211
-token: 57 ...                                                                   #   204/211
-token: 7 ... end                                                                #   205/211
-token: 10 ... if                                                                #   206/211
-LABEL $$endif_1                                                                 #   207/211
-token: 57 ...                                                                   #   208/211
-token: 7 ... end                                                                #   209/211
-token: 17 ... scope                                                             #   210/211
-token: 58 ...                                                                   #   211/211
+.IFJcode17                                                                      #     1/48
+JUMP $$scope                                                                    #     2/48
+LABEL $$scope                                                                   #     4/48
+DEFVAR GF@&pomInteger                                                           #     5/48
+MOVE GF@&pomInteger int@0                                                       #     6/48
+DEFVAR GF@&pomString                                                            #     7/48
+MOVE GF@&pomString string@                                                      #     8/48
+DEFVAR GF@&pomFloat                                                             #     9/48
+MOVE GF@&pomFloat float@0                                                       #    10/48
+DEFVAR GF@&pomBool                                                              #    11/48
+MOVE GF@&pomBool bool@false                                                     #    12/48
+DEFVAR GF@&pomCntr                                                              #    13/48
+MOVE GF@&pomCntr int@0                                                          #    14/48
+CREATEFRAME                                                                     #    15/48
+DEFVAR TF@a                                                                     #    17/48
+MOVE TF@a int@0                                                                 #    18/48
+DEFVAR TF@vysl                                                                  #    19/48
+MOVE TF@vysl int@0                                                              #    20/48
+WRITE string@Zadejte\032cislo\032pro\032vypocet\032faktorialu                   #    21/48
+READ TF@a int                                                                   #    22/48
+MOVE GF@&pomInteger TF@a                                                        #    23/48
+redukce                                                                         #    24/48
+LT GF@&pomBool TF@a int@0                                                       #    25/48
+JUMPIFNEQ $$else_1 GF@&pomBool bool@true                                        #    26/48
+WRITE string@\010Faktorial\032nelze\032spocitat\010                             #    27/48
+JUMP $$endif_1                                                                  #    28/48
+LABEL $$else_1                                                                  #    29/48
+MOVE GF@&pomInteger int@1                                                       #    30/48
+MOVE TF@vysl GF@&pomInteger                                                     #    31/48
+LABEL $$loop_1                                                                  #    32/48
+MOVE GF@&pomInteger TF@a                                                        #    33/48
+redukce                                                                         #    34/48
+GT GF@&pomBool TF@a int@0                                                       #    35/48
+JUMPIFNEQ $$loop_end_1 GF@&pomBool bool@true                                    #    36/48
+MOVE GF@&pomInteger TF@vysl                                                     #    37/48
+redukce                                                                         #    38/48
+MUL GF@&pomInteger TF@vysl TF@a                                                 #    39/48
+MOVE TF@vysl GF@&pomInteger                                                     #    40/48
+MOVE GF@&pomInteger TF@a                                                        #    41/48
+redukce                                                                         #    42/48
+SUB GF@&pomInteger TF@a int@1                                                   #    43/48
+MOVE TF@a GF@&pomInteger                                                        #    44/48
+JUMP $$loop_1                                                                   #    45/48
+LABEL $$loop_end_1                                                              #    46/48
+WRITE TF@vysl                                                                   #    47/48
+LABEL $$endif_1                                                                 #    48/48
 

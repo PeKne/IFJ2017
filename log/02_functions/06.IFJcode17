@@ -1,4 +1,4 @@
-# 2017-12-03 20:43:46.967308
+# 2017-12-04 12:08:00.979763
 # SECTION: 02_functions
 # TEST: 06
 # INFO: function params with declaration but invalid types
@@ -40,32 +40,12 @@
 
 ########################################
 
-token: 57 ...                                                                   #     1/29
-token: 2 ... declare                                                            #     2/29
-.IFJcode17                                                                      #     3/29
-JUMP $$scope                                                                    #     4/29
-token: 9 ... function                                                           #     6/29
-token: 35 ... bar                                                               #     7/29
-token: 50 ... (                                                                 #     8/29
-token: 35 ... h                                                                 #     9/29
-rule_par                                                                        #    10/29
-token: 0 ... as                                                                 #    11/29
-token: 18 ... string                                                            #    12/29
-token: 48 ... ,                                                                 #    13/29
-rule next par                                                                   #    14/29
-token: 35 ... t                                                                 #    15/29
-rule_par                                                                        #    16/29
-token: 0 ... as                                                                 #    17/29
-token: 18 ... string                                                            #    18/29
-token: 51 ... )                                                                 #    19/29
-rule next par                                                                   #    20/29
-token: 0 ... as                                                                 #    21/29
-token: 18 ... string                                                            #    22/29
-token: 57 ...                                                                   #    23/29
-token: 57 ...                                                                   #    24/29
-token: 9 ... function                                                           #    25/29
-token: 35 ... bar                                                               #    26/29
-token: 50 ... (                                                                 #    27/29
-token: 35 ... b                                                                 #    28/29
-ERROR on line 4                                                                 #    29/29
+.IFJcode17                                                                      #     1/9
+JUMP $$scope                                                                    #     2/9
+rule_par                                                                        #     4/9
+rule next par                                                                   #     5/9
+rule_par                                                                        #     6/9
+rule next par                                                                   #     7/9
+Nezhoduje sa meno argumentu 1                                                   #     8/9
+ERROR on line 4                                                                 #     9/9
 

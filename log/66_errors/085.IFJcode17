@@ -1,14 +1,13 @@
-# 2017-12-03 20:43:48.004736
+# 2017-12-04 12:08:01.485382
 # SECTION: 66_errors
 # TEST: 085
 # INFO: No end function
 # REQUIRED EXTENSIONS: 
 # ACTIVATED EXTENSIONS: 
-# STATE: FAIL
+# STATE: SUCCESS
 # 
 # COMPILER STDERR:
-# symbol.c:268:retrieve_function_data(): Function not found
-# ERROR - 3 - sÃ©mantickÃ¡ chyba v programu â nedefinovanÃ¡ funkce/promeÌnnÃ¡, pokus o redefinici funkce/promeÌnnÃ©, atd.
+# ERROR - 2 - chyba v programu v rÃ¡mci syntaktickÃ© analÃ½zy (chybnÃ¡ syntaxe programu).
 # 
 # INTERPRETER STDERR:
 # 
@@ -24,7 +23,7 @@
 # 
 #
 # EXPECTED COMPILER EXIT CODE: 2
-# CURRENT COMPILER EXIT CODE: 3
+# CURRENT COMPILER EXIT CODE: 2
 # EXPECTED INTERPRETER EXIT CODE: 0
 # CURRENT INTERPRETER EXIT CODE: None
 # PRICE: ---
@@ -36,9 +35,11 @@
 
 ########################################
 
-token: 9 ... function                                                           #     1/6
-.IFJcode17                                                                      #     2/6
-JUMP $$scope                                                                    #     3/6
-token: 35 ... foo                                                               #     5/6
-ERROR on line 1                                                                 #     6/6
+.IFJcode17                                                                      #     1/8
+JUMP $$scope                                                                    #     2/8
+rule_par                                                                        #     4/8
+LABEL $foo                                                                      #     5/8
+PUSHFRAME                                                                       #     6/8
+DEFVAR LF@&retval                                                               #     7/8
+ERROR on line 2                                                                 #     8/8
 

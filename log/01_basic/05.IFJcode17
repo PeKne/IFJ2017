@@ -1,4 +1,4 @@
-# 2017-12-03 20:43:45.286037
+# 2017-12-04 12:08:00.073791
 # SECTION: 01_basic
 # TEST: 05
 # INFO: string escape sequences
@@ -38,30 +38,21 @@
 
 ########################################
 
-token: 57 ...                                                                   #     1/28
-token: 17 ... scope                                                             #     2/28
-.IFJcode17                                                                      #     3/28
-JUMP $$scope                                                                    #     4/28
-LABEL $$scope                                                                   #     6/28
-DEFVAR GF@&pomInteger                                                           #     7/28
-MOVE GF@&pomInteger int@0                                                       #     8/28
-DEFVAR GF@&pomString                                                            #     9/28
-MOVE GF@&pomString string@                                                      #    10/28
-DEFVAR GF@&pomFloat                                                             #    11/28
-MOVE GF@&pomFloat float@0                                                       #    12/28
-DEFVAR GF@&pomBool                                                              #    13/28
-MOVE GF@&pomBool bool@false                                                     #    14/28
-DEFVAR GF@&pomCntr                                                              #    15/28
-MOVE GF@&pomCntr int@0                                                          #    16/28
-CREATEFRAME                                                                     #    17/28
-token: 57 ...                                                                   #    19/28
-token: 3 ... dim                                                                #    20/28
-token: 35 ... str                                                               #    21/28
-token: 0 ... as                                                                 #    22/28
-token: 18 ... string                                                            #    23/28
-token: 45 ... =                                                                 #    24/28
-DEFVAR TF@str                                                                   #    25/28
-MOVE TF@str string@                                                             #    26/28
-token: 59 ... \034\010                                                          #    27/28
-ERROR on line 3                                                                 #    28/28
+.IFJcode17                                                                      #     1/19
+JUMP $$scope                                                                    #     2/19
+LABEL $$scope                                                                   #     4/19
+DEFVAR GF@&pomInteger                                                           #     5/19
+MOVE GF@&pomInteger int@0                                                       #     6/19
+DEFVAR GF@&pomString                                                            #     7/19
+MOVE GF@&pomString string@                                                      #     8/19
+DEFVAR GF@&pomFloat                                                             #     9/19
+MOVE GF@&pomFloat float@0                                                       #    10/19
+DEFVAR GF@&pomBool                                                              #    11/19
+MOVE GF@&pomBool bool@false                                                     #    12/19
+DEFVAR GF@&pomCntr                                                              #    13/19
+MOVE GF@&pomCntr int@0                                                          #    14/19
+CREATEFRAME                                                                     #    15/19
+DEFVAR TF@str                                                                   #    17/19
+MOVE TF@str string@                                                             #    18/19
+ERROR on line 3                                                                 #    19/19
 

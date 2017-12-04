@@ -1,4 +1,4 @@
-# 2017-12-03 20:43:46.989128
+# 2017-12-04 12:08:00.998166
 # SECTION: 02_functions
 # TEST: 12
 # INFO: Recursive function
@@ -7,8 +7,7 @@
 # STATE: FAIL
 # 
 # COMPILER STDERR:
-# symbol.c:268:retrieve_function_data(): Function not found
-# ERROR - 3 - sÃ©mantickÃ¡ chyba v programu â nedefinovanÃ¡ funkce/promeÌnnÃ¡, pokus o redefinici funkce/promeÌnnÃ©, atd.
+# ERROR - 2 - chyba v programu v rÃ¡mci syntaktickÃ© analÃ½zy (chybnÃ¡ syntaxe programu).
 # 
 # INTERPRETER STDERR:
 # 
@@ -25,7 +24,7 @@
 # 
 #
 # EXPECTED COMPILER EXIT CODE: 0
-# CURRENT COMPILER EXIT CODE: 3
+# CURRENT COMPILER EXIT CODE: 2
 # EXPECTED INTERPRETER EXIT CODE: 0
 # CURRENT INTERPRETER EXIT CODE: None
 # PRICE: ---
@@ -54,11 +53,53 @@
 
 ########################################
 
-token: 57 ...                                                                   #     1/8
-token: 57 ...                                                                   #     2/8
-token: 9 ... function                                                           #     3/8
-.IFJcode17                                                                      #     4/8
-JUMP $$scope                                                                    #     5/8
-token: 35 ... recursive                                                         #     7/8
-ERROR on line 3                                                                 #     8/8
+.IFJcode17                                                                      #     1/52
+JUMP $$scope                                                                    #     2/52
+rule_par                                                                        #     4/52
+rule next par                                                                   #     5/52
+LABEL $recursive                                                                #     6/52
+PUSHFRAME                                                                       #     7/52
+DEFVAR LF@&retval                                                               #     8/52
+DEFVAR LF@param0                                                                #     9/52
+MOVE LF@param0 int@0                                                            #    10/52
+MOVE GF@&pomInteger int@12                                                      #    11/52
+MOVE LF@param0 GF@&pomInteger                                                   #    12/52
+DEFVAR LF@res                                                                   #    13/52
+MOVE LF@res int@0                                                               #    14/52
+MOVE GF@&pomInteger int@10                                                      #    15/52
+MOVE LF@res GF@&pomInteger                                                      #    16/52
+MOVE GF@&pomInteger LF@param                                                    #    17/52
+redukce                                                                         #    18/52
+SUB GF@&pomInteger LF@param int@1                                               #    19/52
+MOVE LF@param0 GF@&pomInteger                                                   #    20/52
+MOVE GF@&pomInteger LF@param                                                    #    21/52
+redukce                                                                         #    22/52
+EQ GF@&pomBool LF@param int@0                                                   #    23/52
+JUMPIFNEQ $$else_1 GF@&pomBool bool@true                                        #    24/52
+JUMP $$endif_1                                                                  #    25/52
+LABEL $$else_1                                                                  #    26/52
+CALL $recursive                                                                 #    27/52
+MOVE LF@res LF@&retval                                                          #    28/52
+MOVE GF@&pomInteger LF@res                                                      #    29/52
+LABEL $$endif_1                                                                 #    30/52
+MOVE LF@&retval GF@&pomInteger                                                  #    31/52
+POPFRAME                                                                        #    32/52
+RETURN                                                                          #    33/52
+LABEL $$scope                                                                   #    35/52
+DEFVAR GF@&pomInteger                                                           #    36/52
+MOVE GF@&pomInteger int@0                                                       #    37/52
+DEFVAR GF@&pomString                                                            #    38/52
+MOVE GF@&pomString string@                                                      #    39/52
+DEFVAR GF@&pomFloat                                                             #    40/52
+MOVE GF@&pomFloat float@0                                                       #    41/52
+DEFVAR GF@&pomBool                                                              #    42/52
+MOVE GF@&pomBool bool@false                                                     #    43/52
+DEFVAR GF@&pomCntr                                                              #    44/52
+MOVE GF@&pomCntr int@0                                                          #    45/52
+CREATEFRAME                                                                     #    46/52
+DEFVAR TF@a                                                                     #    48/52
+MOVE TF@a int@0                                                                 #    49/52
+MOVE GF@&pomInteger int@12                                                      #    50/52
+MOVE TF@a GF@&pomInteger                                                        #    51/52
+ERROR on line 17                                                                #    52/52
 

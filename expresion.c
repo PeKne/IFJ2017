@@ -279,7 +279,7 @@ int expresion_reduction(TStack *s, Tstate instruct, int reduce_counter, Tstring 
     Tstring operand_2;
     int error;
 
-    DBG_SPrint(s);
+    //DBG_SPrint(s);
 
     char* context = (p == 0 ? "TF@" : "LF@");
 
@@ -515,7 +515,7 @@ int precedent_analysis(Tstate instruct, Tstate dest_type) {
           SClean(&stack);
           return ERR_SYN;
         }
-        DBG_SPrint(&stack);
+        //DBG_SPrint(&stack);
         switch (prec_table[stacked_operator][input_operator]){//porovnani operatoru v zasobniku a na vstupu
             case EQ:
             {

@@ -1,4 +1,4 @@
-# 2017-12-03 20:43:47.724954
+# 2017-12-04 12:08:01.366501
 # SECTION: 66_errors
 # TEST: 29
 # INFO: redefined function
@@ -7,7 +7,6 @@
 # STATE: SUCCESS
 # 
 # COMPILER STDERR:
-# symbol.c:268:retrieve_function_data(): Function not found
 # ERROR - 3 - sÃ©mantickÃ¡ chyba v programu â nedefinovanÃ¡ funkce/promeÌnnÃ¡, pokus o redefinici funkce/promeÌnnÃ©, atd.
 # 
 # INTERPRETER STDERR:
@@ -43,10 +42,14 @@
 
 ########################################
 
-token: 57 ...                                                                   #     1/7
-token: 9 ... function                                                           #     2/7
-.IFJcode17                                                                      #     3/7
-JUMP $$scope                                                                    #     4/7
-token: 35 ... foo                                                               #     6/7
-ERROR on line 2                                                                 #     7/7
+.IFJcode17                                                                      #     1/12
+JUMP $$scope                                                                    #     2/12
+rule_par                                                                        #     4/12
+LABEL $foo                                                                      #     5/12
+PUSHFRAME                                                                       #     6/12
+DEFVAR LF@&retval                                                               #     7/12
+MOVE LF@&retval GF@&pomInteger                                                  #     8/12
+POPFRAME                                                                        #     9/12
+RETURN                                                                          #    10/12
+ERROR on line 6                                                                 #    12/12
 

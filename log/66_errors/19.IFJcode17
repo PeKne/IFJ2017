@@ -1,14 +1,12 @@
-# 2017-12-03 20:43:47.571921
+# 2017-12-04 12:08:01.352805
 # SECTION: 66_errors
 # TEST: 19
 # INFO: Colision of argument name and function name
 # REQUIRED EXTENSIONS: 
 # ACTIVATED EXTENSIONS: 
-# STATE: SUCCESS
+# STATE: FAIL
 # 
 # COMPILER STDERR:
-# symbol.c:268:retrieve_function_data(): Function not found
-# ERROR - 3 - sÃ©mantickÃ¡ chyba v programu â nedefinovanÃ¡ funkce/promeÌnnÃ¡, pokus o redefinici funkce/promeÌnnÃ©, atd.
 # 
 # INTERPRETER STDERR:
 # 
@@ -24,7 +22,7 @@
 # 
 #
 # EXPECTED COMPILER EXIT CODE: 3
-# CURRENT COMPILER EXIT CODE: 3
+# CURRENT COMPILER EXIT CODE: 0
 # EXPECTED INTERPRETER EXIT CODE: 0
 # CURRENT INTERPRETER EXIT CODE: None
 # PRICE: ---
@@ -44,11 +42,34 @@
 
 ########################################
 
-token: 57 ...                                                                   #     1/8
-token: 57 ...                                                                   #     2/8
-token: 9 ... function                                                           #     3/8
-.IFJcode17                                                                      #     4/8
-JUMP $$scope                                                                    #     5/8
-token: 35 ... foo1                                                              #     7/8
-ERROR on line 3                                                                 #     8/8
+.IFJcode17                                                                      #     1/34
+JUMP $$scope                                                                    #     2/34
+rule_par                                                                        #     4/34
+LABEL $foo1                                                                     #     5/34
+PUSHFRAME                                                                       #     6/34
+DEFVAR LF@&retval                                                               #     7/34
+MOVE LF@&retval GF@&pomInteger                                                  #     8/34
+POPFRAME                                                                        #     9/34
+RETURN                                                                          #    10/34
+rule_par                                                                        #    12/34
+rule next par                                                                   #    13/34
+LABEL $bar                                                                      #    14/34
+PUSHFRAME                                                                       #    15/34
+DEFVAR LF@&retval                                                               #    16/34
+MOVE GF@&pomInteger LF@foo1                                                     #    17/34
+MOVE LF@&retval GF@&pomInteger                                                  #    18/34
+POPFRAME                                                                        #    19/34
+RETURN                                                                          #    20/34
+LABEL $$scope                                                                   #    22/34
+DEFVAR GF@&pomInteger                                                           #    23/34
+MOVE GF@&pomInteger int@0                                                       #    24/34
+DEFVAR GF@&pomString                                                            #    25/34
+MOVE GF@&pomString string@                                                      #    26/34
+DEFVAR GF@&pomFloat                                                             #    27/34
+MOVE GF@&pomFloat float@0                                                       #    28/34
+DEFVAR GF@&pomBool                                                              #    29/34
+MOVE GF@&pomBool bool@false                                                     #    30/34
+DEFVAR GF@&pomCntr                                                              #    31/34
+MOVE GF@&pomCntr int@0                                                          #    32/34
+CREATEFRAME                                                                     #    33/34
 

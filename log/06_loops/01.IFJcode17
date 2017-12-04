@@ -1,4 +1,4 @@
-# 2017-12-03 20:43:47.400910
+# 2017-12-04 12:08:01.253530
 # SECTION: 06_loops
 # TEST: 01
 # INFO: basic while loop
@@ -8,7 +8,7 @@
 # 
 # COMPILER STDERR:
 # In if and loop statement can only be relational operators.
-# ERROR -  6 - ostatnÃ­ sÃ©mantickÃ© chyby.
+# ERROR - 3 - sÃ©mantickÃ¡ chyba v programu â nedefinovanÃ¡ funkce/promeÌnnÃ¡, pokus o redefinici funkce/promeÌnnÃ©, atd.
 # 
 # INTERPRETER STDERR:
 # 
@@ -25,7 +25,7 @@
 # 
 #
 # EXPECTED COMPILER EXIT CODE: 0
-# CURRENT COMPILER EXIT CODE: 6
+# CURRENT COMPILER EXIT CODE: 3
 # EXPECTED INTERPRETER EXIT CODE: 0
 # CURRENT INTERPRETER EXIT CODE: None
 # PRICE: ---
@@ -42,79 +42,26 @@
 
 ########################################
 
-token: 57 ...                                                                   #     1/77
-token: 17 ... scope                                                             #     2/77
-.IFJcode17                                                                      #     3/77
-JUMP $$scope                                                                    #     4/77
-LABEL $$scope                                                                   #     6/77
-DEFVAR GF@&pomInteger                                                           #     7/77
-MOVE GF@&pomInteger int@0                                                       #     8/77
-DEFVAR GF@&pomString                                                            #     9/77
-MOVE GF@&pomString string@                                                      #    10/77
-DEFVAR GF@&pomFloat                                                             #    11/77
-MOVE GF@&pomFloat float@0                                                       #    12/77
-DEFVAR GF@&pomBool                                                              #    13/77
-MOVE GF@&pomBool bool@false                                                     #    14/77
-DEFVAR GF@&pomCntr                                                              #    15/77
-MOVE GF@&pomCntr int@0                                                          #    16/77
-CREATEFRAME                                                                     #    17/77
-token: 57 ...                                                                   #    19/77
-token: 3 ... dim                                                                #    20/77
-token: 35 ... a                                                                 #    21/77
-token: 0 ... as                                                                 #    22/77
-token: 5 ... double                                                             #    23/77
-token: 45 ... =                                                                 #    24/77
-DEFVAR TF@a                                                                     #    25/77
-MOVE TF@a float@0                                                               #    26/77
-token: 54 ... 25.54                                                             #    27/77
-|TOP--->|$|  SYMBOL                                                             #    28/77
-|TOP--->| |  STRING                                                             #    29/77
-token: 57 ...                                                                   #    30/77
-|TOP--->|double|]|$|  SYMBOL                                                    #    31/77
-|TOP--->|25.54| | |  STRING                                                     #    32/77
-|TOP--->|double|  SYMBOL                                                        #    33/77
-|TOP--->|25.54|  STRING                                                         #    34/77
-MOVE GF@&pomFloat float@25.54                                                   #    35/77
-MOVE TF@a GF@&pomFloat                                                          #    36/77
-token: 4 ... do                                                                 #    37/77
-token: 21 ... while                                                             #    38/77
-LABEL $$loop_1                                                                  #    39/77
-token: 35 ... a                                                                 #    40/77
-|TOP--->|$|  SYMBOL                                                             #    41/77
-|TOP--->| |  STRING                                                             #    42/77
-token: 42 ... >                                                                 #    43/77
-|TOP--->|i|]|$|  SYMBOL                                                         #    44/77
-|TOP--->|a| | |  STRING                                                         #    45/77
-|TOP--->|i|  SYMBOL                                                             #    46/77
-|TOP--->|a|  STRING                                                             #    47/77
-MOVE GF@&pomFloat TF@a                                                          #    48/77
-|TOP--->|R|$|  SYMBOL                                                           #    49/77
-|TOP--->|a| |  STRING                                                           #    50/77
-token: 50 ... (                                                                 #    51/77
-|TOP--->|>|R|]|$|  SYMBOL                                                       #    52/77
-|TOP--->|>|a| | |  STRING                                                       #    53/77
-token: 53 ... 0                                                                 #    54/77
-|TOP--->|(|]|>|R|]|$|  SYMBOL                                                   #    55/77
-|TOP--->|(| |>|a| | |  STRING                                                   #    56/77
-token: 40 ... -                                                                 #    57/77
-|TOP--->|int|]|(|]|>|R|]|$|  SYMBOL                                             #    58/77
-|TOP--->|0| |(| |>|a| | |  STRING                                               #    59/77
-|TOP--->|int|  SYMBOL                                                           #    60/77
-|TOP--->|0|  STRING                                                             #    61/77
-|TOP--->|R|(|]|>|R|]|$|  SYMBOL                                                 #    62/77
-|TOP--->|0|(| |>|a| | |  STRING                                                 #    63/77
-token: 53 ... 25                                                                #    64/77
-|TOP--->|-|R|]|(|]|>|R|]|$|  SYMBOL                                             #    65/77
-|TOP--->|-|0| |(| |>|a| | |  STRING                                             #    66/77
-token: 51 ... )                                                                 #    67/77
-|TOP--->|int|]|-|R|]|(|]|>|R|]|$|  SYMBOL                                       #    68/77
-|TOP--->|25| |-|0| |(| |>|a| | |  STRING                                        #    69/77
-|TOP--->|int|  SYMBOL                                                           #    70/77
-|TOP--->|25|  STRING                                                            #    71/77
-|TOP--->|R|-|R|]|(|]|>|R|]|$|  SYMBOL                                           #    72/77
-|TOP--->|25|-|0| |(| |>|a| | |  STRING                                          #    73/77
-|TOP--->|R|-|R|  SYMBOL                                                         #    74/77
-|TOP--->|0|-|25|  STRING                                                        #    75/77
-redukce                                                                         #    76/77
-ERROR on line 4                                                                 #    77/77
+.IFJcode17                                                                      #     1/24
+JUMP $$scope                                                                    #     2/24
+LABEL $$scope                                                                   #     4/24
+DEFVAR GF@&pomInteger                                                           #     5/24
+MOVE GF@&pomInteger int@0                                                       #     6/24
+DEFVAR GF@&pomString                                                            #     7/24
+MOVE GF@&pomString string@                                                      #     8/24
+DEFVAR GF@&pomFloat                                                             #     9/24
+MOVE GF@&pomFloat float@0                                                       #    10/24
+DEFVAR GF@&pomBool                                                              #    11/24
+MOVE GF@&pomBool bool@false                                                     #    12/24
+DEFVAR GF@&pomCntr                                                              #    13/24
+MOVE GF@&pomCntr int@0                                                          #    14/24
+CREATEFRAME                                                                     #    15/24
+DEFVAR TF@a                                                                     #    17/24
+MOVE TF@a float@0                                                               #    18/24
+MOVE GF@&pomFloat float@25.54                                                   #    19/24
+MOVE TF@a GF@&pomFloat                                                          #    20/24
+LABEL $$loop_1                                                                  #    21/24
+MOVE GF@&pomFloat TF@a                                                          #    22/24
+redukce                                                                         #    23/24
+ERROR on line 4                                                                 #    24/24
 

@@ -1,4 +1,4 @@
-# 2017-12-03 20:43:48.820958
+# 2017-12-04 12:08:01.861043
 # SECTION: 99_benchmarks
 # TEST: 07
 # INFO: reference program working with strings and builtin functions
@@ -61,125 +61,35 @@
 
 ########################################
 
-token: 57 ...                                                                   #     1/123
-token: 17 ... scope                                                             #     2/123
-.IFJcode17                                                                      #     3/123
-JUMP $$scope                                                                    #     4/123
-LABEL $$scope                                                                   #     6/123
-DEFVAR GF@&pomInteger                                                           #     7/123
-MOVE GF@&pomInteger int@0                                                       #     8/123
-DEFVAR GF@&pomString                                                            #     9/123
-MOVE GF@&pomString string@                                                      #    10/123
-DEFVAR GF@&pomFloat                                                             #    11/123
-MOVE GF@&pomFloat float@0                                                       #    12/123
-DEFVAR GF@&pomBool                                                              #    13/123
-MOVE GF@&pomBool bool@false                                                     #    14/123
-DEFVAR GF@&pomCntr                                                              #    15/123
-MOVE GF@&pomCntr int@0                                                          #    16/123
-CREATEFRAME                                                                     #    17/123
-token: 57 ...                                                                   #    19/123
-token: 57 ...                                                                   #    20/123
-token: 3 ... dim                                                                #    21/123
-token: 35 ... s1                                                                #    22/123
-token: 0 ... as                                                                 #    23/123
-token: 18 ... string                                                            #    24/123
-token: 57 ...                                                                   #    25/123
-DEFVAR TF@s1                                                                    #    26/123
-MOVE TF@s1 string@                                                              #    27/123
-token: 3 ... dim                                                                #    28/123
-token: 35 ... s2                                                                #    29/123
-token: 0 ... as                                                                 #    30/123
-token: 18 ... string                                                            #    31/123
-token: 57 ...                                                                   #    32/123
-DEFVAR TF@s2                                                                    #    33/123
-MOVE TF@s2 string@                                                              #    34/123
-token: 3 ... dim                                                                #    35/123
-token: 35 ... s1len                                                             #    36/123
-token: 0 ... as                                                                 #    37/123
-token: 12 ... integer                                                           #    38/123
-token: 57 ...                                                                   #    39/123
-DEFVAR TF@s1len                                                                 #    40/123
-MOVE TF@s1len int@0                                                             #    41/123
-token: 35 ... s1                                                                #    42/123
-token: 45 ... =                                                                 #    43/123
-token: 52 ... Toto\032je\032nejaky\032text                                      #    44/123
-|TOP--->|$|  SYMBOL                                                             #    45/123
-|TOP--->| |  STRING                                                             #    46/123
-token: 57 ...                                                                   #    47/123
-|TOP--->|str|]|$|  SYMBOL                                                       #    48/123
-|TOP--->|Toto\032je\032nejaky\032text| | |  STRING                              #    49/123
-|TOP--->|str|  SYMBOL                                                           #    50/123
-|TOP--->|Toto\032je\032nejaky\032text|  STRING                                  #    51/123
-MOVE GF@&pomString string@Toto\032je\032nejaky\032text                          #    52/123
-MOVE TF@s1 GF@&pomString                                                        #    53/123
-token: 35 ... s2                                                                #    54/123
-token: 45 ... =                                                                 #    55/123
-token: 35 ... s1                                                                #    56/123
-|TOP--->|$|  SYMBOL                                                             #    57/123
-|TOP--->| |  STRING                                                             #    58/123
-token: 39 ... +                                                                 #    59/123
-|TOP--->|i|]|$|  SYMBOL                                                         #    60/123
-|TOP--->|s1| | |  STRING                                                        #    61/123
-|TOP--->|i|  SYMBOL                                                             #    62/123
-|TOP--->|s1|  STRING                                                            #    63/123
-MOVE GF@&pomString TF@s1                                                        #    64/123
-|TOP--->|R|$|  SYMBOL                                                           #    65/123
-|TOP--->|s1| |  STRING                                                          #    66/123
-token: 52 ... ,\032ktery\032jeste\032trochu\032obohatime                        #    67/123
-|TOP--->|+|R|]|$|  SYMBOL                                                       #    68/123
-|TOP--->|+|s1| | |  STRING                                                      #    69/123
-token: 57 ...                                                                   #    70/123
-|TOP--->|str|]|+|R|]|$|  SYMBOL                                                 #    71/123
-|TOP--->|,\032ktery\032jeste\032trochu\032obohatime| |+|s1| | |  STRING         #    72/123
-|TOP--->|str|  SYMBOL                                                           #    73/123
-|TOP--->|,\032ktery\032jeste\032trochu\032obohatime|  STRING                    #    74/123
-|TOP--->|R|+|R|]|$|  SYMBOL                                                     #    75/123
-|TOP--->|,\032ktery\032jeste\032trochu\032obohatime|+|s1| | |  STRING           #    76/123
-|TOP--->|R|+|R|  SYMBOL                                                         #    77/123
-|TOP--->|s1|+|,\032ktery\032jeste\032trochu\032obohatime|  STRING               #    78/123
-redukce                                                                         #    79/123
-ADD GF@&pomString TF@s1 string@,\032ktery\032jeste\032trochu\032obohatime       #    80/123
-MOVE TF@s2 GF@&pomString                                                        #    81/123
-token: 15 ... print                                                             #    82/123
-token: 35 ... s1                                                                #    83/123
-|TOP--->|$|  SYMBOL                                                             #    84/123
-|TOP--->| |  STRING                                                             #    85/123
-token: 47 ... ;                                                                 #    86/123
-|TOP--->|i|]|$|  SYMBOL                                                         #    87/123
-|TOP--->|s1| | |  STRING                                                        #    88/123
-|TOP--->|i|  SYMBOL                                                             #    89/123
-|TOP--->|s1|  STRING                                                            #    90/123
-WRITE TF@s1                                                                     #    91/123
-token: 52 ... \010                                                              #    92/123
-|TOP--->|$|  SYMBOL                                                             #    93/123
-|TOP--->| |  STRING                                                             #    94/123
-token: 47 ... ;                                                                 #    95/123
-|TOP--->|str|]|$|  SYMBOL                                                       #    96/123
-|TOP--->|\010| | |  STRING                                                      #    97/123
-|TOP--->|str|  SYMBOL                                                           #    98/123
-|TOP--->|\010|  STRING                                                          #    99/123
-WRITE string@\010                                                               #   100/123
-token: 35 ... s2                                                                #   101/123
-|TOP--->|$|  SYMBOL                                                             #   102/123
-|TOP--->| |  STRING                                                             #   103/123
-token: 47 ... ;                                                                 #   104/123
-|TOP--->|i|]|$|  SYMBOL                                                         #   105/123
-|TOP--->|s2| | |  STRING                                                        #   106/123
-|TOP--->|i|  SYMBOL                                                             #   107/123
-|TOP--->|s2|  STRING                                                            #   108/123
-WRITE TF@s2                                                                     #   109/123
-token: 52 ... \010                                                              #   110/123
-|TOP--->|$|  SYMBOL                                                             #   111/123
-|TOP--->| |  STRING                                                             #   112/123
-token: 47 ... ;                                                                 #   113/123
-|TOP--->|str|]|$|  SYMBOL                                                       #   114/123
-|TOP--->|\010| | |  STRING                                                      #   115/123
-|TOP--->|str|  SYMBOL                                                           #   116/123
-|TOP--->|\010|  STRING                                                          #   117/123
-WRITE string@\010                                                               #   118/123
-token: 57 ...                                                                   #   119/123
-token: 35 ... s1len                                                             #   120/123
-token: 45 ... =                                                                 #   121/123
-token: 13 ... length                                                            #   122/123
-ERROR on line 10                                                                #   123/123
+.IFJcode17                                                                      #     1/33
+JUMP $$scope                                                                    #     2/33
+LABEL $$scope                                                                   #     4/33
+DEFVAR GF@&pomInteger                                                           #     5/33
+MOVE GF@&pomInteger int@0                                                       #     6/33
+DEFVAR GF@&pomString                                                            #     7/33
+MOVE GF@&pomString string@                                                      #     8/33
+DEFVAR GF@&pomFloat                                                             #     9/33
+MOVE GF@&pomFloat float@0                                                       #    10/33
+DEFVAR GF@&pomBool                                                              #    11/33
+MOVE GF@&pomBool bool@false                                                     #    12/33
+DEFVAR GF@&pomCntr                                                              #    13/33
+MOVE GF@&pomCntr int@0                                                          #    14/33
+CREATEFRAME                                                                     #    15/33
+DEFVAR TF@s1                                                                    #    17/33
+MOVE TF@s1 string@                                                              #    18/33
+DEFVAR TF@s2                                                                    #    19/33
+MOVE TF@s2 string@                                                              #    20/33
+DEFVAR TF@s1len                                                                 #    21/33
+MOVE TF@s1len int@0                                                             #    22/33
+MOVE GF@&pomString string@Toto\032je\032nejaky\032text                          #    23/33
+MOVE TF@s1 GF@&pomString                                                        #    24/33
+MOVE GF@&pomString TF@s1                                                        #    25/33
+redukce                                                                         #    26/33
+ADD GF@&pomString TF@s1 string@,\032ktery\032jeste\032trochu\032obohatime       #    27/33
+MOVE TF@s2 GF@&pomString                                                        #    28/33
+WRITE TF@s1                                                                     #    29/33
+WRITE string@\010                                                               #    30/33
+WRITE TF@s2                                                                     #    31/33
+WRITE string@\010                                                               #    32/33
+ERROR on line 10                                                                #    33/33
 

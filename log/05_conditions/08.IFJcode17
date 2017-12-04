@@ -1,4 +1,4 @@
-# 2017-12-03 20:43:47.369954
+# 2017-12-04 12:08:01.232952
 # SECTION: 05_conditions
 # TEST: 08
 # INFO: Smaller or same
@@ -8,10 +8,9 @@
 # 
 # COMPILER STDERR:
 # Chyba v code_gen_expres TF@GF@&pomString int@8 int@8
-# LEX: Line: 5: Int value didnt end properly!
-# ERROR - 1 - chyba v programu v rÃ¡mci lexikÃ¡lnÃ­ analÃ½zy (chybnÃ¡ struktura aktuÃ¡lnÃ­ho lexÃ©mu).
 # 
 # INTERPRETER STDERR:
+# 17.1-7: syntax error, unexpected ID, expecting END
 # 
 # EXPECTED INTERPRETER STDOUT:
 
@@ -26,9 +25,9 @@
 # 
 #
 # EXPECTED COMPILER EXIT CODE: 0
-# CURRENT COMPILER EXIT CODE: 1
+# CURRENT COMPILER EXIT CODE: 0
 # EXPECTED INTERPRETER EXIT CODE: 0
-# CURRENT INTERPRETER EXIT CODE: None
+# CURRENT INTERPRETER EXIT CODE: 51
 # PRICE: ---
 # GROOT: ---
 # 
@@ -44,61 +43,25 @@
 
 ########################################
 
-token: 57 ...                                                                   #     1/59
-token: 57 ...                                                                   #     2/59
-token: 17 ... scope                                                             #     3/59
-.IFJcode17                                                                      #     4/59
-JUMP $$scope                                                                    #     5/59
-LABEL $$scope                                                                   #     7/59
-DEFVAR GF@&pomInteger                                                           #     8/59
-MOVE GF@&pomInteger int@0                                                       #     9/59
-DEFVAR GF@&pomString                                                            #    10/59
-MOVE GF@&pomString string@                                                      #    11/59
-DEFVAR GF@&pomFloat                                                             #    12/59
-MOVE GF@&pomFloat float@0                                                       #    13/59
-DEFVAR GF@&pomBool                                                              #    14/59
-MOVE GF@&pomBool bool@false                                                     #    15/59
-DEFVAR GF@&pomCntr                                                              #    16/59
-MOVE GF@&pomCntr int@0                                                          #    17/59
-CREATEFRAME                                                                     #    18/59
-token: 57 ...                                                                   #    20/59
-token: 10 ... if                                                                #    21/59
-token: 50 ... (                                                                 #    22/59
-|TOP--->|$|  SYMBOL                                                             #    23/59
-|TOP--->| |  STRING                                                             #    24/59
-token: 53 ... 8                                                                 #    25/59
-|TOP--->|(|]|$|  SYMBOL                                                         #    26/59
-|TOP--->|(| | |  STRING                                                         #    27/59
-token: 43 ... <=                                                                #    28/59
-|TOP--->|int|]|(|]|$|  SYMBOL                                                   #    29/59
-|TOP--->|8| |(| | |  STRING                                                     #    30/59
-|TOP--->|int|  SYMBOL                                                           #    31/59
-|TOP--->|8|  STRING                                                             #    32/59
-|TOP--->|R|(|]|$|  SYMBOL                                                       #    33/59
-|TOP--->|8|(| | |  STRING                                                       #    34/59
-token: 53 ... 8                                                                 #    35/59
-|TOP--->|<=|R|]|(|]|$|  SYMBOL                                                  #    36/59
-|TOP--->|<=|8| |(| | |  STRING                                                  #    37/59
-token: 51 ... )                                                                 #    38/59
-|TOP--->|int|]|<=|R|]|(|]|$|  SYMBOL                                            #    39/59
-|TOP--->|8| |<=|8| |(| | |  STRING                                              #    40/59
-|TOP--->|int|  SYMBOL                                                           #    41/59
-|TOP--->|8|  STRING                                                             #    42/59
-|TOP--->|R|<=|R|]|(|]|$|  SYMBOL                                                #    43/59
-|TOP--->|8|<=|8| |(| | |  STRING                                                #    44/59
-|TOP--->|R|<=|R|  SYMBOL                                                        #    45/59
-|TOP--->|8|<=|8|  STRING                                                        #    46/59
-redukce                                                                         #    47/59
-|TOP--->|R|(|]|$|  SYMBOL                                                       #    48/59
-|TOP--->|8|(| | |  STRING                                                       #    49/59
-token: 20 ... then                                                              #    50/59
-|TOP--->|)|R|(|]|$|  SYMBOL                                                     #    51/59
-|TOP--->|)|8|(| | |  STRING                                                     #    52/59
-|TOP--->|(|R|)|  SYMBOL                                                         #    53/59
-|TOP--->|(|8|)|  STRING                                                         #    54/59
-JUMPIFNEQ $$else_1 GF@&pomBool bool@true                                        #    55/59
-token: 57 ...                                                                   #    56/59
-token: 15 ... print                                                             #    57/59
-token: 59 ... 42                                                                #    58/59
-ERROR on line 5                                                                 #    59/59
+.IFJcode17                                                                      #     1/23
+JUMP $$scope                                                                    #     2/23
+LABEL $$scope                                                                   #     4/23
+DEFVAR GF@&pomInteger                                                           #     5/23
+MOVE GF@&pomInteger int@0                                                       #     6/23
+DEFVAR GF@&pomString                                                            #     7/23
+MOVE GF@&pomString string@                                                      #     8/23
+DEFVAR GF@&pomFloat                                                             #     9/23
+MOVE GF@&pomFloat float@0                                                       #    10/23
+DEFVAR GF@&pomBool                                                              #    11/23
+MOVE GF@&pomBool bool@false                                                     #    12/23
+DEFVAR GF@&pomCntr                                                              #    13/23
+MOVE GF@&pomCntr int@0                                                          #    14/23
+CREATEFRAME                                                                     #    15/23
+redukce                                                                         #    17/23
+JUMPIFNEQ $$else_1 GF@&pomBool bool@true                                        #    18/23
+WRITE TF@42                                                                     #    19/23
+JUMP $$endif_1                                                                  #    20/23
+LABEL $$else_1                                                                  #    21/23
+WRITE TF@58                                                                     #    22/23
+LABEL $$endif_1                                                                 #    23/23
 

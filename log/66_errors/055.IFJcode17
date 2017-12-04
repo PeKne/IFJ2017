@@ -1,4 +1,4 @@
-# 2017-12-03 20:43:47.908964
+# 2017-12-04 12:08:01.441508
 # SECTION: 66_errors
 # TEST: 055
 # INFO: No then after if
@@ -37,55 +37,25 @@
 
 ########################################
 
-token: 17 ... scope                                                             #     1/53
-.IFJcode17                                                                      #     2/53
-JUMP $$scope                                                                    #     3/53
-LABEL $$scope                                                                   #     5/53
-DEFVAR GF@&pomInteger                                                           #     6/53
-MOVE GF@&pomInteger int@0                                                       #     7/53
-DEFVAR GF@&pomString                                                            #     8/53
-MOVE GF@&pomString string@                                                      #     9/53
-DEFVAR GF@&pomFloat                                                             #    10/53
-MOVE GF@&pomFloat float@0                                                       #    11/53
-DEFVAR GF@&pomBool                                                              #    12/53
-MOVE GF@&pomBool bool@false                                                     #    13/53
-DEFVAR GF@&pomCntr                                                              #    14/53
-MOVE GF@&pomCntr int@0                                                          #    15/53
-CREATEFRAME                                                                     #    16/53
-token: 57 ...                                                                   #    18/53
-token: 3 ... dim                                                                #    19/53
-token: 35 ... a                                                                 #    20/53
-token: 0 ... as                                                                 #    21/53
-token: 12 ... integer                                                           #    22/53
-token: 57 ...                                                                   #    23/53
-DEFVAR TF@a                                                                     #    24/53
-MOVE TF@a int@0                                                                 #    25/53
-token: 10 ... if                                                                #    26/53
-token: 35 ... a                                                                 #    27/53
-|TOP--->|$|  SYMBOL                                                             #    28/53
-|TOP--->| |  STRING                                                             #    29/53
-token: 42 ... >                                                                 #    30/53
-|TOP--->|i|]|$|  SYMBOL                                                         #    31/53
-|TOP--->|a| | |  STRING                                                         #    32/53
-|TOP--->|i|  SYMBOL                                                             #    33/53
-|TOP--->|a|  STRING                                                             #    34/53
-MOVE GF@&pomInteger TF@a                                                        #    35/53
-|TOP--->|R|$|  SYMBOL                                                           #    36/53
-|TOP--->|a| |  STRING                                                           #    37/53
-token: 53 ... 10                                                                #    38/53
-|TOP--->|>|R|]|$|  SYMBOL                                                       #    39/53
-|TOP--->|>|a| | |  STRING                                                       #    40/53
-token: 57 ...                                                                   #    41/53
-|TOP--->|int|]|>|R|]|$|  SYMBOL                                                 #    42/53
-|TOP--->|10| |>|a| | |  STRING                                                  #    43/53
-|TOP--->|int|  SYMBOL                                                           #    44/53
-|TOP--->|10|  STRING                                                            #    45/53
-|TOP--->|R|>|R|]|$|  SYMBOL                                                     #    46/53
-|TOP--->|10|>|a| | |  STRING                                                    #    47/53
-|TOP--->|R|>|R|  SYMBOL                                                         #    48/53
-|TOP--->|a|>|10|  STRING                                                        #    49/53
-redukce                                                                         #    50/53
-GT GF@&pomBool TF@a int@10                                                      #    51/53
-JUMPIFNEQ $$else_1 GF@&pomBool bool@true                                        #    52/53
-ERROR on line 3                                                                 #    53/53
+.IFJcode17                                                                      #     1/23
+JUMP $$scope                                                                    #     2/23
+LABEL $$scope                                                                   #     4/23
+DEFVAR GF@&pomInteger                                                           #     5/23
+MOVE GF@&pomInteger int@0                                                       #     6/23
+DEFVAR GF@&pomString                                                            #     7/23
+MOVE GF@&pomString string@                                                      #     8/23
+DEFVAR GF@&pomFloat                                                             #     9/23
+MOVE GF@&pomFloat float@0                                                       #    10/23
+DEFVAR GF@&pomBool                                                              #    11/23
+MOVE GF@&pomBool bool@false                                                     #    12/23
+DEFVAR GF@&pomCntr                                                              #    13/23
+MOVE GF@&pomCntr int@0                                                          #    14/23
+CREATEFRAME                                                                     #    15/23
+DEFVAR TF@a                                                                     #    17/23
+MOVE TF@a int@0                                                                 #    18/23
+MOVE GF@&pomInteger TF@a                                                        #    19/23
+redukce                                                                         #    20/23
+GT GF@&pomBool TF@a int@10                                                      #    21/23
+JUMPIFNEQ $$else_1 GF@&pomBool bool@true                                        #    22/23
+ERROR on line 3                                                                 #    23/23
 

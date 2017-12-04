@@ -1,4 +1,4 @@
-# 2017-12-03 20:43:47.139541
+# 2017-12-04 12:08:01.097272
 # SECTION: 03_statements
 # TEST: 08
 # INFO: multiple main scopes
@@ -43,30 +43,19 @@
 
 ########################################
 
-token: 57 ...                                                                   #     1/28
-token: 57 ...                                                                   #     2/28
-token: 17 ... scope                                                             #     3/28
-.IFJcode17                                                                      #     4/28
-JUMP $$scope                                                                    #     5/28
-LABEL $$scope                                                                   #     7/28
-DEFVAR GF@&pomInteger                                                           #     8/28
-MOVE GF@&pomInteger int@0                                                       #     9/28
-DEFVAR GF@&pomString                                                            #    10/28
-MOVE GF@&pomString string@                                                      #    11/28
-DEFVAR GF@&pomFloat                                                             #    12/28
-MOVE GF@&pomFloat float@0                                                       #    13/28
-DEFVAR GF@&pomBool                                                              #    14/28
-MOVE GF@&pomBool bool@false                                                     #    15/28
-DEFVAR GF@&pomCntr                                                              #    16/28
-MOVE GF@&pomCntr int@0                                                          #    17/28
-CREATEFRAME                                                                     #    18/28
-token: 57 ...                                                                   #    20/28
-token: 57 ...                                                                   #    21/28
-token: 7 ... end                                                                #    22/28
-token: 17 ... scope                                                             #    23/28
-token: 57 ...                                                                   #    24/28
-token: 57 ...                                                                   #    25/28
-token: 57 ...                                                                   #    26/28
-token: 17 ... scope                                                             #    27/28
-ERROR on line 8                                                                 #    28/28
+.IFJcode17                                                                      #     1/17
+JUMP $$scope                                                                    #     2/17
+LABEL $$scope                                                                   #     4/17
+DEFVAR GF@&pomInteger                                                           #     5/17
+MOVE GF@&pomInteger int@0                                                       #     6/17
+DEFVAR GF@&pomString                                                            #     7/17
+MOVE GF@&pomString string@                                                      #     8/17
+DEFVAR GF@&pomFloat                                                             #     9/17
+MOVE GF@&pomFloat float@0                                                       #    10/17
+DEFVAR GF@&pomBool                                                              #    11/17
+MOVE GF@&pomBool bool@false                                                     #    12/17
+DEFVAR GF@&pomCntr                                                              #    13/17
+MOVE GF@&pomCntr int@0                                                          #    14/17
+CREATEFRAME                                                                     #    15/17
+ERROR on line 8                                                                 #    17/17
 

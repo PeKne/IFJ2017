@@ -1,12 +1,13 @@
-# 2017-12-03 20:43:48.708542
+# 2017-12-04 12:08:01.801895
 # SECTION: 66_errors
 # TEST: 303
-# INFO: a > b > 1
+# INFO: Return in scope in condition
 # REQUIRED EXTENSIONS: 
 # ACTIVATED EXTENSIONS: 
-# STATE: FAIL
+# STATE: SUCCESS
 # 
 # COMPILER STDERR:
+# ERROR - 2 - chyba v programu v rÃ¡mci syntaktickÃ© analÃ½zy (chybnÃ¡ syntaxe programu).
 # 
 # INTERPRETER STDERR:
 # 
@@ -22,105 +23,37 @@
 # 
 #
 # EXPECTED COMPILER EXIT CODE: 2
-# CURRENT COMPILER EXIT CODE: 0
+# CURRENT COMPILER EXIT CODE: 2
 # EXPECTED INTERPRETER EXIT CODE: 0
 # CURRENT INTERPRETER EXIT CODE: None
 # PRICE: ---
 # GROOT: ---
 # 
 #   1: scope 
-#   2:  dim a as integer 
-#   3:  dim b as integer 
-#   4:  if a > b > 1 then 
-#   5:  else 
-#   6:  end if 
-#   7:  end scope
+#   2:  if 10 = 10 then 
+#   3:  return 10 
+#   4:  else 
+#   5:  end if 
+#   6:  end scope
 
 ########################################
 
-token: 17 ... scope                                                             #     1/87
-.IFJcode17                                                                      #     2/87
-JUMP $$scope                                                                    #     3/87
-LABEL $$scope                                                                   #     5/87
-DEFVAR GF@&pomInteger                                                           #     6/87
-MOVE GF@&pomInteger int@0                                                       #     7/87
-DEFVAR GF@&pomString                                                            #     8/87
-MOVE GF@&pomString string@                                                      #     9/87
-DEFVAR GF@&pomFloat                                                             #    10/87
-MOVE GF@&pomFloat float@0                                                       #    11/87
-DEFVAR GF@&pomBool                                                              #    12/87
-MOVE GF@&pomBool bool@false                                                     #    13/87
-DEFVAR GF@&pomCntr                                                              #    14/87
-MOVE GF@&pomCntr int@0                                                          #    15/87
-CREATEFRAME                                                                     #    16/87
-token: 57 ...                                                                   #    18/87
-token: 3 ... dim                                                                #    19/87
-token: 35 ... a                                                                 #    20/87
-token: 0 ... as                                                                 #    21/87
-token: 12 ... integer                                                           #    22/87
-token: 57 ...                                                                   #    23/87
-DEFVAR TF@a                                                                     #    24/87
-MOVE TF@a int@0                                                                 #    25/87
-token: 3 ... dim                                                                #    26/87
-token: 35 ... b                                                                 #    27/87
-token: 0 ... as                                                                 #    28/87
-token: 12 ... integer                                                           #    29/87
-token: 57 ...                                                                   #    30/87
-DEFVAR TF@b                                                                     #    31/87
-MOVE TF@b int@0                                                                 #    32/87
-token: 10 ... if                                                                #    33/87
-token: 35 ... a                                                                 #    34/87
-|TOP--->|$|  SYMBOL                                                             #    35/87
-|TOP--->| |  STRING                                                             #    36/87
-token: 42 ... >                                                                 #    37/87
-|TOP--->|i|]|$|  SYMBOL                                                         #    38/87
-|TOP--->|a| | |  STRING                                                         #    39/87
-|TOP--->|i|  SYMBOL                                                             #    40/87
-|TOP--->|a|  STRING                                                             #    41/87
-MOVE GF@&pomInteger TF@a                                                        #    42/87
-|TOP--->|R|$|  SYMBOL                                                           #    43/87
-|TOP--->|a| |  STRING                                                           #    44/87
-token: 35 ... b                                                                 #    45/87
-|TOP--->|>|R|]|$|  SYMBOL                                                       #    46/87
-|TOP--->|>|a| | |  STRING                                                       #    47/87
-token: 42 ... >                                                                 #    48/87
-|TOP--->|i|]|>|R|]|$|  SYMBOL                                                   #    49/87
-|TOP--->|b| |>|a| | |  STRING                                                   #    50/87
-|TOP--->|i|  SYMBOL                                                             #    51/87
-|TOP--->|b|  STRING                                                             #    52/87
-|TOP--->|R|>|R|]|$|  SYMBOL                                                     #    53/87
-|TOP--->|b|>|a| | |  STRING                                                     #    54/87
-|TOP--->|R|>|R|  SYMBOL                                                         #    55/87
-|TOP--->|a|>|b|  STRING                                                         #    56/87
-redukce                                                                         #    57/87
-GT GF@&pomBool TF@a TF@b                                                        #    58/87
-|TOP--->|R|$|  SYMBOL                                                           #    59/87
-|TOP--->|b| |  STRING                                                           #    60/87
-token: 53 ... 1                                                                 #    61/87
-|TOP--->|>|R|]|$|  SYMBOL                                                       #    62/87
-|TOP--->|>|b| | |  STRING                                                       #    63/87
-token: 20 ... then                                                              #    64/87
-|TOP--->|int|]|>|R|]|$|  SYMBOL                                                 #    65/87
-|TOP--->|1| |>|b| | |  STRING                                                   #    66/87
-|TOP--->|int|  SYMBOL                                                           #    67/87
-|TOP--->|1|  STRING                                                             #    68/87
-|TOP--->|R|>|R|]|$|  SYMBOL                                                     #    69/87
-|TOP--->|1|>|b| | |  STRING                                                     #    70/87
-|TOP--->|R|>|R|  SYMBOL                                                         #    71/87
-|TOP--->|b|>|1|  STRING                                                         #    72/87
-redukce                                                                         #    73/87
-GT GF@&pomBool TF@b int@1                                                       #    74/87
-JUMPIFNEQ $$else_1 GF@&pomBool bool@true                                        #    75/87
-token: 57 ...                                                                   #    76/87
-token: 6 ... else                                                               #    77/87
-JUMP $$endif_1                                                                  #    78/87
-LABEL $$else_1                                                                  #    79/87
-token: 57 ...                                                                   #    80/87
-token: 7 ... end                                                                #    81/87
-token: 10 ... if                                                                #    82/87
-LABEL $$endif_1                                                                 #    83/87
-token: 57 ...                                                                   #    84/87
-token: 7 ... end                                                                #    85/87
-token: 17 ... scope                                                             #    86/87
-token: 58 ...                                                                   #    87/87
+.IFJcode17                                                                      #     1/20
+JUMP $$scope                                                                    #     2/20
+LABEL $$scope                                                                   #     4/20
+DEFVAR GF@&pomInteger                                                           #     5/20
+MOVE GF@&pomInteger int@0                                                       #     6/20
+DEFVAR GF@&pomString                                                            #     7/20
+MOVE GF@&pomString string@                                                      #     8/20
+DEFVAR GF@&pomFloat                                                             #     9/20
+MOVE GF@&pomFloat float@0                                                       #    10/20
+DEFVAR GF@&pomBool                                                              #    11/20
+MOVE GF@&pomBool bool@false                                                     #    12/20
+DEFVAR GF@&pomCntr                                                              #    13/20
+MOVE GF@&pomCntr int@0                                                          #    14/20
+CREATEFRAME                                                                     #    15/20
+redukce                                                                         #    17/20
+EQ GF@&pomBool int@10 int@10                                                    #    18/20
+JUMPIFNEQ $$else_1 GF@&pomBool bool@true                                        #    19/20
+ERROR on line 3                                                                 #    20/20
 

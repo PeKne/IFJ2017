@@ -1,14 +1,14 @@
-# 2017-12-03 20:43:47.024619
+# 2017-12-04 12:08:01.019917
 # SECTION: 02_functions
 # TEST: 24
 # INFO: invalid types without supported implicit conversion II
 # REQUIRED EXTENSIONS: 
 # ACTIVATED EXTENSIONS: 
-# STATE: FAIL
+# STATE: SUCCESS
 # 
 # COMPILER STDERR:
-# symbol.c:268:retrieve_function_data(): Function not found
-# ERROR - 3 - sÃ©mantickÃ¡ chyba v programu â nedefinovanÃ¡ funkce/promeÌnnÃ¡, pokus o redefinici funkce/promeÌnnÃ©, atd.
+# Wrong types of operands!
+# ERROR -  4 - sÃ©mantickÃ¡ chyba typovÃ© kompatibility v aritmetickÃ½ch, rÌeteÌzcovÃ½ch a relacÌnÃ­ch vÃ½razech, prÌÃ­p. Å¡patnÃ½ pocÌet cÌi typ parametruÌ u volÃ¡nÃ­ funkce.
 # 
 # INTERPRETER STDERR:
 # 
@@ -24,7 +24,7 @@
 # 
 #
 # EXPECTED COMPILER EXIT CODE: 4
-# CURRENT COMPILER EXIT CODE: 3
+# CURRENT COMPILER EXIT CODE: 4
 # EXPECTED INTERPRETER EXIT CODE: 0
 # CURRENT INTERPRETER EXIT CODE: None
 # PRICE: ---
@@ -44,11 +44,12 @@
 
 ########################################
 
-token: 57 ...                                                                   #     1/8
-token: 57 ...                                                                   #     2/8
-token: 9 ... function                                                           #     3/8
-.IFJcode17                                                                      #     4/8
-JUMP $$scope                                                                    #     5/8
-token: 35 ... get_integer                                                       #     7/8
-ERROR on line 3                                                                 #     8/8
+.IFJcode17                                                                      #     1/9
+JUMP $$scope                                                                    #     2/9
+rule_par                                                                        #     4/9
+rule next par                                                                   #     5/9
+LABEL $get_integer                                                              #     6/9
+PUSHFRAME                                                                       #     7/9
+DEFVAR LF@&retval                                                               #     8/9
+ERROR on line 4                                                                 #     9/9
 

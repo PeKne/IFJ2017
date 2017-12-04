@@ -1,4 +1,4 @@
-# 2017-12-03 20:43:48.610696
+# 2017-12-04 12:08:01.752215
 # SECTION: 66_errors
 # TEST: 269
 # INFO: Fail type compatibility
@@ -35,39 +35,22 @@
 
 ########################################
 
-token: 17 ... scope                                                             #     1/37
-.IFJcode17                                                                      #     2/37
-JUMP $$scope                                                                    #     3/37
-LABEL $$scope                                                                   #     5/37
-DEFVAR GF@&pomInteger                                                           #     6/37
-MOVE GF@&pomInteger int@0                                                       #     7/37
-DEFVAR GF@&pomString                                                            #     8/37
-MOVE GF@&pomString string@                                                      #     9/37
-DEFVAR GF@&pomFloat                                                             #    10/37
-MOVE GF@&pomFloat float@0                                                       #    11/37
-DEFVAR GF@&pomBool                                                              #    12/37
-MOVE GF@&pomBool bool@false                                                     #    13/37
-DEFVAR GF@&pomCntr                                                              #    14/37
-MOVE GF@&pomCntr int@0                                                          #    15/37
-CREATEFRAME                                                                     #    16/37
-token: 57 ...                                                                   #    18/37
-token: 4 ... do                                                                 #    19/37
-token: 21 ... while                                                             #    20/37
-LABEL $$loop_1                                                                  #    21/37
-token: 53 ... 31                                                                #    22/37
-|TOP--->|$|  SYMBOL                                                             #    23/37
-|TOP--->| |  STRING                                                             #    24/37
-token: 57 ...                                                                   #    25/37
-|TOP--->|int|]|$|  SYMBOL                                                       #    26/37
-|TOP--->|31| | |  STRING                                                        #    27/37
-|TOP--->|int|  SYMBOL                                                           #    28/37
-|TOP--->|31|  STRING                                                            #    29/37
-JUMPIFNEQ $$loop_end_1 GF@&pomBool bool@true                                    #    30/37
-token: 14 ... loop                                                              #    31/37
-JUMP $$loop_1                                                                   #    32/37
-LABEL $$loop_end_1                                                              #    33/37
-token: 57 ...                                                                   #    34/37
-token: 7 ... end                                                                #    35/37
-token: 17 ... scope                                                             #    36/37
-token: 58 ...                                                                   #    37/37
+.IFJcode17                                                                      #     1/20
+JUMP $$scope                                                                    #     2/20
+LABEL $$scope                                                                   #     4/20
+DEFVAR GF@&pomInteger                                                           #     5/20
+MOVE GF@&pomInteger int@0                                                       #     6/20
+DEFVAR GF@&pomString                                                            #     7/20
+MOVE GF@&pomString string@                                                      #     8/20
+DEFVAR GF@&pomFloat                                                             #     9/20
+MOVE GF@&pomFloat float@0                                                       #    10/20
+DEFVAR GF@&pomBool                                                              #    11/20
+MOVE GF@&pomBool bool@false                                                     #    12/20
+DEFVAR GF@&pomCntr                                                              #    13/20
+MOVE GF@&pomCntr int@0                                                          #    14/20
+CREATEFRAME                                                                     #    15/20
+LABEL $$loop_1                                                                  #    17/20
+JUMPIFNEQ $$loop_end_1 GF@&pomBool bool@true                                    #    18/20
+JUMP $$loop_1                                                                   #    19/20
+LABEL $$loop_end_1                                                              #    20/20
 

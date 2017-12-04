@@ -1,4 +1,4 @@
-# 2017-12-03 20:43:47.810377
+# 2017-12-04 12:08:01.401179
 # SECTION: 66_errors
 # TEST: 025
 # INFO: missing end scope
@@ -33,22 +33,18 @@
 
 ########################################
 
-token: 17 ... scope                                                             #     1/20
-.IFJcode17                                                                      #     2/20
-JUMP $$scope                                                                    #     3/20
-LABEL $$scope                                                                   #     5/20
-DEFVAR GF@&pomInteger                                                           #     6/20
-MOVE GF@&pomInteger int@0                                                       #     7/20
-DEFVAR GF@&pomString                                                            #     8/20
-MOVE GF@&pomString string@                                                      #     9/20
-DEFVAR GF@&pomFloat                                                             #    10/20
-MOVE GF@&pomFloat float@0                                                       #    11/20
-DEFVAR GF@&pomBool                                                              #    12/20
-MOVE GF@&pomBool bool@false                                                     #    13/20
-DEFVAR GF@&pomCntr                                                              #    14/20
-MOVE GF@&pomCntr int@0                                                          #    15/20
-CREATEFRAME                                                                     #    16/20
-token: 57 ...                                                                   #    18/20
-token: 7 ... end                                                                #    19/20
-token: 58 ...                                                                   #    20/20
+.IFJcode17                                                                      #     1/16
+JUMP $$scope                                                                    #     2/16
+LABEL $$scope                                                                   #     4/16
+DEFVAR GF@&pomInteger                                                           #     5/16
+MOVE GF@&pomInteger int@0                                                       #     6/16
+DEFVAR GF@&pomString                                                            #     7/16
+MOVE GF@&pomString string@                                                      #     8/16
+DEFVAR GF@&pomFloat                                                             #     9/16
+MOVE GF@&pomFloat float@0                                                       #    10/16
+DEFVAR GF@&pomBool                                                              #    11/16
+MOVE GF@&pomBool bool@false                                                     #    12/16
+DEFVAR GF@&pomCntr                                                              #    13/16
+MOVE GF@&pomCntr int@0                                                          #    14/16
+CREATEFRAME                                                                     #    15/16
 

@@ -1,4 +1,4 @@
-# 2017-12-03 20:43:47.048980
+# 2017-12-04 12:08:01.044945
 # SECTION: 02_functions
 # TEST: 32
 # INFO: Double constant into build-in function
@@ -46,58 +46,27 @@
 
 ########################################
 
-token: 57 ...                                                                   #     1/56
-token: 57 ...                                                                   #     2/56
-token: 17 ... scope                                                             #     3/56
-.IFJcode17                                                                      #     4/56
-JUMP $$scope                                                                    #     5/56
-LABEL $$scope                                                                   #     7/56
-DEFVAR GF@&pomInteger                                                           #     8/56
-MOVE GF@&pomInteger int@0                                                       #     9/56
-DEFVAR GF@&pomString                                                            #    10/56
-MOVE GF@&pomString string@                                                      #    11/56
-DEFVAR GF@&pomFloat                                                             #    12/56
-MOVE GF@&pomFloat float@0                                                       #    13/56
-DEFVAR GF@&pomBool                                                              #    14/56
-MOVE GF@&pomBool bool@false                                                     #    15/56
-DEFVAR GF@&pomCntr                                                              #    16/56
-MOVE GF@&pomCntr int@0                                                          #    17/56
-CREATEFRAME                                                                     #    18/56
-token: 57 ...                                                                   #    20/56
-token: 3 ... dim                                                                #    21/56
-token: 35 ... a                                                                 #    22/56
-token: 0 ... as                                                                 #    23/56
-token: 5 ... double                                                             #    24/56
-token: 45 ... =                                                                 #    25/56
-DEFVAR TF@a                                                                     #    26/56
-MOVE TF@a float@0                                                               #    27/56
-token: 54 ... 3.0                                                               #    28/56
-|TOP--->|$|  SYMBOL                                                             #    29/56
-|TOP--->| |  STRING                                                             #    30/56
-token: 57 ...                                                                   #    31/56
-|TOP--->|double|]|$|  SYMBOL                                                    #    32/56
-|TOP--->|3.0| | |  STRING                                                       #    33/56
-|TOP--->|double|  SYMBOL                                                        #    34/56
-|TOP--->|3.0|  STRING                                                           #    35/56
-MOVE GF@&pomFloat float@3.0                                                     #    36/56
-MOVE TF@a GF@&pomFloat                                                          #    37/56
-token: 57 ...                                                                   #    38/56
-token: 3 ... dim                                                                #    39/56
-token: 35 ... i                                                                 #    40/56
-token: 0 ... as                                                                 #    41/56
-token: 12 ... integer                                                           #    42/56
-token: 57 ...                                                                   #    43/56
-DEFVAR TF@i                                                                     #    44/56
-MOVE TF@i int@0                                                                 #    45/56
-token: 3 ... dim                                                                #    46/56
-token: 35 ... j                                                                 #    47/56
-token: 0 ... as                                                                 #    48/56
-token: 12 ... integer                                                           #    49/56
-token: 57 ...                                                                   #    50/56
-DEFVAR TF@j                                                                     #    51/56
-MOVE TF@j int@0                                                                 #    52/56
-token: 35 ... i                                                                 #    53/56
-token: 45 ... =                                                                 #    54/56
-token: 1 ... asc                                                                #    55/56
-ERROR on line 8                                                                 #    56/56
+.IFJcode17                                                                      #     1/25
+JUMP $$scope                                                                    #     2/25
+LABEL $$scope                                                                   #     4/25
+DEFVAR GF@&pomInteger                                                           #     5/25
+MOVE GF@&pomInteger int@0                                                       #     6/25
+DEFVAR GF@&pomString                                                            #     7/25
+MOVE GF@&pomString string@                                                      #     8/25
+DEFVAR GF@&pomFloat                                                             #     9/25
+MOVE GF@&pomFloat float@0                                                       #    10/25
+DEFVAR GF@&pomBool                                                              #    11/25
+MOVE GF@&pomBool bool@false                                                     #    12/25
+DEFVAR GF@&pomCntr                                                              #    13/25
+MOVE GF@&pomCntr int@0                                                          #    14/25
+CREATEFRAME                                                                     #    15/25
+DEFVAR TF@a                                                                     #    17/25
+MOVE TF@a float@0                                                               #    18/25
+MOVE GF@&pomFloat float@3.0                                                     #    19/25
+MOVE TF@a GF@&pomFloat                                                          #    20/25
+DEFVAR TF@i                                                                     #    21/25
+MOVE TF@i int@0                                                                 #    22/25
+DEFVAR TF@j                                                                     #    23/25
+MOVE TF@j int@0                                                                 #    24/25
+ERROR on line 8                                                                 #    25/25
 

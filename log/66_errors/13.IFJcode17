@@ -1,4 +1,4 @@
-# 2017-12-03 20:43:47.550718
+# 2017-12-04 12:08:01.343604
 # SECTION: 66_errors
 # TEST: 13
 # INFO: Input into undeclared variable
@@ -7,7 +7,9 @@
 # STATE: SUCCESS
 # 
 # COMPILER STDERR:
-# symbol.c:268:retrieve_function_data(): Function not found
+# Variable not found
+# parser.c:564:rule_stat(): Not defined variable
+# 
 # ERROR - 3 - sÃ©mantickÃ¡ chyba v programu â nedefinovanÃ¡ funkce/promeÌnnÃ¡, pokus o redefinici funkce/promeÌnnÃ©, atd.
 # 
 # INTERPRETER STDERR:
@@ -42,11 +44,28 @@
 
 ########################################
 
-token: 57 ...                                                                   #     1/8
-token: 57 ...                                                                   #     2/8
-token: 9 ... function                                                           #     3/8
-.IFJcode17                                                                      #     4/8
-JUMP $$scope                                                                    #     5/8
-token: 35 ... foo                                                               #     7/8
-ERROR on line 3                                                                 #     8/8
+.IFJcode17                                                                      #     1/27
+JUMP $$scope                                                                    #     2/27
+rule_par                                                                        #     4/27
+LABEL $foo                                                                      #     5/27
+PUSHFRAME                                                                       #     6/27
+DEFVAR LF@&retval                                                               #     7/27
+DEFVAR LF@a                                                                     #     8/27
+MOVE LF@a int@0                                                                 #     9/27
+MOVE LF@&retval GF@&pomInteger                                                  #    10/27
+POPFRAME                                                                        #    11/27
+RETURN                                                                          #    12/27
+LABEL $$scope                                                                   #    14/27
+DEFVAR GF@&pomInteger                                                           #    15/27
+MOVE GF@&pomInteger int@0                                                       #    16/27
+DEFVAR GF@&pomString                                                            #    17/27
+MOVE GF@&pomString string@                                                      #    18/27
+DEFVAR GF@&pomFloat                                                             #    19/27
+MOVE GF@&pomFloat float@0                                                       #    20/27
+DEFVAR GF@&pomBool                                                              #    21/27
+MOVE GF@&pomBool bool@false                                                     #    22/27
+DEFVAR GF@&pomCntr                                                              #    23/27
+MOVE GF@&pomCntr int@0                                                          #    24/27
+CREATEFRAME                                                                     #    25/27
+ERROR on line 8                                                                 #    27/27
 

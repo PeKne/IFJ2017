@@ -1,4 +1,4 @@
-# 2017-12-03 20:43:47.015589
+# 2017-12-04 12:08:01.015039
 # SECTION: 02_functions
 # TEST: 21
 # INFO: Recursion of three functions
@@ -7,7 +7,8 @@
 # STATE: FAIL
 # 
 # COMPILER STDERR:
-# symbol.c:268:retrieve_function_data(): Function not found
+# Variable not found
+# Not defined variable
 # ERROR - 3 - sÃ©mantickÃ¡ chyba v programu â nedefinovanÃ¡ funkce/promeÌnnÃ¡, pokus o redefinici funkce/promeÌnnÃ©, atd.
 # 
 # INTERPRETER STDERR:
@@ -83,25 +84,26 @@
 
 ########################################
 
-token: 57 ...                                                                   #     1/22
-token: 57 ...                                                                   #     2/22
-token: 2 ... declare                                                            #     3/22
-.IFJcode17                                                                      #     4/22
-JUMP $$scope                                                                    #     5/22
-token: 9 ... function                                                           #     7/22
-token: 35 ... bar                                                               #     8/22
-token: 50 ... (                                                                 #     9/22
-token: 35 ... nn                                                                #    10/22
-rule_par                                                                        #    11/22
-token: 0 ... as                                                                 #    12/22
-token: 12 ... integer                                                           #    13/22
-token: 51 ... )                                                                 #    14/22
-rule next par                                                                   #    15/22
-token: 0 ... as                                                                 #    16/22
-token: 12 ... integer                                                           #    17/22
-token: 57 ...                                                                   #    18/22
-token: 57 ...                                                                   #    19/22
-token: 9 ... function                                                           #    20/22
-token: 35 ... foo                                                               #    21/22
-ERROR on line 5                                                                 #    22/22
+.IFJcode17                                                                      #     1/23
+JUMP $$scope                                                                    #     2/23
+rule_par                                                                        #     4/23
+rule next par                                                                   #     5/23
+rule_par                                                                        #     6/23
+rule next par                                                                   #     7/23
+LABEL $foo                                                                      #     8/23
+PUSHFRAME                                                                       #     9/23
+DEFVAR LF@&retval                                                               #    10/23
+DEFVAR LF@b                                                                     #    11/23
+MOVE LF@b int@0                                                                 #    12/23
+MOVE GF@&pomInteger LF@a                                                        #    13/23
+redukce                                                                         #    14/23
+EQ GF@&pomBool LF@a int@0                                                       #    15/23
+JUMPIFNEQ $$else_1 GF@&pomBool bool@true                                        #    16/23
+JUMP $$endif_1                                                                  #    17/23
+LABEL $$else_1                                                                  #    18/23
+MOVE GF@&pomInteger LF@a                                                        #    19/23
+redukce                                                                         #    20/23
+SUB GF@&pomInteger LF@a int@1                                                   #    21/23
+MOVE LF@b GF@&pomInteger                                                        #    22/23
+ERROR on line 11                                                                #    23/23
 

@@ -1,4 +1,4 @@
-# 2017-12-03 20:43:48.687109
+# 2017-12-04 12:08:01.791243
 # SECTION: 66_errors
 # TEST: 296
 # INFO: Lexical error
@@ -34,34 +34,19 @@
 
 ########################################
 
-token: 17 ... scope                                                             #     1/32
-.IFJcode17                                                                      #     2/32
-JUMP $$scope                                                                    #     3/32
-LABEL $$scope                                                                   #     5/32
-DEFVAR GF@&pomInteger                                                           #     6/32
-MOVE GF@&pomInteger int@0                                                       #     7/32
-DEFVAR GF@&pomString                                                            #     8/32
-MOVE GF@&pomString string@                                                      #     9/32
-DEFVAR GF@&pomFloat                                                             #    10/32
-MOVE GF@&pomFloat float@0                                                       #    11/32
-DEFVAR GF@&pomBool                                                              #    12/32
-MOVE GF@&pomBool bool@false                                                     #    13/32
-DEFVAR GF@&pomCntr                                                              #    14/32
-MOVE GF@&pomCntr int@0                                                          #    15/32
-CREATEFRAME                                                                     #    16/32
-token: 57 ...                                                                   #    18/32
-token: 15 ... print                                                             #    19/32
-token: 52 ... \001                                                              #    20/32
-|TOP--->|$|  SYMBOL                                                             #    21/32
-|TOP--->| |  STRING                                                             #    22/32
-token: 47 ... ;                                                                 #    23/32
-|TOP--->|str|]|$|  SYMBOL                                                       #    24/32
-|TOP--->|\001| | |  STRING                                                      #    25/32
-|TOP--->|str|  SYMBOL                                                           #    26/32
-|TOP--->|\001|  STRING                                                          #    27/32
-WRITE string@\001                                                               #    28/32
-token: 57 ...                                                                   #    29/32
-token: 7 ... end                                                                #    30/32
-token: 17 ... scope                                                             #    31/32
-token: 58 ...                                                                   #    32/32
+.IFJcode17                                                                      #     1/17
+JUMP $$scope                                                                    #     2/17
+LABEL $$scope                                                                   #     4/17
+DEFVAR GF@&pomInteger                                                           #     5/17
+MOVE GF@&pomInteger int@0                                                       #     6/17
+DEFVAR GF@&pomString                                                            #     7/17
+MOVE GF@&pomString string@                                                      #     8/17
+DEFVAR GF@&pomFloat                                                             #     9/17
+MOVE GF@&pomFloat float@0                                                       #    10/17
+DEFVAR GF@&pomBool                                                              #    11/17
+MOVE GF@&pomBool bool@false                                                     #    12/17
+DEFVAR GF@&pomCntr                                                              #    13/17
+MOVE GF@&pomCntr int@0                                                          #    14/17
+CREATEFRAME                                                                     #    15/17
+WRITE string@\001                                                               #    17/17
 

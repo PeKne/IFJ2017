@@ -1,4 +1,4 @@
-# 2017-12-03 20:43:47.066635
+# 2017-12-04 12:08:01.053450
 # SECTION: 02_functions
 # TEST: 41
 # INFO: Usage of builtin functions inside user-defined functions
@@ -7,8 +7,7 @@
 # STATE: FAIL
 # 
 # COMPILER STDERR:
-# symbol.c:268:retrieve_function_data(): Function not found
-# ERROR - 3 - sÃ©mantickÃ¡ chyba v programu â nedefinovanÃ¡ funkce/promeÌnnÃ¡, pokus o redefinici funkce/promeÌnnÃ©, atd.
+# ERROR - 2 - chyba v programu v rÃ¡mci syntaktickÃ© analÃ½zy (chybnÃ¡ syntaxe programu).
 # 
 # INTERPRETER STDERR:
 # 
@@ -25,7 +24,7 @@
 # 
 #
 # EXPECTED COMPILER EXIT CODE: 0
-# CURRENT COMPILER EXIT CODE: 3
+# CURRENT COMPILER EXIT CODE: 2
 # EXPECTED INTERPRETER EXIT CODE: 0
 # CURRENT INTERPRETER EXIT CODE: None
 # PRICE: ---
@@ -34,50 +33,57 @@
 #   1: ' Usage of builtin functions inside user-defined functions
 #   2: 
 #   3: function strLen(s as string) as integer
-#   4:     dim b as integer = length(s)
-#   5:     return b
-#   6: end function
-#   7: 
-#   8: function subString(s As String, i As Integer, n As Integer) As String
-#   9:     dim b as String = SubStr(s, i, n)
-#  10:     return b
-#  11: end function
-#  12: 
-#  13: function AsciiVal(s As String, i As Integer) As Integer
-#  14:     dim b as Integer = asc(s, i)
-#  15:     return b
-#  16: end function
-#  17: 
-#  18: function CharFromAscii(i As Integer) As String
-#  19:     dim b as String = Chr(i)
-#  20:     return b
-#  21: end function
-#  22: 
-#  23: scope
-#  24:     dim a as integer
-#  25:     a = strLen(!"test")
-#  26:     print a;
-#  27: 
-#  28:     dim b as string
-#  29:     b = subString(!"test", 2, 2)
-#  30:     print b;
+#   4:     dim b as integer
+#   5:     b = length(s)
+#   6:     return b
+#   7: end function
+#   8: 
+#   9: function subString(s As String, i As Integer, n As Integer) As String
+#  10:     dim b as String
+#  11:     b = SubStr(s, i, n)
+#  12:     return b
+#  13: end function
+#  14: 
+#  15: function AsciiVal(s As String, i As Integer) As Integer
+#  16:     dim b as Integer
+#  17:     b = asc(s, i)
+#  18:     return b
+#  19: end function
+#  20: 
+#  21: function CharFromAscii(i As Integer) As String
+#  22:     dim b as String
+#  23:     b = Chr(i)
+#  24:     return b
+#  25: end function
+#  26: 
+#  27: scope
+#  28:     dim a as integer
+#  29:     a = strLen(!"test")
+#  30:     print a;
 #  31: 
-#  32:     dim c as integer
-#  33:     c = AsciiVal(!"test", 2)
-#  34:     print c;
+#  32:     dim b as string
+#  33:     b = subString(!"test", 2, 2)
+#  34:     print b;
 #  35: 
-#  36:     dim d as string
-#  37:     d = CharFromAscii(49)
-#  38:     print d;
-#  39: end scope
+#  36:     dim c as integer
+#  37:     c = AsciiVal(!"test", 2)
+#  38:     print c;
+#  39: 
+#  40:     dim d as string
+#  41:     d = CharFromAscii(49)
+#  42:     print d;
+#  43: end scope
 
 ########################################
 
-token: 57 ...                                                                   #     1/8
-token: 57 ...                                                                   #     2/8
-token: 9 ... function                                                           #     3/8
-.IFJcode17                                                                      #     4/8
-JUMP $$scope                                                                    #     5/8
-token: 35 ... strlen                                                            #     7/8
-ERROR on line 3                                                                 #     8/8
+.IFJcode17                                                                      #     1/11
+JUMP $$scope                                                                    #     2/11
+rule_par                                                                        #     4/11
+rule next par                                                                   #     5/11
+LABEL $strlen                                                                   #     6/11
+PUSHFRAME                                                                       #     7/11
+DEFVAR LF@&retval                                                               #     8/11
+DEFVAR LF@b                                                                     #     9/11
+MOVE LF@b int@0                                                                 #    10/11
+ERROR on line 5                                                                 #    11/11
 
