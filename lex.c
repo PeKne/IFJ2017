@@ -392,7 +392,9 @@ int generate_token()
                     error = str_push_char(&(token.t_str), c);
                     if (error) { str_destroy(&esc_str); return error; }
                     state = st_exp_int_e;
-                } else if ((c == ' ') || (c == '\n') || (c == EOF) || (c == ')')) { // uspesne nacteni
+                } else if ((c == ' ') || (c == '\n') || (c == EOF) || (c == ')') ||
+                           (c == ',') || (c == ';')  || (c == '+') || (c == '-') ||
+                           (c == '*') || (c == '\\') || (c == '/')) { // uspesne nacteni
                     token.t_state = state;
                     unget_char(c);
                     state = st_final;
@@ -428,7 +430,9 @@ int generate_token()
                     error = str_push_char(&(token.t_str), c);
                     if (error) { str_destroy(&esc_str); return error; }
                     state = st_exp_doub_e;
-                } else if ((c == ' ') || (c == '\n') || (c == EOF) || (c == ')')) {
+                } else if ((c == ' ') || (c == '\n') || (c == EOF) || (c == ')') ||
+                           (c == ',') || (c == ';')  || (c == '+') || (c == '-') ||
+                           (c == '*') || (c == '\\') || (c == '/')) { // uspesne nacteni
                     token.t_state = state;
                     unget_char(c);
                     state = st_final;
@@ -480,7 +484,9 @@ int generate_token()
                     error = str_push_char(&(token.t_str), c);
                     if (error) { str_destroy(&esc_str); return error; }
                     state = st_exp_int;
-                } else if ((c == ' ') || (c == '\n') || (c == EOF) || (c == ')')) { // spravne ukonceni tokenu
+                } else if ((c == ' ') || (c == '\n') || (c == EOF) || (c == ')') ||
+                           (c == ',') || (c == ';')  || (c == '+') || (c == '-') ||
+                           (c == '*') || (c == '\\') || (c == '/')) { // uspesne nacteni
                     token.t_state = state;
                     unget_char(c);
                     state = st_final;
@@ -533,7 +539,9 @@ int generate_token()
                     error = str_push_char(&(token.t_str), c);
                     if (error) { str_destroy(&esc_str); return error; }
                     state = st_exp_doub;
-                } else if ((c == ' ') || (c == '\n') || (c == EOF) || (c == ')')) { // spravne ukonceni
+                } else if ((c == ' ') || (c == '\n') || (c == EOF) || (c == ')') ||
+                           (c == ',') || (c == ';')  || (c == '+') || (c == '-') ||
+                           (c == '*') || (c == '\\') || (c == '/')) { // uspesne nacteni
                     token.t_state = state;
                     unget_char(c);
                     state = st_final;
