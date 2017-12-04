@@ -1,0 +1,82 @@
+# 2017-12-03 20:43:45.274268
+# SECTION: 01_basic
+# TEST: 02
+# INFO: variable declarations
+# REQUIRED EXTENSIONS: 
+# ACTIVATED EXTENSIONS: 
+# STATE: FAIL
+# 
+# COMPILER STDERR:
+# 
+# INTERPRETER STDERR:
+# 1.1-5: syntax error, unexpected ID, expecting HEADER
+# 
+# EXPECTED INTERPRETER STDOUT:
+
+
+
+# CURRENT INTERPRETER STDOUT:
+
+
+
+# INTERPRETER STDIN: 
+# 
+#
+# EXPECTED COMPILER EXIT CODE: 0
+# CURRENT COMPILER EXIT CODE: 0
+# EXPECTED INTERPRETER EXIT CODE: 0
+# CURRENT INTERPRETER EXIT CODE: 51
+# PRICE: ---
+# GROOT: ---
+# 
+#   1: ' variable declarations
+#   2: scope
+#   3: Dim a as string
+#   4: Dim b as integer
+#   5: Dim c as double
+#   6: end scope
+
+########################################
+
+token: 57 ...                                                                   #     1/43
+token: 17 ... scope                                                             #     2/43
+.IFJcode17                                                                      #     3/43
+JUMP $$scope                                                                    #     4/43
+LABEL $$scope                                                                   #     6/43
+DEFVAR GF@&pomInteger                                                           #     7/43
+MOVE GF@&pomInteger int@0                                                       #     8/43
+DEFVAR GF@&pomString                                                            #     9/43
+MOVE GF@&pomString string@                                                      #    10/43
+DEFVAR GF@&pomFloat                                                             #    11/43
+MOVE GF@&pomFloat float@0                                                       #    12/43
+DEFVAR GF@&pomBool                                                              #    13/43
+MOVE GF@&pomBool bool@false                                                     #    14/43
+DEFVAR GF@&pomCntr                                                              #    15/43
+MOVE GF@&pomCntr int@0                                                          #    16/43
+CREATEFRAME                                                                     #    17/43
+token: 57 ...                                                                   #    19/43
+token: 3 ... dim                                                                #    20/43
+token: 35 ... a                                                                 #    21/43
+token: 0 ... as                                                                 #    22/43
+token: 18 ... string                                                            #    23/43
+token: 57 ...                                                                   #    24/43
+DEFVAR TF@a                                                                     #    25/43
+MOVE TF@a string@                                                               #    26/43
+token: 3 ... dim                                                                #    27/43
+token: 35 ... b                                                                 #    28/43
+token: 0 ... as                                                                 #    29/43
+token: 12 ... integer                                                           #    30/43
+token: 57 ...                                                                   #    31/43
+DEFVAR TF@b                                                                     #    32/43
+MOVE TF@b int@0                                                                 #    33/43
+token: 3 ... dim                                                                #    34/43
+token: 35 ... c                                                                 #    35/43
+token: 0 ... as                                                                 #    36/43
+token: 5 ... double                                                             #    37/43
+token: 57 ...                                                                   #    38/43
+DEFVAR TF@c                                                                     #    39/43
+MOVE TF@c float@0                                                               #    40/43
+token: 7 ... end                                                                #    41/43
+token: 17 ... scope                                                             #    42/43
+token: 58 ...                                                                   #    43/43
+

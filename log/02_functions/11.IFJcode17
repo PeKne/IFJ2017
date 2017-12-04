@@ -1,0 +1,64 @@
+# 2017-12-03 20:43:46.985460
+# SECTION: 02_functions
+# TEST: 11
+# INFO: Function call function
+# REQUIRED EXTENSIONS: 
+# ACTIVATED EXTENSIONS: 
+# STATE: FAIL
+# 
+# COMPILER STDERR:
+# symbol.c:268:retrieve_function_data(): Function not found
+# ERROR - 3 - sÃ©mantickÃ¡ chyba v programu â nedefinovanÃ¡ funkce/promeÌnnÃ¡, pokus o redefinici funkce/promeÌnnÃ©, atd.
+# 
+# INTERPRETER STDERR:
+# 
+# EXPECTED INTERPRETER STDOUT:
+
+#  84 84
+
+
+# CURRENT INTERPRETER STDOUT:
+
+
+
+# INTERPRETER STDIN: 
+# 
+#
+# EXPECTED COMPILER EXIT CODE: 0
+# CURRENT COMPILER EXIT CODE: 3
+# EXPECTED INTERPRETER EXIT CODE: 0
+# CURRENT INTERPRETER EXIT CODE: None
+# PRICE: ---
+# GROOT: ---
+# 
+#   1: ' Function call function
+#   2: 
+#   3: function GHGKghgk55() as integer
+#   4: 	return 42
+#   5: end function
+#   6: 
+#   7: function GHGKghgk67() as integer
+#   8: 	dim a as integer = 40
+#   9: 	a = GHGKghgk55()
+#  10: 	a = a + a
+#  11: 	return a
+#  12: end function
+#  13: 
+#  14: scope
+#  15: 	dim b as integer = 20
+#  16: 	b = GHGKghgk67()
+#  17: 	print b;
+#  18: 	b = GHGKghgk67()
+#  19: 	print b;
+#  20: end scope
+
+########################################
+
+token: 57 ...                                                                   #     1/8
+token: 57 ...                                                                   #     2/8
+token: 9 ... function                                                           #     3/8
+.IFJcode17                                                                      #     4/8
+JUMP $$scope                                                                    #     5/8
+token: 35 ... ghgkghgk55                                                        #     7/8
+ERROR on line 3                                                                 #     8/8
+

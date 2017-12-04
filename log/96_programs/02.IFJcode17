@@ -1,0 +1,71 @@
+# 2017-12-03 20:43:48.730876
+# SECTION: 96_programs
+# TEST: 02
+# INFO: Print all prime numbers
+# REQUIRED EXTENSIONS: BOOLOP
+# ACTIVATED EXTENSIONS: 
+# STATE: FAIL
+# 
+# COMPILER STDERR:
+# 
+# INTERPRETER STDERR:
+# 
+# EXPECTED INTERPRETER STDOUT:
+
+# ?  1 2 3 5 7 11 13
+
+
+# CURRENT INTERPRETER STDOUT:
+
+
+
+# INTERPRETER STDIN: 
+# 14
+#
+# EXPECTED COMPILER EXIT CODE: 0
+# CURRENT COMPILER EXIT CODE: None
+# EXPECTED INTERPRETER EXIT CODE: 0
+# CURRENT INTERPRETER EXIT CODE: None
+# PRICE: ---
+# GROOT: ---
+# 
+#   1: ' Print all prime numbers
+#   2: function prvocislo(a as integer) as boolean
+#   3:    
+#   4:     dim delitel as integer = a - 1
+#   5:     
+#   6:     do while delitel > 1
+#   7:     
+#   8:         if ((a \ delitel) * delitel) = a then
+#   9:             return false
+#  10:         else
+#  11:         end if
+#  12:         delitel = delitel - 1
+#  13:     loop
+#  14:     
+#  15:    
+#  16:     
+#  17:     return true
+#  18: end function
+#  19: 
+#  20: scope
+#  21: dim cislo as integer
+#  22: input cislo
+#  23: 
+#  24: dim aktualni as integer = 1
+#  25: dim je_prvocislo as boolean
+#  26: do while aktualni <= cislo
+#  27:     je_prvocislo = prvocislo(aktualni)
+#  28:     if je_prvocislo then
+#  29:         print aktualni;
+#  30:     else
+#  31:     end if
+#  32:     aktualni = aktualni + 1
+#  33: loop
+#  34: 
+#  35: end scope
+
+########################################
+
+# ---
+

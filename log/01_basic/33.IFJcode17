@@ -1,0 +1,120 @@
+# 2017-12-03 20:43:46.898833
+# SECTION: 01_basic
+# TEST: 33
+# INFO: Long variable names
+# REQUIRED EXTENSIONS: 
+# ACTIVATED EXTENSIONS: 
+# STATE: FAIL
+# 
+# COMPILER STDERR:
+# 
+# INTERPRETER STDERR:
+# 1.1-5: syntax error, unexpected ID, expecting HEADER
+# 
+# EXPECTED INTERPRETER STDOUT:
+
+#  10 25
+
+
+# CURRENT INTERPRETER STDOUT:
+
+
+
+# INTERPRETER STDIN: 
+# 
+#
+# EXPECTED COMPILER EXIT CODE: 0
+# CURRENT COMPILER EXIT CODE: 0
+# EXPECTED INTERPRETER EXIT CODE: 0
+# CURRENT INTERPRETER EXIT CODE: 51
+# PRICE: ---
+# GROOT: ---
+# 
+#   1: ' Long variable names
+#   2: 
+#   3: scope
+#   4: Dim ZMna8xJpV6Knyv95QKCu80MZR1XP4RFCWEp8oYbrQWE9IjMJyhRtY3imNyaUcSlROktcGr1URr0eAKGECoQ69jse7x7tNZzj170TIgLrr53I03zCTOCEulRnqOjKqNAA as Integer = 10
+#   5: DIM ZMna8xJpV6Knyv95QKCu80MZR1XP4RFCWEp8oYbrQWE9IjMJyhRtY3imNyaUcSlROktcGr1URr0eAKGECoQ69jse7x7tNZzj170TIgLrr53I03zCTOCEulRnqOjKqNAB as Integer = 25
+#   6: 
+#   7: print ZMna8xJpV6Knyv95QKCu80MZR1XP4RFCWEp8oYbrQWE9IjMJyhRtY3imNyaUcSlROktcGr1URr0eAKGECoQ69jse7x7tNZzj170TIgLrr53I03zCTOCEulRnqOjKqNAA;ZMna8xJpV6Knyv95QKCu80MZR1XP4RFCWEp8oYbrQWE9IjMJyhRtY3imNyaUcSlROktcGr1URr0eAKGECoQ69jse7x7tNZzj170TIgLrr53I03zCTOCEulRnqOjKqNAB;
+#   8: end scope
+
+########################################
+
+token: 57 ...                                                                   #     1/78
+token: 57 ...                                                                   #     2/78
+token: 17 ... scope                                                             #     3/78
+.IFJcode17                                                                      #     4/78
+JUMP $$scope                                                                    #     5/78
+LABEL $$scope                                                                   #     7/78
+DEFVAR GF@&pomInteger                                                           #     8/78
+MOVE GF@&pomInteger int@0                                                       #     9/78
+DEFVAR GF@&pomString                                                            #    10/78
+MOVE GF@&pomString string@                                                      #    11/78
+DEFVAR GF@&pomFloat                                                             #    12/78
+MOVE GF@&pomFloat float@0                                                       #    13/78
+DEFVAR GF@&pomBool                                                              #    14/78
+MOVE GF@&pomBool bool@false                                                     #    15/78
+DEFVAR GF@&pomCntr                                                              #    16/78
+MOVE GF@&pomCntr int@0                                                          #    17/78
+CREATEFRAME                                                                     #    18/78
+token: 57 ...                                                                   #    20/78
+token: 3 ... dim                                                                #    21/78
+token: 35 ... zmna8xjpv6knyv95qkcu80mzr1xp4rfcwep8oybrqwe9ijmjyhrty3imnyaucslroktcgr1urr0eakgecoq69jse7x7tnzzj170tiglrr53i03zctoceulrnqojkqnaa#    22/78
+token: 0 ... as                                                                 #    23/78
+token: 12 ... integer                                                           #    24/78
+token: 45 ... =                                                                 #    25/78
+DEFVAR TF@zmna8xjpv6knyv95qkcu80mzr1xp4rfcwep8oybrqwe9ijmjyhrty3imnyaucslroktcgr1urr0eakgecoq69jse7x7tnzzj170tiglrr53i03zctoceulrnqojkqnaa#    26/78
+MOVE TF@zmna8xjpv6knyv95qkcu80mzr1xp4rfcwep8oybrqwe9ijmjyhrty3imnyaucslroktcgr1urr0eakgecoq69jse7x7tnzzj170tiglrr53i03zctoceulrnqojkqnaa int@0#    27/78
+token: 53 ... 10                                                                #    28/78
+|TOP--->|$|  SYMBOL                                                             #    29/78
+|TOP--->| |  STRING                                                             #    30/78
+token: 57 ...                                                                   #    31/78
+|TOP--->|int|]|$|  SYMBOL                                                       #    32/78
+|TOP--->|10| | |  STRING                                                        #    33/78
+|TOP--->|int|  SYMBOL                                                           #    34/78
+|TOP--->|10|  STRING                                                            #    35/78
+MOVE GF@&pomInteger int@10                                                      #    36/78
+MOVE TF@zmna8xjpv6knyv95qkcu80mzr1xp4rfcwep8oybrqwe9ijmjyhrty3imnyaucslroktcgr1urr0eakgecoq69jse7x7tnzzj170tiglrr53i03zctoceulrnqojkqnaa GF@&pomInteger#    37/78
+token: 3 ... dim                                                                #    38/78
+token: 35 ... zmna8xjpv6knyv95qkcu80mzr1xp4rfcwep8oybrqwe9ijmjyhrty3imnyaucslroktcgr1urr0eakgecoq69jse7x7tnzzj170tiglrr53i03zctoceulrnqojkqnab#    39/78
+token: 0 ... as                                                                 #    40/78
+token: 12 ... integer                                                           #    41/78
+token: 45 ... =                                                                 #    42/78
+DEFVAR TF@zmna8xjpv6knyv95qkcu80mzr1xp4rfcwep8oybrqwe9ijmjyhrty3imnyaucslroktcgr1urr0eakgecoq69jse7x7tnzzj170tiglrr53i03zctoceulrnqojkqnab#    43/78
+MOVE TF@zmna8xjpv6knyv95qkcu80mzr1xp4rfcwep8oybrqwe9ijmjyhrty3imnyaucslroktcgr1urr0eakgecoq69jse7x7tnzzj170tiglrr53i03zctoceulrnqojkqnab int@0#    44/78
+token: 53 ... 25                                                                #    45/78
+|TOP--->|$|  SYMBOL                                                             #    46/78
+|TOP--->| |  STRING                                                             #    47/78
+token: 57 ...                                                                   #    48/78
+|TOP--->|int|]|$|  SYMBOL                                                       #    49/78
+|TOP--->|25| | |  STRING                                                        #    50/78
+|TOP--->|int|  SYMBOL                                                           #    51/78
+|TOP--->|25|  STRING                                                            #    52/78
+MOVE GF@&pomInteger int@25                                                      #    53/78
+MOVE TF@zmna8xjpv6knyv95qkcu80mzr1xp4rfcwep8oybrqwe9ijmjyhrty3imnyaucslroktcgr1urr0eakgecoq69jse7x7tnzzj170tiglrr53i03zctoceulrnqojkqnab GF@&pomInteger#    54/78
+token: 57 ...                                                                   #    55/78
+token: 15 ... print                                                             #    56/78
+token: 35 ... zmna8xjpv6knyv95qkcu80mzr1xp4rfcwep8oybrqwe9ijmjyhrty3imnyaucslroktcgr1urr0eakgecoq69jse7x7tnzzj170tiglrr53i03zctoceulrnqojkqnaa#    57/78
+|TOP--->|$|  SYMBOL                                                             #    58/78
+|TOP--->| |  STRING                                                             #    59/78
+token: 47 ... ;                                                                 #    60/78
+|TOP--->|i|]|$|  SYMBOL                                                         #    61/78
+|TOP--->|zmna8xjpv6knyv95qkcu80mzr1xp4rfcwep8oybrqwe9ijmjyhrty3imnyaucslroktcgr1urr0eakgecoq69jse7x7tnzzj170tiglrr53i03zctoceulrnqojkqnaa| | |  STRING#    62/78
+|TOP--->|i|  SYMBOL                                                             #    63/78
+|TOP--->|zmna8xjpv6knyv95qkcu80mzr1xp4rfcwep8oybrqwe9ijmjyhrty3imnyaucslroktcgr1urr0eakgecoq69jse7x7tnzzj170tiglrr53i03zctoceulrnqojkqnaa|  STRING#    64/78
+WRITE TF@zmna8xjpv6knyv95qkcu80mzr1xp4rfcwep8oybrqwe9ijmjyhrty3imnyaucslroktcgr1urr0eakgecoq69jse7x7tnzzj170tiglrr53i03zctoceulrnqojkqnaa#    65/78
+token: 35 ... zmna8xjpv6knyv95qkcu80mzr1xp4rfcwep8oybrqwe9ijmjyhrty3imnyaucslroktcgr1urr0eakgecoq69jse7x7tnzzj170tiglrr53i03zctoceulrnqojkqnab#    66/78
+|TOP--->|$|  SYMBOL                                                             #    67/78
+|TOP--->| |  STRING                                                             #    68/78
+token: 47 ... ;                                                                 #    69/78
+|TOP--->|i|]|$|  SYMBOL                                                         #    70/78
+|TOP--->|zmna8xjpv6knyv95qkcu80mzr1xp4rfcwep8oybrqwe9ijmjyhrty3imnyaucslroktcgr1urr0eakgecoq69jse7x7tnzzj170tiglrr53i03zctoceulrnqojkqnab| | |  STRING#    71/78
+|TOP--->|i|  SYMBOL                                                             #    72/78
+|TOP--->|zmna8xjpv6knyv95qkcu80mzr1xp4rfcwep8oybrqwe9ijmjyhrty3imnyaucslroktcgr1urr0eakgecoq69jse7x7tnzzj170tiglrr53i03zctoceulrnqojkqnab|  STRING#    73/78
+WRITE TF@zmna8xjpv6knyv95qkcu80mzr1xp4rfcwep8oybrqwe9ijmjyhrty3imnyaucslroktcgr1urr0eakgecoq69jse7x7tnzzj170tiglrr53i03zctoceulrnqojkqnab#    74/78
+token: 57 ...                                                                   #    75/78
+token: 7 ... end                                                                #    76/78
+token: 17 ... scope                                                             #    77/78
+token: 58 ...                                                                   #    78/78
+

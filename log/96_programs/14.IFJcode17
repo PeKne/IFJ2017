@@ -1,0 +1,70 @@
+# 2017-12-03 20:43:48.785558
+# SECTION: 96_programs
+# TEST: 14
+# INFO: Reverse string function
+# REQUIRED EXTENSIONS: 
+# ACTIVATED EXTENSIONS: 
+# STATE: FAIL
+# 
+# COMPILER STDERR:
+# symbol.c:268:retrieve_function_data(): Function not found
+# ERROR - 3 - sÃ©mantickÃ¡ chyba v programu â nedefinovanÃ¡ funkce/promeÌnnÃ¡, pokus o redefinici funkce/promeÌnnÃ©, atd.
+# 
+# INTERPRETER STDERR:
+# 
+# EXPECTED INTERPRETER STDOUT:
+
+# ? gnirtsdesreveratahw
+
+
+# CURRENT INTERPRETER STDOUT:
+
+
+
+# INTERPRETER STDIN: 
+# whatareversedstring
+#
+# EXPECTED COMPILER EXIT CODE: 0
+# CURRENT COMPILER EXIT CODE: 3
+# EXPECTED INTERPRETER EXIT CODE: 0
+# CURRENT INTERPRETER EXIT CODE: None
+# PRICE: ---
+# GROOT: ---
+# 
+#   1: 'Reverse string function
+#   2: 
+#   3: function Reverse_str(s as string) as string
+#   4: 	dim str_len as integer
+#   5: 	str_len = length(s)
+#   6: 	dim reversed as string
+#   7: 	dim substr_res as string
+#   8: 	dim str_len_i as integer
+#   9: 
+#  10: 	dim i as integer
+#  11: 	do while i < str_len
+#  12: 		str_len_i = str_len - i
+#  13: 		substr_res = substr(s, str_len_i, 1)
+#  14: 	   	reversed = reversed + substr_res
+#  15: 	   	i = i + 1
+#  16: 	loop
+#  17: 	
+#  18: 	return reversed
+#  19: end function
+#  20: 
+#  21: scope
+#  22:     dim s as string
+#  23:     input s
+#  24:     s = reverse_str(s)
+#  25:     print s;
+#  26: end scope
+
+########################################
+
+token: 57 ...                                                                   #     1/8
+token: 57 ...                                                                   #     2/8
+token: 9 ... function                                                           #     3/8
+.IFJcode17                                                                      #     4/8
+JUMP $$scope                                                                    #     5/8
+token: 35 ... reverse_str                                                       #     7/8
+ERROR on line 3                                                                 #     8/8
+

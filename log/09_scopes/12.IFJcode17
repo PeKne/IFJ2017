@@ -1,0 +1,338 @@
+# 2017-12-03 20:43:47.478505
+# SECTION: 09_scopes
+# TEST: 12
+# INFO: 100 scopes, test for symbol table
+# REQUIRED EXTENSIONS: SCOPE
+# ACTIVATED EXTENSIONS: 
+# STATE: FAIL
+# 
+# COMPILER STDERR:
+# 
+# INTERPRETER STDERR:
+# 
+# EXPECTED INTERPRETER STDOUT:
+
+#  1
+
+
+# CURRENT INTERPRETER STDOUT:
+
+
+
+# INTERPRETER STDIN: 
+# 
+#
+# EXPECTED COMPILER EXIT CODE: 0
+# CURRENT COMPILER EXIT CODE: None
+# EXPECTED INTERPRETER EXIT CODE: 0
+# CURRENT INTERPRETER EXIT CODE: None
+# PRICE: ---
+# GROOT: ---
+# 
+#   1: ' 100 scopes, test for symbol table
+#   2: SCOPE
+#   3: dim a as integer = 100
+#   4: SCOPE
+#   5: dim a as integer = 99
+#   6: SCOPE
+#   7: dim a as integer = 98
+#   8: SCOPE
+#   9: dim a as integer = 97
+#  10: SCOPE
+#  11: dim a as integer = 96
+#  12: SCOPE
+#  13: dim a as integer = 95
+#  14: SCOPE
+#  15: dim a as integer = 94
+#  16: SCOPE
+#  17: dim a as integer = 93
+#  18: SCOPE
+#  19: dim a as integer = 92
+#  20: SCOPE
+#  21: dim a as integer = 91
+#  22: SCOPE
+#  23: dim a as integer = 90
+#  24: SCOPE
+#  25: dim a as integer = 89
+#  26: SCOPE
+#  27: dim a as integer = 88
+#  28: SCOPE
+#  29: dim a as integer = 87
+#  30: SCOPE
+#  31: dim a as integer = 86
+#  32: SCOPE
+#  33: dim a as integer = 85
+#  34: SCOPE
+#  35: dim a as integer = 84
+#  36: SCOPE
+#  37: dim a as integer = 83
+#  38: SCOPE
+#  39: dim a as integer = 82
+#  40: SCOPE
+#  41: dim a as integer = 81
+#  42: SCOPE
+#  43: dim a as integer = 80
+#  44: SCOPE
+#  45: dim a as integer = 79
+#  46: SCOPE
+#  47: dim a as integer = 78
+#  48: SCOPE
+#  49: dim a as integer = 77
+#  50: SCOPE
+#  51: dim a as integer = 76
+#  52: SCOPE
+#  53: dim a as integer = 75
+#  54: SCOPE
+#  55: dim a as integer = 74
+#  56: SCOPE
+#  57: dim a as integer = 73
+#  58: SCOPE
+#  59: dim a as integer = 72
+#  60: SCOPE
+#  61: dim a as integer = 71
+#  62: SCOPE
+#  63: dim a as integer = 70
+#  64: SCOPE
+#  65: dim a as integer = 69
+#  66: SCOPE
+#  67: dim a as integer = 68
+#  68: SCOPE
+#  69: dim a as integer = 67
+#  70: SCOPE
+#  71: dim a as integer = 66
+#  72: SCOPE
+#  73: dim a as integer = 65
+#  74: SCOPE
+#  75: dim a as integer = 64
+#  76: SCOPE
+#  77: dim a as integer = 63
+#  78: SCOPE
+#  79: dim a as integer = 62
+#  80: SCOPE
+#  81: dim a as integer = 61
+#  82: SCOPE
+#  83: dim a as integer = 60
+#  84: SCOPE
+#  85: dim a as integer = 59
+#  86: SCOPE
+#  87: dim a as integer = 58
+#  88: SCOPE
+#  89: dim a as integer = 57
+#  90: SCOPE
+#  91: dim a as integer = 56
+#  92: SCOPE
+#  93: dim a as integer = 55
+#  94: SCOPE
+#  95: dim a as integer = 54
+#  96: SCOPE
+#  97: dim a as integer = 53
+#  98: SCOPE
+#  99: dim a as integer = 52
+#  100: SCOPE
+#  101: dim a as integer = 51
+#  102: SCOPE
+#  103: dim a as integer = 50
+#  104: SCOPE
+#  105: dim a as integer = 49
+#  106: SCOPE
+#  107: dim a as integer = 48
+#  108: SCOPE
+#  109: dim a as integer = 47
+#  110: SCOPE
+#  111: dim a as integer = 46
+#  112: SCOPE
+#  113: dim a as integer = 45
+#  114: SCOPE
+#  115: dim a as integer = 44
+#  116: SCOPE
+#  117: dim a as integer = 43
+#  118: SCOPE
+#  119: dim a as integer = 42
+#  120: SCOPE
+#  121: dim a as integer = 41
+#  122: SCOPE
+#  123: dim a as integer = 40
+#  124: SCOPE
+#  125: dim a as integer = 39
+#  126: SCOPE
+#  127: dim a as integer = 38
+#  128: SCOPE
+#  129: dim a as integer = 37
+#  130: SCOPE
+#  131: dim a as integer = 36
+#  132: SCOPE
+#  133: dim a as integer = 35
+#  134: SCOPE
+#  135: dim a as integer = 34
+#  136: SCOPE
+#  137: dim a as integer = 33
+#  138: SCOPE
+#  139: dim a as integer = 32
+#  140: SCOPE
+#  141: dim a as integer = 31
+#  142: SCOPE
+#  143: dim a as integer = 30
+#  144: SCOPE
+#  145: dim a as integer = 29
+#  146: SCOPE
+#  147: dim a as integer = 28
+#  148: SCOPE
+#  149: dim a as integer = 27
+#  150: SCOPE
+#  151: dim a as integer = 26
+#  152: SCOPE
+#  153: dim a as integer = 25
+#  154: SCOPE
+#  155: dim a as integer = 24
+#  156: SCOPE
+#  157: dim a as integer = 23
+#  158: SCOPE
+#  159: dim a as integer = 22
+#  160: SCOPE
+#  161: dim a as integer = 21
+#  162: SCOPE
+#  163: dim a as integer = 20
+#  164: SCOPE
+#  165: dim a as integer = 19
+#  166: SCOPE
+#  167: dim a as integer = 18
+#  168: SCOPE
+#  169: dim a as integer = 17
+#  170: SCOPE
+#  171: dim a as integer = 16
+#  172: SCOPE
+#  173: dim a as integer = 15
+#  174: SCOPE
+#  175: dim a as integer = 14
+#  176: SCOPE
+#  177: dim a as integer = 13
+#  178: SCOPE
+#  179: dim a as integer = 12
+#  180: SCOPE
+#  181: dim a as integer = 11
+#  182: SCOPE
+#  183: dim a as integer = 10
+#  184: SCOPE
+#  185: dim a as integer = 9
+#  186: SCOPE
+#  187: dim a as integer = 8
+#  188: SCOPE
+#  189: dim a as integer = 7
+#  190: SCOPE
+#  191: dim a as integer = 6
+#  192: SCOPE
+#  193: dim a as integer = 5
+#  194: SCOPE
+#  195: dim a as integer = 4
+#  196: SCOPE
+#  197: dim a as integer = 3
+#  198: SCOPE
+#  199: dim a as integer = 2
+#  200: SCOPE
+#  201: dim a as integer = 1
+#  202: print a;
+#  203: end scope
+#  204: end scope
+#  205: end scope
+#  206: end scope
+#  207: end scope
+#  208: end scope
+#  209: end scope
+#  210: end scope
+#  211: end scope
+#  212: end scope
+#  213: end scope
+#  214: end scope
+#  215: end scope
+#  216: end scope
+#  217: end scope
+#  218: end scope
+#  219: end scope
+#  220: end scope
+#  221: end scope
+#  222: end scope
+#  223: end scope
+#  224: end scope
+#  225: end scope
+#  226: end scope
+#  227: end scope
+#  228: end scope
+#  229: end scope
+#  230: end scope
+#  231: end scope
+#  232: end scope
+#  233: end scope
+#  234: end scope
+#  235: end scope
+#  236: end scope
+#  237: end scope
+#  238: end scope
+#  239: end scope
+#  240: end scope
+#  241: end scope
+#  242: end scope
+#  243: end scope
+#  244: end scope
+#  245: end scope
+#  246: end scope
+#  247: end scope
+#  248: end scope
+#  249: end scope
+#  250: end scope
+#  251: end scope
+#  252: end scope
+#  253: end scope
+#  254: end scope
+#  255: end scope
+#  256: end scope
+#  257: end scope
+#  258: end scope
+#  259: end scope
+#  260: end scope
+#  261: end scope
+#  262: end scope
+#  263: end scope
+#  264: end scope
+#  265: end scope
+#  266: end scope
+#  267: end scope
+#  268: end scope
+#  269: end scope
+#  270: end scope
+#  271: end scope
+#  272: end scope
+#  273: end scope
+#  274: end scope
+#  275: end scope
+#  276: end scope
+#  277: end scope
+#  278: end scope
+#  279: end scope
+#  280: end scope
+#  281: end scope
+#  282: end scope
+#  283: end scope
+#  284: end scope
+#  285: end scope
+#  286: end scope
+#  287: end scope
+#  288: end scope
+#  289: end scope
+#  290: end scope
+#  291: end scope
+#  292: end scope
+#  293: end scope
+#  294: end scope
+#  295: end scope
+#  296: end scope
+#  297: end scope
+#  298: end scope
+#  299: end scope
+#  300: end scope
+#  301: end scope
+#  302: end scope
+
+########################################
+
+# ---
+

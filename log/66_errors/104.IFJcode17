@@ -1,0 +1,107 @@
+# 2017-12-03 20:43:48.053166
+# SECTION: 66_errors
+# TEST: 104
+# INFO: Error in type compatibility
+# REQUIRED EXTENSIONS: 
+# ACTIVATED EXTENSIONS: 
+# STATE: SUCCESS
+# 
+# COMPILER STDERR:
+# Wrong types of operands!
+# Wrong string operation!
+# ERROR -  4 - sÃ©mantickÃ¡ chyba typovÃ© kompatibility v aritmetickÃ½ch, rÌeteÌzcovÃ½ch a relacÌnÃ­ch vÃ½razech, prÌÃ­p. Å¡patnÃ½ pocÌet cÌi typ parametruÌ u volÃ¡nÃ­ funkce.
+# 
+# INTERPRETER STDERR:
+# 
+# EXPECTED INTERPRETER STDOUT:
+
+
+
+# CURRENT INTERPRETER STDOUT:
+
+
+
+# INTERPRETER STDIN: 
+# 
+#
+# EXPECTED COMPILER EXIT CODE: 4
+# CURRENT COMPILER EXIT CODE: 4
+# EXPECTED INTERPRETER EXIT CODE: 0
+# CURRENT INTERPRETER EXIT CODE: None
+# PRICE: ---
+# GROOT: ---
+# 
+#   1: scope 
+#   2:  dim a as string 
+#   3:  a = a + !"ahoj" + 5 
+#   4:  end scope
+
+########################################
+
+token: 17 ... scope                                                             #     1/68
+.IFJcode17                                                                      #     2/68
+JUMP $$scope                                                                    #     3/68
+LABEL $$scope                                                                   #     5/68
+DEFVAR GF@&pomInteger                                                           #     6/68
+MOVE GF@&pomInteger int@0                                                       #     7/68
+DEFVAR GF@&pomString                                                            #     8/68
+MOVE GF@&pomString string@                                                      #     9/68
+DEFVAR GF@&pomFloat                                                             #    10/68
+MOVE GF@&pomFloat float@0                                                       #    11/68
+DEFVAR GF@&pomBool                                                              #    12/68
+MOVE GF@&pomBool bool@false                                                     #    13/68
+DEFVAR GF@&pomCntr                                                              #    14/68
+MOVE GF@&pomCntr int@0                                                          #    15/68
+CREATEFRAME                                                                     #    16/68
+token: 57 ...                                                                   #    18/68
+token: 3 ... dim                                                                #    19/68
+token: 35 ... a                                                                 #    20/68
+token: 0 ... as                                                                 #    21/68
+token: 18 ... string                                                            #    22/68
+token: 57 ...                                                                   #    23/68
+DEFVAR TF@a                                                                     #    24/68
+MOVE TF@a string@                                                               #    25/68
+token: 35 ... a                                                                 #    26/68
+token: 45 ... =                                                                 #    27/68
+token: 35 ... a                                                                 #    28/68
+|TOP--->|$|  SYMBOL                                                             #    29/68
+|TOP--->| |  STRING                                                             #    30/68
+token: 39 ... +                                                                 #    31/68
+|TOP--->|i|]|$|  SYMBOL                                                         #    32/68
+|TOP--->|a| | |  STRING                                                         #    33/68
+|TOP--->|i|  SYMBOL                                                             #    34/68
+|TOP--->|a|  STRING                                                             #    35/68
+MOVE GF@&pomString TF@a                                                         #    36/68
+|TOP--->|R|$|  SYMBOL                                                           #    37/68
+|TOP--->|a| |  STRING                                                           #    38/68
+token: 52 ... ahoj                                                              #    39/68
+|TOP--->|+|R|]|$|  SYMBOL                                                       #    40/68
+|TOP--->|+|a| | |  STRING                                                       #    41/68
+token: 39 ... +                                                                 #    42/68
+|TOP--->|str|]|+|R|]|$|  SYMBOL                                                 #    43/68
+|TOP--->|ahoj| |+|a| | |  STRING                                                #    44/68
+|TOP--->|str|  SYMBOL                                                           #    45/68
+|TOP--->|ahoj|  STRING                                                          #    46/68
+|TOP--->|R|+|R|]|$|  SYMBOL                                                     #    47/68
+|TOP--->|ahoj|+|a| | |  STRING                                                  #    48/68
+|TOP--->|R|+|R|  SYMBOL                                                         #    49/68
+|TOP--->|a|+|ahoj|  STRING                                                      #    50/68
+redukce                                                                         #    51/68
+ADD GF@&pomString TF@a string@ahoj                                              #    52/68
+|TOP--->|R|$|  SYMBOL                                                           #    53/68
+|TOP--->|GF@&pomString| |  STRING                                               #    54/68
+token: 53 ... 5                                                                 #    55/68
+|TOP--->|+|R|]|$|  SYMBOL                                                       #    56/68
+|TOP--->|+|GF@&pomString| | |  STRING                                           #    57/68
+token: 57 ...                                                                   #    58/68
+|TOP--->|int|]|+|R|]|$|  SYMBOL                                                 #    59/68
+|TOP--->|5| |+|GF@&pomString| | |  STRING                                       #    60/68
+|TOP--->|int|  SYMBOL                                                           #    61/68
+|TOP--->|5|  STRING                                                             #    62/68
+|TOP--->|R|+|R|]|$|  SYMBOL                                                     #    63/68
+|TOP--->|5|+|GF@&pomString| | |  STRING                                         #    64/68
+|TOP--->|R|+|R|  SYMBOL                                                         #    65/68
+|TOP--->|GF@&pomString|+|5|  STRING                                             #    66/68
+redukce                                                                         #    67/68
+ERROR on line 3                                                                 #    68/68
+

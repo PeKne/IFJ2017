@@ -1,0 +1,48 @@
+# 2017-12-03 20:43:47.746111
+# SECTION: 66_errors
+# TEST: 39
+# INFO: Small number of function arguments
+# REQUIRED EXTENSIONS: FUNEXP
+# ACTIVATED EXTENSIONS: 
+# STATE: FAIL
+# 
+# COMPILER STDERR:
+# 
+# INTERPRETER STDERR:
+# 
+# EXPECTED INTERPRETER STDOUT:
+
+
+
+# CURRENT INTERPRETER STDOUT:
+
+
+
+# INTERPRETER STDIN: 
+# 
+#
+# EXPECTED COMPILER EXIT CODE: 4
+# CURRENT COMPILER EXIT CODE: None
+# EXPECTED INTERPRETER EXIT CODE: 0
+# CURRENT INTERPRETER EXIT CODE: None
+# PRICE: ---
+# GROOT: ---
+# 
+#   1: ' Small number of function arguments
+#   2: 
+#   3: function foo(a as integer) as integer
+#   4:     
+#   5: end function
+#   6: 
+#   7: scope
+#   8:    if foo(10, 30) < 10 then
+#   9:    
+#  10:    else
+#  11:    
+#  12:    end if
+#  13: end scope
+
+########################################
+
+# ---
+

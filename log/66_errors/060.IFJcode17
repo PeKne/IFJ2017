@@ -1,0 +1,69 @@
+# 2017-12-03 20:43:47.926044
+# SECTION: 66_errors
+# TEST: 060
+# INFO: False if
+# REQUIRED EXTENSIONS: 
+# ACTIVATED EXTENSIONS: 
+# STATE: SUCCESS
+# 
+# COMPILER STDERR:
+# symbol.c:311:variable_exist(): Variable not found
+# Not defined variable
+# ERROR - 3 - sÃ©mantickÃ¡ chyba v programu â nedefinovanÃ¡ funkce/promeÌnnÃ¡, pokus o redefinici funkce/promeÌnnÃ©, atd.
+# 
+# INTERPRETER STDERR:
+# 
+# EXPECTED INTERPRETER STDOUT:
+
+
+
+# CURRENT INTERPRETER STDOUT:
+
+
+
+# INTERPRETER STDIN: 
+# 
+#
+# EXPECTED COMPILER EXIT CODE: 3
+# CURRENT COMPILER EXIT CODE: 3
+# EXPECTED INTERPRETER EXIT CODE: 0
+# CURRENT INTERPRETER EXIT CODE: None
+# PRICE: ---
+# GROOT: ---
+# 
+#   1: scope 
+#   2:  dim a as integer 
+#   3:  ifa<10 then 
+#   4:  else 
+#   5:  end if
+#   6:  
+#   7:  end scope
+
+########################################
+
+token: 17 ... scope                                                             #     1/27
+.IFJcode17                                                                      #     2/27
+JUMP $$scope                                                                    #     3/27
+LABEL $$scope                                                                   #     5/27
+DEFVAR GF@&pomInteger                                                           #     6/27
+MOVE GF@&pomInteger int@0                                                       #     7/27
+DEFVAR GF@&pomString                                                            #     8/27
+MOVE GF@&pomString string@                                                      #     9/27
+DEFVAR GF@&pomFloat                                                             #    10/27
+MOVE GF@&pomFloat float@0                                                       #    11/27
+DEFVAR GF@&pomBool                                                              #    12/27
+MOVE GF@&pomBool bool@false                                                     #    13/27
+DEFVAR GF@&pomCntr                                                              #    14/27
+MOVE GF@&pomCntr int@0                                                          #    15/27
+CREATEFRAME                                                                     #    16/27
+token: 57 ...                                                                   #    18/27
+token: 3 ... dim                                                                #    19/27
+token: 35 ... a                                                                 #    20/27
+token: 0 ... as                                                                 #    21/27
+token: 12 ... integer                                                           #    22/27
+token: 57 ...                                                                   #    23/27
+DEFVAR TF@a                                                                     #    24/27
+MOVE TF@a int@0                                                                 #    25/27
+token: 35 ... ifa                                                               #    26/27
+ERROR on line 3                                                                 #    27/27
+

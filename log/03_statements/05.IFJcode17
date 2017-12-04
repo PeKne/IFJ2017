@@ -1,0 +1,113 @@
+# 2017-12-03 20:43:47.131648
+# SECTION: 03_statements
+# TEST: 05
+# INFO: input statement
+# REQUIRED EXTENSIONS: 
+# ACTIVATED EXTENSIONS: 
+# STATE: FAIL
+# 
+# COMPILER STDERR:
+# 
+# INTERPRETER STDERR:
+# 1.1-5: syntax error, unexpected ID, expecting HEADER
+# 
+# EXPECTED INTERPRETER STDOUT:
+
+# ? ? ? ? 
+
+
+# CURRENT INTERPRETER STDOUT:
+
+
+
+# INTERPRETER STDIN: 
+#   42
+# "foo bar"   
+# 78.6
+# 77E6
+# 
+#
+# EXPECTED COMPILER EXIT CODE: 0
+# CURRENT COMPILER EXIT CODE: 0
+# EXPECTED INTERPRETER EXIT CODE: 0
+# CURRENT INTERPRETER EXIT CODE: 51
+# PRICE: ---
+# GROOT: ---
+# 
+#   1: ' input statement
+#   2: scope
+#   3: 	dim a as integer
+#   4: 	input a
+#   5: 
+#   6: 	dim b as string
+#   7: 	input b
+#   8: 
+#   9: 	dim c as double
+#  10: 	input c
+#  11: 	' exponent
+#  12: 	input c
+#  13: end scope
+
+########################################
+
+token: 57 ...                                                                   #     1/62
+token: 17 ... scope                                                             #     2/62
+.IFJcode17                                                                      #     3/62
+JUMP $$scope                                                                    #     4/62
+LABEL $$scope                                                                   #     6/62
+DEFVAR GF@&pomInteger                                                           #     7/62
+MOVE GF@&pomInteger int@0                                                       #     8/62
+DEFVAR GF@&pomString                                                            #     9/62
+MOVE GF@&pomString string@                                                      #    10/62
+DEFVAR GF@&pomFloat                                                             #    11/62
+MOVE GF@&pomFloat float@0                                                       #    12/62
+DEFVAR GF@&pomBool                                                              #    13/62
+MOVE GF@&pomBool bool@false                                                     #    14/62
+DEFVAR GF@&pomCntr                                                              #    15/62
+MOVE GF@&pomCntr int@0                                                          #    16/62
+CREATEFRAME                                                                     #    17/62
+token: 57 ...                                                                   #    19/62
+token: 3 ... dim                                                                #    20/62
+token: 35 ... a                                                                 #    21/62
+token: 0 ... as                                                                 #    22/62
+token: 12 ... integer                                                           #    23/62
+token: 57 ...                                                                   #    24/62
+DEFVAR TF@a                                                                     #    25/62
+MOVE TF@a int@0                                                                 #    26/62
+token: 11 ... input                                                             #    27/62
+token: 35 ... a                                                                 #    28/62
+READ TF@a int                                                                   #    29/62
+token: 57 ...                                                                   #    30/62
+token: 57 ...                                                                   #    31/62
+token: 3 ... dim                                                                #    32/62
+token: 35 ... b                                                                 #    33/62
+token: 0 ... as                                                                 #    34/62
+token: 18 ... string                                                            #    35/62
+token: 57 ...                                                                   #    36/62
+DEFVAR TF@b                                                                     #    37/62
+MOVE TF@b string@                                                               #    38/62
+token: 11 ... input                                                             #    39/62
+token: 35 ... b                                                                 #    40/62
+READ TF@b string                                                                #    41/62
+token: 57 ...                                                                   #    42/62
+token: 57 ...                                                                   #    43/62
+token: 3 ... dim                                                                #    44/62
+token: 35 ... c                                                                 #    45/62
+token: 0 ... as                                                                 #    46/62
+token: 5 ... double                                                             #    47/62
+token: 57 ...                                                                   #    48/62
+DEFVAR TF@c                                                                     #    49/62
+MOVE TF@c float@0                                                               #    50/62
+token: 11 ... input                                                             #    51/62
+token: 35 ... c                                                                 #    52/62
+READ TF@c float                                                                 #    53/62
+token: 57 ...                                                                   #    54/62
+token: 57 ...                                                                   #    55/62
+token: 11 ... input                                                             #    56/62
+token: 35 ... c                                                                 #    57/62
+READ TF@c float                                                                 #    58/62
+token: 57 ...                                                                   #    59/62
+token: 7 ... end                                                                #    60/62
+token: 17 ... scope                                                             #    61/62
+token: 58 ...                                                                   #    62/62
+

@@ -1,0 +1,46 @@
+# 2017-12-03 20:43:47.948213
+# SECTION: 66_errors
+# TEST: 066
+# INFO: function arguments without type
+# REQUIRED EXTENSIONS: 
+# ACTIVATED EXTENSIONS: 
+# STATE: FAIL
+# 
+# COMPILER STDERR:
+# symbol.c:268:retrieve_function_data(): Function not found
+# ERROR - 3 - sÃ©mantickÃ¡ chyba v programu â nedefinovanÃ¡ funkce/promeÌnnÃ¡, pokus o redefinici funkce/promeÌnnÃ©, atd.
+# 
+# INTERPRETER STDERR:
+# 
+# EXPECTED INTERPRETER STDOUT:
+
+
+
+# CURRENT INTERPRETER STDOUT:
+
+
+
+# INTERPRETER STDIN: 
+# 
+#
+# EXPECTED COMPILER EXIT CODE: 2
+# CURRENT COMPILER EXIT CODE: 3
+# EXPECTED INTERPRETER EXIT CODE: 0
+# CURRENT INTERPRETER EXIT CODE: None
+# PRICE: ---
+# GROOT: ---
+# 
+#   1: function foo(a, b as integer) as integer 
+#   2:  end function 
+#   3:  scope  
+#   4:  loop 
+#   5:  end scope
+
+########################################
+
+token: 9 ... function                                                           #     1/6
+.IFJcode17                                                                      #     2/6
+JUMP $$scope                                                                    #     3/6
+token: 35 ... foo                                                               #     5/6
+ERROR on line 1                                                                 #     6/6
+

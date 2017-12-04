@@ -1,0 +1,711 @@
+# 2017-12-03 20:43:47.227057
+# SECTION: 04_expressions
+# TEST: 15
+# INFO: exp(x) 6 iteration without loop
+# REQUIRED EXTENSIONS: 
+# ACTIVATED EXTENSIONS: 
+# STATE: FAIL
+# 
+# COMPILER STDERR:
+# 
+# INTERPRETER STDERR:
+# 1.1-5: syntax error, unexpected ID, expecting HEADER
+# 
+# EXPECTED INTERPRETER STDOUT:
+
+#  7.26667
+
+
+# CURRENT INTERPRETER STDOUT:
+
+
+
+# INTERPRETER STDIN: 
+# 
+#
+# EXPECTED COMPILER EXIT CODE: 0
+# CURRENT COMPILER EXIT CODE: 0
+# EXPECTED INTERPRETER EXIT CODE: 0
+# CURRENT INTERPRETER EXIT CODE: 51
+# PRICE: ---
+# GROOT: ---
+# 
+#   1: ' exp(x) 6 iteration without loop
+#   2: 
+#   3: SCOPE
+#   4: 
+#   5: 	dim vysledek as double
+#   6: 	dim citatel as integer
+#   7: 	citatel = 1
+#   8: 	dim jmenovatel as integer
+#   9: 	jmenovatel = 1
+#  10: 
+#  11: 	vysledek = vysledek + citatel / jmenovatel
+#  12: 
+#  13: 	citatel = citatel * 2
+#  14: 	jmenovatel = jmenovatel * 1
+#  15: 
+#  16: 	vysledek = vysledek + citatel / jmenovatel
+#  17: 
+#  18: 	citatel = citatel * 2
+#  19: 	jmenovatel = jmenovatel * 2
+#  20: 
+#  21: 	vysledek = vysledek +  citatel / jmenovatel
+#  22: 
+#  23: 	citatel = citatel * 2
+#  24: 	jmenovatel = jmenovatel * 3
+#  25: 
+#  26: 	vysledek = vysledek + citatel / jmenovatel
+#  27: 
+#  28: 	citatel = citatel * 2
+#  29: 	jmenovatel = jmenovatel * 4
+#  30: 
+#  31: 	vysledek = vysledek + citatel / jmenovatel
+#  32: 
+#  33: 	citatel = citatel * 2
+#  34: 	jmenovatel = jmenovatel * 5
+#  35: 
+#  36: 	vysledek = vysledek + citatel / jmenovatel
+#  37: 
+#  38: 	print vysledek;
+#  39: 
+#  40: END SCOPE
+
+########################################
+
+token: 57 ...                                                                   #     1/637
+token: 57 ...                                                                   #     2/637
+token: 17 ... scope                                                             #     3/637
+.IFJcode17                                                                      #     4/637
+JUMP $$scope                                                                    #     5/637
+LABEL $$scope                                                                   #     7/637
+DEFVAR GF@&pomInteger                                                           #     8/637
+MOVE GF@&pomInteger int@0                                                       #     9/637
+DEFVAR GF@&pomString                                                            #    10/637
+MOVE GF@&pomString string@                                                      #    11/637
+DEFVAR GF@&pomFloat                                                             #    12/637
+MOVE GF@&pomFloat float@0                                                       #    13/637
+DEFVAR GF@&pomBool                                                              #    14/637
+MOVE GF@&pomBool bool@false                                                     #    15/637
+DEFVAR GF@&pomCntr                                                              #    16/637
+MOVE GF@&pomCntr int@0                                                          #    17/637
+CREATEFRAME                                                                     #    18/637
+token: 57 ...                                                                   #    20/637
+token: 57 ...                                                                   #    21/637
+token: 3 ... dim                                                                #    22/637
+token: 35 ... vysledek                                                          #    23/637
+token: 0 ... as                                                                 #    24/637
+token: 5 ... double                                                             #    25/637
+token: 57 ...                                                                   #    26/637
+DEFVAR TF@vysledek                                                              #    27/637
+MOVE TF@vysledek float@0                                                        #    28/637
+token: 3 ... dim                                                                #    29/637
+token: 35 ... citatel                                                           #    30/637
+token: 0 ... as                                                                 #    31/637
+token: 12 ... integer                                                           #    32/637
+token: 57 ...                                                                   #    33/637
+DEFVAR TF@citatel                                                               #    34/637
+MOVE TF@citatel int@0                                                           #    35/637
+token: 35 ... citatel                                                           #    36/637
+token: 45 ... =                                                                 #    37/637
+token: 53 ... 1                                                                 #    38/637
+|TOP--->|$|  SYMBOL                                                             #    39/637
+|TOP--->| |  STRING                                                             #    40/637
+token: 57 ...                                                                   #    41/637
+|TOP--->|int|]|$|  SYMBOL                                                       #    42/637
+|TOP--->|1| | |  STRING                                                         #    43/637
+|TOP--->|int|  SYMBOL                                                           #    44/637
+|TOP--->|1|  STRING                                                             #    45/637
+MOVE GF@&pomInteger int@1                                                       #    46/637
+MOVE TF@citatel GF@&pomInteger                                                  #    47/637
+token: 3 ... dim                                                                #    48/637
+token: 35 ... jmenovatel                                                        #    49/637
+token: 0 ... as                                                                 #    50/637
+token: 12 ... integer                                                           #    51/637
+token: 57 ...                                                                   #    52/637
+DEFVAR TF@jmenovatel                                                            #    53/637
+MOVE TF@jmenovatel int@0                                                        #    54/637
+token: 35 ... jmenovatel                                                        #    55/637
+token: 45 ... =                                                                 #    56/637
+token: 53 ... 1                                                                 #    57/637
+|TOP--->|$|  SYMBOL                                                             #    58/637
+|TOP--->| |  STRING                                                             #    59/637
+token: 57 ...                                                                   #    60/637
+|TOP--->|int|]|$|  SYMBOL                                                       #    61/637
+|TOP--->|1| | |  STRING                                                         #    62/637
+|TOP--->|int|  SYMBOL                                                           #    63/637
+|TOP--->|1|  STRING                                                             #    64/637
+MOVE GF@&pomInteger int@1                                                       #    65/637
+MOVE TF@jmenovatel GF@&pomInteger                                               #    66/637
+token: 57 ...                                                                   #    67/637
+token: 35 ... vysledek                                                          #    68/637
+token: 45 ... =                                                                 #    69/637
+token: 35 ... vysledek                                                          #    70/637
+|TOP--->|$|  SYMBOL                                                             #    71/637
+|TOP--->| |  STRING                                                             #    72/637
+token: 39 ... +                                                                 #    73/637
+|TOP--->|i|]|$|  SYMBOL                                                         #    74/637
+|TOP--->|vysledek| | |  STRING                                                  #    75/637
+|TOP--->|i|  SYMBOL                                                             #    76/637
+|TOP--->|vysledek|  STRING                                                      #    77/637
+MOVE GF@&pomFloat TF@vysledek                                                   #    78/637
+|TOP--->|R|$|  SYMBOL                                                           #    79/637
+|TOP--->|vysledek| |  STRING                                                    #    80/637
+token: 35 ... citatel                                                           #    81/637
+|TOP--->|+|R|]|$|  SYMBOL                                                       #    82/637
+|TOP--->|+|vysledek| | |  STRING                                                #    83/637
+token: 36 ... /                                                                 #    84/637
+|TOP--->|i|]|+|R|]|$|  SYMBOL                                                   #    85/637
+|TOP--->|citatel| |+|vysledek| | |  STRING                                      #    86/637
+|TOP--->|i|  SYMBOL                                                             #    87/637
+|TOP--->|citatel|  STRING                                                       #    88/637
+|TOP--->|R|+|R|]|$|  SYMBOL                                                     #    89/637
+|TOP--->|citatel|+|vysledek| | |  STRING                                        #    90/637
+token: 35 ... jmenovatel                                                        #    91/637
+|TOP--->|/|R|]|+|R|]|$|  SYMBOL                                                 #    92/637
+|TOP--->|/|citatel| |+|vysledek| | |  STRING                                    #    93/637
+token: 57 ...                                                                   #    94/637
+|TOP--->|i|]|/|R|]|+|R|]|$|  SYMBOL                                             #    95/637
+|TOP--->|jmenovatel| |/|citatel| |+|vysledek| | |  STRING                       #    96/637
+|TOP--->|i|  SYMBOL                                                             #    97/637
+|TOP--->|jmenovatel|  STRING                                                    #    98/637
+|TOP--->|R|/|R|]|+|R|]|$|  SYMBOL                                               #    99/637
+|TOP--->|jmenovatel|/|citatel| |+|vysledek| | |  STRING                         #   100/637
+|TOP--->|R|/|R|  SYMBOL                                                         #   101/637
+|TOP--->|citatel|/|jmenovatel|  STRING                                          #   102/637
+redukce                                                                         #   103/637
+DIV GF@&pomFloat TF@citatel TF@jmenovatel                                       #   104/637
+|TOP--->|R|+|R|]|$|  SYMBOL                                                     #   105/637
+|TOP--->|GF@&pomFloat|+|vysledek| | |  STRING                                   #   106/637
+|TOP--->|R|+|R|  SYMBOL                                                         #   107/637
+|TOP--->|vysledek|+|GF@&pomFloat|  STRING                                       #   108/637
+redukce                                                                         #   109/637
+ADD GF@&pomFloat TF@vysledek GF@&pomFloat                                       #   110/637
+MOVE TF@vysledek GF@&pomFloat                                                   #   111/637
+token: 57 ...                                                                   #   112/637
+token: 35 ... citatel                                                           #   113/637
+token: 45 ... =                                                                 #   114/637
+token: 35 ... citatel                                                           #   115/637
+|TOP--->|$|  SYMBOL                                                             #   116/637
+|TOP--->| |  STRING                                                             #   117/637
+token: 38 ... *                                                                 #   118/637
+|TOP--->|i|]|$|  SYMBOL                                                         #   119/637
+|TOP--->|citatel| | |  STRING                                                   #   120/637
+|TOP--->|i|  SYMBOL                                                             #   121/637
+|TOP--->|citatel|  STRING                                                       #   122/637
+MOVE GF@&pomInteger TF@citatel                                                  #   123/637
+|TOP--->|R|$|  SYMBOL                                                           #   124/637
+|TOP--->|citatel| |  STRING                                                     #   125/637
+token: 53 ... 2                                                                 #   126/637
+|TOP--->|*|R|]|$|  SYMBOL                                                       #   127/637
+|TOP--->|*|citatel| | |  STRING                                                 #   128/637
+token: 57 ...                                                                   #   129/637
+|TOP--->|int|]|*|R|]|$|  SYMBOL                                                 #   130/637
+|TOP--->|2| |*|citatel| | |  STRING                                             #   131/637
+|TOP--->|int|  SYMBOL                                                           #   132/637
+|TOP--->|2|  STRING                                                             #   133/637
+|TOP--->|R|*|R|]|$|  SYMBOL                                                     #   134/637
+|TOP--->|2|*|citatel| | |  STRING                                               #   135/637
+|TOP--->|R|*|R|  SYMBOL                                                         #   136/637
+|TOP--->|citatel|*|2|  STRING                                                   #   137/637
+redukce                                                                         #   138/637
+MUL GF@&pomInteger TF@citatel int@2                                             #   139/637
+MOVE TF@citatel GF@&pomInteger                                                  #   140/637
+token: 35 ... jmenovatel                                                        #   141/637
+token: 45 ... =                                                                 #   142/637
+token: 35 ... jmenovatel                                                        #   143/637
+|TOP--->|$|  SYMBOL                                                             #   144/637
+|TOP--->| |  STRING                                                             #   145/637
+token: 38 ... *                                                                 #   146/637
+|TOP--->|i|]|$|  SYMBOL                                                         #   147/637
+|TOP--->|jmenovatel| | |  STRING                                                #   148/637
+|TOP--->|i|  SYMBOL                                                             #   149/637
+|TOP--->|jmenovatel|  STRING                                                    #   150/637
+MOVE GF@&pomInteger TF@jmenovatel                                               #   151/637
+|TOP--->|R|$|  SYMBOL                                                           #   152/637
+|TOP--->|jmenovatel| |  STRING                                                  #   153/637
+token: 53 ... 1                                                                 #   154/637
+|TOP--->|*|R|]|$|  SYMBOL                                                       #   155/637
+|TOP--->|*|jmenovatel| | |  STRING                                              #   156/637
+token: 57 ...                                                                   #   157/637
+|TOP--->|int|]|*|R|]|$|  SYMBOL                                                 #   158/637
+|TOP--->|1| |*|jmenovatel| | |  STRING                                          #   159/637
+|TOP--->|int|  SYMBOL                                                           #   160/637
+|TOP--->|1|  STRING                                                             #   161/637
+|TOP--->|R|*|R|]|$|  SYMBOL                                                     #   162/637
+|TOP--->|1|*|jmenovatel| | |  STRING                                            #   163/637
+|TOP--->|R|*|R|  SYMBOL                                                         #   164/637
+|TOP--->|jmenovatel|*|1|  STRING                                                #   165/637
+redukce                                                                         #   166/637
+MUL GF@&pomInteger TF@jmenovatel int@1                                          #   167/637
+MOVE TF@jmenovatel GF@&pomInteger                                               #   168/637
+token: 57 ...                                                                   #   169/637
+token: 35 ... vysledek                                                          #   170/637
+token: 45 ... =                                                                 #   171/637
+token: 35 ... vysledek                                                          #   172/637
+|TOP--->|$|  SYMBOL                                                             #   173/637
+|TOP--->| |  STRING                                                             #   174/637
+token: 39 ... +                                                                 #   175/637
+|TOP--->|i|]|$|  SYMBOL                                                         #   176/637
+|TOP--->|vysledek| | |  STRING                                                  #   177/637
+|TOP--->|i|  SYMBOL                                                             #   178/637
+|TOP--->|vysledek|  STRING                                                      #   179/637
+MOVE GF@&pomFloat TF@vysledek                                                   #   180/637
+|TOP--->|R|$|  SYMBOL                                                           #   181/637
+|TOP--->|vysledek| |  STRING                                                    #   182/637
+token: 35 ... citatel                                                           #   183/637
+|TOP--->|+|R|]|$|  SYMBOL                                                       #   184/637
+|TOP--->|+|vysledek| | |  STRING                                                #   185/637
+token: 36 ... /                                                                 #   186/637
+|TOP--->|i|]|+|R|]|$|  SYMBOL                                                   #   187/637
+|TOP--->|citatel| |+|vysledek| | |  STRING                                      #   188/637
+|TOP--->|i|  SYMBOL                                                             #   189/637
+|TOP--->|citatel|  STRING                                                       #   190/637
+|TOP--->|R|+|R|]|$|  SYMBOL                                                     #   191/637
+|TOP--->|citatel|+|vysledek| | |  STRING                                        #   192/637
+token: 35 ... jmenovatel                                                        #   193/637
+|TOP--->|/|R|]|+|R|]|$|  SYMBOL                                                 #   194/637
+|TOP--->|/|citatel| |+|vysledek| | |  STRING                                    #   195/637
+token: 57 ...                                                                   #   196/637
+|TOP--->|i|]|/|R|]|+|R|]|$|  SYMBOL                                             #   197/637
+|TOP--->|jmenovatel| |/|citatel| |+|vysledek| | |  STRING                       #   198/637
+|TOP--->|i|  SYMBOL                                                             #   199/637
+|TOP--->|jmenovatel|  STRING                                                    #   200/637
+|TOP--->|R|/|R|]|+|R|]|$|  SYMBOL                                               #   201/637
+|TOP--->|jmenovatel|/|citatel| |+|vysledek| | |  STRING                         #   202/637
+|TOP--->|R|/|R|  SYMBOL                                                         #   203/637
+|TOP--->|citatel|/|jmenovatel|  STRING                                          #   204/637
+redukce                                                                         #   205/637
+DIV GF@&pomFloat TF@citatel TF@jmenovatel                                       #   206/637
+|TOP--->|R|+|R|]|$|  SYMBOL                                                     #   207/637
+|TOP--->|GF@&pomFloat|+|vysledek| | |  STRING                                   #   208/637
+|TOP--->|R|+|R|  SYMBOL                                                         #   209/637
+|TOP--->|vysledek|+|GF@&pomFloat|  STRING                                       #   210/637
+redukce                                                                         #   211/637
+ADD GF@&pomFloat TF@vysledek GF@&pomFloat                                       #   212/637
+MOVE TF@vysledek GF@&pomFloat                                                   #   213/637
+token: 57 ...                                                                   #   214/637
+token: 35 ... citatel                                                           #   215/637
+token: 45 ... =                                                                 #   216/637
+token: 35 ... citatel                                                           #   217/637
+|TOP--->|$|  SYMBOL                                                             #   218/637
+|TOP--->| |  STRING                                                             #   219/637
+token: 38 ... *                                                                 #   220/637
+|TOP--->|i|]|$|  SYMBOL                                                         #   221/637
+|TOP--->|citatel| | |  STRING                                                   #   222/637
+|TOP--->|i|  SYMBOL                                                             #   223/637
+|TOP--->|citatel|  STRING                                                       #   224/637
+MOVE GF@&pomInteger TF@citatel                                                  #   225/637
+|TOP--->|R|$|  SYMBOL                                                           #   226/637
+|TOP--->|citatel| |  STRING                                                     #   227/637
+token: 53 ... 2                                                                 #   228/637
+|TOP--->|*|R|]|$|  SYMBOL                                                       #   229/637
+|TOP--->|*|citatel| | |  STRING                                                 #   230/637
+token: 57 ...                                                                   #   231/637
+|TOP--->|int|]|*|R|]|$|  SYMBOL                                                 #   232/637
+|TOP--->|2| |*|citatel| | |  STRING                                             #   233/637
+|TOP--->|int|  SYMBOL                                                           #   234/637
+|TOP--->|2|  STRING                                                             #   235/637
+|TOP--->|R|*|R|]|$|  SYMBOL                                                     #   236/637
+|TOP--->|2|*|citatel| | |  STRING                                               #   237/637
+|TOP--->|R|*|R|  SYMBOL                                                         #   238/637
+|TOP--->|citatel|*|2|  STRING                                                   #   239/637
+redukce                                                                         #   240/637
+MUL GF@&pomInteger TF@citatel int@2                                             #   241/637
+MOVE TF@citatel GF@&pomInteger                                                  #   242/637
+token: 35 ... jmenovatel                                                        #   243/637
+token: 45 ... =                                                                 #   244/637
+token: 35 ... jmenovatel                                                        #   245/637
+|TOP--->|$|  SYMBOL                                                             #   246/637
+|TOP--->| |  STRING                                                             #   247/637
+token: 38 ... *                                                                 #   248/637
+|TOP--->|i|]|$|  SYMBOL                                                         #   249/637
+|TOP--->|jmenovatel| | |  STRING                                                #   250/637
+|TOP--->|i|  SYMBOL                                                             #   251/637
+|TOP--->|jmenovatel|  STRING                                                    #   252/637
+MOVE GF@&pomInteger TF@jmenovatel                                               #   253/637
+|TOP--->|R|$|  SYMBOL                                                           #   254/637
+|TOP--->|jmenovatel| |  STRING                                                  #   255/637
+token: 53 ... 2                                                                 #   256/637
+|TOP--->|*|R|]|$|  SYMBOL                                                       #   257/637
+|TOP--->|*|jmenovatel| | |  STRING                                              #   258/637
+token: 57 ...                                                                   #   259/637
+|TOP--->|int|]|*|R|]|$|  SYMBOL                                                 #   260/637
+|TOP--->|2| |*|jmenovatel| | |  STRING                                          #   261/637
+|TOP--->|int|  SYMBOL                                                           #   262/637
+|TOP--->|2|  STRING                                                             #   263/637
+|TOP--->|R|*|R|]|$|  SYMBOL                                                     #   264/637
+|TOP--->|2|*|jmenovatel| | |  STRING                                            #   265/637
+|TOP--->|R|*|R|  SYMBOL                                                         #   266/637
+|TOP--->|jmenovatel|*|2|  STRING                                                #   267/637
+redukce                                                                         #   268/637
+MUL GF@&pomInteger TF@jmenovatel int@2                                          #   269/637
+MOVE TF@jmenovatel GF@&pomInteger                                               #   270/637
+token: 57 ...                                                                   #   271/637
+token: 35 ... vysledek                                                          #   272/637
+token: 45 ... =                                                                 #   273/637
+token: 35 ... vysledek                                                          #   274/637
+|TOP--->|$|  SYMBOL                                                             #   275/637
+|TOP--->| |  STRING                                                             #   276/637
+token: 39 ... +                                                                 #   277/637
+|TOP--->|i|]|$|  SYMBOL                                                         #   278/637
+|TOP--->|vysledek| | |  STRING                                                  #   279/637
+|TOP--->|i|  SYMBOL                                                             #   280/637
+|TOP--->|vysledek|  STRING                                                      #   281/637
+MOVE GF@&pomFloat TF@vysledek                                                   #   282/637
+|TOP--->|R|$|  SYMBOL                                                           #   283/637
+|TOP--->|vysledek| |  STRING                                                    #   284/637
+token: 35 ... citatel                                                           #   285/637
+|TOP--->|+|R|]|$|  SYMBOL                                                       #   286/637
+|TOP--->|+|vysledek| | |  STRING                                                #   287/637
+token: 36 ... /                                                                 #   288/637
+|TOP--->|i|]|+|R|]|$|  SYMBOL                                                   #   289/637
+|TOP--->|citatel| |+|vysledek| | |  STRING                                      #   290/637
+|TOP--->|i|  SYMBOL                                                             #   291/637
+|TOP--->|citatel|  STRING                                                       #   292/637
+|TOP--->|R|+|R|]|$|  SYMBOL                                                     #   293/637
+|TOP--->|citatel|+|vysledek| | |  STRING                                        #   294/637
+token: 35 ... jmenovatel                                                        #   295/637
+|TOP--->|/|R|]|+|R|]|$|  SYMBOL                                                 #   296/637
+|TOP--->|/|citatel| |+|vysledek| | |  STRING                                    #   297/637
+token: 57 ...                                                                   #   298/637
+|TOP--->|i|]|/|R|]|+|R|]|$|  SYMBOL                                             #   299/637
+|TOP--->|jmenovatel| |/|citatel| |+|vysledek| | |  STRING                       #   300/637
+|TOP--->|i|  SYMBOL                                                             #   301/637
+|TOP--->|jmenovatel|  STRING                                                    #   302/637
+|TOP--->|R|/|R|]|+|R|]|$|  SYMBOL                                               #   303/637
+|TOP--->|jmenovatel|/|citatel| |+|vysledek| | |  STRING                         #   304/637
+|TOP--->|R|/|R|  SYMBOL                                                         #   305/637
+|TOP--->|citatel|/|jmenovatel|  STRING                                          #   306/637
+redukce                                                                         #   307/637
+DIV GF@&pomFloat TF@citatel TF@jmenovatel                                       #   308/637
+|TOP--->|R|+|R|]|$|  SYMBOL                                                     #   309/637
+|TOP--->|GF@&pomFloat|+|vysledek| | |  STRING                                   #   310/637
+|TOP--->|R|+|R|  SYMBOL                                                         #   311/637
+|TOP--->|vysledek|+|GF@&pomFloat|  STRING                                       #   312/637
+redukce                                                                         #   313/637
+ADD GF@&pomFloat TF@vysledek GF@&pomFloat                                       #   314/637
+MOVE TF@vysledek GF@&pomFloat                                                   #   315/637
+token: 57 ...                                                                   #   316/637
+token: 35 ... citatel                                                           #   317/637
+token: 45 ... =                                                                 #   318/637
+token: 35 ... citatel                                                           #   319/637
+|TOP--->|$|  SYMBOL                                                             #   320/637
+|TOP--->| |  STRING                                                             #   321/637
+token: 38 ... *                                                                 #   322/637
+|TOP--->|i|]|$|  SYMBOL                                                         #   323/637
+|TOP--->|citatel| | |  STRING                                                   #   324/637
+|TOP--->|i|  SYMBOL                                                             #   325/637
+|TOP--->|citatel|  STRING                                                       #   326/637
+MOVE GF@&pomInteger TF@citatel                                                  #   327/637
+|TOP--->|R|$|  SYMBOL                                                           #   328/637
+|TOP--->|citatel| |  STRING                                                     #   329/637
+token: 53 ... 2                                                                 #   330/637
+|TOP--->|*|R|]|$|  SYMBOL                                                       #   331/637
+|TOP--->|*|citatel| | |  STRING                                                 #   332/637
+token: 57 ...                                                                   #   333/637
+|TOP--->|int|]|*|R|]|$|  SYMBOL                                                 #   334/637
+|TOP--->|2| |*|citatel| | |  STRING                                             #   335/637
+|TOP--->|int|  SYMBOL                                                           #   336/637
+|TOP--->|2|  STRING                                                             #   337/637
+|TOP--->|R|*|R|]|$|  SYMBOL                                                     #   338/637
+|TOP--->|2|*|citatel| | |  STRING                                               #   339/637
+|TOP--->|R|*|R|  SYMBOL                                                         #   340/637
+|TOP--->|citatel|*|2|  STRING                                                   #   341/637
+redukce                                                                         #   342/637
+MUL GF@&pomInteger TF@citatel int@2                                             #   343/637
+MOVE TF@citatel GF@&pomInteger                                                  #   344/637
+token: 35 ... jmenovatel                                                        #   345/637
+token: 45 ... =                                                                 #   346/637
+token: 35 ... jmenovatel                                                        #   347/637
+|TOP--->|$|  SYMBOL                                                             #   348/637
+|TOP--->| |  STRING                                                             #   349/637
+token: 38 ... *                                                                 #   350/637
+|TOP--->|i|]|$|  SYMBOL                                                         #   351/637
+|TOP--->|jmenovatel| | |  STRING                                                #   352/637
+|TOP--->|i|  SYMBOL                                                             #   353/637
+|TOP--->|jmenovatel|  STRING                                                    #   354/637
+MOVE GF@&pomInteger TF@jmenovatel                                               #   355/637
+|TOP--->|R|$|  SYMBOL                                                           #   356/637
+|TOP--->|jmenovatel| |  STRING                                                  #   357/637
+token: 53 ... 3                                                                 #   358/637
+|TOP--->|*|R|]|$|  SYMBOL                                                       #   359/637
+|TOP--->|*|jmenovatel| | |  STRING                                              #   360/637
+token: 57 ...                                                                   #   361/637
+|TOP--->|int|]|*|R|]|$|  SYMBOL                                                 #   362/637
+|TOP--->|3| |*|jmenovatel| | |  STRING                                          #   363/637
+|TOP--->|int|  SYMBOL                                                           #   364/637
+|TOP--->|3|  STRING                                                             #   365/637
+|TOP--->|R|*|R|]|$|  SYMBOL                                                     #   366/637
+|TOP--->|3|*|jmenovatel| | |  STRING                                            #   367/637
+|TOP--->|R|*|R|  SYMBOL                                                         #   368/637
+|TOP--->|jmenovatel|*|3|  STRING                                                #   369/637
+redukce                                                                         #   370/637
+MUL GF@&pomInteger TF@jmenovatel int@3                                          #   371/637
+MOVE TF@jmenovatel GF@&pomInteger                                               #   372/637
+token: 57 ...                                                                   #   373/637
+token: 35 ... vysledek                                                          #   374/637
+token: 45 ... =                                                                 #   375/637
+token: 35 ... vysledek                                                          #   376/637
+|TOP--->|$|  SYMBOL                                                             #   377/637
+|TOP--->| |  STRING                                                             #   378/637
+token: 39 ... +                                                                 #   379/637
+|TOP--->|i|]|$|  SYMBOL                                                         #   380/637
+|TOP--->|vysledek| | |  STRING                                                  #   381/637
+|TOP--->|i|  SYMBOL                                                             #   382/637
+|TOP--->|vysledek|  STRING                                                      #   383/637
+MOVE GF@&pomFloat TF@vysledek                                                   #   384/637
+|TOP--->|R|$|  SYMBOL                                                           #   385/637
+|TOP--->|vysledek| |  STRING                                                    #   386/637
+token: 35 ... citatel                                                           #   387/637
+|TOP--->|+|R|]|$|  SYMBOL                                                       #   388/637
+|TOP--->|+|vysledek| | |  STRING                                                #   389/637
+token: 36 ... /                                                                 #   390/637
+|TOP--->|i|]|+|R|]|$|  SYMBOL                                                   #   391/637
+|TOP--->|citatel| |+|vysledek| | |  STRING                                      #   392/637
+|TOP--->|i|  SYMBOL                                                             #   393/637
+|TOP--->|citatel|  STRING                                                       #   394/637
+|TOP--->|R|+|R|]|$|  SYMBOL                                                     #   395/637
+|TOP--->|citatel|+|vysledek| | |  STRING                                        #   396/637
+token: 35 ... jmenovatel                                                        #   397/637
+|TOP--->|/|R|]|+|R|]|$|  SYMBOL                                                 #   398/637
+|TOP--->|/|citatel| |+|vysledek| | |  STRING                                    #   399/637
+token: 57 ...                                                                   #   400/637
+|TOP--->|i|]|/|R|]|+|R|]|$|  SYMBOL                                             #   401/637
+|TOP--->|jmenovatel| |/|citatel| |+|vysledek| | |  STRING                       #   402/637
+|TOP--->|i|  SYMBOL                                                             #   403/637
+|TOP--->|jmenovatel|  STRING                                                    #   404/637
+|TOP--->|R|/|R|]|+|R|]|$|  SYMBOL                                               #   405/637
+|TOP--->|jmenovatel|/|citatel| |+|vysledek| | |  STRING                         #   406/637
+|TOP--->|R|/|R|  SYMBOL                                                         #   407/637
+|TOP--->|citatel|/|jmenovatel|  STRING                                          #   408/637
+redukce                                                                         #   409/637
+DIV GF@&pomFloat TF@citatel TF@jmenovatel                                       #   410/637
+|TOP--->|R|+|R|]|$|  SYMBOL                                                     #   411/637
+|TOP--->|GF@&pomFloat|+|vysledek| | |  STRING                                   #   412/637
+|TOP--->|R|+|R|  SYMBOL                                                         #   413/637
+|TOP--->|vysledek|+|GF@&pomFloat|  STRING                                       #   414/637
+redukce                                                                         #   415/637
+ADD GF@&pomFloat TF@vysledek GF@&pomFloat                                       #   416/637
+MOVE TF@vysledek GF@&pomFloat                                                   #   417/637
+token: 57 ...                                                                   #   418/637
+token: 35 ... citatel                                                           #   419/637
+token: 45 ... =                                                                 #   420/637
+token: 35 ... citatel                                                           #   421/637
+|TOP--->|$|  SYMBOL                                                             #   422/637
+|TOP--->| |  STRING                                                             #   423/637
+token: 38 ... *                                                                 #   424/637
+|TOP--->|i|]|$|  SYMBOL                                                         #   425/637
+|TOP--->|citatel| | |  STRING                                                   #   426/637
+|TOP--->|i|  SYMBOL                                                             #   427/637
+|TOP--->|citatel|  STRING                                                       #   428/637
+MOVE GF@&pomInteger TF@citatel                                                  #   429/637
+|TOP--->|R|$|  SYMBOL                                                           #   430/637
+|TOP--->|citatel| |  STRING                                                     #   431/637
+token: 53 ... 2                                                                 #   432/637
+|TOP--->|*|R|]|$|  SYMBOL                                                       #   433/637
+|TOP--->|*|citatel| | |  STRING                                                 #   434/637
+token: 57 ...                                                                   #   435/637
+|TOP--->|int|]|*|R|]|$|  SYMBOL                                                 #   436/637
+|TOP--->|2| |*|citatel| | |  STRING                                             #   437/637
+|TOP--->|int|  SYMBOL                                                           #   438/637
+|TOP--->|2|  STRING                                                             #   439/637
+|TOP--->|R|*|R|]|$|  SYMBOL                                                     #   440/637
+|TOP--->|2|*|citatel| | |  STRING                                               #   441/637
+|TOP--->|R|*|R|  SYMBOL                                                         #   442/637
+|TOP--->|citatel|*|2|  STRING                                                   #   443/637
+redukce                                                                         #   444/637
+MUL GF@&pomInteger TF@citatel int@2                                             #   445/637
+MOVE TF@citatel GF@&pomInteger                                                  #   446/637
+token: 35 ... jmenovatel                                                        #   447/637
+token: 45 ... =                                                                 #   448/637
+token: 35 ... jmenovatel                                                        #   449/637
+|TOP--->|$|  SYMBOL                                                             #   450/637
+|TOP--->| |  STRING                                                             #   451/637
+token: 38 ... *                                                                 #   452/637
+|TOP--->|i|]|$|  SYMBOL                                                         #   453/637
+|TOP--->|jmenovatel| | |  STRING                                                #   454/637
+|TOP--->|i|  SYMBOL                                                             #   455/637
+|TOP--->|jmenovatel|  STRING                                                    #   456/637
+MOVE GF@&pomInteger TF@jmenovatel                                               #   457/637
+|TOP--->|R|$|  SYMBOL                                                           #   458/637
+|TOP--->|jmenovatel| |  STRING                                                  #   459/637
+token: 53 ... 4                                                                 #   460/637
+|TOP--->|*|R|]|$|  SYMBOL                                                       #   461/637
+|TOP--->|*|jmenovatel| | |  STRING                                              #   462/637
+token: 57 ...                                                                   #   463/637
+|TOP--->|int|]|*|R|]|$|  SYMBOL                                                 #   464/637
+|TOP--->|4| |*|jmenovatel| | |  STRING                                          #   465/637
+|TOP--->|int|  SYMBOL                                                           #   466/637
+|TOP--->|4|  STRING                                                             #   467/637
+|TOP--->|R|*|R|]|$|  SYMBOL                                                     #   468/637
+|TOP--->|4|*|jmenovatel| | |  STRING                                            #   469/637
+|TOP--->|R|*|R|  SYMBOL                                                         #   470/637
+|TOP--->|jmenovatel|*|4|  STRING                                                #   471/637
+redukce                                                                         #   472/637
+MUL GF@&pomInteger TF@jmenovatel int@4                                          #   473/637
+MOVE TF@jmenovatel GF@&pomInteger                                               #   474/637
+token: 57 ...                                                                   #   475/637
+token: 35 ... vysledek                                                          #   476/637
+token: 45 ... =                                                                 #   477/637
+token: 35 ... vysledek                                                          #   478/637
+|TOP--->|$|  SYMBOL                                                             #   479/637
+|TOP--->| |  STRING                                                             #   480/637
+token: 39 ... +                                                                 #   481/637
+|TOP--->|i|]|$|  SYMBOL                                                         #   482/637
+|TOP--->|vysledek| | |  STRING                                                  #   483/637
+|TOP--->|i|  SYMBOL                                                             #   484/637
+|TOP--->|vysledek|  STRING                                                      #   485/637
+MOVE GF@&pomFloat TF@vysledek                                                   #   486/637
+|TOP--->|R|$|  SYMBOL                                                           #   487/637
+|TOP--->|vysledek| |  STRING                                                    #   488/637
+token: 35 ... citatel                                                           #   489/637
+|TOP--->|+|R|]|$|  SYMBOL                                                       #   490/637
+|TOP--->|+|vysledek| | |  STRING                                                #   491/637
+token: 36 ... /                                                                 #   492/637
+|TOP--->|i|]|+|R|]|$|  SYMBOL                                                   #   493/637
+|TOP--->|citatel| |+|vysledek| | |  STRING                                      #   494/637
+|TOP--->|i|  SYMBOL                                                             #   495/637
+|TOP--->|citatel|  STRING                                                       #   496/637
+|TOP--->|R|+|R|]|$|  SYMBOL                                                     #   497/637
+|TOP--->|citatel|+|vysledek| | |  STRING                                        #   498/637
+token: 35 ... jmenovatel                                                        #   499/637
+|TOP--->|/|R|]|+|R|]|$|  SYMBOL                                                 #   500/637
+|TOP--->|/|citatel| |+|vysledek| | |  STRING                                    #   501/637
+token: 57 ...                                                                   #   502/637
+|TOP--->|i|]|/|R|]|+|R|]|$|  SYMBOL                                             #   503/637
+|TOP--->|jmenovatel| |/|citatel| |+|vysledek| | |  STRING                       #   504/637
+|TOP--->|i|  SYMBOL                                                             #   505/637
+|TOP--->|jmenovatel|  STRING                                                    #   506/637
+|TOP--->|R|/|R|]|+|R|]|$|  SYMBOL                                               #   507/637
+|TOP--->|jmenovatel|/|citatel| |+|vysledek| | |  STRING                         #   508/637
+|TOP--->|R|/|R|  SYMBOL                                                         #   509/637
+|TOP--->|citatel|/|jmenovatel|  STRING                                          #   510/637
+redukce                                                                         #   511/637
+DIV GF@&pomFloat TF@citatel TF@jmenovatel                                       #   512/637
+|TOP--->|R|+|R|]|$|  SYMBOL                                                     #   513/637
+|TOP--->|GF@&pomFloat|+|vysledek| | |  STRING                                   #   514/637
+|TOP--->|R|+|R|  SYMBOL                                                         #   515/637
+|TOP--->|vysledek|+|GF@&pomFloat|  STRING                                       #   516/637
+redukce                                                                         #   517/637
+ADD GF@&pomFloat TF@vysledek GF@&pomFloat                                       #   518/637
+MOVE TF@vysledek GF@&pomFloat                                                   #   519/637
+token: 57 ...                                                                   #   520/637
+token: 35 ... citatel                                                           #   521/637
+token: 45 ... =                                                                 #   522/637
+token: 35 ... citatel                                                           #   523/637
+|TOP--->|$|  SYMBOL                                                             #   524/637
+|TOP--->| |  STRING                                                             #   525/637
+token: 38 ... *                                                                 #   526/637
+|TOP--->|i|]|$|  SYMBOL                                                         #   527/637
+|TOP--->|citatel| | |  STRING                                                   #   528/637
+|TOP--->|i|  SYMBOL                                                             #   529/637
+|TOP--->|citatel|  STRING                                                       #   530/637
+MOVE GF@&pomInteger TF@citatel                                                  #   531/637
+|TOP--->|R|$|  SYMBOL                                                           #   532/637
+|TOP--->|citatel| |  STRING                                                     #   533/637
+token: 53 ... 2                                                                 #   534/637
+|TOP--->|*|R|]|$|  SYMBOL                                                       #   535/637
+|TOP--->|*|citatel| | |  STRING                                                 #   536/637
+token: 57 ...                                                                   #   537/637
+|TOP--->|int|]|*|R|]|$|  SYMBOL                                                 #   538/637
+|TOP--->|2| |*|citatel| | |  STRING                                             #   539/637
+|TOP--->|int|  SYMBOL                                                           #   540/637
+|TOP--->|2|  STRING                                                             #   541/637
+|TOP--->|R|*|R|]|$|  SYMBOL                                                     #   542/637
+|TOP--->|2|*|citatel| | |  STRING                                               #   543/637
+|TOP--->|R|*|R|  SYMBOL                                                         #   544/637
+|TOP--->|citatel|*|2|  STRING                                                   #   545/637
+redukce                                                                         #   546/637
+MUL GF@&pomInteger TF@citatel int@2                                             #   547/637
+MOVE TF@citatel GF@&pomInteger                                                  #   548/637
+token: 35 ... jmenovatel                                                        #   549/637
+token: 45 ... =                                                                 #   550/637
+token: 35 ... jmenovatel                                                        #   551/637
+|TOP--->|$|  SYMBOL                                                             #   552/637
+|TOP--->| |  STRING                                                             #   553/637
+token: 38 ... *                                                                 #   554/637
+|TOP--->|i|]|$|  SYMBOL                                                         #   555/637
+|TOP--->|jmenovatel| | |  STRING                                                #   556/637
+|TOP--->|i|  SYMBOL                                                             #   557/637
+|TOP--->|jmenovatel|  STRING                                                    #   558/637
+MOVE GF@&pomInteger TF@jmenovatel                                               #   559/637
+|TOP--->|R|$|  SYMBOL                                                           #   560/637
+|TOP--->|jmenovatel| |  STRING                                                  #   561/637
+token: 53 ... 5                                                                 #   562/637
+|TOP--->|*|R|]|$|  SYMBOL                                                       #   563/637
+|TOP--->|*|jmenovatel| | |  STRING                                              #   564/637
+token: 57 ...                                                                   #   565/637
+|TOP--->|int|]|*|R|]|$|  SYMBOL                                                 #   566/637
+|TOP--->|5| |*|jmenovatel| | |  STRING                                          #   567/637
+|TOP--->|int|  SYMBOL                                                           #   568/637
+|TOP--->|5|  STRING                                                             #   569/637
+|TOP--->|R|*|R|]|$|  SYMBOL                                                     #   570/637
+|TOP--->|5|*|jmenovatel| | |  STRING                                            #   571/637
+|TOP--->|R|*|R|  SYMBOL                                                         #   572/637
+|TOP--->|jmenovatel|*|5|  STRING                                                #   573/637
+redukce                                                                         #   574/637
+MUL GF@&pomInteger TF@jmenovatel int@5                                          #   575/637
+MOVE TF@jmenovatel GF@&pomInteger                                               #   576/637
+token: 57 ...                                                                   #   577/637
+token: 35 ... vysledek                                                          #   578/637
+token: 45 ... =                                                                 #   579/637
+token: 35 ... vysledek                                                          #   580/637
+|TOP--->|$|  SYMBOL                                                             #   581/637
+|TOP--->| |  STRING                                                             #   582/637
+token: 39 ... +                                                                 #   583/637
+|TOP--->|i|]|$|  SYMBOL                                                         #   584/637
+|TOP--->|vysledek| | |  STRING                                                  #   585/637
+|TOP--->|i|  SYMBOL                                                             #   586/637
+|TOP--->|vysledek|  STRING                                                      #   587/637
+MOVE GF@&pomFloat TF@vysledek                                                   #   588/637
+|TOP--->|R|$|  SYMBOL                                                           #   589/637
+|TOP--->|vysledek| |  STRING                                                    #   590/637
+token: 35 ... citatel                                                           #   591/637
+|TOP--->|+|R|]|$|  SYMBOL                                                       #   592/637
+|TOP--->|+|vysledek| | |  STRING                                                #   593/637
+token: 36 ... /                                                                 #   594/637
+|TOP--->|i|]|+|R|]|$|  SYMBOL                                                   #   595/637
+|TOP--->|citatel| |+|vysledek| | |  STRING                                      #   596/637
+|TOP--->|i|  SYMBOL                                                             #   597/637
+|TOP--->|citatel|  STRING                                                       #   598/637
+|TOP--->|R|+|R|]|$|  SYMBOL                                                     #   599/637
+|TOP--->|citatel|+|vysledek| | |  STRING                                        #   600/637
+token: 35 ... jmenovatel                                                        #   601/637
+|TOP--->|/|R|]|+|R|]|$|  SYMBOL                                                 #   602/637
+|TOP--->|/|citatel| |+|vysledek| | |  STRING                                    #   603/637
+token: 57 ...                                                                   #   604/637
+|TOP--->|i|]|/|R|]|+|R|]|$|  SYMBOL                                             #   605/637
+|TOP--->|jmenovatel| |/|citatel| |+|vysledek| | |  STRING                       #   606/637
+|TOP--->|i|  SYMBOL                                                             #   607/637
+|TOP--->|jmenovatel|  STRING                                                    #   608/637
+|TOP--->|R|/|R|]|+|R|]|$|  SYMBOL                                               #   609/637
+|TOP--->|jmenovatel|/|citatel| |+|vysledek| | |  STRING                         #   610/637
+|TOP--->|R|/|R|  SYMBOL                                                         #   611/637
+|TOP--->|citatel|/|jmenovatel|  STRING                                          #   612/637
+redukce                                                                         #   613/637
+DIV GF@&pomFloat TF@citatel TF@jmenovatel                                       #   614/637
+|TOP--->|R|+|R|]|$|  SYMBOL                                                     #   615/637
+|TOP--->|GF@&pomFloat|+|vysledek| | |  STRING                                   #   616/637
+|TOP--->|R|+|R|  SYMBOL                                                         #   617/637
+|TOP--->|vysledek|+|GF@&pomFloat|  STRING                                       #   618/637
+redukce                                                                         #   619/637
+ADD GF@&pomFloat TF@vysledek GF@&pomFloat                                       #   620/637
+MOVE TF@vysledek GF@&pomFloat                                                   #   621/637
+token: 57 ...                                                                   #   622/637
+token: 15 ... print                                                             #   623/637
+token: 35 ... vysledek                                                          #   624/637
+|TOP--->|$|  SYMBOL                                                             #   625/637
+|TOP--->| |  STRING                                                             #   626/637
+token: 47 ... ;                                                                 #   627/637
+|TOP--->|i|]|$|  SYMBOL                                                         #   628/637
+|TOP--->|vysledek| | |  STRING                                                  #   629/637
+|TOP--->|i|  SYMBOL                                                             #   630/637
+|TOP--->|vysledek|  STRING                                                      #   631/637
+WRITE TF@vysledek                                                               #   632/637
+token: 57 ...                                                                   #   633/637
+token: 57 ...                                                                   #   634/637
+token: 7 ... end                                                                #   635/637
+token: 17 ... scope                                                             #   636/637
+token: 58 ...                                                                   #   637/637
+

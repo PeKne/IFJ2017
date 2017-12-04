@@ -1,0 +1,91 @@
+# 2017-12-03 20:43:47.350811
+# SECTION: 04_expressions
+# TEST: 42
+# INFO: maximum for C integer
+# REQUIRED EXTENSIONS: 
+# ACTIVATED EXTENSIONS: 
+# STATE: FAIL
+# 
+# COMPILER STDERR:
+# 
+# INTERPRETER STDERR:
+# 1.1-5: syntax error, unexpected ID, expecting HEADER
+# 
+# EXPECTED INTERPRETER STDOUT:
+
+#  1.79769e+308
+
+
+# CURRENT INTERPRETER STDOUT:
+
+
+
+# INTERPRETER STDIN: 
+# 
+#
+# EXPECTED COMPILER EXIT CODE: 0
+# CURRENT COMPILER EXIT CODE: 0
+# EXPECTED INTERPRETER EXIT CODE: 0
+# CURRENT INTERPRETER EXIT CODE: 51
+# PRICE: ---
+# GROOT: ---
+# 
+#   1: ' maximum for C integer
+#   2: 
+#   3: scope
+#   4:     dim a as double = 1.79769e+308
+#   5:     print a;
+#   6: end scope
+
+########################################
+
+token: 57 ...                                                                   #     1/51
+token: 57 ...                                                                   #     2/51
+token: 17 ... scope                                                             #     3/51
+.IFJcode17                                                                      #     4/51
+JUMP $$scope                                                                    #     5/51
+LABEL $$scope                                                                   #     7/51
+DEFVAR GF@&pomInteger                                                           #     8/51
+MOVE GF@&pomInteger int@0                                                       #     9/51
+DEFVAR GF@&pomString                                                            #    10/51
+MOVE GF@&pomString string@                                                      #    11/51
+DEFVAR GF@&pomFloat                                                             #    12/51
+MOVE GF@&pomFloat float@0                                                       #    13/51
+DEFVAR GF@&pomBool                                                              #    14/51
+MOVE GF@&pomBool bool@false                                                     #    15/51
+DEFVAR GF@&pomCntr                                                              #    16/51
+MOVE GF@&pomCntr int@0                                                          #    17/51
+CREATEFRAME                                                                     #    18/51
+token: 57 ...                                                                   #    20/51
+token: 3 ... dim                                                                #    21/51
+token: 35 ... a                                                                 #    22/51
+token: 0 ... as                                                                 #    23/51
+token: 5 ... double                                                             #    24/51
+token: 45 ... =                                                                 #    25/51
+DEFVAR TF@a                                                                     #    26/51
+MOVE TF@a float@0                                                               #    27/51
+token: 56 ... 1.79769e+308                                                      #    28/51
+|TOP--->|$|  SYMBOL                                                             #    29/51
+|TOP--->| |  STRING                                                             #    30/51
+token: 57 ...                                                                   #    31/51
+|TOP--->|double|]|$|  SYMBOL                                                    #    32/51
+|TOP--->|1.79769e+308| | |  STRING                                              #    33/51
+|TOP--->|double|  SYMBOL                                                        #    34/51
+|TOP--->|1.79769e+308|  STRING                                                  #    35/51
+MOVE GF@&pomFloat float@1.79769e+308                                            #    36/51
+MOVE TF@a GF@&pomFloat                                                          #    37/51
+token: 15 ... print                                                             #    38/51
+token: 35 ... a                                                                 #    39/51
+|TOP--->|$|  SYMBOL                                                             #    40/51
+|TOP--->| |  STRING                                                             #    41/51
+token: 47 ... ;                                                                 #    42/51
+|TOP--->|i|]|$|  SYMBOL                                                         #    43/51
+|TOP--->|a| | |  STRING                                                         #    44/51
+|TOP--->|i|  SYMBOL                                                             #    45/51
+|TOP--->|a|  STRING                                                             #    46/51
+WRITE TF@a                                                                      #    47/51
+token: 57 ...                                                                   #    48/51
+token: 7 ... end                                                                #    49/51
+token: 17 ... scope                                                             #    50/51
+token: 58 ...                                                                   #    51/51
+

@@ -1,0 +1,82 @@
+# 2017-12-03 20:43:47.758477
+# SECTION: 66_errors
+# TEST: 43
+# INFO: long variable names
+# REQUIRED EXTENSIONS: 
+# ACTIVATED EXTENSIONS: 
+# STATE: SUCCESS
+# 
+# COMPILER STDERR:
+# NULL rule_stat
+# ERROR - 3 - sÃ©mantickÃ¡ chyba v programu â nedefinovanÃ¡ funkce/promeÌnnÃ¡, pokus o redefinici funkce/promeÌnnÃ©, atd.
+# 
+# INTERPRETER STDERR:
+# 
+# EXPECTED INTERPRETER STDOUT:
+
+
+
+# CURRENT INTERPRETER STDOUT:
+
+
+
+# INTERPRETER STDIN: 
+# 
+#
+# EXPECTED COMPILER EXIT CODE: 3
+# CURRENT COMPILER EXIT CODE: 3
+# EXPECTED INTERPRETER EXIT CODE: 0
+# CURRENT INTERPRETER EXIT CODE: None
+# PRICE: ---
+# GROOT: ---
+# 
+#   1: ' long variable names
+#   2: 
+#   3: scope
+#   4: Dim ZMna8xJpV6Knyv95QKCu80MZR1XP4RFCWEp8oYbrQWE9IjMJyhRtY3imNyaUcSlROktcGr1URr0eAKGECoQ69jse7x7tNZzj170TIgLrr53I03zCTOCEulRnqOjKqNAA as Integer = 10
+#   5: DIM ZMna8xJpV6Knyv95QKCu80MZR1XP4RFCWEp8oYbrQWE9IjMJyhRtY3imNyaUcSlROktcGr1URr0eAKGECoQ69jse7x7tNZzj170TIgLrr53I03zCTOCEulRnqOjKqNAA as Integer = 25
+#   6: 
+#   7: print ZMna8xJpV6Knyv95QKCu80MZR1XP4RFCWEp8oYbrQWE9IjMJyhRtY3imNyaUcSlROktcGr1URr0eAKGECoQ69jse7x7tNZzj170TIgLrr53I03zCTOCEulRnqOjKqNAA; ZMna8xJpV6Knyv95QKCu80MZR1XP4RFCWEp8oYbrQWE9IjMJyhRtY3imNyaUcSlROktcGr1URr0eAKGECoQ69jse7x7tNZzj170TIgLrr53I03zCTOCEulRnqOjKqNAA;
+#   8: end scope
+
+########################################
+
+token: 57 ...                                                                   #     1/40
+token: 57 ...                                                                   #     2/40
+token: 17 ... scope                                                             #     3/40
+.IFJcode17                                                                      #     4/40
+JUMP $$scope                                                                    #     5/40
+LABEL $$scope                                                                   #     7/40
+DEFVAR GF@&pomInteger                                                           #     8/40
+MOVE GF@&pomInteger int@0                                                       #     9/40
+DEFVAR GF@&pomString                                                            #    10/40
+MOVE GF@&pomString string@                                                      #    11/40
+DEFVAR GF@&pomFloat                                                             #    12/40
+MOVE GF@&pomFloat float@0                                                       #    13/40
+DEFVAR GF@&pomBool                                                              #    14/40
+MOVE GF@&pomBool bool@false                                                     #    15/40
+DEFVAR GF@&pomCntr                                                              #    16/40
+MOVE GF@&pomCntr int@0                                                          #    17/40
+CREATEFRAME                                                                     #    18/40
+token: 57 ...                                                                   #    20/40
+token: 3 ... dim                                                                #    21/40
+token: 35 ... zmna8xjpv6knyv95qkcu80mzr1xp4rfcwep8oybrqwe9ijmjyhrty3imnyaucslroktcgr1urr0eakgecoq69jse7x7tnzzj170tiglrr53i03zctoceulrnqojkqnaa#    22/40
+token: 0 ... as                                                                 #    23/40
+token: 12 ... integer                                                           #    24/40
+token: 45 ... =                                                                 #    25/40
+DEFVAR TF@zmna8xjpv6knyv95qkcu80mzr1xp4rfcwep8oybrqwe9ijmjyhrty3imnyaucslroktcgr1urr0eakgecoq69jse7x7tnzzj170tiglrr53i03zctoceulrnqojkqnaa#    26/40
+MOVE TF@zmna8xjpv6knyv95qkcu80mzr1xp4rfcwep8oybrqwe9ijmjyhrty3imnyaucslroktcgr1urr0eakgecoq69jse7x7tnzzj170tiglrr53i03zctoceulrnqojkqnaa int@0#    27/40
+token: 53 ... 10                                                                #    28/40
+|TOP--->|$|  SYMBOL                                                             #    29/40
+|TOP--->| |  STRING                                                             #    30/40
+token: 57 ...                                                                   #    31/40
+|TOP--->|int|]|$|  SYMBOL                                                       #    32/40
+|TOP--->|10| | |  STRING                                                        #    33/40
+|TOP--->|int|  SYMBOL                                                           #    34/40
+|TOP--->|10|  STRING                                                            #    35/40
+MOVE GF@&pomInteger int@10                                                      #    36/40
+MOVE TF@zmna8xjpv6knyv95qkcu80mzr1xp4rfcwep8oybrqwe9ijmjyhrty3imnyaucslroktcgr1urr0eakgecoq69jse7x7tnzzj170tiglrr53i03zctoceulrnqojkqnaa GF@&pomInteger#    37/40
+token: 3 ... dim                                                                #    38/40
+token: 35 ... zmna8xjpv6knyv95qkcu80mzr1xp4rfcwep8oybrqwe9ijmjyhrty3imnyaucslroktcgr1urr0eakgecoq69jse7x7tnzzj170tiglrr53i03zctoceulrnqojkqnaa#    39/40
+ERROR on line 5                                                                 #    40/40
+

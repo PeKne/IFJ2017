@@ -1,0 +1,67 @@
+# 2017-12-03 20:43:48.777435
+# SECTION: 96_programs
+# TEST: 11
+# INFO: signal filtering
+# REQUIRED EXTENSIONS: FUNEXP, GLOBAL
+# ACTIVATED EXTENSIONS: 
+# STATE: FAIL
+# 
+# COMPILER STDERR:
+# 
+# INTERPRETER STDERR:
+# 
+# EXPECTED INTERPRETER STDOUT:
+
+# ?  3.2?  7.12?  17.44?  16.4?  17.28?  11.24?  1.8
+
+
+# CURRENT INTERPRETER STDOUT:
+
+
+
+# INTERPRETER STDIN: 
+# 2
+# 4
+# 10
+# 8
+# 9
+# 5
+# 0
+# 
+#
+# EXPECTED COMPILER EXIT CODE: 0
+# CURRENT COMPILER EXIT CODE: None
+# EXPECTED INTERPRETER EXIT CODE: 0
+# CURRENT INTERPRETER EXIT CODE: None
+# PRICE: ---
+# GROOT: ---
+# 
+#   1: ' signal filtering
+#   2: function filter(a as integer) as double
+#   3:     static x1 as double
+#   4:     static x2 as double
+#   5:     
+#   6:     x2 = x1 * 0.6
+#   7:     x1 = a * 0.6
+#   8:     
+#   9:     return x1 + x2 + a
+#  10:     
+#  11: end function
+#  12: 
+#  13: scope
+#  14: 
+#  15:     dim a as double
+#  16:     a = 1
+#  17:     
+#  18:     do while a <> 0
+#  19:         input a
+#  20:         print filter(a) ;
+#  21:     loop
+#  22:     
+#  23: 
+#  24: end scope
+
+########################################
+
+# ---
+

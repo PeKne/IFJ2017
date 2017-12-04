@@ -1,0 +1,73 @@
+# 2017-12-03 20:43:47.856708
+# SECTION: 66_errors
+# TEST: 037
+# INFO: condition type error with integer value
+# REQUIRED EXTENSIONS: 
+# ACTIVATED EXTENSIONS: 
+# STATE: FAIL
+# 
+# COMPILER STDERR:
+# 
+# INTERPRETER STDERR:
+# 
+# EXPECTED INTERPRETER STDOUT:
+
+
+
+# CURRENT INTERPRETER STDOUT:
+
+
+
+# INTERPRETER STDIN: 
+# 
+#
+# EXPECTED COMPILER EXIT CODE: 4
+# CURRENT COMPILER EXIT CODE: 0
+# EXPECTED INTERPRETER EXIT CODE: 0
+# CURRENT INTERPRETER EXIT CODE: None
+# PRICE: ---
+# GROOT: ---
+# 
+#   1: scope 
+#   2:  if 42 then 
+#   3:  end if 
+#   4:  end scope
+
+########################################
+
+token: 17 ... scope                                                             #     1/37
+.IFJcode17                                                                      #     2/37
+JUMP $$scope                                                                    #     3/37
+LABEL $$scope                                                                   #     5/37
+DEFVAR GF@&pomInteger                                                           #     6/37
+MOVE GF@&pomInteger int@0                                                       #     7/37
+DEFVAR GF@&pomString                                                            #     8/37
+MOVE GF@&pomString string@                                                      #     9/37
+DEFVAR GF@&pomFloat                                                             #    10/37
+MOVE GF@&pomFloat float@0                                                       #    11/37
+DEFVAR GF@&pomBool                                                              #    12/37
+MOVE GF@&pomBool bool@false                                                     #    13/37
+DEFVAR GF@&pomCntr                                                              #    14/37
+MOVE GF@&pomCntr int@0                                                          #    15/37
+CREATEFRAME                                                                     #    16/37
+token: 57 ...                                                                   #    18/37
+token: 10 ... if                                                                #    19/37
+token: 53 ... 42                                                                #    20/37
+|TOP--->|$|  SYMBOL                                                             #    21/37
+|TOP--->| |  STRING                                                             #    22/37
+token: 20 ... then                                                              #    23/37
+|TOP--->|int|]|$|  SYMBOL                                                       #    24/37
+|TOP--->|42| | |  STRING                                                        #    25/37
+|TOP--->|int|  SYMBOL                                                           #    26/37
+|TOP--->|42|  STRING                                                            #    27/37
+JUMPIFNEQ $$else_1 GF@&pomBool bool@true                                        #    28/37
+token: 57 ...                                                                   #    29/37
+token: 7 ... end                                                                #    30/37
+JUMP $$endif_1                                                                  #    31/37
+LABEL $$else_1                                                                  #    32/37
+token: 10 ... if                                                                #    33/37
+token: 57 ...                                                                   #    34/37
+token: 7 ... end                                                                #    35/37
+token: 17 ... scope                                                             #    36/37
+token: 58 ...                                                                   #    37/37
+

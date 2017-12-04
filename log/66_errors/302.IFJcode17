@@ -1,0 +1,136 @@
+# 2017-12-03 20:43:48.705128
+# SECTION: 66_errors
+# TEST: 302
+# INFO: (a > b) > 1
+# REQUIRED EXTENSIONS: 
+# ACTIVATED EXTENSIONS: 
+# STATE: FAIL
+# 
+# COMPILER STDERR:
+# 
+# INTERPRETER STDERR:
+# 
+# EXPECTED INTERPRETER STDOUT:
+
+
+
+# CURRENT INTERPRETER STDOUT:
+
+
+
+# INTERPRETER STDIN: 
+# 
+#
+# EXPECTED COMPILER EXIT CODE: 4
+# CURRENT COMPILER EXIT CODE: 0
+# EXPECTED INTERPRETER EXIT CODE: 0
+# CURRENT INTERPRETER EXIT CODE: None
+# PRICE: ---
+# GROOT: ---
+# 
+#   1: scope 
+#   2:  dim a as integer 
+#   3:  dim b as integer 
+#   4:  if (a > b) > 1 then 
+#   5:  else 
+#   6:  end if 
+#   7:  end scope
+
+########################################
+
+token: 17 ... scope                                                             #     1/97
+.IFJcode17                                                                      #     2/97
+JUMP $$scope                                                                    #     3/97
+LABEL $$scope                                                                   #     5/97
+DEFVAR GF@&pomInteger                                                           #     6/97
+MOVE GF@&pomInteger int@0                                                       #     7/97
+DEFVAR GF@&pomString                                                            #     8/97
+MOVE GF@&pomString string@                                                      #     9/97
+DEFVAR GF@&pomFloat                                                             #    10/97
+MOVE GF@&pomFloat float@0                                                       #    11/97
+DEFVAR GF@&pomBool                                                              #    12/97
+MOVE GF@&pomBool bool@false                                                     #    13/97
+DEFVAR GF@&pomCntr                                                              #    14/97
+MOVE GF@&pomCntr int@0                                                          #    15/97
+CREATEFRAME                                                                     #    16/97
+token: 57 ...                                                                   #    18/97
+token: 3 ... dim                                                                #    19/97
+token: 35 ... a                                                                 #    20/97
+token: 0 ... as                                                                 #    21/97
+token: 12 ... integer                                                           #    22/97
+token: 57 ...                                                                   #    23/97
+DEFVAR TF@a                                                                     #    24/97
+MOVE TF@a int@0                                                                 #    25/97
+token: 3 ... dim                                                                #    26/97
+token: 35 ... b                                                                 #    27/97
+token: 0 ... as                                                                 #    28/97
+token: 12 ... integer                                                           #    29/97
+token: 57 ...                                                                   #    30/97
+DEFVAR TF@b                                                                     #    31/97
+MOVE TF@b int@0                                                                 #    32/97
+token: 10 ... if                                                                #    33/97
+token: 50 ... (                                                                 #    34/97
+|TOP--->|$|  SYMBOL                                                             #    35/97
+|TOP--->| |  STRING                                                             #    36/97
+token: 35 ... a                                                                 #    37/97
+|TOP--->|(|]|$|  SYMBOL                                                         #    38/97
+|TOP--->|(| | |  STRING                                                         #    39/97
+token: 42 ... >                                                                 #    40/97
+|TOP--->|i|]|(|]|$|  SYMBOL                                                     #    41/97
+|TOP--->|a| |(| | |  STRING                                                     #    42/97
+|TOP--->|i|  SYMBOL                                                             #    43/97
+|TOP--->|a|  STRING                                                             #    44/97
+MOVE GF@&pomInteger TF@a                                                        #    45/97
+|TOP--->|R|(|]|$|  SYMBOL                                                       #    46/97
+|TOP--->|a|(| | |  STRING                                                       #    47/97
+token: 35 ... b                                                                 #    48/97
+|TOP--->|>|R|]|(|]|$|  SYMBOL                                                   #    49/97
+|TOP--->|>|a| |(| | |  STRING                                                   #    50/97
+token: 51 ... )                                                                 #    51/97
+|TOP--->|i|]|>|R|]|(|]|$|  SYMBOL                                               #    52/97
+|TOP--->|b| |>|a| |(| | |  STRING                                               #    53/97
+|TOP--->|i|  SYMBOL                                                             #    54/97
+|TOP--->|b|  STRING                                                             #    55/97
+|TOP--->|R|>|R|]|(|]|$|  SYMBOL                                                 #    56/97
+|TOP--->|b|>|a| |(| | |  STRING                                                 #    57/97
+|TOP--->|R|>|R|  SYMBOL                                                         #    58/97
+|TOP--->|a|>|b|  STRING                                                         #    59/97
+redukce                                                                         #    60/97
+GT GF@&pomBool TF@a TF@b                                                        #    61/97
+|TOP--->|R|(|]|$|  SYMBOL                                                       #    62/97
+|TOP--->|b|(| | |  STRING                                                       #    63/97
+token: 42 ... >                                                                 #    64/97
+|TOP--->|)|R|(|]|$|  SYMBOL                                                     #    65/97
+|TOP--->|)|b|(| | |  STRING                                                     #    66/97
+|TOP--->|(|R|)|  SYMBOL                                                         #    67/97
+|TOP--->|(|b|)|  STRING                                                         #    68/97
+|TOP--->|R|$|  SYMBOL                                                           #    69/97
+|TOP--->|b| |  STRING                                                           #    70/97
+token: 53 ... 1                                                                 #    71/97
+|TOP--->|>|R|]|$|  SYMBOL                                                       #    72/97
+|TOP--->|>|b| | |  STRING                                                       #    73/97
+token: 20 ... then                                                              #    74/97
+|TOP--->|int|]|>|R|]|$|  SYMBOL                                                 #    75/97
+|TOP--->|1| |>|b| | |  STRING                                                   #    76/97
+|TOP--->|int|  SYMBOL                                                           #    77/97
+|TOP--->|1|  STRING                                                             #    78/97
+|TOP--->|R|>|R|]|$|  SYMBOL                                                     #    79/97
+|TOP--->|1|>|b| | |  STRING                                                     #    80/97
+|TOP--->|R|>|R|  SYMBOL                                                         #    81/97
+|TOP--->|b|>|1|  STRING                                                         #    82/97
+redukce                                                                         #    83/97
+GT GF@&pomBool TF@b int@1                                                       #    84/97
+JUMPIFNEQ $$else_1 GF@&pomBool bool@true                                        #    85/97
+token: 57 ...                                                                   #    86/97
+token: 6 ... else                                                               #    87/97
+JUMP $$endif_1                                                                  #    88/97
+LABEL $$else_1                                                                  #    89/97
+token: 57 ...                                                                   #    90/97
+token: 7 ... end                                                                #    91/97
+token: 10 ... if                                                                #    92/97
+LABEL $$endif_1                                                                 #    93/97
+token: 57 ...                                                                   #    94/97
+token: 7 ... end                                                                #    95/97
+token: 17 ... scope                                                             #    96/97
+token: 58 ...                                                                   #    97/97
+

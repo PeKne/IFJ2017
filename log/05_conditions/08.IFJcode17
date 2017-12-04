@@ -1,0 +1,104 @@
+# 2017-12-03 20:43:47.369954
+# SECTION: 05_conditions
+# TEST: 08
+# INFO: Smaller or same
+# REQUIRED EXTENSIONS: 
+# ACTIVATED EXTENSIONS: 
+# STATE: FAIL
+# 
+# COMPILER STDERR:
+# Chyba v code_gen_expres TF@GF@&pomString int@8 int@8
+# LEX: Line: 5: Int value didnt end properly!
+# ERROR - 1 - chyba v programu v rÃ¡mci lexikÃ¡lnÃ­ analÃ½zy (chybnÃ¡ struktura aktuÃ¡lnÃ­ho lexÃ©mu).
+# 
+# INTERPRETER STDERR:
+# 
+# EXPECTED INTERPRETER STDOUT:
+
+#  42
+
+
+# CURRENT INTERPRETER STDOUT:
+
+
+
+# INTERPRETER STDIN: 
+# 
+#
+# EXPECTED COMPILER EXIT CODE: 0
+# CURRENT COMPILER EXIT CODE: 1
+# EXPECTED INTERPRETER EXIT CODE: 0
+# CURRENT INTERPRETER EXIT CODE: None
+# PRICE: ---
+# GROOT: ---
+# 
+#   1: ' Smaller or same
+#   2: 
+#   3: scope
+#   4: 	if (8 <= 8)  then
+#   5: 		print 42;
+#   6: 	else
+#   7: 		print 58;
+#   8: 	end if
+#   9: end scope
+
+########################################
+
+token: 57 ...                                                                   #     1/59
+token: 57 ...                                                                   #     2/59
+token: 17 ... scope                                                             #     3/59
+.IFJcode17                                                                      #     4/59
+JUMP $$scope                                                                    #     5/59
+LABEL $$scope                                                                   #     7/59
+DEFVAR GF@&pomInteger                                                           #     8/59
+MOVE GF@&pomInteger int@0                                                       #     9/59
+DEFVAR GF@&pomString                                                            #    10/59
+MOVE GF@&pomString string@                                                      #    11/59
+DEFVAR GF@&pomFloat                                                             #    12/59
+MOVE GF@&pomFloat float@0                                                       #    13/59
+DEFVAR GF@&pomBool                                                              #    14/59
+MOVE GF@&pomBool bool@false                                                     #    15/59
+DEFVAR GF@&pomCntr                                                              #    16/59
+MOVE GF@&pomCntr int@0                                                          #    17/59
+CREATEFRAME                                                                     #    18/59
+token: 57 ...                                                                   #    20/59
+token: 10 ... if                                                                #    21/59
+token: 50 ... (                                                                 #    22/59
+|TOP--->|$|  SYMBOL                                                             #    23/59
+|TOP--->| |  STRING                                                             #    24/59
+token: 53 ... 8                                                                 #    25/59
+|TOP--->|(|]|$|  SYMBOL                                                         #    26/59
+|TOP--->|(| | |  STRING                                                         #    27/59
+token: 43 ... <=                                                                #    28/59
+|TOP--->|int|]|(|]|$|  SYMBOL                                                   #    29/59
+|TOP--->|8| |(| | |  STRING                                                     #    30/59
+|TOP--->|int|  SYMBOL                                                           #    31/59
+|TOP--->|8|  STRING                                                             #    32/59
+|TOP--->|R|(|]|$|  SYMBOL                                                       #    33/59
+|TOP--->|8|(| | |  STRING                                                       #    34/59
+token: 53 ... 8                                                                 #    35/59
+|TOP--->|<=|R|]|(|]|$|  SYMBOL                                                  #    36/59
+|TOP--->|<=|8| |(| | |  STRING                                                  #    37/59
+token: 51 ... )                                                                 #    38/59
+|TOP--->|int|]|<=|R|]|(|]|$|  SYMBOL                                            #    39/59
+|TOP--->|8| |<=|8| |(| | |  STRING                                              #    40/59
+|TOP--->|int|  SYMBOL                                                           #    41/59
+|TOP--->|8|  STRING                                                             #    42/59
+|TOP--->|R|<=|R|]|(|]|$|  SYMBOL                                                #    43/59
+|TOP--->|8|<=|8| |(| | |  STRING                                                #    44/59
+|TOP--->|R|<=|R|  SYMBOL                                                        #    45/59
+|TOP--->|8|<=|8|  STRING                                                        #    46/59
+redukce                                                                         #    47/59
+|TOP--->|R|(|]|$|  SYMBOL                                                       #    48/59
+|TOP--->|8|(| | |  STRING                                                       #    49/59
+token: 20 ... then                                                              #    50/59
+|TOP--->|)|R|(|]|$|  SYMBOL                                                     #    51/59
+|TOP--->|)|8|(| | |  STRING                                                     #    52/59
+|TOP--->|(|R|)|  SYMBOL                                                         #    53/59
+|TOP--->|(|8|)|  STRING                                                         #    54/59
+JUMPIFNEQ $$else_1 GF@&pomBool bool@true                                        #    55/59
+token: 57 ...                                                                   #    56/59
+token: 15 ... print                                                             #    57/59
+token: 59 ... 42                                                                #    58/59
+ERROR on line 5                                                                 #    59/59
+

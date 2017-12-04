@@ -1,0 +1,72 @@
+# 2017-12-03 20:43:47.493405
+# SECTION: 42_combination_of_extensions
+# TEST: 03
+# INFO: FUNEXP, SCOPE, BOOLOP, IFTHEN
+# REQUIRED EXTENSIONS: SCOPE, BOOLOP, FUNEXP, IFTHEN
+# ACTIVATED EXTENSIONS: 
+# STATE: FAIL
+# 
+# COMPILER STDERR:
+# 
+# INTERPRETER STDERR:
+# 
+# EXPECTED INTERPRETER STDOUT:
+
+# chameleon jihobaciolofilni
+
+
+# CURRENT INTERPRETER STDOUT:
+
+
+
+# INTERPRETER STDIN: 
+# 
+#
+# EXPECTED COMPILER EXIT CODE: 0
+# CURRENT COMPILER EXIT CODE: None
+# EXPECTED INTERPRETER EXIT CODE: 0
+# CURRENT INTERPRETER EXIT CODE: None
+# PRICE: ---
+# GROOT: ---
+# 
+#   1: ' FUNEXP, SCOPE, BOOLOP, IFTHEN
+#   2: dim shared a as integer
+#   3: 
+#   4: function foo() as boolean
+#   5: 
+#   6:     return true
+#   7: 
+#   8: end function
+#   9: 
+#  10: function fooooo() as boolean
+#  11: 
+#  12:     return true AND true OR false
+#  13: 
+#  14: end function
+#  15: 
+#  16: scope
+#  17: 
+#  18:     dim a as boolean = false
+#  19:     
+#  20:     if a then
+#  21:         print !"pupupidu";
+#  22:     elseif fooooo() and foo() and true then
+#  23:     
+#  24:         scope
+#  25:             dim a as boolean
+#  26:             a = true
+#  27:             if (a = true) and fooooo() and foo() then
+#  28:                 print !"chameleon jihobaciolofilni";
+#  29:             end if
+#  30:         
+#  31:         end scope
+#  32:     else
+#  33:         print !"posledni";
+#  34:     end if
+#  35: 
+#  36: end scope
+
+########################################
+
+# ---
+

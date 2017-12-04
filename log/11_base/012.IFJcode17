@@ -1,0 +1,40 @@
+# 2017-12-03 20:43:47.484400
+# SECTION: 11_base
+# TEST: 012
+# INFO: Empty binary number
+# REQUIRED EXTENSIONS: BASE
+# ACTIVATED EXTENSIONS: 
+# STATE: FAIL
+# 
+# COMPILER STDERR:
+# 
+# INTERPRETER STDERR:
+# 
+# EXPECTED INTERPRETER STDOUT:
+
+#  0
+
+
+# CURRENT INTERPRETER STDOUT:
+
+
+
+# INTERPRETER STDIN: 
+# 
+#
+# EXPECTED COMPILER EXIT CODE: 0
+# CURRENT COMPILER EXIT CODE: None
+# EXPECTED INTERPRETER EXIT CODE: 0
+# CURRENT INTERPRETER EXIT CODE: None
+# PRICE: ---
+# GROOT: ---
+# 
+#   1: scope 
+#   2:  dim a as integer = &b
+#   3:  print a;
+#   4:  end scope 
+
+########################################
+
+# ---
+

@@ -1,0 +1,84 @@
+# 2017-12-03 20:43:46.980956
+# SECTION: 02_functions
+# TEST: 10
+# INFO: Call built-in features - combined
+# REQUIRED EXTENSIONS: 
+# ACTIVATED EXTENSIONS: 
+# STATE: FAIL
+# 
+# COMPILER STDERR:
+# ERROR - 2 - chyba v programu v rÃ¡mci syntaktickÃ© analÃ½zy (chybnÃ¡ syntaxe programu).
+# 
+# INTERPRETER STDERR:
+# 
+# EXPECTED INTERPRETER STDOUT:
+
+#  9
+
+
+# CURRENT INTERPRETER STDOUT:
+
+
+
+# INTERPRETER STDIN: 
+# 
+#
+# EXPECTED COMPILER EXIT CODE: 0
+# CURRENT COMPILER EXIT CODE: 2
+# EXPECTED INTERPRETER EXIT CODE: 0
+# CURRENT INTERPRETER EXIT CODE: None
+# PRICE: ---
+# GROOT: ---
+# 
+#   1: ' Call built-in features - combined
+#   2: 
+#   3: scope 
+#   4: 	dim retezec as string = !"ahoj ahoj ahoj"
+#   5: 	retezec = substr(retezec, 6, 10)
+#   6: 	dim a as integer
+#   7: 	a = length(retezec)
+#   8: 	print a;
+#   9: end scope
+
+########################################
+
+token: 57 ...                                                                   #     1/41
+token: 57 ...                                                                   #     2/41
+token: 17 ... scope                                                             #     3/41
+.IFJcode17                                                                      #     4/41
+JUMP $$scope                                                                    #     5/41
+LABEL $$scope                                                                   #     7/41
+DEFVAR GF@&pomInteger                                                           #     8/41
+MOVE GF@&pomInteger int@0                                                       #     9/41
+DEFVAR GF@&pomString                                                            #    10/41
+MOVE GF@&pomString string@                                                      #    11/41
+DEFVAR GF@&pomFloat                                                             #    12/41
+MOVE GF@&pomFloat float@0                                                       #    13/41
+DEFVAR GF@&pomBool                                                              #    14/41
+MOVE GF@&pomBool bool@false                                                     #    15/41
+DEFVAR GF@&pomCntr                                                              #    16/41
+MOVE GF@&pomCntr int@0                                                          #    17/41
+CREATEFRAME                                                                     #    18/41
+token: 57 ...                                                                   #    20/41
+token: 3 ... dim                                                                #    21/41
+token: 35 ... retezec                                                           #    22/41
+token: 0 ... as                                                                 #    23/41
+token: 18 ... string                                                            #    24/41
+token: 45 ... =                                                                 #    25/41
+DEFVAR TF@retezec                                                               #    26/41
+MOVE TF@retezec string@                                                         #    27/41
+token: 52 ... ahoj\032ahoj\032ahoj                                              #    28/41
+|TOP--->|$|  SYMBOL                                                             #    29/41
+|TOP--->| |  STRING                                                             #    30/41
+token: 57 ...                                                                   #    31/41
+|TOP--->|str|]|$|  SYMBOL                                                       #    32/41
+|TOP--->|ahoj\032ahoj\032ahoj| | |  STRING                                      #    33/41
+|TOP--->|str|  SYMBOL                                                           #    34/41
+|TOP--->|ahoj\032ahoj\032ahoj|  STRING                                          #    35/41
+MOVE GF@&pomString string@ahoj\032ahoj\032ahoj                                  #    36/41
+MOVE TF@retezec GF@&pomString                                                   #    37/41
+token: 35 ... retezec                                                           #    38/41
+token: 45 ... =                                                                 #    39/41
+token: 19 ... substr                                                            #    40/41
+ERROR on line 5                                                                 #    41/41
+

@@ -12,7 +12,7 @@
 const char *key_words[] = {
     "as\0", "asc\0","declare\0","dim\0","do\0","double\0",
     "else\0","end\0","chr\0","function\0", "if\0", "input\0",
-    "integer\0", "length\0", "loop\0", "print\0", "return\0", 
+    "integer\0", "length\0", "loop\0", "print\0", "return\0",
     "scope\0", "string\0", "substr\0", "then\0", "while\0",
 
     "and\0", "boolean\0", "continue\0", "elseif\0", "exit\0",
@@ -37,7 +37,7 @@ Tstate key_or_id()
 }
 
 int delete_leading_zeroes_int()
-{   
+{
     int err = 0;
     while ((token.t_str.data[0] == '0') && (token.t_str.length != 1)) {
         err = str_delete_index(&(token.t_str), 0);
@@ -93,7 +93,7 @@ int generate_token()
     bool get_next_char = true; // pokracovat v lex. anal.
     char c;
     int error = 0;
-    
+
     Tstring esc_str;
     str_create(&esc_str);
 
@@ -107,7 +107,7 @@ int generate_token()
     }
 
     while ((get_next_char) && (c = getc(stdin)))
-    {   
+    {
         if (state != st_retez)
             c = tolower(c);
 
@@ -116,10 +116,10 @@ int generate_token()
         switch(state)
         {
             case st_begin:
-            {   
-                
+            {
+
                 if (c == '\n') {
-                    state = st_eol;  
+                    state = st_eol;
                     unget_char(c);
                     break;
                 }
@@ -146,7 +146,7 @@ int generate_token()
                 else if (c == ')')                 state = st_pravzav;
                 else if (c == '!')                 state = st_vykric;
                 else if (c == EOF)                 state = st_eof;
-                
+
                 else {
                     unget_char(c);
                     state = st_error;
@@ -154,7 +154,7 @@ int generate_token()
                     break;
                 }
                 // vlozi prvni znak do stringu
-               if ((state != st_eof) && (state != st_vykric) && 
+               if ((state != st_eof) && (state != st_vykric) &&
                   (state != st_radek_kom))
                {
                 error = str_push_char(&(token.t_str), c);
@@ -162,17 +162,17 @@ int generate_token()
                 }
                break;
             }
-            
-            // neprazdna posloupnost cislic, pismen, podtrzitka. 
+
+            // neprazdna posloupnost cislic, pismen, podtrzitka.
             case st_id:
             {
                 if (isdigit(c) || isalpha(c) || c == '_') {
                     state = st_id;
                     error = str_push_char(&(token.t_str), c);
                     if (error) { str_destroy(&esc_str); return error; }
-                
+
                 // cokoliv jine + rez + klic. slova
-                } else { 
+                } else {
                     // nacetl identifikator, ted se muze stav zmenit na rezev./klic. slovo nebo hotovo
                     token.t_state = key_or_id();
                     unget_char(c);
@@ -196,7 +196,7 @@ int generate_token()
                 } else {
                     token.t_state = state;
                     unget_char(c);
-                    state = st_final;                    
+                    state = st_final;
                 }
                 break;
             }
@@ -210,7 +210,7 @@ int generate_token()
                 } else {
                     token.t_state = state;
                     unget_char(c);
-                    state = st_final;                    
+                    state = st_final;
                 }
                 break;
             }
@@ -240,7 +240,7 @@ int generate_token()
                         error = str_push_char(&(token.t_str), esc[i]);
                         if (error) { str_destroy(&esc_str); return error; }
                     }
-                    
+
                     state = st_retez;
                 } else if (c == '\\') {
                     state = st_esc;
@@ -259,7 +259,7 @@ int generate_token()
             }
 
             case st_esc:
-            {  
+            {
                 if ((c == '"') || (c == 'n') || (c == '\\')) {
                     char * esc;
 
@@ -277,7 +277,7 @@ int generate_token()
 
                 } else if (isdigit(c)) {
                     unget_char(c);
-                    state = st_esc_num;                    
+                    state = st_esc_num;
                 } else {
                     fprintf(stderr, "Wrong escape sequence in string\n");
                     unget_char(c);
@@ -292,7 +292,7 @@ int generate_token()
             {
                 if ((esc_str.length < 2) && isdigit(c)) {
                     str_push_char(&(esc_str), c);
-                    state = st_esc_num;    
+                    state = st_esc_num;
                 } else if (isdigit(c)) {
                     error = str_push_char(&(esc_str), c);
                     if (error) { str_destroy(&esc_str); return error; }
@@ -301,7 +301,7 @@ int generate_token()
                     int_char = (int) strtol(esc_str.data, NULL, 10);
                     error = str_push_char(&(token.t_str), (char)int_char);
                     if (error) { str_destroy(&esc_str); return error; }
-                    
+
                     str_clear(&(esc_str));
                     state = st_retez;
                 } else {
@@ -322,7 +322,7 @@ int generate_token()
                 } else {
                     if (c == '\n')
                         unget_char(c);
-                    state = st_begin;                  
+                    state = st_begin;
                 }
                 break;
             }
@@ -415,7 +415,7 @@ int generate_token()
                 } else {
                     fprintf(stderr, "LEX: Line: %d: In double value, after '.' must be a number!\n", token.t_line);
                     unget_char(c);
-                    state = st_error;                    
+                    state = st_error;
                 }
                 break;
             }
@@ -493,7 +493,7 @@ int generate_token()
                 } else {
                     fprintf(stderr, "LEX: Line: %d: Exponential int value error\n", token.t_line);
                     unget_char(c);
-                    state = st_error;               
+                    state = st_error;
                 }
                 break;
             }
@@ -588,7 +588,7 @@ int generate_token()
             {
                 unget_char(c);
                 get_next_char = false;
-                
+
                 if (token.t_state == st_int_val) {
                     error = delete_leading_zeroes_int();
                     if (error) { str_destroy(&esc_str); return error; }
@@ -611,7 +611,7 @@ int generate_token()
             }
 
             case st_error:
-            {   
+            {
                 str_destroy(&esc_str);
                 error = ERR_LEX;
                 token.t_state = state;
@@ -619,7 +619,7 @@ int generate_token()
                 break;
             }
 
-            default: 
+            default:
             {
                 error = ERR_LEX; // default nesmi nikdy nastat
                 fprintf(stderr, "LEX: Line: %d:  error, uknown token! Ask developer to fix it.\n", token.t_line);
@@ -628,5 +628,6 @@ int generate_token()
             }
         }
     }
+    printf("token: %d ... %s\n",token.t_state, token.t_str.data );
     return error;
 }

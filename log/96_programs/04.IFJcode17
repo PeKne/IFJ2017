@@ -1,0 +1,242 @@
+# 2017-12-03 20:43:48.748001
+# SECTION: 96_programs
+# TEST: 04
+# INFO: Add numbers from 1 to n
+# REQUIRED EXTENSIONS: 
+# ACTIVATED EXTENSIONS: 
+# STATE: FAIL
+# 
+# COMPILER STDERR:
+# Chyba v code_gen_expres TF@GF@&pomString TF@b TF@a
+# 
+# INTERPRETER STDERR:
+# 1.1-5: syntax error, unexpected ID, expecting HEADER
+# 
+# EXPECTED INTERPRETER STDOUT:
+
+# ? Soucet cisel do 100 je 5050
+
+
+# CURRENT INTERPRETER STDOUT:
+
+
+
+# INTERPRETER STDIN: 
+# 100
+#
+# EXPECTED COMPILER EXIT CODE: 0
+# CURRENT COMPILER EXIT CODE: 0
+# EXPECTED INTERPRETER EXIT CODE: 0
+# CURRENT INTERPRETER EXIT CODE: 51
+# PRICE: ---
+# GROOT: ---
+# 
+#   1: ' Add numbers from 1 to n
+#   2: scope
+#   3:     
+#   4:     dim a as integer
+#   5:     input a
+#   6:     
+#   7:     dim b as integer = 1
+#   8:     
+#   9:     
+#  10:     dim soucet as integer
+#  11:     do while b <= a
+#  12:         soucet = soucet + b
+#  13:         b = b + 1
+#  14:     loop
+#  15:     
+#  16:     print !"Soucet cisel do"; a ; !" je"; soucet;
+#  17:     
+#  18: end scope
+
+########################################
+
+token: 57 ...                                                                   #     1/189
+token: 17 ... scope                                                             #     2/189
+.IFJcode17                                                                      #     3/189
+JUMP $$scope                                                                    #     4/189
+LABEL $$scope                                                                   #     6/189
+DEFVAR GF@&pomInteger                                                           #     7/189
+MOVE GF@&pomInteger int@0                                                       #     8/189
+DEFVAR GF@&pomString                                                            #     9/189
+MOVE GF@&pomString string@                                                      #    10/189
+DEFVAR GF@&pomFloat                                                             #    11/189
+MOVE GF@&pomFloat float@0                                                       #    12/189
+DEFVAR GF@&pomBool                                                              #    13/189
+MOVE GF@&pomBool bool@false                                                     #    14/189
+DEFVAR GF@&pomCntr                                                              #    15/189
+MOVE GF@&pomCntr int@0                                                          #    16/189
+CREATEFRAME                                                                     #    17/189
+token: 57 ...                                                                   #    19/189
+token: 57 ...                                                                   #    20/189
+token: 3 ... dim                                                                #    21/189
+token: 35 ... a                                                                 #    22/189
+token: 0 ... as                                                                 #    23/189
+token: 12 ... integer                                                           #    24/189
+token: 57 ...                                                                   #    25/189
+DEFVAR TF@a                                                                     #    26/189
+MOVE TF@a int@0                                                                 #    27/189
+token: 11 ... input                                                             #    28/189
+token: 35 ... a                                                                 #    29/189
+READ TF@a int                                                                   #    30/189
+token: 57 ...                                                                   #    31/189
+token: 57 ...                                                                   #    32/189
+token: 3 ... dim                                                                #    33/189
+token: 35 ... b                                                                 #    34/189
+token: 0 ... as                                                                 #    35/189
+token: 12 ... integer                                                           #    36/189
+token: 45 ... =                                                                 #    37/189
+DEFVAR TF@b                                                                     #    38/189
+MOVE TF@b int@0                                                                 #    39/189
+token: 53 ... 1                                                                 #    40/189
+|TOP--->|$|  SYMBOL                                                             #    41/189
+|TOP--->| |  STRING                                                             #    42/189
+token: 57 ...                                                                   #    43/189
+|TOP--->|int|]|$|  SYMBOL                                                       #    44/189
+|TOP--->|1| | |  STRING                                                         #    45/189
+|TOP--->|int|  SYMBOL                                                           #    46/189
+|TOP--->|1|  STRING                                                             #    47/189
+MOVE GF@&pomInteger int@1                                                       #    48/189
+MOVE TF@b GF@&pomInteger                                                        #    49/189
+token: 57 ...                                                                   #    50/189
+token: 57 ...                                                                   #    51/189
+token: 3 ... dim                                                                #    52/189
+token: 35 ... soucet                                                            #    53/189
+token: 0 ... as                                                                 #    54/189
+token: 12 ... integer                                                           #    55/189
+token: 57 ...                                                                   #    56/189
+DEFVAR TF@soucet                                                                #    57/189
+MOVE TF@soucet int@0                                                            #    58/189
+token: 4 ... do                                                                 #    59/189
+token: 21 ... while                                                             #    60/189
+LABEL $$loop_1                                                                  #    61/189
+token: 35 ... b                                                                 #    62/189
+|TOP--->|$|  SYMBOL                                                             #    63/189
+|TOP--->| |  STRING                                                             #    64/189
+token: 43 ... <=                                                                #    65/189
+|TOP--->|i|]|$|  SYMBOL                                                         #    66/189
+|TOP--->|b| | |  STRING                                                         #    67/189
+|TOP--->|i|  SYMBOL                                                             #    68/189
+|TOP--->|b|  STRING                                                             #    69/189
+MOVE GF@&pomInteger TF@b                                                        #    70/189
+|TOP--->|R|$|  SYMBOL                                                           #    71/189
+|TOP--->|b| |  STRING                                                           #    72/189
+token: 35 ... a                                                                 #    73/189
+|TOP--->|<=|R|]|$|  SYMBOL                                                      #    74/189
+|TOP--->|<=|b| | |  STRING                                                      #    75/189
+token: 57 ...                                                                   #    76/189
+|TOP--->|i|]|<=|R|]|$|  SYMBOL                                                  #    77/189
+|TOP--->|a| |<=|b| | |  STRING                                                  #    78/189
+|TOP--->|i|  SYMBOL                                                             #    79/189
+|TOP--->|a|  STRING                                                             #    80/189
+|TOP--->|R|<=|R|]|$|  SYMBOL                                                    #    81/189
+|TOP--->|a|<=|b| | |  STRING                                                    #    82/189
+|TOP--->|R|<=|R|  SYMBOL                                                        #    83/189
+|TOP--->|b|<=|a|  STRING                                                        #    84/189
+redukce                                                                         #    85/189
+JUMPIFNEQ $$loop_end_1 GF@&pomBool bool@true                                    #    86/189
+token: 35 ... soucet                                                            #    87/189
+token: 45 ... =                                                                 #    88/189
+token: 35 ... soucet                                                            #    89/189
+|TOP--->|$|  SYMBOL                                                             #    90/189
+|TOP--->| |  STRING                                                             #    91/189
+token: 39 ... +                                                                 #    92/189
+|TOP--->|i|]|$|  SYMBOL                                                         #    93/189
+|TOP--->|soucet| | |  STRING                                                    #    94/189
+|TOP--->|i|  SYMBOL                                                             #    95/189
+|TOP--->|soucet|  STRING                                                        #    96/189
+MOVE GF@&pomInteger TF@soucet                                                   #    97/189
+|TOP--->|R|$|  SYMBOL                                                           #    98/189
+|TOP--->|soucet| |  STRING                                                      #    99/189
+token: 35 ... b                                                                 #   100/189
+|TOP--->|+|R|]|$|  SYMBOL                                                       #   101/189
+|TOP--->|+|soucet| | |  STRING                                                  #   102/189
+token: 57 ...                                                                   #   103/189
+|TOP--->|i|]|+|R|]|$|  SYMBOL                                                   #   104/189
+|TOP--->|b| |+|soucet| | |  STRING                                              #   105/189
+|TOP--->|i|  SYMBOL                                                             #   106/189
+|TOP--->|b|  STRING                                                             #   107/189
+|TOP--->|R|+|R|]|$|  SYMBOL                                                     #   108/189
+|TOP--->|b|+|soucet| | |  STRING                                                #   109/189
+|TOP--->|R|+|R|  SYMBOL                                                         #   110/189
+|TOP--->|soucet|+|b|  STRING                                                    #   111/189
+redukce                                                                         #   112/189
+ADD GF@&pomInteger TF@soucet TF@b                                               #   113/189
+MOVE TF@soucet GF@&pomInteger                                                   #   114/189
+token: 35 ... b                                                                 #   115/189
+token: 45 ... =                                                                 #   116/189
+token: 35 ... b                                                                 #   117/189
+|TOP--->|$|  SYMBOL                                                             #   118/189
+|TOP--->| |  STRING                                                             #   119/189
+token: 39 ... +                                                                 #   120/189
+|TOP--->|i|]|$|  SYMBOL                                                         #   121/189
+|TOP--->|b| | |  STRING                                                         #   122/189
+|TOP--->|i|  SYMBOL                                                             #   123/189
+|TOP--->|b|  STRING                                                             #   124/189
+MOVE GF@&pomInteger TF@b                                                        #   125/189
+|TOP--->|R|$|  SYMBOL                                                           #   126/189
+|TOP--->|b| |  STRING                                                           #   127/189
+token: 53 ... 1                                                                 #   128/189
+|TOP--->|+|R|]|$|  SYMBOL                                                       #   129/189
+|TOP--->|+|b| | |  STRING                                                       #   130/189
+token: 57 ...                                                                   #   131/189
+|TOP--->|int|]|+|R|]|$|  SYMBOL                                                 #   132/189
+|TOP--->|1| |+|b| | |  STRING                                                   #   133/189
+|TOP--->|int|  SYMBOL                                                           #   134/189
+|TOP--->|1|  STRING                                                             #   135/189
+|TOP--->|R|+|R|]|$|  SYMBOL                                                     #   136/189
+|TOP--->|1|+|b| | |  STRING                                                     #   137/189
+|TOP--->|R|+|R|  SYMBOL                                                         #   138/189
+|TOP--->|b|+|1|  STRING                                                         #   139/189
+redukce                                                                         #   140/189
+ADD GF@&pomInteger TF@b int@1                                                   #   141/189
+MOVE TF@b GF@&pomInteger                                                        #   142/189
+token: 14 ... loop                                                              #   143/189
+JUMP $$loop_1                                                                   #   144/189
+LABEL $$loop_end_1                                                              #   145/189
+token: 57 ...                                                                   #   146/189
+token: 57 ...                                                                   #   147/189
+token: 15 ... print                                                             #   148/189
+token: 52 ... Soucet\032cisel\032do                                             #   149/189
+|TOP--->|$|  SYMBOL                                                             #   150/189
+|TOP--->| |  STRING                                                             #   151/189
+token: 47 ... ;                                                                 #   152/189
+|TOP--->|str|]|$|  SYMBOL                                                       #   153/189
+|TOP--->|Soucet\032cisel\032do| | |  STRING                                     #   154/189
+|TOP--->|str|  SYMBOL                                                           #   155/189
+|TOP--->|Soucet\032cisel\032do|  STRING                                         #   156/189
+WRITE string@Soucet\032cisel\032do                                              #   157/189
+token: 35 ... a                                                                 #   158/189
+|TOP--->|$|  SYMBOL                                                             #   159/189
+|TOP--->| |  STRING                                                             #   160/189
+token: 47 ... ;                                                                 #   161/189
+|TOP--->|i|]|$|  SYMBOL                                                         #   162/189
+|TOP--->|a| | |  STRING                                                         #   163/189
+|TOP--->|i|  SYMBOL                                                             #   164/189
+|TOP--->|a|  STRING                                                             #   165/189
+WRITE TF@a                                                                      #   166/189
+token: 52 ... \032je                                                            #   167/189
+|TOP--->|$|  SYMBOL                                                             #   168/189
+|TOP--->| |  STRING                                                             #   169/189
+token: 47 ... ;                                                                 #   170/189
+|TOP--->|str|]|$|  SYMBOL                                                       #   171/189
+|TOP--->|\032je| | |  STRING                                                    #   172/189
+|TOP--->|str|  SYMBOL                                                           #   173/189
+|TOP--->|\032je|  STRING                                                        #   174/189
+WRITE string@\032je                                                             #   175/189
+token: 35 ... soucet                                                            #   176/189
+|TOP--->|$|  SYMBOL                                                             #   177/189
+|TOP--->| |  STRING                                                             #   178/189
+token: 47 ... ;                                                                 #   179/189
+|TOP--->|i|]|$|  SYMBOL                                                         #   180/189
+|TOP--->|soucet| | |  STRING                                                    #   181/189
+|TOP--->|i|  SYMBOL                                                             #   182/189
+|TOP--->|soucet|  STRING                                                        #   183/189
+WRITE TF@soucet                                                                 #   184/189
+token: 57 ...                                                                   #   185/189
+token: 57 ...                                                                   #   186/189
+token: 7 ... end                                                                #   187/189
+token: 17 ... scope                                                             #   188/189
+token: 58 ...                                                                   #   189/189
+

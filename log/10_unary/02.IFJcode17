@@ -1,0 +1,47 @@
+# 2017-12-03 20:43:47.480705
+# SECTION: 10_unary
+# TEST: 02
+# INFO: functions with unary minus
+# REQUIRED EXTENSIONS: UNARY
+# ACTIVATED EXTENSIONS: 
+# STATE: FAIL
+# 
+# COMPILER STDERR:
+# 
+# INTERPRETER STDERR:
+# 
+# EXPECTED INTERPRETER STDOUT:
+
+# -42
+
+
+# CURRENT INTERPRETER STDOUT:
+
+
+
+# INTERPRETER STDIN: 
+# 
+#
+# EXPECTED COMPILER EXIT CODE: 0
+# CURRENT COMPILER EXIT CODE: None
+# EXPECTED INTERPRETER EXIT CODE: 0
+# CURRENT INTERPRETER EXIT CODE: None
+# PRICE: ---
+# GROOT: ---
+# 
+#   1: ' functions with unary minus
+#   2: 
+#   3: function fce(a as integer) as integer
+#   4: 	return -a
+#   5: end function
+#   6: 
+#   7: scope
+#   8: 	dim b as integer
+#   9: 	b = fce(42)
+#  10: 	print b;
+#  11: end scope
+
+########################################
+
+# ---
+

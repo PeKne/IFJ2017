@@ -1,0 +1,153 @@
+# 2017-12-03 20:43:47.179870
+# SECTION: 04_expressions
+# TEST: 05
+# INFO: simple adding two vars to another variable
+# REQUIRED EXTENSIONS: 
+# ACTIVATED EXTENSIONS: 
+# STATE: FAIL
+# 
+# COMPILER STDERR:
+# 
+# INTERPRETER STDERR:
+# 1.1-5: syntax error, unexpected ID, expecting HEADER
+# 
+# EXPECTED INTERPRETER STDOUT:
+
+#  58
+
+
+# CURRENT INTERPRETER STDOUT:
+
+
+
+# INTERPRETER STDIN: 
+# 
+#
+# EXPECTED COMPILER EXIT CODE: 0
+# CURRENT COMPILER EXIT CODE: 0
+# EXPECTED INTERPRETER EXIT CODE: 0
+# CURRENT INTERPRETER EXIT CODE: 51
+# PRICE: ---
+# GROOT: ---
+# 
+#   1: ' simple adding two vars to another variable
+#   2: scope
+#   3:     dim a as integer = 0 - 58
+#   4:     dim b as integer = 116
+#   5:     a = a + b
+#   6:     print a;
+#   7: end scope
+
+########################################
+
+token: 57 ...                                                                   #     1/112
+token: 17 ... scope                                                             #     2/112
+.IFJcode17                                                                      #     3/112
+JUMP $$scope                                                                    #     4/112
+LABEL $$scope                                                                   #     6/112
+DEFVAR GF@&pomInteger                                                           #     7/112
+MOVE GF@&pomInteger int@0                                                       #     8/112
+DEFVAR GF@&pomString                                                            #     9/112
+MOVE GF@&pomString string@                                                      #    10/112
+DEFVAR GF@&pomFloat                                                             #    11/112
+MOVE GF@&pomFloat float@0                                                       #    12/112
+DEFVAR GF@&pomBool                                                              #    13/112
+MOVE GF@&pomBool bool@false                                                     #    14/112
+DEFVAR GF@&pomCntr                                                              #    15/112
+MOVE GF@&pomCntr int@0                                                          #    16/112
+CREATEFRAME                                                                     #    17/112
+token: 57 ...                                                                   #    19/112
+token: 3 ... dim                                                                #    20/112
+token: 35 ... a                                                                 #    21/112
+token: 0 ... as                                                                 #    22/112
+token: 12 ... integer                                                           #    23/112
+token: 45 ... =                                                                 #    24/112
+DEFVAR TF@a                                                                     #    25/112
+MOVE TF@a int@0                                                                 #    26/112
+token: 53 ... 0                                                                 #    27/112
+|TOP--->|$|  SYMBOL                                                             #    28/112
+|TOP--->| |  STRING                                                             #    29/112
+token: 40 ... -                                                                 #    30/112
+|TOP--->|int|]|$|  SYMBOL                                                       #    31/112
+|TOP--->|0| | |  STRING                                                         #    32/112
+|TOP--->|int|  SYMBOL                                                           #    33/112
+|TOP--->|0|  STRING                                                             #    34/112
+MOVE GF@&pomInteger int@0                                                       #    35/112
+|TOP--->|R|$|  SYMBOL                                                           #    36/112
+|TOP--->|0| |  STRING                                                           #    37/112
+token: 53 ... 58                                                                #    38/112
+|TOP--->|-|R|]|$|  SYMBOL                                                       #    39/112
+|TOP--->|-|0| | |  STRING                                                       #    40/112
+token: 57 ...                                                                   #    41/112
+|TOP--->|int|]|-|R|]|$|  SYMBOL                                                 #    42/112
+|TOP--->|58| |-|0| | |  STRING                                                  #    43/112
+|TOP--->|int|  SYMBOL                                                           #    44/112
+|TOP--->|58|  STRING                                                            #    45/112
+|TOP--->|R|-|R|]|$|  SYMBOL                                                     #    46/112
+|TOP--->|58|-|0| | |  STRING                                                    #    47/112
+|TOP--->|R|-|R|  SYMBOL                                                         #    48/112
+|TOP--->|0|-|58|  STRING                                                        #    49/112
+redukce                                                                         #    50/112
+SUB GF@&pomInteger int@0 int@58                                                 #    51/112
+MOVE TF@a GF@&pomInteger                                                        #    52/112
+token: 3 ... dim                                                                #    53/112
+token: 35 ... b                                                                 #    54/112
+token: 0 ... as                                                                 #    55/112
+token: 12 ... integer                                                           #    56/112
+token: 45 ... =                                                                 #    57/112
+DEFVAR TF@b                                                                     #    58/112
+MOVE TF@b int@0                                                                 #    59/112
+token: 53 ... 116                                                               #    60/112
+|TOP--->|$|  SYMBOL                                                             #    61/112
+|TOP--->| |  STRING                                                             #    62/112
+token: 57 ...                                                                   #    63/112
+|TOP--->|int|]|$|  SYMBOL                                                       #    64/112
+|TOP--->|116| | |  STRING                                                       #    65/112
+|TOP--->|int|  SYMBOL                                                           #    66/112
+|TOP--->|116|  STRING                                                           #    67/112
+MOVE GF@&pomInteger int@116                                                     #    68/112
+MOVE TF@b GF@&pomInteger                                                        #    69/112
+token: 35 ... a                                                                 #    70/112
+token: 45 ... =                                                                 #    71/112
+token: 35 ... a                                                                 #    72/112
+|TOP--->|$|  SYMBOL                                                             #    73/112
+|TOP--->| |  STRING                                                             #    74/112
+token: 39 ... +                                                                 #    75/112
+|TOP--->|i|]|$|  SYMBOL                                                         #    76/112
+|TOP--->|a| | |  STRING                                                         #    77/112
+|TOP--->|i|  SYMBOL                                                             #    78/112
+|TOP--->|a|  STRING                                                             #    79/112
+MOVE GF@&pomInteger TF@a                                                        #    80/112
+|TOP--->|R|$|  SYMBOL                                                           #    81/112
+|TOP--->|a| |  STRING                                                           #    82/112
+token: 35 ... b                                                                 #    83/112
+|TOP--->|+|R|]|$|  SYMBOL                                                       #    84/112
+|TOP--->|+|a| | |  STRING                                                       #    85/112
+token: 57 ...                                                                   #    86/112
+|TOP--->|i|]|+|R|]|$|  SYMBOL                                                   #    87/112
+|TOP--->|b| |+|a| | |  STRING                                                   #    88/112
+|TOP--->|i|  SYMBOL                                                             #    89/112
+|TOP--->|b|  STRING                                                             #    90/112
+|TOP--->|R|+|R|]|$|  SYMBOL                                                     #    91/112
+|TOP--->|b|+|a| | |  STRING                                                     #    92/112
+|TOP--->|R|+|R|  SYMBOL                                                         #    93/112
+|TOP--->|a|+|b|  STRING                                                         #    94/112
+redukce                                                                         #    95/112
+ADD GF@&pomInteger TF@a TF@b                                                    #    96/112
+MOVE TF@a GF@&pomInteger                                                        #    97/112
+token: 15 ... print                                                             #    98/112
+token: 35 ... a                                                                 #    99/112
+|TOP--->|$|  SYMBOL                                                             #   100/112
+|TOP--->| |  STRING                                                             #   101/112
+token: 47 ... ;                                                                 #   102/112
+|TOP--->|i|]|$|  SYMBOL                                                         #   103/112
+|TOP--->|a| | |  STRING                                                         #   104/112
+|TOP--->|i|  SYMBOL                                                             #   105/112
+|TOP--->|a|  STRING                                                             #   106/112
+WRITE TF@a                                                                      #   107/112
+token: 57 ...                                                                   #   108/112
+token: 7 ... end                                                                #   109/112
+token: 17 ... scope                                                             #   110/112
+token: 57 ...                                                                   #   111/112
+token: 58 ...                                                                   #   112/112
+

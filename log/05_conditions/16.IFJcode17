@@ -1,0 +1,329 @@
+# 2017-12-03 20:43:47.387901
+# SECTION: 05_conditions
+# TEST: 16
+# INFO: Many conditions double version
+# REQUIRED EXTENSIONS: 
+# ACTIVATED EXTENSIONS: 
+# STATE: FAIL
+# 
+# COMPILER STDERR:
+# Chyba v code_gen_expres TF@GF@&pomString TF@a int@0
+# Chyba v code_gen_expres TF@GF@&pomString TF@a int@0
+# LEX: Line: 26: Int value didnt end properly!
+# ERROR - 1 - chyba v programu v rÃ¡mci lexikÃ¡lnÃ­ analÃ½zy (chybnÃ¡ struktura aktuÃ¡lnÃ­ho lexÃ©mu).
+# 
+# INTERPRETER STDERR:
+# 
+# EXPECTED INTERPRETER STDOUT:
+
+# NOTOKNOTOKOKOKOKOKOKNOTOKNOTOK
+
+
+# CURRENT INTERPRETER STDOUT:
+
+
+
+# INTERPRETER STDIN: 
+# 
+#
+# EXPECTED COMPILER EXIT CODE: 0
+# CURRENT COMPILER EXIT CODE: 1
+# EXPECTED INTERPRETER EXIT CODE: 0
+# CURRENT INTERPRETER EXIT CODE: None
+# PRICE: ---
+# GROOT: ---
+# 
+#   1: ' Many conditions double version
+#   2: 
+#   3: scope
+#   4: 
+#   5: dim a as double
+#   6: a = 1.1
+#   7: 
+#   8: if a < 1 then
+#   9:     print !"OK";
+#  10: else
+#  11:     print !"NOTOK";
+#  12: end if
+#  13: 
+#  14: if a <= 0 then
+#  15:     print !"OK";
+#  16: else
+#  17:     print !"NOTOK";
+#  18: end if
+#  19: 
+#  20: if a >= 0 then
+#  21:     print !"OK";
+#  22: else
+#  23:     print !"NOTOK";
+#  24: end if
+#  25: 
+#  26: if a >= 0-1 then
+#  27:     print !"OK";
+#  28: else
+#  29:     print !"NOTOK";
+#  30: end if
+#  31: 
+#  32: if a > 0 then
+#  33:     print !"OK";
+#  34: else
+#  35:     print !"NOTOK";
+#  36: end if
+#  37: 
+#  38: if a <> 0 then
+#  39:     print !"OK";
+#  40: else
+#  41:     print !"NOTOK";
+#  42: end if
+#  43: 
+#  44: if a <> 1 then
+#  45:     print !"OK";
+#  46: else
+#  47:     print !"NOTOK";
+#  48: end if
+#  49: 
+#  50: if a = 1 then
+#  51:     print !"OK";
+#  52: else
+#  53:     print !"NOTOK";
+#  54: end if
+#  55: 
+#  56: if a = 0 then
+#  57:     print !"OK";
+#  58: else
+#  59:     print !"NOTOK";
+#  60: end if
+#  61: 
+#  62: end scope
+
+########################################
+
+token: 57 ...                                                                   #     1/230
+token: 57 ...                                                                   #     2/230
+token: 17 ... scope                                                             #     3/230
+.IFJcode17                                                                      #     4/230
+JUMP $$scope                                                                    #     5/230
+LABEL $$scope                                                                   #     7/230
+DEFVAR GF@&pomInteger                                                           #     8/230
+MOVE GF@&pomInteger int@0                                                       #     9/230
+DEFVAR GF@&pomString                                                            #    10/230
+MOVE GF@&pomString string@                                                      #    11/230
+DEFVAR GF@&pomFloat                                                             #    12/230
+MOVE GF@&pomFloat float@0                                                       #    13/230
+DEFVAR GF@&pomBool                                                              #    14/230
+MOVE GF@&pomBool bool@false                                                     #    15/230
+DEFVAR GF@&pomCntr                                                              #    16/230
+MOVE GF@&pomCntr int@0                                                          #    17/230
+CREATEFRAME                                                                     #    18/230
+token: 57 ...                                                                   #    20/230
+token: 57 ...                                                                   #    21/230
+token: 3 ... dim                                                                #    22/230
+token: 35 ... a                                                                 #    23/230
+token: 0 ... as                                                                 #    24/230
+token: 5 ... double                                                             #    25/230
+token: 57 ...                                                                   #    26/230
+DEFVAR TF@a                                                                     #    27/230
+MOVE TF@a float@0                                                               #    28/230
+token: 35 ... a                                                                 #    29/230
+token: 45 ... =                                                                 #    30/230
+token: 54 ... 1.1                                                               #    31/230
+|TOP--->|$|  SYMBOL                                                             #    32/230
+|TOP--->| |  STRING                                                             #    33/230
+token: 57 ...                                                                   #    34/230
+|TOP--->|double|]|$|  SYMBOL                                                    #    35/230
+|TOP--->|1.1| | |  STRING                                                       #    36/230
+|TOP--->|double|  SYMBOL                                                        #    37/230
+|TOP--->|1.1|  STRING                                                           #    38/230
+MOVE GF@&pomFloat float@1.1                                                     #    39/230
+MOVE TF@a GF@&pomFloat                                                          #    40/230
+token: 57 ...                                                                   #    41/230
+token: 10 ... if                                                                #    42/230
+token: 35 ... a                                                                 #    43/230
+|TOP--->|$|  SYMBOL                                                             #    44/230
+|TOP--->| |  STRING                                                             #    45/230
+token: 41 ... <                                                                 #    46/230
+|TOP--->|i|]|$|  SYMBOL                                                         #    47/230
+|TOP--->|a| | |  STRING                                                         #    48/230
+|TOP--->|i|  SYMBOL                                                             #    49/230
+|TOP--->|a|  STRING                                                             #    50/230
+MOVE GF@&pomFloat TF@a                                                          #    51/230
+|TOP--->|R|$|  SYMBOL                                                           #    52/230
+|TOP--->|a| |  STRING                                                           #    53/230
+token: 53 ... 1                                                                 #    54/230
+|TOP--->|<|R|]|$|  SYMBOL                                                       #    55/230
+|TOP--->|<|a| | |  STRING                                                       #    56/230
+token: 20 ... then                                                              #    57/230
+|TOP--->|int|]|<|R|]|$|  SYMBOL                                                 #    58/230
+|TOP--->|1| |<|a| | |  STRING                                                   #    59/230
+|TOP--->|int|  SYMBOL                                                           #    60/230
+|TOP--->|1|  STRING                                                             #    61/230
+|TOP--->|R|<|R|]|$|  SYMBOL                                                     #    62/230
+|TOP--->|1|<|a| | |  STRING                                                     #    63/230
+|TOP--->|R|<|R|  SYMBOL                                                         #    64/230
+|TOP--->|a|<|1|  STRING                                                         #    65/230
+redukce                                                                         #    66/230
+LT GF@&pomBool TF@a int@1                                                       #    67/230
+JUMPIFNEQ $$else_1 GF@&pomBool bool@true                                        #    68/230
+token: 57 ...                                                                   #    69/230
+token: 15 ... print                                                             #    70/230
+token: 52 ... OK                                                                #    71/230
+|TOP--->|$|  SYMBOL                                                             #    72/230
+|TOP--->| |  STRING                                                             #    73/230
+token: 47 ... ;                                                                 #    74/230
+|TOP--->|str|]|$|  SYMBOL                                                       #    75/230
+|TOP--->|OK| | |  STRING                                                        #    76/230
+|TOP--->|str|  SYMBOL                                                           #    77/230
+|TOP--->|OK|  STRING                                                            #    78/230
+WRITE string@OK                                                                 #    79/230
+token: 57 ...                                                                   #    80/230
+token: 6 ... else                                                               #    81/230
+JUMP $$endif_1                                                                  #    82/230
+LABEL $$else_1                                                                  #    83/230
+token: 57 ...                                                                   #    84/230
+token: 15 ... print                                                             #    85/230
+token: 52 ... NOTOK                                                             #    86/230
+|TOP--->|$|  SYMBOL                                                             #    87/230
+|TOP--->| |  STRING                                                             #    88/230
+token: 47 ... ;                                                                 #    89/230
+|TOP--->|str|]|$|  SYMBOL                                                       #    90/230
+|TOP--->|NOTOK| | |  STRING                                                     #    91/230
+|TOP--->|str|  SYMBOL                                                           #    92/230
+|TOP--->|NOTOK|  STRING                                                         #    93/230
+WRITE string@NOTOK                                                              #    94/230
+token: 57 ...                                                                   #    95/230
+token: 7 ... end                                                                #    96/230
+token: 10 ... if                                                                #    97/230
+LABEL $$endif_1                                                                 #    98/230
+token: 57 ...                                                                   #    99/230
+token: 57 ...                                                                   #   100/230
+token: 10 ... if                                                                #   101/230
+token: 35 ... a                                                                 #   102/230
+|TOP--->|$|  SYMBOL                                                             #   103/230
+|TOP--->| |  STRING                                                             #   104/230
+token: 43 ... <=                                                                #   105/230
+|TOP--->|i|]|$|  SYMBOL                                                         #   106/230
+|TOP--->|a| | |  STRING                                                         #   107/230
+|TOP--->|i|  SYMBOL                                                             #   108/230
+|TOP--->|a|  STRING                                                             #   109/230
+MOVE GF@&pomFloat TF@a                                                          #   110/230
+|TOP--->|R|$|  SYMBOL                                                           #   111/230
+|TOP--->|a| |  STRING                                                           #   112/230
+token: 53 ... 0                                                                 #   113/230
+|TOP--->|<=|R|]|$|  SYMBOL                                                      #   114/230
+|TOP--->|<=|a| | |  STRING                                                      #   115/230
+token: 20 ... then                                                              #   116/230
+|TOP--->|int|]|<=|R|]|$|  SYMBOL                                                #   117/230
+|TOP--->|0| |<=|a| | |  STRING                                                  #   118/230
+|TOP--->|int|  SYMBOL                                                           #   119/230
+|TOP--->|0|  STRING                                                             #   120/230
+|TOP--->|R|<=|R|]|$|  SYMBOL                                                    #   121/230
+|TOP--->|0|<=|a| | |  STRING                                                    #   122/230
+|TOP--->|R|<=|R|  SYMBOL                                                        #   123/230
+|TOP--->|a|<=|0|  STRING                                                        #   124/230
+redukce                                                                         #   125/230
+JUMPIFNEQ $$else_2 GF@&pomBool bool@true                                        #   126/230
+token: 57 ...                                                                   #   127/230
+token: 15 ... print                                                             #   128/230
+token: 52 ... OK                                                                #   129/230
+|TOP--->|$|  SYMBOL                                                             #   130/230
+|TOP--->| |  STRING                                                             #   131/230
+token: 47 ... ;                                                                 #   132/230
+|TOP--->|str|]|$|  SYMBOL                                                       #   133/230
+|TOP--->|OK| | |  STRING                                                        #   134/230
+|TOP--->|str|  SYMBOL                                                           #   135/230
+|TOP--->|OK|  STRING                                                            #   136/230
+WRITE string@OK                                                                 #   137/230
+token: 57 ...                                                                   #   138/230
+token: 6 ... else                                                               #   139/230
+JUMP $$endif_2                                                                  #   140/230
+LABEL $$else_2                                                                  #   141/230
+token: 57 ...                                                                   #   142/230
+token: 15 ... print                                                             #   143/230
+token: 52 ... NOTOK                                                             #   144/230
+|TOP--->|$|  SYMBOL                                                             #   145/230
+|TOP--->| |  STRING                                                             #   146/230
+token: 47 ... ;                                                                 #   147/230
+|TOP--->|str|]|$|  SYMBOL                                                       #   148/230
+|TOP--->|NOTOK| | |  STRING                                                     #   149/230
+|TOP--->|str|  SYMBOL                                                           #   150/230
+|TOP--->|NOTOK|  STRING                                                         #   151/230
+WRITE string@NOTOK                                                              #   152/230
+token: 57 ...                                                                   #   153/230
+token: 7 ... end                                                                #   154/230
+token: 10 ... if                                                                #   155/230
+LABEL $$endif_2                                                                 #   156/230
+token: 57 ...                                                                   #   157/230
+token: 57 ...                                                                   #   158/230
+token: 10 ... if                                                                #   159/230
+token: 35 ... a                                                                 #   160/230
+|TOP--->|$|  SYMBOL                                                             #   161/230
+|TOP--->| |  STRING                                                             #   162/230
+token: 44 ... >=                                                                #   163/230
+|TOP--->|i|]|$|  SYMBOL                                                         #   164/230
+|TOP--->|a| | |  STRING                                                         #   165/230
+|TOP--->|i|  SYMBOL                                                             #   166/230
+|TOP--->|a|  STRING                                                             #   167/230
+MOVE GF@&pomFloat TF@a                                                          #   168/230
+|TOP--->|R|$|  SYMBOL                                                           #   169/230
+|TOP--->|a| |  STRING                                                           #   170/230
+token: 53 ... 0                                                                 #   171/230
+|TOP--->|>=|R|]|$|  SYMBOL                                                      #   172/230
+|TOP--->|>=|a| | |  STRING                                                      #   173/230
+token: 20 ... then                                                              #   174/230
+|TOP--->|int|]|>=|R|]|$|  SYMBOL                                                #   175/230
+|TOP--->|0| |>=|a| | |  STRING                                                  #   176/230
+|TOP--->|int|  SYMBOL                                                           #   177/230
+|TOP--->|0|  STRING                                                             #   178/230
+|TOP--->|R|>=|R|]|$|  SYMBOL                                                    #   179/230
+|TOP--->|0|>=|a| | |  STRING                                                    #   180/230
+|TOP--->|R|>=|R|  SYMBOL                                                        #   181/230
+|TOP--->|a|>=|0|  STRING                                                        #   182/230
+redukce                                                                         #   183/230
+JUMPIFNEQ $$else_3 GF@&pomBool bool@true                                        #   184/230
+token: 57 ...                                                                   #   185/230
+token: 15 ... print                                                             #   186/230
+token: 52 ... OK                                                                #   187/230
+|TOP--->|$|  SYMBOL                                                             #   188/230
+|TOP--->| |  STRING                                                             #   189/230
+token: 47 ... ;                                                                 #   190/230
+|TOP--->|str|]|$|  SYMBOL                                                       #   191/230
+|TOP--->|OK| | |  STRING                                                        #   192/230
+|TOP--->|str|  SYMBOL                                                           #   193/230
+|TOP--->|OK|  STRING                                                            #   194/230
+WRITE string@OK                                                                 #   195/230
+token: 57 ...                                                                   #   196/230
+token: 6 ... else                                                               #   197/230
+JUMP $$endif_3                                                                  #   198/230
+LABEL $$else_3                                                                  #   199/230
+token: 57 ...                                                                   #   200/230
+token: 15 ... print                                                             #   201/230
+token: 52 ... NOTOK                                                             #   202/230
+|TOP--->|$|  SYMBOL                                                             #   203/230
+|TOP--->| |  STRING                                                             #   204/230
+token: 47 ... ;                                                                 #   205/230
+|TOP--->|str|]|$|  SYMBOL                                                       #   206/230
+|TOP--->|NOTOK| | |  STRING                                                     #   207/230
+|TOP--->|str|  SYMBOL                                                           #   208/230
+|TOP--->|NOTOK|  STRING                                                         #   209/230
+WRITE string@NOTOK                                                              #   210/230
+token: 57 ...                                                                   #   211/230
+token: 7 ... end                                                                #   212/230
+token: 10 ... if                                                                #   213/230
+LABEL $$endif_3                                                                 #   214/230
+token: 57 ...                                                                   #   215/230
+token: 57 ...                                                                   #   216/230
+token: 10 ... if                                                                #   217/230
+token: 35 ... a                                                                 #   218/230
+|TOP--->|$|  SYMBOL                                                             #   219/230
+|TOP--->| |  STRING                                                             #   220/230
+token: 44 ... >=                                                                #   221/230
+|TOP--->|i|]|$|  SYMBOL                                                         #   222/230
+|TOP--->|a| | |  STRING                                                         #   223/230
+|TOP--->|i|  SYMBOL                                                             #   224/230
+|TOP--->|a|  STRING                                                             #   225/230
+MOVE GF@&pomFloat TF@a                                                          #   226/230
+|TOP--->|R|$|  SYMBOL                                                           #   227/230
+|TOP--->|a| |  STRING                                                           #   228/230
+token: 59 ... 0                                                                 #   229/230
+ERROR on line 26                                                                #   230/230
+

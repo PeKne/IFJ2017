@@ -1,0 +1,54 @@
+# 2017-12-03 20:43:48.844976
+# SECTION: 99_benchmarks
+# TEST: 12
+# INFO: Ackerman function for ackerman(2, 5)
+# REQUIRED EXTENSIONS: FUNEXP
+# ACTIVATED EXTENSIONS: 
+# STATE: FAIL
+# 
+# COMPILER STDERR:
+# 
+# INTERPRETER STDERR:
+# 
+# EXPECTED INTERPRETER STDOUT:
+
+#  13
+
+
+# CURRENT INTERPRETER STDOUT:
+
+
+
+# INTERPRETER STDIN: 
+# 
+#
+# EXPECTED COMPILER EXIT CODE: 0
+# CURRENT COMPILER EXIT CODE: None
+# EXPECTED INTERPRETER EXIT CODE: 0
+# CURRENT INTERPRETER EXIT CODE: None
+# PRICE: ---
+# GROOT: ---
+# 
+#   1: ' Ackerman function for ackerman(2, 5)
+#   2: function ackermann(m as integer, n as integer) as integer
+#   3: 	if m = 0 then
+#   4: 		return n + 1
+#   5: 	else
+#   6: 		if n = 0 then
+#   7: 			return ackermann(m - 1, 1)
+#   8: 		else
+#   9: 			return ackermann(m - 1, ackermann(m, n - 1))
+#  10: 		end if
+#  11: 	end if
+#  12: end function
+#  13: 
+#  14: scope
+#  15:     dim a as integer
+#  16:     a = ackermann(2, 5)
+#  17:     print a;
+#  18: end scope
+
+########################################
+
+# ---
+

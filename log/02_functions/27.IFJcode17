@@ -1,0 +1,58 @@
+# 2017-12-03 20:43:47.037221
+# SECTION: 02_functions
+# TEST: 27
+# INFO: Condition return
+# REQUIRED EXTENSIONS: 
+# ACTIVATED EXTENSIONS: 
+# STATE: FAIL
+# 
+# COMPILER STDERR:
+# symbol.c:268:retrieve_function_data(): Function not found
+# ERROR - 3 - sÃ©mantickÃ¡ chyba v programu â nedefinovanÃ¡ funkce/promeÌnnÃ¡, pokus o redefinici funkce/promeÌnnÃ©, atd.
+# 
+# INTERPRETER STDERR:
+# 
+# EXPECTED INTERPRETER STDOUT:
+
+#  0
+
+
+# CURRENT INTERPRETER STDOUT:
+
+
+
+# INTERPRETER STDIN: 
+# 
+#
+# EXPECTED COMPILER EXIT CODE: 4
+# CURRENT COMPILER EXIT CODE: 3
+# EXPECTED INTERPRETER EXIT CODE: 0
+# CURRENT INTERPRETER EXIT CODE: None
+# PRICE: ---
+# GROOT: ---
+# 
+#   1: ' Condition return
+#   2: 
+#   3: function get_integer(a as integer) as integer
+#   4: 	if a < 2 then
+#   5: 		return 42
+#   6: 	else
+#   7: 	end if
+#   8: end function
+#   9: 
+#  10: scope
+#  11: 	dim b as string
+#  12: 	b = get_integer(25)
+#  13: 	print b;
+#  14: end scope
+
+########################################
+
+token: 57 ...                                                                   #     1/8
+token: 57 ...                                                                   #     2/8
+token: 9 ... function                                                           #     3/8
+.IFJcode17                                                                      #     4/8
+JUMP $$scope                                                                    #     5/8
+token: 35 ... get_integer                                                       #     7/8
+ERROR on line 3                                                                 #     8/8
+

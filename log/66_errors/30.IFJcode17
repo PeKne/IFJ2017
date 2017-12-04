@@ -1,0 +1,73 @@
+# 2017-12-03 20:43:47.727420
+# SECTION: 66_errors
+# TEST: 30
+# INFO: Undefined variable
+# REQUIRED EXTENSIONS: 
+# ACTIVATED EXTENSIONS: 
+# STATE: SUCCESS
+# 
+# COMPILER STDERR:
+# parser.c:707:rule_assign(): NULL hashtable error
+# 
+# ERROR - 3 - sÃ©mantickÃ¡ chyba v programu â nedefinovanÃ¡ funkce/promeÌnnÃ¡, pokus o redefinici funkce/promeÌnnÃ©, atd.
+# 
+# INTERPRETER STDERR:
+# 
+# EXPECTED INTERPRETER STDOUT:
+
+
+
+# CURRENT INTERPRETER STDOUT:
+
+
+
+# INTERPRETER STDIN: 
+# 
+#
+# EXPECTED COMPILER EXIT CODE: 3
+# CURRENT COMPILER EXIT CODE: 3
+# EXPECTED INTERPRETER EXIT CODE: 0
+# CURRENT INTERPRETER EXIT CODE: None
+# PRICE: ---
+# GROOT: ---
+# 
+#   1: ' Undefined variable
+#   2: scope
+#   3: 
+#   4:     dim a as integer
+#   5:     a = b
+#   6: 
+#   7: end scope
+
+########################################
+
+token: 57 ...                                                                   #     1/31
+token: 17 ... scope                                                             #     2/31
+.IFJcode17                                                                      #     3/31
+JUMP $$scope                                                                    #     4/31
+LABEL $$scope                                                                   #     6/31
+DEFVAR GF@&pomInteger                                                           #     7/31
+MOVE GF@&pomInteger int@0                                                       #     8/31
+DEFVAR GF@&pomString                                                            #     9/31
+MOVE GF@&pomString string@                                                      #    10/31
+DEFVAR GF@&pomFloat                                                             #    11/31
+MOVE GF@&pomFloat float@0                                                       #    12/31
+DEFVAR GF@&pomBool                                                              #    13/31
+MOVE GF@&pomBool bool@false                                                     #    14/31
+DEFVAR GF@&pomCntr                                                              #    15/31
+MOVE GF@&pomCntr int@0                                                          #    16/31
+CREATEFRAME                                                                     #    17/31
+token: 57 ...                                                                   #    19/31
+token: 57 ...                                                                   #    20/31
+token: 3 ... dim                                                                #    21/31
+token: 35 ... a                                                                 #    22/31
+token: 0 ... as                                                                 #    23/31
+token: 12 ... integer                                                           #    24/31
+token: 57 ...                                                                   #    25/31
+DEFVAR TF@a                                                                     #    26/31
+MOVE TF@a int@0                                                                 #    27/31
+token: 35 ... a                                                                 #    28/31
+token: 45 ... =                                                                 #    29/31
+token: 35 ... b                                                                 #    30/31
+ERROR on line 5                                                                 #    31/31
+

@@ -1,0 +1,73 @@
+# 2017-12-03 20:43:47.055001
+# SECTION: 02_functions
+# TEST: 35
+# INFO: function with covered static
+# REQUIRED EXTENSIONS: SCOPE, GLOBAL
+# ACTIVATED EXTENSIONS: 
+# STATE: FAIL
+# 
+# COMPILER STDERR:
+# 
+# INTERPRETER STDERR:
+# 
+# EXPECTED INTERPRETER STDOUT:
+
+#  780
+
+
+# CURRENT INTERPRETER STDOUT:
+
+
+
+# INTERPRETER STDIN: 
+# 
+#
+# EXPECTED COMPILER EXIT CODE: 0
+# CURRENT COMPILER EXIT CODE: None
+# EXPECTED INTERPRETER EXIT CODE: 0
+# CURRENT INTERPRETER EXIT CODE: None
+# PRICE: ---
+# GROOT: ---
+# 
+#   1: ' function with covered static
+#   2: dim shared a as integer
+#   3: 
+#   4: function foo(a as integer) as integer
+#   5:     static nova as integer 
+#   6:     dim ahoj as integer = 42
+#   7:     a = a + ahoj
+#   8:     nova = nova + ahoj
+#   9:     scope
+#  10:         dim ahoj as integer = 56
+#  11:         nova = nova + ahoj
+#  12:         a = a + ahoj
+#  13:         nova = nova + a
+#  14:     end scope
+#  15:     nova = nova + a
+#  16:     
+#  17:     return nova
+#  18: 
+#  19: end function
+#  20: 
+#  21: scope
+#  22:     
+#  23:     dim b as integer
+#  24:     b = foo(41)
+#  25:     b = foo(45)
+#  26:     scope
+#  27:         dim b as integer
+#  28:         b = 20
+#  29:         a = a + b
+#  30:     end scope
+#  31:     
+#  32:     b = b + a
+#  33:     
+#  34:     print b;
+#  35: 
+#  36: 
+#  37: end scope
+
+########################################
+
+# ---
+

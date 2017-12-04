@@ -1,0 +1,52 @@
+# 2017-12-03 20:43:47.410575
+# SECTION: 06_loops
+# TEST: 05
+# INFO: while in condition
+# REQUIRED EXTENSIONS: SCOPE
+# ACTIVATED EXTENSIONS: 
+# STATE: FAIL
+# 
+# COMPILER STDERR:
+# 
+# INTERPRETER STDERR:
+# 
+# EXPECTED INTERPRETER STDOUT:
+
+#  69 69 69 69 11 11 11 11 11 11 11 11
+
+
+# CURRENT INTERPRETER STDOUT:
+
+
+
+# INTERPRETER STDIN: 
+# 
+#
+# EXPECTED COMPILER EXIT CODE: 0
+# CURRENT COMPILER EXIT CODE: None
+# EXPECTED INTERPRETER EXIT CODE: 0
+# CURRENT INTERPRETER EXIT CODE: None
+# PRICE: ---
+# GROOT: ---
+# 
+#   1: ' while in condition
+#   2: scope
+#   3: 	if 78 > 2 then
+#   4: 	    dim a as integer = 12
+#   5: 		do while a >= 1
+#   6: 			if a > 8 then
+#   7: 				print 69;
+#   8: 			else
+#   9: 				print 11;
+#  10: 			end if
+#  11: 			a = a - 1
+#  12: 		loop
+#  13: 	else
+#  14: 		print 77;
+#  15: 	end if
+#  16: end scope
+
+########################################
+
+# ---
+

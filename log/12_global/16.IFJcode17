@@ -1,0 +1,50 @@
+# 2017-12-03 20:43:47.488823
+# SECTION: 12_global
+# TEST: 16
+# INFO: input into static
+# REQUIRED EXTENSIONS: GLOBAL
+# ACTIVATED EXTENSIONS: 
+# STATE: FAIL
+# 
+# COMPILER STDERR:
+# 
+# INTERPRETER STDERR:
+# 
+# EXPECTED INTERPRETER STDOUT:
+
+# ?  12
+
+
+# CURRENT INTERPRETER STDOUT:
+
+
+
+# INTERPRETER STDIN: 
+# 12
+# 
+#
+# EXPECTED COMPILER EXIT CODE: 0
+# CURRENT COMPILER EXIT CODE: None
+# EXPECTED INTERPRETER EXIT CODE: 0
+# CURRENT INTERPRETER EXIT CODE: None
+# PRICE: ---
+# GROOT: ---
+# 
+#   1: ' input into static
+#   2: 
+#   3: function foo() as integer
+#   4:     static a as integer
+#   5:     input a
+#   6:     return a
+#   7: end function
+#   8: 
+#   9: scope
+#  10:     dim a as integer
+#  11:     a = foo()
+#  12:     print a;
+#  13: end scope
+
+########################################
+
+# ---
+

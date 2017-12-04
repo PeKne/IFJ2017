@@ -1,0 +1,104 @@
+# 2017-12-03 20:43:47.537937
+# SECTION: 66_errors
+# TEST: 09
+# INFO: Assign integer into string
+# REQUIRED EXTENSIONS: 
+# ACTIVATED EXTENSIONS: 
+# STATE: SUCCESS
+# 
+# COMPILER STDERR:
+# Wrong types of operands!
+# ERROR -  4 - sÃ©mantickÃ¡ chyba typovÃ© kompatibility v aritmetickÃ½ch, rÌeteÌzcovÃ½ch a relacÌnÃ­ch vÃ½razech, prÌÃ­p. Å¡patnÃ½ pocÌet cÌi typ parametruÌ u volÃ¡nÃ­ funkce.
+# 
+# INTERPRETER STDERR:
+# 
+# EXPECTED INTERPRETER STDOUT:
+
+
+
+# CURRENT INTERPRETER STDOUT:
+
+
+
+# INTERPRETER STDIN: 
+# 
+#
+# EXPECTED COMPILER EXIT CODE: 4
+# CURRENT COMPILER EXIT CODE: 4
+# EXPECTED INTERPRETER EXIT CODE: 0
+# CURRENT INTERPRETER EXIT CODE: None
+# PRICE: ---
+# GROOT: ---
+# 
+#   1: ' Assign integer into string
+#   2: 
+#   3: scope
+#   4: 
+#   5: 	dim a as string
+#   6: 	a = !"ahoj"
+#   7: 
+#   8: 	dim b as integer
+#   9: 	b = a
+#  10: 
+#  11: end scope
+
+########################################
+
+token: 57 ...                                                                   #     1/59
+token: 57 ...                                                                   #     2/59
+token: 17 ... scope                                                             #     3/59
+.IFJcode17                                                                      #     4/59
+JUMP $$scope                                                                    #     5/59
+LABEL $$scope                                                                   #     7/59
+DEFVAR GF@&pomInteger                                                           #     8/59
+MOVE GF@&pomInteger int@0                                                       #     9/59
+DEFVAR GF@&pomString                                                            #    10/59
+MOVE GF@&pomString string@                                                      #    11/59
+DEFVAR GF@&pomFloat                                                             #    12/59
+MOVE GF@&pomFloat float@0                                                       #    13/59
+DEFVAR GF@&pomBool                                                              #    14/59
+MOVE GF@&pomBool bool@false                                                     #    15/59
+DEFVAR GF@&pomCntr                                                              #    16/59
+MOVE GF@&pomCntr int@0                                                          #    17/59
+CREATEFRAME                                                                     #    18/59
+token: 57 ...                                                                   #    20/59
+token: 57 ...                                                                   #    21/59
+token: 3 ... dim                                                                #    22/59
+token: 35 ... a                                                                 #    23/59
+token: 0 ... as                                                                 #    24/59
+token: 18 ... string                                                            #    25/59
+token: 57 ...                                                                   #    26/59
+DEFVAR TF@a                                                                     #    27/59
+MOVE TF@a string@                                                               #    28/59
+token: 35 ... a                                                                 #    29/59
+token: 45 ... =                                                                 #    30/59
+token: 52 ... ahoj                                                              #    31/59
+|TOP--->|$|  SYMBOL                                                             #    32/59
+|TOP--->| |  STRING                                                             #    33/59
+token: 57 ...                                                                   #    34/59
+|TOP--->|str|]|$|  SYMBOL                                                       #    35/59
+|TOP--->|ahoj| | |  STRING                                                      #    36/59
+|TOP--->|str|  SYMBOL                                                           #    37/59
+|TOP--->|ahoj|  STRING                                                          #    38/59
+MOVE GF@&pomString string@ahoj                                                  #    39/59
+MOVE TF@a GF@&pomString                                                         #    40/59
+token: 57 ...                                                                   #    41/59
+token: 3 ... dim                                                                #    42/59
+token: 35 ... b                                                                 #    43/59
+token: 0 ... as                                                                 #    44/59
+token: 12 ... integer                                                           #    45/59
+token: 57 ...                                                                   #    46/59
+DEFVAR TF@b                                                                     #    47/59
+MOVE TF@b int@0                                                                 #    48/59
+token: 35 ... b                                                                 #    49/59
+token: 45 ... =                                                                 #    50/59
+token: 35 ... a                                                                 #    51/59
+|TOP--->|$|  SYMBOL                                                             #    52/59
+|TOP--->| |  STRING                                                             #    53/59
+token: 57 ...                                                                   #    54/59
+|TOP--->|i|]|$|  SYMBOL                                                         #    55/59
+|TOP--->|a| | |  STRING                                                         #    56/59
+|TOP--->|i|  SYMBOL                                                             #    57/59
+|TOP--->|a|  STRING                                                             #    58/59
+ERROR on line 9                                                                 #    59/59
+

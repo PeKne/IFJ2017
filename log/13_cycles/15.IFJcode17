@@ -1,0 +1,49 @@
+# 2017-12-03 20:43:47.492044
+# SECTION: 13_cycles
+# TEST: 15
+# INFO: Iterator name collision
+# REQUIRED EXTENSIONS: CYCLES
+# ACTIVATED EXTENSIONS: 
+# STATE: FAIL
+# 
+# COMPILER STDERR:
+# 
+# INTERPRETER STDERR:
+# 
+# EXPECTED INTERPRETER STDOUT:
+
+#  0 0.125 0.25 0.375 0.5 0.625 0.75 0.875 1 20
+
+
+# CURRENT INTERPRETER STDOUT:
+
+
+
+# INTERPRETER STDIN: 
+# 
+#
+# EXPECTED COMPILER EXIT CODE: 0
+# CURRENT COMPILER EXIT CODE: None
+# EXPECTED INTERPRETER EXIT CODE: 0
+# CURRENT INTERPRETER EXIT CODE: None
+# PRICE: ---
+# GROOT: ---
+# 
+#   1: 'Iterator name collision
+#   2: 
+#   3: scope
+#   4: 	dim i as integer
+#   5: 
+#   6: 	i = 20
+#   7: 
+#   8: 	for i as double = 0 to 1 step 0.125
+#   9: 		print i;
+#  10: 	next i
+#  11: 
+#  12: 	print i;
+#  13: end scope
+
+########################################
+
+# ---
+

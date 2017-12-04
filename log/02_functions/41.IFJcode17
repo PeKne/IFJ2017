@@ -1,0 +1,83 @@
+# 2017-12-03 20:43:47.066635
+# SECTION: 02_functions
+# TEST: 41
+# INFO: Usage of builtin functions inside user-defined functions
+# REQUIRED EXTENSIONS: 
+# ACTIVATED EXTENSIONS: 
+# STATE: FAIL
+# 
+# COMPILER STDERR:
+# symbol.c:268:retrieve_function_data(): Function not found
+# ERROR - 3 - sÃ©mantickÃ¡ chyba v programu â nedefinovanÃ¡ funkce/promeÌnnÃ¡, pokus o redefinici funkce/promeÌnnÃ©, atd.
+# 
+# INTERPRETER STDERR:
+# 
+# EXPECTED INTERPRETER STDOUT:
+
+#  4es 1011
+
+
+# CURRENT INTERPRETER STDOUT:
+
+
+
+# INTERPRETER STDIN: 
+# 
+#
+# EXPECTED COMPILER EXIT CODE: 0
+# CURRENT COMPILER EXIT CODE: 3
+# EXPECTED INTERPRETER EXIT CODE: 0
+# CURRENT INTERPRETER EXIT CODE: None
+# PRICE: ---
+# GROOT: ---
+# 
+#   1: ' Usage of builtin functions inside user-defined functions
+#   2: 
+#   3: function strLen(s as string) as integer
+#   4:     dim b as integer = length(s)
+#   5:     return b
+#   6: end function
+#   7: 
+#   8: function subString(s As String, i As Integer, n As Integer) As String
+#   9:     dim b as String = SubStr(s, i, n)
+#  10:     return b
+#  11: end function
+#  12: 
+#  13: function AsciiVal(s As String, i As Integer) As Integer
+#  14:     dim b as Integer = asc(s, i)
+#  15:     return b
+#  16: end function
+#  17: 
+#  18: function CharFromAscii(i As Integer) As String
+#  19:     dim b as String = Chr(i)
+#  20:     return b
+#  21: end function
+#  22: 
+#  23: scope
+#  24:     dim a as integer
+#  25:     a = strLen(!"test")
+#  26:     print a;
+#  27: 
+#  28:     dim b as string
+#  29:     b = subString(!"test", 2, 2)
+#  30:     print b;
+#  31: 
+#  32:     dim c as integer
+#  33:     c = AsciiVal(!"test", 2)
+#  34:     print c;
+#  35: 
+#  36:     dim d as string
+#  37:     d = CharFromAscii(49)
+#  38:     print d;
+#  39: end scope
+
+########################################
+
+token: 57 ...                                                                   #     1/8
+token: 57 ...                                                                   #     2/8
+token: 9 ... function                                                           #     3/8
+.IFJcode17                                                                      #     4/8
+JUMP $$scope                                                                    #     5/8
+token: 35 ... strlen                                                            #     7/8
+ERROR on line 3                                                                 #     8/8
+

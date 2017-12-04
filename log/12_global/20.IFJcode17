@@ -1,0 +1,47 @@
+# 2017-12-03 20:43:47.489227
+# SECTION: 12_global
+# TEST: 20
+# INFO: static variable with parameter assign
+# REQUIRED EXTENSIONS: GLOBAL
+# ACTIVATED EXTENSIONS: 
+# STATE: FAIL
+# 
+# COMPILER STDERR:
+# 
+# INTERPRETER STDERR:
+# 
+# EXPECTED INTERPRETER STDOUT:
+
+
+
+# CURRENT INTERPRETER STDOUT:
+
+
+
+# INTERPRETER STDIN: 
+# 
+#
+# EXPECTED COMPILER EXIT CODE: 6
+# CURRENT COMPILER EXIT CODE: None
+# EXPECTED INTERPRETER EXIT CODE: 0
+# CURRENT INTERPRETER EXIT CODE: None
+# PRICE: ---
+# GROOT: ---
+# 
+#   1: ' static variable with parameter assign
+#   2: 
+#   3: 
+#   4: function counter(a as integer) as integer
+#   5: 	dim b as integer = a
+#   6:     b = a * b
+#   7: 	static c as integer = b
+#   8: 	return c
+#   9: end function
+#  10: 
+#  11: scope
+#  12: end scope
+
+########################################
+
+# ---
+

@@ -1,0 +1,211 @@
+# 2017-12-03 20:43:47.417939
+# SECTION: 06_loops
+# TEST: 18
+# INFO: loop from one to 1250
+# REQUIRED EXTENSIONS: 
+# ACTIVATED EXTENSIONS: 
+# STATE: FAIL
+# 
+# COMPILER STDERR:
+# 
+# INTERPRETER STDERR:
+# 1.1-5: syntax error, unexpected ID, expecting HEADER
+# 
+# EXPECTED INTERPRETER STDOUT:
+
+#  1249
+
+
+# CURRENT INTERPRETER STDOUT:
+
+
+
+# INTERPRETER STDIN: 
+# 
+#
+# EXPECTED COMPILER EXIT CODE: 0
+# CURRENT COMPILER EXIT CODE: 0
+# EXPECTED INTERPRETER EXIT CODE: 0
+# CURRENT INTERPRETER EXIT CODE: 51
+# PRICE: ---
+# GROOT: ---
+# 
+#   1: ' loop from one to 1250
+#   2: SCOPE
+#   3: 
+#   4: 	dim iterace as integer
+#   5: 	iterace = 1
+#   6: 
+#   7: 	dim expx as integer
+#   8: 
+#   9: 	do while iterace < 1250
+#  10: 
+#  11: 		expx = expx + 1
+#  12: 
+#  13: 		iterace = iterace + 1
+#  14: 
+#  15: 	loop
+#  16: 
+#  17: 	print expx;
+#  18: 
+#  19: 
+#  20: END SCOPE
+
+########################################
+
+token: 57 ...                                                                   #     1/157
+token: 17 ... scope                                                             #     2/157
+.IFJcode17                                                                      #     3/157
+JUMP $$scope                                                                    #     4/157
+LABEL $$scope                                                                   #     6/157
+DEFVAR GF@&pomInteger                                                           #     7/157
+MOVE GF@&pomInteger int@0                                                       #     8/157
+DEFVAR GF@&pomString                                                            #     9/157
+MOVE GF@&pomString string@                                                      #    10/157
+DEFVAR GF@&pomFloat                                                             #    11/157
+MOVE GF@&pomFloat float@0                                                       #    12/157
+DEFVAR GF@&pomBool                                                              #    13/157
+MOVE GF@&pomBool bool@false                                                     #    14/157
+DEFVAR GF@&pomCntr                                                              #    15/157
+MOVE GF@&pomCntr int@0                                                          #    16/157
+CREATEFRAME                                                                     #    17/157
+token: 57 ...                                                                   #    19/157
+token: 57 ...                                                                   #    20/157
+token: 3 ... dim                                                                #    21/157
+token: 35 ... iterace                                                           #    22/157
+token: 0 ... as                                                                 #    23/157
+token: 12 ... integer                                                           #    24/157
+token: 57 ...                                                                   #    25/157
+DEFVAR TF@iterace                                                               #    26/157
+MOVE TF@iterace int@0                                                           #    27/157
+token: 35 ... iterace                                                           #    28/157
+token: 45 ... =                                                                 #    29/157
+token: 53 ... 1                                                                 #    30/157
+|TOP--->|$|  SYMBOL                                                             #    31/157
+|TOP--->| |  STRING                                                             #    32/157
+token: 57 ...                                                                   #    33/157
+|TOP--->|int|]|$|  SYMBOL                                                       #    34/157
+|TOP--->|1| | |  STRING                                                         #    35/157
+|TOP--->|int|  SYMBOL                                                           #    36/157
+|TOP--->|1|  STRING                                                             #    37/157
+MOVE GF@&pomInteger int@1                                                       #    38/157
+MOVE TF@iterace GF@&pomInteger                                                  #    39/157
+token: 57 ...                                                                   #    40/157
+token: 3 ... dim                                                                #    41/157
+token: 35 ... expx                                                              #    42/157
+token: 0 ... as                                                                 #    43/157
+token: 12 ... integer                                                           #    44/157
+token: 57 ...                                                                   #    45/157
+DEFVAR TF@expx                                                                  #    46/157
+MOVE TF@expx int@0                                                              #    47/157
+token: 57 ...                                                                   #    48/157
+token: 4 ... do                                                                 #    49/157
+token: 21 ... while                                                             #    50/157
+LABEL $$loop_1                                                                  #    51/157
+token: 35 ... iterace                                                           #    52/157
+|TOP--->|$|  SYMBOL                                                             #    53/157
+|TOP--->| |  STRING                                                             #    54/157
+token: 41 ... <                                                                 #    55/157
+|TOP--->|i|]|$|  SYMBOL                                                         #    56/157
+|TOP--->|iterace| | |  STRING                                                   #    57/157
+|TOP--->|i|  SYMBOL                                                             #    58/157
+|TOP--->|iterace|  STRING                                                       #    59/157
+MOVE GF@&pomInteger TF@iterace                                                  #    60/157
+|TOP--->|R|$|  SYMBOL                                                           #    61/157
+|TOP--->|iterace| |  STRING                                                     #    62/157
+token: 53 ... 1250                                                              #    63/157
+|TOP--->|<|R|]|$|  SYMBOL                                                       #    64/157
+|TOP--->|<|iterace| | |  STRING                                                 #    65/157
+token: 57 ...                                                                   #    66/157
+|TOP--->|int|]|<|R|]|$|  SYMBOL                                                 #    67/157
+|TOP--->|1250| |<|iterace| | |  STRING                                          #    68/157
+|TOP--->|int|  SYMBOL                                                           #    69/157
+|TOP--->|1250|  STRING                                                          #    70/157
+|TOP--->|R|<|R|]|$|  SYMBOL                                                     #    71/157
+|TOP--->|1250|<|iterace| | |  STRING                                            #    72/157
+|TOP--->|R|<|R|  SYMBOL                                                         #    73/157
+|TOP--->|iterace|<|1250|  STRING                                                #    74/157
+redukce                                                                         #    75/157
+LT GF@&pomBool TF@iterace int@1250                                              #    76/157
+JUMPIFNEQ $$loop_end_1 GF@&pomBool bool@true                                    #    77/157
+token: 57 ...                                                                   #    78/157
+token: 35 ... expx                                                              #    79/157
+token: 45 ... =                                                                 #    80/157
+token: 35 ... expx                                                              #    81/157
+|TOP--->|$|  SYMBOL                                                             #    82/157
+|TOP--->| |  STRING                                                             #    83/157
+token: 39 ... +                                                                 #    84/157
+|TOP--->|i|]|$|  SYMBOL                                                         #    85/157
+|TOP--->|expx| | |  STRING                                                      #    86/157
+|TOP--->|i|  SYMBOL                                                             #    87/157
+|TOP--->|expx|  STRING                                                          #    88/157
+MOVE GF@&pomInteger TF@expx                                                     #    89/157
+|TOP--->|R|$|  SYMBOL                                                           #    90/157
+|TOP--->|expx| |  STRING                                                        #    91/157
+token: 53 ... 1                                                                 #    92/157
+|TOP--->|+|R|]|$|  SYMBOL                                                       #    93/157
+|TOP--->|+|expx| | |  STRING                                                    #    94/157
+token: 57 ...                                                                   #    95/157
+|TOP--->|int|]|+|R|]|$|  SYMBOL                                                 #    96/157
+|TOP--->|1| |+|expx| | |  STRING                                                #    97/157
+|TOP--->|int|  SYMBOL                                                           #    98/157
+|TOP--->|1|  STRING                                                             #    99/157
+|TOP--->|R|+|R|]|$|  SYMBOL                                                     #   100/157
+|TOP--->|1|+|expx| | |  STRING                                                  #   101/157
+|TOP--->|R|+|R|  SYMBOL                                                         #   102/157
+|TOP--->|expx|+|1|  STRING                                                      #   103/157
+redukce                                                                         #   104/157
+ADD GF@&pomInteger TF@expx int@1                                                #   105/157
+MOVE TF@expx GF@&pomInteger                                                     #   106/157
+token: 57 ...                                                                   #   107/157
+token: 35 ... iterace                                                           #   108/157
+token: 45 ... =                                                                 #   109/157
+token: 35 ... iterace                                                           #   110/157
+|TOP--->|$|  SYMBOL                                                             #   111/157
+|TOP--->| |  STRING                                                             #   112/157
+token: 39 ... +                                                                 #   113/157
+|TOP--->|i|]|$|  SYMBOL                                                         #   114/157
+|TOP--->|iterace| | |  STRING                                                   #   115/157
+|TOP--->|i|  SYMBOL                                                             #   116/157
+|TOP--->|iterace|  STRING                                                       #   117/157
+MOVE GF@&pomInteger TF@iterace                                                  #   118/157
+|TOP--->|R|$|  SYMBOL                                                           #   119/157
+|TOP--->|iterace| |  STRING                                                     #   120/157
+token: 53 ... 1                                                                 #   121/157
+|TOP--->|+|R|]|$|  SYMBOL                                                       #   122/157
+|TOP--->|+|iterace| | |  STRING                                                 #   123/157
+token: 57 ...                                                                   #   124/157
+|TOP--->|int|]|+|R|]|$|  SYMBOL                                                 #   125/157
+|TOP--->|1| |+|iterace| | |  STRING                                             #   126/157
+|TOP--->|int|  SYMBOL                                                           #   127/157
+|TOP--->|1|  STRING                                                             #   128/157
+|TOP--->|R|+|R|]|$|  SYMBOL                                                     #   129/157
+|TOP--->|1|+|iterace| | |  STRING                                               #   130/157
+|TOP--->|R|+|R|  SYMBOL                                                         #   131/157
+|TOP--->|iterace|+|1|  STRING                                                   #   132/157
+redukce                                                                         #   133/157
+ADD GF@&pomInteger TF@iterace int@1                                             #   134/157
+MOVE TF@iterace GF@&pomInteger                                                  #   135/157
+token: 57 ...                                                                   #   136/157
+token: 14 ... loop                                                              #   137/157
+JUMP $$loop_1                                                                   #   138/157
+LABEL $$loop_end_1                                                              #   139/157
+token: 57 ...                                                                   #   140/157
+token: 57 ...                                                                   #   141/157
+token: 15 ... print                                                             #   142/157
+token: 35 ... expx                                                              #   143/157
+|TOP--->|$|  SYMBOL                                                             #   144/157
+|TOP--->| |  STRING                                                             #   145/157
+token: 47 ... ;                                                                 #   146/157
+|TOP--->|i|]|$|  SYMBOL                                                         #   147/157
+|TOP--->|expx| | |  STRING                                                      #   148/157
+|TOP--->|i|  SYMBOL                                                             #   149/157
+|TOP--->|expx|  STRING                                                          #   150/157
+WRITE TF@expx                                                                   #   151/157
+token: 57 ...                                                                   #   152/157
+token: 57 ...                                                                   #   153/157
+token: 57 ...                                                                   #   154/157
+token: 7 ... end                                                                #   155/157
+token: 17 ... scope                                                             #   156/157
+token: 58 ...                                                                   #   157/157
+

@@ -1,0 +1,134 @@
+# 2017-12-03 20:43:47.594502
+# SECTION: 66_errors
+# TEST: 27
+# INFO: Redeclared function
+# REQUIRED EXTENSIONS: 
+# ACTIVATED EXTENSIONS: 
+# STATE: FAIL
+# 
+# COMPILER STDERR:
+# 
+# INTERPRETER STDERR:
+# 
+# EXPECTED INTERPRETER STDOUT:
+
+
+
+# CURRENT INTERPRETER STDOUT:
+
+
+
+# INTERPRETER STDIN: 
+# 
+#
+# EXPECTED COMPILER EXIT CODE: 3
+# CURRENT COMPILER EXIT CODE: 0
+# EXPECTED INTERPRETER EXIT CODE: 0
+# CURRENT INTERPRETER EXIT CODE: None
+# PRICE: ---
+# GROOT: ---
+# 
+#   1: ' Redeclared function
+#   2: 
+#   3: declare function foo(a as integer, b as integer) as integer
+#   4: 
+#   5: declare function foo(a as integer, b as integer) as integer
+#   6: 
+#   7: function foo(a as integer, b as integer) as integer
+#   8: 
+#   9: end function
+#  10: 
+#  11: scope
+#  12: 
+#  13: end scope 
+
+########################################
+
+token: 57 ...                                                                   #     1/90
+token: 57 ...                                                                   #     2/90
+token: 2 ... declare                                                            #     3/90
+.IFJcode17                                                                      #     4/90
+JUMP $$scope                                                                    #     5/90
+token: 9 ... function                                                           #     7/90
+token: 35 ... foo                                                               #     8/90
+token: 50 ... (                                                                 #     9/90
+token: 35 ... a                                                                 #    10/90
+rule_par                                                                        #    11/90
+token: 0 ... as                                                                 #    12/90
+token: 12 ... integer                                                           #    13/90
+token: 48 ... ,                                                                 #    14/90
+rule next par                                                                   #    15/90
+token: 35 ... b                                                                 #    16/90
+rule_par                                                                        #    17/90
+token: 0 ... as                                                                 #    18/90
+token: 12 ... integer                                                           #    19/90
+token: 51 ... )                                                                 #    20/90
+rule next par                                                                   #    21/90
+token: 0 ... as                                                                 #    22/90
+token: 12 ... integer                                                           #    23/90
+token: 57 ...                                                                   #    24/90
+token: 57 ...                                                                   #    25/90
+token: 2 ... declare                                                            #    26/90
+token: 9 ... function                                                           #    27/90
+token: 35 ... foo                                                               #    28/90
+token: 50 ... (                                                                 #    29/90
+token: 35 ... a                                                                 #    30/90
+rule_par                                                                        #    31/90
+token: 0 ... as                                                                 #    32/90
+token: 12 ... integer                                                           #    33/90
+token: 48 ... ,                                                                 #    34/90
+rule next par                                                                   #    35/90
+token: 35 ... b                                                                 #    36/90
+rule_par                                                                        #    37/90
+token: 0 ... as                                                                 #    38/90
+token: 12 ... integer                                                           #    39/90
+token: 51 ... )                                                                 #    40/90
+rule next par                                                                   #    41/90
+token: 0 ... as                                                                 #    42/90
+token: 12 ... integer                                                           #    43/90
+token: 57 ...                                                                   #    44/90
+token: 57 ...                                                                   #    45/90
+token: 9 ... function                                                           #    46/90
+token: 35 ... foo                                                               #    47/90
+token: 50 ... (                                                                 #    48/90
+token: 35 ... a                                                                 #    49/90
+token: 0 ... as                                                                 #    50/90
+token: 12 ... integer                                                           #    51/90
+token: 48 ... ,                                                                 #    52/90
+token: 35 ... b                                                                 #    53/90
+token: 0 ... as                                                                 #    54/90
+token: 12 ... integer                                                           #    55/90
+token: 51 ... )                                                                 #    56/90
+token: 0 ... as                                                                 #    57/90
+token: 12 ... integer                                                           #    58/90
+token: 57 ...                                                                   #    59/90
+LABEL $foo                                                                      #    60/90
+PUSHFRAME                                                                       #    61/90
+DEFVAR LF@&retval                                                               #    62/90
+token: 57 ...                                                                   #    63/90
+token: 7 ... end                                                                #    64/90
+MOVE LF@&retval GF@&pomInteger                                                  #    65/90
+POPFRAME                                                                        #    66/90
+RETURN                                                                          #    67/90
+token: 9 ... function                                                           #    69/90
+token: 57 ...                                                                   #    70/90
+token: 57 ...                                                                   #    71/90
+token: 17 ... scope                                                             #    72/90
+LABEL $$scope                                                                   #    73/90
+DEFVAR GF@&pomInteger                                                           #    74/90
+MOVE GF@&pomInteger int@0                                                       #    75/90
+DEFVAR GF@&pomString                                                            #    76/90
+MOVE GF@&pomString string@                                                      #    77/90
+DEFVAR GF@&pomFloat                                                             #    78/90
+MOVE GF@&pomFloat float@0                                                       #    79/90
+DEFVAR GF@&pomBool                                                              #    80/90
+MOVE GF@&pomBool bool@false                                                     #    81/90
+DEFVAR GF@&pomCntr                                                              #    82/90
+MOVE GF@&pomCntr int@0                                                          #    83/90
+CREATEFRAME                                                                     #    84/90
+token: 57 ...                                                                   #    86/90
+token: 57 ...                                                                   #    87/90
+token: 7 ... end                                                                #    88/90
+token: 17 ... scope                                                             #    89/90
+token: 58 ...                                                                   #    90/90
+

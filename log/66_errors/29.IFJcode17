@@ -1,0 +1,52 @@
+# 2017-12-03 20:43:47.724954
+# SECTION: 66_errors
+# TEST: 29
+# INFO: redefined function
+# REQUIRED EXTENSIONS: 
+# ACTIVATED EXTENSIONS: 
+# STATE: SUCCESS
+# 
+# COMPILER STDERR:
+# symbol.c:268:retrieve_function_data(): Function not found
+# ERROR - 3 - sÃ©mantickÃ¡ chyba v programu â nedefinovanÃ¡ funkce/promeÌnnÃ¡, pokus o redefinici funkce/promeÌnnÃ©, atd.
+# 
+# INTERPRETER STDERR:
+# 
+# EXPECTED INTERPRETER STDOUT:
+
+
+
+# CURRENT INTERPRETER STDOUT:
+
+
+
+# INTERPRETER STDIN: 
+# 
+#
+# EXPECTED COMPILER EXIT CODE: 3
+# CURRENT COMPILER EXIT CODE: 3
+# EXPECTED INTERPRETER EXIT CODE: 0
+# CURRENT INTERPRETER EXIT CODE: None
+# PRICE: ---
+# GROOT: ---
+# 
+#   1: ' redefined function
+#   2: function foo() as integer 
+#   3:     return 31
+#   4: end function
+#   5: 
+#   6: declare function foo() as integer
+#   7: 
+#   8: scope
+#   9: 
+#  10: end scope
+
+########################################
+
+token: 57 ...                                                                   #     1/7
+token: 9 ... function                                                           #     2/7
+.IFJcode17                                                                      #     3/7
+JUMP $$scope                                                                    #     4/7
+token: 35 ... foo                                                               #     6/7
+ERROR on line 2                                                                 #     7/7
+

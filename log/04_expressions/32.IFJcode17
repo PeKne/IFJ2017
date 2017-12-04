@@ -1,0 +1,77 @@
+# 2017-12-03 20:43:47.301455
+# SECTION: 04_expressions
+# TEST: 32
+# INFO: Random math expression test
+# REQUIRED EXTENSIONS: 
+# ACTIVATED EXTENSIONS: 
+# STATE: FAIL
+# 
+# COMPILER STDERR:
+# LEX: Line: 5: Int value didnt end properly!
+# ERROR - 1 - chyba v programu v rÃ¡mci lexikÃ¡lnÃ­ analÃ½zy (chybnÃ¡ struktura aktuÃ¡lnÃ­ho lexÃ©mu).
+# 
+# INTERPRETER STDERR:
+# 
+# EXPECTED INTERPRETER STDOUT:
+
+#  223.333
+
+
+# CURRENT INTERPRETER STDOUT:
+
+
+
+# INTERPRETER STDIN: 
+# 
+#
+# EXPECTED COMPILER EXIT CODE: 0
+# CURRENT COMPILER EXIT CODE: 1
+# EXPECTED INTERPRETER EXIT CODE: 0
+# CURRENT INTERPRETER EXIT CODE: None
+# PRICE: ---
+# GROOT: ---
+# 
+#   1: ' Random math expression test
+#   2: 
+#   3: scope
+#   4:     dim a as double
+#   5:     a = (565656\(1689\1.001\1.51111)+55656/5665\3.5\1.5\5.5) / 3
+#   6:     print a;
+#   7: 
+#   8: end scope
+
+########################################
+
+token: 57 ...                                                                   #     1/34
+token: 57 ...                                                                   #     2/34
+token: 17 ... scope                                                             #     3/34
+.IFJcode17                                                                      #     4/34
+JUMP $$scope                                                                    #     5/34
+LABEL $$scope                                                                   #     7/34
+DEFVAR GF@&pomInteger                                                           #     8/34
+MOVE GF@&pomInteger int@0                                                       #     9/34
+DEFVAR GF@&pomString                                                            #    10/34
+MOVE GF@&pomString string@                                                      #    11/34
+DEFVAR GF@&pomFloat                                                             #    12/34
+MOVE GF@&pomFloat float@0                                                       #    13/34
+DEFVAR GF@&pomBool                                                              #    14/34
+MOVE GF@&pomBool bool@false                                                     #    15/34
+DEFVAR GF@&pomCntr                                                              #    16/34
+MOVE GF@&pomCntr int@0                                                          #    17/34
+CREATEFRAME                                                                     #    18/34
+token: 57 ...                                                                   #    20/34
+token: 3 ... dim                                                                #    21/34
+token: 35 ... a                                                                 #    22/34
+token: 0 ... as                                                                 #    23/34
+token: 5 ... double                                                             #    24/34
+token: 57 ...                                                                   #    25/34
+DEFVAR TF@a                                                                     #    26/34
+MOVE TF@a float@0                                                               #    27/34
+token: 35 ... a                                                                 #    28/34
+token: 45 ... =                                                                 #    29/34
+token: 50 ... (                                                                 #    30/34
+|TOP--->|$|  SYMBOL                                                             #    31/34
+|TOP--->| |  STRING                                                             #    32/34
+token: 59 ... 565656                                                            #    33/34
+ERROR on line 5                                                                 #    34/34
+

@@ -1,0 +1,39 @@
+# 2017-12-03 20:43:47.152964
+# SECTION: 03_statements
+# TEST: 011
+# INFO: Empty condition
+# REQUIRED EXTENSIONS: IFTHEN
+# ACTIVATED EXTENSIONS: 
+# STATE: FAIL
+# 
+# COMPILER STDERR:
+# 
+# INTERPRETER STDERR:
+# 
+# EXPECTED INTERPRETER STDOUT:
+
+
+
+# CURRENT INTERPRETER STDOUT:
+
+
+
+# INTERPRETER STDIN: 
+# 
+#
+# EXPECTED COMPILER EXIT CODE: 0
+# CURRENT COMPILER EXIT CODE: None
+# EXPECTED INTERPRETER EXIT CODE: 0
+# CURRENT INTERPRETER EXIT CODE: None
+# PRICE: ---
+# GROOT: ---
+# 
+#   1: scope 
+#   2:  if 10 < 15 then 
+#   3:  end if 
+#   4:  end scope
+
+########################################
+
+# ---
+

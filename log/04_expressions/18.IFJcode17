@@ -1,0 +1,59 @@
+# 2017-12-03 20:43:47.241944
+# SECTION: 04_expressions
+# TEST: 18
+# INFO: comments inside expressions
+# REQUIRED EXTENSIONS: 
+# ACTIVATED EXTENSIONS: 
+# STATE: FAIL
+# 
+# COMPILER STDERR:
+# symbol.c:268:retrieve_function_data(): Function not found
+# ERROR - 3 - sÃ©mantickÃ¡ chyba v programu â nedefinovanÃ¡ funkce/promeÌnnÃ¡, pokus o redefinici funkce/promeÌnnÃ©, atd.
+# 
+# INTERPRETER STDERR:
+# 
+# EXPECTED INTERPRETER STDOUT:
+
+#  96
+
+
+# CURRENT INTERPRETER STDOUT:
+
+
+
+# INTERPRETER STDIN: 
+# 
+#
+# EXPECTED COMPILER EXIT CODE: 0
+# CURRENT COMPILER EXIT CODE: 3
+# EXPECTED INTERPRETER EXIT CODE: 0
+# CURRENT INTERPRETER EXIT CODE: None
+# PRICE: ---
+# GROOT: ---
+# 
+#   1: ' comments inside expressions
+#   2: 
+#   3: function foo() as integer
+#   4: 	return 39
+#   5: end function
+#   6: 
+#   7: scope
+#   8: 	
+#   9: 	dim a as integer
+#  10: 	a = foo()
+#  11: 	a = a + 3 + 6' comment
+#  12: 	a = a /' '/ * /' '/ 2 ' + 8
+#  13: 	print a;
+#  14: 
+#  15: end scope
+
+########################################
+
+token: 57 ...                                                                   #     1/8
+token: 57 ...                                                                   #     2/8
+token: 9 ... function                                                           #     3/8
+.IFJcode17                                                                      #     4/8
+JUMP $$scope                                                                    #     5/8
+token: 35 ... foo                                                               #     7/8
+ERROR on line 3                                                                 #     8/8
+

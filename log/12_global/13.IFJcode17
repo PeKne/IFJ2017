@@ -1,0 +1,59 @@
+# 2017-12-03 20:43:47.488503
+# SECTION: 12_global
+# TEST: 13
+# INFO: input into shared
+# REQUIRED EXTENSIONS: GLOBAL
+# ACTIVATED EXTENSIONS: 
+# STATE: FAIL
+# 
+# COMPILER STDERR:
+# 
+# INTERPRETER STDERR:
+# 
+# EXPECTED INTERPRETER STDOUT:
+
+# ?  0 42
+
+
+# CURRENT INTERPRETER STDOUT:
+
+
+
+# INTERPRETER STDIN: 
+# 42
+#
+# EXPECTED COMPILER EXIT CODE: 0
+# CURRENT COMPILER EXIT CODE: None
+# EXPECTED INTERPRETER EXIT CODE: 0
+# CURRENT INTERPRETER EXIT CODE: None
+# PRICE: ---
+# GROOT: ---
+# 
+#   1: ' input into shared
+#   2: 
+#   3: dim shared variable as integer
+#   4: 
+#   5: function foo() as integer
+#   6: 	static first_time as integer = 0
+#   7: 	static variable as integer
+#   8: 	if first_time = 0 then
+#   9: 	    variable = 42
+#  10: 		first_time = 1
+#  11: 	else
+#  12: 		return variable
+#  13: 	end if
+#  14: end function
+#  15: 
+#  16: scope
+#  17: 	input variable
+#  18: 	dim a as integer
+#  19: 	a = foo()
+#  20: 	print a;
+#  21: 	a = foo()
+#  22: 	print a;
+#  23: end scope
+
+########################################
+
+# ---
+

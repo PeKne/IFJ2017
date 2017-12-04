@@ -1,0 +1,63 @@
+# 2017-12-03 20:43:47.310573
+# SECTION: 04_expressions
+# TEST: 35
+# INFO: Expression with -
+# REQUIRED EXTENSIONS: 
+# ACTIVATED EXTENSIONS: 
+# STATE: FAIL
+# 
+# COMPILER STDERR:
+# LEX: Line: 4: Int value didnt end properly!
+# ERROR - 1 - chyba v programu v rÃ¡mci lexikÃ¡lnÃ­ analÃ½zy (chybnÃ¡ struktura aktuÃ¡lnÃ­ho lexÃ©mu).
+# 
+# INTERPRETER STDERR:
+# 
+# EXPECTED INTERPRETER STDOUT:
+
+# -54577
+
+
+# CURRENT INTERPRETER STDOUT:
+
+
+
+# INTERPRETER STDIN: 
+# 
+#
+# EXPECTED COMPILER EXIT CODE: 0
+# CURRENT COMPILER EXIT CODE: 1
+# EXPECTED INTERPRETER EXIT CODE: 0
+# CURRENT INTERPRETER EXIT CODE: None
+# PRICE: ---
+# GROOT: ---
+# 
+#   1: ' Expression with -
+#   2: 
+#   3: scope
+#   4: 	print 0-54577;
+#   5: end scope
+
+########################################
+
+token: 57 ...                                                                   #     1/23
+token: 57 ...                                                                   #     2/23
+token: 17 ... scope                                                             #     3/23
+.IFJcode17                                                                      #     4/23
+JUMP $$scope                                                                    #     5/23
+LABEL $$scope                                                                   #     7/23
+DEFVAR GF@&pomInteger                                                           #     8/23
+MOVE GF@&pomInteger int@0                                                       #     9/23
+DEFVAR GF@&pomString                                                            #    10/23
+MOVE GF@&pomString string@                                                      #    11/23
+DEFVAR GF@&pomFloat                                                             #    12/23
+MOVE GF@&pomFloat float@0                                                       #    13/23
+DEFVAR GF@&pomBool                                                              #    14/23
+MOVE GF@&pomBool bool@false                                                     #    15/23
+DEFVAR GF@&pomCntr                                                              #    16/23
+MOVE GF@&pomCntr int@0                                                          #    17/23
+CREATEFRAME                                                                     #    18/23
+token: 57 ...                                                                   #    20/23
+token: 15 ... print                                                             #    21/23
+token: 59 ... 0                                                                 #    22/23
+ERROR on line 4                                                                 #    23/23
+

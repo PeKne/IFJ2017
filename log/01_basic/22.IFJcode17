@@ -1,0 +1,76 @@
+# 2017-12-03 20:43:45.327188
+# SECTION: 01_basic
+# TEST: 22
+# INFO: Calculator
+# REQUIRED EXTENSIONS: IFTHEN
+# ACTIVATED EXTENSIONS: 
+# STATE: FAIL
+# 
+# COMPILER STDERR:
+# 
+# INTERPRETER STDERR:
+# 
+# EXPECTED INTERPRETER STDOUT:
+
+# ? ? ?  5
+
+
+# CURRENT INTERPRETER STDOUT:
+
+
+
+# INTERPRETER STDIN: 
+# rozdil
+# 10
+# 5
+#
+# EXPECTED COMPILER EXIT CODE: 0
+# CURRENT COMPILER EXIT CODE: None
+# EXPECTED INTERPRETER EXIT CODE: 0
+# CURRENT INTERPRETER EXIT CODE: None
+# PRICE: ---
+# GROOT: ---
+# 
+#   1: ' Calculator
+#   2: SCOPE
+#   3: 
+#   4: 	dim operace as string
+#   5: 	dim a as integer
+#   6: 	dim b as integer
+#   7: 
+#   8: 	input operace
+#   9: 	input a
+#  10: 	input b
+#  11: 
+#  12: 
+#  13: 	if operace = !"soucet" then
+#  14: 		a = a + b
+#  15: 		print a;
+#  16: 
+#  17: 	elseif operace = !"rozdil" then	
+#  18: 		a = a - b	
+#  19: 		print a;
+#  20: 
+#  21: 	elseif operace = !"soucin" then	
+#  22: 		a = a * b
+#  23: 		print a;	
+#  24: 
+#  25: 	elseif operace = !"mocnina" then	
+#  26: 		a = a * a
+#  27: 		print a;	
+#  28: 
+#  29: 	elseif operace = !"dvojnasobek" then	
+#  30: 		a = a * 2
+#  31: 		print a;	
+#  32: 
+#  33: 	else
+#  34: 		print !"Neplatna operace";
+#  35: 
+#  36: 	end if
+#  37: 
+#  38: END SCOPE
+
+########################################
+
+# ---
+

@@ -1,0 +1,57 @@
+# 2017-12-03 20:43:46.998426
+# SECTION: 02_functions
+# TEST: 14
+# INFO: Input in function
+# REQUIRED EXTENSIONS: 
+# ACTIVATED EXTENSIONS: 
+# STATE: FAIL
+# 
+# COMPILER STDERR:
+# symbol.c:268:retrieve_function_data(): Function not found
+# ERROR - 3 - sÃ©mantickÃ¡ chyba v programu â nedefinovanÃ¡ funkce/promeÌnnÃ¡, pokus o redefinici funkce/promeÌnnÃ©, atd.
+# 
+# INTERPRETER STDERR:
+# 
+# EXPECTED INTERPRETER STDOUT:
+
+# ?  42
+
+
+# CURRENT INTERPRETER STDOUT:
+
+
+
+# INTERPRETER STDIN: 
+# 42
+#
+# EXPECTED COMPILER EXIT CODE: 0
+# CURRENT COMPILER EXIT CODE: 3
+# EXPECTED INTERPRETER EXIT CODE: 0
+# CURRENT INTERPRETER EXIT CODE: None
+# PRICE: ---
+# GROOT: ---
+# 
+#   1: ' Input in function
+#   2: 
+#   3: function dsfs_567() as integer
+#   4: 	dim a as integer = 10
+#   5: 	input a
+#   6: 	return a
+#   7: end function
+#   8: 
+#   9: scope
+#  10: 	dim a as integer = 12
+#  11: 	a = dsfs_567()
+#  12: 	print a;
+#  13: end scope
+
+########################################
+
+token: 57 ...                                                                   #     1/8
+token: 57 ...                                                                   #     2/8
+token: 9 ... function                                                           #     3/8
+.IFJcode17                                                                      #     4/8
+JUMP $$scope                                                                    #     5/8
+token: 35 ... dsfs_567                                                          #     7/8
+ERROR on line 3                                                                 #     8/8
+

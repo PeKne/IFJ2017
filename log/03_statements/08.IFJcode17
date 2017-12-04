@@ -1,0 +1,72 @@
+# 2017-12-03 20:43:47.139541
+# SECTION: 03_statements
+# TEST: 08
+# INFO: multiple main scopes
+# REQUIRED EXTENSIONS: 
+# ACTIVATED EXTENSIONS: 
+# STATE: SUCCESS
+# 
+# COMPILER STDERR:
+# ERROR - 2 - chyba v programu v rÃ¡mci syntaktickÃ© analÃ½zy (chybnÃ¡ syntaxe programu).
+# 
+# INTERPRETER STDERR:
+# 
+# EXPECTED INTERPRETER STDOUT:
+
+
+
+# CURRENT INTERPRETER STDOUT:
+
+
+
+# INTERPRETER STDIN: 
+# 
+#
+# EXPECTED COMPILER EXIT CODE: 2
+# CURRENT COMPILER EXIT CODE: 2
+# EXPECTED INTERPRETER EXIT CODE: 0
+# CURRENT INTERPRETER EXIT CODE: None
+# PRICE: ---
+# GROOT: ---
+# 
+#   1: ' multiple main scopes
+#   2: 
+#   3: scope
+#   4: 
+#   5: end scope
+#   6: 
+#   7: 
+#   8: scope
+#   9: 
+#  10: end scope
+#  11: 
+
+########################################
+
+token: 57 ...                                                                   #     1/28
+token: 57 ...                                                                   #     2/28
+token: 17 ... scope                                                             #     3/28
+.IFJcode17                                                                      #     4/28
+JUMP $$scope                                                                    #     5/28
+LABEL $$scope                                                                   #     7/28
+DEFVAR GF@&pomInteger                                                           #     8/28
+MOVE GF@&pomInteger int@0                                                       #     9/28
+DEFVAR GF@&pomString                                                            #    10/28
+MOVE GF@&pomString string@                                                      #    11/28
+DEFVAR GF@&pomFloat                                                             #    12/28
+MOVE GF@&pomFloat float@0                                                       #    13/28
+DEFVAR GF@&pomBool                                                              #    14/28
+MOVE GF@&pomBool bool@false                                                     #    15/28
+DEFVAR GF@&pomCntr                                                              #    16/28
+MOVE GF@&pomCntr int@0                                                          #    17/28
+CREATEFRAME                                                                     #    18/28
+token: 57 ...                                                                   #    20/28
+token: 57 ...                                                                   #    21/28
+token: 7 ... end                                                                #    22/28
+token: 17 ... scope                                                             #    23/28
+token: 57 ...                                                                   #    24/28
+token: 57 ...                                                                   #    25/28
+token: 57 ...                                                                   #    26/28
+token: 17 ... scope                                                             #    27/28
+ERROR on line 8                                                                 #    28/28
+

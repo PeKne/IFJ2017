@@ -1,0 +1,156 @@
+# 2017-12-03 20:43:47.410191
+# SECTION: 06_loops
+# TEST: 04
+# INFO: nested and mutliple while loop
+# REQUIRED EXTENSIONS: 
+# ACTIVATED EXTENSIONS: 
+# STATE: FAIL
+# 
+# COMPILER STDERR:
+# In if and loop statement can only be relational operators.
+# ERROR -  6 - ostatnÃ­ sÃ©mantickÃ© chyby.
+# 
+# INTERPRETER STDERR:
+# 
+# EXPECTED INTERPRETER STDOUT:
+
+#  63 63 63 63 63 63 57 57 57 57 57
+
+
+# CURRENT INTERPRETER STDOUT:
+
+
+
+# INTERPRETER STDIN: 
+# 
+#
+# EXPECTED COMPILER EXIT CODE: 0
+# CURRENT COMPILER EXIT CODE: 6
+# EXPECTED INTERPRETER EXIT CODE: 0
+# CURRENT INTERPRETER EXIT CODE: None
+# PRICE: ---
+# GROOT: ---
+# 
+#   1: ' nested and mutliple while loop
+#   2: scope
+#   3: 	dim a as double
+#   4: 	dim b as double
+#   5: 	a = 0 - 123.789
+#   6: 	do while a > (0 - 236.741)
+#   7: 		b = 9
+#   8: 		do while b > 3.02
+#   9: 			print 63;
+#  10: 			b = b - 1.123
+#  11: 		loop
+#  12: 		a = a + a * 2
+#  13: 	loop
+#  14: 	a = 78
+#  15: 	do while a > 55
+#  16: 		print 57;
+#  17: 		a = a - 5.38
+#  18: 	loop
+#  19: end scope
+
+########################################
+
+token: 57 ...                                                                   #     1/102
+token: 17 ... scope                                                             #     2/102
+.IFJcode17                                                                      #     3/102
+JUMP $$scope                                                                    #     4/102
+LABEL $$scope                                                                   #     6/102
+DEFVAR GF@&pomInteger                                                           #     7/102
+MOVE GF@&pomInteger int@0                                                       #     8/102
+DEFVAR GF@&pomString                                                            #     9/102
+MOVE GF@&pomString string@                                                      #    10/102
+DEFVAR GF@&pomFloat                                                             #    11/102
+MOVE GF@&pomFloat float@0                                                       #    12/102
+DEFVAR GF@&pomBool                                                              #    13/102
+MOVE GF@&pomBool bool@false                                                     #    14/102
+DEFVAR GF@&pomCntr                                                              #    15/102
+MOVE GF@&pomCntr int@0                                                          #    16/102
+CREATEFRAME                                                                     #    17/102
+token: 57 ...                                                                   #    19/102
+token: 3 ... dim                                                                #    20/102
+token: 35 ... a                                                                 #    21/102
+token: 0 ... as                                                                 #    22/102
+token: 5 ... double                                                             #    23/102
+token: 57 ...                                                                   #    24/102
+DEFVAR TF@a                                                                     #    25/102
+MOVE TF@a float@0                                                               #    26/102
+token: 3 ... dim                                                                #    27/102
+token: 35 ... b                                                                 #    28/102
+token: 0 ... as                                                                 #    29/102
+token: 5 ... double                                                             #    30/102
+token: 57 ...                                                                   #    31/102
+DEFVAR TF@b                                                                     #    32/102
+MOVE TF@b float@0                                                               #    33/102
+token: 35 ... a                                                                 #    34/102
+token: 45 ... =                                                                 #    35/102
+token: 53 ... 0                                                                 #    36/102
+|TOP--->|$|  SYMBOL                                                             #    37/102
+|TOP--->| |  STRING                                                             #    38/102
+token: 40 ... -                                                                 #    39/102
+|TOP--->|int|]|$|  SYMBOL                                                       #    40/102
+|TOP--->|0| | |  STRING                                                         #    41/102
+|TOP--->|int|  SYMBOL                                                           #    42/102
+|TOP--->|0|  STRING                                                             #    43/102
+MOVE GF@&pomFloat float@0.0                                                     #    44/102
+|TOP--->|R|$|  SYMBOL                                                           #    45/102
+|TOP--->|0.0| |  STRING                                                         #    46/102
+token: 54 ... 123.789                                                           #    47/102
+|TOP--->|-|R|]|$|  SYMBOL                                                       #    48/102
+|TOP--->|-|0.0| | |  STRING                                                     #    49/102
+token: 57 ...                                                                   #    50/102
+|TOP--->|double|]|-|R|]|$|  SYMBOL                                              #    51/102
+|TOP--->|123.789| |-|0.0| | |  STRING                                           #    52/102
+|TOP--->|double|  SYMBOL                                                        #    53/102
+|TOP--->|123.789|  STRING                                                       #    54/102
+|TOP--->|R|-|R|]|$|  SYMBOL                                                     #    55/102
+|TOP--->|123.789|-|0.0| | |  STRING                                             #    56/102
+|TOP--->|R|-|R|  SYMBOL                                                         #    57/102
+|TOP--->|0.0|-|123.789|  STRING                                                 #    58/102
+redukce                                                                         #    59/102
+SUB GF@&pomFloat float@0.0 float@123.789                                        #    60/102
+MOVE TF@a GF@&pomFloat                                                          #    61/102
+token: 4 ... do                                                                 #    62/102
+token: 21 ... while                                                             #    63/102
+LABEL $$loop_1                                                                  #    64/102
+token: 35 ... a                                                                 #    65/102
+|TOP--->|$|  SYMBOL                                                             #    66/102
+|TOP--->| |  STRING                                                             #    67/102
+token: 42 ... >                                                                 #    68/102
+|TOP--->|i|]|$|  SYMBOL                                                         #    69/102
+|TOP--->|a| | |  STRING                                                         #    70/102
+|TOP--->|i|  SYMBOL                                                             #    71/102
+|TOP--->|a|  STRING                                                             #    72/102
+MOVE GF@&pomFloat TF@a                                                          #    73/102
+|TOP--->|R|$|  SYMBOL                                                           #    74/102
+|TOP--->|a| |  STRING                                                           #    75/102
+token: 50 ... (                                                                 #    76/102
+|TOP--->|>|R|]|$|  SYMBOL                                                       #    77/102
+|TOP--->|>|a| | |  STRING                                                       #    78/102
+token: 53 ... 0                                                                 #    79/102
+|TOP--->|(|]|>|R|]|$|  SYMBOL                                                   #    80/102
+|TOP--->|(| |>|a| | |  STRING                                                   #    81/102
+token: 40 ... -                                                                 #    82/102
+|TOP--->|int|]|(|]|>|R|]|$|  SYMBOL                                             #    83/102
+|TOP--->|0| |(| |>|a| | |  STRING                                               #    84/102
+|TOP--->|int|  SYMBOL                                                           #    85/102
+|TOP--->|0|  STRING                                                             #    86/102
+|TOP--->|R|(|]|>|R|]|$|  SYMBOL                                                 #    87/102
+|TOP--->|0|(| |>|a| | |  STRING                                                 #    88/102
+token: 54 ... 236.741                                                           #    89/102
+|TOP--->|-|R|]|(|]|>|R|]|$|  SYMBOL                                             #    90/102
+|TOP--->|-|0| |(| |>|a| | |  STRING                                             #    91/102
+token: 51 ... )                                                                 #    92/102
+|TOP--->|double|]|-|R|]|(|]|>|R|]|$|  SYMBOL                                    #    93/102
+|TOP--->|236.741| |-|0| |(| |>|a| | |  STRING                                   #    94/102
+|TOP--->|double|  SYMBOL                                                        #    95/102
+|TOP--->|236.741|  STRING                                                       #    96/102
+|TOP--->|R|-|R|]|(|]|>|R|]|$|  SYMBOL                                           #    97/102
+|TOP--->|236.741|-|0| |(| |>|a| | |  STRING                                     #    98/102
+|TOP--->|R|-|R|  SYMBOL                                                         #    99/102
+|TOP--->|0|-|236.741|  STRING                                                   #   100/102
+redukce                                                                         #   101/102
+ERROR on line 6                                                                 #   102/102
+

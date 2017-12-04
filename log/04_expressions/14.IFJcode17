@@ -1,0 +1,238 @@
+# 2017-12-03 20:43:47.219435
+# SECTION: 04_expressions
+# TEST: 14
+# INFO: Test for implicit conversion
+# REQUIRED EXTENSIONS: 
+# ACTIVATED EXTENSIONS: 
+# STATE: FAIL
+# 
+# COMPILER STDERR:
+# 
+# INTERPRETER STDERR:
+# 1.1-5: syntax error, unexpected ID, expecting HEADER
+# 
+# EXPECTED INTERPRETER STDOUT:
+
+#  123.457
+
+
+# CURRENT INTERPRETER STDOUT:
+
+
+
+# INTERPRETER STDIN: 
+# 
+#
+# EXPECTED COMPILER EXIT CODE: 0
+# CURRENT COMPILER EXIT CODE: 0
+# EXPECTED INTERPRETER EXIT CODE: 0
+# CURRENT INTERPRETER EXIT CODE: 51
+# PRICE: ---
+# GROOT: ---
+# 
+#   1: ' Test for implicit conversion
+#   2: SCOPE
+#   3: 
+#   4: 	dim a as double
+#   5: 	a = 123.4565
+#   6: 
+#   7: 	dim b as integer
+#   8: 	b = 456465
+#   9: 
+#  10: 	dim c as double
+#  11: 	c = (((a * b) / b) * b) / b 
+#  12: 
+#  13: 	print c;
+#  14: 
+#  15: END SCOPE
+
+########################################
+
+token: 57 ...                                                                   #     1/189
+token: 17 ... scope                                                             #     2/189
+.IFJcode17                                                                      #     3/189
+JUMP $$scope                                                                    #     4/189
+LABEL $$scope                                                                   #     6/189
+DEFVAR GF@&pomInteger                                                           #     7/189
+MOVE GF@&pomInteger int@0                                                       #     8/189
+DEFVAR GF@&pomString                                                            #     9/189
+MOVE GF@&pomString string@                                                      #    10/189
+DEFVAR GF@&pomFloat                                                             #    11/189
+MOVE GF@&pomFloat float@0                                                       #    12/189
+DEFVAR GF@&pomBool                                                              #    13/189
+MOVE GF@&pomBool bool@false                                                     #    14/189
+DEFVAR GF@&pomCntr                                                              #    15/189
+MOVE GF@&pomCntr int@0                                                          #    16/189
+CREATEFRAME                                                                     #    17/189
+token: 57 ...                                                                   #    19/189
+token: 57 ...                                                                   #    20/189
+token: 3 ... dim                                                                #    21/189
+token: 35 ... a                                                                 #    22/189
+token: 0 ... as                                                                 #    23/189
+token: 5 ... double                                                             #    24/189
+token: 57 ...                                                                   #    25/189
+DEFVAR TF@a                                                                     #    26/189
+MOVE TF@a float@0                                                               #    27/189
+token: 35 ... a                                                                 #    28/189
+token: 45 ... =                                                                 #    29/189
+token: 54 ... 123.4565                                                          #    30/189
+|TOP--->|$|  SYMBOL                                                             #    31/189
+|TOP--->| |  STRING                                                             #    32/189
+token: 57 ...                                                                   #    33/189
+|TOP--->|double|]|$|  SYMBOL                                                    #    34/189
+|TOP--->|123.4565| | |  STRING                                                  #    35/189
+|TOP--->|double|  SYMBOL                                                        #    36/189
+|TOP--->|123.4565|  STRING                                                      #    37/189
+MOVE GF@&pomFloat float@123.4565                                                #    38/189
+MOVE TF@a GF@&pomFloat                                                          #    39/189
+token: 57 ...                                                                   #    40/189
+token: 3 ... dim                                                                #    41/189
+token: 35 ... b                                                                 #    42/189
+token: 0 ... as                                                                 #    43/189
+token: 12 ... integer                                                           #    44/189
+token: 57 ...                                                                   #    45/189
+DEFVAR TF@b                                                                     #    46/189
+MOVE TF@b int@0                                                                 #    47/189
+token: 35 ... b                                                                 #    48/189
+token: 45 ... =                                                                 #    49/189
+token: 53 ... 456465                                                            #    50/189
+|TOP--->|$|  SYMBOL                                                             #    51/189
+|TOP--->| |  STRING                                                             #    52/189
+token: 57 ...                                                                   #    53/189
+|TOP--->|int|]|$|  SYMBOL                                                       #    54/189
+|TOP--->|456465| | |  STRING                                                    #    55/189
+|TOP--->|int|  SYMBOL                                                           #    56/189
+|TOP--->|456465|  STRING                                                        #    57/189
+MOVE GF@&pomInteger int@456465                                                  #    58/189
+MOVE TF@b GF@&pomInteger                                                        #    59/189
+token: 57 ...                                                                   #    60/189
+token: 3 ... dim                                                                #    61/189
+token: 35 ... c                                                                 #    62/189
+token: 0 ... as                                                                 #    63/189
+token: 5 ... double                                                             #    64/189
+token: 57 ...                                                                   #    65/189
+DEFVAR TF@c                                                                     #    66/189
+MOVE TF@c float@0                                                               #    67/189
+token: 35 ... c                                                                 #    68/189
+token: 45 ... =                                                                 #    69/189
+token: 50 ... (                                                                 #    70/189
+|TOP--->|$|  SYMBOL                                                             #    71/189
+|TOP--->| |  STRING                                                             #    72/189
+token: 50 ... (                                                                 #    73/189
+|TOP--->|(|]|$|  SYMBOL                                                         #    74/189
+|TOP--->|(| | |  STRING                                                         #    75/189
+token: 50 ... (                                                                 #    76/189
+|TOP--->|(|]|(|]|$|  SYMBOL                                                     #    77/189
+|TOP--->|(| |(| | |  STRING                                                     #    78/189
+token: 35 ... a                                                                 #    79/189
+|TOP--->|(|]|(|]|(|]|$|  SYMBOL                                                 #    80/189
+|TOP--->|(| |(| |(| | |  STRING                                                 #    81/189
+token: 38 ... *                                                                 #    82/189
+|TOP--->|i|]|(|]|(|]|(|]|$|  SYMBOL                                             #    83/189
+|TOP--->|a| |(| |(| |(| | |  STRING                                             #    84/189
+|TOP--->|i|  SYMBOL                                                             #    85/189
+|TOP--->|a|  STRING                                                             #    86/189
+MOVE GF@&pomFloat TF@a                                                          #    87/189
+|TOP--->|R|(|]|(|]|(|]|$|  SYMBOL                                               #    88/189
+|TOP--->|a|(| |(| |(| | |  STRING                                               #    89/189
+token: 35 ... b                                                                 #    90/189
+|TOP--->|*|R|]|(|]|(|]|(|]|$|  SYMBOL                                           #    91/189
+|TOP--->|*|a| |(| |(| |(| | |  STRING                                           #    92/189
+token: 51 ... )                                                                 #    93/189
+|TOP--->|i|]|*|R|]|(|]|(|]|(|]|$|  SYMBOL                                       #    94/189
+|TOP--->|b| |*|a| |(| |(| |(| | |  STRING                                       #    95/189
+|TOP--->|i|  SYMBOL                                                             #    96/189
+|TOP--->|b|  STRING                                                             #    97/189
+|TOP--->|R|*|R|]|(|]|(|]|(|]|$|  SYMBOL                                         #    98/189
+|TOP--->|b|*|a| |(| |(| |(| | |  STRING                                         #    99/189
+|TOP--->|R|*|R|  SYMBOL                                                         #   100/189
+|TOP--->|a|*|b|  STRING                                                         #   101/189
+redukce                                                                         #   102/189
+MUL GF@&pomFloat TF@a TF@b                                                      #   103/189
+|TOP--->|R|(|]|(|]|(|]|$|  SYMBOL                                               #   104/189
+|TOP--->|GF@&pomFloat|(| |(| |(| | |  STRING                                    #   105/189
+token: 36 ... /                                                                 #   106/189
+|TOP--->|)|R|(|]|(|]|(|]|$|  SYMBOL                                             #   107/189
+|TOP--->|)|GF@&pomFloat|(| |(| |(| | |  STRING                                  #   108/189
+|TOP--->|(|R|)|  SYMBOL                                                         #   109/189
+|TOP--->|(|GF@&pomFloat|)|  STRING                                              #   110/189
+|TOP--->|R|(|]|(|]|$|  SYMBOL                                                   #   111/189
+|TOP--->|GF@&pomFloat|(| |(| | |  STRING                                        #   112/189
+token: 35 ... b                                                                 #   113/189
+|TOP--->|/|R|]|(|]|(|]|$|  SYMBOL                                               #   114/189
+|TOP--->|/|GF@&pomFloat| |(| |(| | |  STRING                                    #   115/189
+token: 51 ... )                                                                 #   116/189
+|TOP--->|i|]|/|R|]|(|]|(|]|$|  SYMBOL                                           #   117/189
+|TOP--->|b| |/|GF@&pomFloat| |(| |(| | |  STRING                                #   118/189
+|TOP--->|i|  SYMBOL                                                             #   119/189
+|TOP--->|b|  STRING                                                             #   120/189
+|TOP--->|R|/|R|]|(|]|(|]|$|  SYMBOL                                             #   121/189
+|TOP--->|b|/|GF@&pomFloat| |(| |(| | |  STRING                                  #   122/189
+|TOP--->|R|/|R|  SYMBOL                                                         #   123/189
+|TOP--->|GF@&pomFloat|/|b|  STRING                                              #   124/189
+redukce                                                                         #   125/189
+DIV GF@&pomFloat GF@&pomFloat TF@b                                              #   126/189
+|TOP--->|R|(|]|(|]|$|  SYMBOL                                                   #   127/189
+|TOP--->|GF@&pomFloat|(| |(| | |  STRING                                        #   128/189
+token: 38 ... *                                                                 #   129/189
+|TOP--->|)|R|(|]|(|]|$|  SYMBOL                                                 #   130/189
+|TOP--->|)|GF@&pomFloat|(| |(| | |  STRING                                      #   131/189
+|TOP--->|(|R|)|  SYMBOL                                                         #   132/189
+|TOP--->|(|GF@&pomFloat|)|  STRING                                              #   133/189
+|TOP--->|R|(|]|$|  SYMBOL                                                       #   134/189
+|TOP--->|GF@&pomFloat|(| | |  STRING                                            #   135/189
+token: 35 ... b                                                                 #   136/189
+|TOP--->|*|R|]|(|]|$|  SYMBOL                                                   #   137/189
+|TOP--->|*|GF@&pomFloat| |(| | |  STRING                                        #   138/189
+token: 51 ... )                                                                 #   139/189
+|TOP--->|i|]|*|R|]|(|]|$|  SYMBOL                                               #   140/189
+|TOP--->|b| |*|GF@&pomFloat| |(| | |  STRING                                    #   141/189
+|TOP--->|i|  SYMBOL                                                             #   142/189
+|TOP--->|b|  STRING                                                             #   143/189
+|TOP--->|R|*|R|]|(|]|$|  SYMBOL                                                 #   144/189
+|TOP--->|b|*|GF@&pomFloat| |(| | |  STRING                                      #   145/189
+|TOP--->|R|*|R|  SYMBOL                                                         #   146/189
+|TOP--->|GF@&pomFloat|*|b|  STRING                                              #   147/189
+redukce                                                                         #   148/189
+MUL GF@&pomFloat GF@&pomFloat TF@b                                              #   149/189
+|TOP--->|R|(|]|$|  SYMBOL                                                       #   150/189
+|TOP--->|GF@&pomFloat|(| | |  STRING                                            #   151/189
+token: 36 ... /                                                                 #   152/189
+|TOP--->|)|R|(|]|$|  SYMBOL                                                     #   153/189
+|TOP--->|)|GF@&pomFloat|(| | |  STRING                                          #   154/189
+|TOP--->|(|R|)|  SYMBOL                                                         #   155/189
+|TOP--->|(|GF@&pomFloat|)|  STRING                                              #   156/189
+|TOP--->|R|$|  SYMBOL                                                           #   157/189
+|TOP--->|GF@&pomFloat| |  STRING                                                #   158/189
+token: 35 ... b                                                                 #   159/189
+|TOP--->|/|R|]|$|  SYMBOL                                                       #   160/189
+|TOP--->|/|GF@&pomFloat| | |  STRING                                            #   161/189
+token: 57 ...                                                                   #   162/189
+|TOP--->|i|]|/|R|]|$|  SYMBOL                                                   #   163/189
+|TOP--->|b| |/|GF@&pomFloat| | |  STRING                                        #   164/189
+|TOP--->|i|  SYMBOL                                                             #   165/189
+|TOP--->|b|  STRING                                                             #   166/189
+|TOP--->|R|/|R|]|$|  SYMBOL                                                     #   167/189
+|TOP--->|b|/|GF@&pomFloat| | |  STRING                                          #   168/189
+|TOP--->|R|/|R|  SYMBOL                                                         #   169/189
+|TOP--->|GF@&pomFloat|/|b|  STRING                                              #   170/189
+redukce                                                                         #   171/189
+DIV GF@&pomFloat GF@&pomFloat TF@b                                              #   172/189
+MOVE TF@c GF@&pomFloat                                                          #   173/189
+token: 57 ...                                                                   #   174/189
+token: 15 ... print                                                             #   175/189
+token: 35 ... c                                                                 #   176/189
+|TOP--->|$|  SYMBOL                                                             #   177/189
+|TOP--->| |  STRING                                                             #   178/189
+token: 47 ... ;                                                                 #   179/189
+|TOP--->|i|]|$|  SYMBOL                                                         #   180/189
+|TOP--->|c| | |  STRING                                                         #   181/189
+|TOP--->|i|  SYMBOL                                                             #   182/189
+|TOP--->|c|  STRING                                                             #   183/189
+WRITE TF@c                                                                      #   184/189
+token: 57 ...                                                                   #   185/189
+token: 57 ...                                                                   #   186/189
+token: 7 ... end                                                                #   187/189
+token: 17 ... scope                                                             #   188/189
+token: 58 ...                                                                   #   189/189
+

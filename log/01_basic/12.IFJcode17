@@ -1,0 +1,94 @@
+# 2017-12-03 20:43:45.307277
+# SECTION: 01_basic
+# TEST: 12
+# INFO: Print input
+# REQUIRED EXTENSIONS: 
+# ACTIVATED EXTENSIONS: 
+# STATE: FAIL
+# 
+# COMPILER STDERR:
+# 
+# INTERPRETER STDERR:
+# 1.1-5: syntax error, unexpected ID, expecting HEADER
+# 
+# EXPECTED INTERPRETER STDOUT:
+
+# ? Martin Kobelka napsal tento test
+
+
+# CURRENT INTERPRETER STDOUT:
+
+
+
+# INTERPRETER STDIN: 
+# Martin Kobelka napsal tento test
+#
+# EXPECTED COMPILER EXIT CODE: 0
+# CURRENT COMPILER EXIT CODE: 0
+# EXPECTED INTERPRETER EXIT CODE: 0
+# CURRENT INTERPRETER EXIT CODE: 51
+# PRICE: ---
+# GROOT: ---
+# 
+#   1: ' Print input
+#   2: 
+#   3: SCOPE
+#   4: 
+#   5: 	dim hdghaskljkl as string
+#   6: 
+#   7: 	input hdghaskljkl
+#   8: 
+#   9: 	print hdghaskljkl;
+#  10: 
+#  11: END SCOPE
+
+########################################
+
+token: 57 ...                                                                   #     1/49
+token: 57 ...                                                                   #     2/49
+token: 17 ... scope                                                             #     3/49
+.IFJcode17                                                                      #     4/49
+JUMP $$scope                                                                    #     5/49
+LABEL $$scope                                                                   #     7/49
+DEFVAR GF@&pomInteger                                                           #     8/49
+MOVE GF@&pomInteger int@0                                                       #     9/49
+DEFVAR GF@&pomString                                                            #    10/49
+MOVE GF@&pomString string@                                                      #    11/49
+DEFVAR GF@&pomFloat                                                             #    12/49
+MOVE GF@&pomFloat float@0                                                       #    13/49
+DEFVAR GF@&pomBool                                                              #    14/49
+MOVE GF@&pomBool bool@false                                                     #    15/49
+DEFVAR GF@&pomCntr                                                              #    16/49
+MOVE GF@&pomCntr int@0                                                          #    17/49
+CREATEFRAME                                                                     #    18/49
+token: 57 ...                                                                   #    20/49
+token: 57 ...                                                                   #    21/49
+token: 3 ... dim                                                                #    22/49
+token: 35 ... hdghaskljkl                                                       #    23/49
+token: 0 ... as                                                                 #    24/49
+token: 18 ... string                                                            #    25/49
+token: 57 ...                                                                   #    26/49
+DEFVAR TF@hdghaskljkl                                                           #    27/49
+MOVE TF@hdghaskljkl string@                                                     #    28/49
+token: 57 ...                                                                   #    29/49
+token: 11 ... input                                                             #    30/49
+token: 35 ... hdghaskljkl                                                       #    31/49
+READ TF@hdghaskljkl string                                                      #    32/49
+token: 57 ...                                                                   #    33/49
+token: 57 ...                                                                   #    34/49
+token: 15 ... print                                                             #    35/49
+token: 35 ... hdghaskljkl                                                       #    36/49
+|TOP--->|$|  SYMBOL                                                             #    37/49
+|TOP--->| |  STRING                                                             #    38/49
+token: 47 ... ;                                                                 #    39/49
+|TOP--->|i|]|$|  SYMBOL                                                         #    40/49
+|TOP--->|hdghaskljkl| | |  STRING                                               #    41/49
+|TOP--->|i|  SYMBOL                                                             #    42/49
+|TOP--->|hdghaskljkl|  STRING                                                   #    43/49
+WRITE TF@hdghaskljkl                                                            #    44/49
+token: 57 ...                                                                   #    45/49
+token: 57 ...                                                                   #    46/49
+token: 7 ... end                                                                #    47/49
+token: 17 ... scope                                                             #    48/49
+token: 58 ...                                                                   #    49/49
+

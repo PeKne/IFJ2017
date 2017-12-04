@@ -37,9 +37,9 @@ int SPush (TStack *s, int tokenType, char* string)
     if ( (newElemPtr = ((TSElem *) malloc(sizeof(TSElem)))) == NULL )
         return err_malloc;
 
-    newElemPtr->type = tokenType;    
+    newElemPtr->type = tokenType;
     newElemPtr->nextPtr = NULL;
-    
+
     str_create_init(&(newElemPtr->string), string);
 
     if (SEmpty(s))
@@ -279,6 +279,8 @@ int expresion_reduction(TStack *s, Tstate instruct, int reduce_counter, Tstring 
     Tstring operand_2;
     int error;
 
+    DBG_SPrint(s);
+
     char* context = (p == 0 ? "TF@" : "LF@");
 
     int symbol = STopType(s);
@@ -292,10 +294,10 @@ int expresion_reduction(TStack *s, Tstate instruct, int reduce_counter, Tstring 
         if (instruct == st_print) {
             if (symbol == ex_str) {
                 printf("WRITE string@%s\n",ret_string->data);
-                
+
             } else {
                 printf("WRITE %s%s\n",context, ret_string->data);
-                
+
             }
         } else if (reduce_counter == 0) {
 
@@ -307,50 +309,50 @@ int expresion_reduction(TStack *s, Tstate instruct, int reduce_counter, Tstring 
             if (symbol == ex_ident) {
                 if ((dest_type == st_integer || dest_type == 0) && var_type == st_integer) {
 
-                    printf("MOVE %s %s%s\n", pom_integer, context, ret_string->data);                    
+                    printf("MOVE %s %s%s\n", pom_integer, context, ret_string->data);
                 } else if ((dest_type == st_double || dest_type == 0) && var_type == st_double) {
-                    printf("MOVE %s %s%s\n", pom_double, context, ret_string->data);                    
+                    printf("MOVE %s %s%s\n", pom_double, context, ret_string->data);
                 } else if ((dest_type == st_string || dest_type == 0) && var_type == st_string) {
-                    printf("MOVE %s %s%s\n", pom_string, context, ret_string->data);                    
+                    printf("MOVE %s %s%s\n", pom_string, context, ret_string->data);
                 } else {
                     fprintf(stderr, "Wrong types of operands!\n");
                     return ERR_SEM_TYPE;
                 }
-            }  
+            }
             // a = 1.5
             else if (symbol == ex_integer) {
                 if (dest_type == st_integer) {
-                    printf("MOVE %s int@%s\n", pom_integer, ret_string->data);                    
+                    printf("MOVE %s int@%s\n", pom_integer, ret_string->data);
                 } else if (dest_type == st_double) {
                     str_push_char(ret_string,'.');
                     str_push_char(ret_string,'0');
-                    printf("MOVE %s float@%s\n", pom_double, ret_string->data);                    
+                    printf("MOVE %s float@%s\n", pom_double, ret_string->data);
                 }
 
             } else if (symbol == ex_double) {
                 if (dest_type == st_double) {
-                    printf("MOVE %s float@%s\n", pom_double, ret_string->data);                    
+                    printf("MOVE %s float@%s\n", pom_double, ret_string->data);
                 } else if (dest_type == st_integer) {
                     // konverze double na integer
                     Tstring res;
                     str_create(&res);
-                    double converted = 0.0;  
+                    double converted = 0.0;
                     int val = converted = nearbyint(strtod(ret_string->data,NULL));
                     sprintf(res.data, "%d", val);
                     str_rewrite_data(ret_string, res.data);
-                    str_destroy(&res);        
-                    printf("MOVE %s int@%s\n", pom_integer, ret_string->data);                    
+                    str_destroy(&res);
+                    printf("MOVE %s int@%s\n", pom_integer, ret_string->data);
                 }
 
             } else if (symbol == ex_str) {
                 if (dest_type == st_string) {
                     printf("MOVE %s string@%s\n", pom_string, ret_string->data);
-                    
+
                 } else {
                     fprintf(stderr, "Wrong types of operands!\n");
                     return ERR_SEM_TYPE;
                 }
-            }            
+            }
         }
 
         SPop(s);
@@ -374,8 +376,9 @@ int expresion_reduction(TStack *s, Tstate instruct, int reduce_counter, Tstring 
     }
 
     else if(symbol == ex_reduction){ // R ---> R "operator" R
+    printf("redukce\n" );
         str_create_init(&(operand_1),STopString(s));
-        
+
         if (dest_type == st_double)
             str_rewrite_data(ret_string, pom_double);
         else if (dest_type == st_integer)
@@ -400,10 +403,10 @@ int expresion_reduction(TStack *s, Tstate instruct, int reduce_counter, Tstring 
 
                 SPop(s);
                 if(SEmpty(s)){
-                    Tstate op2_type = return_variable_type(operand_2.data);                    
+                    Tstate op2_type = return_variable_type(operand_2.data);
                     /*printf("%s typ: %d\n",operand_2.data, op2_type);
                     printf("instr: %d\n", instruct);*/
-                    
+
                     /*if (op2_type == 0 && instruct != st_if && instruct != st_loop) { // neinicializovana promenna == primo zapsany string !"ss", nelze vyhodit chybu
                         fprintf(stderr, "PROMENNA\n");
                         str_destroy(&(operand_1));
@@ -424,7 +427,7 @@ int expresion_reduction(TStack *s, Tstate instruct, int reduce_counter, Tstring 
                         if (op2_type == st_string) {
                             error = ERR_SEM_TYPE;
                         } else {
-                            error = expr_gen(operator, operand_1.data, operand_2.data, pom_double, instruct, dest_type);               
+                            error = expr_gen(operator, operand_1.data, operand_2.data, pom_double, instruct, dest_type);
                         }
 
                     } else if (dest_type == st_string) {
@@ -439,23 +442,23 @@ int expresion_reduction(TStack *s, Tstate instruct, int reduce_counter, Tstring 
                                 //printf("chyba\n");
                                 fprintf(stderr, "Wrong string operation!\n");
                                 error = ERR_SEM_TYPE;
-                            }                            
+                            }
                         }
 
                     } else if (dest_type == 0) { // bez prirazeni. Napr if (a < 0)
-                        if ((instruct == st_if  || instruct == st_loop) && (operator == ex_equal || operator == ex_notEq || 
-                            operator == ex_less || operator == ex_lessEq || 
+                        if ((instruct == st_if  || instruct == st_loop) && (operator == ex_equal || operator == ex_notEq ||
+                            operator == ex_less || operator == ex_lessEq ||
                             operator == ex_great || operator == ex_greatEq ))
                         {
                           error = expr_gen(operator, operand_1.data, operand_2.data, pom_string, instruct, dest_type);
                             if (error) {
                                 fprintf(stderr, "Expresion in if or loop error.\n");
-                            }  
+                            }
                         } else {
                             fprintf(stderr, "In if and loop statement can only be relational operators.\n");
                             error = ERR_SEM_OTHER;
-                        }                                                 
-                    } 
+                        }
+                    }
 
                     if (error) {
                         //debug_print("%s\n", "st_integer error");
@@ -468,11 +471,11 @@ int expresion_reduction(TStack *s, Tstate instruct, int reduce_counter, Tstring 
                     str_destroy(&(operand_1));
                     str_destroy(&(operand_2));
                     return 0;
-                } 
-                str_destroy(&(operand_2));               
+                }
+                str_destroy(&(operand_2));
             }
         }
-        str_destroy(&(operand_1));        
+        str_destroy(&(operand_1));
     }
 
     return 1; // SPATNA NAVRATOVA HODNOTA
@@ -512,6 +515,7 @@ int precedent_analysis(Tstate instruct, Tstate dest_type) {
           SClean(&stack);
           return ERR_SYN;
         }
+        DBG_SPrint(&stack);
         switch (prec_table[stacked_operator][input_operator]){//porovnani operatoru v zasobniku a na vstupu
             case EQ:
             {
@@ -565,6 +569,11 @@ int precedent_analysis(Tstate instruct, Tstate dest_type) {
             case GT:
             case XX:
             {
+                if(stacked_operator ==ex_dollar && input_operator == ex_dollar){
+                  str_destroy(&ret_string);
+                  return ERR_SYN;
+                }
+
                 TStack reduction_stack; // vytvorime pomocny redukcni zasobnik
                 SInit(&reduction_stack);
 
@@ -582,7 +591,7 @@ int precedent_analysis(Tstate instruct, Tstate dest_type) {
                 }
 
                 // redukujeme vyraz na pomocnem zasobniku
-                error = expresion_reduction(&reduction_stack, instruct, reduce_counter, &ret_string, dest_type); 
+                error = expresion_reduction(&reduction_stack, instruct, reduce_counter, &ret_string, dest_type);
 
                 SClean(&reduction_stack); // rusime pomocny zasobnik
 

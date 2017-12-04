@@ -1,0 +1,43 @@
+# 2017-12-03 20:43:47.745823
+# SECTION: 66_errors
+# TEST: 37
+# INFO: Undefined function
+# REQUIRED EXTENSIONS: FUNEXP
+# ACTIVATED EXTENSIONS: 
+# STATE: FAIL
+# 
+# COMPILER STDERR:
+# 
+# INTERPRETER STDERR:
+# 
+# EXPECTED INTERPRETER STDOUT:
+
+
+
+# CURRENT INTERPRETER STDOUT:
+
+
+
+# INTERPRETER STDIN: 
+# 
+#
+# EXPECTED COMPILER EXIT CODE: 3
+# CURRENT COMPILER EXIT CODE: None
+# EXPECTED INTERPRETER EXIT CODE: 0
+# CURRENT INTERPRETER EXIT CODE: None
+# PRICE: ---
+# GROOT: ---
+# 
+#   1: ' Undefined function
+#   2: scope
+#   3:    if foo() < 10 then
+#   4:    
+#   5:    else
+#   6:    
+#   7:    end if
+#   8: end scope
+
+########################################
+
+# ---
+

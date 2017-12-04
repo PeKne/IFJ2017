@@ -1,0 +1,115 @@
+# 2017-12-03 20:43:45.300206
+# SECTION: 01_basic
+# TEST: 08
+# INFO: variable declaration with implicit value
+# REQUIRED EXTENSIONS: 
+# ACTIVATED EXTENSIONS: 
+# STATE: FAIL
+# 
+# COMPILER STDERR:
+# 
+# INTERPRETER STDERR:
+# 1.1-5: syntax error, unexpected ID, expecting HEADER
+# 
+# EXPECTED INTERPRETER STDOUT:
+
+#  0 0
+
+
+# CURRENT INTERPRETER STDOUT:
+
+
+
+# INTERPRETER STDIN: 
+# 
+#
+# EXPECTED COMPILER EXIT CODE: 0
+# CURRENT COMPILER EXIT CODE: 0
+# EXPECTED INTERPRETER EXIT CODE: 0
+# CURRENT INTERPRETER EXIT CODE: 51
+# PRICE: ---
+# GROOT: ---
+# 
+#   1: ' variable declaration with implicit value
+#   2: scope
+#   3: 	dim int as integer
+#   4: 	dim float as double
+#   5: 	dim str as string
+#   6: 
+#   7: 	print int; float; str;
+#   8: end scope
+
+########################################
+
+token: 57 ...                                                                   #     1/73
+token: 17 ... scope                                                             #     2/73
+.IFJcode17                                                                      #     3/73
+JUMP $$scope                                                                    #     4/73
+LABEL $$scope                                                                   #     6/73
+DEFVAR GF@&pomInteger                                                           #     7/73
+MOVE GF@&pomInteger int@0                                                       #     8/73
+DEFVAR GF@&pomString                                                            #     9/73
+MOVE GF@&pomString string@                                                      #    10/73
+DEFVAR GF@&pomFloat                                                             #    11/73
+MOVE GF@&pomFloat float@0                                                       #    12/73
+DEFVAR GF@&pomBool                                                              #    13/73
+MOVE GF@&pomBool bool@false                                                     #    14/73
+DEFVAR GF@&pomCntr                                                              #    15/73
+MOVE GF@&pomCntr int@0                                                          #    16/73
+CREATEFRAME                                                                     #    17/73
+token: 57 ...                                                                   #    19/73
+token: 3 ... dim                                                                #    20/73
+token: 35 ... int                                                               #    21/73
+token: 0 ... as                                                                 #    22/73
+token: 12 ... integer                                                           #    23/73
+token: 57 ...                                                                   #    24/73
+DEFVAR TF@int                                                                   #    25/73
+MOVE TF@int int@0                                                               #    26/73
+token: 3 ... dim                                                                #    27/73
+token: 35 ... float                                                             #    28/73
+token: 0 ... as                                                                 #    29/73
+token: 5 ... double                                                             #    30/73
+token: 57 ...                                                                   #    31/73
+DEFVAR TF@float                                                                 #    32/73
+MOVE TF@float float@0                                                           #    33/73
+token: 3 ... dim                                                                #    34/73
+token: 35 ... str                                                               #    35/73
+token: 0 ... as                                                                 #    36/73
+token: 18 ... string                                                            #    37/73
+token: 57 ...                                                                   #    38/73
+DEFVAR TF@str                                                                   #    39/73
+MOVE TF@str string@                                                             #    40/73
+token: 57 ...                                                                   #    41/73
+token: 15 ... print                                                             #    42/73
+token: 35 ... int                                                               #    43/73
+|TOP--->|$|  SYMBOL                                                             #    44/73
+|TOP--->| |  STRING                                                             #    45/73
+token: 47 ... ;                                                                 #    46/73
+|TOP--->|i|]|$|  SYMBOL                                                         #    47/73
+|TOP--->|int| | |  STRING                                                       #    48/73
+|TOP--->|i|  SYMBOL                                                             #    49/73
+|TOP--->|int|  STRING                                                           #    50/73
+WRITE TF@int                                                                    #    51/73
+token: 35 ... float                                                             #    52/73
+|TOP--->|$|  SYMBOL                                                             #    53/73
+|TOP--->| |  STRING                                                             #    54/73
+token: 47 ... ;                                                                 #    55/73
+|TOP--->|i|]|$|  SYMBOL                                                         #    56/73
+|TOP--->|float| | |  STRING                                                     #    57/73
+|TOP--->|i|  SYMBOL                                                             #    58/73
+|TOP--->|float|  STRING                                                         #    59/73
+WRITE TF@float                                                                  #    60/73
+token: 35 ... str                                                               #    61/73
+|TOP--->|$|  SYMBOL                                                             #    62/73
+|TOP--->| |  STRING                                                             #    63/73
+token: 47 ... ;                                                                 #    64/73
+|TOP--->|i|]|$|  SYMBOL                                                         #    65/73
+|TOP--->|str| | |  STRING                                                       #    66/73
+|TOP--->|i|  SYMBOL                                                             #    67/73
+|TOP--->|str|  STRING                                                           #    68/73
+WRITE TF@str                                                                    #    69/73
+token: 57 ...                                                                   #    70/73
+token: 7 ... end                                                                #    71/73
+token: 17 ... scope                                                             #    72/73
+token: 58 ...                                                                   #    73/73
+

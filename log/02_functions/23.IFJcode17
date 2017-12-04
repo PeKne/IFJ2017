@@ -1,0 +1,54 @@
+# 2017-12-03 20:43:47.021188
+# SECTION: 02_functions
+# TEST: 23
+# INFO: invalid types without supported implicit conversion I
+# REQUIRED EXTENSIONS: 
+# ACTIVATED EXTENSIONS: 
+# STATE: FAIL
+# 
+# COMPILER STDERR:
+# symbol.c:268:retrieve_function_data(): Function not found
+# ERROR - 3 - sÃ©mantickÃ¡ chyba v programu â nedefinovanÃ¡ funkce/promeÌnnÃ¡, pokus o redefinici funkce/promeÌnnÃ©, atd.
+# 
+# INTERPRETER STDERR:
+# 
+# EXPECTED INTERPRETER STDOUT:
+
+
+
+# CURRENT INTERPRETER STDOUT:
+
+
+
+# INTERPRETER STDIN: 
+# 
+#
+# EXPECTED COMPILER EXIT CODE: 4
+# CURRENT COMPILER EXIT CODE: 3
+# EXPECTED INTERPRETER EXIT CODE: 0
+# CURRENT INTERPRETER EXIT CODE: None
+# PRICE: ---
+# GROOT: ---
+# 
+#   1: ' invalid types without supported implicit conversion I
+#   2: 
+#   3: function get_integer(a as integer) as integer
+#   4: 	return a
+#   5: end function
+#   6: 
+#   7: scope
+#   8: 	dim b as integer
+#   9: 	b = get_integer(!"foo")
+#  10: 	print b;
+#  11: end scope
+
+########################################
+
+token: 57 ...                                                                   #     1/8
+token: 57 ...                                                                   #     2/8
+token: 9 ... function                                                           #     3/8
+.IFJcode17                                                                      #     4/8
+JUMP $$scope                                                                    #     5/8
+token: 35 ... get_integer                                                       #     7/8
+ERROR on line 3                                                                 #     8/8
+
