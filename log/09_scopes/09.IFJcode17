@@ -1,0 +1,61 @@
+# 2017-12-05 00:24:15.595372
+# SECTION: 09_scopes
+# TEST: 09
+# INFO: sequence of scopes
+# REQUIRED EXTENSIONS: SCOPE
+# ACTIVATED EXTENSIONS: 
+# STATE: FAIL
+# 
+# COMPILER STDERR:
+# 
+# INTERPRETER STDERR:
+# 
+# EXPECTED INTERPRETER STDOUT:
+
+#  10 20 30 5
+
+
+# CURRENT INTERPRETER STDOUT:
+
+
+
+# INTERPRETER STDIN: 
+# 
+#
+# EXPECTED COMPILER EXIT CODE: 0
+# CURRENT COMPILER EXIT CODE: None
+# EXPECTED INTERPRETER EXIT CODE: 0
+# CURRENT INTERPRETER EXIT CODE: None
+# PRICE: ---
+# GROOT: ---
+# 
+#   1: ' sequence of scopes
+#   2: 
+#   3: SCOPE
+#   4: 
+#   5: 	dim a as integer = 5
+#   6: 
+#   7: 	SCOPE
+#   8: 		dim a as integer = 10
+#   9: 		print a;
+#  10: 	END SCOPE
+#  11: 
+#  12: 	SCOPE
+#  13: 		dim a as integer = 20
+#  14: 		print a;
+#  15: 	END SCOPE
+#  16: 
+#  17: 
+#  18: 	SCOPE
+#  19: 		dim a as integer = 30
+#  20: 		print a;
+#  21: 	END SCOPE
+#  22: 
+#  23: 	print a;
+#  24: 
+#  25: END SCOPE
+
+########################################
+
+# ---
+

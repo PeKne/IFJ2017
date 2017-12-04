@@ -1,0 +1,134 @@
+# 2017-12-05 00:24:15.314561
+# SECTION: 05_conditions
+# TEST: 13
+# INFO: Compare equal input strings
+# REQUIRED EXTENSIONS: 
+# ACTIVATED EXTENSIONS: 
+# STATE: FAIL
+# 
+# COMPILER STDERR:
+# 
+# INTERPRETER STDERR:
+# Executing instruction: IJUMP at line: 2 with following arguments:
+# Executing instruction: ILABEL at line: 4 with following arguments:
+# Executing instruction: IDEFVAR at line: 5 with following arguments:
+# Dest: GF@&pomInteger
+# Executing instruction: IMOVE at line: 6 with following arguments:
+# Arg1: Const@=0(int)
+# Dest: GF@&pomInteger()
+# Executing instruction: IDEFVAR at line: 7 with following arguments:
+# Dest: GF@&pomString
+# Executing instruction: IMOVE at line: 8 with following arguments:
+# Arg1: Const@=(string)
+# Dest: GF@&pomString()
+# Executing instruction: IDEFVAR at line: 9 with following arguments:
+# Dest: GF@&pomFloat
+# Executing instruction: IMOVE at line: 10 with following arguments:
+# Arg1: Const@=0(double)
+# Dest: GF@&pomFloat()
+# Executing instruction: IDEFVAR at line: 11 with following arguments:
+# Dest: GF@&pomBool
+# Executing instruction: IMOVE at line: 12 with following arguments:
+# Arg1: Const@=false(bool)
+# Dest: GF@&pomBool()
+# Executing instruction: IDEFVAR at line: 13 with following arguments:
+# Dest: GF@&pomCntr
+# Executing instruction: IMOVE at line: 14 with following arguments:
+# Arg1: Const@=0(int)
+# Dest: GF@&pomCntr()
+# Executing instruction: ICREATEFRAME at line: 15 with following arguments:
+# Executing instruction: IDEFVAR at line: 17 with following arguments:
+# Dest: TF@a
+# Executing instruction: IMOVE at line: 18 with following arguments:
+# Arg1: Const@=(string)
+# Dest: TF@a()
+# Executing instruction: IDEFVAR at line: 19 with following arguments:
+# Dest: TF@b
+# Executing instruction: IMOVE at line: 20 with following arguments:
+# Arg1: Const@=(string)
+# Dest: TF@b()
+# Executing instruction: IREAD at line: 21 with following arguments:
+# Dest: TF@a=(string)
+# Executing instruction: IREAD at line: 22 with following arguments:
+# Dest: TF@b=(string)
+# Executing instruction: IMOVE at line: 23 with following arguments:
+# Arg1: TF@a=Ahojky(string)
+# Dest: GF@&pomString=(string)
+# Executing instruction: IEQ at line: 24 with following arguments:
+# Arg1: TF@a=Ahojky(string)
+# Arg2: TF@b=Ahojky(string)
+# Dest: GF@&pomBool=false(bool)
+# Executing instruction: IJUMPIFNEQ at line: 25 with following arguments:
+# Arg1: GF@&pomBool=true(bool)
+# Arg2: Const@=true(bool)
+# Executing instruction: IWRITE at line: 26 with following arguments:
+# Arg1: Const@=42(int)
+# Executing instruction: IJUMP at line: 27 with following arguments:
+# Executing instruction: ILABEL at line: 30 with following arguments:
+# Executing instruction: IGROOT at line: 32 with following arguments:
+# I am Groot at 32 (136).
+# 
+# STDOUT DIFF:
+# --- expected
+# +++ actual
+# @@ -1 +1 @@
+
+# -? ?  42
+# + 42
+
+# INTERPRETER STDIN: 
+# Ahojky
+# Ahojky
+#
+# EXPECTED COMPILER EXIT CODE: 0
+# CURRENT COMPILER EXIT CODE: 0
+# EXPECTED INTERPRETER EXIT CODE: 0
+# CURRENT INTERPRETER EXIT CODE: 0
+# PRICE: ---
+# GROOT: 136
+# 
+#   1: ' Compare equal input strings
+#   2: scope
+#   3: 
+#   4: 	dim a as string
+#   5: 	dim b as string
+#   6: 	input a
+#   7: 	input b
+#   8: 	if a = b then
+#   9: 		print 42;
+#  10: 	else
+#  11: 		print 43;	
+#  12: 	end if
+#  13: end scope
+
+########################################
+
+.IFJcode17                                                                      #     1/30
+JUMP $$scope                                                                    #     2/30
+LABEL $$scope                                                                   #     4/30
+DEFVAR GF@&pomInteger                                                           #     5/30
+MOVE GF@&pomInteger int@0                                                       #     6/30
+DEFVAR GF@&pomString                                                            #     7/30
+MOVE GF@&pomString string@                                                      #     8/30
+DEFVAR GF@&pomFloat                                                             #     9/30
+MOVE GF@&pomFloat float@0                                                       #    10/30
+DEFVAR GF@&pomBool                                                              #    11/30
+MOVE GF@&pomBool bool@false                                                     #    12/30
+DEFVAR GF@&pomCntr                                                              #    13/30
+MOVE GF@&pomCntr int@0                                                          #    14/30
+CREATEFRAME                                                                     #    15/30
+DEFVAR TF@a                                                                     #    17/30
+MOVE TF@a string@                                                               #    18/30
+DEFVAR TF@b                                                                     #    19/30
+MOVE TF@b string@                                                               #    20/30
+READ TF@a string                                                                #    21/30
+READ TF@b string                                                                #    22/30
+MOVE GF@&pomString TF@a                                                         #    23/30
+EQ GF@&pomBool TF@a TF@b                                                        #    24/30
+JUMPIFNEQ $$else_1 GF@&pomBool bool@true                                        #    25/30
+WRITE int@42                                                                    #    26/30
+JUMP $$endif_1                                                                  #    27/30
+LABEL $$else_1                                                                  #    28/30
+WRITE int@43                                                                    #    29/30
+LABEL $$endif_1                                                                 #    30/30
+

@@ -1,0 +1,67 @@
+# 2017-12-05 00:24:15.606187
+# SECTION: 13_cycles
+# TEST: 06
+# INFO: Exit in nested loops
+# REQUIRED EXTENSIONS: CYCLES
+# ACTIVATED EXTENSIONS: 
+# STATE: FAIL
+# 
+# COMPILER STDERR:
+# 
+# INTERPRETER STDERR:
+# 
+# EXPECTED INTERPRETER STDOUT:
+
+#  1 2 3 4 5 6 7 8 9 10 11, 1 2 3 4 5 6 7 8 9 10 23, 1 2 3 4 5 6 7 8 9 10 35, 1 2 3 4 5 6 7 8 9 10 47, 1 2 3 4 5 6 7 8 9 10 59, 1 2 3 4 5 6 7 8 9 10 71, 1 2 3 4 5 6 7 8 9 10 83, 1 2 3 4 5 6 7 8 9 10 95, 1 2 3 4 5 6 7 8 9 10 107
+
+
+# CURRENT INTERPRETER STDOUT:
+
+
+
+# INTERPRETER STDIN: 
+# 
+#
+# EXPECTED COMPILER EXIT CODE: 0
+# CURRENT COMPILER EXIT CODE: None
+# EXPECTED INTERPRETER EXIT CODE: 0
+# CURRENT INTERPRETER EXIT CODE: None
+# PRICE: ---
+# GROOT: ---
+# 
+#   1: 'Exit in nested loops
+#   2: 
+#   3: scope
+#   4: 	dim i as integer
+#   5: 	dim j as integer
+#   6: 
+#   7: 	do
+#   8: 		i = i + 1
+#   9: 		j = 0
+#  10: 
+#  11: 		do until j > 100
+#  12: 			j = j + 1
+#  13: 
+#  14: 			if j > 10 then
+#  15: 				exit do
+#  16: 			else
+#  17: 				i = i + 1
+#  18: 			end if
+#  19: 			print j;
+#  20: 		loop
+#  21: 
+#  22: 		print i;
+#  23: 
+#  24: 		if i > 100 then
+#  25: 			exit do
+#  26: 		else
+#  27: 			i = i + 1
+#  28: 		end if
+#  29: 		print !",";
+#  30: 	loop
+#  31: end scope
+
+########################################
+
+# ---
+

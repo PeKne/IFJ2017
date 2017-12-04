@@ -1,0 +1,90 @@
+# 2017-12-05 00:24:14.982238
+# SECTION: 02_functions
+# TEST: 38
+# INFO: Scope in function
+# REQUIRED EXTENSIONS: SCOPE
+# ACTIVATED EXTENSIONS: 
+# STATE: FAIL
+# 
+# COMPILER STDERR:
+# 
+# INTERPRETER STDERR:
+# 
+# EXPECTED INTERPRETER STDOUT:
+
+#  216
+
+
+# CURRENT INTERPRETER STDOUT:
+
+
+
+# INTERPRETER STDIN: 
+# 
+#
+# EXPECTED COMPILER EXIT CODE: 0
+# CURRENT COMPILER EXIT CODE: None
+# EXPECTED INTERPRETER EXIT CODE: 0
+# CURRENT INTERPRETER EXIT CODE: None
+# PRICE: ---
+# GROOT: ---
+# 
+#   1: ' Scope in function
+#   2: function foo() as integer
+#   3:     dim vysledek as integer
+#   4:     vysledek = 10
+#   5:     dim mezihodnota as integer
+#   6:     scope
+#   7:         dim vysledek as integer
+#   8:         vysledek = 5
+#   9:     end scope
+#  10:     vysledek = mezihodnota + vysledek
+#  11:     
+#  12:     scope
+#  13:         dim mezihodnota as integer
+#  14:         mezihodnota = 33
+#  15:         scope
+#  16:             dim mezihodnota as integer
+#  17:             mezihodnota = 3
+#  18:             vysledek = vysledek + mezihodnota
+#  19:         end scope
+#  20:         vysledek = vysledek + mezihodnota
+#  21:     end scope
+#  22:     
+#  23:     vysledek = vysledek + mezihodnota
+#  24:     
+#  25:     if mezihodnota > 0 then 
+#  26:         dim mezihodnota as integer
+#  27:         mezihodnota = 45
+#  28:         vysledek = vysledek + mezihodnota
+#  29:     else
+#  30:     
+#  31:     end if
+#  32:     
+#  33:     dim i as integer = 8
+#  34:     do while i < 10
+#  35:         dim mezihodnota as integer
+#  36:         mezihodnota = 76
+#  37:         vysledek = vysledek + mezihodnota
+#  38:             scope
+#  39:                 mezihodnota = 9
+#  40:                 vysledek = vysledek + mezihodnota    
+#  41:             end scope
+#  42:         i = i + 1
+#  43:     loop
+#  44:     vysledek = vysledek + mezihodnota
+#  45:     
+#  46:     return vysledek
+#  47:     
+#  48: end function
+#  49: 
+#  50: scope
+#  51:     dim vysledek as integer
+#  52:     vysledek = foo()
+#  53:     print vysledek;
+#  54: end scope
+
+########################################
+
+# ---
+

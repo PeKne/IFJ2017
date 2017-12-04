@@ -1,0 +1,68 @@
+# 2017-12-05 00:24:14.034942
+# SECTION: 01_basic
+# TEST: 09
+# INFO: Use all data types
+# REQUIRED EXTENSIONS: 
+# ACTIVATED EXTENSIONS: 
+# STATE: FAIL
+# 
+# COMPILER STDERR:
+# Wrong escape sequence in string
+# ERROR - 1 - chyba v programu v rÃ¡mci lexikÃ¡lnÃ­ analÃ½zy (chybnÃ¡ struktura aktuÃ¡lnÃ­ho lexÃ©mu).
+# 
+# INTERPRETER STDERR:
+# 
+# EXPECTED INTERPRETER STDOUT:
+
+
+
+# CURRENT INTERPRETER STDOUT:
+
+
+
+# INTERPRETER STDIN: 
+# 
+#
+# EXPECTED COMPILER EXIT CODE: 0
+# CURRENT COMPILER EXIT CODE: 1
+# EXPECTED INTERPRETER EXIT CODE: 0
+# CURRENT INTERPRETER EXIT CODE: None
+# PRICE: ---
+# GROOT: ---
+# 
+#   1: ' Use all data types
+#   2: scope
+#   3: 	
+#   4: 	dim _a669 as integer = 445655454
+#   5: 	dim b__67678 as string = !"FGGHGHHghjhhjhj \056 \t ahoj \n iloilailaeiii"
+#   6: 	dim ___ced65689 as double = 56758.56686
+#   7: 	dim ___d___6778GHGKjhhj as double = 566678.658678e+10
+#   8: 	dim GHG__e__676767 as double = 566678.658678e-10
+#   9: 	dim __6767hjhjGHHJKH as double = 566678.658678e10
+#  10: 
+#  11: end scope
+
+########################################
+
+.IFJcode17                                                                      #     1/23
+JUMP $$scope                                                                    #     2/23
+LABEL $$scope                                                                   #     4/23
+DEFVAR GF@&pomInteger                                                           #     5/23
+MOVE GF@&pomInteger int@0                                                       #     6/23
+DEFVAR GF@&pomString                                                            #     7/23
+MOVE GF@&pomString string@                                                      #     8/23
+DEFVAR GF@&pomFloat                                                             #     9/23
+MOVE GF@&pomFloat float@0                                                       #    10/23
+DEFVAR GF@&pomBool                                                              #    11/23
+MOVE GF@&pomBool bool@false                                                     #    12/23
+DEFVAR GF@&pomCntr                                                              #    13/23
+MOVE GF@&pomCntr int@0                                                          #    14/23
+CREATEFRAME                                                                     #    15/23
+DEFVAR TF@_a669                                                                 #    17/23
+MOVE TF@_a669 int@0                                                             #    18/23
+MOVE GF@&pomInteger int@445655454                                               #    19/23
+MOVE TF@_a669 GF@&pomInteger                                                    #    20/23
+DEFVAR TF@b__67678                                                              #    21/23
+MOVE TF@b__67678 string@                                                        #    22/23
+ERROR on line 5                                                                 #    23/23
+

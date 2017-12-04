@@ -1,0 +1,67 @@
+# 2017-12-05 00:24:16.239398
+# SECTION: 96_programs
+# TEST: 01
+# INFO: vypocet prvocisla
+# REQUIRED EXTENSIONS: BOOLOP
+# ACTIVATED EXTENSIONS: 
+# STATE: FAIL
+# 
+# COMPILER STDERR:
+# 
+# INTERPRETER STDERR:
+# 
+# EXPECTED INTERPRETER STDOUT:
+
+# ? Cislo  13 je prvocislo
+
+
+# CURRENT INTERPRETER STDOUT:
+
+
+
+# INTERPRETER STDIN: 
+# 13
+#
+# EXPECTED COMPILER EXIT CODE: 0
+# CURRENT COMPILER EXIT CODE: None
+# EXPECTED INTERPRETER EXIT CODE: 0
+# CURRENT INTERPRETER EXIT CODE: None
+# PRICE: ---
+# GROOT: ---
+# 
+#   1: 'vypocet prvocisla
+#   2: function prvocislo(a as integer) as boolean
+#   3:    
+#   4:     dim delitel as integer = a - 1
+#   5:     
+#   6:     do while delitel > 1
+#   7:     
+#   8:         if ((a \ delitel) * delitel) = a then
+#   9:             return false
+#  10:         else
+#  11:         end if
+#  12:         delitel = delitel - 1
+#  13:     loop
+#  14:     
+#  15:    
+#  16:     
+#  17:     return true
+#  18: end function
+#  19: 
+#  20: scope
+#  21: 
+#  22:     dim cislo as integer
+#  23:     input cislo
+#  24:     dim overeni as boolean 
+#  25:     overeni = prvocislo(cislo)
+#  26:     if overeni then
+#  27:         print !"Cislo "; cislo ; !" je prvocislo";
+#  28:     else
+#  29:         print !"Cislo "; cislo ; !" neni prvocislo";
+#  30:     end if
+#  31: end scope
+
+########################################
+
+# ---
+

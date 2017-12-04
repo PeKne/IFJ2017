@@ -1,0 +1,79 @@
+# 2017-12-05 00:24:16.274164
+# SECTION: 96_programs
+# TEST: 10
+# INFO: GCD of Two Numbers using Recursion
+# REQUIRED EXTENSIONS: SCOPE
+# ACTIVATED EXTENSIONS: 
+# STATE: FAIL
+# 
+# COMPILER STDERR:
+# 
+# INTERPRETER STDERR:
+# 
+# EXPECTED INTERPRETER STDOUT:
+
+# Enter two positive integers:
+# ? 
+# ? 
+# G.C.D of 366 and 60 is 6
+
+
+# CURRENT INTERPRETER STDOUT:
+
+
+
+# INTERPRETER STDIN: 
+# 366
+# 60
+#
+# EXPECTED COMPILER EXIT CODE: 0
+# CURRENT COMPILER EXIT CODE: None
+# EXPECTED INTERPRETER EXIT CODE: 0
+# CURRENT INTERPRETER EXIT CODE: None
+# PRICE: ---
+# GROOT: ---
+# 
+#   1: ' GCD of Two Numbers using Recursion
+#   2: declare function modulo(a as integer, b as integer) as integer
+#   3: 
+#   4: function hcf(n1 as integer, n2 as integer) as integer
+#   5:     
+#   6:     if n2 <> 0 then
+#   7:         dim vysledek as integer
+#   8:         dim modulo_ as integer
+#   9:         modulo_ = modulo(n1, n2)
+#  10:         vysledek = hcf(n2, modulo_)
+#  11:        return vysledek
+#  12:     else 
+#  13:        return n1
+#  14:     end if
+#  15: 
+#  16: end function
+#  17: 
+#  18: function modulo(delitel as integer, delenec as integer) as integer
+#  19:     dim vysledek as integer
+#  20:     vysledek = delitel - (delitel\delenec)*delenec
+#  21:     return vysledek
+#  22: end function
+#  23: 
+#  24: scope
+#  25:     
+#  26:     dim n1 as integer
+#  27:     dim n2 as integer
+#  28:     print !"Enter two positive integers:\n";
+#  29:     input n1
+#  30:     print !"\n";
+#  31:     input n2
+#  32:     print !"\n";
+#  33:     
+#  34:     dim vysledek as integer
+#  35:     vysledek = hcf(n1, n2)
+#  36:     print !"G.C.D of"; n1; !" and"; n2 ; !" is"; vysledek;
+#  37: 
+#  38: 
+#  39: end scope
+
+########################################
+
+# ---
+

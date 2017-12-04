@@ -1,0 +1,59 @@
+# 2017-12-05 00:24:16.332708
+# SECTION: 99_benchmarks
+# TEST: 11
+# INFO: big count of function parameters
+# REQUIRED EXTENSIONS: UNARY
+# ACTIVATED EXTENSIONS: 
+# STATE: FAIL
+# 
+# COMPILER STDERR:
+# 
+# INTERPRETER STDERR:
+# 
+# EXPECTED INTERPRETER STDOUT:
+
+# OK
+
+
+# CURRENT INTERPRETER STDOUT:
+
+
+
+# INTERPRETER STDIN: 
+# 
+#
+# EXPECTED COMPILER EXIT CODE: 0
+# CURRENT COMPILER EXIT CODE: None
+# EXPECTED INTERPRETER EXIT CODE: 0
+# CURRENT INTERPRETER EXIT CODE: None
+# PRICE: ---
+# GROOT: ---
+# 
+#   1: ' big count of function parameters
+#   2:     
+#   3: function testing(n as integer, a AS double, b AS double, c AS double, d AS integer, e AS double, f AS double, g AS integer, h AS integer, i AS integer, j AS double, k AS double, l AS integer, m AS double, o AS integer, p AS integer, q AS integer, r AS double, s AS double, t AS double, u AS double, v AS integer, w AS double, x AS double, y AS integer, z AS integer, aa AS double, ab AS double, ac AS integer, ad AS integer, ae AS integer, af AS double, ag AS integer, ah AS double, ai AS integer, aj AS integer, ak AS double, al AS double, am AS double, an AS double, ao AS integer, ap AS integer, aq AS double, ar AS integer, at AS integer, au AS double, av AS integer, aw AS integer, ax AS integer, ay AS integer, az AS integer, ba AS double, bb AS integer, bc AS double, bd AS double, be AS double, bf AS integer, bg AS double, bh AS integer, bi AS integer, bj AS integer, bk AS integer, bl AS integer, bm AS double, bn AS double, bo AS integer, bp AS double, bq AS double, br AS integer, bs AS integer, bt AS double, bu AS double, bv AS integer, bw AS double, bx AS integer, by AS integer, bz AS double, ca AS double, cb AS double, cc AS integer, cd AS double, ce AS integer, cf AS integer, cg AS double, ch AS double, ci AS integer, cj AS double, ck AS double, cl AS double, cm AS double, cn AS integer, co AS double, cp AS double, cq AS double, cr AS integer, cs AS integer, ct AS integer, cu AS double, cv AS integer, cw AS double, cx AS integer) as integer
+#   4:     dim res as integer
+#   5:     if n > 0 then
+#   6:         n = n - 1
+#   7:         res = testing(n, a, b, c, d, e, f, g, h, i, j, k, l, m, o, p, q, r, s, t, u, v, w, x, y, z, aa, ab, ac, ad, ae, af, ag, ah, ai, aj, ak, al, am, an, ao, ap, aq, ar, at, au, av, aw, ax, ay, az, ba, bb, bc, bd, be, bf, bg, bh, bi, bj, bk, bl, bm, bn, bo, bp, bq, br, bs, bt, bu, bv, bw, bx, by, bz, ca, cb, cc, cd, ce, cf, cg, ch, ci, cj, ck, cl, cm, cn, co, cp, cq, cr, cs, ct, cu, cv, cw, cx)
+#   8:         return res
+#   9:     else 
+#  10:         return a - b * c + d * e + f * g * h * i - j * k + l - m - o * p - q + r - s - t - u + v - w - x - y * z - aa + ab * ac - ad - ae * af - ag + ah * ai * aj + ak * al - am * an * ao + ap + aq + ar + at + au * av * aw + ax + ay + az - ba + bb + bc - bd - be * bf * bg - bh - bi + bj + bk - bl * bm - bn * bo * bp - bq * br * bs - bt + bu + bv - bw * bx * by - bz * ca * cb * cc + cd - ce * cf + cg * ch + ci - cj - ck - cl * cm + cn * co - cp - cq * cr - cs * ct + cu - cv * cw * cx 
+#  11:     end if
+#  12: end function
+#  13: 
+#  14: scope
+#  15:     dim res as integer
+#  16:     res = testing(10, 4, 1, 1, 8, 15, 8, 1, 7, 12, 4, 10, 0, 2, 8, 0, 7, 6, 15, 3, 5, 14, 11, 2, 5, 4, 6, 2, 13, 12, 0, 14, 10, 5, 4, 6, 13, 7, 10, 11, 13, 9, 12, 0, 7, 5, 13, 14, 4, 15, 13, 12, 5, 9, 14, 4, 14, 15, 5, 12, 9, 8, 3, 14, 11, 0, 3, 9, 3, 3, 14, 6, 7, 11, 4, 4, 12, 8, 11, 11, 4, 4, 4, 14, 3, 12, 6, 5, 11, 15, 3, 7, 0, 14, 5, 10, 15, 5, 1, 12, 5)
+#  17:     if res = -12697 then
+#  18:         print !"OK";
+#  19:     else
+#  20:         print !"NONOK";
+#  21:     end if
+#  22: end scope
+#  23: 
+
+########################################
+
+# ---
+

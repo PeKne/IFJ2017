@@ -1,0 +1,69 @@
+# 2017-12-05 00:24:15.200976
+# SECTION: 04_expressions
+# TEST: 26
+# INFO: Too Many brackets
+# REQUIRED EXTENSIONS: 
+# ACTIVATED EXTENSIONS: 
+# STATE: FAIL
+# 
+# COMPILER STDERR:
+# In if and loop statement can only be relational operators.
+# ERROR -  6 - ostatnÃ­ sÃ©mantickÃ© chyby.
+# 
+# INTERPRETER STDERR:
+# 
+# EXPECTED INTERPRETER STDOUT:
+
+#  1600000
+
+
+# CURRENT INTERPRETER STDOUT:
+
+
+
+# INTERPRETER STDIN: 
+# 
+#
+# EXPECTED COMPILER EXIT CODE: 0
+# CURRENT COMPILER EXIT CODE: 6
+# EXPECTED INTERPRETER EXIT CODE: 0
+# CURRENT INTERPRETER EXIT CODE: None
+# PRICE: ---
+# GROOT: ---
+# 
+#   1: ' Too Many brackets
+#   2: scope
+#   3: dim a as integer = 10
+#   4: dim b as integer = 40
+#   5: print (((((((((((((((((((((((((((((((a))))))))))))))))*(((((((((((((((((((((((((((((((b)*a)))))))))))))))))*(((((((((((((((((((((((((((((((b)))))))))))))))))))))))))))))))))))))))))))))))))))))))))))*(((((((((((((((((((((((((((((((a)))))))))))))))))))))))))))))));
+#   6: end scope
+
+########################################
+
+.IFJcode17                                                                      #     1/28
+JUMP $$scope                                                                    #     2/28
+LABEL $$scope                                                                   #     4/28
+DEFVAR GF@&pomInteger                                                           #     5/28
+MOVE GF@&pomInteger int@0                                                       #     6/28
+DEFVAR GF@&pomString                                                            #     7/28
+MOVE GF@&pomString string@                                                      #     8/28
+DEFVAR GF@&pomFloat                                                             #     9/28
+MOVE GF@&pomFloat float@0                                                       #    10/28
+DEFVAR GF@&pomBool                                                              #    11/28
+MOVE GF@&pomBool bool@false                                                     #    12/28
+DEFVAR GF@&pomCntr                                                              #    13/28
+MOVE GF@&pomCntr int@0                                                          #    14/28
+CREATEFRAME                                                                     #    15/28
+DEFVAR TF@a                                                                     #    17/28
+MOVE TF@a int@0                                                                 #    18/28
+MOVE GF@&pomInteger int@10                                                      #    19/28
+MOVE TF@a GF@&pomInteger                                                        #    20/28
+DEFVAR TF@b                                                                     #    21/28
+MOVE TF@b int@0                                                                 #    22/28
+MOVE GF@&pomInteger int@40                                                      #    23/28
+MOVE TF@b GF@&pomInteger                                                        #    24/28
+WRITE TF@a                                                                      #    25/28
+WRITE TF@b                                                                      #    26/28
+WRITE TF@a                                                                      #    27/28
+ERROR on line 5                                                                 #    28/28
+

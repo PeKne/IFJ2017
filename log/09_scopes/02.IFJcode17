@@ -1,0 +1,54 @@
+# 2017-12-05 00:24:15.594945
+# SECTION: 09_scopes
+# TEST: 02
+# INFO: declaration in while block
+# REQUIRED EXTENSIONS: SCOPE
+# ACTIVATED EXTENSIONS: 
+# STATE: FAIL
+# 
+# COMPILER STDERR:
+# 
+# INTERPRETER STDERR:
+# 
+# EXPECTED INTERPRETER STDOUT:
+
+#  669878 669878 669878 669878 669878
+#  1234 1234 1234 1234 1234 1234
+
+
+# CURRENT INTERPRETER STDOUT:
+
+
+
+# INTERPRETER STDIN: 
+# 
+#
+# EXPECTED COMPILER EXIT CODE: 0
+# CURRENT COMPILER EXIT CODE: None
+# EXPECTED INTERPRETER EXIT CODE: 0
+# CURRENT INTERPRETER EXIT CODE: None
+# PRICE: ---
+# GROOT: ---
+# 
+#   1: ' declaration in while block
+#   2: scope
+#   3:     dim counter as integer = 10
+#   4: 
+#   5:     do while counter < 15
+#   6:         dim a as integer = 669878
+#   7:         print a;
+#   8:         counter = counter + 1
+#   9:     loop
+#  10:     print !"\n";
+#  11:     counter = 100
+#  12:     do while counter < 106
+#  13:         dim a as integer = 1234
+#  14:         print a;
+#  15:         counter = counter + 1
+#  16:     loop
+#  17: end scope
+
+########################################
+
+# ---
+

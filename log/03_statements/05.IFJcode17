@@ -1,0 +1,129 @@
+# 2017-12-05 00:24:15.039329
+# SECTION: 03_statements
+# TEST: 05
+# INFO: input statement
+# REQUIRED EXTENSIONS: 
+# ACTIVATED EXTENSIONS: 
+# STATE: FAIL
+# 
+# COMPILER STDERR:
+# 
+# INTERPRETER STDERR:
+# Executing instruction: IJUMP at line: 2 with following arguments:
+# Executing instruction: ILABEL at line: 4 with following arguments:
+# Executing instruction: IDEFVAR at line: 5 with following arguments:
+# Dest: GF@&pomInteger
+# Executing instruction: IMOVE at line: 6 with following arguments:
+# Arg1: Const@=0(int)
+# Dest: GF@&pomInteger()
+# Executing instruction: IDEFVAR at line: 7 with following arguments:
+# Dest: GF@&pomString
+# Executing instruction: IMOVE at line: 8 with following arguments:
+# Arg1: Const@=(string)
+# Dest: GF@&pomString()
+# Executing instruction: IDEFVAR at line: 9 with following arguments:
+# Dest: GF@&pomFloat
+# Executing instruction: IMOVE at line: 10 with following arguments:
+# Arg1: Const@=0(double)
+# Dest: GF@&pomFloat()
+# Executing instruction: IDEFVAR at line: 11 with following arguments:
+# Dest: GF@&pomBool
+# Executing instruction: IMOVE at line: 12 with following arguments:
+# Arg1: Const@=false(bool)
+# Dest: GF@&pomBool()
+# Executing instruction: IDEFVAR at line: 13 with following arguments:
+# Dest: GF@&pomCntr
+# Executing instruction: IMOVE at line: 14 with following arguments:
+# Arg1: Const@=0(int)
+# Dest: GF@&pomCntr()
+# Executing instruction: ICREATEFRAME at line: 15 with following arguments:
+# Executing instruction: IDEFVAR at line: 17 with following arguments:
+# Dest: TF@a
+# Executing instruction: IMOVE at line: 18 with following arguments:
+# Arg1: Const@=0(int)
+# Dest: TF@a()
+# Executing instruction: IREAD at line: 19 with following arguments:
+# Dest: TF@a=0(int)
+# Executing instruction: IDEFVAR at line: 20 with following arguments:
+# Dest: TF@b
+# Executing instruction: IMOVE at line: 21 with following arguments:
+# Arg1: Const@=(string)
+# Dest: TF@b()
+# Executing instruction: IREAD at line: 22 with following arguments:
+# Dest: TF@b=(string)
+# Executing instruction: IDEFVAR at line: 23 with following arguments:
+# Dest: TF@c
+# Executing instruction: IMOVE at line: 24 with following arguments:
+# Arg1: Const@=0(double)
+# Dest: TF@c()
+# Executing instruction: IREAD at line: 25 with following arguments:
+# Dest: TF@c=0(double)
+# Executing instruction: IREAD at line: 26 with following arguments:
+# Dest: TF@c=78.59999999999999(double)
+# Executing instruction: IGROOT at line: 28 with following arguments:
+# I am Groot at 28 (124).
+# 
+# EXPECTED INTERPRETER STDOUT:
+
+# ? ? ? ? 
+
+
+# CURRENT INTERPRETER STDOUT:
+
+
+
+# INTERPRETER STDIN: 
+#   42
+# "foo bar"   
+# 78.6
+# 77E6
+# 
+#
+# EXPECTED COMPILER EXIT CODE: 0
+# CURRENT COMPILER EXIT CODE: 0
+# EXPECTED INTERPRETER EXIT CODE: 0
+# CURRENT INTERPRETER EXIT CODE: 0
+# PRICE: ---
+# GROOT: 124
+# 
+#   1: ' input statement
+#   2: scope
+#   3: 	dim a as integer
+#   4: 	input a
+#   5: 
+#   6: 	dim b as string
+#   7: 	input b
+#   8: 
+#   9: 	dim c as double
+#  10: 	input c
+#  11: 	' exponent
+#  12: 	input c
+#  13: end scope
+
+########################################
+
+.IFJcode17                                                                      #     1/26
+JUMP $$scope                                                                    #     2/26
+LABEL $$scope                                                                   #     4/26
+DEFVAR GF@&pomInteger                                                           #     5/26
+MOVE GF@&pomInteger int@0                                                       #     6/26
+DEFVAR GF@&pomString                                                            #     7/26
+MOVE GF@&pomString string@                                                      #     8/26
+DEFVAR GF@&pomFloat                                                             #     9/26
+MOVE GF@&pomFloat float@0                                                       #    10/26
+DEFVAR GF@&pomBool                                                              #    11/26
+MOVE GF@&pomBool bool@false                                                     #    12/26
+DEFVAR GF@&pomCntr                                                              #    13/26
+MOVE GF@&pomCntr int@0                                                          #    14/26
+CREATEFRAME                                                                     #    15/26
+DEFVAR TF@a                                                                     #    17/26
+MOVE TF@a int@0                                                                 #    18/26
+READ TF@a int                                                                   #    19/26
+DEFVAR TF@b                                                                     #    20/26
+MOVE TF@b string@                                                               #    21/26
+READ TF@b string                                                                #    22/26
+DEFVAR TF@c                                                                     #    23/26
+MOVE TF@c float@0                                                               #    24/26
+READ TF@c float                                                                 #    25/26
+READ TF@c float                                                                 #    26/26
+

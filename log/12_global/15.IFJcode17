@@ -1,0 +1,44 @@
+# 2017-12-05 00:24:15.604109
+# SECTION: 12_global
+# TEST: 15
+# INFO: Input into shared
+# REQUIRED EXTENSIONS: GLOBAL
+# ACTIVATED EXTENSIONS: 
+# STATE: FAIL
+# 
+# COMPILER STDERR:
+# 
+# INTERPRETER STDERR:
+# 
+# EXPECTED INTERPRETER STDOUT:
+
+# ?  12
+
+
+# CURRENT INTERPRETER STDOUT:
+
+
+
+# INTERPRETER STDIN: 
+# 12
+#
+# EXPECTED COMPILER EXIT CODE: 0
+# CURRENT COMPILER EXIT CODE: None
+# EXPECTED INTERPRETER EXIT CODE: 0
+# CURRENT INTERPRETER EXIT CODE: None
+# PRICE: ---
+# GROOT: ---
+# 
+#   1: ' Input into shared
+#   2: 
+#   3: dim shared a as integer
+#   4: 
+#   5: scope
+#   6:     input a
+#   7:     print a;
+#   8: end scope
+
+########################################
+
+# ---
+

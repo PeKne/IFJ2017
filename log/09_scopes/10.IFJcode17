@@ -1,0 +1,61 @@
+# 2017-12-05 00:24:15.595520
+# SECTION: 09_scopes
+# TEST: 10
+# INFO: Scope in if
+# REQUIRED EXTENSIONS: SCOPE
+# ACTIVATED EXTENSIONS: 
+# STATE: FAIL
+# 
+# COMPILER STDERR:
+# 
+# INTERPRETER STDERR:
+# 
+# EXPECTED INTERPRETER STDOUT:
+
+#  42
+
+
+# CURRENT INTERPRETER STDOUT:
+
+
+
+# INTERPRETER STDIN: 
+# 
+#
+# EXPECTED COMPILER EXIT CODE: 0
+# CURRENT COMPILER EXIT CODE: None
+# EXPECTED INTERPRETER EXIT CODE: 0
+# CURRENT INTERPRETER EXIT CODE: None
+# PRICE: ---
+# GROOT: ---
+# 
+#   1: ' Scope in if
+#   2: 
+#   3: SCOPE
+#   4: 
+#   5: 	dim a as integer = 31
+#   6: 
+#   7: 	if a > 10 then
+#   8: 		dim b as integer = 4
+#   9: 		scope
+#  10: 			dim b as integer = 45
+#  11: 			if a > 10 then
+#  12: 				dim b as integer = 42
+#  13: 				scope
+#  14: 
+#  15: 					print b;
+#  16: 
+#  17: 				end scope
+#  18: 
+#  19: 			end if
+#  20: 
+#  21: 		end scope
+#  22: 
+#  23: 	end if
+#  24: 
+#  25: END SCOPE
+
+########################################
+
+# ---
+

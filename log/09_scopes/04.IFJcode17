@@ -1,0 +1,111 @@
+# 2017-12-05 00:24:15.595159
+# SECTION: 09_scopes
+# TEST: 04
+# INFO: declaration in all condition branches
+# REQUIRED EXTENSIONS: SCOPE
+# ACTIVATED EXTENSIONS: 
+# STATE: FAIL
+# 
+# COMPILER STDERR:
+# 
+# INTERPRETER STDERR:
+# 
+# EXPECTED INTERPRETER STDOUT:
+
+#  42
+#  42
+#  42
+#  42
+#  42
+#  42
+#  42
+#  42
+#  42
+#  42
+#  74
+#  74
+#  74
+#  74
+#  74
+#  74
+#  74
+#  74
+#  74
+#  74
+#  74
+#  74
+#  74
+#  74
+#  13
+#  13
+#  13
+#  13
+#  13
+#  13
+#  13
+#  13
+#  13
+#  13
+#  13
+#  13
+#  13
+#  13
+#  11
+#  11
+#  11
+#  11
+#  11
+#  11
+#  11
+#  11
+#  11
+#  11
+
+
+# CURRENT INTERPRETER STDOUT:
+
+
+
+# INTERPRETER STDIN: 
+# 
+#
+# EXPECTED COMPILER EXIT CODE: 0
+# CURRENT COMPILER EXIT CODE: None
+# EXPECTED INTERPRETER EXIT CODE: 0
+# CURRENT INTERPRETER EXIT CODE: None
+# PRICE: ---
+# GROOT: ---
+# 
+#   1: ' declaration in all condition branches
+#   2: 
+#   3: scope
+#   4: 	dim i as integer = 24 * 2
+#   5: 
+#   6: 	do while i > 0
+#   7: 		if i > 38 then
+#   8: 			dim b as double = 42
+#   9: 			print b;
+#  10: 		else
+#  11: 			if i > 24 then
+#  12: 				dim b as double = 74
+#  13: 				print b;
+#  14: 			else
+#  15: 				if i > 10 then
+#  16: 					dim b as double = 13
+#  17: 					print b;
+#  18: 				else
+#  19: 					dim b as double = 11
+#  20: 					print b;
+#  21: 				end if
+#  22: 			end if
+#  23: 		end if
+#  24: 		print !"\n";
+#  25: 		i = i - 1.1
+#  26: 	loop
+#  27: 
+#  28: end scope
+
+########################################
+
+# ---
+

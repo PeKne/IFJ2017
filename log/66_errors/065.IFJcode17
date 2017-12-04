@@ -1,0 +1,45 @@
+# 2017-12-05 00:24:15.791525
+# SECTION: 66_errors
+# TEST: 065
+# INFO: function arguments without comma
+# REQUIRED EXTENSIONS: 
+# ACTIVATED EXTENSIONS: 
+# STATE: SUCCESS
+# 
+# COMPILER STDERR:
+# ERROR - 2 - chyba v programu v rÃ¡mci syntaktickÃ© analÃ½zy (chybnÃ¡ syntaxe programu).
+# 
+# INTERPRETER STDERR:
+# 
+# EXPECTED INTERPRETER STDOUT:
+
+
+
+# CURRENT INTERPRETER STDOUT:
+
+
+
+# INTERPRETER STDIN: 
+# 
+#
+# EXPECTED COMPILER EXIT CODE: 2
+# CURRENT COMPILER EXIT CODE: 2
+# EXPECTED INTERPRETER EXIT CODE: 0
+# CURRENT INTERPRETER EXIT CODE: None
+# PRICE: ---
+# GROOT: ---
+# 
+#   1: function foo(a as integer b as integer) as integer 
+#   2:  end function 
+#   3:  scope  
+#   4:  loop 
+#   5:  end scope
+
+########################################
+
+.IFJcode17                                                                      #     1/6
+JUMP $$scope                                                                    #     2/6
+rule_par                                                                        #     4/6
+rule next par                                                                   #     5/6
+ERROR on line 1                                                                 #     6/6
+

@@ -1,0 +1,78 @@
+# 2017-12-05 00:24:16.287321
+# SECTION: 97_optimizations
+# TEST: 03
+# INFO: simple constant propagation
+# REQUIRED EXTENSIONS: 
+# ACTIVATED EXTENSIONS: 
+# STATE: FAIL
+# 
+# COMPILER STDERR:
+# In if and loop statement can only be relational operators.
+# ERROR -  6 - ostatnÃ­ sÃ©mantickÃ© chyby.
+# 
+# INTERPRETER STDERR:
+# 
+# EXPECTED INTERPRETER STDOUT:
+
+#  25
+#  50
+#  75
+#  0.08
+#  15700
+# -1478.84
+
+
+# CURRENT INTERPRETER STDOUT:
+
+
+
+# INTERPRETER STDIN: 
+# 
+#
+# EXPECTED COMPILER EXIT CODE: 0
+# CURRENT COMPILER EXIT CODE: 6
+# EXPECTED INTERPRETER EXIT CODE: 0
+# CURRENT INTERPRETER EXIT CODE: None
+# PRICE: ---
+# GROOT: ---
+# 
+#   1: ' simple constant propagation
+#   2: 
+#   3: scope
+#   4: 	dim const as integer = 25
+#   5: 
+#   6: 	print const; !"\n";
+#   7: 	print const * 2; !"\n";
+#   8: 	print const * 2 + const; !"\n";
+#   9: 	print 2 / const; !"\n";
+#  10: 	print const * (const * const + 3); !"\n";
+#  11: 	print (const - 98) / (const + 6) * (const * const + 3); !"\n";
+#  12: 
+#  13: end scope
+
+########################################
+
+.IFJcode17                                                                      #     1/25
+JUMP $$scope                                                                    #     2/25
+LABEL $$scope                                                                   #     4/25
+DEFVAR GF@&pomInteger                                                           #     5/25
+MOVE GF@&pomInteger int@0                                                       #     6/25
+DEFVAR GF@&pomString                                                            #     7/25
+MOVE GF@&pomString string@                                                      #     8/25
+DEFVAR GF@&pomFloat                                                             #     9/25
+MOVE GF@&pomFloat float@0                                                       #    10/25
+DEFVAR GF@&pomBool                                                              #    11/25
+MOVE GF@&pomBool bool@false                                                     #    12/25
+DEFVAR GF@&pomCntr                                                              #    13/25
+MOVE GF@&pomCntr int@0                                                          #    14/25
+CREATEFRAME                                                                     #    15/25
+DEFVAR TF@const                                                                 #    17/25
+MOVE TF@const int@0                                                             #    18/25
+MOVE GF@&pomInteger int@25                                                      #    19/25
+MOVE TF@const GF@&pomInteger                                                    #    20/25
+WRITE TF@const                                                                  #    21/25
+WRITE string@\010                                                               #    22/25
+WRITE TF@const                                                                  #    23/25
+WRITE int@2                                                                     #    24/25
+ERROR on line 7                                                                 #    25/25
+

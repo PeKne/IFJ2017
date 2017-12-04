@@ -1,0 +1,54 @@
+# 2017-12-05 00:24:15.909002
+# SECTION: 66_errors
+# TEST: 131
+# INFO: lexical error
+# REQUIRED EXTENSIONS: 
+# ACTIVATED EXTENSIONS: 
+# STATE: SUCCESS
+# 
+# COMPILER STDERR:
+# LEX: Line: 2: In double value, after '.' must be a number!
+# ERROR - 1 - chyba v programu v rÃ¡mci lexikÃ¡lnÃ­ analÃ½zy (chybnÃ¡ struktura aktuÃ¡lnÃ­ho lexÃ©mu).
+# 
+# INTERPRETER STDERR:
+# 
+# EXPECTED INTERPRETER STDOUT:
+
+
+
+# CURRENT INTERPRETER STDOUT:
+
+
+
+# INTERPRETER STDIN: 
+# 
+#
+# EXPECTED COMPILER EXIT CODE: 1
+# CURRENT COMPILER EXIT CODE: 1
+# EXPECTED INTERPRETER EXIT CODE: 0
+# CURRENT INTERPRETER EXIT CODE: None
+# PRICE: ---
+# GROOT: ---
+# 
+#   1: scope 
+#   2:  print 7.e+6; 
+#   3:  end scope
+
+########################################
+
+.IFJcode17                                                                      #     1/17
+JUMP $$scope                                                                    #     2/17
+LABEL $$scope                                                                   #     4/17
+DEFVAR GF@&pomInteger                                                           #     5/17
+MOVE GF@&pomInteger int@0                                                       #     6/17
+DEFVAR GF@&pomString                                                            #     7/17
+MOVE GF@&pomString string@                                                      #     8/17
+DEFVAR GF@&pomFloat                                                             #     9/17
+MOVE GF@&pomFloat float@0                                                       #    10/17
+DEFVAR GF@&pomBool                                                              #    11/17
+MOVE GF@&pomBool bool@false                                                     #    12/17
+DEFVAR GF@&pomCntr                                                              #    13/17
+MOVE GF@&pomCntr int@0                                                          #    14/17
+CREATEFRAME                                                                     #    15/17
+ERROR on line 2                                                                 #    17/17
+

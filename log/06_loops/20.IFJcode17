@@ -1,0 +1,288 @@
+# 2017-12-05 00:24:15.563825
+# SECTION: 06_loops
+# TEST: 20
+# INFO: cyclus with constant propagation
+# REQUIRED EXTENSIONS: 
+# ACTIVATED EXTENSIONS: 
+# STATE: SUCCESS
+# 
+# COMPILER STDERR:
+# 
+# INTERPRETER STDERR:
+# Executing instruction: IJUMP at line: 2 with following arguments:
+# Executing instruction: ILABEL at line: 4 with following arguments:
+# Executing instruction: IDEFVAR at line: 5 with following arguments:
+# Dest: GF@&pomInteger
+# Executing instruction: IMOVE at line: 6 with following arguments:
+# Arg1: Const@=0(int)
+# Dest: GF@&pomInteger()
+# Executing instruction: IDEFVAR at line: 7 with following arguments:
+# Dest: GF@&pomString
+# Executing instruction: IMOVE at line: 8 with following arguments:
+# Arg1: Const@=(string)
+# Dest: GF@&pomString()
+# Executing instruction: IDEFVAR at line: 9 with following arguments:
+# Dest: GF@&pomFloat
+# Executing instruction: IMOVE at line: 10 with following arguments:
+# Arg1: Const@=0(double)
+# Dest: GF@&pomFloat()
+# Executing instruction: IDEFVAR at line: 11 with following arguments:
+# Dest: GF@&pomBool
+# Executing instruction: IMOVE at line: 12 with following arguments:
+# Arg1: Const@=false(bool)
+# Dest: GF@&pomBool()
+# Executing instruction: IDEFVAR at line: 13 with following arguments:
+# Dest: GF@&pomCntr
+# Executing instruction: IMOVE at line: 14 with following arguments:
+# Arg1: Const@=0(int)
+# Dest: GF@&pomCntr()
+# Executing instruction: ICREATEFRAME at line: 15 with following arguments:
+# Executing instruction: IDEFVAR at line: 17 with following arguments:
+# Dest: TF@a
+# Executing instruction: IMOVE at line: 18 with following arguments:
+# Arg1: Const@=0(int)
+# Dest: TF@a()
+# Executing instruction: IMOVE at line: 19 with following arguments:
+# Arg1: Const@=10(int)
+# Dest: GF@&pomInteger=0(int)
+# Executing instruction: IMOVE at line: 20 with following arguments:
+# Arg1: GF@&pomInteger=10(int)
+# Dest: TF@a=0(int)
+# Executing instruction: IMOVE at line: 21 with following arguments:
+# Arg1: TF@a=10(int)
+# Dest: GF@&pomInteger=10(int)
+# Executing instruction: IADD at line: 22 with following arguments:
+# Arg1: TF@a=10(int)
+# Arg2: Const@=10(int)
+# Dest: GF@&pomInteger=10(int)
+# Executing instruction: IMOVE at line: 23 with following arguments:
+# Arg1: GF@&pomInteger=20(int)
+# Dest: TF@a=10(int)
+# Executing instruction: IDEFVAR at line: 24 with following arguments:
+# Dest: TF@b
+# Executing instruction: IMOVE at line: 25 with following arguments:
+# Arg1: Const@=0(int)
+# Dest: TF@b()
+# Executing instruction: IMOVE at line: 26 with following arguments:
+# Arg1: TF@a=20(int)
+# Dest: GF@&pomInteger=20(int)
+# Executing instruction: IADD at line: 27 with following arguments:
+# Arg1: TF@a=20(int)
+# Arg2: Const@=20(int)
+# Dest: GF@&pomInteger=20(int)
+# Executing instruction: IMOVE at line: 28 with following arguments:
+# Arg1: GF@&pomInteger=40(int)
+# Dest: TF@b=0(int)
+# Executing instruction: IDEFVAR at line: 29 with following arguments:
+# Dest: TF@c
+# Executing instruction: IMOVE at line: 30 with following arguments:
+# Arg1: Const@=0(int)
+# Dest: TF@c()
+# Executing instruction: IMOVE at line: 31 with following arguments:
+# Arg1: TF@a=20(int)
+# Dest: GF@&pomInteger=40(int)
+# Executing instruction: IADD at line: 32 with following arguments:
+# Arg1: TF@a=20(int)
+# Arg2: Const@=10(int)
+# Dest: GF@&pomInteger=20(int)
+# Executing instruction: IADD at line: 33 with following arguments:
+# Arg1: GF@&pomInteger=30(int)
+# Arg2: TF@b=40(int)
+# Dest: GF@&pomInteger=30(int)
+# Executing instruction: IMOVE at line: 34 with following arguments:
+# Arg1: GF@&pomInteger=70(int)
+# Dest: TF@c=0(int)
+# Executing instruction: ILABEL at line: 35 with following arguments:
+# Executing instruction: IMOVE at line: 36 with following arguments:
+# Arg1: TF@c=70(int)
+# Dest: GF@&pomInteger=70(int)
+# Executing instruction: IGT at line: 37 with following arguments:
+# Arg1: TF@c=70(int)
+# Arg2: Const@=0(int)
+# Dest: GF@&pomBool=false(bool)
+# Executing instruction: IJUMPIFNEQ at line: 38 with following arguments:
+# Arg1: GF@&pomBool=true(bool)
+# Arg2: Const@=true(bool)
+# Executing instruction: IWRITE at line: 39 with following arguments:
+# Arg1: TF@c=70(int)
+# Executing instruction: IMOVE at line: 40 with following arguments:
+# Arg1: TF@c=70(int)
+# Dest: GF@&pomInteger=70(int)
+# Executing instruction: ISUB at line: 41 with following arguments:
+# Arg1: TF@c=70(int)
+# Arg2: TF@a=20(int)
+# Dest: GF@&pomInteger=70(int)
+# Executing instruction: IMOVE at line: 42 with following arguments:
+# Arg1: GF@&pomInteger=50(int)
+# Dest: TF@c=70(int)
+# Executing instruction: IJUMP at line: 43 with following arguments:
+# Executing instruction: ILABEL at line: 35 with following arguments:
+# Executing instruction: IMOVE at line: 36 with following arguments:
+# Arg1: TF@c=50(int)
+# Dest: GF@&pomInteger=50(int)
+# Executing instruction: IGT at line: 37 with following arguments:
+# Arg1: TF@c=50(int)
+# Arg2: Const@=0(int)
+# Dest: GF@&pomBool=true(bool)
+# Executing instruction: IJUMPIFNEQ at line: 38 with following arguments:
+# Arg1: GF@&pomBool=true(bool)
+# Arg2: Const@=true(bool)
+# Executing instruction: IWRITE at line: 39 with following arguments:
+# Arg1: TF@c=50(int)
+# Executing instruction: IMOVE at line: 40 with following arguments:
+# Arg1: TF@c=50(int)
+# Dest: GF@&pomInteger=50(int)
+# Executing instruction: ISUB at line: 41 with following arguments:
+# Arg1: TF@c=50(int)
+# Arg2: TF@a=20(int)
+# Dest: GF@&pomInteger=50(int)
+# Executing instruction: IMOVE at line: 42 with following arguments:
+# Arg1: GF@&pomInteger=30(int)
+# Dest: TF@c=50(int)
+# Executing instruction: IJUMP at line: 43 with following arguments:
+# Executing instruction: ILABEL at line: 35 with following arguments:
+# Executing instruction: IMOVE at line: 36 with following arguments:
+# Arg1: TF@c=30(int)
+# Dest: GF@&pomInteger=30(int)
+# Executing instruction: IGT at line: 37 with following arguments:
+# Arg1: TF@c=30(int)
+# Arg2: Const@=0(int)
+# Dest: GF@&pomBool=true(bool)
+# Executing instruction: IJUMPIFNEQ at line: 38 with following arguments:
+# Arg1: GF@&pomBool=true(bool)
+# Arg2: Const@=true(bool)
+# Executing instruction: IWRITE at line: 39 with following arguments:
+# Arg1: TF@c=30(int)
+# Executing instruction: IMOVE at line: 40 with following arguments:
+# Arg1: TF@c=30(int)
+# Dest: GF@&pomInteger=30(int)
+# Executing instruction: ISUB at line: 41 with following arguments:
+# Arg1: TF@c=30(int)
+# Arg2: TF@a=20(int)
+# Dest: GF@&pomInteger=30(int)
+# Executing instruction: IMOVE at line: 42 with following arguments:
+# Arg1: GF@&pomInteger=10(int)
+# Dest: TF@c=30(int)
+# Executing instruction: IJUMP at line: 43 with following arguments:
+# Executing instruction: ILABEL at line: 35 with following arguments:
+# Executing instruction: IMOVE at line: 36 with following arguments:
+# Arg1: TF@c=10(int)
+# Dest: GF@&pomInteger=10(int)
+# Executing instruction: IGT at line: 37 with following arguments:
+# Arg1: TF@c=10(int)
+# Arg2: Const@=0(int)
+# Dest: GF@&pomBool=true(bool)
+# Executing instruction: IJUMPIFNEQ at line: 38 with following arguments:
+# Arg1: GF@&pomBool=true(bool)
+# Arg2: Const@=true(bool)
+# Executing instruction: IWRITE at line: 39 with following arguments:
+# Arg1: TF@c=10(int)
+# Executing instruction: IMOVE at line: 40 with following arguments:
+# Arg1: TF@c=10(int)
+# Dest: GF@&pomInteger=10(int)
+# Executing instruction: ISUB at line: 41 with following arguments:
+# Arg1: TF@c=10(int)
+# Arg2: TF@a=20(int)
+# Dest: GF@&pomInteger=10(int)
+# Executing instruction: IMOVE at line: 42 with following arguments:
+# Arg1: GF@&pomInteger=-10(int)
+# Dest: TF@c=10(int)
+# Executing instruction: IJUMP at line: 43 with following arguments:
+# Executing instruction: ILABEL at line: 35 with following arguments:
+# Executing instruction: IMOVE at line: 36 with following arguments:
+# Arg1: TF@c=-10(int)
+# Dest: GF@&pomInteger=-10(int)
+# Executing instruction: IGT at line: 37 with following arguments:
+# Arg1: TF@c=-10(int)
+# Arg2: Const@=0(int)
+# Dest: GF@&pomBool=true(bool)
+# Executing instruction: IJUMPIFNEQ at line: 38 with following arguments:
+# Arg1: GF@&pomBool=false(bool)
+# Arg2: Const@=true(bool)
+# Executing instruction: ILABEL at line: 44 with following arguments:
+# Executing instruction: IGROOT at line: 46 with following arguments:
+# I am Groot at 46 (537).
+# 
+# STDOUT DIFF:
+# 
+
+# INTERPRETER STDIN: 
+# 
+#
+# EXPECTED COMPILER EXIT CODE: 0
+# CURRENT COMPILER EXIT CODE: 0
+# EXPECTED INTERPRETER EXIT CODE: 0
+# CURRENT INTERPRETER EXIT CODE: 0
+# PRICE: 537 (127+410)
+# GROOT: 537
+# 
+#   1: ' cyclus with constant propagation
+#   2: 
+#   3: scope
+#   4: 
+#   5:     dim a as integer
+#   6: 
+#   7:     a = 10
+#   8: 
+#   9:     a = a + 10
+#  10: 
+#  11:     dim b as integer
+#  12:     b = a + 20
+#  13: 
+#  14:     dim c as integer
+#  15: 
+#  16:     c = a + 10 + b
+#  17: 
+#  18:     do while c > 0
+#  19: 
+#  20:         print c;
+#  21:         c = c - a
+#  22:     loop
+#  23: 
+#  24: end scope
+
+########################################
+
+.IFJcode17                                                                      #     1/44
+JUMP $$scope                                                                    #     2/44
+LABEL $$scope                                                                   #     4/44
+DEFVAR GF@&pomInteger                                                           #     5/44
+MOVE GF@&pomInteger int@0                                                       #     6/44
+DEFVAR GF@&pomString                                                            #     7/44
+MOVE GF@&pomString string@                                                      #     8/44
+DEFVAR GF@&pomFloat                                                             #     9/44
+MOVE GF@&pomFloat float@0                                                       #    10/44
+DEFVAR GF@&pomBool                                                              #    11/44
+MOVE GF@&pomBool bool@false                                                     #    12/44
+DEFVAR GF@&pomCntr                                                              #    13/44
+MOVE GF@&pomCntr int@0                                                          #    14/44
+CREATEFRAME                                                                     #    15/44
+DEFVAR TF@a                                                                     #    17/44
+MOVE TF@a int@0                                                                 #    18/44
+MOVE GF@&pomInteger int@10                                                      #    19/44
+MOVE TF@a GF@&pomInteger                                                        #    20/44
+MOVE GF@&pomInteger TF@a                                                        #    21/44
+ADD GF@&pomInteger TF@a int@10                                                  #    22/44
+MOVE TF@a GF@&pomInteger                                                        #    23/44
+DEFVAR TF@b                                                                     #    24/44
+MOVE TF@b int@0                                                                 #    25/44
+MOVE GF@&pomInteger TF@a                                                        #    26/44
+ADD GF@&pomInteger TF@a int@20                                                  #    27/44
+MOVE TF@b GF@&pomInteger                                                        #    28/44
+DEFVAR TF@c                                                                     #    29/44
+MOVE TF@c int@0                                                                 #    30/44
+MOVE GF@&pomInteger TF@a                                                        #    31/44
+ADD GF@&pomInteger TF@a int@10                                                  #    32/44
+ADD GF@&pomInteger GF@&pomInteger TF@b                                          #    33/44
+MOVE TF@c GF@&pomInteger                                                        #    34/44
+LABEL $$loop_1                                                                  #    35/44
+MOVE GF@&pomInteger TF@c                                                        #    36/44
+GT GF@&pomBool TF@c int@0                                                       #    37/44
+JUMPIFNEQ $$loop_end_1 GF@&pomBool bool@true                                    #    38/44
+WRITE TF@c                                                                      #    39/44
+MOVE GF@&pomInteger TF@c                                                        #    40/44
+SUB GF@&pomInteger TF@c TF@a                                                    #    41/44
+MOVE TF@c GF@&pomInteger                                                        #    42/44
+JUMP $$loop_1                                                                   #    43/44
+LABEL $$loop_end_1                                                              #    44/44
+

@@ -1,0 +1,90 @@
+# 2017-12-05 00:24:14.984344
+# SECTION: 02_functions
+# TEST: 39
+# INFO: hanoi towers recursion
+# REQUIRED EXTENSIONS: 
+# ACTIVATED EXTENSIONS: 
+# STATE: FAIL
+# 
+# COMPILER STDERR:
+# Wrong types of operands!
+# ERROR -  4 - sÃ©mantickÃ¡ chyba typovÃ© kompatibility v aritmetickÃ½ch, rÌeteÌzcovÃ½ch a relacÌnÃ­ch vÃ½razech, prÌÃ­p. Å¡patnÃ½ pocÌet cÌi typ parametruÌ u volÃ¡nÃ­ funkce.
+# 
+# INTERPRETER STDERR:
+# 
+# EXPECTED INTERPRETER STDOUT:
+
+# Move disk 1 from row A to rod C
+# Move disk 2 from row A to rod B
+# Move disk 1 from row C to rod B
+# Move disk 3 from row A to rod C
+# Move disk 1 from row B to rod A
+# Move disk 2 from row B to rod C
+# Move disk 1 from row A to rod C
+# Move disk 4 from row A to rod B
+# Move disk 1 from row C to rod B
+# Move disk 2 from row C to rod A
+# Move disk 1 from row B to rod A
+# Move disk 3 from row C to rod B
+# Move disk 1 from row A to rod C
+# Move disk 2 from row A to rod B
+# Move disk 1 from row C to rod B
+
+
+# CURRENT INTERPRETER STDOUT:
+
+
+
+# INTERPRETER STDIN: 
+# 
+#
+# EXPECTED COMPILER EXIT CODE: 0
+# CURRENT COMPILER EXIT CODE: 4
+# EXPECTED INTERPRETER EXIT CODE: 0
+# CURRENT INTERPRETER EXIT CODE: None
+# PRICE: ---
+# GROOT: ---
+# 
+#   1: ' hanoi towers recursion
+#   2: 
+#   3: declare function hanoi(________________ as integer, from as string, too as string, middle as string) as integer
+#   4: 
+#   5: function hanoi(n as integer, from as string, too as string, middle as string) as integer
+#   6:     dim c as integer
+#   7:     dim promena as integer = n - 1
+#   8:     if n = 1 then
+#   9:         print !"Move disk 1 from row "; from; !" to rod "; too; !"\n";
+#  10:         return 0
+#  11:     else
+#  12:     end if
+#  13:     c = hanoi(promena, from, middle, too)
+#  14:     print !"Move disk"; n; !" from row "; from; !" to rod "; too; !"\n";
+#  15:     c = hanoi(promena, middle, too, from)
+#  16: end function
+#  17: 
+#  18: scope
+#  19: 	dim ______dkhfskldfhsdfsfhjghs as integer
+#  20:     ______dkhfskldfhsdfsfhjghs = hanoi(4, !"A", !"B", !"C")
+#  21: end scope
+
+########################################
+
+.IFJcode17                                                                      #     1/19
+JUMP $$scope                                                                    #     2/19
+rule_par                                                                        #     4/19
+rule next par                                                                   #     5/19
+rule_par                                                                        #     6/19
+rule next par                                                                   #     7/19
+rule_par                                                                        #     8/19
+rule next par                                                                   #     9/19
+rule_par                                                                        #    10/19
+rule next par                                                                   #    11/19
+LABEL $hanoi                                                                    #    12/19
+PUSHFRAME                                                                       #    13/19
+DEFVAR LF@&retval                                                               #    14/19
+DEFVAR LF@c                                                                     #    15/19
+MOVE LF@c int@0                                                                 #    16/19
+DEFVAR LF@promena                                                               #    17/19
+MOVE LF@promena int@0                                                           #    18/19
+ERROR on line 7                                                                 #    19/19
+

@@ -1,0 +1,63 @@
+# 2017-12-05 00:24:15.673385
+# SECTION: 66_errors
+# TEST: 28
+# INFO: redefined function
+# REQUIRED EXTENSIONS: 
+# ACTIVATED EXTENSIONS: 
+# STATE: SUCCESS
+# 
+# COMPILER STDERR:
+# ERROR - 3 - sÃ©mantickÃ¡ chyba v programu â nedefinovanÃ¡ funkce/promeÌnnÃ¡, pokus o redefinici funkce/promeÌnnÃ©, atd.
+# 
+# INTERPRETER STDERR:
+# 
+# EXPECTED INTERPRETER STDOUT:
+
+
+
+# CURRENT INTERPRETER STDOUT:
+
+
+
+# INTERPRETER STDIN: 
+# 
+#
+# EXPECTED COMPILER EXIT CODE: 3
+# CURRENT COMPILER EXIT CODE: 3
+# EXPECTED INTERPRETER EXIT CODE: 0
+# CURRENT INTERPRETER EXIT CODE: None
+# PRICE: ---
+# GROOT: ---
+# 
+#   1: ' redefined function
+#   2: 
+#   3: declare function foo(a as integer, b as integer) as integer
+#   4: 
+#   5: function foo(a as integer, b as integer) as integer
+#   6: 
+#   7: end function
+#   8: 
+#   9: function foo(a as integer, b as integer) as integer
+#  10: 
+#  11: end function
+#  12: 
+#  13: scope
+#  14: 
+#  15: end scope 
+
+########################################
+
+.IFJcode17                                                                      #     1/15
+JUMP $$scope                                                                    #     2/15
+rule_par                                                                        #     4/15
+rule next par                                                                   #     5/15
+rule_par                                                                        #     6/15
+rule next par                                                                   #     7/15
+LABEL $foo                                                                      #     8/15
+PUSHFRAME                                                                       #     9/15
+DEFVAR LF@&retval                                                               #    10/15
+MOVE LF@&retval GF@&pomInteger                                                  #    11/15
+POPFRAME                                                                        #    12/15
+RETURN                                                                          #    13/15
+ERROR on line 9                                                                 #    15/15
+

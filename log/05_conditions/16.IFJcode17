@@ -1,0 +1,143 @@
+# 2017-12-05 00:24:15.319141
+# SECTION: 05_conditions
+# TEST: 16
+# INFO: Many conditions double version
+# REQUIRED EXTENSIONS: 
+# ACTIVATED EXTENSIONS: 
+# STATE: FAIL
+# 
+# COMPILER STDERR:
+# Chyba v code_gen_expres TF@GF@&pomString TF@a int@0
+# Chyba v code_gen_expres TF@GF@&pomString TF@a int@0
+# In if and loop statement can only be relational operators.
+# ERROR -  6 - ostatnÃ­ sÃ©mantickÃ© chyby.
+# 
+# INTERPRETER STDERR:
+# 
+# EXPECTED INTERPRETER STDOUT:
+
+# NOTOKNOTOKOKOKOKOKOKNOTOKNOTOK
+
+
+# CURRENT INTERPRETER STDOUT:
+
+
+
+# INTERPRETER STDIN: 
+# 
+#
+# EXPECTED COMPILER EXIT CODE: 0
+# CURRENT COMPILER EXIT CODE: 6
+# EXPECTED INTERPRETER EXIT CODE: 0
+# CURRENT INTERPRETER EXIT CODE: None
+# PRICE: ---
+# GROOT: ---
+# 
+#   1: ' Many conditions double version
+#   2: 
+#   3: scope
+#   4: 
+#   5: dim a as double
+#   6: a = 1.1
+#   7: 
+#   8: if a < 1 then
+#   9:     print !"OK";
+#  10: else
+#  11:     print !"NOTOK";
+#  12: end if
+#  13: 
+#  14: if a <= 0 then
+#  15:     print !"OK";
+#  16: else
+#  17:     print !"NOTOK";
+#  18: end if
+#  19: 
+#  20: if a >= 0 then
+#  21:     print !"OK";
+#  22: else
+#  23:     print !"NOTOK";
+#  24: end if
+#  25: 
+#  26: if a >= 0-1 then
+#  27:     print !"OK";
+#  28: else
+#  29:     print !"NOTOK";
+#  30: end if
+#  31: 
+#  32: if a > 0 then
+#  33:     print !"OK";
+#  34: else
+#  35:     print !"NOTOK";
+#  36: end if
+#  37: 
+#  38: if a <> 0 then
+#  39:     print !"OK";
+#  40: else
+#  41:     print !"NOTOK";
+#  42: end if
+#  43: 
+#  44: if a <> 1 then
+#  45:     print !"OK";
+#  46: else
+#  47:     print !"NOTOK";
+#  48: end if
+#  49: 
+#  50: if a = 1 then
+#  51:     print !"OK";
+#  52: else
+#  53:     print !"NOTOK";
+#  54: end if
+#  55: 
+#  56: if a = 0 then
+#  57:     print !"OK";
+#  58: else
+#  59:     print !"NOTOK";
+#  60: end if
+#  61: 
+#  62: end scope
+
+########################################
+
+.IFJcode17                                                                      #     1/44
+JUMP $$scope                                                                    #     2/44
+LABEL $$scope                                                                   #     4/44
+DEFVAR GF@&pomInteger                                                           #     5/44
+MOVE GF@&pomInteger int@0                                                       #     6/44
+DEFVAR GF@&pomString                                                            #     7/44
+MOVE GF@&pomString string@                                                      #     8/44
+DEFVAR GF@&pomFloat                                                             #     9/44
+MOVE GF@&pomFloat float@0                                                       #    10/44
+DEFVAR GF@&pomBool                                                              #    11/44
+MOVE GF@&pomBool bool@false                                                     #    12/44
+DEFVAR GF@&pomCntr                                                              #    13/44
+MOVE GF@&pomCntr int@0                                                          #    14/44
+CREATEFRAME                                                                     #    15/44
+DEFVAR TF@a                                                                     #    17/44
+MOVE TF@a float@0                                                               #    18/44
+MOVE GF@&pomFloat float@1.1                                                     #    19/44
+MOVE TF@a GF@&pomFloat                                                          #    20/44
+MOVE GF@&pomFloat TF@a                                                          #    21/44
+LT GF@&pomBool TF@a int@1                                                       #    22/44
+JUMPIFNEQ $$else_1 GF@&pomBool bool@true                                        #    23/44
+WRITE string@OK                                                                 #    24/44
+JUMP $$endif_1                                                                  #    25/44
+LABEL $$else_1                                                                  #    26/44
+WRITE string@NOTOK                                                              #    27/44
+LABEL $$endif_1                                                                 #    28/44
+MOVE GF@&pomFloat TF@a                                                          #    29/44
+JUMPIFNEQ $$else_2 GF@&pomBool bool@true                                        #    30/44
+WRITE string@OK                                                                 #    31/44
+JUMP $$endif_2                                                                  #    32/44
+LABEL $$else_2                                                                  #    33/44
+WRITE string@NOTOK                                                              #    34/44
+LABEL $$endif_2                                                                 #    35/44
+MOVE GF@&pomFloat TF@a                                                          #    36/44
+JUMPIFNEQ $$else_3 GF@&pomBool bool@true                                        #    37/44
+WRITE string@OK                                                                 #    38/44
+JUMP $$endif_3                                                                  #    39/44
+LABEL $$else_3                                                                  #    40/44
+WRITE string@NOTOK                                                              #    41/44
+LABEL $$endif_3                                                                 #    42/44
+MOVE GF@&pomFloat TF@a                                                          #    43/44
+ERROR on line 26                                                                #    44/44
+

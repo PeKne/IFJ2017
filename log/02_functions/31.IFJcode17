@@ -1,0 +1,48 @@
+# 2017-12-05 00:24:14.975972
+# SECTION: 02_functions
+# TEST: 31
+# INFO: missmatch in return data type
+# REQUIRED EXTENSIONS: 
+# ACTIVATED EXTENSIONS: 
+# STATE: SUCCESS
+# 
+# COMPILER STDERR:
+# ERROR - 3 - sÃ©mantickÃ¡ chyba v programu â nedefinovanÃ¡ funkce/promeÌnnÃ¡, pokus o redefinici funkce/promeÌnnÃ©, atd.
+# 
+# INTERPRETER STDERR:
+# 
+# EXPECTED INTERPRETER STDOUT:
+
+
+
+# CURRENT INTERPRETER STDOUT:
+
+
+
+# INTERPRETER STDIN: 
+# 
+#
+# EXPECTED COMPILER EXIT CODE: 3
+# CURRENT COMPILER EXIT CODE: 3
+# EXPECTED INTERPRETER EXIT CODE: 0
+# CURRENT INTERPRETER EXIT CODE: None
+# PRICE: ---
+# GROOT: ---
+# 
+#   1: ' missmatch in return data type
+#   2: 
+#   3: declare function foo() as integer
+#   4: 
+#   5: function foo() as string 
+#   6: end function
+#   7: 
+#   8: scope
+#   9: end scope
+
+########################################
+
+.IFJcode17                                                                      #     1/5
+JUMP $$scope                                                                    #     2/5
+rule_par                                                                        #     4/5
+ERROR on line 5                                                                 #     5/5
+

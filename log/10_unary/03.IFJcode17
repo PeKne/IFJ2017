@@ -1,0 +1,51 @@
+# 2017-12-05 00:24:15.597638
+# SECTION: 10_unary
+# TEST: 03
+# INFO: functions with funexp and unary
+# REQUIRED EXTENSIONS: FUNEXP, UNARY
+# ACTIVATED EXTENSIONS: 
+# STATE: FAIL
+# 
+# COMPILER STDERR:
+# 
+# INTERPRETER STDERR:
+# 
+# EXPECTED INTERPRETER STDOUT:
+
+# -22684
+
+
+# CURRENT INTERPRETER STDOUT:
+
+
+
+# INTERPRETER STDIN: 
+# 
+#
+# EXPECTED COMPILER EXIT CODE: 0
+# CURRENT COMPILER EXIT CODE: None
+# EXPECTED INTERPRETER EXIT CODE: 0
+# CURRENT INTERPRETER EXIT CODE: None
+# PRICE: ---
+# GROOT: ---
+# 
+#   1: ' functions with funexp and unary
+#   2: 
+#   3: function fce1(a as integer) as integer
+#   4: 	return -a
+#   5: end function
+#   6: 
+#   7: function fce2(a as integer, b as double) as double
+#   8: 	return -a * fce1(---a*-3) / -b
+#   9: end function
+#  10: 
+#  11: scope
+#  12: 	dim b as integer
+#  13: 	b = fce2(-7.12e1, -(-fce2(2, 9) + -2))
+#  14: 	print b;
+#  15: end scope
+
+########################################
+
+# ---
+
