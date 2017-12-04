@@ -1,3 +1,10 @@
+/*
+ Implementace prekladace imperativniho jazyka IFJ17
+ Petr Marek,       login: xmarek66
+ Jakub Stefanisin, login: xstefa22
+ Petr Knetl,       login: xknetl00
+*/
+
 #include "symbol.h"
 
 #ifndef SYMTABLE_H

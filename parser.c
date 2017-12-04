@@ -1,3 +1,10 @@
+/*
+ Implementace prekladace imperativniho jazyka IFJ17
+ Petr Marek,       login: xmarek66
+ Jakub Stefanisin, login: xstefa22
+ Petr Knetl,       login: xknetl00
+*/
+
 #include "parser.h"
 #include "expresion.h"
 #include "code_gen_expres.h"

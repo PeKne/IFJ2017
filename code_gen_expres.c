@@ -1,3 +1,10 @@
+/*
+ Implementace prekladace imperativniho jazyka IFJ17
+ Petr Marek,       login: xmarek66
+ Jakub Stefanisin, login: xstefa22
+ Petr Knetl,       login: xknetl00
+*/
+
 #include <stdlib.h>
 #include <stdio.h>
 #include "expresion.h"
@@ -92,7 +99,7 @@ int set_context(Tstring *context, int operand_type, Tstate dest_type, Tstring *o
     return 0;
 }
 
-int expr_gen(int operator, char *operand_1, char *operand_2, char *destination, int instruction, Tstate dest_type) {
+int expr_gen(int operator, char *operand_1, char *operand_2, char *destination, Tstate dest_type) {
 
     int error = 0;
 

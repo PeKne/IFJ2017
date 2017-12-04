@@ -1,5 +1,19 @@
+/*
+ Implementace prekladace imperativniho jazyka IFJ17
+ Petr Marek,       login: xmarek66
+ Jakub Stefanisin, login: xstefa22
+ Petr Knetl,       login: xknetl00
+*/
+
 #include <stdio.h>
 #include <stdlib.h>
+/*
+ Implementace prekladace imperativniho jazyka IFJ17
+ Petr Marek,       login: xmarek66
+ Jakub Stefanisin, login: xstefa22
+ Petr Knetl,       login: xknetl00
+*/
+
 #include <stdbool.h>
 #include "lex.h"
 #include "strings.h"

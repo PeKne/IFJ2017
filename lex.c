@@ -1,3 +1,10 @@
+/*
+ Implementace prekladace imperativniho jazyka IFJ17
+ Petr Marek,       login: xmarek66
+ Jakub Stefanisin, login: xstefa22
+ Petr Knetl,       login: xknetl00
+*/
+
 #include <stdio.h>
 #include <stdlib.h>
 #include <stdbool.h>
@@ -240,7 +247,6 @@ int generate_token()
                         error = str_push_char(&(token.t_str), esc[i]);
                         if (error) { str_destroy(&esc_str); return error; }
                     }
-
                     state = st_retez;
                 } else if (c == '\\') {
                     state = st_esc;

@@ -1,4 +1,9 @@
-#define DEBUG
+/*
+ Implementace prekladace imperativniho jazyka IFJ17
+ Petr Marek,       login: xmarek66
+ Jakub Stefanisin, login: xstefa22
+ Petr Knetl,       login: xknetl00
+*/
 
 #include <stdio.h>
 #include <stdlib.h>
@@ -410,20 +415,20 @@ int expresion_reduction(TStack *s, Tstate instruct, int reduce_counter, Tstring 
                             fprintf(stderr, "Cant assign string to integer.\n");
                             error = ERR_SEM_TYPE;
                         } else {
-                            error = expr_gen(operator, operand_1.data, operand_2.data, pom_integer, instruct, dest_type);
+                            error = expr_gen(operator, operand_1.data, operand_2.data, pom_integer, dest_type);
                         }
 
                     } else if (dest_type == st_double) {
                         if (op2_type == st_string) {
                             error = ERR_SEM_TYPE;
                         } else {
-                            error = expr_gen(operator, operand_1.data, operand_2.data, pom_double, instruct, dest_type);
+                            error = expr_gen(operator, operand_1.data, operand_2.data, pom_double, dest_type);
                         }
 
                     } else if (dest_type == st_string) {
                         if (operator == ex_plus) {
                             if (op2_type == st_string || op2_type == 0) { // NEPOZNAM NEINICIALIZOVANOU PROMENNOU OD !"STRINGU"
-                                error = expr_gen(operator, operand_1.data, operand_2.data, pom_string, instruct, dest_type);
+                                error = expr_gen(operator, operand_1.data, operand_2.data, pom_string, dest_type);
                                 //printf("error %d\n",error);
                                 if (error) {
                                     fprintf(stderr, "Wrong string operation!\n");
@@ -440,7 +445,7 @@ int expresion_reduction(TStack *s, Tstate instruct, int reduce_counter, Tstring 
                             operator == ex_less || operator == ex_lessEq ||
                             operator == ex_great || operator == ex_greatEq ))
                         {
-                          error = expr_gen(operator, operand_1.data, operand_2.data, pom_string, instruct, dest_type);
+                          error = expr_gen(operator, operand_1.data, operand_2.data, pom_string, dest_type);
                             if (error) {
                                 fprintf(stderr, "Expresion in if or loop error.\n");
                             }
