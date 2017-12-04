@@ -279,8 +279,6 @@ int expresion_reduction(TStack *s, Tstate instruct, int reduce_counter, Tstring 
     Tstring operand_2;
     int error;
 
-    DBG_SPrint(s);
-
     char* context = (p == 0 ? "TF@" : "LF@");
 
     int symbol = STopType(s);
@@ -376,7 +374,6 @@ int expresion_reduction(TStack *s, Tstate instruct, int reduce_counter, Tstring 
     }
 
     else if(symbol == ex_reduction){ // R ---> R "operator" R
-    printf("redukce\n" );
         str_create_init(&(operand_1),STopString(s));
 
         if (dest_type == st_double)
@@ -515,7 +512,7 @@ int precedent_analysis(Tstate instruct, Tstate dest_type) {
           SClean(&stack);
           return ERR_SYN;
         }
-        DBG_SPrint(&stack);
+
         switch (prec_table[stacked_operator][input_operator]){//porovnani operatoru v zasobniku a na vstupu
             case EQ:
             {
