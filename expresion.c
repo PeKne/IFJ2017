@@ -376,7 +376,6 @@ int expresion_reduction(TStack *s, Tstate instruct, int reduce_counter, Tstring 
     }
 
     else if(symbol == ex_reduction){ // R ---> R "operator" R
-    printf("redukce\n" );
         str_create_init(&(operand_1),STopString(s));
 
         if (dest_type == st_double)

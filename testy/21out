@@ -24,9 +24,7 @@ READ TF@a int
 READ TF@b int
 READ TF@c int
 MOVE GF@&pomInteger TF@a
-redukce
 ADD GF@&pomInteger TF@a TF@b
-redukce
 ADD GF@&pomInteger GF@&pomInteger TF@c
 MOVE TF@a GF@&pomInteger
 WRITE TF@a
