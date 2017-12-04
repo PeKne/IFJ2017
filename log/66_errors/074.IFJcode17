@@ -1,4 +1,4 @@
-# 2017-12-04 15:33:13.228150
+# 2017-12-04 16:26:33.114626
 # SECTION: 66_errors
 # TEST: 074
 # INFO: No eol after statement
@@ -7,7 +7,8 @@
 # STATE: FAIL
 # 
 # COMPILER STDERR:
-# Variable not found
+# symbol.c:166:variable_exist(): Variable not found
+# 
 # parser.c:564:rule_stat(): Not defined variable
 # 
 # ERROR - 3 - sÃ©mantickÃ¡ chyba v programu â nedefinovanÃ¡ funkce/promeÌnnÃ¡, pokus o redefinici funkce/promeÌnnÃ©, atd.

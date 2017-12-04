@@ -392,16 +392,10 @@ int generate_token()
                     error = str_push_char(&(token.t_str), c);
                     if (error) { str_destroy(&esc_str); return error; }
                     state = st_exp_int_e;
-                } else if ((c == ' ') || (c == '\n') || (c == EOF) || (c == ')') ||
-                           (c == ',') || (c == ';')  || (c == '+') || (c == '-') ||
-                           (c == '*') || (c == '\\') || (c == '/')) { // uspesne nacteni
+                }  else {
                     token.t_state = state;
                     unget_char(c);
                     state = st_final;
-                } else {
-                    fprintf(stderr, "LEX: Line: %d: Int value didnt end properly!\n", token.t_line);
-                    unget_char(c);
-                    state = st_error;
                 }
                 break;
             }
@@ -430,16 +424,10 @@ int generate_token()
                     error = str_push_char(&(token.t_str), c);
                     if (error) { str_destroy(&esc_str); return error; }
                     state = st_exp_doub_e;
-                } else if ((c == ' ') || (c == '\n') || (c == EOF) || (c == ')') ||
-                           (c == ',') || (c == ';')  || (c == '+') || (c == '-') ||
-                           (c == '*') || (c == '\\') || (c == '/')) { // uspesne nacteni
+                } else {
                     token.t_state = state;
                     unget_char(c);
                     state = st_final;
-                } else {
-                    fprintf(stderr, "LEX: Line: %d: Double value didnt end properly!\n", token.t_line);
-                    unget_char(c);
-                    state = st_error;
                 }
                 break;
             }
@@ -484,16 +472,10 @@ int generate_token()
                     error = str_push_char(&(token.t_str), c);
                     if (error) { str_destroy(&esc_str); return error; }
                     state = st_exp_int;
-                } else if ((c == ' ') || (c == '\n') || (c == EOF) || (c == ')') ||
-                           (c == ',') || (c == ';')  || (c == '+') || (c == '-') ||
-                           (c == '*') || (c == '\\') || (c == '/')) { // uspesne nacteni
+                }  else {
                     token.t_state = state;
                     unget_char(c);
                     state = st_final;
-                } else {
-                    fprintf(stderr, "LEX: Line: %d: Exponential int value error\n", token.t_line);
-                    unget_char(c);
-                    state = st_error;
                 }
                 break;
             }
@@ -539,16 +521,10 @@ int generate_token()
                     error = str_push_char(&(token.t_str), c);
                     if (error) { str_destroy(&esc_str); return error; }
                     state = st_exp_doub;
-                } else if ((c == ' ') || (c == '\n') || (c == EOF) || (c == ')') ||
-                           (c == ',') || (c == ';')  || (c == '+') || (c == '-') ||
-                           (c == '*') || (c == '\\') || (c == '/')) { // uspesne nacteni
+                }  else {
                     token.t_state = state;
                     unget_char(c);
                     state = st_final;
-                } else {
-                    fprintf(stderr, "LEX: Line: %d: Exponential double value error!\n", token.t_line);
-                    unget_char(c);
-                    state = st_error;
                 }
                 break;
             }
