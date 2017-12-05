@@ -48,6 +48,4 @@ int str_delete_index(Tstring *str, int index);
 
 // prepise data ve stringu na 'data'.
 int str_rewrite_data(Tstring *str, char *data);
-
-int add_inst_to_string(const char *string);
 #endif
