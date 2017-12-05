@@ -83,7 +83,6 @@ enum {
 /*15*/	ex_integer,
 /*16*/	ex_double,
 /*17*/	ex_str,
-/*18*/	ex_bool,
 /*19*/	ex_dollar, // zacatek zpracovani vyrazu
 /*20*/	ex_reduction,
 /*21*/	ex_rule_begin, //prednostni symbol
