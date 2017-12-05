@@ -1,7 +1,7 @@
-# 2017-12-05 00:24:16.227030
+# 2017-12-05 13:44:51.571946
 # SECTION: 66_errors
 # TEST: 302
-# INFO: (a > b) > 1
+# INFO: a > b > 1
 # REQUIRED EXTENSIONS: 
 # ACTIVATED EXTENSIONS: 
 # STATE: FAIL
@@ -21,7 +21,7 @@
 # INTERPRETER STDIN: 
 # 
 #
-# EXPECTED COMPILER EXIT CODE: 4
+# EXPECTED COMPILER EXIT CODE: 2
 # CURRENT COMPILER EXIT CODE: 0
 # EXPECTED INTERPRETER EXIT CODE: 0
 # CURRENT INTERPRETER EXIT CODE: None
@@ -31,7 +31,7 @@
 #   1: scope 
 #   2:  dim a as integer 
 #   3:  dim b as integer 
-#   4:  if (a > b) > 1 then 
+#   4:  if a > b > 1 then 
 #   5:  else 
 #   6:  end if 
 #   7:  end scope

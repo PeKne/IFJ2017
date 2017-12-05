@@ -1,12 +1,13 @@
-# 2017-12-05 00:24:16.228787
+# 2017-12-05 13:44:51.573551
 # SECTION: 66_errors
 # TEST: 303
-# INFO: a > b > 1
+# INFO: Return in scope in condition
 # REQUIRED EXTENSIONS: 
 # ACTIVATED EXTENSIONS: 
-# STATE: FAIL
+# STATE: SUCCESS
 # 
 # COMPILER STDERR:
+# ERROR - 2 - chyba v programu v rÃ¡mci syntaktickÃ© analÃ½zy (chybnÃ¡ syntaxe programu).
 # 
 # INTERPRETER STDERR:
 # 
@@ -22,45 +23,36 @@
 # 
 #
 # EXPECTED COMPILER EXIT CODE: 2
-# CURRENT COMPILER EXIT CODE: 0
+# CURRENT COMPILER EXIT CODE: 2
 # EXPECTED INTERPRETER EXIT CODE: 0
 # CURRENT INTERPRETER EXIT CODE: None
 # PRICE: ---
 # GROOT: ---
 # 
 #   1: scope 
-#   2:  dim a as integer 
-#   3:  dim b as integer 
-#   4:  if a > b > 1 then 
-#   5:  else 
-#   6:  end if 
-#   7:  end scope
+#   2:  if 10 = 10 then 
+#   3:  return 10 
+#   4:  else 
+#   5:  end if 
+#   6:  end scope
 
 ########################################
 
-.IFJcode17                                                                      #     1/27
-JUMP $$scope                                                                    #     2/27
-LABEL $$scope                                                                   #     4/27
-DEFVAR GF@&pomInteger                                                           #     5/27
-MOVE GF@&pomInteger int@0                                                       #     6/27
-DEFVAR GF@&pomString                                                            #     7/27
-MOVE GF@&pomString string@                                                      #     8/27
-DEFVAR GF@&pomFloat                                                             #     9/27
-MOVE GF@&pomFloat float@0                                                       #    10/27
-DEFVAR GF@&pomBool                                                              #    11/27
-MOVE GF@&pomBool bool@false                                                     #    12/27
-DEFVAR GF@&pomCntr                                                              #    13/27
-MOVE GF@&pomCntr int@0                                                          #    14/27
-CREATEFRAME                                                                     #    15/27
-DEFVAR TF@a                                                                     #    17/27
-MOVE TF@a int@0                                                                 #    18/27
-DEFVAR TF@b                                                                     #    19/27
-MOVE TF@b int@0                                                                 #    20/27
-MOVE GF@&pomInteger TF@a                                                        #    21/27
-GT GF@&pomBool TF@a TF@b                                                        #    22/27
-GT GF@&pomBool TF@b int@1                                                       #    23/27
-JUMPIFNEQ $$else_1 GF@&pomBool bool@true                                        #    24/27
-JUMP $$endif_1                                                                  #    25/27
-LABEL $$else_1                                                                  #    26/27
-LABEL $$endif_1                                                                 #    27/27
+.IFJcode17                                                                      #     1/19
+JUMP $$scope                                                                    #     2/19
+LABEL $$scope                                                                   #     4/19
+DEFVAR GF@&pomInteger                                                           #     5/19
+MOVE GF@&pomInteger int@0                                                       #     6/19
+DEFVAR GF@&pomString                                                            #     7/19
+MOVE GF@&pomString string@                                                      #     8/19
+DEFVAR GF@&pomFloat                                                             #     9/19
+MOVE GF@&pomFloat float@0                                                       #    10/19
+DEFVAR GF@&pomBool                                                              #    11/19
+MOVE GF@&pomBool bool@false                                                     #    12/19
+DEFVAR GF@&pomCntr                                                              #    13/19
+MOVE GF@&pomCntr int@0                                                          #    14/19
+CREATEFRAME                                                                     #    15/19
+EQ GF@&pomBool int@10 int@10                                                    #    17/19
+JUMPIFNEQ $$else_1 GF@&pomBool bool@true                                        #    18/19
+ERROR on line 3                                                                 #    19/19
 

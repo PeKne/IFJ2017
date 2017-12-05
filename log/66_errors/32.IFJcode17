@@ -1,4 +1,4 @@
-# 2017-12-05 00:24:15.681208
+# 2017-12-05 13:44:51.107237
 # SECTION: 66_errors
 # TEST: 32
 # INFO: Undefined function
@@ -7,7 +7,7 @@
 # STATE: SUCCESS
 # 
 # COMPILER STDERR:
-# parser.c:751:rule_assign(): NULL hashtable error
+# parser.c:756:rule_assign(): NULL hashtable error
 # 
 # ERROR - 3 - sÃ©mantickÃ¡ chyba v programu â nedefinovanÃ¡ funkce/promeÌnnÃ¡, pokus o redefinici funkce/promeÌnnÃ©, atd.
 # 

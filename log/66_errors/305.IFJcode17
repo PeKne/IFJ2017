@@ -1,7 +1,7 @@
-# 2017-12-05 00:24:16.232205
+# 2017-12-05 13:44:51.577373
 # SECTION: 66_errors
 # TEST: 305
-# INFO: Return in scope in while
+# INFO: Return in scope in scoped loop
 # REQUIRED EXTENSIONS: 
 # ACTIVATED EXTENSIONS: 
 # STATE: SUCCESS
@@ -31,9 +31,11 @@
 # 
 #   1: scope 
 #   2:  do while 10 = 10 
-#   3:  return 10 
-#   4:  loop 
-#   5:  end scope
+#   3:  scope 
+#   4:  return 10 
+#   5:  end scope 
+#   6:  loop 
+#   7:  end scope
 
 ########################################
 

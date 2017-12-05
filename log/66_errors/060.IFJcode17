@@ -1,4 +1,4 @@
-# 2017-12-05 00:24:15.781572
+# 2017-12-05 13:44:51.189739
 # SECTION: 66_errors
 # TEST: 060
 # INFO: False if
@@ -7,7 +7,7 @@
 # STATE: SUCCESS
 # 
 # COMPILER STDERR:
-# symbol.c:166:variable_exist(): Variable not found
+# symbol.c:173:variable_exist(): Variable not found
 # 
 # Not defined variable
 # ERROR - 3 - sÃ©mantickÃ¡ chyba v programu â nedefinovanÃ¡ funkce/promeÌnnÃ¡, pokus o redefinici funkce/promeÌnnÃ©, atd.

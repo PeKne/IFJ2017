@@ -1,4 +1,4 @@
-# 2017-12-05 00:24:14.940233
+# 2017-12-05 13:44:50.341752
 # SECTION: 02_functions
 # TEST: 22
 # INFO: Try to modify an argument passed by the value
@@ -7,7 +7,7 @@
 # STATE: FAIL
 # 
 # COMPILER STDERR:
-# symbol.c:166:variable_exist(): Variable not found
+# symbol.c:173:variable_exist(): Variable not found
 # 
 # Not defined variable
 # ERROR - 3 - sÃ©mantickÃ¡ chyba v programu â nedefinovanÃ¡ funkce/promeÌnnÃ¡, pokus o redefinici funkce/promeÌnnÃ©, atd.
