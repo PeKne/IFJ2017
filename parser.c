@@ -341,7 +341,7 @@ int rule_par(function_data *data_f){ // stav <par>
 }
 
 int rule_next_par(function_data *data_f){ // stav <next-par>
-  printf("rule next par\n" );
+    //printf("rule next par\n" );
     int return_value = ERR_SYN;
     int func_return;
     if(token.t_state ==  st_carka){ // simulace pravidla 11.
@@ -504,7 +504,7 @@ int rule_stat(){ // stav <stat>
             htab_listitem *item;
             item = htab_find((p == 1 ? global.local_sym : global.global_table), token.t_str.data);
             if(item != NULL) {
-                printf("Variable already defined\n");
+                fprintf(stderr, "Variable already defined\n");
                 return ERR_SEM_PROG; //Premmenna nebola vramci danej funkcie deklarovana
             }
 
@@ -525,7 +525,6 @@ int rule_stat(){ // stav <stat>
                 if((return_value = rule_type(item->pointer.variable)) == 0){
                     char* context = (p == 0 ? "TF@" : "LF@");
                     Tstate var_type = return_variable_type(ident.data);
-                    //printf("var_type: %d\n",var_type);
 
                     printf("DEFVAR %s%s\n", context, ident.data);///
                     if      (var_type == st_integer) printf("MOVE %s%s int@0\n", context, ident.data);
