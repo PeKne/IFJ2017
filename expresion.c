@@ -150,27 +150,26 @@ void SClean (TStack *s)
 /***************************FUNKCE-PRECEDENCNI-ANALYZY*********************************/
 /**************************************************************************************/
 PrecTabValues prec_table[ex_dollar+2][ex_dollar+2] = {
-/*         *   /   \   +   -   =   <>  <   <=  >   >=  (   )   i   int db  sr  bl  $   R */
-/* *  */ { GT, GT, GT, GT, GT, GT, GT, GT, GT, GT, GT, LT, GT, LT, LT, LT, LT, LT, GT, LT },
-/* /  */ { GT, GT, GT, GT, GT, GT, GT, GT, GT, GT, GT, LT, GT, LT, LT, LT, LT, LT, GT, LT },
-/* \  */ { GT, GT, GT, GT, GT, GT, GT, GT, GT, GT, GT, LT, GT, LT, LT, LT, LT, LT, GT, LT },
-/* +  */ { LT, LT, LT, GT, GT, GT, GT, GT, GT, GT, GT, LT, GT, LT, LT, LT, LT, LT, GT, LT },
-/* -  */ { LT, LT, LT, GT, GT, GT, GT, GT, GT, GT, GT, LT, GT, LT, LT, LT, LT, LT, GT, LT },
-/* =  */ { LT, LT, LT, LT, LT, GT, GT, GT, GT, GT, GT, LT, GT, LT, LT, LT, LT, LT, GT, LT },
-/* <> */ { LT, LT, LT, LT, LT, GT, GT, GT, GT, GT, GT, LT, GT, LT, LT, LT, LT, LT, GT, LT },
-/* <  */ { LT, LT, LT, LT, LT, GT, GT, GT, GT, GT, GT, LT, GT, LT, LT, LT, LT, LT, GT, LT },
-/* <= */ { LT, LT, LT, LT, LT, GT, GT, GT, GT, GT, GT, LT, GT, LT, LT, LT, LT, LT, GT, LT },
-/* >  */ { LT, LT, LT, LT, LT, GT, GT, GT, GT, GT, GT, LT, GT, LT, LT, LT, LT, LT, GT, LT },
-/* >= */ { LT, LT, LT, LT, LT, GT, GT, GT, GT, GT, GT, LT, GT, LT, LT, LT, LT, LT, GT, LT },
-/* (  */ { LT, LT, LT, LT, LT, LT, LT, LT, LT, LT, LT, LT, EQ, LT, LT, LT, LT, LT, XX, LT },
-/* )  */ { GT, GT, GT, GT, GT, GT, GT, GT, GT, GT, GT, XX, GT, XX, XX, XX, XX, XX, XX, XX },
-/* i  */ { GT, GT, GT, GT, GT, GT, GT, GT, GT, GT, GT, XX, GT, XX, LT, LT, LT, LT, GT, XX },
-/* int*/ { GT, GT, GT, GT, GT, GT, GT, GT, GT, GT, GT, XX, GT, XX, XX, XX, XX, XX, GT, XX },
-/* db */ { GT, GT, GT, GT, GT, GT, GT, GT, GT, GT, GT, XX, GT, XX, XX, XX, XX, XX, GT, XX },
-/* sr */ { GT, GT, GT, GT, GT, GT, GT, GT, GT, GT, GT, XX, GT, XX, XX, XX, XX, XX, GT, XX },
-/* bl */ { GT, GT, GT, GT, GT, GT, GT, GT, GT, GT, GT, XX, GT, XX, XX, XX, XX, XX, GT, XX },
-/* $  */ { LT, LT, LT, LT, LT, LT, LT, LT, LT, LT, LT, LT, XX, LT, LT, LT, LT, LT, XX, LT },
-/* R  */ { GT, GT, GT, GT, GT, GT, GT, GT, GT, GT, GT, XX, GT, XX, LT, LT, LT, LT, GT, XX }
+/*         *   /   \   +   -   =   <>  <   <=  >   >=  (   )   i   int db  sr  $   R */
+/* *  */ { GT, GT, GT, GT, GT, GT, GT, GT, GT, GT, GT, LT, GT, LT, LT, LT, LT, GT, LT },
+/* /  */ { GT, GT, GT, GT, GT, GT, GT, GT, GT, GT, GT, LT, GT, LT, LT, LT, LT, GT, LT },
+/* \  */ { GT, GT, GT, GT, GT, GT, GT, GT, GT, GT, GT, LT, GT, LT, LT, LT, LT, GT, LT },
+/* +  */ { LT, LT, LT, GT, GT, GT, GT, GT, GT, GT, GT, LT, GT, LT, LT, LT, LT, GT, LT },
+/* -  */ { LT, LT, LT, GT, GT, GT, GT, GT, GT, GT, GT, LT, GT, LT, LT, LT, LT, GT, LT },
+/* =  */ { LT, LT, LT, LT, LT, GT, GT, GT, GT, GT, GT, LT, GT, LT, LT, LT, LT, GT, LT },
+/* <> */ { LT, LT, LT, LT, LT, GT, GT, GT, GT, GT, GT, LT, GT, LT, LT, LT, LT, GT, LT },
+/* <  */ { LT, LT, LT, LT, LT, GT, GT, GT, GT, GT, GT, LT, GT, LT, LT, LT, LT, GT, LT },
+/* <= */ { LT, LT, LT, LT, LT, GT, GT, GT, GT, GT, GT, LT, GT, LT, LT, LT, LT, GT, LT },
+/* >  */ { LT, LT, LT, LT, LT, GT, GT, GT, GT, GT, GT, LT, GT, LT, LT, LT, LT, GT, LT },
+/* >= */ { LT, LT, LT, LT, LT, GT, GT, GT, GT, GT, GT, LT, GT, LT, LT, LT, LT, GT, LT },
+/* (  */ { LT, LT, LT, LT, LT, LT, LT, LT, LT, LT, LT, LT, EQ, LT, LT, LT, LT, XX, LT },
+/* )  */ { GT, GT, GT, GT, GT, GT, GT, GT, GT, GT, GT, XX, GT, XX, XX, XX, XX, XX, XX },
+/* i  */ { GT, GT, GT, GT, GT, GT, GT, GT, GT, GT, GT, XX, GT, XX, LT, LT, LT, GT, XX },
+/* int*/ { GT, GT, GT, GT, GT, GT, GT, GT, GT, GT, GT, XX, GT, XX, XX, XX, XX, GT, XX },
+/* db */ { GT, GT, GT, GT, GT, GT, GT, GT, GT, GT, GT, XX, GT, XX, XX, XX, XX, GT, XX },
+/* sr */ { GT, GT, GT, GT, GT, GT, GT, GT, GT, GT, GT, XX, GT, XX, XX, XX, XX, GT, XX },
+/* $  */ { LT, LT, LT, LT, LT, LT, LT, LT, LT, LT, LT, LT, XX, LT, LT, LT, LT, XX, LT },
+/* R  */ { GT, GT, GT, GT, GT, GT, GT, GT, GT, GT, GT, XX, GT, XX, LT, LT, LT, GT, XX }
 };
 
 int set_operator(){
@@ -226,10 +225,6 @@ int set_operator(){
 
         case st_retez:
             return ex_str;
-
-        case st_true:
-        case st_false: //TODO: st_bool?
-            return ex_bool;
 
         case st_eol:
         case st_stred:
@@ -288,8 +283,8 @@ int expresion_reduction(TStack *s, Tstate instruct, int reduce_counter, Tstring 
 
     int symbol = STopType(s);
 
-    if(symbol == ex_ident || symbol == ex_integer || symbol == ex_double ||
-       symbol == ex_bool  || symbol == ex_str){ // R ---> i
+    if(symbol == ex_ident || symbol == ex_integer ||
+      symbol == ex_double || symbol == ex_str){ // R ---> i
          // do return stringu se uklada string identifikatoru, cisla, true/false nebo retezce
 
         str_rewrite_data(ret_string, STopString(s));
@@ -408,7 +403,7 @@ int expresion_reduction(TStack *s, Tstate instruct, int reduce_counter, Tstring 
                 SPop(s);
                 if(SEmpty(s)){
                     Tstate op2_type = return_variable_type(operand_2.data);
-                    
+
                     // GENEROVANI
                     if (dest_type == st_integer) {
                         if (op2_type == st_string) {
