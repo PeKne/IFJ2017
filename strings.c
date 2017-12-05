@@ -177,13 +177,3 @@ int str_delete_index(Tstring *str, int index)
 
     return err;
 }
-
-int add_inst_to_string(const char *str)
-{
-    int len = strlen(str);
-    for (int i = 0; i < len; i++)
-    {
-        int err = str_push_char(&gen_str, str[i]);
-        if (err) { str_destroy(&gen_str); return err; }
-    }
-}
