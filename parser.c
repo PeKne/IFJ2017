@@ -758,7 +758,7 @@ int rule_assign(Tstring id){ // stav <assign>
             }
         }
         str_create_init(&(fce),token.t_str.data);
-        Tstate dest_fce_type = return_variable_type(token.t_str.data);
+        //Tstate dest_fce_type = return_variable_type(token.t_str.data);
 
         if(item->type != type_function){// identifikator neni funkce
           if((func_return = precedent_analysis(instruct, dest_type)) == 0){
@@ -770,8 +770,10 @@ int rule_assign(Tstring id){ // stav <assign>
             } else if (dest_type == st_string) {
                 printf("MOVE %s%s GF@&pomString\n",context, id.data);
             }
-          }
-          else return func_return;
+          } else {
+            str_destroy(&(fce));
+            return func_return;
+            }
           str_destroy(&(fce));
           return return_value;
         }

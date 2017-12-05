@@ -1,4 +1,4 @@
-# 2017-12-05 00:24:14.938343
+# 2017-12-05 13:44:50.340002
 # SECTION: 02_functions
 # TEST: 21
 # INFO: Recursion of three functions
@@ -7,7 +7,7 @@
 # STATE: FAIL
 # 
 # COMPILER STDERR:
-# symbol.c:166:variable_exist(): Variable not found
+# symbol.c:173:variable_exist(): Variable not found
 # 
 # Not defined variable
 # ERROR - 3 - sÃ©mantickÃ¡ chyba v programu â nedefinovanÃ¡ funkce/promeÌnnÃ¡, pokus o redefinici funkce/promeÌnnÃ©, atd.

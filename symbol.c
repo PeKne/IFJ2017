@@ -366,6 +366,7 @@ int check_defined_function(void)
 
 	return 0;
 }
+
 /*
 int buildin_to_table(void)
 {
@@ -384,7 +385,7 @@ int buildin_to_table(void)
 	tmp_token.t_state = st_string;
 	set_argument_type_function(data_len, &tmp_token);
 	//set_type_variable(data_len_s, &tmp_token);
-	/*htab_t *local_table_len = htab_init(HTAB_SIZE);
+	//htab_t *local_table_len = htab_init(HTAB_SIZE);
 	variable_data_to_table(local_table_len, data_len_s);
 	set_local_symbol_table(local_table_len, data_len);*
 	tmp_token.t_state = st_integer;
