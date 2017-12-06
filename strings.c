@@ -1,3 +1,10 @@
+/*
+ Implementace prekladace imperativniho jazyka IFJ17
+ Petr Marek,       login: xmarek66
+ Jakub Stefanisin, login: xstefa22
+ Petr Knetl,       login: xknetl00
+*/
+
 #include <string.h>
 #include <stdlib.h>
 #include <stdio.h>
@@ -60,14 +67,14 @@ int str_clear(Tstring *str)
 
 int str_push_char(Tstring *str, char c)
 {
-    if ( str->length+1 >= str->size) {
+    if ( str->length+2 >= str->size) {
         str->data = ((char *) realloc(str->data, sizeof(char) * (str->length + ALLOC_CHUNK)));
         if (str->data == NULL) {
             free(str->data);
             fprintf(stderr,"Reallocating space for str_push_char failed!\n");
             return ERR_INTERN;
         }
-        str->size += ALLOC_CHUNK; 
+        str->size = str->length + ALLOC_CHUNK; 
     }
 
     str->data[str->length] = c;
@@ -98,7 +105,7 @@ int str_pop_char(Tstring *str)
 int str_append_str(Tstring *target, Tstring *to_append)
 {
     int err = 0;
-    for (int i = 0; i < to_append->length; ++i)
+    for (int i = 0; i < to_append->length; i++)
     {
         if ((err = str_push_char(target, to_append->data[i])) != 0)
             return err;
@@ -106,7 +113,7 @@ int str_append_str(Tstring *target, Tstring *to_append)
     return 0;
 }
 
-int str_create_init(Tstring *str, const char *data)
+int str_create_init(Tstring *str, char *data)
 {
     int length = strlen(data);
     str->data = ((char *) malloc(sizeof(char) * length+1));
@@ -115,10 +122,28 @@ int str_create_init(Tstring *str, const char *data)
         return ERR_INTERN;
     }
 
-
     strcpy(str->data, data);
     str->length = length;
     str->size = length + 1; // \0 pridan implicitne za data
+    return 0;
+}
+
+int str_rewrite_data(Tstring *str, char *data)
+{
+    int length = strlen(data);
+    
+    if (length > str->length) {
+        str->data = ((char *) realloc(str->data, sizeof(char) * length+1));
+        if (str->data == NULL) {
+            fprintf(stderr,"Allocating space for str_rewrite_data failed!\n");
+            return ERR_INTERN;
+        } 
+        str->size = length + 1; // \0 pridan implicitne za data
+     }
+    str->length = length;
+     
+    strcpy(str->data, data);
+
     return 0;
 }
 
@@ -151,4 +176,10 @@ int str_delete_index(Tstring *str, int index)
     str->length--;
 
     return err;
+}
+
+void delete_last_index(Tstring *str)
+{
+    int last_index = --(str->length);
+    str->data[last_index] = '\0';
 }
