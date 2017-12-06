@@ -244,7 +244,10 @@ int rule_function_head() { // stav <function-head>
 
                 if(token.t_state == st_levzav) {
                     if((func_return = generate_token())) return func_return;
-
+                    printf("LABEL $%s\n", ident.data);///
+                    printf("PUSHFRAME\n");
+                    printf("DEFVAR LF@&retval\n");///
+                    str_destroy(&ident);///
                     if((return_value = rule_check_par()) == 0) {
 
                         if(token.t_state == st_pravzav) {
@@ -259,12 +262,7 @@ int rule_function_head() { // stav <function-head>
 
                                 if((return_value = rule_check_ret_type()) == 0) {
 
-                                    if(token.t_state == st_eol) {
-                                        // TODO FUNKCE
-                                        printf("LABEL $%s\n", ident.data);///
-                                        printf("PUSHFRAME\n");
-                                        printf("DEFVAR LF@&retval\n");///
-                                        str_destroy(&ident);///
+                                    if(token.t_state == st_eol) {                                        
                                         if((func_return = generate_token())) return func_return;
                                         return_value = 0;
                                     }
@@ -288,6 +286,7 @@ int rule_function_tail(){ // stav <function-tail>
         if (type == st_integer) printf("MOVE LF@&retval GF@&pomInteger\n");
         if (type == st_string)  printf("MOVE LF@&retval GF@&pomString\n");
         if (type == st_double)  printf("MOVE LF@&retval GF@&pomFloat\n");
+        arg_cnt = 0;
         printf("POPFRAME\n");
         printf("RETURN\n\n");
         if((func_return = generate_token())) return func_return;
@@ -343,7 +342,6 @@ int rule_par(function_data *data_f){ // stav <par>
 }
 
 int rule_next_par(function_data *data_f){ // stav <next-par>
-    //printf("rule next par\n" );
     int return_value = ERR_SYN;
     int func_return;
     if(token.t_state ==  st_carka){ // simulace pravidla 11.
@@ -377,10 +375,11 @@ int rule_check_par(){ // stav <check-par>
             item->pointer.variable->type = global.current_arguments[ar_count - 1].type;
 
             str_clear(&global.current_arguments[ar_count - 1].argument_name);
-            str_append_str(&(global.current_arguments[ar_count - 1].argument_name), &token.t_str);
-            printf("%s\n",global.current_arguments[ar_count - 1].argument_name.data );
-
+            str_append_str(&(global.current_arguments[ar_count - 1].argument_name), &token.t_str);           
         }
+        char* context = (p == 0 ? "TF@" : "LF@");
+        printf("DEFVAR %s%s\n",context, global.current_arguments[ar_count - 1].argument_name.data);
+        printf("MOVE %s%s %s&arg%d\n", context, global.current_arguments[ar_count - 1].argument_name.data, context, arg_cnt++);
         if((func_return = generate_token())) return func_return;
 
         if(token.t_state == st_as){
