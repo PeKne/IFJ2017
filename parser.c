@@ -836,61 +836,115 @@ int rule_assign(Tstring id){ // stav <assign>
         if((func_return = generate_token())) return func_return;
         if(token.t_state == st_levzav) {
             if((func_return = generate_token())) return func_return;
-                if(token.t_state == st_id) {
-                    Tstring par;
-                    str_create_init(&par, token.t_str.data);
+            if(token.t_state == st_id) {
+                Tstring par;
+                str_create_init(&par, token.t_str.data);
+                if((func_return = generate_token())) return func_return;
+                if(token.t_state == st_pravzav) {
                     if((func_return = generate_token())) return func_return;
-                        if(token.t_state == st_pravzav) {
-                            if((func_return = generate_token())) return func_return;
-                            printf("STRLEN %s%s %s%s\n", context, id.data, context, par.data);
+                    printf("STRLEN %s%s %s%s\n", context, id.data, context, par.data);
 
-                            str_destroy(&par);
-                            return_value = 0;
-                        }
+                    str_destroy(&par);
+                    return_value = 0;
                 }
+            } else if(token.t_state == st_retez) {
+                printf("MOVE GF@&pomString string@%s\n", token.t_str.data);
+                if((func_return = generate_token())) return func_return;
+                if(token.t_state == st_pravzav) {
+                    if((func_return = generate_token())) return func_return;
+                    printf("STRLEN %s%s GF@&pomString\n", context, id.data);
+
+                    return_value = 0;
+                }
+            }
         }
     }
     else if(token.t_state == st_chr) {
         if((func_return = generate_token())) return func_return;
         if(token.t_state == st_levzav) {
             if((func_return = generate_token())) return func_return;
-                if(token.t_state == st_id) {
-                    Tstring par;
-                    str_create_init(&par, token.t_str.data);
+            if(token.t_state == st_id) {
+                Tstring par;
+                str_create_init(&par, token.t_str.data);
+                if((func_return = generate_token())) return func_return;
+                if(token.t_state == st_pravzav) {
                     if((func_return = generate_token())) return func_return;
-                        if(token.t_state == st_pravzav) {
-                            if((func_return = generate_token())) return func_return;
-                            printf("INT2CHAR %s%s %s%s\n", context, id.data, context, par.data);
+                    printf("INT2CHAR %s%s %s%s\n", context, id.data, context, par.data);
 
-                            str_destroy(&par);
-                            return_value = 0;
-                        }
+                    str_destroy(&par);
+                    return_value = 0;
                 }
+            } else if(token.t_state == st_int_val) {
+                printf("MOVE GF@&pomInteger int@%s\n", token.t_str.data);
+                if((func_return = generate_token())) return func_return;
+                if(token.t_state == st_pravzav) {
+                    if((func_return = generate_token())) return func_return;
+                    printf("INT2CHAR %s%s GF@&pomInteger\n", context, id.data);
+
+                    return_value = 0;
+                } 
+            }
         }
     }
-    else if(token.t_state == st_chr) {
+    else if(token.t_state == st_asc) {
         if((func_return = generate_token())) return func_return;
         if(token.t_state == st_levzav) {
             if((func_return = generate_token())) return func_return;
-                if(token.t_state == st_id) {
-                    Tstring par;
-                    str_create_init(&par, token.t_str.data);
+            if(token.t_state == st_id) {
+                Tstring par;
+                str_create_init(&par, token.t_str.data);
+                if((func_return = generate_token())) return func_return;
+                if(token.t_state == st_carka) {
                     if((func_return = generate_token())) return func_return;
-                    if(token.t_state == st_carka) {
+                    if(token.t_state == st_id) {
+                        Tstring par2;
+                        str_create_init(&par2, token.t_str.data);
                         if((func_return = generate_token())) return func_return;
-                        if(token.t_state == st_id) {
-                            Tstring par2;
-                            str_create_init(&par2, token.t_str.data);
+                        if(token.t_state == st_pravzav) {
                             if((func_return = generate_token())) return func_return;
-                            if(token.t_state == st_pravzav) {
-                                if((func_return = generate_token())) return func_return;
-                                    printf("STR2INT %s%s %s%s %s%s\n", context, id.data, context, par.data, context, par2.data);
+                            printf("STRI2INT %s%s %s%s %s%s\n", context, id.data, context, par.data, context, par2.data);
 
-                                    str_destroy(&par);
-                                    str_destroy(&par2);
-                                    return_value = 0;
-                                }
+                            str_destroy(&par);
+                            str_destroy(&par2);
+                            return_value = 0;
                         }
+                    } else if(token.t_state == st_int_val) {
+                        printf("MOVE GF@&pomInteger int@%s\n", token.t_str.data);
+                        if((func_return = generate_token())) return func_return;
+                        if(token.t_state == st_pravzav) {
+                            if((func_return = generate_token())) return func_return;
+                            printf("STRI2INT %s%s %s%s GF@&pomInteger\n", context, id.data, context, par.data);
+
+                            return_value = 0;
+                        }
+                    }
+                }
+            } else if(token.t_state == st_retez) {
+                printf("MOVE GF@&pomString string@%s\n", token.t_str.data);
+                if((func_return = generate_token())) return func_return;
+                if(token.t_state == st_carka) {
+                    if((func_return = generate_token())) return func_return;
+                    if(token.t_state == st_id) {
+                        Tstring par2;
+                        str_create_init(&par2, token.t_str.data);
+                        if((func_return = generate_token())) return func_return;
+                        if(token.t_state == st_pravzav) {
+                            if((func_return = generate_token())) return func_return;
+                            printf("STRI2INT %s%s GF@&pomString %s%s\n", context, id.data, context, par2.data);
+
+                            str_destroy(&par2);
+                            return_value = 0;
+                        }
+                    } else if(token.t_state == st_int_val) {
+                        printf("MOVE GF@&pomInteger int@%s\n", token.t_str.data);
+                        if((func_return = generate_token())) return func_return;
+                        if(token.t_state == st_pravzav) {
+                            if((func_return = generate_token())) return func_return;
+                            printf("STRI2INT %s%s GF@&pomString GF@&pomInteger\n", context, id.data);
+
+                            return_value = 0;
+                        }
+                    }
                 }
             }
         }
