@@ -20,6 +20,7 @@ typedef enum {
 } variable_type;
 
 typedef struct {
+	Tstring argument_name;
 	variable_type type;
 } function_arguments;
 
@@ -53,7 +54,8 @@ void free_data_variable(variable_data *data);
 void set_return_type_function(function_data *data, Ttoken *token);
 
 // Ret ERR_INTERN v pripade ze zlyhá malloc/realloc, inak 0
-int set_argument_type_function(function_data *data, Ttoken *token);
+int add_argument_function(function_data *data, Ttoken *token);
+void set_argument_type_function(function_data *data, Ttoken *token);
 
 // Volane priamo len v pripade, že ešte nebola volana funcia function_data_to_table a je potreba uvoľniť pamäť
 void free_data_function(function_data *data);
@@ -71,6 +73,7 @@ int check_variable_inicialized(char *variable_name);
 int check_function_return_type(Tstate state);
 int check_argument_count(unsigned count);
 int check_argument_type(Tstate state, unsigned index);
+int check_argument_name(char *name, unsigned index);
 int check_defined_function(void);
 
 int buildin_to_table(void);
