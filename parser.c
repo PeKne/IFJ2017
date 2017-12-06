@@ -970,6 +970,8 @@ int rule_call_par(){ // stav <call-par>
     int func_return;
     if(token.t_state == st_id){ // simulace pravidla 24.
         //TODO PARAM
+        Tstring param;
+        str_append_str(&param, &(global.current_arguments[index - 1].argument_name));
         if((func_return = generate_token())) return func_return;
 
         if((return_value = rule_call_next_par()) == 0){
