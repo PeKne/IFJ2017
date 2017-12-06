@@ -1,5 +1,9 @@
 scope
 dim a as integer
-if (a < 0)
-print a
+a = 4
+if (a <> 5) then
+print !"plati\n";
+else
+print !"neplati\n";
+end if
 end scope

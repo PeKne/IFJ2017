@@ -29,6 +29,7 @@ int ar_count = 0;
 int if_counter = 1;
 int while_counter = 1;
 int whole_div_cntr = 0;
+int equal = 1;
 Tstate last_gen_type; 
 
 int main() {

@@ -16,6 +16,7 @@ extern int p;
 extern int ar_count;
 extern int if_counter;
 extern int while_counter;
+extern int equal;
 extern Tstate last_gen_type;
 
 /**************************FUNKCE-REKURZIVNIHO-SESTUPU*********************************/
@@ -611,7 +612,11 @@ int rule_stat(){ // stav <stat>
         if((func_return = generate_token())) return func_return;
 
         if((func_return = precedent_analysis(instruct, dest_type)) == 0){
-            printf("JUMPIFNEQ $$else_%d GF@&pomBool bool@true\n", if_counter);///
+            if (equal) {
+                printf("JUMPIFNEQ $$else_%d GF@&pomBool bool@true\n", if_counter);///
+            } else { 
+                printf("JUMPIFEQ $$else_%d GF@&pomBool bool@true\n", if_counter);///
+            }
 
             if(token.t_state == st_then){
                 if((func_return = generate_token())) return func_return;
@@ -629,7 +634,7 @@ int rule_stat(){ // stav <stat>
                             if(token.t_state == st_eol){
                                 if((func_return = generate_token())) return func_return;
 
-                                if(rule_st_list() == 0){
+                                if((return_value = rule_st_list()) == 0){
 
                                     if(token.t_state == st_end){
                                         if((func_return = generate_token())) return func_return;
@@ -670,7 +675,11 @@ int rule_stat(){ // stav <stat>
             if((func_return = precedent_analysis(instruct, dest_type)) == 0){
 
                 if(token.t_state == st_eol){
-                    printf("JUMPIFNEQ $$loop_end_%d GF@&pomBool bool@true\n", while_counter);
+                    if (equal)  {
+                        printf("JUMPIFNEQ $$loop_end_%d GF@&pomBool bool@true\n", while_counter);
+                    } else  {
+                        printf("JUMPIFEQ $$loop_end_%d GF@&pomBool bool@true\n", while_counter);
+                    }
                     if((func_return = generate_token())) return func_return;
 
                     if((return_value = rule_st_list()) == 0){
@@ -764,7 +773,6 @@ int rule_assign(Tstring id){ // stav <assign>
             }
         }
         str_create_init(&(fce),token.t_str.data);
-        //Tstate dest_fce_type = return_variable_type(token.t_str.data);
 
         if(item->type != type_function){// identifikator neni funkce
           if((func_return = precedent_analysis(instruct, dest_type)) == 0){

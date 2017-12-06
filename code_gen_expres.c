@@ -17,6 +17,8 @@
 extern int p;
 extern int whole_div_cntr;
 extern Tstate last_gen_type;
+extern int equal;
+int relation_cntr;
 
 Tstate return_type(Tstring *operand)
 {  
@@ -106,6 +108,7 @@ int expr_gen(int operator, Tstring *operand_1, Tstring *operand_2, Tstate dest_t
     }
 
 
+
     Tstate op1_type, op2_type;
     
 
@@ -145,8 +148,16 @@ int expr_gen(int operator, Tstring *operand_1, Tstring *operand_2, Tstate dest_t
             destination = "GF@&pomString";
             last_gen_type = st_string;
         } else {
-            fprintf(stderr, "Wrong types in expresion (generator error).\n");
+            fprintf(stderr, "Wrong types in expression (generator error).\n");
             return ERR_SEM_TYPE;
+        }
+        if (operator == ex_equal  || operator == ex_notEq || operator == ex_less || 
+            operator == ex_lessEq || operator == ex_great || operator == ex_greatEq)
+        {
+            if (op1_type != op2_type) {
+                fprintf(stderr, "Wrong types of operands in relational expression\n");
+                return ERR_SEM_TYPE;
+            }
         }
     }
 
@@ -165,8 +176,6 @@ int expr_gen(int operator, Tstring *operand_1, Tstring *operand_2, Tstate dest_t
             return error;
         }
     } 
-
-    
 
     switch(operator) {
         
@@ -200,19 +209,52 @@ int expr_gen(int operator, Tstring *operand_1, Tstring *operand_2, Tstate dest_t
 
         case ex_equal:
         {
-            printf("EQ GF@&pomBool %s%s %s%s\n", context_1.data, operand_1->data, context_2.data, operand_2->data);            
+
+            printf("EQ GF@&pomBool %s%s %s%s\n", context_1.data, operand_1->data, context_2.data, operand_2->data);
+            equal = 1;         
             break;
         }
 
+        case ex_notEq:
+        {
+
+            printf("EQ GF@&pomBool %s%s %s%s\n", context_1.data, operand_1->data, context_2.data, operand_2->data);
+            equal = 0;            
+            break;
+        }
+
+        case ex_lessEq:
+        {
+            printf("LT GF@&pomBool %s%s %s%s\n", context_1.data, operand_1->data, context_2.data, operand_2->data);
+            printf("JUMPIFEQ $$comp_%d GF@&pomBool bool@true\n", relation_cntr);///
+            printf("EQ GF@&pomBool %s%s %s%s\n", context_1.data, operand_1->data, context_2.data, operand_2->data);
+            printf("LABEL $$comp_%d\n", relation_cntr++);
+            equal = 1;                   
+            break;
+        }
+
+        case ex_greatEq:
+        {
+            printf("GT GF@&pomBool %s%s %s%s\n", context_1.data, operand_1->data, context_2.data, operand_2->data);
+            printf("JUMPIFEQ $$comp_%d GF@&pomBool bool@true\n", relation_cntr);///
+            printf("EQ GF@&pomBool %s%s %s%s\n", context_1.data, operand_1->data, context_2.data, operand_2->data);
+            printf("LABEL $$comp_%d\n", relation_cntr++);
+            equal = 1;                      
+            break;
+        }
+
+
         case ex_less:
         {
-            printf("LT GF@&pomBool %s%s %s%s\n", context_1.data, operand_1->data, context_2.data, operand_2->data);            
+            printf("LT GF@&pomBool %s%s %s%s\n", context_1.data, operand_1->data, context_2.data, operand_2->data);
+            equal = 1;            
             break;
         }
 
         case ex_great:
         {
-            printf("GT GF@&pomBool %s%s %s%s\n", context_1.data, operand_1->data, context_2.data, operand_2->data);            
+            printf("GT GF@&pomBool %s%s %s%s\n", context_1.data, operand_1->data, context_2.data, operand_2->data);
+            equal = 1;            
             break;
         }
 
@@ -230,7 +272,12 @@ int expr_gen(int operator, Tstring *operand_1, Tstring *operand_2, Tstate dest_t
         }
 
         default:
+        {
             fprintf(stderr, "Chyba v code_gen_expres %s%s %s%s %s%s\n", context, destination, context_1.data, operand_1->data, context_2.data, operand_2->data);
+            str_destroy(&context_1);
+            str_destroy(&context_2);
+            return ERR_SEM_TYPE;
+        }
 
     }
 
