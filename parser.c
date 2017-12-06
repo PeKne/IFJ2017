@@ -367,10 +367,12 @@ int rule_check_par(){ // stav <check-par>
     int func_return;
     if(token.t_state == st_id){ // simulace pravidla 9.
         ar_count++;
-        /*if(check_argument_name(token.t_str.data, ar_count) != 1) {
-            printf("Nezhoduje sa meno argumentu %d\n", ar_count);
-            return ERR_SEM_PROG; //Meno premmenej nie je spravne
-        }*/
+        if(check_argument_name(token.t_str.data, ar_count) != 1) {
+            htab_listitem *item;
+            item = htab_lookup_add(global.local_sym, token.t_str.data);
+            variable_init(item, token.t_str.data);
+            item->pointer.variable->type = global.current_arguments[ar_count - 1].type;
+        }
         if((func_return = generate_token())) return func_return;
 
         if(token.t_state == st_as){
@@ -798,6 +800,9 @@ int rule_assign(Tstring id){ // stav <assign>
             return ERR_SEM_PROG;
         }
 
+        global.local_sym = item->pointer.function->local_symbol_table;
+        global.current_arguments = item->pointer.function->arguments;
+
         if((func_return = generate_token()))  {
             str_destroy(&(fce));
             return func_return;
@@ -825,6 +830,69 @@ int rule_assign(Tstring id){ // stav <assign>
             }
         }
     }// konec pravidla 23.
+    else if(token.t_state == st_length) {
+        if((func_return = generate_token())) return func_return;
+        if(token.t_state == st_levzav) {
+            if((func_return = generate_token())) return func_return;
+                if(token.t_state == st_id) {
+                    Tstring par;
+                    str_create_init(&par, token.t_str.data);
+                    if((func_return = generate_token())) return func_return;
+                        if(token.t_state == st_pravzav) {
+                            if((func_return = generate_token())) return func_return;
+                            printf("STRLEN %s%s %s%s\n", context, id.data, context, par.data);
+
+                            str_destroy(&par);
+                            return_value = 0;
+                        }
+                }
+        }
+    }
+    else if(token.t_state == st_chr) {
+        if((func_return = generate_token())) return func_return;
+        if(token.t_state == st_levzav) {
+            if((func_return = generate_token())) return func_return;
+                if(token.t_state == st_id) {
+                    Tstring par;
+                    str_create_init(&par, token.t_str.data);
+                    if((func_return = generate_token())) return func_return;
+                        if(token.t_state == st_pravzav) {
+                            if((func_return = generate_token())) return func_return;
+                            printf("INT2CHAR %s%s %s%s\n", context, id.data, context, par.data);
+
+                            str_destroy(&par);
+                            return_value = 0;
+                        }
+                }
+        }
+    }
+    else if(token.t_state == st_chr) {
+        if((func_return = generate_token())) return func_return;
+        if(token.t_state == st_levzav) {
+            if((func_return = generate_token())) return func_return;
+                if(token.t_state == st_id) {
+                    Tstring par;
+                    str_create_init(&par, token.t_str.data);
+                    if((func_return = generate_token())) return func_return;
+                    if(token.t_state == st_carka) {
+                        if((func_return = generate_token())) return func_return;
+                        if(token.t_state == st_id) {
+                            Tstring par2;
+                            str_create_init(&par2, token.t_str.data);
+                            if((func_return = generate_token())) return func_return;
+                            if(token.t_state == st_pravzav) {
+                                if((func_return = generate_token())) return func_return;
+                                    printf("STR2INT %s%s %s%s %s%s\n", context, id.data, context, par.data, context, par2.data);
+
+                                    str_destroy(&par);
+                                    str_destroy(&par2);
+                                    return_value = 0;
+                                }
+                        }
+                }
+            }
+        }
+    }
     else if((func_return = precedent_analysis(instruct, dest_type)) == 0){  //simulace pravidla 22.
         if      (dest_type == st_integer) {
             printf("MOVE %s%s GF@&pomInteger\n",context, id.data);
