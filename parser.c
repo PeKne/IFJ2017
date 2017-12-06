@@ -215,7 +215,6 @@ int rule_function_head() { // stav <function-head>
 
                                     global.local_sym = item->pointer.function->local_symbol_table;
                                     global.current_arguments = item->pointer.function->arguments;
-
                                     if(token.t_state == st_eol) {
                                         // TODO FUNKCE
                                         printf("LABEL $%s\n", ident.data);///
@@ -846,6 +845,7 @@ int rule_call_par(){ // stav <call-par>
     int return_value = ERR_SYN;
     int func_return;
     if(token.t_state == st_id){ // simulace pravidla 24.
+        //TODO PARAM
         if((func_return = generate_token())) return func_return;
 
         if((return_value = rule_call_next_par()) == 0){

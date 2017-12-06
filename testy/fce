@@ -10,5 +10,5 @@ end function
 scope
     dim year as integer
     year = get_year()
-    print year
+    print year;
 end scope
