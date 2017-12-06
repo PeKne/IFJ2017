@@ -30,6 +30,8 @@ int if_counter = 0;
 int while_counter = 0;
 int whole_div_cntr = 0;
 int equal = 1;
+int arg_cnt = 0; 
+
 Tstate last_gen_type; 
 
 int main() {
