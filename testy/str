@@ -1,4 +1,0 @@
-scope
-dim a as string
-a = !"asd" + !"asd"
-end scope

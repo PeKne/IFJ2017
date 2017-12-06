@@ -1,9 +1,0 @@
-scope
-dim a as double
-dim b as integer
-dim d as integer
-dim f as string
-
-a = a + b + d + !"asd"
-
-end scope

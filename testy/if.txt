@@ -1,5 +1,0 @@
-scope
-dim a as integer
-if (a < 0)
-print a
-end scope

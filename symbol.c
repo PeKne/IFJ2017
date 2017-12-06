@@ -26,7 +26,6 @@ void set_type_variable(variable_data *data, Ttoken *token)
 			break;
 
 		default:
-			debug_print("%s\n", "Variable type not known.");
 			break;
 	}
 }
@@ -60,7 +59,6 @@ void set_value_variable(variable_data *data, Ttoken *token)
 			break;
 
 		default:
-			debug_print("%s\n", "Variable type not known.\n");
 			break;
 	}
 }
@@ -90,7 +88,6 @@ void set_return_type_function(function_data *data, Ttoken *token)
 			break;
 
 		default:
-			debug_print("%s\n", "Variable type not known.");
 			break;
 	}
 }
@@ -133,7 +130,6 @@ void set_argument_type_function(function_data *data, Ttoken *token)
 			break;
 
 		default:
-			debug_print("%s\n", "Variable type not known.");
 			break;
 	}
 }
@@ -218,8 +214,6 @@ Tstate return_variable_type(char *variable_name)
 Tstate return_function_type(void)
 {
 	if(global.current_func_name == NULL) {
-		debug_print("%s\n", "global.current_func_name not set\n");
-
 		return 0;
 	}
 
@@ -263,8 +257,6 @@ int check_variable_inicialized(char *variable_name)
 int check_function_return_type(Tstate state)
 {
 	if(global.current_func_name == NULL) {
-		debug_print("%s\n", "global.current_func_name not set\n");
-
 		return 0;
 	}
 
@@ -288,8 +280,6 @@ int check_function_return_type(Tstate state)
 int check_argument_count(unsigned count)
 {
 	if(global.current_func_name == NULL) {
-		debug_print("%s\n", "global.current_func_name not set\n");
-
 		return 0;
 	}
 
@@ -311,8 +301,6 @@ int check_argument_count(unsigned count)
 int check_argument_type(Tstate state, unsigned index)
 {
 	if(global.current_arguments == NULL) {
-		debug_print("%s\n", "global.current_arguments not set\n");
-
 		return 0;
 	}
 
@@ -328,8 +316,6 @@ int check_argument_type(Tstate state, unsigned index)
 int check_argument_name(char *name, unsigned index)
 {
 	if(global.current_arguments == NULL) {
-		debug_print("%s\n", "global.current_arguments not set.\n");
-
 		return 0;
 	}
 
@@ -343,8 +329,6 @@ int check_argument_name(char *name, unsigned index)
 int check_defined_function(void) 
 {
 	if(global.current_func_name == NULL) {
-		debug_print("%s\n", "global.current_func_name not set\b");
-
 		return 0;
 	}
 
