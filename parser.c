@@ -1,236 +1,359 @@
+/*
+ Implementace prekladace imperativniho jazyka IFJ17
+ Petr Marek,       login: xmarek66
+ Jakub Stefanisin, login: xstefa22
+ Petr Knetl,       login: xknetl00
+*/
+
 #include "parser.h"
 #include "expresion.h"
-extern function_data *global_data;
+#include "code_gen_expres.h"
+#include "lex.h"
+#include "errors.h"
+#include "garbage.h"
+
 extern int p;
 extern int ar_count;
+extern int if_counter;
+extern int while_counter;
+extern int equal;
+extern Tstate last_gen_type;
 
 /**************************FUNKCE-REKURZIVNIHO-SESTUPU*********************************/
 /**************************************************************************************/
 
-void skip_blank_lines(){
-	while(token.t_state == st_eol){
-		generate_token();
-	}
+void init_gen() {
+        printf("LABEL $$scope\n");
+        printf("DEFVAR GF@&pomInteger\n");///
+        printf("MOVE GF@&pomInteger int@0\n");
+        printf("DEFVAR GF@&pomString\n");///
+        printf("MOVE GF@&pomString string@\n");
+        printf("DEFVAR GF@&pomFloat\n");///
+        printf("MOVE GF@&pomFloat float@0\n");
+        printf("DEFVAR GF@&pomBool\n");///
+        printf("MOVE GF@&pomBool bool@false\n");///
+        printf("DEFVAR GF@&pomCntr\n");///
+        printf("MOVE GF@&pomCntr int@0\n");///
+        printf("CREATEFRAME\n\n");///
 }
 
-bool rule_start_state(){ // stav <start t_state>
-    generate_token();
-    bool return_value = false;
+int skip_blank_lines(){
+    int func_return;
+    while(token.t_state == st_eol){
+        if((func_return = generate_token())) return func_return;
+    }
+    return 0;
+}
+
+int rule_start_state(){ // stav <start t_state>
+    int return_value = ERR_SYN;
+    int func_return;
+    if((func_return = generate_token())) return func_return;
+    if((func_return = skip_blank_lines())) return func_return;
     if(token.t_state == st_scope || token.t_state == st_declare || token.t_state == st_function){ // simulace pravidla 1.
         printf(".IFJcode17\n");///
-        printf("JUMP $$main\n\n");
-        return_value = (rule_function() && rule_scope());
+        printf("JUMP $$scope\n\n");
+        if ((return_value = rule_function()) == 0)
+            return_value = rule_scope();
     }
     return return_value;
 }
 
-bool rule_scope(){ // pravidlo <scope>
-    skip_blank_lines();
-	bool return_value = false;
+int rule_scope() { // pravidlo <scope>
+    int return_value = ERR_SYN;
+    int func_return;
+    if((func_return = skip_blank_lines())) return func_return;
     if(token.t_state == st_scope){ // simulace pravidla 2.
-        printf("LABEL $$main\n");
-        printf("DEFVAR GF@pomBool\n");///
-        printf("DEFVAR GF@pomString\n");///
-        printf("DEFVAR GF@pomInt\n");///
-        printf("DEFVAR GF@pomFloat\n\n");///
-        printf("CREATEFRAME\n");///
-        generate_token();
+        init_gen();
+        if((func_return = generate_token())) return func_return;
+        if((return_value = rule_st_list()) == 0){
+            if((func_return = skip_blank_lines())) return func_return;
+            if(token.t_state == st_end){
+                if((func_return = generate_token())) return func_return;
 
-        if(rule_st_list()){
+                if(token.t_state == st_scope){
+                    if((func_return = generate_token())) return func_return;
+                    if((func_return = skip_blank_lines())) return func_return;
 
-            skip_blank_lines();
-        	if(token.t_state == st_end){
-        		generate_token();
+                    if(token.t_state != st_eof) return ERR_SYN;
 
-        		if(token.t_state == st_scope){
-        			generate_token();
-        			return_value = true;
-        		}
-        	}
+                    return_value = 0;
+                }
+            }
 
         }
     }
     return return_value;
 }
 
-bool rule_function(){ // stav <function>
-    skip_blank_lines();
-	bool return_value = false;
+int rule_function() { // stav <function>
+    int return_value = ERR_SYN;
+    int func_return;
+    if((func_return = skip_blank_lines())) return func_return;
     if(token.t_state == st_function){ // simulace pravidla 3.
-        return_value = (rule_function_head() && rule_st_list() && rule_function_tail() && rule_function());
+            if((return_value = rule_function_head()) == 0)
+                if((return_value = rule_st_list()) == 0)
+                    if((return_value = rule_function_tail()) == 0)
+                        if((return_value = rule_function()) == 0)
+                            return_value = 0;
     }
     else if(token.t_state == st_declare){ //simulace pravidla 4.
-    	return_value = (rule_function_dec() && rule_function());
+            if((return_value = rule_function_dec()) == 0)
+                if((return_value = rule_function()) == 0)
+                    return_value = 0;
     }
     else if(token.t_state == st_scope){ //simulace pravidla 5.
-    	return_value = true;
+        return_value = 0;
     }
 
     return return_value;
 
 }
 
-bool rule_function_dec(){ // stav <function-dec>
-	bool return_value = false;
+int rule_function_dec() { // stav <function-dec>
+    int return_value = ERR_SYN;
+    int func_return;
 
     if(token.t_state == st_declare){ // simulace pravidla 6.
-    	generate_token();
+        if((func_return = generate_token())) return func_return;
 
-    	if(token.t_state == st_function){
-    		generate_token();
+        if(token.t_state == st_function){
+            if((func_return = generate_token())) return func_return;
 
-    		if(token.t_state == st_id){
+            if(token.t_state == st_id){
+                htab_listitem *item;
+                item = htab_find(global.global_table, token.t_str.data);
+                if(item != NULL) {
+                    return ERR_SEM_PROG;
+                }
+                item = htab_lookup_add(global.global_table, token.t_str.data);
+                function_init(item, token.t_str.data);
+
                 htab_t *local_table = htab_init(HTAB_SIZE);
                 if(local_table == NULL) {
                     return ERR_INTERN;
                 }
 
-                function_data *data_f = create_data_function(&token);
-                if(data_f == NULL) {
-                    free(local_table);
-                    return ERR_INTERN;
+                item->pointer.function->local_symbol_table = local_table;
+                if((func_return = generate_token())) return func_return;
+
+                if(token.t_state == st_levzav){
+                    if((func_return = generate_token())) return func_return;
+
+                    if((return_value = rule_par(item->pointer.function)) == 0){
+
+                        if(token.t_state == st_pravzav){
+                            if((func_return = generate_token())) return func_return;
+
+                            if(token.t_state == st_as){
+                                if((func_return = generate_token())) return func_return;
+
+                                if((return_value = rule_ret_type(item->pointer.function)) == 0){
+                                    return_value = 0;
+                                }
+                            }
+                        }
+                    }
                 }
-
-                set_local_symbol_table(local_table, data_f);
-    			generate_token();
-
-    			if(token.t_state == st_levzav){
-    				generate_token();
-
-    				if(rule_par(data_f)){
-
-    					if(token.t_state == st_pravzav){
-    						generate_token();
-
-    						if(token.t_state == st_as){
-    							generate_token();
-
-    							if(rule_ret_type(data_f)){
-                                    function_data_to_table(global_table, data_f);
-    								return_value = true;
-    							}
-    						}
-    					}
-    				}
-    			}
-
-    		}
-    	}
-
+            }
+        }
     }
 
     return return_value;
 }
 
-bool rule_function_head(){ // stav <function-head>
-	bool return_value = false;
+int rule_function_head() { // stav <function-head>
+    int return_value = ERR_SYN;
+    int func_return;
     Tstring ident;///
     p = 1;
 
-    if(token.t_state ==  st_function){ // simulace pravidla 7.
-        generate_token();
+    if(token.t_state ==  st_function) { // simulace pravidla 7.
+        if((func_return = generate_token())) return func_return;
 
-        if(token.t_state == st_id){
-            if(retrieve_function_data(token.t_str.data) != 1) {
+        if(token.t_state == st_id) {
+            if(global.current_func_name == NULL) {
+                global.current_func_name = g_malloc(sizeof(char *) * token.t_str.length);
+            } else {
+                global.current_func_name = g_realloc(global.current_func_name, sizeof(char *) * token.t_str.length);
+            }
+            strcpy(global.current_func_name, token.t_str.data);
+            //
+            htab_listitem *item;
+            item = htab_find(global.global_table, token.t_str.data);
+            if((item != NULL && item->pointer.function->defined == 1)) {
                 return ERR_SEM_PROG;
             }
-            if(check_defined_function() == 1) {
-                free_data_function(global_data);
-                return ERR_SEM_PROG;
+
+            if(item == NULL) {
+                item = htab_lookup_add(global.global_table, token.t_str.data);
+                function_init(item, token.t_str.data);
+
+                str_create_init(&ident, token.t_str.data);
+
+                htab_t *local_table = htab_init(HTAB_SIZE);
+                if(local_table == NULL) {
+                    return ERR_INTERN;
+                }
+
+                item->pointer.function->local_symbol_table = local_table;
+                if((func_return = generate_token())) return func_return;
+
+                if(token.t_state == st_levzav) {
+                    if((func_return = generate_token())) return func_return;
+
+                    if((return_value = rule_par(item->pointer.function)) == 0) {
+
+                        if(token.t_state == st_pravzav) {
+                            if((func_return = generate_token())) return func_return;
+
+                            if(token.t_state == st_as) {
+                                if((func_return = generate_token())) return func_return;
+
+                                if((return_value = rule_ret_type(item->pointer.function)) == 0) {
+                                    item->pointer.function->defined = 1;
+
+                                    global.local_sym = item->pointer.function->local_symbol_table;
+                                    global.current_arguments = item->pointer.function->arguments;
+                                    if(token.t_state == st_eol) {
+                                        // TODO FUNKCE
+                                        printf("LABEL $%s\n", ident.data);///
+                                        printf("PUSHFRAME\n");
+                                        printf("DEFVAR LF@&retval\n");///
+                                        str_destroy(&ident);///
+                                        if((func_return = generate_token())) return func_return;
+                                        return_value = 0;
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }
+            } else {
+                item->pointer.function->defined = 1;
+
+                global.local_sym = item->pointer.function->local_symbol_table;
+                global.current_arguments = item->pointer.function->arguments;
+
+
+                str_create_init(&ident, token.t_str.data);///
+                if((func_return = generate_token())) return func_return;
+
+                if(token.t_state == st_levzav) {
+                    if((func_return = generate_token())) return func_return;
+
+                    if((return_value = rule_check_par()) == 0) {
+
+                        if(token.t_state == st_pravzav) {
+                            if(check_argument_count(ar_count) != 1) {
+                                debug_print("%s\n", "Argument count does not match with declaration");
+                                return ERR_SEM_PROG;
+                            }
+                            if((func_return = generate_token())) return func_return;
+
+                            if(token.t_state == st_as) {
+                                if((func_return = generate_token())) return func_return;
+
+                                if((return_value = rule_check_ret_type()) == 0) {
+
+                                    if(token.t_state == st_eol) {
+                                        // TODO FUNKCE
+                                        printf("LABEL $%s\n", ident.data);///
+                                        printf("PUSHFRAME\n");
+                                        printf("DEFVAR LF@&retval\n");///
+                                        str_destroy(&ident);///
+                                        if((func_return = generate_token())) return func_return;
+                                        return_value = 0;
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }
             }
-            str_create_init(&ident, token.t_str.data);///
-        	generate_token();
-
-        	if(token.t_state == st_levzav){
-        		generate_token();
-
-        		if(rule_check_par()){
-
-        			if(token.t_state == st_pravzav){
-        				generate_token();
-
-        				if(token.t_state == st_as){
-        					generate_token();
-
-        					if(rule_check_ret_type()){
-
-        						if(token.t_state == st_eol){
-                                    printf("LABEL $$%s\n", ident.data);///
-                                    printf("PUSHFRAME\n");
-                                    str_destroy(&ident);///
-        							generate_token();
-        							return_value = true;
-        						}
-        					}
-        				}
-        			}
-        		}
-        	}
         }
     }
-
     return return_value;
 }
 
-bool rule_function_tail(){ // stav <function-tail>
-    skip_blank_lines();
-	bool return_value = false;
+int rule_function_tail(){ // stav <function-tail>
+    int return_value = ERR_SYN;
+    int func_return;
+    if((func_return = skip_blank_lines())) return func_return;
     if(token.t_state == st_end){ // simulace pravidla 8.
+        // TADY ZJISTIT TYP NAVRATOVE HODNOTY FUNKCE
+        Tstate type = return_function_type();
+        if (type == st_integer) printf("MOVE LF@&retval GF@&pomInteger\n");
+        if (type == st_string)  printf("MOVE LF@&retval GF@&pomString\n");
+        if (type == st_double)  printf("MOVE LF@&retval GF@&pomFloat\n");
         printf("POPFRAME\n");
         printf("RETURN\n\n");
-        generate_token();
+        if((func_return = generate_token())) return func_return;
 
         if(token.t_state == st_function){
-        	generate_token();
-        	return_value = true;
+            if((func_return = generate_token())) return func_return;
+            return_value = 0;
         }
     }
-
     p = 0;
     ar_count = 0;
     return return_value;
 }
 
-bool rule_par(function_data *data_f){ // stav <par>
-	bool return_value = false;
+int rule_par(function_data *data_f){ // stav <par>
+    int return_value = ERR_SYN;
+    int func_return;
     if(token.t_state == st_id){ // simulace pravidla 9.
-        variable_data *data = create_data_variable(&token);
-        if(data == NULL) {
-            return ERR_INTERN;
-        }
-        if(add_argument_function(data_f, &token) != 0) {
-            free_data_variable(data);
+        htab_listitem *item;
+        item = htab_find(global.global_table, token.t_str.data);
+        if(item != NULL && item->type == type_function) {
             return ERR_SEM_PROG;
         }
-        generate_token();
+
+        if((item = htab_find(data_f->local_symbol_table, token.t_str.data)) != NULL) {
+            printf("Function has another parameter with same name");
+            return ERR_SEM_PROG;
+        }
+        item = htab_lookup_add(data_f->local_symbol_table, token.t_str.data);
+        variable_init(item, token.t_str.data);
+
+        if(add_argument_function(data_f, &token) != 0) {
+            return ERR_INTERN;
+        }
+        if((func_return = generate_token())) return func_return;
 
         if(token.t_state == st_as){
-        	generate_token();
+            if((func_return = generate_token())) return func_return;
 
-        	if(rule_arg_type(data_f) && rule_type(data) && rule_next_par(data_f)){
-                variable_data_to_table(data_f->local_symbol_table, data);
-                return_value = true;
+            if((return_value = rule_arg_type(data_f)) == 0)
+                if((return_value = rule_type(item->pointer.variable)) == 0)
+                    if((return_value = rule_next_par(data_f)) == 0){
+                        return_value = 0;
             }
         }
     }
 
     else if(token.t_state == st_pravzav){ //simulace pravidla 10.
-    	return_value = true;
+        return_value = 0;
     }
 
     return return_value;
 }
 
-bool rule_next_par(function_data *data_f){ // stav <next-par>
-	bool return_value = false;
+int rule_next_par(function_data *data_f){ // stav <next-par>
+    //printf("rule next par\n" );
+    int return_value = ERR_SYN;
+    int func_return;
     if(token.t_state ==  st_carka){ // simulace pravidla 11.
 
-        if(rule_par(data_f)){
-        	return_value = true;
+        if((func_return = generate_token())) return func_return;
+
+        if((return_value = rule_par(data_f)) == 0){
+            return_value = 0;
         }
     }
     else if(token.t_state == st_pravzav){ // simulace pravidla 12.
-    	return_value = true;
+        return_value = 0;
     }
 
 
@@ -239,409 +362,675 @@ bool rule_next_par(function_data *data_f){ // stav <next-par>
 
 }
 
-bool rule_check_par(){ // stav <check-par>
-    bool return_value = false;
+int rule_check_par(){ // stav <check-par>
+    int return_value = ERR_SYN;
+    int func_return;
     if(token.t_state == st_id){ // simulace pravidla 9.
         ar_count++;
         if(check_argument_name(token.t_str.data, ar_count) != 1) {
-            return ERR_SEM_TYPE; //Meno premmenej nie je spravne
+            htab_listitem *item;
+            item = htab_lookup_add(global.local_sym, token.t_str.data);
+            variable_init(item, token.t_str.data);
+            item->pointer.variable->type = global.current_arguments[ar_count - 1].type;
         }
-        generate_token();
+        if((func_return = generate_token())) return func_return;
 
         if(token.t_state == st_as){
-            generate_token();
+            if((func_return = generate_token())) return func_return;
 
-            if(rule_check_arg_type()) {
-                generate_token();
-    
-                if(rule_check_next_par()){
-                    return_value = true;
+            if((return_value = rule_check_arg_type()) == 0) {
+                if((func_return = generate_token())) return func_return;
+
+                if((return_value = rule_check_next_par()) == 0){
+                    return_value = 0;
                 }
             }
         }
     }
 
     else if(token.t_state == st_pravzav){ //simulace pravidla 10.
-        return_value = true;
+        return_value = 0;
     }
-    return return_value;    
+    return return_value;
 }
 
-bool rule_check_next_par(){ // stav <check-next-par>
-    bool return_value = false;
-    if(token.t_state ==  st_carka){ // simulace pravidla 11. 
-        
-        if(rule_check_par()){
-            return_value = true;
+int rule_check_next_par(){ // stav <check-next-par>
+    int return_value = ERR_SYN;
+    int func_return;
+    if(token.t_state ==  st_carka){ // simulace pravidla 11.
+
+      if((func_return = generate_token())) return func_return;
+
+        if((return_value = rule_check_par()) == 0){
+            return_value = 0;
         }
     }
     else if(token.t_state == st_pravzav){ // simulace pravidla 12.
-        return_value = true;
-    }
-
-    return return_value;    
-}
-
-bool rule_type(variable_data *data){ // stav <type>
-	bool return_value = false;
-    if(token.t_state == st_integer || token.t_state == st_double || token.t_state == st_string){ // simulace pravidla 13., 14., 15.
-        set_type_variable(data, &token);
-        generate_token();
-        return_value = true;
+        return_value = 0;
     }
 
     return return_value;
 }
 
-bool rule_ret_type(function_data *data_f){ // stav <ret-type>
-    bool return_value = false;
+int rule_type(variable_data *data){ // stav <type>
+    int return_value = ERR_SYN;
+    int func_return;
+    if(token.t_state == st_integer || token.t_state == st_double || token.t_state == st_string){ // simulace pravidla 13., 14., 15.
+        set_type_variable(data, &token);
+        if((func_return = generate_token())) return func_return;
+        return_value = 0;
+    }
+
+    return return_value;
+}
+
+int rule_ret_type(function_data *data_f){ // stav <ret-type>
+    int return_value = ERR_SYN;
+    int func_return;
     if(token.t_state == st_integer || token.t_state == st_double || token.t_state == st_string){ // simulace pravidla 13., 14., 15.
         set_return_type_function(data_f, &token);
-        generate_token();
-        return_value = true;
+        if((func_return = generate_token())) return func_return;
+        return_value = 0;
     }
-    
-    return return_value;    
+
+    return return_value;
 }
 
-bool rule_check_ret_type(){ // stav <check-ret-type>
-    bool return_value = false;
+int rule_check_ret_type(){ // stav <check-ret-type>
+    int return_value = ERR_SYN;
+    int func_return;
     if(token.t_state == st_integer || token.t_state == st_double || token.t_state == st_string){ // simulace pravidla 13., 14., 15.
         if(check_function_return_type(token.t_state) == 0) {
-            return ERR_SEM_TYPE;
+            return ERR_SEM_PROG;
         }
-        generate_token();
-        return_value = true;
+        if((func_return = generate_token())) return func_return;
+        return_value = 0;
     }
-    
-    return return_value;    
+
+    return return_value;
 }
 
-bool rule_arg_type(function_data *data_f){ // stav <arg-type>
-    bool return_value = false;
+int rule_arg_type(function_data *data_f){ // stav <arg-type>
+    int return_value = ERR_SYN;
     if(token.t_state == st_integer || token.t_state == st_double || token.t_state == st_string){ // simulace pravidla 13., 14., 15.
         set_argument_type_function(data_f, &token);
-        return_value = true;
+        return_value = 0;
     }
-    
-    return return_value;    
+
+    return return_value;
 }
 
-bool rule_check_arg_type(){ // stav <check-arg-type>
-    bool return_value = false;
+int rule_check_arg_type(){ // stav <check-arg-type>
+    int return_value = ERR_SYN;
     if(token.t_state == st_integer || token.t_state == st_double || token.t_state == st_string){ // simulace pravidla 13., 14., 15.
         if(check_argument_type(token.t_state, ar_count) != 1) {
-            return ERR_SEM_TYPE; //Neodpovedajuci datovy typ argumentu
+            return ERR_SEM_PROG; //Neodpovedajuci datovy typ argumentu
         }
-        return_value = true;
+        return_value = 0;
     }
-    
-    return return_value;    
+
+    return return_value;
 }
 
-bool rule_st_list(){ // stav <st-list>
-    skip_blank_lines();
-	bool return_value = false;
+int rule_st_list(){ // stav <st-list>
+    int return_value = ERR_SYN;
+    int func_return;
+    if((func_return = skip_blank_lines())) return func_return;
     if(token.t_state == st_id || token.t_state == st_dim || token.t_state == st_input ||
        token.t_state == st_print || token.t_state == st_if || token.t_state == st_do ||
        token.t_state == st_return  ){ // simulace pravidla 16.
-
-        return_value = (rule_stat() && rule_st_list());
+                if((return_value = rule_stat()) == 0)
+                    if((return_value = rule_st_list()) == 0)
+                        return_value = 0;
     }
 
-		else if(token.t_state == st_else|| token.t_state == st_loop){
-			return_value = true;
-		}
-
-    else if(token.t_state == st_end){ // simulace pravidla 17.
-    	return_value = true;
+    else if(token.t_state == st_end || token.t_state == st_else|| token.t_state == st_loop){ // simulace pravidla 17.
+        return_value = 0;
     }
 
     return return_value;
 }
 
-bool rule_stat(){ // stav <stat>
-	bool return_value = false;
+int rule_stat(){ // stav <stat>
+    int return_value = ERR_SYN;
+    int func_return;
     Tstring ident;///
-    int print_command = 0;
+    Tstate instruct = 0;
+    Tstate dest_type = 0;
+
     if(token.t_state == st_dim ){ // simulace pravidla 18.
-        generate_token();
+
+        if((func_return = generate_token())) return func_return;
 
         if(token.t_state == st_id){
-            htab_listitem *item = htab_find((p == 1 ? global_data->local_symbol_table : global_table), token.t_str.data);
+            htab_listitem *item;
+            item = htab_find((p == 1 ? global.local_sym : global.global_table), token.t_str.data);
             if(item != NULL) {
+                fprintf(stderr, "Variable already defined\n");
                 return ERR_SEM_PROG; //Premmenna nebola vramci danej funkcie deklarovana
             }
-            free(item);
-            variable_data *data = create_data_variable(&token);
-            if(data == NULL) {
-                return ERR_INTERN;
-            }
+
+            item = htab_lookup_add((p == 1 ? global.local_sym : global.global_table), token.t_str.data);
+            variable_init(item, token.t_str.data);
             str_create_init(&ident, token.t_str.data);///
-        	generate_token();
+            if((func_return = generate_token())){
+                str_destroy(&ident);///
+                return func_return;
+            }
 
-        	if(token.t_state == st_as){
-        		generate_token();
-
-        		if(rule_type(data) && rule_eval()){
-                    variable_data_to_table((p == 1 ? global_data->local_symbol_table : global_table), data);               
-                    printf("DEFVAR %s\n", ident.data);///
+            if(token.t_state == st_as){
+                if((func_return = generate_token())){
                     str_destroy(&ident);///
-        			return_value = true;
-        		}
-        	}
+                    return func_return;
+                }
+
+                if((return_value = rule_type(item->pointer.variable)) == 0){
+                    char* context = (p == 0 ? "TF@" : "LF@");
+                    Tstate var_type = return_variable_type(ident.data);
+
+                    printf("DEFVAR %s%s\n", context, ident.data);///
+                    if      (var_type == st_integer) printf("MOVE %s%s int@0\n", context, ident.data);
+                    else if (var_type == st_double)  printf("MOVE %s%s float@0\n", context, ident.data);
+                    else if (var_type == st_string)  printf("MOVE %s%s string@\n", context, ident.data);
+
+                    if((return_value = rule_eval(ident)) == 0){
+                        return_value = 0;
+                    }
+                }
+            }
+            str_destroy(&ident);///
         }
     }
 
     else if(token.t_state == st_id){ // simulace pravidla 21.
-        if(variable_exist(token.t_str.data) ==  0) {
-            printf("Not defined variable\n");
+        if(variable_exist(token.t_str.data) ==  0){
+            fprintf(stderr,"Not defined variable\n");
             return ERR_SEM_PROG; //Premmenna nebola vramci danej funkcie deklarovana
         }
-        Tstring id;
-        str_create_init(&id, token.t_str.data);
-    	generate_token();
+        str_create_init(&ident, token.t_str.data);
+        if((func_return = generate_token())){
+            str_destroy(&ident);///
+            return func_return;
+        }
 
-    	if(token.t_state == st_rovno){
-    		generate_token();
+        if(token.t_state == st_rovno){
 
-    		if(rule_assign(id)){
-                str_destroy(&id);///
-    			return_value = true;
-    		}
-    	}
+            if((func_return = generate_token())){
+                str_destroy(&ident);///
+                return func_return;
+            }
+            if((return_value = rule_assign(ident)) == 0){
+                return_value = 0;
+            }
+        }
+        str_destroy(&ident);///
     }
 
-    else if(token.t_state == st_input){ // simulace pravidla 28.
-    	generate_token();
 
-    	if(token.t_state == st_id){
+    else if(token.t_state == st_input){ // simulace pravidla 28.
+        if((func_return = generate_token())) return func_return;
+
+        if(token.t_state == st_id){
             if(variable_exist(token.t_str.data) == 0) {
-                printf("Not defined variable\n");
+                debug_print("%s\n", "Not defined variable\n");
                 return ERR_SEM_PROG; //Premmenna nebola vramci danej funkcie deklarovana
             }
-            printf("TYPE TF@pomString TF@%s\n",token.t_str.data);///
-            printf("READ TF@%s, TF@pomString\n",token.t_str.data);///
-    		generate_token();
-    		return_value = true;
-    	}
+            char* context = (p == 0 ? "TF@" : "LF@");
+            Tstate type = return_variable_type(token.t_str.data);
+            printf("WRITE string@?\\032\n");
+            if      (type == st_integer) printf("READ %s%s int\n",context, token.t_str.data);///
+            else if (type == st_double)  printf("READ %s%s float\n",context, token.t_str.data);///
+            else if (type == st_string)  printf("READ %s%s string\n",context, token.t_str.data);///
+
+            if((func_return = generate_token())) return func_return;
+
+            return_value = 0;
+        }
     }
 
     else if(token.t_state == st_print){ // simulace pravidla 29.
-        print_command = 1;
-    	generate_token();
+        instruct = st_print;
+        if((func_return = generate_token())) return func_return;
 
-        //printf("WRITE %s\n",token.t_str.data);///
-        
-    	if(precedent_analysis(print_command)){
-    		if(token.t_state == st_stred){
-    			generate_token();
+        if((func_return = precedent_analysis(instruct, dest_type)) == 0){
+            if(token.t_state == st_stred){
+                if (last_gen_type == st_integer) {
+                    printf("WRITE GF@&pomInteger\n");
+                } else if (last_gen_type == st_double) {
+                    printf("WRITE GF@&pomFloat\n");
+                } else if (last_gen_type == st_string) {
+                    printf("WRITE GF@&pomString\n");
+                }
+                if((func_return = generate_token())) return func_return;
 
-    			if(rule_pr_expr()){
-    				return_value = true;
-    			}
-    		}
-    	}
+                if((return_value = rule_pr_expr()) == 0){
+                    return_value = 0;
+                }
+            }
+        }
+        else return func_return;
     }
 
     else if(token.t_state == st_if){ // simulace pravidla 32.
-    	generate_token();
+        instruct = st_if;
+        if((func_return = generate_token())) return func_return;
 
-    	if(precedent_analysis(print_command)){
-            printf("JUMPIFNEQ else1 TF@pomBool true\n");///
-    		if(token.t_state == st_then){
-    			generate_token();
+        if((func_return = precedent_analysis(instruct, dest_type)) == 0){
+            if (equal) {
+                printf("JUMPIFNEQ $$else_%d GF@&pomBool bool@true\n", if_counter);///
+            } else { 
+                printf("JUMPIFEQ $$else_%d GF@&pomBool bool@true\n", if_counter);///
+            }
 
-    			if(token.t_state == st_eol){
-    				generate_token();
+            if(token.t_state == st_then){
+                if((func_return = generate_token())) return func_return;
 
-    				if(rule_st_list()){
-                        printf("LABEL $$else1\n");
+                if(token.t_state == st_eol){
+                    if((func_return = generate_token())) return func_return;
 
-    					if(token.t_state == st_else){
-    						generate_token();
+                    if((return_value = rule_st_list()) == 0){
+                        printf("JUMP $$endif_%d\n", if_counter);
+                        printf("LABEL $$else_%d\n", if_counter);
 
-    						if(token.t_state == st_eol){
-    							generate_token();
+                        if(token.t_state == st_else){
+                            if((func_return = generate_token())) return func_return;
 
-    							if(rule_st_list()){
+                            if(token.t_state == st_eol){
+                                if((func_return = generate_token())) return func_return;
 
-    								if(token.t_state == st_end){
-    									generate_token();
+                                if((return_value = rule_st_list()) == 0){
 
-    									if(token.t_state == st_if){
-    										generate_token();
-    										return_value = true;
-    									}
-    								}
-    							}
-    						}
-    					}
-                        else if(token.t_state == st_end){
-                                generate_token();
-                                if(token.t_state == st_if){
-                                    generate_token();
-                                    return_value = true;
+                                    if(token.t_state == st_end){
+                                        if((func_return = generate_token())) return func_return;
+
+                                        if(token.t_state == st_if){
+                                            printf("LABEL $$endif_%d\n", if_counter);
+                                            if_counter++;
+                                            if((func_return = generate_token())) return func_return;
+
+                                            return_value = 0;
+                                        }
+                                    }
                                 }
                             }
-    				}
-    			}
-    		}
-    	}
+                        }
+              else if(token.t_state == st_end){
+                if((func_return = generate_token())) return func_return;
+                  if(token.t_state == st_if){
+                    if((func_return = generate_token())) return func_return;
+                      return_value = 0;
+                  }
+              }
+                    }
+                }
+            }
+        }
+        else return func_return;
     }//konec pravidla 32.
 
     else if(token.t_state == st_do){ // simulace pravidla 33.
-    	generate_token();
+        if((func_return = generate_token())) return func_return;
 
-    	if(token.t_state == st_while){
-    		generate_token();
+        if(token.t_state == st_while){
+            instruct = st_loop;
+            printf("LABEL $$loop_%d\n", while_counter);
+            if((func_return = generate_token())) return func_return;
 
-    		if(precedent_analysis(print_command)){
+            if((func_return = precedent_analysis(instruct, dest_type)) == 0){
 
-    			if(token.t_state == st_eol){
-    				generate_token();
+                if(token.t_state == st_eol){
+                    if (equal)  {
+                        printf("JUMPIFNEQ $$loop_end_%d GF@&pomBool bool@true\n", while_counter);
+                    } else  {
+                        printf("JUMPIFEQ $$loop_end_%d GF@&pomBool bool@true\n", while_counter);
+                    }
+                    if((func_return = generate_token())) return func_return;
 
-    				if(rule_st_list()){
+                    if((return_value = rule_st_list()) == 0){
+                        printf("JUMP $$loop_%d\n", while_counter);
+                        if(token.t_state == st_loop){
+                            printf("LABEL $$loop_end_%d\n", while_counter);
+                            while_counter++;
+                            if((func_return = generate_token())) return func_return;
 
-    					if(token.t_state == st_loop){
-    						generate_token();
-    						return_value = true;
-    					}
-    				}
-    			}
+                            return_value = 0;
+                        }
+                    }
+                }
 
-    		}
-    	}
+            }
+            else return func_return;
+        }
     }//konec 33. pravidla
 
     else if(token.t_state == st_return){ // simulace pravidla 34.
-    	generate_token();
 
-    	if(precedent_analysis(print_command)){
+        if(p == 0) return ERR_SYN;  //st_return se nesmi vyskytovat uvnitr scopu
 
-    		return_value = true;
-    	}
+        if((func_return = generate_token())) return func_return;
+
+        if((func_return = precedent_analysis(instruct, dest_type)) == 0){
+
+            return_value = 0;
+        }
+        else return func_return;
     }
 
     return return_value;
 }// konec funkce rule_stat()
 
-bool rule_eval(){ // stav <eval>
-    skip_blank_lines();
-	bool return_value = false;
-    int print_command = 0;
+int rule_eval(Tstring id){ // stav <eval>
+    int return_value = ERR_SYN;
+    int func_return;
+    if((func_return = skip_blank_lines())) return func_return;
+    Tstate instruct = 0;
+    Tstate dest_type = 0;
+
+    dest_type = return_variable_type(id.data);    
+    char* context = (p == 0 ? "TF@" : "LF@");
+
     if(token.t_state == st_rovno ){ // simulace pravidla 19.
-        generate_token();
+        if((func_return = generate_token())) return func_return;
 
-        if(precedent_analysis(print_command)){
+        if((func_return = precedent_analysis(instruct, dest_type)) == 0){            
+            if (dest_type == st_integer) {
+                printf("MOVE %s%s GF@&pomInteger\n",context, id.data);
+            } else if (dest_type == st_double) {
+                printf("MOVE %s%s GF@&pomFloat\n",context, id.data);
+            } else if (dest_type == st_string) {
 
-        	return_value = true;
-    	}
+                printf("MOVE %s%s GF@&pomString\n",context, id.data);
+
+            }
+            return_value = 0;
+        }
+        else return func_return;
     }
 
     else if(token.t_state == st_id || token.t_state == st_dim || token.t_state == st_input ||
          token.t_state == st_print || token.t_state == st_if  || token.t_state == st_do ||
         token.t_state == st_return || token.t_state == st_end ){ // simulace pravidla 20.
 
-    	return_value = true;
+        return_value = 0;
     }
     return return_value;
 }
 
-bool rule_assign(Tstring id){ // stav <assign>
-	bool return_value = false;
-    int print_command = 0;
-    if(precedent_analysis(print_command)){  //simulace pravidla 22.
-            printf("MOV TF@%s TF@pom\n", id.data);
-        	return_value = true;
-    	}
+int rule_assign(Tstring id){ // stav <assign>
+    int return_value = ERR_SYN;
+    int func_return;
+    Tstate instruct = 0;
+    Tstate dest_type = 0;
+    char* context = (p == 0 ? "TF@" : "LF@");
+    dest_type = return_variable_type(id.data);
+    Tstring fce;
 
-    else if(token.t_state == st_id){ // simulace pravidla 23.
-        htab_listitem *item = htab_find(global_table, token.t_str.data);
-        if(item == NULL) {
+    if(token.t_state == st_id){ // simulace pravidla 23.
+
+        htab_listitem *item;
+        item = htab_find((p == 1 ? global.local_sym : global.global_table), token.t_str.data);
+        if(item == NULL) { // tady konci vetsina vstupu TODO: OPRAVIT!
+            item = htab_find(global.global_table, token.t_str.data);
+            if(item == NULL || item->type != type_function) {
+                fprintf(stderr, "Variable is not declared.\n");
+                return ERR_SEM_PROG;
+            }
+        }
+        str_create_init(&(fce),token.t_str.data);
+
+        if(item->type != type_function){// identifikator neni funkce
+          if((func_return = precedent_analysis(instruct, dest_type)) == 0){
+            return_value = 0;
+            if (dest_type == st_integer) {
+                printf("MOVE %s%s GF@&pomInteger\n",context, id.data);
+            } else if (dest_type == st_double) {
+                printf("MOVE %s%s GF@&pomFloat\n",context, id.data);
+            } else if (dest_type == st_string) {
+                printf("MOVE %s%s GF@&pomString\n",context, id.data);
+            }
+          } else {
+            str_destroy(&(fce));
+            return func_return;
+            }
+          str_destroy(&(fce));
+          return return_value;
+        }
+        if(item->pointer.function->defined == 0) {//identifikator nedefinovane funkce
+            //free(item);
             return ERR_SEM_PROG;
         }
 
-        if(item->pointer.function->defined == 0) {
-            free(item);
-            return ERR_SEM_OTHER;
+        global.local_sym = item->pointer.function->local_symbol_table;
+        global.current_arguments = item->pointer.function->arguments;
+
+        if((func_return = generate_token()))  {
+            str_destroy(&(fce));
+            return func_return;
         }
-    	generate_token();
+        if(token.t_state == st_levzav){
+            if((func_return = generate_token()))  {
+                str_destroy(&(fce));
+                return func_return;
+            }
 
-    	if(token.t_state == st_levzav){
-    		generate_token();
+            if((return_value = rule_call_par()) == 0){
 
-    		if(rule_call_par()){
+                if(token.t_state == st_pravzav){
+                    if((func_return = generate_token()))  {
+                        str_destroy(&(fce));
+                        return func_return;
+                    }
+                    // TODO FUNKCE
+                    //debug_print("%s\n","funkce");
+                    printf("CALL $%s\n",fce.data);
+                    printf("MOVE %s%s %s&retval\n",context, id.data, context);
 
-    			if(token.t_state == st_pravzav){
-    				generate_token();
-
-    				return_value = true;
-    			}
-
-    		}
-
-    	}
+                    return_value = 0;
+                }
+            }
+        }
     }// konec pravidla 23.
+    else if(token.t_state == st_length) {
+        if((func_return = generate_token())) return func_return;
+        if(token.t_state == st_levzav) {
+            if((func_return = generate_token())) return func_return;
+            if(token.t_state == st_id) {
+                Tstring par;
+                str_create_init(&par, token.t_str.data);
+                if((func_return = generate_token())) return func_return;
+                if(token.t_state == st_pravzav) {
+                    if((func_return = generate_token())) return func_return;
+                    printf("STRLEN %s%s %s%s\n", context, id.data, context, par.data);
 
+                    str_destroy(&par);
+                    return_value = 0;
+                }
+            } else if(token.t_state == st_retez) {
+                printf("MOVE GF@&pomString string@%s\n", token.t_str.data);
+                if((func_return = generate_token())) return func_return;
+                if(token.t_state == st_pravzav) {
+                    if((func_return = generate_token())) return func_return;
+                    printf("STRLEN %s%s GF@&pomString\n", context, id.data);
+
+                    return_value = 0;
+                }
+            }
+        }
+    }
+    else if(token.t_state == st_chr) {
+        if((func_return = generate_token())) return func_return;
+        if(token.t_state == st_levzav) {
+            if((func_return = generate_token())) return func_return;
+            if(token.t_state == st_id) {
+                Tstring par;
+                str_create_init(&par, token.t_str.data);
+                if((func_return = generate_token())) return func_return;
+                if(token.t_state == st_pravzav) {
+                    if((func_return = generate_token())) return func_return;
+                    printf("INT2CHAR %s%s %s%s\n", context, id.data, context, par.data);
+
+                    str_destroy(&par);
+                    return_value = 0;
+                }
+            } else if(token.t_state == st_int_val) {
+                printf("MOVE GF@&pomInteger int@%s\n", token.t_str.data);
+                if((func_return = generate_token())) return func_return;
+                if(token.t_state == st_pravzav) {
+                    if((func_return = generate_token())) return func_return;
+                    printf("INT2CHAR %s%s GF@&pomInteger\n", context, id.data);
+
+                    return_value = 0;
+                } 
+            }
+        }
+    }
+    else if(token.t_state == st_asc) {
+        if((func_return = generate_token())) return func_return;
+        if(token.t_state == st_levzav) {
+            if((func_return = generate_token())) return func_return;
+            if(token.t_state == st_id) {
+                Tstring par;
+                str_create_init(&par, token.t_str.data);
+                if((func_return = generate_token())) return func_return;
+                if(token.t_state == st_carka) {
+                    if((func_return = generate_token())) return func_return;
+                    if(token.t_state == st_id) {
+                        Tstring par2;
+                        str_create_init(&par2, token.t_str.data);
+                        if((func_return = generate_token())) return func_return;
+                        if(token.t_state == st_pravzav) {
+                            if((func_return = generate_token())) return func_return;
+                            printf("STRI2INT %s%s %s%s %s%s\n", context, id.data, context, par.data, context, par2.data);
+
+                            str_destroy(&par);
+                            str_destroy(&par2);
+                            return_value = 0;
+                        }
+                    } else if(token.t_state == st_int_val) {
+                        printf("MOVE GF@&pomInteger int@%s\n", token.t_str.data);
+                        if((func_return = generate_token())) return func_return;
+                        if(token.t_state == st_pravzav) {
+                            if((func_return = generate_token())) return func_return;
+                            printf("STRI2INT %s%s %s%s GF@&pomInteger\n", context, id.data, context, par.data);
+
+                            return_value = 0;
+                        }
+                    }
+                }
+            } else if(token.t_state == st_retez) {
+                printf("MOVE GF@&pomString string@%s\n", token.t_str.data);
+                if((func_return = generate_token())) return func_return;
+                if(token.t_state == st_carka) {
+                    if((func_return = generate_token())) return func_return;
+                    if(token.t_state == st_id) {
+                        Tstring par2;
+                        str_create_init(&par2, token.t_str.data);
+                        if((func_return = generate_token())) return func_return;
+                        if(token.t_state == st_pravzav) {
+                            if((func_return = generate_token())) return func_return;
+                            printf("STRI2INT %s%s GF@&pomString %s%s\n", context, id.data, context, par2.data);
+
+                            str_destroy(&par2);
+                            return_value = 0;
+                        }
+                    } else if(token.t_state == st_int_val) {
+                        printf("MOVE GF@&pomInteger int@%s\n", token.t_str.data);
+                        if((func_return = generate_token())) return func_return;
+                        if(token.t_state == st_pravzav) {
+                            if((func_return = generate_token())) return func_return;
+                            printf("STRI2INT %s%s GF@&pomString GF@&pomInteger\n", context, id.data);
+
+                            return_value = 0;
+                        }
+                    }
+                }
+            }
+        }
+    }
+    else if((func_return = precedent_analysis(instruct, dest_type)) == 0){  //simulace pravidla 22.
+        if      (dest_type == st_integer) {
+            printf("MOVE %s%s GF@&pomInteger\n",context, id.data);
+        } else if (dest_type == st_double) {
+            printf("MOVE %s%s GF@&pomFloat\n",context, id.data);
+        } else if (dest_type == st_string) {
+            printf("MOVE %s%s GF@&pomString\n",context, id.data);
+        }
+
+        return_value = 0;
+    }
+    else return func_return;
+    str_destroy(&(fce));
     return return_value;
 }// konec funkce rule_assign()
 
-bool rule_call_par(){ // stav <call-par>
-	bool return_value = false;
+int rule_call_par(){ // stav <call-par>
+    int return_value = ERR_SYN;
+    int func_return;
     if(token.t_state == st_id){ // simulace pravidla 24.
-        generate_token();
+        //TODO PARAM
+        if((func_return = generate_token())) return func_return;
 
-        if(rule_call_next_par()){
-        	return_value = true;
+        if((return_value = rule_call_next_par()) == 0){
+            return_value = 0;
         }
     }
 
     else if(token.t_state == st_pravzav){ //simulace pravidla 25.
-    	return_value = true;
+        return_value = 0;
     }
 
     return return_value;
 }
 
-bool rule_call_next_par(){ // stav <call-next-par>
-	bool return_value = false;
+int rule_call_next_par(){ // stav <call-next-par>
+    int return_value = ERR_SYN;
+    int func_return;
     if(token.t_state == st_carka){ // simulace pravidla 26.
 
-        if(rule_call_par()){
-        	return_value = true;
+      if((func_return = generate_token())) return func_return;
+
+        if((return_value = rule_call_par()) == 0){
+            return_value = 0;
         }
     }
 
     else if(token.t_state == st_pravzav){ // simulace pravidla 27.
-    	return_value = true;
+        return_value = 0;
     }
 
     return return_value;
 }
 
-bool rule_pr_expr(){ // stav <pr-expr>
-	bool return_value = false;
-    int print_command = 0;
+int rule_pr_expr(){ // stav <pr-expr>
+    int return_value = ERR_SYN;
+    int func_return;
+    Tstate instruct = st_print;
+    //printf("%s: ins:%d data: %s\n", "print", instruct, token.t_str.data);
+    Tstate dest_type = 0;
 
     if(token.t_state == st_dim || token.t_state == st_input ||
        token.t_state == st_print || token.t_state == st_if || token.t_state == st_do ||
        token.t_state == st_return || token.t_state == st_end || token.t_state == st_eol ){  // simulace pravidla 31.
-			skip_blank_lines();
-    	return_value = true;
-    }
+            if((func_return = skip_blank_lines())) return func_return;
+            return_value = 0;
 
-		else if(precedent_analysis(print_command)){  //simulace pravidla 30.
-
+    } else if((func_return = precedent_analysis(instruct, dest_type)) == 0){  //simulace pravidla 30.
         if(token.t_state == st_stred){
-        	generate_token();
-
-  			if(rule_pr_expr()){
-        		return_value = true;
-        	}
+            if (last_gen_type == st_integer) {
+                printf("WRITE GF@&pomInteger\n");
+            } else if (last_gen_type == st_double) {
+                printf("WRITE GF@&pomFloat\n");
+            } else if (last_gen_type == st_string) {
+                printf("WRITE GF@&pomString\n");
+            }
+            if((func_return = generate_token())) return func_return;
+              if((return_value = rule_pr_expr()) == 0){
+                return_value = 0;
+            }
         }
 
     }
+    else return func_return;
 
     return return_value;
 }

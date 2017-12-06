@@ -1,8 +1,17 @@
+/*
+ Implementace prekladace imperativniho jazyka IFJ17
+ Petr Marek,       login: xmarek66
+ Jakub Stefanisin, login: xstefa22
+ Petr Knetl,       login: xknetl00
+*/
+
 #include "symbol.h"
-//#include "error.h"
 
 #ifndef SYMTABLE_H
 #define SYMTABLE_H
+
+#define DEBUG
+#include "errors.h"
 
 #include <stdio.h>
 #include <stdlib.h>
@@ -38,12 +47,12 @@ typedef struct htab_t {
  */
 htab_t *htab_init(unsigned size);
 void htab_free(htab_t *table);
-htab_listitem *htab_find(htab_t *table, const char *key); //vracia NULL ak položku nenašlo
+htab_listitem *htab_find(htab_t *table, char *key); //vracia NULL ak položku nenašlo
 
 
 // Priamo v syntaktickej/semantickej nepotrebne, sú volané z funkcii TS
 unsigned hash_function(const char *str);
-htab_listitem *htab_lookup_add(htab_t *table, const char *key);
+htab_listitem *htab_lookup_add(htab_t *table, char *key);
 void htab_foreach(htab_t *table, void (*function)(const char *key, item_type type, htab_listitem *item));
 void htab_remove(htab_t *table, const char *key);
 void htab_clear(htab_t *table);

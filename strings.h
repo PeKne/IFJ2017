@@ -1,3 +1,10 @@
+/*
+ Implementace prekladace imperativniho jazyka IFJ17
+ Petr Marek,       login: xmarek66
+ Jakub Stefanisin, login: xstefa22
+ Petr Knetl,       login: xknetl00
+*/
+
 #ifndef STRINGS_H
 #define STRINGS_H
 
@@ -8,6 +15,8 @@ typedef struct tstring{
     int size;   // alokovano
     char *data;
 } Tstring;
+
+extern Tstring gen_str;
 
 // vytvori string (naalokuje ALLOC_CHUNK bytu, pote pridava)      
 int str_create(Tstring *str);  
@@ -39,4 +48,6 @@ int str_delete_index(Tstring *str, int index);
 
 // prepise data ve stringu na 'data'.
 int str_rewrite_data(Tstring *str, char *data);
+
+void delete_last_index(Tstring *str);
 #endif

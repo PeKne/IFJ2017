@@ -1,3 +1,10 @@
+/*
+ Implementace prekladace imperativniho jazyka IFJ17
+ Petr Marek,       login: xmarek66
+ Jakub Stefanisin, login: xstefa22
+ Petr Knetl,       login: xknetl00
+*/
+
 #include <string.h>
 #include <stdlib.h>
 #include <stdio.h>
@@ -98,7 +105,7 @@ int str_pop_char(Tstring *str)
 int str_append_str(Tstring *target, Tstring *to_append)
 {
     int err = 0;
-    for (int i = 0; i < to_append->length; ++i)
+    for (int i = 0; i < to_append->length; i++)
     {
         if ((err = str_push_char(target, to_append->data[i])) != 0)
             return err;
@@ -169,4 +176,10 @@ int str_delete_index(Tstring *str, int index)
     str->length--;
 
     return err;
+}
+
+void delete_last_index(Tstring *str)
+{
+    int last_index = --(str->length);
+    str->data[last_index] = '\0';
 }
