@@ -1,0 +1,14 @@
+' nested while loop
+
+scope
+dim a as integer = 1
+dim b as integer = 12
+do while a <> 10
+	b = 10
+	do while b <> 0
+		print a; !": "; b;
+		b = b - 1
+	loop
+	a = a + 1
+loop
+end scope

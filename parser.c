@@ -616,6 +616,7 @@ int rule_stat(){ // stav <stat>
         if((func_return = generate_token())) return func_return;
 
         if((func_return = precedent_analysis(instruct, dest_type)) == 0){
+            if_counter++;
             if (equal) {
                 printf("JUMPIFNEQ $$else_%d GF@&pomBool bool@true\n", if_counter);///
             } else { 
@@ -645,7 +646,7 @@ int rule_stat(){ // stav <stat>
 
                                         if(token.t_state == st_if){
                                             printf("LABEL $$endif_%d\n", if_counter);
-                                            if_counter++;
+                                            if_counter--;
                                             if((func_return = generate_token())) return func_return;
 
                                             return_value = 0;
@@ -673,6 +674,7 @@ int rule_stat(){ // stav <stat>
 
         if(token.t_state == st_while){
             instruct = st_loop;
+            while_counter++;
             printf("LABEL $$loop_%d\n", while_counter);
             if((func_return = generate_token())) return func_return;
 
@@ -690,7 +692,7 @@ int rule_stat(){ // stav <stat>
                         printf("JUMP $$loop_%d\n", while_counter);
                         if(token.t_state == st_loop){
                             printf("LABEL $$loop_end_%d\n", while_counter);
-                            while_counter++;
+                            while_counter--;
                             if((func_return = generate_token())) return func_return;
 
                             return_value = 0;

@@ -20,12 +20,22 @@ MOVE GF@&pomInteger int@4
 MOVE GF@&pomInteger int@4
 MOVE TF@a GF@&pomInteger
 MOVE GF@&pomInteger TF@a
-EQ GF@&pomBool TF@a int@5
-JUMPIFEQ $$else_1 GF@&pomBool bool@true
-MOVE GF@&pomString string@plati\010
+LT GF@&pomBool TF@a int@5
+JUMPIFNEQ $$else_1 GF@&pomBool bool@true
+MOVE GF@&pomString string@if1
 WRITE GF@&pomString
+MOVE GF@&pomInteger TF@a
+EQ GF@&pomBool TF@a int@2
+JUMPIFNEQ $$else_2 GF@&pomBool bool@true
+MOVE GF@&pomString string@if2\010
+WRITE GF@&pomString
+JUMP $$endif_2
+LABEL $$else_2
+MOVE GF@&pomString string@else2\010
+WRITE GF@&pomString
+LABEL $$endif_2
 JUMP $$endif_1
 LABEL $$else_1
-MOVE GF@&pomString string@neplati\010
+MOVE GF@&pomString string@else1
 WRITE GF@&pomString
 LABEL $$endif_1
