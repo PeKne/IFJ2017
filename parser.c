@@ -370,6 +370,7 @@ int rule_check_par(){ // stav <check-par>
     if(token.t_state == st_id){ // simulace pravidla 9.
         ar_count++;
         if(check_argument_name(token.t_str.data, ar_count) != 1) {
+            htab_remove(global.local_sym, global.current_arguments[ar_count - 1].argument_name.data);
             htab_listitem *item;
             item = htab_lookup_add(global.local_sym, token.t_str.data);
             variable_init(item, token.t_str.data);
