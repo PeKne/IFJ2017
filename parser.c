@@ -311,15 +311,12 @@ int rule_par(function_data *data_f){ // stav <par>
         }
 
         if((item = htab_find(data_f->local_symbol_table, token.t_str.data)) != NULL) {
-            printf("Function has another parameter with same name");
+            debug_print("%s\n", "Function has another parameter with same name");
             return ERR_SEM_PROG;
         }
         item = htab_lookup_add(data_f->local_symbol_table, token.t_str.data);
         variable_init(item, token.t_str.data);
-
-        if(add_argument_function(data_f, &token) != 0) {
-            return ERR_INTERN;
-        }
+    
         if((func_return = generate_token())) return func_return;
 
         if(token.t_state == st_as){
@@ -542,7 +539,7 @@ int rule_stat(){ // stav <stat>
 
     else if(token.t_state == st_id){ // simulace pravidla 21.
         if(variable_exist(token.t_str.data) ==  0){
-            fprintf(stderr,"Not defined variable\n");
+            debug_print("%s\n", "Not defined variable\n");
             return ERR_SEM_PROG; //Premmenna nebola vramci danej funkcie deklarovana
         }
         str_create_init(&ident, token.t_str.data);
@@ -813,11 +810,29 @@ int rule_assign(Tstring id){ // stav <assign>
                     printf("CALL $%s\n",fce.data);
                     printf("MOVE %s%s %s&retval\n",context, id.data, context);
 
+                    str_destroy(&(fce));
                     return_value = 0;
                 }
             }
         }
     }// konec pravidla 23.
+    else if(token.t_state == st_length) {
+        if((func_return = generate_token())) return func_return;
+        if(token.t_state == st_levzav) {
+            if((func_return = generate_token())) return func_return;
+                if(token.t_state == st_id) {
+                    Tstring par;
+                    str_create_init(&par, token.t_str.data);
+                    if((func_return = generate_token())) return func_return;
+                        if(token.t_state == st_pravzav) {
+                            printf("STRLEN %s%s %s%s\n", context, id.data, context, par.data);
+
+                            str_destroy(&par);
+                            return_value = 0;
+                        }
+                }
+        }
+    }
     else if((func_return = precedent_analysis(instruct, dest_type)) == 0){  //simulace pravidla 22.
         if      (dest_type == st_integer) {
             printf("MOVE %s%s GF@&pomInteger\n",context, id.data);
