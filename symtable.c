@@ -1,4 +1,13 @@
+/*
+ Implementace prekladace imperativniho jazyka IFJ17
+ Petr Marek,       login: xmarek66
+ Jakub Stefanisin, login: xstefa22
+ Petr Knetl,       login: xknetl00
+*/
+
 #include "symtable.h"
+#include "garbage.h"
+#include "error.h"
 
 unsigned int hash_function(const char *str)
 {
@@ -16,9 +25,9 @@ htab_t *htab_init(unsigned size)
 {
 	htab_t *table;
 
-	table = (htab_t *) malloc(sizeof(htab_t) + size * sizeof(htab_listitem));
+	table = (htab_t *) g_malloc(sizeof(htab_t) + size * sizeof(htab_listitem));
 	if(table == NULL) { 
-		fprintf(stderr, "Error allocating memory for hash table.\n");
+		debug_print("%s\n", "Error allocating memory for hash table.");
 		return NULL;
 	}
 	
@@ -31,29 +40,7 @@ htab_t *htab_init(unsigned size)
 	return table;
 }
 
-htab_listitem *htab_find(htab_t *table, const char *key)
-{
-	unsigned index = hash_function(key) % table->size;
-	htab_listitem *item = table->list[index];
-
-	if(item != NULL) {
-		while(item != NULL) {
-			if(strcmp(key, item->key) == 0) {
-				return item;
-			}
-
-			if(item->next != NULL) {
-				item = item->next;
-			} else {
-				break;
-			}
-		}
-	}
-
-	return NULL;
-}
-
-htab_listitem *htab_lookup_add(htab_t *table, const char *key)
+htab_listitem *htab_find(htab_t *table, char *key)
 {
 	unsigned index = hash_function(key) % table->size;
 	htab_listitem *item = table->list[index];
@@ -61,7 +48,27 @@ htab_listitem *htab_lookup_add(htab_t *table, const char *key)
 	while(item != NULL) {
 		if(strcmp(key, item->key) == 0) {
 			return item;
-		} 
+		}
+
+		if(item->next != NULL) {
+			item = item->next;
+		} else {
+			break;
+		}
+	}
+
+	return NULL;
+}
+
+htab_listitem *htab_lookup_add(htab_t *table, char *key)
+{
+	unsigned index = hash_function(key) % table->size;
+	htab_listitem *item = table->list[index];
+
+	while(item != NULL) {
+		if(strcmp(key, item->key) == 0) {
+			return item;
+		}
 
 		if(item->next != NULL) {
 			item = item->next;
@@ -72,17 +79,17 @@ htab_listitem *htab_lookup_add(htab_t *table, const char *key)
 
 	htab_listitem *new_item = NULL;
 
-	new_item = malloc(sizeof(htab_listitem));
+	new_item = g_malloc(sizeof(htab_listitem));
 	if(new_item == NULL) {
-		fprintf(stderr, "Error allocating memory for htab_listitem.\n");
+		debug_print("%s\n", "Error allocating memory for htab_listitem.");
 
 		return NULL;
 	}
 
-	new_item->key = malloc(sizeof(char *) * (strlen(key) + 1));
+	new_item->key = g_malloc(sizeof(char *) * (strlen(key) + 1));
 	if(new_item->key == NULL) {
-		fprintf(stderr, "Error allocating memory for htab_listitem->key.\n");
-		free(new_item);
+		debug_print("%s\n", "Error allocating memory for htab_listitem->key.");
+		g_free(new_item);
 
 		return NULL;
 	}
@@ -131,15 +138,16 @@ void htab_remove(htab_t *table, const char *key)
 				table->list[index] = NULL;
 			}
 
-			free(item->key);
-			if(item->type == type_variable) {
+			/*g_free(item->key);
+			if(item->type == type_variable && item->pointer.variable != NULL) {
 				free_data_variable(item->pointer.variable);
-			} else if(item->type == type_function) {
+			} else if(item->type == type_function && item->pointer.function != NULL) {
 				free_data_function(item->pointer.function);
 			}
-			free(item);
+			item->next = NULL;*/
+			g_free(item);
 
-			break;
+			return;
 		} else {
 			previous_item = item;
 			item = item->next;
@@ -162,7 +170,7 @@ void htab_free(htab_t *table)
 {
 	if(table != NULL) {
 		htab_clear(table);
-		free(table);
+		g_free(table);
 	}
 
 	table = NULL;

@@ -1,0 +1,30 @@
+.IFJcode17
+JUMP $$scope
+
+LABEL $$scope
+DEFVAR GF@&pomInteger
+MOVE GF@&pomInteger int@0
+DEFVAR GF@&pomString
+MOVE GF@&pomString string@
+DEFVAR GF@&pomFloat
+MOVE GF@&pomFloat float@0
+DEFVAR GF@&pomBool
+MOVE GF@&pomBool bool@false
+DEFVAR GF@&pomCntr
+MOVE GF@&pomCntr int@0
+CREATEFRAME
+
+DEFVAR TF@a
+MOVE TF@a int@0
+DEFVAR TF@b
+MOVE TF@b int@0
+DEFVAR TF@c
+MOVE TF@c int@0
+READ TF@a int
+READ TF@b int
+READ TF@c int
+MOVE GF@&pomInteger TF@a
+ADD GF@&pomInteger TF@a TF@b
+ADD GF@&pomInteger GF@&pomInteger TF@c
+MOVE TF@a GF@&pomInteger
+WRITE TF@a

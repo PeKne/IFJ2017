@@ -1,7 +1,22 @@
-#include "expresion.h"
-#include "code_gen_expres.h"
+/*
+ Implementace prekladace imperativniho jazyka IFJ17
+ Petr Marek,       login: xmarek66
+ Jakub Stefanisin, login: xstefa22
+ Petr Knetl,       login: xknetl00
+*/
+
 #include <stdio.h>
 #include <stdlib.h>
+#include "expresion.h"
+#include "code_gen_expres.h"
+#include "lex.h"
+#include "symbol.h"
+#include "errors.h"
+#include "ctype.h"
+
+extern char *str;
+extern int p;
+extern Tstate last_gen_type;
 
  /**********************************ZASOBNIKOVE-OPERACE*********************************/
 /**************************************************************************************/
@@ -22,22 +37,16 @@ bool SEmpty (TStack *s)
     return (s->topPtr == NULL);
 }
 
-int SPush (TStack *s, int tokenType, const char* string)
+int SPush (TStack *s, int tokenType, char* string)
 {
     TSElem *newElemPtr;
     if ( (newElemPtr = ((TSElem *) malloc(sizeof(TSElem)))) == NULL )
         return err_malloc;
 
     newElemPtr->type = tokenType;
-    int length = strlen(string);
-    char* new_string = (char*) malloc((++length)*sizeof(char));
-    if (new_string == NULL){
-      return err_malloc;
-    }
-
-    strcpy(new_string, string);
-    newElemPtr->string = new_string;
     newElemPtr->nextPtr = NULL;
+
+    str_create_init(&(newElemPtr->string), string);
 
     if (SEmpty(s))
         newElemPtr->prevPtr = NULL;
@@ -63,14 +72,7 @@ int SPostActiveInsert (TStack *s, int tokenType)
     if ( (newElemPtr = ((TSElem *) malloc(sizeof(TSElem)))) == NULL )
         return err_malloc;
 
-    char* new_string = (char*) malloc(2*sizeof(char));
-    if (new_string == NULL){
-      free(newElemPtr);
-      return err_malloc;
-    }
-
-    strcpy(new_string, " ");
-    newElemPtr->string = new_string;
+    str_create_init(&(newElemPtr->string), " ");
 
     newElemPtr->type = tokenType;
     newElemPtr->nextPtr = s->activePtr->nextPtr;
@@ -88,7 +90,7 @@ int SPostActiveInsert (TStack *s, int tokenType)
     return 0;
 }
 
-int SPop (TStack *s)
+void SPop (TStack *s)
 {
     if (!SEmpty(s)) {
         TSElem *elemPtr = s->topPtr;
@@ -96,16 +98,16 @@ int SPop (TStack *s)
 
         s->topPtr = elemPtr->prevPtr; // prenese top na dalsi prvek
 
-      //  free((char*)elemPtr->string);
         while ((activeElemPtr->prevPtr != NULL) &&
                 !isTerminal(activeElemPtr->type))
         {
             activeElemPtr = activeElemPtr->prevPtr;
         }
         s->activePtr = activeElemPtr;
+
+        str_destroy(&(elemPtr->string));
         free(elemPtr);
     }
-    return 0;
 }
 
 // vrati hodnotu na vrcholu zasobniku
@@ -116,10 +118,10 @@ int STopType (TStack *s)
     return err_StackEmpty;
 }
 
-const char* STopString (TStack *s)
+char* STopString (TStack *s)
 {
   if (!SEmpty(s)) {
-        return (s->topPtr->string);
+        return (s->topPtr->string.data);
   }
   return NULL;
 
@@ -136,40 +138,20 @@ void SClean (TStack *s)
 {
     TSElem *elemPtr;
     // slo by pouzit SPop, ale zbytecne by se predelavalo i activePtr
+
     while (!SEmpty(s)) {
         // zkopiruje top do elemPtr, aby se po zruseni top prvku neztratil ukazatel na dalsi prvek
         elemPtr = s->topPtr;
         s->topPtr = elemPtr->prevPtr; // top se prenese na dalsi (zrusi stary top)
+        str_destroy(&(elemPtr->string));
         free(elemPtr);
     }
 }
 
-const char* oper_strings[] = {"*", "/", "\\", "+", "-", "=", "<>", "<", "<=", ">", ">=", "(", ")", "i", "num", "str", "bool", "$", "R", "]",};
-
-void DBG_SPrint(TStack *s){
-	TSElem *elemPtr;
-	elemPtr = s->topPtr;
-	printf("|TOP--->|%s", oper_strings[elemPtr->type]);
-	while(elemPtr->prevPtr != NULL){
-		elemPtr = elemPtr->prevPtr;
-		printf("|%s", oper_strings[elemPtr->type]);
-	}
-    printf("|  SYMBOL\n");
-
-    elemPtr = s->topPtr;
-  	printf("|TOP--->|%s", elemPtr->string);
-  	while(elemPtr->prevPtr != NULL){
-  		elemPtr = elemPtr->prevPtr;
-  		printf("|%s", elemPtr->string);
-  	}
-      printf("|  STRING\n");
-}
-
-
 /***************************FUNKCE-PRECEDENCNI-ANALYZY*********************************/
 /**************************************************************************************/
 PrecTabValues prec_table[ex_dollar+2][ex_dollar+2] = {
-/*         *   /   \   +   -   =   <>  <   <=  >   >=  (   )   i   nm  sr  bl  $   R */
+/*         *   /   \   +   -   =   <>  <   <=  >   >=  (   )   i   int db  sr  $   R */
 /* *  */ { GT, GT, GT, GT, GT, GT, GT, GT, GT, GT, GT, LT, GT, LT, LT, LT, LT, GT, LT },
 /* /  */ { GT, GT, GT, GT, GT, GT, GT, GT, GT, GT, GT, LT, GT, LT, LT, LT, LT, GT, LT },
 /* \  */ { GT, GT, GT, GT, GT, GT, GT, GT, GT, GT, GT, LT, GT, LT, LT, LT, LT, GT, LT },
@@ -184,13 +166,12 @@ PrecTabValues prec_table[ex_dollar+2][ex_dollar+2] = {
 /* (  */ { LT, LT, LT, LT, LT, LT, LT, LT, LT, LT, LT, LT, EQ, LT, LT, LT, LT, XX, LT },
 /* )  */ { GT, GT, GT, GT, GT, GT, GT, GT, GT, GT, GT, XX, GT, XX, XX, XX, XX, XX, XX },
 /* i  */ { GT, GT, GT, GT, GT, GT, GT, GT, GT, GT, GT, XX, GT, XX, LT, LT, LT, GT, XX },
-/* nm */ { GT, GT, GT, GT, GT, GT, GT, GT, GT, GT, GT, XX, GT, XX, XX, XX, XX, GT, XX },
+/* int*/ { GT, GT, GT, GT, GT, GT, GT, GT, GT, GT, GT, XX, GT, XX, XX, XX, XX, GT, XX },
+/* db */ { GT, GT, GT, GT, GT, GT, GT, GT, GT, GT, GT, XX, GT, XX, XX, XX, XX, GT, XX },
 /* sr */ { GT, GT, GT, GT, GT, GT, GT, GT, GT, GT, GT, XX, GT, XX, XX, XX, XX, GT, XX },
-/* bl */ { GT, GT, GT, GT, GT, GT, GT, GT, GT, GT, GT, XX, GT, XX, XX, XX, XX, GT, XX },
 /* $  */ { LT, LT, LT, LT, LT, LT, LT, LT, LT, LT, LT, LT, XX, LT, LT, LT, LT, XX, LT },
 /* R  */ { GT, GT, GT, GT, GT, GT, GT, GT, GT, GT, GT, XX, GT, XX, LT, LT, LT, GT, XX }
 };
-
 
 int set_operator(){
     switch (token.t_state){
@@ -237,17 +218,14 @@ int set_operator(){
             return ex_ident;
 
         case st_int_val:
+            return ex_integer;
         case st_double_val:
         case st_exp_int:
         case st_exp_doub:
-            return ex_num;
+            return ex_double;
 
         case st_retez:
             return ex_str;
-
-        case st_true:
-        case st_false: //TODO: st_bool?
-            return ex_bool;
 
         case st_eol:
         case st_stred:
@@ -259,8 +237,7 @@ int set_operator(){
         case st_then:
         case st_return:
         case st_end:
-
-        	return ex_dollar;
+            return ex_dollar;
 
         default:
             return -1;//TODO: ERROR
@@ -268,52 +245,198 @@ int set_operator(){
     }
 }
 
-const char* expresion_reduction(TStack *s) {
+int add_data_info(Tstate var_type, Tstring *str)
+{   
+    Tstate type = var_type;
 
-    printf("\nREDUKCNI STACK: \n");
-    DBG_SPrint(s);
+    if (var_type == st_id) {
+        type = return_variable_type(str->data);
+        if (type == 0) {            
+            fprintf(stderr, "Variable in expresion is not declared.\n");
+            return ERR_SEM_PROG;
+        }
+    } 
 
-    const char* return_string;
+    if (type == st_double_val || type == st_exp_doub || type == st_double) {
+        str_push_char(str, '/'); // DOUBLE
+    } else if (type == st_int_val || type == st_exp_int || type == st_integer) {
+        str_push_char(str, '#'); // INTEGER
+    }
+
+    return 0;
+}
+
+const char* oper_strings[] = {"*", "/", "\\", "+", "-", "=", "<>", "<", "<=", ">", ">=", "(", ")", "i", "int", "double", "str", "bool", "$", "R", "]",};
+
+void DBG_SPrint(TStack *s){
+
+    if (SEmpty(s)) {
+       printf("stack is Empty\n");
+        return;
+    }
+
+    TSElem *elemPtr;
+    elemPtr = s->topPtr;
+    printf("|TOP--->|%s", oper_strings[elemPtr->type]);
+    while(elemPtr->prevPtr != NULL){
+        elemPtr = elemPtr->prevPtr;
+        printf("|%s", oper_strings[elemPtr->type]);
+    }
+    printf("|  SYMBOL\n");
+
+    elemPtr = s->topPtr;
+    printf("|TOP--->|%s", elemPtr->string.data);
+    while(elemPtr->prevPtr != NULL){
+        elemPtr = elemPtr->prevPtr;
+        printf("|%s", elemPtr->string.data);
+    }
+    printf("|  STRING\n");
+}
+
+//                     hlavni stack  instrukce       pocet redukci   jmeno promenne napr "a" typ cilove promenne
+int expresion_reduction(TStack *s, Tstate instruct, int reduce_counter, Tstring *ret_string, Tstate dest_type) {
+    char *pom_integer= "GF@&pomInteger#";
+    char *pom_double = "GF@&pomFloat/";
+    char *pom_string = "GF@&pomString";
+    Tstring operand_1;
+    Tstring operand_2;
+    int error;
+    Tstate var_type;
+
+    char* context = (p == 0 ? "TF@" : "LF@");
+
     int symbol = STopType(s);
 
-    if(symbol == ex_ident || symbol == ex_num ||
-       symbol == ex_bool  || symbol == ex_str){ // R ---> i
+    if(symbol == ex_ident || symbol == ex_integer ||
+      symbol == ex_double || symbol == ex_str){ // R ---> i
          // do return stringu se uklada string identifikatoru, cisla, true/false nebo retezce
-        return_string = STopString(s);
-        if (symbol == ex_str) {
-            //printf("MOV TF@pomString TF@%s\n", );
-        }
-        printf("WRITE %s\n",return_string);
-        SPop(s);
-            if(SEmpty(s)){
-                return return_string;
+
+        str_rewrite_data(ret_string, STopString(s));   
+        var_type = return_type(ret_string);
+        //printf("2typ: %d, data: %s\n",var_type, ret_string->data);
+
+        if (reduce_counter == 0) {
+
+            //dest_type - typ promenne do ktere se bude prirazovat (0 znamena nikam)
+            //symbol    - rozliseni zda jde o identifikator nebo primo hodnotu a jakyho je typu
+
+            // jen prirazeni napr. a = b
+            if (symbol == ex_ident) {
+                if ((dest_type == st_integer || dest_type == 0) && (var_type == st_integer || var_type == st_double)) {
+                    printf("MOVE GF@&pomInteger %s%s\n", context, ret_string->data);
+                    last_gen_type = st_integer;                   
+                } else if ((dest_type == st_double || dest_type == 0) && (var_type == st_double || var_type == st_integer)) {
+                    printf("MOVE GF@&pomFloat %s%s\n", context, ret_string->data);
+                    last_gen_type = st_double;  
+                } else if ((dest_type == st_string || dest_type == 0) && var_type == st_string) {
+                    printf("MOVE GF@&pomString %s%s\n",context, ret_string->data);
+                    last_gen_type = st_string;
+                } else {
+                    fprintf(stderr, "Wrong types of operands!\n");
+                    return ERR_SEM_TYPE;
+                }                
             }
+            // a = 1.5
+            else if (symbol == ex_integer) {
+                if (dest_type == st_double || dest_type == 0) {
+                    printf("MOVE GF@&pomFloat float@%s\n", ret_string->data);
+                    last_gen_type = st_double;
+                } else if (dest_type == st_integer) {
+                    printf("MOVE GF@&pomInteger int@%s\n", ret_string->data);
+                    last_gen_type = st_integer;
+                } else {
+                    fprintf(stderr, "Wrong types of operands!\n");
+                    return ERR_SEM_TYPE;
+                }
+                if (dest_type == st_integer || dest_type == 0) {
+                    printf("MOVE GF@&pomInteger int@%s\n", ret_string->data);
+                    last_gen_type = st_integer;
+                }
+
+            } else if (symbol == ex_double) {
+                if (dest_type == st_double || dest_type == 0) {
+                    printf("MOVE GF@&pomFloat float@%s\n", ret_string->data);
+                    last_gen_type = st_double;
+                } else if (dest_type == st_integer) {
+                    // konverze double na integer
+                    Tstring res;
+                    str_create(&res);
+                    double converted = 0.0;
+                    int val = converted = nearbyint(strtod(ret_string->data,NULL));
+                    sprintf(res.data, "%d", val);
+                    str_rewrite_data(ret_string, res.data);
+                    str_destroy(&res);
+                    printf("MOVE GF@&pomInteger int@%s\n", ret_string->data);
+                    last_gen_type = st_integer;
+                } else {
+                    fprintf(stderr, "Wrong types of operands!\n");
+                    return ERR_SEM_TYPE;
+                }
+
+            } else if (symbol == ex_str) {
+                if (dest_type == st_string || dest_type == 0) {                    
+                    printf("MOVE GF@&pomString string@%s\n", ret_string->data);
+                    last_gen_type = st_string;
+                } else {
+                    fprintf(stderr, "Wrong types of operands!\n");
+                    return ERR_SEM_TYPE;
+                }
+            }            
+        }
+
+
+        error = add_data_info(var_type, ret_string);
+        if (error) {
+            return error;
+        }
+
+
+        SPop(s);
+        if(SEmpty(s)) return 0;
     }
 
     else if(symbol == ex_leftBrac){ // R ---> (R)
         SPop(s);
         symbol = STopType(s);
         if(symbol == ex_reduction){
-            return_string = STopString(s);
+            str_rewrite_data(ret_string, STopString(s));
 
             SPop(s);
             symbol = STopType(s);
 
             if(symbol == ex_rightBrac){
-              SPop(s);
-                if(SEmpty(s)){
-                return return_string;
-                }
+                SPop(s);
+                if(SEmpty(s)) return 0;
             }
         }
     }
 
     else if(symbol == ex_reduction){ // R ---> R "operator" R
-        const char* operand_1 = STopString(s);
-        return_string = "pom";
+        str_create_init(&(operand_1),STopString(s));
+
+        if (dest_type == st_double)
+            str_rewrite_data(ret_string, pom_double);
+        else if (dest_type == st_integer)
+            str_rewrite_data(ret_string, pom_integer);
+        else if (dest_type == st_string)
+            str_rewrite_data(ret_string, pom_string);
+        else if (dest_type == 0) {
+            var_type = return_type(ret_string);
+            if (var_type == st_double) {
+                str_rewrite_data(ret_string, pom_double);
+            } else if (var_type == st_integer) {
+                str_rewrite_data(ret_string, pom_integer);
+            } else if (var_type == st_string) {
+                str_rewrite_data(ret_string, pom_string);
+            }
+        }
+
+        //printf("ret_string: %s\n",ret_string->data);
+
         SPop(s);
         symbol = STopType(s);
         int operator = symbol;
+
         if(symbol == ex_mul   || symbol == ex_plus     || symbol == ex_minus  ||
            symbol == ex_div   || symbol == ex_wholeDiv || symbol == ex_equal  ||
            symbol == ex_notEq || symbol == ex_less     || symbol == ex_lessEq ||
@@ -322,114 +445,188 @@ const char* expresion_reduction(TStack *s) {
 
             symbol = STopType(s);
             if(symbol == ex_reduction){
-                const char* operand_2 = STopString(s);
+                str_create_init(&(operand_2),STopString(s));
+
 
                 SPop(s);
                 if(SEmpty(s)){
-                    // TODO jak zjistim jestli je '=' prirazeni nebo porovnavani
-                    expr_gen(operator, operand_1, operand_2, return_string);
-                    return return_string;
+
+                    // GENEROVANI
+                    error = expr_gen(operator, &(operand_1), &(operand_2), dest_type, instruct); 
+                    if (error) {
+                        //debug_print("%s\n", "st_integer error");
+                        str_destroy(&(operand_1));
+                        str_destroy(&(operand_2));
+                        return error;
+                    }
+                    // GENEROVANI
+
+                    str_destroy(&(operand_1));
+                    str_destroy(&(operand_2));
+                    return 0;
                 }
+                str_destroy(&(operand_2));
             }
         }
+        str_destroy(&(operand_1));
     }
 
-    return NULL;
+    return 1; // SPATNA NAVRATOVA HODNOTA
 
 }
 
-bool precedent_analysis() {
-    const char* top;//DEBUG
+//hlavni funkce precedencni analyzy
+int precedent_analysis(Tstate instruct, Tstate dest_type) {
     TStack stack;
     SInit(&stack);
 
-    int error;
-    int stacked_operator, input_operator;
+    Tstring ret_string;
+    str_create(&ret_string); //TODO: Petr Marek overit malloc
+
+    int reduce_counter = 0;
+    int error;  // pomocna promenna pro vraceni chyb
+    int stacked_operator, input_operator; // promenne pro zasobnikovy a vstupni symbol
 
     error = SPush(&stack, ex_dollar, " "); //do prazdneho zasobniku vlozime znak dolaru
-    if(error < 0){
-    	//ERROR
-    	printf("chyba mallocu\n");
+    if(error < 0){// nepodareny malloc prvnu zasobniku, ERROR
+      str_destroy(&ret_string);
+      SClean(&stack);
+      return ERR_INTERN;
     }
-    STopString(&stack);
-    printf("Inicializovany stack\n\n" );
-    DBG_SPrint(&stack);
-    printf("\n");
+
     do{
-    	stacked_operator = SActive(&stack);
-
-        if(stacked_operator < 0){
-            printf("//na zasobniku neni zadny terminal\n");
-            //ERROR prazdny zasobnik
-        }
-        input_operator = set_operator();
-        if(input_operator < 0){
-        	printf("//ERROR nevyhovujici symbol\n");
-            //ERROR nevyhovujici symbol
+        stacked_operator = SActive(&stack); // nastavime aktivni prvek zasobniku
+        if(stacked_operator < 0){// zasobnik je prazdny, ERROR
+          str_destroy(&ret_string);
+          SClean(&stack);
+          return ERR_INTERN;
         }
 
-        switch (prec_table[stacked_operator][input_operator]){
+        input_operator = set_operator(); //nastavime symbol vstupniho tokenu
+        if(input_operator < 0 || input_operator > ex_reduction){// nevyhovujici symbol na vstupu
+          str_destroy(&ret_string);
+          SClean(&stack);
+          return ERR_SYN;
+        }
+
+        switch (prec_table[stacked_operator][input_operator]){//porovnani operatoru v zasobniku a na vstupu
             case EQ:
             {
-            	  printf("case EQ\n\n");
-                SPush(&stack, input_operator, token.t_str.data);
-                generate_token();
+                error = add_data_info(token.t_state, &token.t_str);///
+                if (error) {
+                    str_destroy(&ret_string);
+                    SClean(&stack);
+                    return error;
+                }
+
+                error = SPush(&stack, input_operator, token.t_str.data); //vlozime vstupni symbol na zasobnik
+                if(error < 0){// nepodareny malloc prvnu zasobniku, ERROR
+                  str_destroy(&ret_string);
+                  SClean(&stack);
+                  return ERR_INTERN;
+                }
+
+                error = generate_token(); // generujeme dalsi token
+                if(error != 0){// nepovedla se operace generate_token, ERROR
+                  str_destroy(&ret_string);
+                  SClean(&stack);
+                  return error;
+                }
                 break;
             }
 
             case LT:
             {
-            	printf("case LT\n");
-                error = SPostActiveInsert(&stack, ex_rule_begin);
-                if (error < 0){
-                	printf("neexistuje aktivni prvek\n");
+                error = SPostActiveInsert(&stack, ex_rule_begin); // za aktivni prvek vlozime redukcni zavorku
+                if (error < 0){//nepovedlo se vlozit za aktivni prvek, ERROR
+                  str_destroy(&ret_string);
+                  SClean(&stack);
+                  return ERR_INTERN;
                 }
 
+                error = add_data_info(token.t_state, &token.t_str);///
+                if (error) {
+                    str_destroy(&ret_string);
+                    SClean(&stack);
+                    return error;
+                }
 
-                SPush(&stack, input_operator , token.t_str.data);
+                error = SPush(&stack, input_operator , token.t_str.data); //vlozime vstupni symbol na zasobnik
+                if(error < 0){// nepodareny malloc prvnu zasobniku, ERROR
+                  str_destroy(&ret_string);
+                  SClean(&stack);
+                  return ERR_INTERN;
+                }
 
-                STopString(&stack);
-                DBG_SPrint(&stack);
+                error = generate_token(); // generujeme dalsi token
+                if(error != 0){// nepovedla se operace generate_token, ERROR
+                  str_destroy(&ret_string);
+                  SClean(&stack);
+                  return error;
+                }
 
-                printf("\n");
-                generate_token();
-                STopString(&stack);
-                input_operator = set_operator();
-                if(input_operator < 0){
-        			printf("ERROR nevyhovujici symbol\n");
-        		    //ERROR nevyhovujici symbol
-       			}
-
+                input_operator = set_operator(); //nastavime symbol vstupniho tokenu
+                if(input_operator < 0 || input_operator > ex_reduction){// nevyhovujici symbol na vstupu
+                  str_destroy(&ret_string);
+                  SClean(&stack);
+                  return ERR_SYN;
+                }
                 break;
             }
 
             case GT:
             case XX:
             {
-            	printf("case GT\n");
-                TStack reduction_stack;
+                if(stacked_operator ==ex_dollar && input_operator == ex_dollar){
+                  str_destroy(&ret_string);
+                  return ERR_SYN;
+                }
+
+                TStack reduction_stack; // vytvorime pomocny redukcni zasobnik
                 SInit(&reduction_stack);
 
-                while(STopType(&stack) != ex_rule_begin){
-                    SPush(&reduction_stack, STopType(&stack), STopString(&stack)); // do pomoc. zasobniku pushneme symbol z vrcholu hl. zasobniku
-                    SPop(&stack);
+                while(STopType(&stack) != ex_rule_begin){ //  dokud na hlavnim zasobniku nenarazime na ex_dollar
 
+                    error = SPush(&reduction_stack, STopType(&stack), STopString(&stack)); // do pomoc. zasobniku pushneme symbol z vrcholu hl. zasobniku
+
+                    if(error < 0){// nepodareny malloc prvku zasobniku, ERROR
+                      str_destroy(&ret_string);
+                      SClean(&stack);
+                      return ERR_INTERN;
+                    }
+
+                    SPop(&stack); // popneme vrchol hlavniho zasobniku
                 }
-                const char* reduced_string = expresion_reduction(&reduction_stack);
-                SClean(&reduction_stack);
-                if(reduced_string == NULL){
-                    //ERROR neexistujici pravidlo
-                    printf("ERROR\n");
-                    SClean(&stack);
-                    return false;
+
+                // redukujeme vyraz na pomocnem zasobniku
+                error = expresion_reduction(&reduction_stack, instruct, reduce_counter, &ret_string, dest_type);
+
+                SClean(&reduction_stack); // rusime pomocny zasobnik
+
+                if(error){ // redukce se nezdarila
+                  str_destroy(&ret_string);
+                  SClean(&stack);
+                  return error;
                 }
 
 
-                SPop(&stack);
-                stacked_operator = SActive(&stack);
-                SPush(&stack, ex_reduction, reduced_string); //TODO: co ches?
-                DBG_SPrint(&stack);
-                printf("\n");
+                reduce_counter++;
+
+                SPop(&stack); // ze zasobniku popujeme redukcni zavorku
+                stacked_operator = SActive(&stack); // nastavujeme aktivni prvek zasobniku
+                if(stacked_operator < 0){// zasobnik je prazdny, ERROR
+                  str_destroy(&ret_string);
+                  SClean(&stack);
+                  return ERR_INTERN;
+                }
+
+                error = SPush(&stack, ex_reduction, ret_string.data); // vkladame redukovane pravidlo na zasobnik
+                if(error < 0){// nepodareny malloc prvnu zasobniku, ERROR
+                  str_destroy(&ret_string);
+                  SClean(&stack);
+                  return ERR_INTERN;
+                }
+
                 break;
             }
 
@@ -437,9 +634,10 @@ bool precedent_analysis() {
         }
 
 
-    }while ((SActive(&stack) != ex_dollar ) || (input_operator != ex_dollar));
-    printf("vyraz prosel\n");
-    SClean(&stack);
+    }while ((SActive(&stack) != ex_dollar ) || (input_operator != ex_dollar)); //dokud nezpracujeme cely vyraz
 
-    return true;
+    str_destroy(&ret_string); //uvolneni pameti
+    SClean(&stack); //uvolneni pameti
+
+    return 0;
 }

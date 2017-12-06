@@ -1,0 +1,9 @@
+scope
+dim a as integer
+a = 4
+if (a <> 5) then
+print !"plati\n";
+else
+print !"neplati\n";
+end if
+end scope
