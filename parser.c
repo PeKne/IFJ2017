@@ -16,6 +16,7 @@ extern int p;
 extern int ar_count;
 extern int if_counter;
 extern int while_counter;
+extern Tstate last_gen_type;
 
 /**************************FUNKCE-REKURZIVNIHO-SESTUPU*********************************/
 /**************************************************************************************/
@@ -300,7 +301,6 @@ int rule_function_tail(){ // stav <function-tail>
 }
 
 int rule_par(function_data *data_f){ // stav <par>
-    printf("rule_par\n" );
     int return_value = ERR_SYN;
     int func_return;
     if(token.t_state == st_id){ // simulace pravidla 9.
@@ -575,6 +575,7 @@ int rule_stat(){ // stav <stat>
             }
             char* context = (p == 0 ? "TF@" : "LF@");
             Tstate type = return_variable_type(token.t_str.data);
+            printf("WRITE string@?\\032\n");
             if      (type == st_integer) printf("READ %s%s int\n",context, token.t_str.data);///
             else if (type == st_double)  printf("READ %s%s float\n",context, token.t_str.data);///
             else if (type == st_string)  printf("READ %s%s string\n",context, token.t_str.data);///
@@ -591,6 +592,13 @@ int rule_stat(){ // stav <stat>
 
         if((func_return = precedent_analysis(instruct, dest_type)) == 0){
             if(token.t_state == st_stred){
+                if (last_gen_type == st_integer) {
+                    printf("WRITE GF@&pomInteger\n");
+                } else if (last_gen_type == st_double) {
+                    printf("WRITE GF@&pomFloat\n");
+                } else if (last_gen_type == st_string) {
+                    printf("WRITE GF@&pomString\n");
+                }
                 if((func_return = generate_token())) return func_return;
 
                 if((return_value = rule_pr_expr()) == 0){
@@ -707,18 +715,20 @@ int rule_eval(Tstring id){ // stav <eval>
     if((func_return = skip_blank_lines())) return func_return;
     Tstate instruct = 0;
     Tstate dest_type = 0;
-    dest_type = return_variable_type(id.data);
+
+    dest_type = return_variable_type(id.data);    
     char* context = (p == 0 ? "TF@" : "LF@");
 
     if(token.t_state == st_rovno ){ // simulace pravidla 19.
         if((func_return = generate_token())) return func_return;
 
-        if((func_return = precedent_analysis(instruct, dest_type)) == 0){
+        if((func_return = precedent_analysis(instruct, dest_type)) == 0){            
             if (dest_type == st_integer) {
                 printf("MOVE %s%s GF@&pomInteger\n",context, id.data);
             } else if (dest_type == st_double) {
                 printf("MOVE %s%s GF@&pomFloat\n",context, id.data);
             } else if (dest_type == st_string) {
+
                 printf("MOVE %s%s GF@&pomString\n",context, id.data);
 
             }
@@ -752,7 +762,7 @@ int rule_assign(Tstring id){ // stav <assign>
         if(item == NULL) { // tady konci vetsina vstupu TODO: OPRAVIT!
             item = htab_find(global.global_table, token.t_str.data);
             if(item == NULL || item->type != type_function) {
-                debug_print("%s\n", "NULL hashtable error\n");
+                fprintf(stderr, "Variable is not declared.\n");
                 return ERR_SEM_PROG;
             }
         }
@@ -875,10 +885,15 @@ int rule_pr_expr(){ // stav <pr-expr>
             return_value = 0;
 
     } else if((func_return = precedent_analysis(instruct, dest_type)) == 0){  //simulace pravidla 30.
-
         if(token.t_state == st_stred){
+            if (last_gen_type == st_integer) {
+                printf("WRITE GF@&pomInteger\n");
+            } else if (last_gen_type == st_double) {
+                printf("WRITE GF@&pomFloat\n");
+            } else if (last_gen_type == st_string) {
+                printf("WRITE GF@&pomString\n");
+            }
             if((func_return = generate_token())) return func_return;
-
               if((return_value = rule_pr_expr()) == 0){
                 return_value = 0;
             }

@@ -16,6 +16,7 @@
 
 extern char *str;
 extern int p;
+extern Tstate last_gen_type;
 
  /**********************************ZASOBNIKOVE-OPERACE*********************************/
 /**************************************************************************************/
@@ -243,6 +244,28 @@ int set_operator(){
 
     }
 }
+
+int add_data_info(Tstate var_type, Tstring *str)
+{   
+    Tstate type = var_type;
+
+    if (var_type == st_id) {
+        type = return_variable_type(str->data);
+        if (type == 0) {            
+            fprintf(stderr, "Variable in expresion is not declared.\n");
+            return ERR_SEM_PROG;
+        }
+    } 
+
+    if (type == st_double_val || type == st_exp_doub || type == st_double) {
+        str_push_char(str, '/'); // DOUBLE
+    } else if (type == st_int_val || type == st_exp_int || type == st_integer) {
+        str_push_char(str, '#'); // INTEGER
+    }
+
+    return 0;
+}
+
 const char* oper_strings[] = {"*", "/", "\\", "+", "-", "=", "<>", "<", "<=", ">", ">=", "(", ")", "i", "int", "double", "str", "bool", "$", "R", "]",};
 
 void DBG_SPrint(TStack *s){
@@ -272,12 +295,13 @@ void DBG_SPrint(TStack *s){
 
 //                     hlavni stack  instrukce       pocet redukci   jmeno promenne napr "a" typ cilove promenne
 int expresion_reduction(TStack *s, Tstate instruct, int reduce_counter, Tstring *ret_string, Tstate dest_type) {
-    char * pom_integer= "GF@&pomInteger";
-    char * pom_double = "GF@&pomFloat";
-    char * pom_string = "GF@&pomString";
+    char *pom_integer= "GF@&pomInteger#";
+    char *pom_double = "GF@&pomFloat/";
+    char *pom_string = "GF@&pomString";
     Tstring operand_1;
     Tstring operand_2;
     int error;
+    Tstate var_type;
 
     char* context = (p == 0 ? "TF@" : "LF@");
 
@@ -287,51 +311,52 @@ int expresion_reduction(TStack *s, Tstate instruct, int reduce_counter, Tstring 
       symbol == ex_double || symbol == ex_str){ // R ---> i
          // do return stringu se uklada string identifikatoru, cisla, true/false nebo retezce
 
-        str_rewrite_data(ret_string, STopString(s));
+        str_rewrite_data(ret_string, STopString(s));   
+        var_type = return_type(ret_string);
+        //printf("2typ: %d, data: %s\n",var_type, ret_string->data);
 
-        if (instruct == st_print) {
-            if (symbol == ex_str) {
-                printf("WRITE string@%s\n",ret_string->data);
-            } else if (symbol == ex_integer) {
-                printf("WRITE int@%s\n",ret_string->data);
-            } else if (symbol == ex_double) {
-                printf("WRITE float@%s\n",ret_string->data);
-            } else {
-                printf("WRITE %s%s\n",context, ret_string->data);
-            }
-        } else if (reduce_counter == 0) {
+        if (reduce_counter == 0) {
 
-            Tstate var_type = return_variable_type(ret_string->data); // typ promenne ve vyrazu
             //dest_type - typ promenne do ktere se bude prirazovat (0 znamena nikam)
             //symbol    - rozliseni zda jde o identifikator nebo primo hodnotu a jakyho je typu
 
             // jen prirazeni napr. a = b
             if (symbol == ex_ident) {
-                if ((dest_type == st_integer || dest_type == 0) && var_type == st_integer) {
-
-                    printf("MOVE %s %s%s\n", pom_integer, context, ret_string->data);
-                } else if ((dest_type == st_double || dest_type == 0) && var_type == st_double) {
-                    printf("MOVE %s %s%s\n", pom_double, context, ret_string->data);
+                if ((dest_type == st_integer || dest_type == 0) && (var_type == st_integer || var_type == st_double)) {
+                    printf("MOVE GF@&pomInteger %s%s\n", context, ret_string->data);
+                    last_gen_type = st_integer;                   
+                } else if ((dest_type == st_double || dest_type == 0) && (var_type == st_double || var_type == st_integer)) {
+                    printf("MOVE GF@&pomFloat %s%s\n", context, ret_string->data);
+                    last_gen_type = st_double;  
                 } else if ((dest_type == st_string || dest_type == 0) && var_type == st_string) {
-                    printf("MOVE %s %s%s\n", pom_string, context, ret_string->data);
+                    printf("MOVE GF@&pomString %s%s\n",context, ret_string->data);
+                    last_gen_type = st_string;
+                } else {
+                    fprintf(stderr, "Wrong types of operands!\n");
+                    return ERR_SEM_TYPE;
+                }                
+            }
+            // a = 1.5
+            else if (symbol == ex_integer) {
+                if (dest_type == st_double || dest_type == 0) {
+                    printf("MOVE GF@&pomFloat float@%s\n", ret_string->data);
+                    last_gen_type = st_double;
+                } else if (dest_type == st_integer) {
+                    printf("MOVE GF@&pomInteger int@%s\n", ret_string->data);
+                    last_gen_type = st_integer;
                 } else {
                     fprintf(stderr, "Wrong types of operands!\n");
                     return ERR_SEM_TYPE;
                 }
-            }
-            // a = 1.5
-            else if (symbol == ex_integer) {
-                if (dest_type == st_integer) {
-                    printf("MOVE %s int@%s\n", pom_integer, ret_string->data);
-                } else if (dest_type == st_double) {
-                    str_push_char(ret_string,'.');
-                    str_push_char(ret_string,'0');
-                    printf("MOVE %s float@%s\n", pom_double, ret_string->data);
+                if (dest_type == st_integer || dest_type == 0) {
+                    printf("MOVE GF@&pomInteger int@%s\n", ret_string->data);
+                    last_gen_type = st_integer;
                 }
 
             } else if (symbol == ex_double) {
-                if (dest_type == st_double) {
-                    printf("MOVE %s float@%s\n", pom_double, ret_string->data);
+                if (dest_type == st_double || dest_type == 0) {
+                    printf("MOVE GF@&pomFloat float@%s\n", ret_string->data);
+                    last_gen_type = st_double;
                 } else if (dest_type == st_integer) {
                     // konverze double na integer
                     Tstring res;
@@ -341,19 +366,30 @@ int expresion_reduction(TStack *s, Tstate instruct, int reduce_counter, Tstring 
                     sprintf(res.data, "%d", val);
                     str_rewrite_data(ret_string, res.data);
                     str_destroy(&res);
-                    printf("MOVE %s int@%s\n", pom_integer, ret_string->data);
-                }
-
-            } else if (symbol == ex_str) {
-                if (dest_type == st_string) {
-                    printf("MOVE %s string@%s\n", pom_string, ret_string->data);
-
+                    printf("MOVE GF@&pomInteger int@%s\n", ret_string->data);
+                    last_gen_type = st_integer;
                 } else {
                     fprintf(stderr, "Wrong types of operands!\n");
                     return ERR_SEM_TYPE;
                 }
-            }
+
+            } else if (symbol == ex_str) {
+                if (dest_type == st_string || dest_type == 0) {                    
+                    printf("MOVE GF@&pomString string@%s\n", ret_string->data);
+                    last_gen_type = st_string;
+                } else {
+                    fprintf(stderr, "Wrong types of operands!\n");
+                    return ERR_SEM_TYPE;
+                }
+            }            
         }
+
+
+        error = add_data_info(var_type, ret_string);
+        if (error) {
+            return error;
+        }
+
 
         SPop(s);
         if(SEmpty(s)) return 0;
@@ -384,6 +420,18 @@ int expresion_reduction(TStack *s, Tstate instruct, int reduce_counter, Tstring 
             str_rewrite_data(ret_string, pom_integer);
         else if (dest_type == st_string)
             str_rewrite_data(ret_string, pom_string);
+        else if (dest_type == 0) {
+            var_type = return_type(ret_string);
+            if (var_type == st_double) {
+                str_rewrite_data(ret_string, pom_double);
+            } else if (var_type == st_integer) {
+                str_rewrite_data(ret_string, pom_integer);
+            } else if (var_type == st_string) {
+                str_rewrite_data(ret_string, pom_string);
+            }
+        }
+
+        //printf("ret_string: %s\n",ret_string->data);
 
         SPop(s);
         symbol = STopType(s);
@@ -402,54 +450,9 @@ int expresion_reduction(TStack *s, Tstate instruct, int reduce_counter, Tstring 
 
                 SPop(s);
                 if(SEmpty(s)){
-                    Tstate op2_type = return_variable_type(operand_2.data);
 
                     // GENEROVANI
-                    if (dest_type == st_integer) {
-                        if (op2_type == st_string) {
-                            fprintf(stderr, "Cant assign string to integer.\n");
-                            error = ERR_SEM_TYPE;
-                        } else {
-                            error = expr_gen(operator, operand_1.data, operand_2.data, pom_integer, dest_type);
-                        }
-
-                    } else if (dest_type == st_double) {
-                        if (op2_type == st_string) {
-                            error = ERR_SEM_TYPE;
-                        } else {
-                            error = expr_gen(operator, operand_1.data, operand_2.data, pom_double, dest_type);
-                        }
-
-                    } else if (dest_type == st_string) {
-                        if (operator == ex_plus) {
-                            if (op2_type == st_string || op2_type == 0) { // NEPOZNAM NEINICIALIZOVANOU PROMENNOU OD !"STRINGU"
-                                error = expr_gen(operator, operand_1.data, operand_2.data, pom_string, dest_type);
-                                //printf("error %d\n",error);
-                                if (error) {
-                                    fprintf(stderr, "Wrong string operation!\n");
-                                }
-                            } else {
-                                //printf("chyba\n");
-                                fprintf(stderr, "Wrong string operation!\n");
-                                error = ERR_SEM_TYPE;
-                            }
-                        }
-
-                    } else if (dest_type == 0) { // bez prirazeni. Napr if (a < 0)
-                        if ((instruct == st_if  || instruct == st_loop) && (operator == ex_equal || operator == ex_notEq ||
-                            operator == ex_less || operator == ex_lessEq ||
-                            operator == ex_great || operator == ex_greatEq ))
-                        {
-                          error = expr_gen(operator, operand_1.data, operand_2.data, pom_string, dest_type);
-                            if (error) {
-                                fprintf(stderr, "Expresion in if or loop error.\n");
-                            }
-                        } else {
-                            fprintf(stderr, "In if and loop statement can only be relational operators.\n");
-                            error = ERR_SEM_OTHER;
-                        }
-                    }
-
+                    error = expr_gen(operator, &(operand_1), &(operand_2), dest_type, instruct); 
                     if (error) {
                         //debug_print("%s\n", "st_integer error");
                         str_destroy(&(operand_1));
@@ -509,6 +512,13 @@ int precedent_analysis(Tstate instruct, Tstate dest_type) {
         switch (prec_table[stacked_operator][input_operator]){//porovnani operatoru v zasobniku a na vstupu
             case EQ:
             {
+                error = add_data_info(token.t_state, &token.t_str);///
+                if (error) {
+                    str_destroy(&ret_string);
+                    SClean(&stack);
+                    return error;
+                }
+
                 error = SPush(&stack, input_operator, token.t_str.data); //vlozime vstupni symbol na zasobnik
                 if(error < 0){// nepodareny malloc prvnu zasobniku, ERROR
                   str_destroy(&ret_string);
@@ -533,6 +543,14 @@ int precedent_analysis(Tstate instruct, Tstate dest_type) {
                   SClean(&stack);
                   return ERR_INTERN;
                 }
+
+                error = add_data_info(token.t_state, &token.t_str);///
+                if (error) {
+                    str_destroy(&ret_string);
+                    SClean(&stack);
+                    return error;
+                }
+
                 error = SPush(&stack, input_operator , token.t_str.data); //vlozime vstupni symbol na zasobnik
                 if(error < 0){// nepodareny malloc prvnu zasobniku, ERROR
                   str_destroy(&ret_string);

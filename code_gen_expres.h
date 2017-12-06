@@ -10,6 +10,7 @@
 
 #include "lex.h"
 
-int expr_gen(int operator, char *operand_1, char *operand_2, char *destination, Tstate dest_type);
+Tstate return_type(Tstring *operand);
+int expr_gen(int operator, Tstring *operand_1, Tstring *operand_2, Tstate dest_type, Tstate instruct);  
 
 #endif

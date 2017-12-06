@@ -16,55 +16,46 @@
 
 extern int p;
 extern int whole_div_cntr;
+extern Tstate last_gen_type;
 
-// Zkontroluje, jestli je typ double, jinak vrátí integer
-int isDouble(char *operand) {
-    int operand_type = st_integer;
-    int length = strlen(operand);
-    for (int i = 0; i < length; i++)
-        {   
-            if (!isdigit(operand[i])) {
-                operand_type = st_double;
-            }
-        }
-    return operand_type;
-}
+Tstate return_type(Tstring *operand)
+{  
+    Tstate last_index;
+    Tstate op_type;
+    last_index = operand->length;
+    last_index--; 
 
-// vrací typ promenné v retezci, ktery se pote tiskne
-int check_operand (char *operand) {
-    int operand_type;
-    if (!isdigit(operand[0])) {
-        if ((strcmp(operand,"GF@&pomInteger") == 0) || (strcmp(operand,"GF@&pomFloat")  == 0)  ||  
-            (strcmp(operand,"GF@&pomBool")    == 0))
-            operand_type = 0; // neprida se zadny kontext - str_create vytvori prazdny retezec
-
-        else if ((return_variable_type(operand)) == 0) {
-            operand_type = st_string;         
-        } else {
-            operand_type = st_id;
-        }
-        
+    if (operand->length == 0) {
+        op_type = st_string; 
+    } else if (operand->data[last_index] == '#') {
+        op_type = st_integer; 
+        delete_last_index(operand);                   
+    } else if (operand->data[last_index] == '/') {                
+        op_type = st_double;
+        delete_last_index(operand);            
     } else {
-        operand_type = isDouble(operand);        
+       op_type = st_string; 
     }
-    return operand_type;
+    return op_type;
 }
+int set_context(Tstring *context, int operand_type, Tstate dest_type, Tstring *operand) {
+    double converted = 0.0;
+    if ((strcmp(operand->data,"GF@&pomInteger") == 0) || (strcmp(operand->data,"GF@&pomFloat")  == 0)  ||  
+        (strcmp(operand->data,"GF@&pomBool") == 0)) 
+    {
+        str_rewrite_data(context, "");
 
-// na základě cílové proměnné vybere datový typ, do kterého se bude výraz převádět a správně zvolí kontext pro generaci kodu
-int set_context(Tstring *context, int operand_type, Tstate dest_type, Tstring *operand) {  
-    double converted = 0.0;  
-    if (operand_type == st_id) {
+    } else if (operand_type != st_string && (isalpha(operand->data[0]) || operand->data[0] == '_')) {
         if (p == 0) str_rewrite_data(context, "TF@");
         else        str_rewrite_data(context, "LF@");
+    
     } else if (operand_type == st_integer){
         if (dest_type == st_integer || dest_type == 0) { // dest_type 0 znamena, ze se vyraz nebude nikam prirazovat
             str_rewrite_data(context, "int@");
         }
         else if (dest_type == st_double || dest_type == 0) {
             str_rewrite_data(context, "float@");
-        }
-
-        else {
+        } else {
             fprintf(stderr, "Wrong types of operands!\n");
             return ERR_SEM_TYPE;
         }
@@ -93,95 +84,135 @@ int set_context(Tstring *context, int operand_type, Tstate dest_type, Tstring *o
             fprintf(stderr, "Wrong types of operands!\n");
             return ERR_SEM_TYPE;
         }
-    } else if (operand_type == 0) {
-        str_rewrite_data(context, "");
-    }
+    // identifikator promenne 
+    } 
+
     return 0;
 }
 
-int expr_gen(int operator, char *operand_1, char *operand_2, char *destination, Tstate dest_type) {
 
-    int error = 0;
+int expr_gen(int operator, Tstring *operand_1, Tstring *operand_2, Tstate dest_type, Tstate instruct) {
 
-    int operand_1_type = check_operand(operand_1);
-    int operand_2_type = check_operand(operand_2);
+    int error;
+    
 
-    Tstring context_1;
-    Tstring context_2;
-
-    Tstring convert_op_1;
-    Tstring convert_op_2;
-
-    str_create(&context_1);
-    str_create(&context_2);
-
-    str_create_init(&convert_op_1, operand_1);
-    str_create_init(&convert_op_2, operand_2);
-
-    error = set_context(&context_1, operand_1_type, dest_type, &convert_op_1);
-    if (error) {
-        str_destroy(&context_1);
-        str_destroy(&context_2);
-        str_destroy(&convert_op_1);
-        str_destroy(&convert_op_2);
-        return error;
+    if ((instruct == st_if    || instruct == st_loop) && 
+        (operator != ex_equal && operator != ex_notEq  &&
+         operator != ex_less  && operator != ex_lessEq &&
+         operator != ex_great && operator != ex_greatEq ))
+    {
+        fprintf(stderr, "In if or loop statement must be relational operator only.\n");
+        return ERR_SEM_TYPE;
     }
-    error = set_context(&context_2, operand_2_type, dest_type, &convert_op_2);    
-    if (error) {
-        str_destroy(&context_1);
-        str_destroy(&context_2);
-        str_destroy(&convert_op_1);
-        str_destroy(&convert_op_2);
-        return error;
+
+
+    Tstate op1_type, op2_type;
+    
+
+    // st_string || st_integer || st_double
+    op1_type = return_type(operand_1);
+    op2_type = return_type(operand_2);
+
+    /*printf("op1_type: %d, operand_1:%s\n",op1_type, operand_1->data);
+    printf("op2_type: %d, operand_2:%s\n",op2_type, operand_2->data);*/
+
+    //printf("dest_type: %d\n",dest_type);
+    char *destination;
+
+    if (dest_type == st_integer) {
+        destination = "GF@&pomInteger";
+        last_gen_type = st_integer;
+    } else if (dest_type == st_double) {
+        destination = "GF@&pomFloat";
+        last_gen_type = st_double;
+    } else if (dest_type == st_string) {
+        destination = "GF@&pomString";
+        last_gen_type = st_string;
+    } else if (dest_type == 0){ // POKUD NENI DESTINATION, PRIRAZUJE SE DO FLOAT, NELZE SE STRINGAMA
+        if (op1_type == st_double && op2_type == st_double) {
+            destination = "GF@&pomFloat";
+            last_gen_type = st_double;
+        } else if (op1_type == st_integer && op2_type == st_integer) {
+            destination = "GF@&pomInteger";
+            last_gen_type = st_integer;
+        } else if (op1_type == st_double && op2_type == st_integer) {
+            destination = "GF@&pomFloat";
+            last_gen_type = st_double;
+        } else if (op1_type == st_integer && op2_type == st_double) {
+            destination = "GF@&pomFloat";
+            last_gen_type = st_double;
+        } else if (op1_type == st_string && op2_type == st_string) {
+            destination = "GF@&pomString";
+            last_gen_type = st_string;
+        } else {
+            fprintf(stderr, "Wrong types in expresion (generator error).\n");
+            return ERR_SEM_TYPE;
+        }
     }
 
     char* context = (p == 0 ? "TF@" : "LF@");
+    Tstring context_1;
+    Tstring context_2;
+    str_create(&context_1);
+    str_create(&context_2);
+
+    error = set_context(&context_1, op1_type, dest_type, operand_1);  
+    if (error == 0) {
+        error = set_context(&context_2, op2_type, dest_type, operand_2); 
+        if (error != 0){
+            str_destroy(&context_1);
+            str_destroy(&context_2);
+            return error;
+        }
+    } 
+
+    
 
     switch(operator) {
         
         case ex_mul:
         {
-            printf("MUL %s %s%s %s%s\n", destination, context_1.data, convert_op_1.data, context_2.data, convert_op_2.data);            
+            printf("MUL %s %s%s %s%s\n", destination, context_1.data, operand_1->data, context_2.data, operand_2->data);            
             break;
         }
 
         case ex_div:
         {
-            printf("DIV %s %s%s %s%s\n", destination, context_1.data, convert_op_1.data, context_2.data, convert_op_2.data);            
+            printf("DIV %s %s%s %s%s\n", destination, context_1.data, operand_1->data, context_2.data, operand_2->data);            
             break;
         }
 
         case ex_plus:
         {   
-            if (operand_1_type == st_string) {
-                printf("CONCAT GF@&pomString GF@&pomString %s%s\n", context_2.data, convert_op_2.data);                
+            if (op1_type == st_string) {
+                printf("CONCAT GF@&pomString GF@&pomString %s%s\n", context_2.data, operand_2->data);                
             } else {
-                printf("ADD %s %s%s %s%s\n", destination, context_1.data, convert_op_1.data, context_2.data, convert_op_2.data);              
+                printf("ADD %s %s%s %s%s\n", destination, context_1.data, operand_1->data, context_2.data, operand_2->data);              
             }
             break;
         }
 
         case ex_minus:
         {
-            printf("SUB %s %s%s %s%s\n", destination, context_1.data, convert_op_1.data, context_2.data, convert_op_2.data);            
+            printf("SUB %s %s%s %s%s\n", destination, context_1.data, operand_1->data, context_2.data, operand_2->data);            
             break;
         }
 
         case ex_equal:
         {
-            printf("EQ GF@&pomBool %s%s %s%s\n", context_1.data, convert_op_1.data, context_2.data, convert_op_2.data);            
+            printf("EQ GF@&pomBool %s%s %s%s\n", context_1.data, operand_1->data, context_2.data, operand_2->data);            
             break;
         }
 
         case ex_less:
         {
-            printf("LT GF@&pomBool %s%s %s%s\n", context_1.data, convert_op_1.data, context_2.data, convert_op_2.data);            
+            printf("LT GF@&pomBool %s%s %s%s\n", context_1.data, operand_1->data, context_2.data, operand_2->data);            
             break;
         }
 
         case ex_great:
         {
-            printf("GT GF@&pomBool %s%s %s%s\n", context_1.data, convert_op_1.data, context_2.data, convert_op_2.data);            
+            printf("GT GF@&pomBool %s%s %s%s\n", context_1.data, operand_1->data, context_2.data, operand_2->data);            
             break;
         }
 
@@ -190,7 +221,7 @@ int expr_gen(int operator, char *operand_1, char *operand_2, char *destination, 
             printf("\nMOVE GF@&pomCntr int@0\n");
             printf("LABEL $$WholeDiv_Begin%d\n", whole_div_cntr);
             printf("ADD GF@&pomCntr GF@&pomCntr int@1\n");
-            printf("SUB GF@&pomInteger GF@&pomInteger %s%s\n", context_2.data, convert_op_2.data); 
+            printf("SUB GF@&pomInteger GF@&pomInteger %s%s\n", context_2.data, operand_2->data); 
             printf("LT GF@&pomBool GF@&pomInteger int@0\n");
             printf("JUMPIFNEQ $$WholeDiv_Begin%d GF@&pomBool bool@true\n", whole_div_cntr++);/// counter
             printf("SUB GF@&pomCntr GF@&pomCntr int@1\n");
@@ -199,11 +230,10 @@ int expr_gen(int operator, char *operand_1, char *operand_2, char *destination, 
         }
 
         default:
-            fprintf(stderr, "Chyba v code_gen_expres %s%s %s%s %s%s\n", context, destination, context_1.data, convert_op_1.data, context_2.data, convert_op_2.data);
+            fprintf(stderr, "Chyba v code_gen_expres %s%s %s%s %s%s\n", context, destination, context_1.data, operand_1->data, context_2.data, operand_2->data);
 
     }
-    str_destroy(&convert_op_1);
-    str_destroy(&convert_op_2);
+
     str_destroy(&context_1);
     str_destroy(&context_2);
     return 0;

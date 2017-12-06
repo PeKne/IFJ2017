@@ -239,7 +239,12 @@ int generate_token()
 
             case st_retez:
             {
-                if ((ascii >= 0 && ascii <= 32) || ascii == 35) {
+                if (c == EOF || c == '\n' || c == '\t') {
+                    fprintf(stderr, "LEX: Line: %d: Error, after string must be \"\n", token.t_line);
+                    unget_char(c);
+                    state = st_error;
+                    break;
+                } else if ((ascii >= 0 && ascii <= 32) || ascii == 35) {
                     char esc[5];
                     sprintf(esc, "\\%03d",ascii);
                     for (int i = 0; esc[i] != '\0'; i++)
@@ -252,10 +257,6 @@ int generate_token()
                     state = st_esc;
                 } else if (c == '"') {
                     state = st_final;
-                } else if (c == EOF) {
-                    fprintf(stderr, "LEX: Line: %d: Error, after string must be \"\n", token.t_line);
-                    unget_char(c);
-                    state = st_error;
                 } else {
                     error = str_push_char(&(token.t_str), c);
                     if (error) { str_destroy(&esc_str); return error; }
@@ -266,7 +267,7 @@ int generate_token()
 
             case st_esc:
             {
-                if ((c == '"') || (c == 'n') || (c == '\\')) {
+                if ((c == '"') || (c == 'n') || (c == 't') || (c == '\\')) {
                     char * esc;
 
                     if      (c == '"')  esc = "\\034";
@@ -280,7 +281,6 @@ int generate_token()
                         if (error) { str_destroy(&esc_str); return error; }
                     }
                     state = st_retez;
-
                 } else if (isdigit(c)) {
                     unget_char(c);
                     state = st_esc_num;
@@ -305,6 +305,12 @@ int generate_token()
 
                     int int_char;
                     int_char = (int) strtol(esc_str.data, NULL, 10);
+                    if (int_char < 1 || int_char > 255) {
+                        fprintf(stderr, "Wrong escape sequence in string\n");
+                        unget_char(c);
+                        state = st_error;
+                        break;
+                    }
                     error = str_push_char(&(token.t_str), (char)int_char);
                     if (error) { str_destroy(&esc_str); return error; }
 

@@ -177,3 +177,9 @@ int str_delete_index(Tstring *str, int index)
 
     return err;
 }
+
+void delete_last_index(Tstring *str)
+{
+    int last_index = --(str->length);
+    str->data[last_index] = '\0';
+}

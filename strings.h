@@ -48,4 +48,6 @@ int str_delete_index(Tstring *str, int index);
 
 // prepise data ve stringu na 'data'.
 int str_rewrite_data(Tstring *str, char *data);
+
+void delete_last_index(Tstring *str);
 #endif
