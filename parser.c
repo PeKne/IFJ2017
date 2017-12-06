@@ -19,7 +19,7 @@ extern int while_counter;
 extern int equal;
 extern Tstate last_gen_type;
 Tstring param;
-int index = 1;
+int index_par = 1;
 
 /**************************FUNKCE-REKURZIVNIHO-SESTUPU*********************************/
 /**************************************************************************************/
@@ -824,7 +824,7 @@ int rule_assign(Tstring id){ // stav <assign>
                         str_destroy(&(fce));
                         return func_return;
                     }
-                    index = 1;
+                    index_par = 1;
                     // TODO FUNKCE
                     //debug_print("%s\n","funkce");
                     printf("CALL $%s\n",fce.data);
@@ -973,8 +973,8 @@ int rule_call_par(){ // stav <call-par>
     int func_return;
     if(token.t_state == st_id){ // simulace pravidla 24.
         //TODO PARAM
-        str_append_str(&param, &(global.current_arguments[index - 1].argument_name));
-        //TU si rob s argumentom čo potrebuješ
+        str_append_str(&param, &(global.current_arguments[index_par - 1].argument_name));
+        printf("%s\n", param.data);
         str_destroy(&param);
         if((func_return = generate_token())) return func_return;
 
@@ -994,7 +994,7 @@ int rule_call_next_par(){ // stav <call-next-par>
     int return_value = ERR_SYN;
     int func_return;
     if(token.t_state == st_carka){ // simulace pravidla 26.
-        index++;
+        index_par++;
 
       if((func_return = generate_token())) return func_return;
 
