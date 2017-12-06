@@ -1,0 +1,64 @@
+.IFJcode17
+JUMP $$scope
+
+LABEL $get_year
+PUSHFRAME
+DEFVAR LF@&retval
+MOVE GF@&pomString string@Enter\032a\032year:\032
+WRITE GF@&pomString
+DEFVAR LF@year
+MOVE LF@year int@0
+
+DEFVAR LF@number
+MOVE LF@number LF@arg0
+
+DEFVAR LF@second
+MOVE LF@second LF@arg1
+
+WRITE string@?\032
+READ LF@year int
+MOVE GF@&pomInteger LF@number
+WRITE GF@&pomInteger
+MOVE GF@&pomInteger LF@second
+WRITE GF@&pomInteger
+MOVE GF@&pomInteger LF@year
+MOVE LF@&retval GF@&pomInteger
+POPFRAME
+RETURN
+
+
+LABEL $$scope
+DEFVAR GF@&pomInteger
+MOVE GF@&pomInteger int@0
+DEFVAR GF@&pomString
+MOVE GF@&pomString string@
+DEFVAR GF@&pomFloat
+MOVE GF@&pomFloat float@0
+DEFVAR GF@&pomBool
+MOVE GF@&pomBool bool@false
+DEFVAR GF@&pomCntr
+MOVE GF@&pomCntr int@0
+CREATEFRAME
+
+DEFVAR TF@year
+MOVE TF@year int@0
+DEFVAR TF@num
+MOVE TF@num int@0
+MOVE GF@&pomInteger int@1
+MOVE GF@&pomInteger int@1
+MOVE TF@num GF@&pomInteger
+DEFVAR TF@sec_num
+MOVE TF@sec_num int@0
+MOVE GF@&pomInteger int@2
+MOVE GF@&pomInteger int@2
+MOVE TF@sec_num GF@&pomInteger
+
+DEFVAR TF@arg0
+MOVE TF@arg0 TF@num
+DEFVAR TF@arg1
+MOVE TF@arg1 TF@sec_num
+
+CALL $get_year
+MOVE TF@year TF@&retval
+MOVE GF@&pomInteger TF@year
+WRITE GF@&pomInteger

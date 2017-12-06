@@ -27,7 +27,7 @@ htab_t *htab_init(unsigned size)
 
 	table = (htab_t *) g_malloc(sizeof(htab_t) + size * sizeof(htab_listitem));
 	if(table == NULL) { 
-		debug_print("%s\n", "Error allocating memory for hash table.");
+		fprintf(stderr, "Error allocating memory for hash table.");
 		return NULL;
 	}
 	
@@ -81,14 +81,14 @@ htab_listitem *htab_lookup_add(htab_t *table, char *key)
 
 	new_item = g_malloc(sizeof(htab_listitem));
 	if(new_item == NULL) {
-		debug_print("%s\n", "Error allocating memory for htab_listitem.");
+		fprintf(stderr, "Error allocating memory for htab_listitem.");
 
 		return NULL;
 	}
 
 	new_item->key = g_malloc(sizeof(char *) * (strlen(key) + 1));
 	if(new_item->key == NULL) {
-		debug_print("%s\n", "Error allocating memory for htab_listitem->key.");
+		fprintf(stderr, "Error allocating memory for htab_listitem->key.");
 		g_free(new_item);
 
 		return NULL;

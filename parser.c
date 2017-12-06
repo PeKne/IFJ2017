@@ -18,6 +18,9 @@ extern int if_counter;
 extern int while_counter;
 extern int equal;
 extern Tstate last_gen_type;
+extern int arg_cnt;
+Tstring param;
+int index_par = 1;
 
 /**************************FUNKCE-REKURZIVNIHO-SESTUPU*********************************/
 /**************************************************************************************/
@@ -241,7 +244,10 @@ int rule_function_head() { // stav <function-head>
 
                 if(token.t_state == st_levzav) {
                     if((func_return = generate_token())) return func_return;
-
+                    printf("LABEL $%s\n", ident.data);///
+                    printf("PUSHFRAME\n");
+                    printf("DEFVAR LF@&retval\n");///
+                    str_destroy(&ident);///
                     if((return_value = rule_check_par()) == 0) {
 
                         if(token.t_state == st_pravzav) {
@@ -256,12 +262,7 @@ int rule_function_head() { // stav <function-head>
 
                                 if((return_value = rule_check_ret_type()) == 0) {
 
-                                    if(token.t_state == st_eol) {
-                                        // TODO FUNKCE
-                                        printf("LABEL $%s\n", ident.data);///
-                                        printf("PUSHFRAME\n");
-                                        printf("DEFVAR LF@&retval\n");///
-                                        str_destroy(&ident);///
+                                    if(token.t_state == st_eol) {                                        
                                         if((func_return = generate_token())) return func_return;
                                         return_value = 0;
                                     }
@@ -281,11 +282,11 @@ int rule_function_tail(){ // stav <function-tail>
     int func_return;
     if((func_return = skip_blank_lines())) return func_return;
     if(token.t_state == st_end){ // simulace pravidla 8.
-        // TADY ZJISTIT TYP NAVRATOVE HODNOTY FUNKCE
         Tstate type = return_function_type();
         if (type == st_integer) printf("MOVE LF@&retval GF@&pomInteger\n");
         if (type == st_string)  printf("MOVE LF@&retval GF@&pomString\n");
         if (type == st_double)  printf("MOVE LF@&retval GF@&pomFloat\n");
+        arg_cnt = 0;
         printf("POPFRAME\n");
         printf("RETURN\n\n");
         if((func_return = generate_token())) return func_return;
@@ -318,7 +319,7 @@ int rule_par(function_data *data_f){ // stav <par>
         variable_init(item, token.t_str.data);
 
         if(add_argument_function(data_f, &token) != 0) {
-            return ERR_INTERN;
+            return ERR_INTERN;            
         }
         if((func_return = generate_token())) return func_return;
 
@@ -341,7 +342,6 @@ int rule_par(function_data *data_f){ // stav <par>
 }
 
 int rule_next_par(function_data *data_f){ // stav <next-par>
-    //printf("rule next par\n" );
     int return_value = ERR_SYN;
     int func_return;
     if(token.t_state ==  st_carka){ // simulace pravidla 11.
@@ -368,11 +368,18 @@ int rule_check_par(){ // stav <check-par>
     if(token.t_state == st_id){ // simulace pravidla 9.
         ar_count++;
         if(check_argument_name(token.t_str.data, ar_count) != 1) {
+            htab_remove(global.local_sym, global.current_arguments[ar_count - 1].argument_name.data);
             htab_listitem *item;
             item = htab_lookup_add(global.local_sym, token.t_str.data);
             variable_init(item, token.t_str.data);
             item->pointer.variable->type = global.current_arguments[ar_count - 1].type;
+
+            str_clear(&global.current_arguments[ar_count - 1].argument_name);
+            str_append_str(&(global.current_arguments[ar_count - 1].argument_name), &token.t_str);           
         }
+        char* context = (p == 0 ? "TF@" : "LF@");
+        printf("DEFVAR %s%s\n",context, global.current_arguments[ar_count - 1].argument_name.data);
+        printf("MOVE %s%s %s&arg%d\n", context, global.current_arguments[ar_count - 1].argument_name.data, context, arg_cnt++);
         if((func_return = generate_token())) return func_return;
 
         if(token.t_state == st_as){
@@ -616,6 +623,7 @@ int rule_stat(){ // stav <stat>
         if((func_return = generate_token())) return func_return;
 
         if((func_return = precedent_analysis(instruct, dest_type)) == 0){
+            if_counter++;
             if (equal) {
                 printf("JUMPIFNEQ $$else_%d GF@&pomBool bool@true\n", if_counter);///
             } else { 
@@ -645,7 +653,7 @@ int rule_stat(){ // stav <stat>
 
                                         if(token.t_state == st_if){
                                             printf("LABEL $$endif_%d\n", if_counter);
-                                            if_counter++;
+                                            if_counter--;
                                             if((func_return = generate_token())) return func_return;
 
                                             return_value = 0;
@@ -673,6 +681,7 @@ int rule_stat(){ // stav <stat>
 
         if(token.t_state == st_while){
             instruct = st_loop;
+            while_counter++;
             printf("LABEL $$loop_%d\n", while_counter);
             if((func_return = generate_token())) return func_return;
 
@@ -690,7 +699,7 @@ int rule_stat(){ // stav <stat>
                         printf("JUMP $$loop_%d\n", while_counter);
                         if(token.t_state == st_loop){
                             printf("LABEL $$loop_end_%d\n", while_counter);
-                            while_counter++;
+                            while_counter--;
                             if((func_return = generate_token())) return func_return;
 
                             return_value = 0;
@@ -820,6 +829,7 @@ int rule_assign(Tstring id){ // stav <assign>
                         str_destroy(&(fce));
                         return func_return;
                     }
+                    index_par = 1;
                     // TODO FUNKCE
                     //debug_print("%s\n","funkce");
                     printf("CALL $%s\n",fce.data);
@@ -968,6 +978,12 @@ int rule_call_par(){ // stav <call-par>
     int func_return;
     if(token.t_state == st_id){ // simulace pravidla 24.
         //TODO PARAM
+        str_append_str(&param, &(global.current_arguments[index_par - 1].argument_name));
+        //printf("%s\n", param.data);
+        char* context = (p == 0 ? "TF@" : "LF@");
+        printf("DEFVAR %s&arg%d\n", context, arg_cnt);
+        printf("MOVE %s&arg%d %s%s\n", context, arg_cnt++, context, token.t_str.data);
+        str_destroy(&param);
         if((func_return = generate_token())) return func_return;
 
         if((return_value = rule_call_next_par()) == 0){
@@ -986,6 +1002,7 @@ int rule_call_next_par(){ // stav <call-next-par>
     int return_value = ERR_SYN;
     int func_return;
     if(token.t_state == st_carka){ // simulace pravidla 26.
+        index_par++;
 
       if((func_return = generate_token())) return func_return;
 
